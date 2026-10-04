@@ -30,3 +30,17 @@ Authored inputs for this repair: the complete existing Stage 1/2 package, suppli
 The existing Stage 2 integrity scenarios passed **11/11** in 0.881 s; inherited scenarios passed **15/15** in 1.900 s, without skips. Logs are `stage-2-decimal-direct-01.log` and `stage-2-decimal-inherited-direct-01.log`. The new independently authored HTTP decimal probe checks configuration types, giant capacity and declared pair sums, grid/duration/cutoff semantics, exact query filtering, failure-key reuse, original receipts, cross-process replacement and invalid-type/lexical errors. It is outside graded folders, and the container driver now runs it after the ordinary and inherited regressions. Its constrained named-image result follows as an append-only entry after execution. No acceptance or hidden-suite result is claimed.
 
 Harness Codex; configured model gpt-6.1-sol. Actual runtime override, effort, usage, estimated cost and billed spend remain unknown. Historical timestamp and original receipt interpretations remain unchanged. Independent review and the frozen Stage 1 repair gate remain pending.
+
+## Named complete-image HTTP result
+
+Production repair full revision: `cf10edbcd2fc43a4458b1c8a12d441c3a292d7bf`.
+
+```sh
+../../.venv/bin/python -B evidence/systems-engineer/stage-2-container-check.py --revision cf10edbcd2fc43a4458b1c8a12d441c3a292d7bf --integrated --out evidence/systems-engineer/systems-engineer-s2-decimal-integrated-01
+```
+
+The complete committed Stage 2 subtree built successfully. Existing Stage 2 HTTP scenarios passed **11/11** in 1.190 s; inherited scenarios passed **15/15** in 2.432 s, without skips. The new decimal suite executed **70 HTTP operations/108 assertions/0 failures** in 0.449887750 s. Total build/start/probe/cleanup wall time was 7.561144250 s. Both current source and destination independently held exact giant values, configuration, hashes, tokens and original receipts. Accepted Stage 1 and genuine earlier timestamp-receipt source processes continued to pass ordinary migration checks; this does not claim those unchanged old services accepted giant decimal resets.
+
+Four own processes had 2 CPU/2 GiB, no mounts and an internal offline network; image core/server hashes matched their recorded exact revisions. Every own container/network cleanup returned zero. Commands, hashes, configuration, measured health probes and timings are in `systems-engineer-s2-decimal-integrated-01/runtime.json`. The independently seeded 160-operation member oracle trace remains alongside the HTTP logs. Browser review and official independent acceptance are separately owned.
+
+The initial decimal trace logger recursively exposed private export state within its uncommitted local trace. Before any commit/public handoff, those private state payloads were replaced with fingerprints; HTTP statuses, assertions and timing observations remain unchanged. The logger now fingerprints state at capture, so future traces never contain token-map keys or exported account/session state. This logging correction is evidence-only; no response or production result changed. A separately named follow-up run verifies corrected capture below.

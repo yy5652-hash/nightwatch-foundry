@@ -30,6 +30,8 @@ started = time.monotonic()
 
 
 def safe(value, key=""):
+    if key in ("state", "tokens"):
+        return {"private_state_sha256": hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()}
     if key in ("password", "token", "password_hash"):
         return {"fingerprint": hashlib.sha256(str(value).encode()).hexdigest()}
     if type(value) is int and value.bit_length() > 10000:
