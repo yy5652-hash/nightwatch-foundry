@@ -1,8 +1,11 @@
 # Stage 2 Interface implementation and integration handoff
 
-**Update 2026-10-04:** the appended large-integer boundary and exact visible status
-repairs supersede the original candidate/counts below. Current tested full revision
-is `71de2e326dc3d96c495a8c4df64f0130f13ce95c`: **21/21 scenarios, 379 assertions PASS**.
+**Update 2026-10-04:** the large-integer boundary, exact visible status and
+restaurant-local end-time repairs supersede the original candidate/counts below.
+Current tested full revision is `87b816c63b59032e2bea6130a0b0308c47e9f6b0`:
+**32/32 scenarios, 510 assertions PASS**. Scoped end-time report:
+`stage-2-local-end-repair.md`. The separate 4301-digit core boundary is pending
+Systems' committed repair and is not claimed verified by this run.
 Original results and failures remain preserved. Independent acceptance is pending.
 
 Interface implementation is complete for independent review. This is builder

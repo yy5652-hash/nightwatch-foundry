@@ -1,0 +1,48 @@
+{"candidate": "a6a513969077269aa50cbe1c973c485a6a0dd6c0", "passed": 27, "total": 29, "assertions": 457, "seconds": 21.342}
+PASS transport-public
+PASS authentication-keyboard
+PASS single-book-lookup-cancel
+PASS lookup-status-exact
+PASS out-of-order-search
+PASS single-conflict
+PASS combined-conflict
+PASS lost-single
+PASS lost-combined
+PASS genuine-stage1-upgrade
+PASS combined-occupancy
+PASS changed-retry-form
+PASS empty-unavailable-lookup
+PASS lookup-race-privacy-cutoff
+PASS auth-inputs-loading
+PASS concurrent-pair-transport
+PASS party-safe-boundary
+PASS party-above-safe-integer
+PASS party-31-digits
+PASS party-401-digits
+PASS exact-numeric-keyboard-corrupt-response
+FAIL local-end-berlin-historic
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 548, in local_end_display
+    check(observed.endswith(' · '+expected),'restaurant-local end display '+zone+' '+local)
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: restaurant-local end display Europe/Berlin 0001-01-01T18:00
+
+FAIL local-end-brussels-historic
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 548, in local_end_display
+    check(observed.endswith(' · '+expected),'restaurant-local end display '+zone+' '+local)
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: restaurant-local end display Europe/Brussels 0001-01-01T18:00
+
+PASS local-end-new-york-historic
+PASS local-end-berlin-fall-back
+PASS local-end-new-york-fall-back
+PASS local-end-berlin-spring
+PASS local-end-new-york-spring
+PASS local-end-last-calendar-date

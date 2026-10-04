@@ -1,0 +1,60 @@
+{"candidate": "947d449c3fb9b5184d7cc6ae438b0f76dfe237aa", "passed": 29, "total": 32, "assertions": 483, "seconds": 22.044}
+PASS transport-public
+PASS authentication-keyboard
+PASS single-book-lookup-cancel
+PASS lookup-status-exact
+PASS out-of-order-search
+PASS single-conflict
+PASS combined-conflict
+PASS lost-single
+PASS lost-combined
+PASS genuine-stage1-upgrade
+PASS combined-occupancy
+PASS changed-retry-form
+PASS empty-unavailable-lookup
+PASS lookup-race-privacy-cutoff
+PASS auth-inputs-loading
+PASS concurrent-pair-transport
+PASS party-safe-boundary
+PASS party-above-safe-integer
+PASS party-31-digits
+PASS party-401-digits
+PASS exact-numeric-keyboard-corrupt-response
+PASS local-end-berlin-historic
+PASS local-end-brussels-historic
+PASS local-end-new-york-historic
+PASS local-end-berlin-fall-back
+PASS local-end-new-york-fall-back
+PASS local-end-berlin-spring
+PASS local-end-new-york-spring
+PASS local-end-last-calendar-date
+FAIL local-end-legacy-berlin
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 553, in local_end_display
+    check(status==204,'local-end fixture accepted')
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: local-end fixture accepted
+
+FAIL local-end-legacy-brussels
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 553, in local_end_display
+    check(status==204,'local-end fixture accepted')
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: local-end fixture accepted
+
+FAIL local-end-legacy-new-york
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 553, in local_end_display
+    check(status==204,'local-end fixture accepted')
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: local-end fixture accepted
+

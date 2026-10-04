@@ -67,3 +67,23 @@ unchanged service and fails the visible-string check while all prior 20 scenario
 pass. The correction replaces only the status badge's capitalize transformation
 with none, satisfying the written exact status text without requiring an ambiguity
 decision. No HTTP, JSON, core, retry, migration or frozen Stage 1 changes.
+
+## Restaurant-local end-time follow-up input
+
+Verifier room observation `fb310a7a-3ab1-4ac8-9371-ee23fd7884db` identified the
+historical wire-clock versus restaurant-wall-clock discrepancy. Only the message
+was read; no verifier code or artifact contents were consulted. Eight original
+browser controls independently reproduced the Berlin/Brussels failures and checked
+New York, both specified zones' DST transitions and the last calendar date. The
+repair parses the preserved timestamp and uses built-in Intl with the explicit
+restaurant zone. Original starts_at_local and saved wire timestamps remain intact.
+
+For later diagnostics, five genuine Stage 1 files at own-team revision
+`49287b4a5a1481f995c470ccae31776f03d4b863` were extracted through git show into an
+Interface-owned temporary image context solely to run a real pre-serializer
+source. Original HTTP tokens/bookings/receipts/export then imported unchanged.
+This source was not reused as new browser implementation. Source/image hashes,
+real original-receipt replay and cleanup are recorded. A probe-only wrong-status
+assertion was preserved before correction in a separate commit. Integer-limit
+ownership was coordinated with Systems through room message
+`5fe7bfdc-53c9-471e-8a3f-0650b4219259`; Interface made no core or frozen Stage 1 edits.

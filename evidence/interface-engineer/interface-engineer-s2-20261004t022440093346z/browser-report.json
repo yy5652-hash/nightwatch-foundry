@@ -1,0 +1,541 @@
+{
+  "seed": 20261004,
+  "candidate": "a6a513969077269aa50cbe1c973c485a6a0dd6c0",
+  "scenarios": [
+    {
+      "name": "transport-public",
+      "verdict": "PASS",
+      "seconds": 0.649
+    },
+    {
+      "name": "authentication-keyboard",
+      "verdict": "PASS",
+      "seconds": 2.873
+    },
+    {
+      "name": "single-book-lookup-cancel",
+      "verdict": "PASS",
+      "seconds": 1.38
+    },
+    {
+      "name": "lookup-status-exact",
+      "verdict": "PASS",
+      "seconds": 0.809
+    },
+    {
+      "name": "out-of-order-search",
+      "verdict": "PASS",
+      "seconds": 0.619
+    },
+    {
+      "name": "single-conflict",
+      "verdict": "PASS",
+      "seconds": 0.49
+    },
+    {
+      "name": "combined-conflict",
+      "verdict": "PASS",
+      "seconds": 0.599
+    },
+    {
+      "name": "lost-single",
+      "verdict": "PASS",
+      "seconds": 0.692
+    },
+    {
+      "name": "lost-combined",
+      "verdict": "PASS",
+      "seconds": 0.644
+    },
+    {
+      "name": "genuine-stage1-upgrade",
+      "verdict": "PASS",
+      "seconds": 1.104
+    },
+    {
+      "name": "combined-occupancy",
+      "verdict": "PASS",
+      "seconds": 0.579
+    },
+    {
+      "name": "changed-retry-form",
+      "verdict": "PASS",
+      "seconds": 0.568
+    },
+    {
+      "name": "empty-unavailable-lookup",
+      "verdict": "PASS",
+      "seconds": 0.846
+    },
+    {
+      "name": "lookup-race-privacy-cutoff",
+      "verdict": "PASS",
+      "seconds": 0.995
+    },
+    {
+      "name": "auth-inputs-loading",
+      "verdict": "PASS",
+      "seconds": 0.623
+    },
+    {
+      "name": "concurrent-pair-transport",
+      "verdict": "PASS",
+      "seconds": 0.429
+    },
+    {
+      "name": "party-safe-boundary",
+      "verdict": "PASS",
+      "seconds": 0.707
+    },
+    {
+      "name": "party-above-safe-integer",
+      "verdict": "PASS",
+      "seconds": 0.73
+    },
+    {
+      "name": "party-31-digits",
+      "verdict": "PASS",
+      "seconds": 0.674
+    },
+    {
+      "name": "party-401-digits",
+      "verdict": "PASS",
+      "seconds": 0.633
+    },
+    {
+      "name": "exact-numeric-keyboard-corrupt-response",
+      "verdict": "PASS",
+      "seconds": 0.337
+    },
+    {
+      "name": "local-end-berlin-historic",
+      "verdict": "FAIL",
+      "seconds": 0.562,
+      "error": "Traceback (most recent call last):\n  File \"/work/probe.py\", line 102, in scenario\n    await callback(context, page)\n  File \"/work/probe.py\", line 548, in local_end_display\n    check(observed.endswith(' \u00b7 '+expected),'restaurant-local end display '+zone+' '+local)\n  File \"/work/probe.py\", line 38, in check\n    raise AssertionError(description)\nAssertionError: restaurant-local end display Europe/Berlin 0001-01-01T18:00\n"
+    },
+    {
+      "name": "local-end-brussels-historic",
+      "verdict": "FAIL",
+      "seconds": 0.376,
+      "error": "Traceback (most recent call last):\n  File \"/work/probe.py\", line 102, in scenario\n    await callback(context, page)\n  File \"/work/probe.py\", line 548, in local_end_display\n    check(observed.endswith(' \u00b7 '+expected),'restaurant-local end display '+zone+' '+local)\n  File \"/work/probe.py\", line 38, in check\n    raise AssertionError(description)\nAssertionError: restaurant-local end display Europe/Brussels 0001-01-01T18:00\n"
+    },
+    {
+      "name": "local-end-new-york-historic",
+      "verdict": "PASS",
+      "seconds": 0.451
+    },
+    {
+      "name": "local-end-berlin-fall-back",
+      "verdict": "PASS",
+      "seconds": 0.548
+    },
+    {
+      "name": "local-end-new-york-fall-back",
+      "verdict": "PASS",
+      "seconds": 0.53
+    },
+    {
+      "name": "local-end-berlin-spring",
+      "verdict": "PASS",
+      "seconds": 0.484
+    },
+    {
+      "name": "local-end-new-york-spring",
+      "verdict": "PASS",
+      "seconds": 0.537
+    },
+    {
+      "name": "local-end-last-calendar-date",
+      "verdict": "PASS",
+      "seconds": 0.557
+    }
+  ],
+  "trace": [
+    {
+      "scenario": "ordinary",
+      "writes": [
+        {
+          "key": "tk-ac7a136d048ad225fa3b554857e913bb",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-ac7a136d048ad225fa3b554857e913bb",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "reference": "45F3EE575D"
+    },
+    {
+      "scenario": "lookup-status-exact",
+      "reference": "9501847120",
+      "observations": [
+        {
+          "status": "confirmed",
+          "width": 1440,
+          "textContent": "confirmed",
+          "innerText": "confirmed",
+          "text_transform": "none"
+        },
+        {
+          "status": "confirmed",
+          "width": 375,
+          "textContent": "confirmed",
+          "innerText": "confirmed",
+          "text_transform": "none"
+        },
+        {
+          "status": "cancelled",
+          "width": 1440,
+          "textContent": "cancelled",
+          "innerText": "cancelled",
+          "text_transform": "none"
+        },
+        {
+          "status": "cancelled",
+          "width": 375,
+          "textContent": "cancelled",
+          "innerText": "cancelled",
+          "text_transform": "none"
+        }
+      ]
+    },
+    {
+      "scenario": "out-of-order",
+      "operations": [
+        "A fetch completed but response held",
+        "B selected and completed",
+        "B form opened",
+        "A released"
+      ],
+      "winner": "r_harbor"
+    },
+    {
+      "scenario": "lost-single",
+      "writes": [
+        {
+          "key": "tk-957385fe8b4b08c99892f793ef33d326",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-957385fe8b4b08c99892f793ef33d326",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-957385fe8b4b08c99892f793ef33d326",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "committed_reference": "2EE22E89DD",
+      "retained_reference": "20BED5EB85"
+    },
+    {
+      "scenario": "lost-combined",
+      "writes": [
+        {
+          "key": "tk-b88fa65fea57a64ad70cee8d567b1864",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        },
+        {
+          "key": "tk-b88fa65fea57a64ad70cee8d567b1864",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        },
+        {
+          "key": "tk-b88fa65fea57a64ad70cee8d567b1864",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        }
+      ],
+      "committed_reference": "8EFEF52E5F",
+      "retained_reference": "DED51E6BB0"
+    },
+    {
+      "scenario": "upgrade",
+      "writes": [
+        {
+          "key": "tk-00f66db1ca101da23ca9482a804ab9ae",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-00f66db1ca101da23ca9482a804ab9ae",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-00f66db1ca101da23ca9482a804ab9ae",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "committed_reference": "B315810165",
+      "retained_reference": "55F8196237"
+    },
+    {
+      "scenario": "changed-form",
+      "writes": [
+        {
+          "key": "tk-7657c076ab860e2a431d89911b8465d4",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-7657c076ab860e2a431d89911b8465d4",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-40e1144ff547835b947202b2e43beeaa",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1}"
+        }
+      ]
+    },
+    {
+      "scenario": "concurrent-pair-transport",
+      "identical_status_counts": {
+        "200": 49,
+        "201": 1
+      },
+      "competing_status_counts": {
+        "201": 1,
+        "409": 49
+      },
+      "races": 50,
+      "persisted": 1
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "9007199254740991",
+        "query": [
+          "9007199254740991"
+        ],
+        "prefill": "9007199254740991",
+        "writes": [
+          {
+            "key": "tk-5ee29001bbc53718f9922c6366a8f462",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740991}"
+          },
+          {
+            "key": "tk-5ee29001bbc53718f9922c6366a8f462",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740991}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n9007199254740991 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 9007199254740995 seats \u00b7 Choose table",
+        "lookup_guests": "9007199254740991",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "9007199254740991",
+        "incremented": "9007199254740992",
+        "decremented": "9007199254740991",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "9007199254740993",
+        "query": [
+          "9007199254740993"
+        ],
+        "prefill": "9007199254740993",
+        "writes": [
+          {
+            "key": "tk-630891cad128f789d66eee9683645b43",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740993}"
+          },
+          {
+            "key": "tk-630891cad128f789d66eee9683645b43",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740993}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n9007199254740993 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+        "lookup_guests": "9007199254740993",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "9007199254740993",
+        "incremented": "9007199254740994",
+        "decremented": "9007199254740993",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "1000000000000000000000000000001",
+        "query": [
+          "1000000000000000000000000000001"
+        ],
+        "prefill": "1000000000000000000000000000001",
+        "writes": [
+          {
+            "key": "tk-ebbba485d4f8ebe5c5e61547323a0519",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1000000000000000000000000000001}"
+          },
+          {
+            "key": "tk-ebbba485d4f8ebe5c5e61547323a0519",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1000000000000000000000000000001}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n1000000000000000000000000000001 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 1000000000000000000000000000005 seats \u00b7 Choose table",
+        "lookup_guests": "1000000000000000000000000000001",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "1000000000000000000000000000001",
+        "incremented": "1000000000000000000000000000002",
+        "decremented": "1000000000000000000000000000001",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "query": [
+          "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"
+        ],
+        "prefill": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "writes": [
+          {
+            "key": "tk-a08c0185ba9cff5e55d240523e21b1b0",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001}"
+          },
+          {
+            "key": "tk-a08c0185ba9cff5e55d240523e21b1b0",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005 seats \u00b7 Choose table",
+        "lookup_guests": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "incremented": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002",
+        "decremented": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "Europe/Berlin",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "0001-01-01T18:00",
+      "ends_at": "0001-01-01T19:29:32+00:53",
+      "expected_local_end": "19:30",
+      "displayed_local_end": "Mon, 1 January 1 \u00b7 19:29"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "Europe/Brussels",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "0001-01-01T18:00",
+      "ends_at": "0001-01-01T19:29:30+00:17",
+      "expected_local_end": "19:30",
+      "displayed_local_end": "Mon, 1 January 1 \u00b7 19:29"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "America/New_York",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "0001-01-01T18:00",
+      "ends_at": "0001-01-01T19:30:02-04:56",
+      "expected_local_end": "19:30",
+      "displayed_local_end": "Mon, 1 January 1 \u00b7 19:30"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "Europe/Berlin",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "2026-10-25T02:30",
+      "ends_at": "2026-10-25T03:00:00+01:00",
+      "expected_local_end": "03:00",
+      "displayed_local_end": "Sun, 25 October 2026 \u00b7 03:00"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "America/New_York",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "2026-11-01T01:30",
+      "ends_at": "2026-11-01T02:00:00-05:00",
+      "expected_local_end": "02:00",
+      "displayed_local_end": "Sun, 1 November 2026 \u00b7 02:00"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "Europe/Berlin",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "2026-03-29T01:30",
+      "ends_at": "2026-03-29T04:00:00+02:00",
+      "expected_local_end": "04:00",
+      "displayed_local_end": "Sun, 29 March 2026 \u00b7 04:00"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "America/New_York",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "2026-03-08T01:30",
+      "ends_at": "2026-03-08T04:00:00-04:00",
+      "expected_local_end": "04:00",
+      "displayed_local_end": "Sun, 8 March 2026 \u00b7 04:00"
+    },
+    {
+      "scenario": "local-end-display",
+      "zone": "UTC",
+      "browser_timezone": "Pacific/Honolulu",
+      "starts_at_local": "9999-12-31T18:00",
+      "ends_at": "9999-12-31T19:30:00+00:00",
+      "expected_local_end": "19:30",
+      "displayed_local_end": "Fri, 31 December 9999 \u00b7 19:30"
+    }
+  ],
+  "assertions": 457,
+  "browser_version": "153.0.8010.12",
+  "seconds": 21.342,
+  "passed": 27,
+  "total": 29
+}
