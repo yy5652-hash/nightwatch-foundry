@@ -129,6 +129,7 @@ try:
             info['source_sha256'][filename]=actual
         record['services'].append(info);urls.append('http://'+name+':'+str(port))
     base,peer,accepted,legacy,old,accepted2,accepted3=urls
+    client('closure',['stage-4-repair1-closure-probes.py','--url',base,'--out','/tmp/systems-closure'],[('/tmp/systems-closure','closure')])
     client('transitions',['stage-4-builder-probes.py','--url',base,'--peer',peer,'--stage1',accepted,
        '--stage2',accepted2,'--stage3',accepted3,'--legacy',legacy,'--out','/tmp/systems-transitions'],[('/tmp/systems-transitions','transitions')])
     client('members',['stage-4-member-probes.py','--url',base,'--destination-url',peer,'--source-url',accepted,
@@ -139,7 +140,6 @@ try:
     client('digits',['stage-1-2-decimal-probes.py','--stage','2','--url',base,'--destination-url',peer,
        '--trace','/tmp/systems-digits.json'],[('/tmp/systems-digits.json','digits.json')])
     client('deep',['stage-3-deep-http.py','--base',base,'--peer',peer,'--out','/tmp/systems-deep'],[('/tmp/systems-deep','deep')])
-    client('closure',['stage-4-repair1-closure-probes.py','--url',base,'--out','/tmp/systems-closure'],[('/tmp/systems-closure','closure')])
     client('controls',['stage-4-direct-controls.py','/tmp/systems-controls'],[('/tmp/systems-controls','controls')])
     for label,path in (('transitions','transitions/trace.json'),('numbers','numbers/trace.json'),('digits','digits.json'),('deep','deep/trace.json')):
         file=out/path
