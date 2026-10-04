@@ -18,3 +18,12 @@ After repair: `../../.venv/bin/python -B evidence/systems-engineer/stage-1-build
 Only `stage-1/core.py` and Systems-owned evidence changed. The Engine integration boundary, original receipt storage, fixture configuration and Stage 1 scope remain unchanged. Container regression and new full revision are reported in the next append-only evidence entry. Independent re-verification and promotion remain pending.
 
 Harness Codex; configured model gpt-6.1-sol; actual runtime override, effort and spend unknown.
+
+## Container regression completion
+
+Repair implementation revision: `6442d6d5aa3187aa090107733e41f685946044f1`.
+`docker build -t systems-engineer-tablekeeper-s1:repair-01 stage-1` passed; build output is `stage-1-repair-build-01.log`.
+
+Started two independent containers on an internal network, each limited to 2 CPU and 2 GiB, with nondefault PORT values 18102 and 18103. Command: `docker exec -i systems-engineer-s1-repair-source-01 python - --url http://127.0.0.1:18102 --destination-url http://systems-engineer-s1-repair-destination-01:18103 < evidence/systems-engineer/stage-1-builder-probes.py`. All 11 HTTP scenario tests passed in 1.381 s; output is `stage-1-repair-http-01.log`. This includes the rejection regressions and the previous full builder scenarios, with cross-process import.
+
+`stage-1-repair-runtime-01.log` records the committed core hash followed by the matching image file hash, both resource limits, running state and Internal=true network setting. Systems-owned repair containers and network were removed after the successful run. Images are retained. There are no engine contract changes. The new candidate still requires independent official checks, specification coverage and a named verdict; builder success does not promote it.
