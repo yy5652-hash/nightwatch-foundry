@@ -15,6 +15,10 @@ def main():
    if not name.endswith('.py'):continue
    argv=['git','show',a.revision+':evidence/independent-verifier/'+folder+'/'+name];data=subprocess.check_output(argv,cwd=R)
    (target/name).write_bytes(data);manifest.append(dict(path=folder+'/'+name,sha256=hashlib.sha256(data).hexdigest(),argv=argv))
+ for folder,name in [('stage-1','candidate-7/coverage.csv'),('stage-2','candidate-1/coverage.csv')]:
+  argv=['git','show',a.revision+':evidence/independent-verifier/'+folder+'/'+name];data=subprocess.check_output(argv,cwd=R)
+  target=context/folder/name;target.parent.mkdir(parents=True);target.write_bytes(data)
+  manifest.append(dict(path=folder+'/'+name,sha256=hashlib.sha256(data).hexdigest(),argv=argv))
  docker='FROM '+f['runner_image']+'\nCOPY stage-1 /verifier/stage-1\nCOPY stage-2 /verifier/stage-2\nCOPY stage-3 /verifier/stage-3\n'
  (context/'Dockerfile').write_text(docker);image=f['prefix']+':client-'+a.revision[:8]
  argv=['docker','build','-t',image,'.'];began=time.monotonic()

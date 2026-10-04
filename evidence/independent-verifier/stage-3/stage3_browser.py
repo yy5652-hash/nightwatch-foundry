@@ -94,7 +94,11 @@ async def run(release,out):
                 member=series['occurrences'][1]['reference'];other=series['occurrences'][2]['reference']
                 c.response('series-patch-exception',c.call('PATCH','/reservations/'+member,dict(party_size=3),token=c.tokens['u']),200)
                 c.response('series-cancel-no-exception',c.call('POST','/reservations/'+other+'/cancel',{},token=c.tokens['u']),200)
-                await lookup(page,ref);await page.locator(selectors['series_result']).wait_for()
+                # The same document retains the genuine agreement identity.
+                # Explicitly refresh current states after the rival API writes.
+                await page.get_by_test_id('series-refresh').click()
+                await page.get_by_test_id('series-revision').filter(has_text='3').wait_for()
+                await page.locator(selectors['series_result']).wait_for()
                 text=await page.locator(selectors['series_result']).inner_text()
                 check('series-cancelled','cancelled' in text.lower());check('series-exception','exception' in text.lower())
                 check('series-occurrences',member in text and other in text)
