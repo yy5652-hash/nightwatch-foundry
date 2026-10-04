@@ -4,7 +4,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
  p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True)
- p.add_argument('--group',choices=['stage3','supplement','races','binding','browser','extra-browser','migrations','old-supplement','inherited-http','inherited-browser','inherited-upgrade','reconstruction','reconstruction-browser'],required=True)
+ p.add_argument('--group',choices=['stage3','supplement','closures','races','binding','browser','extra-browser','migrations','old-supplement','inherited-http','inherited-browser','inherited-upgrade','reconstruction','reconstruction-browser'],required=True)
  p.add_argument('--families');p.add_argument('--assembly');p.add_argument('--release-file');a=p.parse_args();runtime=Path(a.runtime).resolve();out=Path(a.out).resolve()
  assert runtime.is_relative_to(W) and out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
  f=json.loads((runtime/'preflight.json').read_text());assert f['status']=='running_for_independent_checks'
@@ -30,6 +30,7 @@ def main():
  if a.group=='stage3':
   families=(a.families or 'policies,explain,numeric,terms,series,rollback,moves,concurrency,retry,calendar,trace,first_error,upgrade,deep').split(',')
   for family in families:probe('stage-3','stage3_probe.py',family,positional=['--family',family,'--release',str(release),'--out','/evidence/'+family,'--execute'])
+ elif a.group=='closures':probe('stage-3','stage3_closures.py','closures',positional=['--release',str(release),'--out','/evidence/closures'])
  elif a.group in ('migrations','extra-browser'):
   probe('stage-3','stage3_legacy.py' if a.group=='migrations' else 'stage3_browser_extra.py',a.group,positional=['--release',str(release),'--out','/evidence/'+a.group])
  elif a.group in ('binding','races'):
