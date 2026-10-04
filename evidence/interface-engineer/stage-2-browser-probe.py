@@ -192,6 +192,27 @@ async def ordinary(context,page):
     await screenshots(page,"cancelled-lookup")
     REPORT["trace"].append({"scenario":"ordinary", "writes":writes,"reference":reference})
 
+async def lookup_status_exact(context,page):
+    await reset(context);await login(page);await search(page);await open_booking(page)
+    await tid(page,'booking-submit').click();reference=await confirmed(page)
+    await page.goto(BASE+'/lookup')
+    await tid(page,'lookup-reference-input').fill(reference);await tid(page,'lookup-submit').click()
+    observations=[]
+    for status in ['confirmed','cancelled']:
+        if status=='cancelled':await tid(page,'reservation-cancel-button').click()
+        await expect(tid(page,'reservation-status')).to_have_text(status)
+        for width,height,suffix in [(1440,1000,'desktop'),(375,812,'mobile')]:
+            await page.set_viewport_size({'width':width,'height':height})
+            element=tid(page,'reservation-status')
+            observations.append({'status':status,'width':width,'textContent':await element.text_content(),
+                'innerText':await element.inner_text(),'text_transform':await element.evaluate('element=>getComputedStyle(element).textTransform')})
+            check(await page.evaluate('document.documentElement.scrollWidth <= innerWidth'),'status page no horizontal scrolling')
+            await page.screenshot(path=str(OUT/f'exact-status-{status}-{suffix}.png'),full_page=True)
+    REPORT['trace'].append({'scenario':'lookup-status-exact','reference':reference,'observations':observations})
+    for observation in observations:
+        check(observation['textContent']==observation['status'],'exact status DOM text at '+str(observation['width']))
+        check(observation['innerText']==observation['status'],'exact status displayed text at '+str(observation['width']))
+
 async def out_of_order(context,page):
     await reset(context);await login(page)
     started=asyncio.Event();release=asyncio.Event();completed=asyncio.Event()
@@ -504,7 +525,7 @@ async def main():
     start=time.perf_counter()
     async with async_playwright() as p:
         browser=await p.chromium.launch()
-        cases=[("transport-public",transport),("authentication-keyboard",auth_keyboard),("single-book-lookup-cancel",ordinary),
+        cases=[("transport-public",transport),("authentication-keyboard",auth_keyboard),("single-book-lookup-cancel",ordinary),('lookup-status-exact',lookup_status_exact),
             ("out-of-order-search",out_of_order),("single-conflict",conflict),
             ("combined-conflict",lambda c,p:conflict(c,p,True)),("lost-single",lost_response),
             ("lost-combined",lambda c,p:lost_response(c,p,True)),("genuine-stage1-upgrade",lambda c,p:lost_response(c,p,upgrade=True)),
