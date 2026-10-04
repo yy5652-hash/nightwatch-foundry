@@ -73,6 +73,8 @@ def closures(c,release):
     s=c.adopt(a,count=2);refuse(c,'closure-series-amend',lambda:c.amend(s,time='19:00'))
     c.seed();a=c.make();p=c.preview(closure(start='2035-06-11T18:00:00+00:00',end='2035-06-11T18:30:00+00:00'));c.response('closure-future-apply',c.apply(p),201)
     refuse(c,'closure-adoption',lambda:c.call('POST','/series',dict(anchor_reference=a['reference'],count=2,interval_weeks=1),token=c.tokens['u'],key='future-series'))
+    c.seed();a=c.make();p=c.preview();c.response('closure-receipt-apply',c.apply(p),201)
+    replay=c.response('closure-source-immutable',c.call('POST','/reservations',dict(restaurant_id='r',table_ids=['a'],starts_at_local=DAY+'T18:00',party_size=1),token=c.tokens['u'],key='create'),200);c.check('closure-source-immutable',same(a,replay) and c.lookup(a['reference'])['table_ids']!=a['table_ids'])
 
 def scopes(c,release):
     f=fixture();f['restaurants'][0]['manager_user_ids']=['m','v'];c.setup(f);s=c.adopt(c.make());p=c.preview();paths={'preview':'/restaurants/r/replans','apply':'/restaurants/r/replans/'+p['plan_id']+'/apply','amend':'/series/'+s['series_id']+'/amend'}
@@ -118,6 +120,7 @@ def selection(c,release):
     c.response('selection-cancel',c.call('POST','/reservations/'+cancelled['reference']+'/cancel',{},token=c.tokens['u']),200)
     other=c.response('selection-other-owner',c.call('POST','/reservations',dict(restaurant_id='r',table_id='c',starts_at_local=DAY+'T18:00',party_size=1),token=c.tokens['v'],key='other-owner'),201)
     c.response('selection-other-restaurant',c.call('POST','/reservations',dict(restaurant_id='r2',table_id='x',starts_at_local=DAY+'T18:00',party_size=1),token=c.tokens['u'],key='other-restaurant'),201)
+    unmoved=c.adopt(c.make(seats=('f',),local=DAY+'T21:00',key='unmoved-series-anchor'),count=2,key='unmoved-series')
     refuse(c,'preview-restaurant-manager',lambda:c.call('POST','/restaurants/r2/replans',closure(table='x'),token=c.tokens['m'],key='restaurant-permission'),403,'forbidden')
     old=parse(c.export());body=closure(table='f',end=DAY+'T18:30:00+00:00');p=c.preview(body);now=parse(c.export())
     for field in old['state']:
@@ -126,12 +129,13 @@ def selection(c,release):
     c.check('preview-set-equality',all(a['changed'] is False for a in p['assignments']) and next(a for a in p['assignments'] if a['reference']==pair['reference'])['table_ids']==['b','a'])
     c.check('preview-plan-id',isinstance(p['plan_id'],str) and 1<=len(p['plan_id'])<=64)
     c.check('preview-response-closure',same(p['closure'],body))
-    c.response('selection-unrelated-write',c.call('POST','/reservations',dict(restaurant_id='r2',table_id='x',starts_at_local=DAY+'T19:00',party_size=1),token=c.tokens['u'],key='unrelated'),201)
+    c.response('selection-unrelated-write',c.call('POST','/reservations',dict(restaurant_id='r2',table_id='x',starts_at_local=DAY+'T20:00',party_size=1),token=c.tokens['u'],key='unrelated'),201)
     histories={r:c.history(r) for r in [pair['reference'],before['reference'],after['reference'],cancelled['reference']]};applied=c.response('apply-other-restaurant',c.apply(p),201);new=parse(c.export())
     c.check('apply-response-id',applied['plan_id']==p['plan_id']);c.check('apply-response-all',[r['reference'] for r in applied['reservations']]==sorted([pair['reference'],other['reference']]))
     for prior in old['state']['reservations']:
         current=next(r for r in new['state']['reservations'] if r['reference']==prior['reference']);c.check('selection-identity-owner-status',all(same(prior[k],current[k]) for k in ['reservation_id','reference','user_id','created_at','starts_at','ends_at','starts_at_local','party_size','status','accepted_terms','table_ids','revision']))
     for ref,h in histories.items():c.check('apply-unmoved-history',same(h,c.history(ref)))
+    c.check('series-repair-unmoved-series',same(unmoved,c.current_series(unmoved)))
     c.check('revision-apply-once',integer(applied['restaurant_revision'])==integer(p['restaurant_revision'])+1)
     refuse(c,'apply-already-before-stale',lambda:c.apply(p,key='fresh-applied'),409,'plan_already_applied')
 
