@@ -19,7 +19,7 @@ def main():
     parser=argparse.ArgumentParser()
     for name in ["repo","workspace","candidate","handoff","out"]:
         parser.add_argument("--"+name,required=True)
-    parser.add_argument("--probe-family",choices=["semantic","opaque-ids","nesting"],default="semantic")
+    parser.add_argument("--probe-family",choices=["semantic","opaque-ids","nesting","snapshot"],default="semantic")
     args=parser.parse_args()
     workspace=Path(args.workspace).resolve();repo=Path(args.repo).resolve()
     out=Path(args.out).resolve();handoff=Path(args.handoff).resolve()
@@ -78,16 +78,17 @@ def main():
             run(["docker","image","inspect",image],family+"-image")
             image_data=json.loads((out/(family+"-image.log")).read_text())[0]
             proof["source"][family]["image_id"]=image_data["Id"]
-        dockerfile={"semantic":"Semantic.Probe.Dockerfile","opaque-ids":"OpaqueId.Probe.Dockerfile","nesting":"Nesting.Probe.Dockerfile"}[args.probe_family]
+        dockerfile={"semantic":"Semantic.Probe.Dockerfile","opaque-ids":"OpaqueId.Probe.Dockerfile","nesting":"Nesting.Probe.Dockerfile","snapshot":"Snapshot.Probe.Dockerfile"}[args.probe_family]
         run(["docker","build","-f",dockerfile,"-t",runner,"."],"client-build",HERE)
         client_files=[dockerfile,"semantic_probe.py","semantic_oracle.py","semantic_requirements.py","health.py"]+(["opaque_id_probe.py","opaque_id_requirements.py"] if args.probe_family=="opaque-ids" else [])
         if args.probe_family=="nesting":client_files.extend(["nesting_probe.py","nesting_input.py","nesting_requirements.py"])
+        if args.probe_family=="snapshot":client_files.extend(["snapshot_probe.py","snapshot_oracle.py","snapshot_requirements.py"])
         proof["client_files_sha256"]={name:hashlib.sha256((HERE/name).read_bytes()).hexdigest() for name in client_files}
         run(["docker","network","create","--internal",network],"network-create");created_network=True
         run(["docker","network","inspect",network],"network-inspect")
         assert json.loads((out/"network-inspect.log").read_text())[0]["Internal"] is True
         urls={}
-        roles=[("base","current",18335,18335,True),("peer","current",18336,8080,False)]+([("third","current",18337,18337,True),("legacy","legacy",18338,18338,True)] if args.probe_family=="semantic" else [])
+        roles=[("base","current",18335,18335,True),("peer","current",18336,8080,False)]+([("third","current",18337,18337,True)] if args.probe_family in ["semantic","snapshot"] else [])+([("legacy","legacy",18338,18338,True)] if args.probe_family=="semantic" else [])
         for role,family,host_port,internal_port,override in roles:
             name=prefix+"-"+role;assert len(name)<=63
             image=proof["source"][family]["image_tag"]
