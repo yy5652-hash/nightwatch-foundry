@@ -117,6 +117,11 @@ try:
          "--destination-url", destination_url, "--legacy-url", "http://" + legacy + ":18116"],
         artifact="inherited-http.log",
         payload=(repository / "evidence/systems-engineer/stage-1-builder-probes.py").read_bytes())
+    decimal_trace = "/tmp/systems-engineer-s2-decimal-regression.json"
+    run(["docker", "exec", "-i", source, "python", "-", "--stage", "2", "--url", current_url,
+         "--destination-url", destination_url, "--trace", decimal_trace], artifact="decimal-http.log",
+        payload=(repository / "evidence/systems-engineer/stage-1-2-decimal-probes.py").read_bytes())
+    run(["docker", "cp", source + ":" + decimal_trace, str(out / "decimal-regression.json")])
     record["result"] = "passed"
 finally:
     for name in reversed(created):
