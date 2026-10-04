@@ -1,0 +1,251 @@
+{
+  "candidate": "ab0cf79767b6768153a73894bf5768bf3328491a",
+  "checks": {
+    "dockerfile": true,
+    "run-document": true,
+    "single-image": true,
+    "offline": true,
+    "cpu": true,
+    "memory": true,
+    "startup": true,
+    "packaged-assets": true,
+    "listen-all": true,
+    "port-default": true,
+    "port-override": true,
+    "complete-clone": true,
+    "two-builders": true,
+    "history-preserved": true,
+    "own-stage": true,
+    "source-provenance": true
+  },
+  "readiness": [
+    {
+      "healthy": true,
+      "readiness_seconds": 0.3724266669996723,
+      "host_port": 18300,
+      "internal_port": 18309,
+      "port_override": true
+    },
+    {
+      "healthy": true,
+      "readiness_seconds": 0.39441179200002807,
+      "host_port": 18301,
+      "internal_port": 8080,
+      "port_override": false
+    }
+  ],
+  "source_image_proof": {
+    "candidate": "ab0cf79767b6768153a73894bf5768bf3328491a",
+    "image_id": "sha256:fe6eb3f8a4679a7d6078947df9a8208caad9fc1e04386e1781845731a4ee94bf",
+    "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s1-ab0cf79767b6-20261004t042350",
+    "expected": {
+      "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+      "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+      "json_codec.py": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+    },
+    "observed": {
+      "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+      "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+      "json_codec.py": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+    },
+    "commands": [
+      [
+        "docker",
+        "image",
+        "inspect",
+        "independent-verifier-s1-ab0cf79767b6-20261004t042350:candidate"
+      ],
+      [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "independent-verifier-c6-image-hash",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:fe6eb3f8a4679a7d6078947df9a8208caad9fc1e04386e1781845731a4ee94bf",
+        "-c",
+        "import hashlib,json;from pathlib import Path;print(json.dumps({f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in [\"core.py\",\"server.py\",\"json_codec.py\"]}))"
+      ]
+    ],
+    "scope": "packaged-source diagnostic; no HTTP request count"
+  },
+  "clean_clone_head": "ab0cf79767b6768153a73894bf5768bf3328491a",
+  "clean_clone_status": "",
+  "cleanup": [
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-ab0cf79767b6-20261004t042350-source"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-ab0cf79767b6-20261004t042350-peer"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-ab0cf79767b6-20261004t042350-legacy"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "independent-verifier-s1-ab0cf79767b6-20261004t042350-net"
+      ],
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042317580771-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042317580771-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042317580771-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042317580771-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042317580771-legacy",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042317580771-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042529324557-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042529324557-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042529324557-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042529324557-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042552597289-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042552597289-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042552597289-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042552597289-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042616733145-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042616733145-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042616733145-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042616733145-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004042616733145-net",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-numeric-20261004t042626z-service"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-fraction-20261004t042626z-service"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-legacy-1003212731-base"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-legacy-1003212731-peer"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-legacy-1003212731-legacy"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "independent-verifier-legacy-1003212731-net"
+      ],
+      "returncode": 0
+    }
+  ],
+  "cache": "Available; no uncached claim",
+  "scope": "Equivalent documented build/start with verifier-owned identities, 2CPU/2GiB and offline isolation"
+}

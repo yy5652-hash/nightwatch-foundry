@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "-i",
+    "--name",
+    "independent-verifier-very-deep-212528",
+    "--network",
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350-net",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "--entrypoint",
+    "python",
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350:probe-runner",
+    "-",
+    "http://independent-verifier-s1-ab0cf79767b6-20261004t042350-source:18309",
+    "http://independent-verifier-s1-ab0cf79767b6-20261004t042350-peer:8080",
+    "ab0cf79767b6768153a73894bf5768bf3328491a"
+  ],
+  "source_sha256": "cf8e3054d69522d4360cecbbc75bf8983fbf605740ff6aedf64feca0989cc1d3",
+  "source": "very_deep_probe.py",
+  "returncode": 1,
+  "wall_seconds": 0.42918345799989766,
+  "service_runtime": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-6/baseline-01",
+  "candidate": "ab0cf79767b6768153a73894bf5768bf3328491a",
+  "scope": "real HTTP from separate 2CPU/2GiB client; no service interpreter imports"
+}

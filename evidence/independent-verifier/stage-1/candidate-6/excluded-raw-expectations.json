@@ -1,0 +1,12 @@
+[
+  {
+    "requirement_id": "TK1-legacy-export-equality",
+    "passed": false,
+    "expected": null,
+    "observed": null,
+    "evidence_path": "evidence/independent-verifier/stage-1/candidate-6/baseline-01/legacy/assertions.json#TK1-legacy-export-equality",
+    "command": "docker run --rm --name independent-verifier-s1-ab0cf79767b6-20261004t042350-legacy-client --network independent-verifier-s1-ab0cf79767b6-20261004t042350-net --cpus 2 --memory 2g -v /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-6/baseline-01:/evidence --entrypoint python independent-verifier-s1-ab0cf79767b6-20261004t042350:probe-runner /verifier/legacy_receipts.py --base http://independent-verifier-s1-ab0cf79767b6-20261004t042350-source:18309 --candidate ab0cf79767b6768153a73894bf5768bf3328491a --out /evidence/legacy --peer http://independent-verifier-s1-ab0cf79767b6-20261004t042350-peer:8080 --legacy http://independent-verifier-s1-ab0cf79767b6-20261004t042350-legacy:18310",
+    "run": "baseline-legacy",
+    "classification": "obsolete whole private envelope equality; adopted schema2/profile metadata changes private representation, while original state values remain required"
+  }
+]

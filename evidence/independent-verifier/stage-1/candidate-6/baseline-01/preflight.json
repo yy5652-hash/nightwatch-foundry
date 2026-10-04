@@ -1,0 +1,62 @@
+{
+  "candidate": "ab0cf79767b6768153a73894bf5768bf3328491a",
+  "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s1-ab0cf79767b6-20261004t042350",
+  "output": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-6/baseline-01",
+  "runtime_prefix": "independent-verifier-s1-ab0cf79767b6-20261004t042350",
+  "tree_issues": [],
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_model": "unknown",
+  "effort": "unknown",
+  "usage": "unknown",
+  "billed_spend": "unknown",
+  "verdict": "unverified",
+  "note": "Review commit history, RUN.md and tree before executing checks.",
+  "independent-verifier-s1-ab0cf79767b6-20261004t042350-source": {
+    "healthy": true,
+    "readiness_seconds": 0.3724266669996723,
+    "host_port": 18300,
+    "internal_port": 18309,
+    "port_override": true
+  },
+  "independent-verifier-s1-ab0cf79767b6-20261004t042350-peer": {
+    "healthy": true,
+    "readiness_seconds": 0.39441179200002807,
+    "host_port": 18301,
+    "internal_port": 8080,
+    "port_override": false
+  },
+  "image": "independent-verifier-s1-ab0cf79767b6-20261004t042350:candidate",
+  "runner_image": "independent-verifier-s1-ab0cf79767b6-20261004t042350:probe-runner",
+  "network": "independent-verifier-s1-ab0cf79767b6-20261004t042350-net",
+  "containers": [
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350-source",
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350-peer"
+  ],
+  "runtime_started": true,
+  "client_execution": "inside internal Docker network",
+  "probe_command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350-probes",
+    "--network",
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350-net",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "-v",
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-6/baseline-01:/evidence",
+    "independent-verifier-s1-ab0cf79767b6-20261004t042350:probe-runner",
+    "--base",
+    "http://independent-verifier-s1-ab0cf79767b6-20261004t042350-source:18309",
+    "--peer",
+    "http://independent-verifier-s1-ab0cf79767b6-20261004t042350-peer:8080",
+    "--candidate",
+    "ab0cf79767b6768153a73894bf5768bf3328491a",
+    "--out",
+    "/evidence/probes"
+  ]
+}

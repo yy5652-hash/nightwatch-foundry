@@ -1,0 +1,5634 @@
+[
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-list",
+    "passed": true,
+    "expected": "ordinary_id",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary_id",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary_id",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary_id",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary_id",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary_id",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary_id",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_874a32a73eb4452badb995abcd83ed43",
+      "reference": "49A8D8F8A8",
+      "restaurant_id": "ordinary_id",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.011433+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-list",
+    "passed": true,
+    "expected": "room/floor",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room/floor",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room/floor",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room/floor",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room/floor",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room/floor",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room/floor",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_8add2da46081436f95b71733e164f1ed",
+      "reference": "5DFFF82F81",
+      "restaurant_id": "room/floor",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.060311+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-list",
+    "passed": true,
+    "expected": "room?query#fragment",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room?query#fragment",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room?query#fragment",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room?query#fragment",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room?query#fragment",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room?query#fragment",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room?query#fragment",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_e0e2750a17fc4dabbc30416632530491",
+      "reference": "F68D717292",
+      "restaurant_id": "room?query#fragment",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.108131+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-list",
+    "passed": true,
+    "expected": "room%2Ffloor",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room%2Ffloor",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room%2Ffloor",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room%2Ffloor",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room%2Ffloor",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room%2Ffloor",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room%2Ffloor",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_1874ed738cd841b4acd82f5751ada71d",
+      "reference": "E0E03243E3",
+      "restaurant_id": "room%2Ffloor",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.155587+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-list",
+    "passed": true,
+    "expected": "room+floor;section",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room+floor;section",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room+floor;section",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room+floor;section",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room+floor;section",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room+floor;section",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room+floor;section",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_a0a340b5f3524da999852cb83fedfdb0",
+      "reference": "98B0EBB5B9",
+      "restaurant_id": "room+floor;section",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.202866+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-list",
+    "passed": true,
+    "expected": "room floor",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room floor",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room floor",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room floor",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room floor",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room floor",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room floor",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_898fad9c108b4fe4a2dd2cf702227cb2",
+      "reference": "76E9673295",
+      "restaurant_id": "room floor",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.250135+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-list",
+    "passed": true,
+    "expected": "\u9910\u5385\u00e9",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "\u9910\u5385\u00e9",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "\u9910\u5385\u00e9",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "\u9910\u5385\u00e9",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "\u9910\u5385\u00e9",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "\u9910\u5385\u00e9",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "\u9910\u5385\u00e9",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_3d561f82994b4f758f64a3aa3a52d82f",
+      "reference": "615F9A8744",
+      "restaurant_id": "\u9910\u5385\u00e9",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.297281+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-list",
+    "passed": true,
+    "expected": "room\ud83c\udf7d",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room\ud83c\udf7d",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room\ud83c\udf7d",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room\ud83c\udf7d",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room\ud83c\udf7d",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room\ud83c\udf7d",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room\ud83c\udf7d",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_07bb2cbe1ccf4887b05a2ba1f3fed0d4",
+      "reference": "58EAE9304C",
+      "restaurant_id": "room\ud83c\udf7d",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.344501+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-list",
+    "passed": true,
+    "expected": "room/?#%+; \u00e9\u6c49",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "room/?#%+; \u00e9\u6c49",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room/?#%+; \u00e9\u6c49",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "room/?#%+; \u00e9\u6c49",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "room/?#%+; \u00e9\u6c49",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "room/?#%+; \u00e9\u6c49",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "room/?#%+; \u00e9\u6c49",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_8ba94692d0af4a24a54eca2e74d0f6fa",
+      "reference": "722A047756",
+      "restaurant_id": "room/?#%+; \u00e9\u6c49",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.391285+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-list",
+    "passed": true,
+    "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_66421c78586f4fbaae10cbc5c31b013f",
+      "reference": "397ACADCCE",
+      "restaurant_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.441919+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-list",
+    "passed": true,
+    "expected": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary-table",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "tables": [
+        "ordinary-table",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary-table",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "table": "ordinary-table"
+    },
+    "observed": {
+      "reservation_id": "res_35fa225fb9c447109e578de3fe22220b",
+      "reference": "CAD9D3FC83",
+      "restaurant_id": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "table_id": "ordinary-table",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.491749+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "ordinary_id",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "ordinary_id",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "ordinary_id",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "ordinary_id",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "ordinary_id"
+    },
+    "observed": {
+      "reservation_id": "res_789f676299cc43468368cea102e0a7dc",
+      "reference": "00C98F5374",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "ordinary_id",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.538955+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room/floor",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room/floor",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room/floor",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room/floor",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room/floor"
+    },
+    "observed": {
+      "reservation_id": "res_9ced7180114a47eb93512de5cdec2ad9",
+      "reference": "33287C9C2D",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room/floor",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.585767+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room?query#fragment",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room?query#fragment",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room?query#fragment",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room?query#fragment",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room?query#fragment"
+    },
+    "observed": {
+      "reservation_id": "res_7fa1c394990c4d419069fae565da1743",
+      "reference": "9DBC9A8BA2",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room?query#fragment",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.632569+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room%2Ffloor",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room%2Ffloor",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room%2Ffloor",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room%2Ffloor",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room%2Ffloor"
+    },
+    "observed": {
+      "reservation_id": "res_79a45af6c63c467ab11d2218b4100958",
+      "reference": "9C720E37D9",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room%2Ffloor",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.679604+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room+floor;section",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room+floor;section",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room+floor;section",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room+floor;section",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room+floor;section"
+    },
+    "observed": {
+      "reservation_id": "res_cba855736e574dd2a4e5d9cb6098b55d",
+      "reference": "742C3BDBCA",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room+floor;section",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.726373+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room floor",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room floor",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room floor",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room floor",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room floor"
+    },
+    "observed": {
+      "reservation_id": "res_beee1132eb5a4074a4469588a9ef1c67",
+      "reference": "B00B59C902",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room floor",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.773197+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "\u9910\u5385\u00e9",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "\u9910\u5385\u00e9",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "\u9910\u5385\u00e9",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "\u9910\u5385\u00e9",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "\u9910\u5385\u00e9"
+    },
+    "observed": {
+      "reservation_id": "res_4de2b8e0a6704bcfa122dabe6d3d9266",
+      "reference": "82B43EC1F7",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "\u9910\u5385\u00e9",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.820191+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room\ud83c\udf7d",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room\ud83c\udf7d",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room\ud83c\udf7d",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room\ud83c\udf7d",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room\ud83c\udf7d"
+    },
+    "observed": {
+      "reservation_id": "res_686bc73c2732417b9c9092e55faf7f7f",
+      "reference": "DC00B439C3",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room\ud83c\udf7d",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.869963+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room/?#%+; \u00e9\u6c49",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "room/?#%+; \u00e9\u6c49",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "room/?#%+; \u00e9\u6c49",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "room/?#%+; \u00e9\u6c49",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "room/?#%+; \u00e9\u6c49"
+    },
+    "observed": {
+      "reservation_id": "res_27ea654bfbda47e19fed42f10dafaac8",
+      "reference": "7CDE329F6F",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "room/?#%+; \u00e9\u6c49",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.918712+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "observed": {
+      "reservation_id": "res_d5a97004e4aa4c2984d969a72adc0b15",
+      "reference": "3EC6FC90E5",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:45.966187+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-list",
+    "passed": true,
+    "expected": "ordinary-restaurant",
+    "observed": {
+      "restaurants": [
+        {
+          "id": "ordinary-restaurant",
+          "name": "Exact Kitchen",
+          "timezone": "UTC"
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-detail-status",
+    "passed": true,
+    "expected": 200,
+    "observed": 200
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-detail-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "id": "ordinary-restaurant",
+      "name": "Exact Kitchen",
+      "timezone": "UTC",
+      "slot_minutes": {
+        "exact_json_number_token": "30"
+      },
+      "reservation_duration_minutes": {
+        "exact_json_number_token": "90"
+      },
+      "cancellation_cutoff_minutes": {
+        "exact_json_number_token": "0"
+      },
+      "opening_hours": [
+        {
+          "weekday": "mon",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "tue",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "wed",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "thu",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "fri",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sat",
+          "opens": "18:00",
+          "closes": "23:00"
+        },
+        {
+          "weekday": "sun",
+          "opens": "18:00",
+          "closes": "23:00"
+        }
+      ],
+      "tables": [
+        {
+          "id": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+          "label": "Table 0",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        },
+        {
+          "id": "second-table",
+          "label": "Table 1",
+          "capacity": {
+            "exact_json_number_token": "4"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-availability",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "tables": [
+        "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+        "second-table"
+      ]
+    },
+    "observed": {
+      "restaurant_id": "ordinary-restaurant",
+      "date": "2035-06-04",
+      "timezone": "UTC",
+      "slots": [
+        {
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T18:30",
+          "starts_at": "2035-06-04T18:30:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:00",
+          "starts_at": "2035-06-04T19:00:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T19:30",
+          "starts_at": "2035-06-04T19:30:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:00",
+          "starts_at": "2035-06-04T20:00:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T20:30",
+          "starts_at": "2035-06-04T20:30:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:00",
+          "starts_at": "2035-06-04T21:00:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        },
+        {
+          "starts_at_local": "2035-06-04T21:30",
+          "starts_at": "2035-06-04T21:30:00+00:00",
+          "available_table_ids": [
+            "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+            "second-table"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-create-status",
+    "passed": true,
+    "expected": 201,
+    "observed": 201
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-create-identity",
+    "passed": true,
+    "expected": {
+      "restaurant": "ordinary-restaurant",
+      "table": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c"
+    },
+    "observed": {
+      "reservation_id": "res_78e6c9e45496426a88d2b86b756ae125",
+      "reference": "F21FEAC462",
+      "restaurant_id": "ordinary-restaurant",
+      "table_id": "\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c\u754c",
+      "party_size": {
+        "exact_json_number_token": "2"
+      },
+      "starts_at_local": "2035-06-04T18:00",
+      "starts_at": "2035-06-04T18:00:00+00:00",
+      "ends_at": "2035-06-04T19:30:00+00:00",
+      "status": "confirmed",
+      "created_at": "2026-10-04T04:25:46.013672+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-lookup",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-amend",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-moves",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-import-current",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-cancel-release",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-unknown-route",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  }
+]

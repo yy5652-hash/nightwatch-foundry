@@ -1,0 +1,7574 @@
+[
+  {
+    "requirement_id": "TK1-nesting-objects-32-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_7bf11b78d0f04d96bff71830051f051d",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "89b912eaf196556cafad2b1000192825df018d97ad7ff35afd2db3d1714cf043"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "d774974433c23488e69f6b88e0ed4cc7f0cb116b924a82119b15633584fc3061"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_e667402b958448fbb91e1321b9e44616",
+        "reference": "4EFC77D0EC",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.609582+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_e667402b958448fbb91e1321b9e44616",
+        "reference": "4EFC77D0EC",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.609582+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_62eafcb048bc45a3833c009f65ba3950",
+        "reference": "C8A9F879F6",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.614577+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_e667402b958448fbb91e1321b9e44616",
+        "reference": "4EFC77D0EC",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.609582+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_f4641e6d967f4ef2b09dbfacab7ba74d",
+            "reference": "3341E75F5A",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.617343+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_f4641e6d967f4ef2b09dbfacab7ba74d",
+            "reference": "3341E75F5A",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.617343+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_f4641e6d967f4ef2b09dbfacab7ba74d",
+            "reference": "3341E75F5A",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.617343+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_f4641e6d967f4ef2b09dbfacab7ba74d",
+            "reference": "3341E75F5A",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.617343+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_e667402b958448fbb91e1321b9e44616",
+        "reference": "4EFC77D0EC",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.609582+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_f4641e6d967f4ef2b09dbfacab7ba74d",
+            "reference": "3341E75F5A",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.617343+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_8922ad116a8d4a9a8bfd1b10e34221a6",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "60e5d33c5b59ba01e043f6aeb6dc1c92976c6bddeeaeb235add3c9ea55c81885"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "ee8ca8a0e25b7d0cca39c63fea466c644262c068665892c65a789f661920e872"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_006ad70ab8694caaab114a063c3adea6",
+        "reference": "E0E95405FD",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.706678+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_006ad70ab8694caaab114a063c3adea6",
+        "reference": "E0E95405FD",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.706678+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_f5677ca7401e454a8ae23167311ccebe",
+        "reference": "E851888820",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.728990+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_006ad70ab8694caaab114a063c3adea6",
+        "reference": "E0E95405FD",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.706678+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_e94334b8f1894fe4ab3653c820df708f",
+            "reference": "0795E56107",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.745913+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_e94334b8f1894fe4ab3653c820df708f",
+            "reference": "0795E56107",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.745913+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_e94334b8f1894fe4ab3653c820df708f",
+            "reference": "0795E56107",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.745913+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_e94334b8f1894fe4ab3653c820df708f",
+            "reference": "0795E56107",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.745913+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_006ad70ab8694caaab114a063c3adea6",
+        "reference": "E0E95405FD",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.706678+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_e94334b8f1894fe4ab3653c820df708f",
+            "reference": "0795E56107",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:07.745913+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_b47267e793d2472f8ac484cbcab72764",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "d0f8434f476ae0ff39ccb356ce5b493d5550b1a7a057f65c919ca426dd89de38"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "f22f5292a64ffefe3c4f52ffbd8992f3631df9119073cc50a80a80bdd9368dc8"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_6b267f70f3484c1aa550af593e099c85",
+        "reference": "3F6DA4AE57",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.968342+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_6b267f70f3484c1aa550af593e099c85",
+        "reference": "3F6DA4AE57",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.968342+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_adf8347b6a0f43c081a2a325509deea6",
+        "reference": "0A943FE674",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.993105+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_6b267f70f3484c1aa550af593e099c85",
+        "reference": "3F6DA4AE57",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.968342+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_836988f717f94193992e750a498a4a21",
+            "reference": "325BFE8D11",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.011230+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_836988f717f94193992e750a498a4a21",
+            "reference": "325BFE8D11",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.011230+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_836988f717f94193992e750a498a4a21",
+            "reference": "325BFE8D11",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.011230+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_836988f717f94193992e750a498a4a21",
+            "reference": "325BFE8D11",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.011230+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_6b267f70f3484c1aa550af593e099c85",
+        "reference": "3F6DA4AE57",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:07.968342+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_836988f717f94193992e750a498a4a21",
+            "reference": "325BFE8D11",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.011230+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_ac313377826f40649a181b004e8b5aac",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "41f2e6f5ba2233876fcbf1a2df501eb5cac378b7179ac5d7caf4768768b6f55f"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "7c6cfc99d8462c4b87ea8a8eeb7c4d99e1a3003cf2abaf1d666edc974c7536cf"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_77ae13a6fbe645e68c27707ab15c58ba",
+        "reference": "DF41AA3F83",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.251194+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_77ae13a6fbe645e68c27707ab15c58ba",
+        "reference": "DF41AA3F83",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.251194+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_527fa5b5c8374344b4ed42837b86fdf6",
+        "reference": "DAA29E268D",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.274851+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_77ae13a6fbe645e68c27707ab15c58ba",
+        "reference": "DF41AA3F83",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.251194+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_3e01446982534a1e8c6e543abac3a477",
+            "reference": "75FD7B8140",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.293213+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_3e01446982534a1e8c6e543abac3a477",
+            "reference": "75FD7B8140",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.293213+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_3e01446982534a1e8c6e543abac3a477",
+            "reference": "75FD7B8140",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.293213+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_3e01446982534a1e8c6e543abac3a477",
+            "reference": "75FD7B8140",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.293213+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_77ae13a6fbe645e68c27707ab15c58ba",
+        "reference": "DF41AA3F83",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.251194+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_3e01446982534a1e8c6e543abac3a477",
+            "reference": "75FD7B8140",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.293213+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_979275dc25244ab3b87c175640385402",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "4759dc74c628be1e55607553b34ffac24282393665de7928b76b992a2ae57945"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "71ad328dc31324ddaa8d33082565535bbd158edb906e7846ad2caf9bedd84e0c"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_2389e719b8d7453eb5f1a23e3efe7fda",
+        "reference": "71DC6C63AF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.527786+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_2389e719b8d7453eb5f1a23e3efe7fda",
+        "reference": "71DC6C63AF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.527786+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_22167c80d33e41d9b5bf742a5de0cc31",
+        "reference": "E276A10D81",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.531786+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_2389e719b8d7453eb5f1a23e3efe7fda",
+        "reference": "71DC6C63AF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.527786+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_215e41880c42451b9386457218bc7a2f",
+            "reference": "D8FD646753",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.534263+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_215e41880c42451b9386457218bc7a2f",
+            "reference": "D8FD646753",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.534263+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_215e41880c42451b9386457218bc7a2f",
+            "reference": "D8FD646753",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.534263+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_215e41880c42451b9386457218bc7a2f",
+            "reference": "D8FD646753",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.534263+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_2389e719b8d7453eb5f1a23e3efe7fda",
+        "reference": "71DC6C63AF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.527786+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_215e41880c42451b9386457218bc7a2f",
+            "reference": "D8FD646753",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.534263+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_e99007ee8b144679bdab7f70cffe8ac8",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "f4a857ef9fbf1bd19d01fd1e547c05de8d08790c4d5b7f33e90841f695a3d4fd"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "0c65bba5cda715d22505c8c7a22686843c2f21e7b632fc2fd018ee826bb522a6"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_92a7f24624264fc1a50be8fc558333cb",
+        "reference": "ACF8582A75",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.614238+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_92a7f24624264fc1a50be8fc558333cb",
+        "reference": "ACF8582A75",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.614238+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_26c4ceb82e5b48b9bea98827be6f2b90",
+        "reference": "2576F58181",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.628075+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_92a7f24624264fc1a50be8fc558333cb",
+        "reference": "ACF8582A75",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.614238+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_d371f78dbec94705a7f3142296dee476",
+            "reference": "B849A9F7CB",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.639759+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_d371f78dbec94705a7f3142296dee476",
+            "reference": "B849A9F7CB",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.639759+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_d371f78dbec94705a7f3142296dee476",
+            "reference": "B849A9F7CB",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.639759+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_d371f78dbec94705a7f3142296dee476",
+            "reference": "B849A9F7CB",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.639759+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_92a7f24624264fc1a50be8fc558333cb",
+        "reference": "ACF8582A75",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.614238+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_d371f78dbec94705a7f3142296dee476",
+            "reference": "B849A9F7CB",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.639759+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_ddcd6000c62344a29d998785f07a5836",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "8f7a580ed05edc3f400ba50419200b20205203b479fd467b5ec29e9b1f2340d2"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "0d744cf01392469e942353927247e61d9422de58990c726287707e06ed5070f1"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_3033778d25e348f899f4f4ee08dba93b",
+        "reference": "2C4D7106FF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.808443+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_3033778d25e348f899f4f4ee08dba93b",
+        "reference": "2C4D7106FF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.808443+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_0821ed49987940aa9a55973b31999dd7",
+        "reference": "789606FF87",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.824833+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_3033778d25e348f899f4f4ee08dba93b",
+        "reference": "2C4D7106FF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.808443+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_abc7461d02514052816c3302f6d8de13",
+            "reference": "F461601A01",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.836951+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_abc7461d02514052816c3302f6d8de13",
+            "reference": "F461601A01",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.836951+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_abc7461d02514052816c3302f6d8de13",
+            "reference": "F461601A01",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.836951+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_abc7461d02514052816c3302f6d8de13",
+            "reference": "F461601A01",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.836951+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_3033778d25e348f899f4f4ee08dba93b",
+        "reference": "2C4D7106FF",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:08.808443+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_abc7461d02514052816c3302f6d8de13",
+            "reference": "F461601A01",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:08.836951+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_467e1d6b8bc147c083195cd7ca4be417",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "8584d19cfb1a47a9a35101b4e387cba922cb34aa650d6795250972bc865055e1"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "637b64d22700ca5570a7c43870e2c16f752944c308208b1f5acc57a03fe3ef16"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_c6eaca283df241b896f34721ae0392dc",
+        "reference": "F7289BFA99",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.015756+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_c6eaca283df241b896f34721ae0392dc",
+        "reference": "F7289BFA99",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.015756+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_c17285dee5d34291928f3cc83207f0b1",
+        "reference": "08A0D12294",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.032037+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_c6eaca283df241b896f34721ae0392dc",
+        "reference": "F7289BFA99",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.015756+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_06e0a0fd706040cd8555124aec25cde4",
+            "reference": "1E9C905F7E",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.043089+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_06e0a0fd706040cd8555124aec25cde4",
+            "reference": "1E9C905F7E",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.043089+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_06e0a0fd706040cd8555124aec25cde4",
+            "reference": "1E9C905F7E",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.043089+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_06e0a0fd706040cd8555124aec25cde4",
+            "reference": "1E9C905F7E",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.043089+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_c6eaca283df241b896f34721ae0392dc",
+        "reference": "F7289BFA99",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.015756+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_06e0a0fd706040cd8555124aec25cde4",
+            "reference": "1E9C905F7E",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.043089+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_67ee8a6931b54fefab5af4e564a8c083",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "6240f363c77812646c22b3eaeadb0dba379baadac9198318f60fb5584dbfba99"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "ffff0872fdacddcceb7f07365cb71e5ac5ad313eca29e4f3d1bfd630e73b5c2e"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_5858de8ae90845d0bb2e8a147a284cbf",
+        "reference": "939ADB6A13",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.218441+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_5858de8ae90845d0bb2e8a147a284cbf",
+        "reference": "939ADB6A13",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.218441+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_eec788ba230a4443b3dbbbf370a55761",
+        "reference": "55EC2FC9F7",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.222428+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_5858de8ae90845d0bb2e8a147a284cbf",
+        "reference": "939ADB6A13",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.218441+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_feaf02ed83824983a62d9621ad1d57e2",
+            "reference": "8DFDB31C49",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.224921+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_feaf02ed83824983a62d9621ad1d57e2",
+            "reference": "8DFDB31C49",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.224921+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_feaf02ed83824983a62d9621ad1d57e2",
+            "reference": "8DFDB31C49",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.224921+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_feaf02ed83824983a62d9621ad1d57e2",
+            "reference": "8DFDB31C49",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.224921+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_5858de8ae90845d0bb2e8a147a284cbf",
+        "reference": "939ADB6A13",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.218441+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_feaf02ed83824983a62d9621ad1d57e2",
+            "reference": "8DFDB31C49",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.224921+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_3f96fb492c5c4d45bcb51e796a8e111f",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "2e4f90cc448a1e34505bd5374101cf0f2d8e3b8960c5d1abf6406aba5db162cd"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "3001c5f54dee29760d0f1193f0667eff5de7ebed51f6d9964b1d76982a4131f6"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_d91cfd169e3e4275bbac822bbe0525bc",
+        "reference": "CE8E407755",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.306658+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_d91cfd169e3e4275bbac822bbe0525bc",
+        "reference": "CE8E407755",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.306658+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_eb96a00f9eda48f7a14935914e4f975a",
+        "reference": "7E8C2E4E01",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.324836+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_d91cfd169e3e4275bbac822bbe0525bc",
+        "reference": "CE8E407755",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.306658+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_34937aa303e848e88cc7625c3e586744",
+            "reference": "052D7EF483",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.339379+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_34937aa303e848e88cc7625c3e586744",
+            "reference": "052D7EF483",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.339379+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_34937aa303e848e88cc7625c3e586744",
+            "reference": "052D7EF483",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.339379+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_34937aa303e848e88cc7625c3e586744",
+            "reference": "052D7EF483",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.339379+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_d91cfd169e3e4275bbac822bbe0525bc",
+        "reference": "CE8E407755",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.306658+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_34937aa303e848e88cc7625c3e586744",
+            "reference": "052D7EF483",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.339379+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_17737831c9444af7b162a1cd14f09403",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "c9f08ab9bc950c7cd7dc37552e01a8817621240921f0ca05e99982377eed9ddd"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "3eb173ab243114421b6ce543f2b0b3a7c3bfa5fd5f61b2ee3f006e70240b5d63"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_625885afcb714abcaef13ae4fed9d60c",
+        "reference": "7C05CE7456",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.539274+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_625885afcb714abcaef13ae4fed9d60c",
+        "reference": "7C05CE7456",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.539274+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_2912b97319bd4d9d8e54e68a3e2f6eb3",
+        "reference": "CDA2530925",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.559277+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_625885afcb714abcaef13ae4fed9d60c",
+        "reference": "7C05CE7456",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.539274+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_4825f620ae624e0ca83544f28a0b2079",
+            "reference": "0B9E5A8818",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.576641+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_4825f620ae624e0ca83544f28a0b2079",
+            "reference": "0B9E5A8818",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.576641+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_4825f620ae624e0ca83544f28a0b2079",
+            "reference": "0B9E5A8818",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.576641+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_4825f620ae624e0ca83544f28a0b2079",
+            "reference": "0B9E5A8818",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.576641+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_625885afcb714abcaef13ae4fed9d60c",
+        "reference": "7C05CE7456",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.539274+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_4825f620ae624e0ca83544f28a0b2079",
+            "reference": "0B9E5A8818",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.576641+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_6040c3ffa912408ab573b73c804c7f32",
+        "display_name": "Nested Diner",
+        "token": {
+          "private_value_sha256": "8f1eadc0adfda981f6e3c0d3848a5411c59f0924dfdf8620b3188bd1f2c0da61"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "semantic-owner",
+        "display_name": "Semantic Diner",
+        "token": {
+          "private_value_sha256": "8a23957c68878bede9ea6ceed2a7db7d22b1a324d62d7e3a67e6e4a3d1f09392"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_ff5b4daebf1d4797b849c761e2d84be9",
+        "reference": "733C64B61E",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.799414+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_ff5b4daebf1d4797b849c761e2d84be9",
+        "reference": "733C64B61E",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.799414+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_246035f91892483dbb2260c38927b264",
+        "reference": "C8E0EF7F02",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T20:00",
+        "starts_at": "2035-06-04T20:00:00+00:00",
+        "ends_at": "2035-06-04T21:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.822532+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-patch",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_ff5b4daebf1d4797b849c761e2d84be9",
+        "reference": "733C64B61E",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.799414+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-first",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_274de4f509d844f18752af1fac8b759b",
+            "reference": "23DD5DC7D5",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.836871+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-alias",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_274de4f509d844f18752af1fac8b759b",
+            "reference": "23DD5DC7D5",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.836871+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-alias",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-number-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-type-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-missing-auth",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-missing-key",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "missing_idempotency_key"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "missing_idempotency_key",
+          "message": "missing idempotency key"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-failed-value",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-failed-key-reuse",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_274de4f509d844f18752af1fac8b759b",
+            "reference": "23DD5DC7D5",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "3"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.836871+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-immutable",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_274de4f509d844f18752af1fac8b759b",
+            "reference": "23DD5DC7D5",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.836871+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-malformed",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-malformed-atomic",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-export",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-replacement",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-retained-token",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_ff5b4daebf1d4797b849c761e2d84be9",
+        "reference": "733C64B61E",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": {
+          "exact_json_number_token": "2"
+        },
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T04:26:09.799414+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-import-original",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_274de4f509d844f18752af1fac8b759b",
+            "reference": "23DD5DC7D5",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": {
+              "exact_json_number_token": "2"
+            },
+            "starts_at_local": "2035-06-04T18:00",
+            "starts_at": "2035-06-04T18:00:00+00:00",
+            "ends_at": "2035-06-04T19:30:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T04:26:09.836871+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-import-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-import-difference",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-nesting-charset",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-byte-length",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-duration",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-nesting-no-5xx",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  }
+]
