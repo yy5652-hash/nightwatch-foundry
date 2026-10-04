@@ -30,8 +30,9 @@ def run(c,release):
   c.check('upgrade-bootstrap-zero-counter-'+origin,all(integer(x)==0 for x in state['restaurant_revisions'].values()))
   c.check('upgrade-'+origin+'-numeric-profile',all(r['numeric_profile']==profile for r in state['receipts']))
   c.check('upgrade-'+origin+'-public-shape',('table_ids' in anchor)==(stage==2))
-  # A publication changes neither unavailable past history nor old receipt shape.
-  c.response('policies-manager-allowed',c.call('POST','/restaurants/r/policies',policy(capacities=dict(a=8,b=8,c=8)),token=c.tokens['m'],key='current-policy'),201)
+  # Genuine earlier services ignored manager_user_ids. Import must not invent
+  # publishing authority for an account merely named Manager in that old state.
+  c.response('upgrade-bootstrap-default-managers',c.call('POST','/restaurants/r/policies',policy(capacities=dict(a=8,b=8,c=8)),token=c.tokens['m'],key='current-policy'),403,'forbidden')
   changed=c.response('upgrade-bootstrap-actual-change',c.call('PATCH','/reservations/'+anchor['reference'],dict(party_size=4),token=token),200)
   entries=c.history(anchor['reference'])['entries']
   c.check('upgrade-bootstrap-first-actual-event-'+origin,len(entries)==1 and integer(entries[0]['seq'])==1 and entries[0]['event']=='changed' and integer(entries[0]['revision'])==2 and same(entries[0]['accepted_terms'],changed['accepted_terms']) and [x['field'] for x in entries[0]['changes']]==['party_size'])
