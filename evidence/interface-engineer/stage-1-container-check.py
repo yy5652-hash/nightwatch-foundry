@@ -33,6 +33,9 @@ try:
         code = execute(["docker", "run", "-d", "--name", CONTAINER, "--network", "none", "--cpus", "2", "--memory", "2g",
                         "-e", "PORT=9090", IMAGE], "start.log")
     if code == 0:
+        execute(["docker", "exec", CONTAINER, "python", "-c",
+                 "import hashlib,json,pathlib; print(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').glob('*.py')},sort_keys=True))"],
+                "image-source-sha256.json")
         code = execute(["docker", "exec", "-i", CONTAINER, "python", "-", "http://127.0.0.1:9090"], "probe.json",
                        (ROOT / "evidence" / "interface-engineer" / "stage-1-transport-probe.py").read_bytes())
         execute(["docker", "inspect", "--format", "{{json .HostConfig}}", CONTAINER], "container-limits.json")

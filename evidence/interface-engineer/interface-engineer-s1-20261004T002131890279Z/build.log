@@ -1,0 +1,107 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 542B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 DONE 1.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 74B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 37.19kB done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3
+#6 resolve docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3 done
+#6 sha256:5178256f396bb556aab3006b443dce8ba6c5a9863abeb0b757ad7319af1b2238 250B / 250B 0.1s done
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 0B / 13.61MB 0.3s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 0B / 28.12MB 0.2s
+#6 sha256:3cdc64d2ec2c1952d47b21c981c11d770071ba3a1e6c1f35843919d826b09684 0B / 3.82MB 0.2s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 1.05MB / 13.61MB 0.5s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 2.10MB / 13.61MB 0.9s
+#6 sha256:3cdc64d2ec2c1952d47b21c981c11d770071ba3a1e6c1f35843919d826b09684 1.05MB / 3.82MB 0.9s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 3.15MB / 13.61MB 1.4s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 2.10MB / 28.12MB 1.4s
+#6 sha256:3cdc64d2ec2c1952d47b21c981c11d770071ba3a1e6c1f35843919d826b09684 2.10MB / 3.82MB 1.4s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 4.19MB / 13.61MB 1.8s
+#6 sha256:3cdc64d2ec2c1952d47b21c981c11d770071ba3a1e6c1f35843919d826b09684 3.15MB / 3.82MB 1.8s
+#6 sha256:3cdc64d2ec2c1952d47b21c981c11d770071ba3a1e6c1f35843919d826b09684 3.82MB / 3.82MB 2.0s done
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 5.24MB / 13.61MB 2.3s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 4.19MB / 28.12MB 2.3s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 6.29MB / 13.61MB 2.6s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 7.34MB / 13.61MB 2.9s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 6.29MB / 28.12MB 2.9s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 8.39MB / 13.61MB 3.2s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 9.44MB / 13.61MB 3.5s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 8.39MB / 28.12MB 3.5s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 10.49MB / 13.61MB 3.8s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 11.53MB / 13.61MB 4.1s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 10.49MB / 28.12MB 4.2s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 12.58MB / 13.61MB 4.5s
+#6 sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 13.61MB / 13.61MB 4.7s done
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 12.58MB / 28.12MB 4.8s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 14.68MB / 28.12MB 5.1s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 16.78MB / 28.12MB 5.4s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 18.87MB / 28.12MB 5.7s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 20.97MB / 28.12MB 6.0s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 23.07MB / 28.12MB 6.5s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 25.17MB / 28.12MB 6.8s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 27.26MB / 28.12MB 7.4s
+#6 sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 28.12MB / 28.12MB 7.6s done
+#6 extracting sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9
+#6 extracting sha256:333125b5cee9fb6718bdcb523fc93b4adc71b7c37ada6146a20c193430e549b9 0.4s done
+#6 DONE 8.0s
+
+#6 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3
+#6 extracting sha256:3cdc64d2ec2c1952d47b21c981c11d770071ba3a1e6c1f35843919d826b09684 0.1s done
+#6 extracting sha256:dd8fff778ff6006ec901922031a5c00067338c079435bdc790468d359b9797c2 0.2s done
+#6 DONE 8.3s
+
+#6 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3
+#6 extracting sha256:5178256f396bb556aab3006b443dce8ba6c5a9863abeb0b757ad7319af1b2238 done
+#6 DONE 8.3s
+
+#7 [2/5] RUN apt-get update     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata     && rm -rf /var/lib/apt/lists/*
+#7 0.095 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#7 0.114 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#7 0.121 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#7 0.144 Get:4 http://deb.debian.org/debian bookworm/main arm64 Packages [8689 kB]
+#7 1.473 Get:5 http://deb.debian.org/debian bookworm-updates/main arm64 Packages [6936 B]
+#7 1.473 Get:6 http://deb.debian.org/debian-security bookworm-security/main arm64 Packages [344 kB]
+#7 1.933 Fetched 9281 kB in 2s (4962 kB/s)
+#7 1.933 Reading package lists...
+#7 2.095 Reading package lists...
+#7 2.249 Building dependency tree...
+#7 2.283 Reading state information...
+#7 2.336 tzdata is already the newest version (2026c-0+deb12u1).
+#7 2.336 0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+#7 DONE 2.5s
+
+#8 [3/5] WORKDIR /app
+#8 DONE 0.0s
+
+#9 [4/5] COPY server.py core.py ./
+#9 DONE 0.0s
+
+#10 [5/5] RUN python -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('.').glob('*.py')]"
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers 0.0s done
+#11 exporting manifest sha256:b22e274ef34c809d9e3bd3a977c6a603dcd668cbc1b862b4e440045c4930ab86 done
+#11 exporting config sha256:a20fdec3171df1218fdffc0883b991cf67d7058b91cedcf2732f3a6e6193224a done
+#11 exporting attestation manifest sha256:f0be7439d5ae2579cc888a9c9205e944d5e5c4e38f90c4f2bd4e94519cd6a341 done
+#11 exporting manifest list sha256:b9ae2e464ae225c1e410f7095fa929c566f6632961b190a5683be0c508f3464b done
+#11 naming to docker.io/library/interface-engineer-tablekeeper-s1:20261004t002131890279z done
+#11 unpacking to docker.io/library/interface-engineer-tablekeeper-s1:20261004t002131890279z 0.0s done
+#11 DONE 0.1s
