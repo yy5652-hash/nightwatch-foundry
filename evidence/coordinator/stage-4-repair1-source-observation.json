@@ -1,0 +1,15 @@
+{
+  "observed_utc": "2026-10-04T09:22:07.159287+00:00",
+  "scope": "Coordinator read-only committed repair source/ownership inspection; no HTTP or independent verification",
+  "repair_revision": "6225a0e6f25afd28ceddac472887a77e5941bba5",
+  "changed_paths": [
+    "stage-4/core.py"
+  ],
+  "candidate_before": "261e4d9456a04a8b57ed46db71a09ac267ff15a9",
+  "rejection_revision": "16b6955aee3036298aaa81aa3533fe3536d44cff",
+  "stage4_tree": "00e208c746a488a9b4cb0761efd04b90c4248dd8",
+  "core_sha256": "9449cf0334c4ace4c688046eb42220e06c4ae9a4312e2b4551d0e6681f7f97d9",
+  "diff": "diff --git a/stage-4/core.py b/stage-4/core.py\nindex 7fa458b..e8321fd 100644\n--- a/stage-4/core.py\n+++ b/stage-4/core.py\n@@ -681,7 +681,7 @@ class Engine:\n         table_id = text_field(data, \"table_id\", maximum=64)\n         if table_id not in {t[\"id\"] for t in restaurant[\"tables\"]}:\n             fail(404, \"not_found\")\n-        if explicit_instant(data.get(\"from\")) >= explicit_instant(data.get(\"to\")):\n+        if explicit_instant(text_field(data, \"from\")) >= explicit_instant(text_field(data, \"to\")):\n             fail(message=\"Closure must have a positive interval\")\n         return {\"table_id\": table_id, \"from\": data[\"from\"], \"to\": data[\"to\"]}\n \n",
+  "description": "Present closure from/to use inherited text_field validation before exact instant parsing; full tests/independent acceptance pending",
+  "highest_accepted": 3
+}
