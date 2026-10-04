@@ -97,3 +97,36 @@ was opened or copied. Systems' committed-candidate handoff and my own resulting
 container output were later diagnostic inputs. Interface service files remained
 unchanged. The resulting integration evidence is in
 `stage-1-timestamp-03-check.md`; its interpretation is explicitly disclosed.
+
+## Later candidate 5 serialized decimal integration review
+
+Package `TK-20261004-S1-interface-engineer-CANDIDATE-5` was received in all seven
+parts and acknowledged before work. The package included the complete Stage 1
+specification, current factory task, supplementary brief, timestamp/receipt
+decisions, Systems' repaired-candidate report and the supplied independent
+supplemental rejection text. These are later diagnostic inputs, not inputs to the
+original Interface runtime implementation. The participant guide and active plan
+were reread. The exact candidate `f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250` was
+built from clean detached own clones; the four Interface runtime files were read
+and compared byte-for-byte with original source `2a4b0408a3453bc87d86bca3d0ec571f479e03ca`.
+No runtime or Stage 2 source was edited.
+
+I independently authored `stage-1-candidate-5-probe.py` and
+`stage-1-candidate-5-container-check.py` from that package and my own existing
+transport probe, first committed at `76763bb2cbf54d5da8780768ae89399d3106a8fc`.
+The genuine older process uses the committed five-file Stage 1 service at
+`49287b4a5a1481f995c470ccae31776f03d4b863`, generated into an owned build context;
+it is this run's legitimate earlier implementation, not an abandoned result.
+After observing an own runner DNS-label `UnicodeError`, only the runner was repaired
+at `74dff654931980cdacbb63dec61a649fa47a9a81`, and both unique outputs were retained.
+
+The corrected run then observed a 400 refusal for a syntactically valid giant
+fractional party number where the probe expected 422. Read-only bounded core
+searches and `json_value`/write-dispatch excerpts were inspected after that result
+to diagnose the adapter's default float overflow and core's finite-value refusal.
+This was integration diagnosis, not copying or editing Engine implementation.
+The unresolved observation and all passing results are in
+`stage-1-candidate-5-integration-handoff.md`. No shipped test source, verifier probe
+source, external domain documentation/code/schema, toy/abandoned implementation,
+outside-workspace project or memory file was consulted. Own output, Git/Docker
+metadata and standard-library programming knowledge are the only additional inputs.

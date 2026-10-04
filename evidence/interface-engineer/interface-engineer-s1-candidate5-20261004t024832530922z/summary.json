@@ -1,0 +1,110 @@
+{
+  "candidate": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "probe_revision": "74dff654931980cdacbb63dec61a649fa47a9a81",
+  "stage1_tree": "938fe8d78be5650b989d18fe7540b0aa1cff4e80",
+  "clone_status": "",
+  "inherited": {
+    "checks": 577,
+    "passed": 577,
+    "failed": 0,
+    "elapsed_seconds": 0.1203
+  },
+  "decimal_legacy": {
+    "operations": 132,
+    "assertions": 518,
+    "passed": 517,
+    "failed": 1,
+    "elapsed_seconds": 0.5301124589999517,
+    "giant_digits": 4301
+  },
+  "runtime_checks": [
+    {
+      "name": "Clone is clean and exactly the named full candidate",
+      "passed": true
+    },
+    {
+      "name": "Interface runtime file unchanged: server.py",
+      "passed": true
+    },
+    {
+      "name": "Interface runtime file unchanged: Dockerfile",
+      "passed": true
+    },
+    {
+      "name": "Interface runtime file unchanged: RUN.md",
+      "passed": true
+    },
+    {
+      "name": "Interface runtime file unchanged: .dockerignore",
+      "passed": true
+    },
+    {
+      "name": "Engine construction explicitly initializes decimal conversion",
+      "passed": true
+    },
+    {
+      "name": "source healthy within 60 seconds of launch",
+      "passed": true
+    },
+    {
+      "name": "source image core/server match named source",
+      "passed": true
+    },
+    {
+      "name": "source constrained to 2 CPU and 2 GiB without mounts",
+      "passed": true
+    },
+    {
+      "name": "source all-interface listener matches selected PORT",
+      "passed": true
+    },
+    {
+      "name": "destination healthy within 60 seconds of launch",
+      "passed": true
+    },
+    {
+      "name": "destination image core/server match named source",
+      "passed": true
+    },
+    {
+      "name": "destination constrained to 2 CPU and 2 GiB without mounts",
+      "passed": true
+    },
+    {
+      "name": "destination all-interface listener matches selected PORT",
+      "passed": true
+    },
+    {
+      "name": "legacy healthy within 60 seconds of launch",
+      "passed": true
+    },
+    {
+      "name": "legacy image core/server match named source",
+      "passed": true
+    },
+    {
+      "name": "legacy constrained to 2 CPU and 2 GiB without mounts",
+      "passed": true
+    },
+    {
+      "name": "legacy all-interface listener matches selected PORT",
+      "passed": true
+    },
+    {
+      "name": "Service network has no outbound routing",
+      "passed": true
+    },
+    {
+      "name": "Own inherited transport/concurrency/time checks pass",
+      "passed": true
+    },
+    {
+      "name": "Own decimal/legacy checks pass",
+      "passed": false
+    },
+    {
+      "name": "Exact candidate clone remains clean after build/checks",
+      "passed": true
+    }
+  ]
+}
