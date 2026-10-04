@@ -10,6 +10,7 @@ from urllib.parse import urlsplit, parse_qs
 from playwright.async_api import async_playwright, expect
 from api import DAY, pair_fixture, safe, fingerprint
 from requirements import ROWS
+from integer_values import VALUES, loads_exact, number_exact, party_exact, party_lexeme, trace_exact
 
 
 class BrowserProbe:
@@ -26,9 +27,9 @@ class BrowserProbe:
         self.requests=[]
 
     def check(self,key,condition,expected=None,observed=None):
-        self.results.append(dict(requirement_id="TK2-"+key,passed=bool(condition),expected=safe(expected),observed=safe(observed)))
+        self.results.append(dict(requirement_id="TK2-"+key,passed=bool(condition),expected=safe(trace_exact(expected)),observed=safe(trace_exact(observed))))
 
-    async def api(self,method,path,body=None,token=None,key=None,base=None):
+    async def api(self,method,path,body=None,token=None,key=None,base=None,exact=False):
         headers={"Content-Type":"application/json; charset=utf-8"}
         if token:
             headers["Authorization"]="Bearer "+token
@@ -36,8 +37,8 @@ class BrowserProbe:
             headers["Idempotency-Key"]=key
         began=time.monotonic()
         response=await self.http.fetch((base or self.args.base)+path,method=method,headers=headers,data=json.dumps(body) if body is not None else None,timeout=10000 if path.startswith("/_test/") else 5000)
-        value=await response.json() if await response.body() else None
-        self.operations.append(dict(method=method,path=path,base=base or self.args.base,body=safe(body),key=key,has_token=bool(token),status=response.status,response=safe(value),duration_seconds=time.monotonic()-began))
+        value=(loads_exact(await response.text()) if exact else await response.json()) if await response.body() else None
+        self.operations.append(dict(method=method,path=path,base=base or self.args.base,body=safe(body),key=key,has_token=bool(token),status=response.status,response=safe(trace_exact(value)),duration_seconds=time.monotonic()-began,exact_numeric_decoder=exact))
         return response.status,value
 
     async def reset(self,f=None):
@@ -64,15 +65,15 @@ class BrowserProbe:
     def request(self,request):
         headers=request.headers
         try:
-            body=request.post_data_json
+            body=loads_exact(request.post_data) if request.post_data is not None else None
         except Exception:
             body=None
-        operation=dict(method=request.method,url=request.url,body=safe(body),key=headers.get("idempotency-key"),
+        operation=dict(method=request.method,url=request.url,body=safe(trace_exact(body)),key=headers.get("idempotency-key"),
                        authorization_sha256=fingerprint(headers["authorization"]) if "authorization" in headers else None,
                        started_monotonic=time.monotonic())
         self.network.append(operation)
         if request.method=="POST" and urlsplit(request.url).path=="/reservations":
-            self.requests.append(dict(body=body,key=headers.get("idempotency-key"),authorization=headers.get("authorization")))
+            self.requests.append(dict(body=body,key=headers.get("idempotency-key"),authorization=headers.get("authorization"),raw=request.post_data))
 
     async def visible(self,page,key):
         locator=page.get_by_test_id(key)
@@ -252,7 +253,7 @@ class BrowserProbe:
             self.check(seating+"-repeat-one-record",len(records["reservations"])==1)
             await page.get_by_test_id("booking-party-size").evaluate("e=>e.dispatchEvent(new Event('input',{bubbles:true}))")
             await self.submit(page)
-            self.check(seating+"-same-value-request",self.requests[-1]==original)
+            self.check(seating+"-same-value-request",self.requests[-1]["key"]==original["key"] and self.requests[-1]["body"]==original["body"])
             await page.get_by_test_id("booking-party-size").fill(str(party-1 if party>1 else party+1))
             await self.submit(page)
             self.check(seating+"-edited-request",self.requests[-1]["key"]!=original["key"] and self.requests[-1]["body"]!=original["body"])
@@ -458,11 +459,86 @@ class BrowserProbe:
         external=[x["url"] for x in self.network if urlsplit(x["url"]).netloc not in {urlsplit(self.args.base).netloc} and not x["url"].startswith(("data:","blob:"))]
         self.check("visual-offline-assets",not external,"all browser resources from packaged service",external)
 
+    async def integer_case(self):
+        for seating in ["single","pair"]:
+            for label,digits in VALUES:
+                prefix="integer-"+seating+"-"+label+"-"
+                value=int(digits)
+                f=pair_fixture()
+                restaurant=f["restaurants"][0]
+                if seating=="single":
+                    capacities=[value,value-1,1,1]
+                    restaurant["combinable"]=[]
+                    ids=["t0"]
+                    cell="slot-t0-18:10"
+                else:
+                    capacities=[value//2,value-value//2,1,1]
+                    restaurant["combinable"]=[["t1","t0"]]
+                    ids=["t1","t0"]
+                    cell="slot-t1+t0-18:10"
+                for table,capacity in zip(restaurant["tables"],capacities):
+                    table["capacity"]=capacity
+                try:
+                    await self.reset(f)
+                except Exception as error:
+                    self.check(prefix+"reset",False,204,str(error))
+                    continue
+                self.check(prefix+"reset",True,204,204)
+                status,available=await self.api("GET","/availability?restaurant_id=r&date="+DAY+"&party_size="+digits,exact=True)
+                slots=available.get("slots",[]) if isinstance(available,dict) else []
+                offered=status==200 and bool(slots) and any(option["table_ids"]==ids for option in slots[0].get("available_options",[]))
+                self.check(prefix+"api-control",offered,"fitting exact-party option",available)
+                context,page=await self.page()
+                try:
+                    await self.login(page)
+                    await page.goto(self.args.base+"/")
+                    await page.get_by_test_id("restaurant-select").select_option("r")
+                    await page.get_by_test_id("date-input").fill(DAY)
+                    await page.get_by_test_id("party-size-input").fill(digits)
+                    self.check(prefix+"search-input",await page.get_by_test_id("party-size-input").input_value()==digits,digits,await page.get_by_test_id("party-size-input").input_value())
+                    before=len(self.network)
+                    async with page.expect_response(lambda response:urlsplit(response.url).path=="/availability") as pending:
+                        await page.get_by_test_id("search-button").click()
+                    response=await pending.value
+                    queries=[parse_qs(urlsplit(item["url"]).query).get("party_size",[]) for item in self.network[before:] if urlsplit(item["url"]).path=="/availability"]
+                    self.check(prefix+"query",bool(queries) and all(query==[digits] for query in queries),[digits],queries)
+                    await self.shot(page,prefix+"searched")
+                    ready=response.status==200 and await page.get_by_test_id(cell).count()==1 and await page.get_by_test_id(cell).get_attribute("data-available")=="true"
+                    self.check(prefix+"grid",ready,dict(status=200,cell=cell,available="true"),dict(status=response.status,cell_count=await page.get_by_test_id(cell).count()))
+                    if not ready:
+                        continue
+                    await page.get_by_test_id(cell).click()
+                    await expect(page.get_by_test_id("booking-form")).to_be_visible()
+                    prefilled=await page.get_by_test_id("booking-party-size").input_value()
+                    self.check(prefix+"prefill",prefilled==digits,digits,prefilled)
+                    status,_=await self.submit(page)
+                    request=self.requests[-1]
+                    self.check(prefix+"body",party_exact(request["raw"],digits),digits,party_lexeme(request["raw"]))
+                    self.actions.append(dict(event="exact-party-wire",case=prefix,query_values=queries,body_party_lexeme=party_lexeme(request["raw"]),body_sha256=fingerprint(request["raw"]),key=request["key"]))
+                    # Decode raw response text in Python: never let a browser/driver Number round the oracle.
+                    _,records=await self.api("GET","/reservations",token=self.tokens["u_a"],exact=True)
+                    rows=records.get("reservations",[])
+                    receipt=rows[0] if len(rows)==1 else {}
+                    self.check(prefix+"success",status==201 and bool(receipt.get("reference")) and await self.text(page,"confirmation-reference")==receipt.get("reference"),201,status)
+                    lookup_status,stored=await self.api("GET","/reservations/"+receipt["reference"],token=self.tokens["u_a"],exact=True) if receipt.get("reference") else (0,{})
+                    self.check(prefix+"stored",lookup_status==200 and number_exact(stored.get("party_size"),digits),digits,stored.get("party_size"))
+                    repeated_status,repeated=await self.submit(page)
+                    current=self.requests[-1]
+                    self.check(prefix+"repeat-identity",current["key"]==request["key"] and loads_exact(current["raw"])==loads_exact(request["raw"]))
+                    self.check(prefix+"repeat-reference",repeated_status==200 and repeated.get("reference")==receipt.get("reference") and await self.text(page,"confirmation-reference")==receipt.get("reference"))
+                    _,records=await self.api("GET","/reservations",token=self.tokens["u_a"])
+                    self.check(prefix+"one-record",len(records.get("reservations",[]))==1)
+                    await self.shot(page,prefix+"confirmed")
+                except Exception as error:
+                    self.results.append(dict(requirement_id="BROWSER-CASE-"+prefix,passed=False,expected="integer boundary case completes",observed=str(error)))
+                finally:
+                    await context.close()
+
     async def run(self):
         async with async_playwright() as runtime:
             self.http=await runtime.request.new_context()
             self.browser=await runtime.chromium.launch(headless=True)
-            cases=dict(routes=self.routes,auth=self.auth,grid=self.grid,lookup=self.lookup,visual=self.visual_case)
+            cases=dict(routes=self.routes,auth=self.auth,grid=self.grid,lookup=self.lookup,visual=self.visual_case,**{"integer-boundary":self.integer_case})
             for seating in ["single","pair"]:
                 cases["booking-"+seating]=lambda seating=seating:self.booking(seating)
                 cases["race-"+seating]=lambda seating=seating:self.race(seating)

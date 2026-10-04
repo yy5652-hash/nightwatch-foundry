@@ -256,6 +256,26 @@ for row in ROWS:
     if row["requirement_id"] in ["TK2-stage1-original-create", "TK2-stage1-original-batch"]:
         row["interpretation_note"] = "Pending coordinator receipt-shape interpretation: preserve successful original Stage 1 JSON even when it predates table_ids. This row is unverified until decision and actual replay evidence exist."
 
+for seating in ["single","pair"]:
+    for value in ["unsafe","scientific"]:
+        prefix="integer-"+seating+"-"+value+"-"
+        add("Inherited Stage 1 §§4,5,8 / Search, Booking form and Combined tables",95,"integer-boundary",{
+            prefix+"reset":"A fitting base fixture with a positive integer capacity beyond 2^53 is accepted without an unstated numeric ceiling.",
+            prefix+"api-control":"The exact plain-digit party-size API control offers the fitting singleton or declared pair.",
+            prefix+"search-input":"The actual browser search input retains the entered plain-digit positive integer.",
+            prefix+"query":"The actual browser emits that exact value as plain decimal query digits, without rounding or exponent notation.",
+            prefix+"grid":"The fitting singleton/pair cell is available for the exact searched party size.",
+            prefix+"prefill":"The booking party input is prefilled with the exact searched integer, without Number rounding.",
+            prefix+"body":"The emitted request party_size is a JSON numeric value equal to the exact entered integer, not a rounded value or string.",
+            prefix+"success":"The valid fitting exact-party request receives successful authoritative confirmation.",
+            prefix+"stored":"The server's reservation lookup preserves the exact integer party_size.",
+            prefix+"repeat-identity":"Unchanged large-integer resubmission retains the exact parsed JSON value and idempotency key; key order and whitespace remain immaterial.",
+            prefix+"repeat-reference":"Unchanged large-integer resubmission recovers the same original reference with 200.",
+            prefix+"one-record":"An unchanged large-integer resubmission leaves exactly one owned reservation.",
+        },owner="interface-engineer",method="browser raw wire capture plus exact Python/Decimal HTTP oracle")
+        for row in ROWS[-12:]:
+            row["interpretation_note"]="Stage 1 fixture capacity and positive party_size have no stated maximum. Later policy limits do not restrict the base fixture. Query decimal spelling is mandatory; JSON body evidence is checked by exact numeric value, not host floating point."
+
 
 def write_matrix(path):
     assert len({row["requirement_id"] for row in ROWS}) == len(ROWS)

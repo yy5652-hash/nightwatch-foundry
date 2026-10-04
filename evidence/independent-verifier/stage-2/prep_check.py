@@ -5,6 +5,7 @@ from pathlib import Path
 from requirements import ROWS
 from oracle import canonical, options, serial_orders
 import api
+from integer_values import VALUES, loads_exact, number_exact, party_exact
 
 
 def main():
@@ -28,8 +29,19 @@ def main():
     assert serial_orders([record],operations)==[(0,1)]
     operations.append(dict(kind="read-export",started=5,finished=6,observed=dict(status=200,view=[("A",("b","a"),"cancelled"),("B",("a",),"confirmed")])))
     assert serial_orders([record],operations)==[(0,1,2)]
+    for label,digits in VALUES:
+        assert party_exact('{"party_size":'+digits+'}',digits)
+        assert not party_exact('{"party_size":"'+digits+'"}',digits)
+        value=int(digits)
+        assert value//2+(value-value//2)==value
+        assert value//2<value and value-value//2<value
+    assert not party_exact('{"party_size":9007199254740992}',VALUES[0][1])
+    assert not party_exact('{"party_size":1e21}',VALUES[1][1])
+    assert party_exact('{"party_size":9.007199254740993e15}',VALUES[0][1])
+    assert party_exact('{"party_size":1.000000000000000000001e21}',VALUES[1][1])
+    assert not number_exact(True,"1")
     print(json.dumps(dict(source="verifier preparation controls only",parsed_python_files=len(files),oracle_controls=8,
-                          api_import=True,rows=len(ROWS),inherited=sum(row["inherited"]=="yes" for row in ROWS),candidate_calls=0,all_rows_unverified=True)))
+                          integer_controls=13,api_import=True,rows=len(ROWS),inherited=sum(row["inherited"]=="yes" for row in ROWS),candidate_calls=0,all_rows_unverified=True)))
 
 
 if __name__=="__main__":

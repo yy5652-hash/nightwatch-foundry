@@ -1,0 +1,77 @@
+{
+  "utc": "2026-10-04T02:00:55.899224+00:00",
+  "phase": "stage-2-browser-integer-boundary-preparation",
+  "question_message": "7c7ae8a4-bf15-405c-997e-937d0ed94af1",
+  "initial_preparation_commit": "c120ccc755539c3f0e0e6f38579882147a948294",
+  "values": [
+    "9007199254740993",
+    "1000000000000000000001"
+  ],
+  "seating": [
+    "single",
+    "pair"
+  ],
+  "rows": 1214,
+  "inherited": 801,
+  "new": 413,
+  "additional_integer_rows": 48,
+  "verified": 0,
+  "failed": 0,
+  "unverified": 1214,
+  "candidate_calls": 0,
+  "controls": {
+    "argv": [
+      "python3",
+      "-B",
+      "evidence/independent-verifier/stage-2/prep_check.py"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.08549075,
+    "candidate_calls": 0
+  },
+  "helper_build": {
+    "argv": [
+      "docker",
+      "build",
+      "-f",
+      "stage-2/Browser.Dockerfile",
+      "-t",
+      "independent-verifier-s2:prepared-runner-03",
+      "."
+    ],
+    "returncode": 0,
+    "duration_seconds": 1.2313474580000001,
+    "candidate_calls": 0,
+    "cache": "normal Docker cache available; uncached build not claimed"
+  },
+  "helper_smoke": {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s2-helper-smoke-03",
+      "--network",
+      "none",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s2:prepared-runner-03",
+      "-c",
+      "\nimport asyncio,json\nfrom playwright.async_api import async_playwright\nimport api,browser\nasync def main():\n    async with async_playwright() as runtime:\n        browser=await runtime.chromium.launch(headless=True)\n        context=await browser.new_context(viewport={'width':375,'height':812})\n        page=await context.new_page()\n        width=await page.evaluate('innerWidth')\n        assert width==375\n        print(json.dumps({'chromium_version':browser.version,'viewport_width':width,'imports':['api','browser'],'candidate_calls':0}))\n        await browser.close()\nasyncio.run(main())\n"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.8968383750000001,
+    "candidate_calls": 0,
+    "note": "Verifier helper only; no service startup or requirement pass implied"
+  },
+  "source_applicability": "Stage 1 capacity/positive party size lack a published numeric maximum; query integers require plain digits; Stage 2 inherits those rules and exact prefill. No new JavaScript ceiling inferred.",
+  "candidate": "UNASSIGNED",
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_override_effort_usage_estimated_cost_billed_spend": "unknown",
+  "pending": "Complete named integrated Stage 2 candidate package before any product observation"
+}
