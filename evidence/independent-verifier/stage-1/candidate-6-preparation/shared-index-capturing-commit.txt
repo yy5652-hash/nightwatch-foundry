@@ -1,0 +1,42 @@
+commit 182582c41d21a23d8ccd95688fa7f1afa0437460
+Author:     Interface Engineer <interface-engineer@nightwatch-foundry.invalid>
+AuthorDate: Sat Oct 3 20:38:17 2026 -0700
+Commit:     Interface Engineer <interface-engineer@nightwatch-foundry.invalid>
+CommitDate: Sat Oct 3 20:38:17 2026 -0700
+
+    Repair own adapter parallel probe helper name
+
+ evidence/independent-verifier/ledger.jsonl         |    2 +
+ .../stage-1/Semantic.Probe.Dockerfile              |    5 +
+ .../stage-1/candidate-6-preparation/PREPARATION.md |  174 +
+ .../candidate-6-preparation/artifact-manifest.json |  155 +
+ .../candidate-6-preparation/coverage-prepared.csv  | 1398 +++
+ .../candidate-6-preparation/coverage-summary.json  |   14 +
+ .../candidate-6-preparation/execution-guard.json   |   21 +
+ .../candidate-6-preparation/execution-guard.log    |    3 +
+ .../stage-1/candidate-6-preparation/intake.json    |   25 +
+ .../candidate-6-preparation/oracle-self-check.json |  131 +
+ .../planned-probe-bindings.json                    | 9035 ++++++++++++++++++++
+ .../candidate-6-preparation/preparation-seal.json  |   46 +
+ .../preparation-validation.json                    |   20 +
+ .../raw-fixture-validation.json                    |  153 +
+ .../seal-orchestration-error-01.log                |    1 +
+ .../candidate-6-preparation/source-inputs.json     |   30 +
+ .../source-inputs/PRODUCT_ACCEPTANCE.md            |  141 +
+ ...pendent-verifier-CANDIDATE-6-PREP.delivery.json |  148 +
+ ...04-S1-independent-verifier-CANDIDATE-6-PREP.txt | 1794 ++++
+ .../json-number-semantics-decision.md              |   16 +
+ .../source-inputs/participant-guide.md             |  877 ++
+ .../source-inputs/stage-1.md                       |  472 +
+ .../candidate-6-preparation/syntax-check.json      |   35 +
+ .../whitespace-authored.log                        |    0
+ .../candidate-6-preparation/whitespace-check.json  |   34 +
+ .../whitespace-original.log                        |   42 +
+ .../stage-1/semantic_oracle.py                     |  115 +
+ .../stage-1/semantic_prepare.py                    |   55 +
+ .../independent-verifier/stage-1/semantic_probe.py |  385 +
+ .../stage-1/semantic_requirements.py               |   94 +
+ .../stage-1/semantic_runtime.py                    |  135 +
+ .../stage-1/semantic_validate_preparation.py       |   71 +
+ .../stage-1-json-adapter-probe.py                  |    4 +-
+ 33 files changed, 15629 insertions(+), 2 deletions(-)

@@ -177,3 +177,19 @@ After the original diagnostic itself was staged, its quoted trailing spaces also
 triggered the source-only exclusion check. The final authored check excludes
 both exact source archives and that raw original diagnostic; it passes with no
 byte edits to either. Both scopes and the follow-up are recorded.
+
+## Shared-index capture and actual authorship
+
+While this verifier's explicit owned paths were staged, Interface commit
+182582c41d21a23d8ccd95688fa7f1afa0437460 captured 32 verifier evidence paths
+alongside its own adapter-probe change. The new client, matrix and report contents
+were authored independently by this verifier runtime; their Git commit author is
+Interface for that capturing commit. This discrepancy is preserved rather than
+rewritten or concealed. The verifier's explicit --only commit
+138477bd077f7f15ceedfd547a6870ffb3dd796b then committed five final seal changes.
+shared-index-provenance.json records all captured paths, exact source hashes and
+byte matches, and shared-index-capturing-commit.txt retains the actual Git output.
+The coordinator and Interface were notified in message
+c5c0888d-b471-44cb-a1d1-f202a68cbf29. This is a provenance deviation, not evidence
+that Interface authored or independently tested the verifier probes. No service
+execution or candidate acceptance follows either commit.
