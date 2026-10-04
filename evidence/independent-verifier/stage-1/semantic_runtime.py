@@ -19,6 +19,7 @@ def main():
     parser=argparse.ArgumentParser()
     for name in ["repo","workspace","candidate","handoff","out"]:
         parser.add_argument("--"+name,required=True)
+    parser.add_argument("--probe-family",choices=["semantic","opaque-ids"],default="semantic")
     args=parser.parse_args()
     workspace=Path(args.workspace).resolve();repo=Path(args.repo).resolve()
     out=Path(args.out).resolve();handoff=Path(args.handoff).resolve()
@@ -39,7 +40,7 @@ def main():
     prefix="independent-verifier-num-"+stamp
     network=prefix+"-net";runner=prefix+":client"
     clones={};commands=[];containers=[];created_network=False;created_client=False
-    result_code=1;proof={"candidate":args.candidate,"legacy_revision":LEGACY,"handoff":intake,
+    result_code=1;proof={"candidate":args.candidate,"legacy_revision":LEGACY if args.probe_family=="semantic" else None,"probe_family":args.probe_family,"handoff":intake,
                          "started_at":started_at,"runtime_prefix":prefix,"status":"running","startup":{},"source":{}}
     def save():
         (out/"commands.json").write_text(json.dumps(commands,indent=2))
@@ -53,7 +54,8 @@ def main():
         if required and completed.returncode:raise RuntimeError("Command failed; retained "+str(out/log))
         return completed.returncode
     try:
-        for family,revision in [("current",args.candidate),("legacy",LEGACY)]:
+        families=[("current",args.candidate)]+([("legacy",LEGACY)] if args.probe_family=="semantic" else [])
+        for family,revision in families:
             clone=workspace/"band-work"/(prefix+"-"+family);clones[family]=clone
             run(["git","clone","--no-hardlinks","--no-checkout",str(repo),str(clone)],family+"-clone")
             run(["git","checkout","--detach",revision],family+"-checkout",clone)
@@ -76,13 +78,16 @@ def main():
             run(["docker","image","inspect",image],family+"-image")
             image_data=json.loads((out/(family+"-image.log")).read_text())[0]
             proof["source"][family]["image_id"]=image_data["Id"]
-        run(["docker","build","-f","Semantic.Probe.Dockerfile","-t",runner,"."],"client-build",HERE)
-        proof["client_files_sha256"]={name:hashlib.sha256((HERE/name).read_bytes()).hexdigest() for name in ["Semantic.Probe.Dockerfile","semantic_probe.py","semantic_oracle.py","semantic_requirements.py","health.py"]}
+        dockerfile="Semantic.Probe.Dockerfile" if args.probe_family=="semantic" else "OpaqueId.Probe.Dockerfile"
+        run(["docker","build","-f",dockerfile,"-t",runner,"."],"client-build",HERE)
+        client_files=[dockerfile,"semantic_probe.py","semantic_oracle.py","semantic_requirements.py","health.py"]+(["opaque_id_probe.py","opaque_id_requirements.py"] if args.probe_family=="opaque-ids" else [])
+        proof["client_files_sha256"]={name:hashlib.sha256((HERE/name).read_bytes()).hexdigest() for name in client_files}
         run(["docker","network","create","--internal",network],"network-create");created_network=True
         run(["docker","network","inspect",network],"network-inspect")
         assert json.loads((out/"network-inspect.log").read_text())[0]["Internal"] is True
         urls={}
-        for role,family,host_port,internal_port,override in [("base","current",18335,18335,True),("peer","current",18336,8080,False),("third","current",18337,18337,True),("legacy","legacy",18338,18338,True)]:
+        roles=[("base","current",18335,18335,True),("peer","current",18336,8080,False)]+([("third","current",18337,18337,True),("legacy","legacy",18338,18338,True)] if args.probe_family=="semantic" else [])
+        for role,family,host_port,internal_port,override in roles:
             name=prefix+"-"+role;assert len(name)<=63
             image=proof["source"][family]["image_tag"]
             argv=["docker","run","-d","--name",name,"--network",network,"--cpus","2","--memory","2g","-p",f"127.0.0.1:{host_port}:{internal_port}"]
@@ -105,7 +110,7 @@ def main():
             assert hashes=={name:proof["source"][family]["stage_files_sha256"][name] for name in names}
             proof["startup"][role].update(container=name,image_hashes=hashes,cpu=2,memory_bytes=2147483648,service_mounts=[])
         argv=["docker","run","--name",prefix+"-probe","--network",network,"--cpus","2","--memory","2g","-v",str(out)+":/evidence",runner]
-        for role in ["base","peer","third","legacy"]:argv.extend(["--"+role,urls[role]])
+        for role in urls:argv.extend(["--"+role,urls[role]])
         argv.extend(["--candidate",args.candidate,"--out","/evidence/probes"])
         # Register before start so a partial Docker run is still cleaned up.
         created_client=True

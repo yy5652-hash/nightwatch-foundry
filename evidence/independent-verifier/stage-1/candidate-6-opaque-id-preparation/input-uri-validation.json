@@ -1,0 +1,225 @@
+{
+  "scope": "Input/client URI self-checks only, zero service requests",
+  "checks": [
+    {
+      "surface": "restaurant",
+      "label": "ordinary",
+      "characters": 11,
+      "utf8_bytes": 11,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary_id",
+      "availability_path": "/availability?restaurant_id=ordinary_id&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "slash",
+      "characters": 10,
+      "utf8_bytes": 10,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%2Ffloor",
+      "availability_path": "/availability?restaurant_id=room%2Ffloor&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "question-fragment",
+      "characters": 19,
+      "utf8_bytes": 19,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%3Fquery%23fragment",
+      "availability_path": "/availability?restaurant_id=room%3Fquery%23fragment&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "literal-percent",
+      "characters": 12,
+      "utf8_bytes": 12,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%252Ffloor",
+      "availability_path": "/availability?restaurant_id=room%252Ffloor&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "plus-semicolon",
+      "characters": 18,
+      "utf8_bytes": 18,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%2Bfloor%3Bsection",
+      "availability_path": "/availability?restaurant_id=room%2Bfloor%3Bsection&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "space",
+      "characters": 10,
+      "utf8_bytes": 10,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%20floor",
+      "availability_path": "/availability?restaurant_id=room%20floor&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "unicode",
+      "characters": 3,
+      "utf8_bytes": 8,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/%E9%A4%90%E5%8E%85%C3%A9",
+      "availability_path": "/availability?restaurant_id=%E9%A4%90%E5%8E%85%C3%A9&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "astral",
+      "characters": 5,
+      "utf8_bytes": 8,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%F0%9F%8D%BD",
+      "availability_path": "/availability?restaurant_id=room%F0%9F%8D%BD&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "mixed-reserved",
+      "characters": 13,
+      "utf8_bytes": 16,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/room%2F%3F%23%25%2B%3B%20%C3%A9%E6%B1%89",
+      "availability_path": "/availability?restaurant_id=room%2F%3F%23%25%2B%3B%20%C3%A9%E6%B1%89&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "ascii64",
+      "characters": 64,
+      "utf8_bytes": 64,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "availability_path": "/availability?restaurant_id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "restaurant",
+      "label": "unicode64",
+      "characters": 64,
+      "utf8_bytes": 192,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C",
+      "availability_path": "/availability?restaurant_id=%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C%E7%95%8C&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "ordinary",
+      "characters": 11,
+      "utf8_bytes": 11,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "slash",
+      "characters": 10,
+      "utf8_bytes": 10,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "question-fragment",
+      "characters": 19,
+      "utf8_bytes": 19,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "literal-percent",
+      "characters": 12,
+      "utf8_bytes": 12,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "plus-semicolon",
+      "characters": 18,
+      "utf8_bytes": 18,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "space",
+      "characters": 10,
+      "utf8_bytes": 10,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "unicode",
+      "characters": 3,
+      "utf8_bytes": 8,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "astral",
+      "characters": 5,
+      "utf8_bytes": 8,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "mixed-reserved",
+      "characters": 13,
+      "utf8_bytes": 16,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "ascii64",
+      "characters": 64,
+      "utf8_bytes": 64,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    },
+    {
+      "surface": "table",
+      "label": "unicode64",
+      "characters": 64,
+      "utf8_bytes": 192,
+      "input_roundtrip": true,
+      "detail_path": "/restaurants/ordinary-restaurant",
+      "availability_path": "/availability?restaurant_id=ordinary-restaurant&date=2035-06-04&party_size=2",
+      "exact_decode_once": true
+    }
+  ]
+}
