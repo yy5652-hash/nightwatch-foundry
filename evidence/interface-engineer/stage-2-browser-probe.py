@@ -429,6 +429,7 @@ async def large_party_exactness(context,page,party):
     from urllib.parse import urlsplit,parse_qs
     fixture=copy.deepcopy(FIXTURE)
     fixture['restaurants'][0]['tables'][0]['capacity']=party
+    fixture['restaurants'][0]['tables'][0]['label']='Window 9007199254740993 "Garden" \\ seat'
     status,_=await request(context,BASE,'/_test/reset','POST',fixture)
     check(status==204,'large capacity reset accepted without an upper cap')
     await login(page)
@@ -456,10 +457,38 @@ async def large_party_exactness(context,page,party):
         'exact_single_capacity':str(party)+' seats' in single_label,
         'exact_pair_sum':str(party+4)+' seats' in pair_label,
         'exact_lookup_guests':guests==str(party),
+        'quoted_numeric_label_unchanged':fixture['restaurants'][0]['tables'][0]['label'] in single_label,
+        'numeric_control_semantics':await tid(page,'lookup-reference-input').count()==1,
     }
     observations['checks']=checks;REPORT['trace'].append({'scenario':'large-party-exactness','observations':observations})
     await screenshots(page,'large-party-'+str(len(str(party)))+'-'+str(party)[:20])
     for name,passed in checks.items():check(passed,'large-party '+name+': '+json.dumps(observations))
+
+async def corrupt_response_and_numeric_keyboard(context,page):
+    await reset(context);await login(page)
+    await tid(page,'party-size-input').fill('9007199254740993')
+    await tid(page,'party-size-input').press('ArrowUp')
+    check(await tid(page,'party-size-input').input_value()=='9007199254740994','exact numeric keyboard increment')
+    await tid(page,'party-size-input').press('ArrowDown')
+    check(await tid(page,'party-size-input').input_value()=='9007199254740993','exact numeric keyboard decrement')
+    check(await tid(page,'party-size-input').get_attribute('role')=='spinbutton','number field spinbutton semantics')
+    check(await tid(page,'party-size-input').get_attribute('inputmode')=='numeric','mobile numeric keyboard mode')
+    await search(page);await open_booking(page)
+    await tid(page,'booking-party-size').fill('1')
+    await tid(page,'booking-party-size').press('ArrowDown')
+    check(await tid(page,'booking-party-size').input_value()=='1','minimum one guest')
+    committed=[]
+    async def corrupt(route):
+        response=await route.fetch();check(response.status==201,'real commit before malformed response')
+        value=await response.json();committed.append(value)
+        text=await response.text()
+        # An invalid unquoted numeric key must not become valid during exact parsing.
+        await route.fulfill(response=response,body='{9007199254740993:0,'+text[1:])
+    await page.route('**/reservations',corrupt)
+    await tid(page,'booking-submit').click();await expect(tid(page,'booking-uncertain')).to_be_visible()
+    check(await tid(page,'booking-error').count()==0 and await tid(page,'confirmation').count()==0,'malformed receipt is uncertain only')
+    await page.unroute_all()
+    await tid(page,'booking-submit').click();check(await confirmed(page)==committed[0]['reference'],'malformed receipt retry recovers real original')
 
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
@@ -475,7 +504,8 @@ async def main():
             ("party-safe-boundary",lambda c,p:large_party_exactness(c,p,9007199254740991)),
             ("party-above-safe-integer",lambda c,p:large_party_exactness(c,p,9007199254740993)),
             ("party-31-digits",lambda c,p:large_party_exactness(c,p,10**30+1)),
-            ("party-401-digits",lambda c,p:large_party_exactness(c,p,10**400+1))]
+            ("party-401-digits",lambda c,p:large_party_exactness(c,p,10**400+1)),
+            ("exact-numeric-keyboard-corrupt-response",corrupt_response_and_numeric_keyboard)]
         for name,callback in cases: await scenario(name,callback,browser)
         REPORT["browser_version"]=browser.version
         await browser.close()

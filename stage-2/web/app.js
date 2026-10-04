@@ -94,6 +94,27 @@
     try { if (user) sessionStorage.setItem('tablekeeper.session', JSON.stringify(user)); else sessionStorage.removeItem('tablekeeper.session'); } catch (_) {}
   }
   const feedback = (id, message, kind='error') => message ? `<div data-testid="${id}" class="feedback ${kind}" role="${kind==='error'?'alert':'status'}">${esc(message)}</div>` : '';
+  function guestNumber(id, testid, value) {
+    return `<div class="number-control"><button type="button" data-step="-1" tabindex="-1" aria-label="One fewer guest">−</button><input id="${id}" data-testid="${testid}" type="text" inputmode="numeric" role="spinbutton" aria-valuemin="1" value="${esc(value)}" autocomplete="off" spellcheck="false" required><button type="button" data-step="1" tabindex="-1" aria-label="One more guest">+</button></div>`;
+  }
+  function bindGuestNumber(input) {
+    const container=input.closest('.number-control');
+    const update=()=>{
+      const value=decimal(input.value);
+      if(value)input.setAttribute('aria-valuenow',value);else input.removeAttribute('aria-valuenow');
+      input.setAttribute('aria-valuetext',value?`${value} guests`:'Enter a whole number of guests');
+      container.querySelector('[data-step="-1"]').disabled=value==='1';
+    };
+    const step=direction=>{
+      const next=BigInt(decimal(input.value)||'1')+BigInt(direction);
+      input.value=(next<1n?1n:next).toString();
+      input.dispatchEvent(new Event('input',{bubbles:true}));input.focus();
+    };
+    input.addEventListener('input',update);
+    input.addEventListener('keydown',event=>{if(event.key==='ArrowUp'||event.key==='ArrowDown'){event.preventDefault();step(event.key==='ArrowUp'?1:-1);}});
+    container.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>step(button.dataset.step)));
+    update();
+  }
   const links = '<p class="muted">Already have an account? <a href="/login" data-route>Sign in</a>. New here? <a href="/signup" data-route>Create an account</a>.</p>';
   function renderHeader() {
     header.innerHTML=`<a href="/" data-route class="brand" aria-label="Tablekeeper home"><span class="brand-mark" aria-hidden="true">t</span><span>Tablekeeper<small>A place at the table</small></span></a>
@@ -159,7 +180,7 @@
       <section class="search-card" aria-label="Find availability"><form id="search-form" class="search-fields" novalidate>
         <div><label for="restaurant">Restaurant</label><select id="restaurant" data-testid="restaurant-select" ${state.cataloguePhase==='loading'?'disabled':''}>${state.restaurants.length?state.restaurants.map(r=>`<option value="${esc(r.id)}" ${r.id===q.restaurantId?'selected':''}>${esc(r.name)}</option>`).join(''):'<option value="">'+(state.cataloguePhase==='loading'?'Loading restaurants…':'No restaurants available')+'</option>'}</select></div>
         <div><label for="visit-date">Date</label><input id="visit-date" data-testid="date-input" type="date" value="${esc(q.date)}" required></div>
-        <div><label for="search-party">Guests</label><input id="search-party" data-testid="party-size-input" type="number" min="1" step="1" value="${esc(q.party)}" required></div>
+        <div><label for="search-party">Guests</label>${guestNumber('search-party','party-size-input',q.party)}</div>
         <button type="submit" class="button" data-testid="search-button" ${!state.restaurants.length?'disabled':''}>Find a table</button>
       </form><div id="search-feedback"></div></section><div class="results-layout"><section class="results-panel" id="results-panel" aria-live="polite"></section><aside id="booking-panel"></aside></div>`;
     ['restaurant-select','date-input','party-size-input'].forEach(id=>test(id).addEventListener('input', () => {
@@ -169,6 +190,7 @@
         renderResults(); renderBooking();
       }
     }));
+    bindGuestNumber(test('party-size-input'));
     document.querySelector('#search-form').addEventListener('submit', event=>{event.preventDefault(); search();});
     renderResults(); renderBooking();
   }
@@ -243,7 +265,7 @@
     const panel=document.querySelector('#booking-panel');if (!panel) return;
     const b=state.booking;
     if (!b) {panel.innerHTML='<div class="booking-placeholder"><span class="place-symbol" aria-hidden="true">✦</span><h3>A seat for your occasion</h3><p>Choose an available table to see your booking details here.</p>'+(!state.user?'<a href="/login" data-route>Sign in to book</a>':'')+'</div>';return;}
-    panel.innerHTML=`<section data-testid="booking-form" class="booking-card"><p class="eyebrow">Your table</p><h2>${esc(b.restaurant.name)}</h2><p data-testid="booking-summary" class="booking-summary">${esc(labelsOf(b.restaurant,b.ids))}<br><time datetime="${esc(b.starts)}">${esc(friendlyLocal(b.starts))}</time></p><p class="input-hint">${esc(b.restaurant.timezone)} · ${esc(b.restaurant.reservation_duration_minutes)} minute reservation</p><form id="booking-fields" novalidate><fieldset ${b.phase==='submitting'?'disabled':''}><label for="booking-guests">Guests</label><input id="booking-guests" data-testid="booking-party-size" type="number" min="1" step="1" value="${esc(b.party)}" required><div id="booking-feedback"></div><button class="button full" data-testid="booking-submit" type="submit">${b.phase==='submitting'?'Confirming…':b.uncertain?'Retry this booking':b.confirmation?'Check confirmation again':'Confirm booking'}</button></fieldset></form><div id="booking-confirmation"></div><p class="input-hint">A reference appears only after the restaurant service confirms your booking.</p></section>`;
+    panel.innerHTML=`<section data-testid="booking-form" class="booking-card"><p class="eyebrow">Your table</p><h2>${esc(b.restaurant.name)}</h2><p data-testid="booking-summary" class="booking-summary">${esc(labelsOf(b.restaurant,b.ids))}<br><time datetime="${esc(b.starts)}">${esc(friendlyLocal(b.starts))}</time></p><p class="input-hint">${esc(b.restaurant.timezone)} · ${esc(b.restaurant.reservation_duration_minutes)} minute reservation</p><form id="booking-fields" novalidate><fieldset ${b.phase==='submitting'?'disabled':''}><label for="booking-guests">Guests</label>${guestNumber('booking-guests','booking-party-size',b.party)}<div id="booking-feedback"></div><button class="button full" data-testid="booking-submit" type="submit">${b.phase==='submitting'?'Confirming…':b.uncertain?'Retry this booking':b.confirmation?'Check confirmation again':'Confirm booking'}</button></fieldset></form><div id="booking-confirmation"></div><p class="input-hint">A reference appears only after the restaurant service confirms your booking.</p></section>`;
     renderBookingFeedback();renderConfirmation();
     test('booking-party-size').addEventListener('input',event=>{
       const oldBody=bookingBody(b);b.party=event.target.value;
@@ -253,6 +275,7 @@
         test('booking-submit').textContent='Confirm booking';
       }
     });
+    bindGuestNumber(test('booking-party-size'));
     document.querySelector('#booking-fields').addEventListener('submit',event=>{event.preventDefault();submitBooking(b);});
   }
   function renderBookingFeedback() {
