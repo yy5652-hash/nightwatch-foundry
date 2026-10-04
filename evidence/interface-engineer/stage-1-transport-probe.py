@@ -5,14 +5,17 @@ password hash or response body is emitted to the durable output.
 """
 
 import concurrent.futures
+from datetime import date, datetime
 import hashlib
 import http.client
 import json
+import re
 import socket
 import sys
 import threading
 import time
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo
 
 
 URL = urlsplit(sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:9090")
@@ -47,6 +50,30 @@ def call(method, path, body=None, headers=None, raw=None):
 def error(name, response, status, code):
     check(name, response[0] == status and response[1].get("error", {}).get("code") == code,
           {"observed_status": response[0], "expected_status": status})
+
+
+def absolute_seconds(local, offset_seconds):
+    # Ordinal arithmetic deliberately avoids conversion to a UTC datetime, which
+    # cannot represent an instant just beyond the supported local calendar range.
+    return local.date().toordinal() * 86400 + local.hour * 3600 + local.minute * 60 + local.second - offset_seconds
+
+
+def interpreted_timestamp(name, wire, instant, iana_offset_seconds):
+    match = re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?[+-]\d{2}:\d{2}", wire)
+    check(name + ": RFC3339 minute-offset syntax", match is not None)
+    if match is None:
+        return
+    parsed = datetime.fromisoformat(wire)
+    offset = int(parsed.utcoffset().total_seconds())
+    check(name + ": exact represented instant", absolute_seconds(parsed, offset) == instant and parsed.microsecond == 0)
+    # Independently enumerate every RFC3339 minute offset whose adjusted clock is
+    # representable, then apply the coordinator's nearest/lower-tie rule.
+    minimum = date.min.toordinal() * 86400
+    maximum_exclusive = (date.max.toordinal() + 1) * 86400
+    options = [minute for minute in range(-1439, 1440)
+               if minimum <= instant + minute * 60 < maximum_exclusive]
+    expected = min(options, key=lambda minute: (abs(minute * 60 - iana_offset_seconds), minute))
+    check(name + ": nearest representable offset with lower tie", offset == expected * 60)
 
 
 def run():
@@ -191,6 +218,41 @@ def run():
               response[0] == 201 and response[1]["starts_at"] == expected_start and response[1]["ends_at"] == expected_end)
     error("IANA skipped hour rejected", call("POST", "/reservations", {**body, "starts_at_local": "2026-03-29T02:30"},
                                              {**auth, "Idempotency-Key": "dst-skipped"}), 422, "invalid_local_time")
+
+    historic_receipts = []
+    for index, (restaurant, local_text) in enumerate([
+        ("berlin", "0001-01-01T00:00"),
+        ("berlin", "0001-01-01T18:00"),
+        ("new-york", "9999-12-31T21:30"),
+    ]):
+        local = datetime.fromisoformat(local_text)
+        zone = ZoneInfo("Europe/Berlin" if restaurant == "berlin" else "America/New_York")
+        offset = int(local.replace(tzinfo=zone, fold=0).utcoffset().total_seconds())
+        instant = absolute_seconds(local, offset)
+        available = call("GET", "/availability?restaurant_id=" + restaurant + "&date=" + local_text[:10] + "&party_size=2")
+        slot = next((s for s in available[1].get("slots", []) if s["starts_at_local"] == local_text), None)
+        check("Calendar/historical slot remains available: " + local_text, available[0] == 200 and slot is not None)
+        if slot is not None:
+            interpreted_timestamp("Availability " + local_text, slot["starts_at"], instant, offset)
+        calendar_body = {"restaurant_id": restaurant, "table_id": "t1" if restaurant == "berlin" else "n1",
+                         "starts_at_local": local_text, "party_size": 2}
+        calendar_headers = {**auth, "Idempotency-Key": "calendar-interpretation-" + str(index)}
+        reservation = call("POST", "/reservations", calendar_body, calendar_headers)
+        check("Calendar/historical create succeeds: " + local_text, reservation[0] == 201)
+        if reservation[0] == 201:
+            check("Original wall-clock field retained: " + local_text, reservation[1]["starts_at_local"] == local_text)
+            interpreted_timestamp("Create start " + local_text, reservation[1]["starts_at"], instant, offset)
+            interpreted_timestamp("Create end " + local_text, reservation[1]["ends_at"], instant + 90 * 60, offset)
+            historic_receipts.append((calendar_body, calendar_headers, reservation[1]))
+    historic_export = call("GET", "/_test/export")
+    call("POST", "/_test/reset", {"users": [], "restaurants": [], "reservations": []})
+    historic_import = call("POST", "/_test/import", historic_export[1])
+    check("Historical/calendar snapshot import remains empty 204", historic_import == (204, None, b""))
+    for calendar_body, calendar_headers, original in historic_receipts:
+        restored = call("GET", "/reservations/" + original["reference"], headers=auth)
+        check("Historical/calendar reservation unchanged after import", restored[:2] == (200, original))
+        replay = call("POST", "/reservations", calendar_body, calendar_headers)
+        check("Historical/calendar original receipt replay unchanged", replay[:2] == (200, original))
 
 
 try:
