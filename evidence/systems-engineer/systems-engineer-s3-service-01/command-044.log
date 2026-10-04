@@ -444,7 +444,7 @@ class StageOne(unittest.TestCase):
         comparable = legacy_projection(adopted, 1)
         comparable["state"]["schema"] = 1
         for receipt in comparable["state"]["receipts"]:
-            receipt.pop("numeric_profile", None)
+            receipt.pop("numeric_profile")
         self.assertTrue(comparable == exported, "Only adopted private numeric metadata may change")
         self.assertEqual(self.expect(self.client.request("POST", "/reservations", body, auth), 200), original)
         lookup = current_legacy(original, fixture("Europe/Berlin", "00:00", "06:00")["restaurants"][0])

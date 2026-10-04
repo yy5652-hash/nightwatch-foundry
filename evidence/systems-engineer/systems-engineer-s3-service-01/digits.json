@@ -1,0 +1,4361 @@
+{
+  "mode": "regression",
+  "stage": 2,
+  "source": "Stage1 sections4/5/7/8/10/11, Stage2 combined capacities and inherited exact receipts",
+  "integer_digits": 4301,
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.040200999999967735
+    },
+    {
+      "method": "GET",
+      "path": "/restaurants/r",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Decimal dining",
+        "timezone": "UTC",
+        "slot_minutes": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        },
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "mon",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "wed",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "thu",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "fri",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sat",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sun",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "a",
+            "label": "Window",
+            "capacity": 2
+          }
+        ],
+        "manager_user_ids": []
+      },
+      "destination": false,
+      "wall_seconds": 0.0009480420000045342
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "58733919f709ddc6413817e5b69a928dc9892df18ffb23d47b3341fbcf19523a"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.000794790999975703
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "58733919f709ddc6413817e5b69a928dc9892df18ffb23d47b3341fbcf19523a"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.001081541000019115
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "58733919f709ddc6413817e5b69a928dc9892df18ffb23d47b3341fbcf19523a"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.0007385829999861926
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "881cb0bf533797a7c8f4b92c6466f686c038a09ce076b2855677c2cde5cbde75"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.021882082999979957
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.022204833999978746
+    },
+    {
+      "method": "GET",
+      "path": "/restaurants/r",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Decimal dining",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        },
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "mon",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "wed",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "thu",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "fri",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sat",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sun",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "a",
+            "label": "Window",
+            "capacity": 2
+          }
+        ],
+        "manager_user_ids": []
+      },
+      "destination": false,
+      "wall_seconds": 0.0007378750000270884
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "40834af3995bdbf7e86f61a1e1e9818b2119e808ad3dfa064c01bae849d14f99"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0006972089999521813
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "40834af3995bdbf7e86f61a1e1e9818b2119e808ad3dfa064c01bae849d14f99"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.0009112500000014734
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "40834af3995bdbf7e86f61a1e1e9818b2119e808ad3dfa064c01bae849d14f99"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.0007184589999837954
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "764f2f539e42dbec133adcd53a080d85a317c044b5528315f1d8ee04bce59593"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.02159312500003807
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.021877834000008534
+    },
+    {
+      "method": "GET",
+      "path": "/restaurants/r",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Decimal dining",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        },
+        "opening_hours": [
+          {
+            "weekday": "mon",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "wed",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "thu",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "fri",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sat",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sun",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "a",
+            "label": "Window",
+            "capacity": 2
+          }
+        ],
+        "manager_user_ids": []
+      },
+      "destination": false,
+      "wall_seconds": 0.0007020830000215028
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "7067ce369163f408cb373c5c7e126a45537ead9dc31063fcb035c96d9c21fc7c"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0006987079999589696
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "7067ce369163f408cb373c5c7e126a45537ead9dc31063fcb035c96d9c21fc7c"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.0008667080000464011
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "7067ce369163f408cb373c5c7e126a45537ead9dc31063fcb035c96d9c21fc7c"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.0006791249999764659
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "17033f34602e77fb1edadaf113eb41b2fd68bb469ebb929ec522d1cfe8f52ea0"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.021261416000015743
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.021745584000029794
+    },
+    {
+      "method": "GET",
+      "path": "/restaurants/r",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Decimal dining",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "mon",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "wed",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "thu",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "fri",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sat",
+            "opens": "18:10",
+            "closes": "23:10"
+          },
+          {
+            "weekday": "sun",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "a",
+            "label": "Window",
+            "capacity": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        ],
+        "manager_user_ids": []
+      },
+      "destination": false,
+      "wall_seconds": 0.0006917499999872234
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "4a68962f89c9b9573f1417f3169a04e78bc5aa78c7635c0ed1d27fcf9c69bf04"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0007155409999768381
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "4a68962f89c9b9573f1417f3169a04e78bc5aa78c7635c0ed1d27fcf9c69bf04"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.0008782499999711035
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "4a68962f89c9b9573f1417f3169a04e78bc5aa78c7635c0ed1d27fcf9c69bf04"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.000685624999960055
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "95c5983d559ff30bac0cd8435f14cfe1a2bf63611802c7f3b22b5c65e6d0083c"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.021421125000017582
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.02178641700004391
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=2",
+      "request": null,
+      "status": 200,
+      "response": {
+        "restaurant_id": "r",
+        "date": "2099-01-01",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "2099-01-01T18:10",
+            "starts_at": "2099-01-01T18:10:00+00:00",
+            "available_table_ids": [
+              "a"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": 2
+              }
+            ]
+          }
+        ]
+      },
+      "destination": false,
+      "wall_seconds": 0.0005053749999888169
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "3fd4c9c96e7905c62dfaecb9a790c2b009c963acc19ab4a67e9a8f90006fb3d8"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.021027709000009054
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:40",
+        "party_size": 2,
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "not_on_slot_grid",
+          "message": "not on slot grid"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0007107499999960964
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 2,
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 201,
+      "response": {
+        "reservation_id": "res_cfd50fcb39c54e7a8d281d635ea45029",
+        "reference": "EF4E419190",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 2,
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": {
+            "integer_digits": 4301,
+            "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+          },
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": 2
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.709619+00:00",
+        "revision": 1
+      },
+      "destination": false,
+      "wall_seconds": 0.0009751669999786827
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 2,
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 200,
+      "response": {
+        "reservation_id": "res_cfd50fcb39c54e7a8d281d635ea45029",
+        "reference": "EF4E419190",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 2,
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": {
+            "integer_digits": 4301,
+            "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+          },
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": 2
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.709619+00:00",
+        "revision": 1
+      },
+      "destination": false,
+      "wall_seconds": 0.001172875000008844
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "155898e64d1de7ea2c86b073355fb46de4a08076e91ea0ee0eda72926de58b1d"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.002199499999960608
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "155898e64d1de7ea2c86b073355fb46de4a08076e91ea0ee0eda72926de58b1d"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.004219458000022769
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 2,
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 200,
+      "response": {
+        "reservation_id": "res_cfd50fcb39c54e7a8d281d635ea45029",
+        "reference": "EF4E419190",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 2,
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": {
+            "integer_digits": 4301,
+            "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+          },
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": 2
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.709619+00:00",
+        "revision": 1
+      },
+      "destination": true,
+      "wall_seconds": 0.0011763329999894268
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": false,
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "187db3753d4fe1dd026aa2ebd7e7e34cd52cb8ad63d543aa8c6b30a6a89aad32"
+        }
+      },
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.0008019999999646643
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.021491458000014063
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=2",
+      "request": null,
+      "status": 200,
+      "response": {
+        "restaurant_id": "r",
+        "date": "2099-01-01",
+        "timezone": "UTC",
+        "slots": []
+      },
+      "destination": false,
+      "wall_seconds": 0.0017842089999930977
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "b53135f0e24c9db1783d772cc7eb80a405dbc25151990cf3446818203194985b"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.020711333999997805
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "9a56318b60d54778145a0f17f13f2459788f6cbaef976ecaef336dc48a6442ad"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0006931249999979627
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 2
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "outside_opening_hours",
+          "message": "outside opening hours"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00045195799998509756
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "9a56318b60d54778145a0f17f13f2459788f6cbaef976ecaef336dc48a6442ad"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0007010420000028716
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.02122362500000463
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "c29e24755fe9558a4f2319b31f1804b4f31f1e53862e86ca54958409ae3b8f69"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.020648875000006228
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 2
+      },
+      "status": 201,
+      "response": {
+        "reservation_id": "res_e6aac24d94c24c0188dd67c0cea0e395",
+        "reference": "C7591B82C8",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 2,
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": {
+            "integer_digits": 4301,
+            "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+          },
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": 2
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.809439+00:00",
+        "revision": 1
+      },
+      "destination": false,
+      "wall_seconds": 0.0007948749999968641
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "923044042f09e3502c7854ea6397e30f144982648466ed642b2c281b7ca85ea5"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0018598750000364817
+    },
+    {
+      "method": "PATCH",
+      "path": "/reservations/C7591B82C8",
+      "request": {
+        "party_size": 1
+      },
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "cutoff_passed",
+          "message": "cutoff passed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00043162500003290916
+    },
+    {
+      "method": "POST",
+      "path": "/reservations/C7591B82C8/cancel",
+      "request": null,
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "cutoff_passed",
+          "message": "cutoff passed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0004817500000058317
+    },
+    {
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request": {
+        "moves": [
+          {
+            "reference": "C7591B82C8",
+            "party_size": 1
+          }
+        ]
+      },
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "cutoff_passed",
+          "message": "cutoff passed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0004256670000017948
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "923044042f09e3502c7854ea6397e30f144982648466ed642b2c281b7ca85ea5"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0018510410000089905
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "id": "b",
+                "label": "Garden",
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              }
+            ],
+            "combinable": [
+              [
+                "b",
+                "a"
+              ]
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.021832958999993934
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=100000000000000000000000000000000...[4301-digit query]",
+      "request": null,
+      "status": 200,
+      "response": {
+        "restaurant_id": "r",
+        "date": "2099-01-01",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "2099-01-01T18:10",
+            "starts_at": "2099-01-01T18:10:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T18:40",
+            "starts_at": "2099-01-01T18:40:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T19:10",
+            "starts_at": "2099-01-01T19:10:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T19:40",
+            "starts_at": "2099-01-01T19:40:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T20:10",
+            "starts_at": "2099-01-01T20:10:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T20:40",
+            "starts_at": "2099-01-01T20:40:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T21:10",
+            "starts_at": "2099-01-01T21:10:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          },
+          {
+            "starts_at_local": "2099-01-01T21:40",
+            "starts_at": "2099-01-01T21:40:00+00:00",
+            "available_table_ids": [
+              "a",
+              "b"
+            ],
+            "available_options": [
+              {
+                "table_ids": [
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              },
+              {
+                "table_ids": [
+                  "b",
+                  "a"
+                ],
+                "capacity": {
+                  "integer_digits": 4301,
+                  "sha256": "b7d7df757bfb87aba826a4bebaa7f46b234cc7203848de927b31479600723bc7"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "destination": false,
+      "wall_seconds": 0.024706375000050684
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "9cb496f21d84e4c7ff2431ad8df55b3ab7e01b6bea67f96ef46abd9526c51b8c"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.020649582999965332
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 201,
+      "response": {
+        "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+        "reference": "B3FDD4C7EA",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        },
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "b": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.883807+00:00",
+        "revision": 1
+      },
+      "destination": false,
+      "wall_seconds": 0.0022344589999647724
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "615ac599257ade68f39aabfbcd38ab27c091670d02295928f286f9f3df7e5589"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.004603791000022284
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "615ac599257ade68f39aabfbcd38ab27c091670d02295928f286f9f3df7e5589"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.011367250000034801
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 200,
+      "response": {
+        "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+        "reference": "B3FDD4C7EA",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        },
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "b": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.883807+00:00",
+        "revision": 1
+      },
+      "destination": true,
+      "wall_seconds": 0.0018418749999682404
+    },
+    {
+      "method": "PATCH",
+      "path": "/reservations/B3FDD4C7EA",
+      "request": {
+        "party_size": 1
+      },
+      "status": 200,
+      "response": {
+        "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+        "reference": "B3FDD4C7EA",
+        "restaurant_id": "r",
+        "party_size": 1,
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "b": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        },
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.883807+00:00",
+        "revision": 2,
+        "table_ids": [
+          "a"
+        ],
+        "table_id": "a"
+      },
+      "destination": false,
+      "wall_seconds": 0.001687666000009358
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 200,
+      "response": {
+        "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+        "reference": "B3FDD4C7EA",
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        },
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "b": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        },
+        "table_id": "a",
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.883807+00:00",
+        "revision": 1
+      },
+      "destination": false,
+      "wall_seconds": 0.0018094590000146127
+    },
+    {
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request": {
+        "moves": [
+          {
+            "reference": "B3FDD4C7EA",
+            "party_size": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "ignored_integer": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        ],
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 201,
+      "response": {
+        "reservations": [
+          {
+            "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+            "reference": "B3FDD4C7EA",
+            "restaurant_id": "r",
+            "party_size": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "starts_at_local": "2099-01-01T18:10",
+            "starts_at": "2099-01-01T18:10:00+00:00",
+            "ends_at": "2099-01-01T19:40:00+00:00",
+            "accepted_terms": {
+              "policy_version": 0,
+              "slot_minutes": 30,
+              "reservation_duration_minutes": 90,
+              "cancellation_cutoff_minutes": 0,
+              "opening_hours": [
+                {
+                  "weekday": "mon",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "tue",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "wed",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "thu",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "fri",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "sat",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "sun",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                }
+              ],
+              "capacities": {
+                "a": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                },
+                "b": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              }
+            },
+            "status": "confirmed",
+            "created_at": "2026-10-04T07:01:02.883807+00:00",
+            "revision": 3,
+            "table_ids": [
+              "a"
+            ],
+            "table_id": "a"
+          }
+        ]
+      },
+      "destination": false,
+      "wall_seconds": 0.0033237079999821617
+    },
+    {
+      "method": "PATCH",
+      "path": "/reservations/B3FDD4C7EA",
+      "request": {
+        "party_size": 1
+      },
+      "status": 200,
+      "response": {
+        "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+        "reference": "B3FDD4C7EA",
+        "restaurant_id": "r",
+        "party_size": 1,
+        "starts_at_local": "2099-01-01T18:10",
+        "starts_at": "2099-01-01T18:10:00+00:00",
+        "ends_at": "2099-01-01T19:40:00+00:00",
+        "accepted_terms": {
+          "policy_version": 0,
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "capacities": {
+            "a": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "b": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        },
+        "status": "confirmed",
+        "created_at": "2026-10-04T07:01:02.883807+00:00",
+        "revision": 4,
+        "table_ids": [
+          "a"
+        ],
+        "table_id": "a"
+      },
+      "destination": false,
+      "wall_seconds": 0.0016366670000138583
+    },
+    {
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request": {
+        "moves": [
+          {
+            "reference": "B3FDD4C7EA",
+            "party_size": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "ignored_integer": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        ],
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 200,
+      "response": {
+        "reservations": [
+          {
+            "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+            "reference": "B3FDD4C7EA",
+            "restaurant_id": "r",
+            "party_size": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "starts_at_local": "2099-01-01T18:10",
+            "starts_at": "2099-01-01T18:10:00+00:00",
+            "ends_at": "2099-01-01T19:40:00+00:00",
+            "accepted_terms": {
+              "policy_version": 0,
+              "slot_minutes": 30,
+              "reservation_duration_minutes": 90,
+              "cancellation_cutoff_minutes": 0,
+              "opening_hours": [
+                {
+                  "weekday": "mon",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "tue",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "wed",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "thu",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "fri",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "sat",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "sun",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                }
+              ],
+              "capacities": {
+                "a": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                },
+                "b": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              }
+            },
+            "status": "confirmed",
+            "created_at": "2026-10-04T07:01:02.883807+00:00",
+            "revision": 3,
+            "table_ids": [
+              "a"
+            ],
+            "table_id": "a"
+          }
+        ]
+      },
+      "destination": false,
+      "wall_seconds": 0.0028027920000113227
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "ec55f7e8c526a64a7ebcf2995ec7939abca63d64992c91998cfc8bdba28a98e0"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.009534707999989678
+    },
+    {
+      "method": "POST",
+      "path": "/_test/import",
+      "request": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "ec55f7e8c526a64a7ebcf2995ec7939abca63d64992c91998cfc8bdba28a98e0"
+        }
+      },
+      "status": 204,
+      "response": null,
+      "destination": true,
+      "wall_seconds": 0.020589250000000447
+    },
+    {
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request": {
+        "moves": [
+          {
+            "reference": "B3FDD4C7EA",
+            "party_size": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "ignored_integer": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            }
+          }
+        ],
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 200,
+      "response": {
+        "reservations": [
+          {
+            "reservation_id": "res_7a078af21b75479aa771a879d4158079",
+            "reference": "B3FDD4C7EA",
+            "restaurant_id": "r",
+            "party_size": {
+              "integer_digits": 4301,
+              "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+            },
+            "starts_at_local": "2099-01-01T18:10",
+            "starts_at": "2099-01-01T18:10:00+00:00",
+            "ends_at": "2099-01-01T19:40:00+00:00",
+            "accepted_terms": {
+              "policy_version": 0,
+              "slot_minutes": 30,
+              "reservation_duration_minutes": 90,
+              "cancellation_cutoff_minutes": 0,
+              "opening_hours": [
+                {
+                  "weekday": "mon",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "tue",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "wed",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "thu",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "fri",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "sat",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                },
+                {
+                  "weekday": "sun",
+                  "opens": "18:10",
+                  "closes": "23:10"
+                }
+              ],
+              "capacities": {
+                "a": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                },
+                "b": {
+                  "integer_digits": 4301,
+                  "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+                }
+              }
+            },
+            "status": "confirmed",
+            "created_at": "2026-10-04T07:01:02.883807+00:00",
+            "revision": 3,
+            "table_ids": [
+              "a"
+            ],
+            "table_id": "a"
+          }
+        ]
+      },
+      "destination": true,
+      "wall_seconds": 0.002808249999986856
+    },
+    {
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request": {
+        "moves": [
+          {
+            "reference": "B3FDD4C7EA",
+            "party_size": false,
+            "ignored_integer": {
+              "integer_digits": 4301,
+              "sha256": "187db3753d4fe1dd026aa2ebd7e7e34cd52cb8ad63d543aa8c6b30a6a89aad32"
+            }
+          }
+        ],
+        "ignored_integer": {
+          "integer_digits": 4301,
+          "sha256": "8f9f0e1b87c6bdbcf97798fc5e2a8fcdb00270ef9f18b022bbb1a748f8f3b71d"
+        }
+      },
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      },
+      "destination": true,
+      "wall_seconds": 0.001288250000015978
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 204,
+      "response": null,
+      "destination": false,
+      "wall_seconds": 0.020909833000018807
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=100000000000000000000000000000000...[4301-digit query]",
+      "request": null,
+      "status": 200,
+      "response": {
+        "restaurant_id": "r",
+        "date": "2099-01-01",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "2099-01-01T18:10",
+            "starts_at": "2099-01-01T18:10:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T18:40",
+            "starts_at": "2099-01-01T18:40:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T19:10",
+            "starts_at": "2099-01-01T19:10:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T19:40",
+            "starts_at": "2099-01-01T19:40:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T20:10",
+            "starts_at": "2099-01-01T20:10:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T20:40",
+            "starts_at": "2099-01-01T20:40:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T21:10",
+            "starts_at": "2099-01-01T21:10:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          },
+          {
+            "starts_at_local": "2099-01-01T21:40",
+            "starts_at": "2099-01-01T21:40:00+00:00",
+            "available_table_ids": [],
+            "available_options": []
+          }
+        ]
+      },
+      "destination": false,
+      "wall_seconds": 0.0016727080000009664
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=%2B4",
+      "request": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002642080000327951
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=4.0",
+      "request": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00026612499999600914
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=1e9",
+      "request": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002624169999876358
+    },
+    {
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2099-01-01&party_size=-1",
+      "request": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002676670000028025
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request": {
+        "email": "decimal@example.test",
+        "password": {
+          "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+        }
+      },
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Decimal diner",
+        "token": {
+          "fingerprint": "d2da9d40c68ee5f62ced8b9c9fc426e124d903cb7999a775683b7090debe88f6"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.02067175000001953
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0003521250000062537
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0003361250000466498
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0003312499999879037
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": true,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0003018749999910142
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00030924999998660496
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": 1.5,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid slot_minutes"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00032266700003447113
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00032475000000431464
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "users": [
+          {
+            "id": "u",
+            "email": "decimal@example.test",
+            "password": {
+              "fingerprint": "370e99eddab791eff8d4619c0fcf243117be05753a070d87a61cad217866f38a"
+            },
+            "display_name": "Decimal diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Decimal dining",
+            "timezone": "UTC",
+            "slot_minutes": -1,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "mon",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "wed",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "thu",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "fri",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sat",
+                "opens": "18:10",
+                "closes": "23:10"
+              },
+              {
+                "weekday": "sun",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "a",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid slot_minutes"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00030545799995707057
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00031983399998125606
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "raw_sha256": "55a60105579897916d75436003c3c445d17c546f476a601673febb726af69418"
+      },
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002434999999536558
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00031145899998819004
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002516659999969306
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0003036669999687547
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00023245800002769101
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00030654199997570686
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request": {
+        "raw_sha256": "1e67d7804c45a71d7d5181177c3a6f2b82b42ebaeda41fa27762360c651b05bc"
+      },
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00026362500000232103
+    },
+    {
+      "method": "GET",
+      "path": "/_test/export",
+      "request": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_state_sha256": "2a54b0ba46f2f7abc52d0e7fd7ab4f21c54f90a89160a9da7f0560af1d768921"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0003064169999902333
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002869580000037786
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": true
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.0002601250000111577
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 0
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.000255250000009255
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request": {
+        "restaurant_id": "r",
+        "table_id": "a",
+        "starts_at_local": "2099-01-01T18:10",
+        "party_size": 1.5
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid party_size"
+        }
+      },
+      "destination": false,
+      "wall_seconds": 0.00025175000001809167
+    }
+  ],
+  "assertions": [
+    {
+      "label": "reset slot_minutes HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "giant configuration HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "slot_minutes exact JSON integer",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant replacement import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "destination snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "slot_minutes unchanged cross-process snapshot",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "reset reservation_duration_minutes HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "giant configuration HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "reservation_duration_minutes exact JSON integer",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant replacement import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "destination snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "reservation_duration_minutes unchanged cross-process snapshot",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "reset cancellation_cutoff_minutes HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "giant configuration HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "cancellation_cutoff_minutes exact JSON integer",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant replacement import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "destination snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "cancellation_cutoff_minutes unchanged cross-process snapshot",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "reset capacity HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "giant configuration HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "capacity exact JSON integer",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant replacement import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "destination snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "capacity unchanged cross-process snapshot",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "reset slot_minutes HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "availability HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge grid only opening candidate",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge grid off-grid HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "huge grid off-grid error not_on_slot_grid",
+      "passed": true
+    },
+    {
+      "label": "failed grid key reusable HTTP 201",
+      "passed": true
+    },
+    {
+      "label": "giant body replay HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "original receipt unchanged",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "successful giant-body import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "imported original retry HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "body/key/token/receipt preserved",
+      "passed": true
+    },
+    {
+      "label": "giant body conflict before invalid party HTTP 409",
+      "passed": true
+    },
+    {
+      "label": "giant body conflict before invalid party error idempotency_key_reuse",
+      "passed": true
+    },
+    {
+      "label": "reset reservation_duration_minutes HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "availability HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge duration no fitting slots",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge duration create refused HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "huge duration create refused error outside_opening_hours",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge duration failure atomic, no receipt",
+      "passed": true
+    },
+    {
+      "label": "reset cancellation_cutoff_minutes HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff create HTTP 201",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff edit HTTP 409",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff edit error cutoff_passed",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff cancel HTTP 409",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff cancel error cutoff_passed",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff move HTTP 409",
+      "passed": true
+    },
+    {
+      "label": "huge cutoff move error cutoff_passed",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "cutoff failures preserve records/occupancy/keys",
+      "passed": true
+    },
+    {
+      "label": "reset capacity HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "availability HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant capacity serves exact giant query",
+      "passed": true
+    },
+    {
+      "label": "exact pair capacity and declared order",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant party create HTTP 201",
+      "passed": true
+    },
+    {
+      "label": "giant party response exact",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant-party record and receipt import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "giant-party imported replay HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant-party original receipt exact",
+      "passed": true
+    },
+    {
+      "label": "giant-party edit HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant-party edit current state",
+      "passed": true
+    },
+    {
+      "label": "giant-party replay after edit HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant-party saved receipt remains original",
+      "passed": true
+    },
+    {
+      "label": "giant-party batch move HTTP 201",
+      "passed": true
+    },
+    {
+      "label": "batch exact integer party",
+      "passed": true
+    },
+    {
+      "label": "edit after giant move HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant move replay after edit HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "batch receipt remains original",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant batch receipt replacement import HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "imported giant move replay HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "batch full body/key/token/receipt preserved",
+      "passed": true
+    },
+    {
+      "label": "batch changed giant body before invalid party HTTP 409",
+      "passed": true
+    },
+    {
+      "label": "batch changed giant body before invalid party error idempotency_key_reuse",
+      "passed": true
+    },
+    {
+      "label": "reset None HTTP 204",
+      "passed": true
+    },
+    {
+      "label": "availability HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "giant query small capacity empty singles",
+      "passed": true
+    },
+    {
+      "label": "giant query empty options",
+      "passed": true
+    },
+    {
+      "label": "invalid query +4 HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid query +4 error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "invalid query 4.0 HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid query 4.0 error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "invalid query 1e9 HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid query 1e9 error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "invalid query -1 HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid query -1 error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "login HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "invalid base field HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "invalid base field error malformed_request",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "invalid reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "invalid base field HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "invalid base field error malformed_request",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "invalid reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "invalid base field HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid base field error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "invalid reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "invalid base field HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid base field error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "invalid reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset error malformed_request",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "malformed reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset error malformed_request",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "malformed reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset error malformed_request",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "malformed reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset HTTP 400",
+      "passed": true
+    },
+    {
+      "label": "malformed raw reset error malformed_request",
+      "passed": true
+    },
+    {
+      "label": "snapshot HTTP 200",
+      "passed": true
+    },
+    {
+      "label": "malformed reset preserves complete state",
+      "passed": true
+    },
+    {
+      "label": "invalid party HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid party error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "invalid party HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid party error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "invalid party HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid party error validation_failed",
+      "passed": true
+    },
+    {
+      "label": "invalid party HTTP 422",
+      "passed": true
+    },
+    {
+      "label": "invalid party error validation_failed",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "operations": 92,
+    "assertions": 148,
+    "failed": 0,
+    "wall_seconds": 0.5487879169999701
+  }
+}

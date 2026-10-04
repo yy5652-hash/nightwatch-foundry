@@ -1,0 +1,11 @@
+# Preserved first Stage 3 own runner error
+
+The complete constrained run `systems-engineer-s3-service-01` against candidate/protocol `5c6cada7bd497ebe3f09cc1ce888cd106f33802c` remains **failed**. Five clients exit 0; the inherited client exits 1 with one `KeyError: 'numeric_profile'` in its prospective Stage 3 comparison normalizer. Its fourteen other scenarios pass; the legacy-string migration scenario stops at that error and establishes no downstream passing observations.
+
+The new normalizer already removes numeric_profile when projecting a genuine schema-3 import back to its actual source schema 1 for a preserved-field comparison. The retained old removal loop then attempted to remove the absent key again. The correction changes only that own probe's `pop("numeric_profile")` to `pop("numeric_profile", None)`. No production source, service response or original trace changed. A new complete run is required; the first result is never relabelled as a pass.
+
+Original actual commands, source hashes, clean clone, six services/six clients, constrained resources, client logs and runtime result remain in [runtime.json](systems-engineer-s3-service-01/runtime.json) and [inherited.log](systems-engineer-s3-service-01/inherited.log). All thirteen own service/client/network removals exit zero. The executed protocol is independently inspectable at the named committed blob; the executed driver is also preserved in the output folder.
+
+Passing scoped first-run observations are distinct: Stage 3 transition client 14/14 scenarios, 1,420 assertions and 831 HTTP operations; Stage 2 member client 11/11 scenarios; exact numeric client 373 HTTP requests/1,773 assertions; digit client 92 operations/148 assertions; deep Stage 3 client 192 requests/821 assertions/seven unchanged raw transfers, all zero failed. They do not override the complete-run failure or establish independent acceptance. Full driver wall time was 133.458076625 seconds; no driver exception occurred.
+
+All earlier rejected candidates, real service failures and owning-builder diagnostics remain immutable. The initial uncommitted direct Stage 3 run passed before the additional historical-policy-date import check; the separately source-bound direct-02 run passes against committed production with that check. Neither direct run is claimed as HTTP evidence.
