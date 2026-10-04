@@ -1,8 +1,8 @@
 # Stage 2 Interface implementation and integration handoff
 
-**Update 2026-10-04:** the appended large-integer boundary repair supersedes the
-original candidate/counts below. Current tested full revision is
-`8035394fd718d4a99d7a1b934304e7761304a26f`: **20/20 scenarios, 359 assertions PASS**.
+**Update 2026-10-04:** the appended large-integer boundary and exact visible status
+repairs supersede the original candidate/counts below. Current tested full revision
+is `71de2e326dc3d96c495a8c4df64f0130f13ce95c`: **21/21 scenarios, 379 assertions PASS**.
 Original results and failures remain preserved. Independent acceptance is pending.
 
 Interface implementation is complete for independent review. This is builder

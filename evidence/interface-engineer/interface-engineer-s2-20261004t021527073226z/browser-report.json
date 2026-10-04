@@ -1,0 +1,428 @@
+{
+  "seed": 20261004,
+  "candidate": "c4944c0b71bb0b442e067f563e424889c11c9743",
+  "scenarios": [
+    {
+      "name": "transport-public",
+      "verdict": "PASS",
+      "seconds": 0.644
+    },
+    {
+      "name": "authentication-keyboard",
+      "verdict": "PASS",
+      "seconds": 2.839
+    },
+    {
+      "name": "single-book-lookup-cancel",
+      "verdict": "PASS",
+      "seconds": 1.062
+    },
+    {
+      "name": "lookup-status-exact",
+      "verdict": "FAIL",
+      "seconds": 0.923,
+      "error": "Traceback (most recent call last):\n  File \"/work/probe.py\", line 102, in scenario\n    await callback(context, page)\n  File \"/work/probe.py\", line 214, in lookup_status_exact\n    check(observation['innerText']==observation['status'],'exact status displayed text at '+str(observation['width']))\n  File \"/work/probe.py\", line 38, in check\n    raise AssertionError(description)\nAssertionError: exact status displayed text at 1440\n"
+    },
+    {
+      "name": "out-of-order-search",
+      "verdict": "PASS",
+      "seconds": 0.588
+    },
+    {
+      "name": "single-conflict",
+      "verdict": "PASS",
+      "seconds": 0.562
+    },
+    {
+      "name": "combined-conflict",
+      "verdict": "PASS",
+      "seconds": 0.538
+    },
+    {
+      "name": "lost-single",
+      "verdict": "PASS",
+      "seconds": 0.717
+    },
+    {
+      "name": "lost-combined",
+      "verdict": "PASS",
+      "seconds": 0.717
+    },
+    {
+      "name": "genuine-stage1-upgrade",
+      "verdict": "PASS",
+      "seconds": 1.12
+    },
+    {
+      "name": "combined-occupancy",
+      "verdict": "PASS",
+      "seconds": 0.589
+    },
+    {
+      "name": "changed-retry-form",
+      "verdict": "PASS",
+      "seconds": 0.559
+    },
+    {
+      "name": "empty-unavailable-lookup",
+      "verdict": "PASS",
+      "seconds": 0.823
+    },
+    {
+      "name": "lookup-race-privacy-cutoff",
+      "verdict": "PASS",
+      "seconds": 0.983
+    },
+    {
+      "name": "auth-inputs-loading",
+      "verdict": "PASS",
+      "seconds": 0.615
+    },
+    {
+      "name": "concurrent-pair-transport",
+      "verdict": "PASS",
+      "seconds": 0.425
+    },
+    {
+      "name": "party-safe-boundary",
+      "verdict": "PASS",
+      "seconds": 0.635
+    },
+    {
+      "name": "party-above-safe-integer",
+      "verdict": "PASS",
+      "seconds": 0.633
+    },
+    {
+      "name": "party-31-digits",
+      "verdict": "PASS",
+      "seconds": 0.69
+    },
+    {
+      "name": "party-401-digits",
+      "verdict": "PASS",
+      "seconds": 0.708
+    },
+    {
+      "name": "exact-numeric-keyboard-corrupt-response",
+      "verdict": "PASS",
+      "seconds": 0.335
+    }
+  ],
+  "trace": [
+    {
+      "scenario": "ordinary",
+      "writes": [
+        {
+          "key": "tk-79070fa2c35e3e75d56fffb327b2f86b",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-79070fa2c35e3e75d56fffb327b2f86b",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "reference": "89ABC228BA"
+    },
+    {
+      "scenario": "lookup-status-exact",
+      "reference": "4977719D29",
+      "observations": [
+        {
+          "status": "confirmed",
+          "width": 1440,
+          "textContent": "confirmed",
+          "innerText": "Confirmed",
+          "text_transform": "capitalize"
+        },
+        {
+          "status": "confirmed",
+          "width": 375,
+          "textContent": "confirmed",
+          "innerText": "Confirmed",
+          "text_transform": "capitalize"
+        },
+        {
+          "status": "cancelled",
+          "width": 1440,
+          "textContent": "cancelled",
+          "innerText": "Cancelled",
+          "text_transform": "capitalize"
+        },
+        {
+          "status": "cancelled",
+          "width": 375,
+          "textContent": "cancelled",
+          "innerText": "Cancelled",
+          "text_transform": "capitalize"
+        }
+      ]
+    },
+    {
+      "scenario": "out-of-order",
+      "operations": [
+        "A fetch completed but response held",
+        "B selected and completed",
+        "B form opened",
+        "A released"
+      ],
+      "winner": "r_harbor"
+    },
+    {
+      "scenario": "lost-single",
+      "writes": [
+        {
+          "key": "tk-163a353004eddeb9e6887d6aeaf147a3",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-163a353004eddeb9e6887d6aeaf147a3",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-163a353004eddeb9e6887d6aeaf147a3",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "committed_reference": "219CBC7BB2",
+      "retained_reference": "799E6EE2D8"
+    },
+    {
+      "scenario": "lost-combined",
+      "writes": [
+        {
+          "key": "tk-27a559072052b58e98bcd30f4911039b",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        },
+        {
+          "key": "tk-27a559072052b58e98bcd30f4911039b",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        },
+        {
+          "key": "tk-27a559072052b58e98bcd30f4911039b",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        }
+      ],
+      "committed_reference": "26AA4EB91A",
+      "retained_reference": "884792DEF0"
+    },
+    {
+      "scenario": "upgrade",
+      "writes": [
+        {
+          "key": "tk-ba76e7e9b222eb672884c7e9f1d6e7b6",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-ba76e7e9b222eb672884c7e9f1d6e7b6",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-ba76e7e9b222eb672884c7e9f1d6e7b6",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "committed_reference": "6AE6EDCE12",
+      "retained_reference": "5B4009EF82"
+    },
+    {
+      "scenario": "changed-form",
+      "writes": [
+        {
+          "key": "tk-661b19c580a2ecfbcad2342c94a6bce4",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-661b19c580a2ecfbcad2342c94a6bce4",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-c908e3953c3a32401cb27c9ef4850ba8",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1}"
+        }
+      ]
+    },
+    {
+      "scenario": "concurrent-pair-transport",
+      "identical_status_counts": {
+        "200": 49,
+        "201": 1
+      },
+      "competing_status_counts": {
+        "201": 1,
+        "409": 49
+      },
+      "races": 50,
+      "persisted": 1
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "9007199254740991",
+        "query": [
+          "9007199254740991"
+        ],
+        "prefill": "9007199254740991",
+        "writes": [
+          {
+            "key": "tk-3fd75831ec44a5a3c454dd09c9fae600",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740991}"
+          },
+          {
+            "key": "tk-3fd75831ec44a5a3c454dd09c9fae600",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740991}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n9007199254740991 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 9007199254740995 seats \u00b7 Choose table",
+        "lookup_guests": "9007199254740991",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "9007199254740991",
+        "incremented": "9007199254740992",
+        "decremented": "9007199254740991",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "9007199254740993",
+        "query": [
+          "9007199254740993"
+        ],
+        "prefill": "9007199254740993",
+        "writes": [
+          {
+            "key": "tk-f077bb434dcc541fc04c40e7cb4d7365",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740993}"
+          },
+          {
+            "key": "tk-f077bb434dcc541fc04c40e7cb4d7365",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740993}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n9007199254740993 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+        "lookup_guests": "9007199254740993",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "9007199254740993",
+        "incremented": "9007199254740994",
+        "decremented": "9007199254740993",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "1000000000000000000000000000001",
+        "query": [
+          "1000000000000000000000000000001"
+        ],
+        "prefill": "1000000000000000000000000000001",
+        "writes": [
+          {
+            "key": "tk-2e36bd19ce86fed3385c86fb6954b590",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1000000000000000000000000000001}"
+          },
+          {
+            "key": "tk-2e36bd19ce86fed3385c86fb6954b590",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1000000000000000000000000000001}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n1000000000000000000000000000001 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 1000000000000000000000000000005 seats \u00b7 Choose table",
+        "lookup_guests": "1000000000000000000000000000001",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "1000000000000000000000000000001",
+        "incremented": "1000000000000000000000000000002",
+        "decremented": "1000000000000000000000000000001",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    },
+    {
+      "scenario": "large-party-exactness",
+      "observations": {
+        "party": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "query": [
+          "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"
+        ],
+        "prefill": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "writes": [
+          {
+            "key": "tk-c9e69960673688f6c3a73f800e3e25d9",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001}"
+          },
+          {
+            "key": "tk-c9e69960673688f6c3a73f800e3e25d9",
+            "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001}"
+          }
+        ],
+        "grid_single": "Window 9007199254740993 \"Garden\" \\ seat\n10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001 seats \u00b7 Choose table",
+        "grid_pair": "Garden + Window 9007199254740993 \"Garden\" \\ seat\nTogether \u00b7 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005 seats \u00b7 Choose table",
+        "lookup_guests": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "numeric_role": "spinbutton",
+        "numeric_mode": "numeric",
+        "accessible_value": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "incremented": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002",
+        "decremented": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "checks": {
+          "plain_exact_query": true,
+          "exact_prefill": true,
+          "exact_json_numeric_body": true,
+          "identical_key_body": true,
+          "exact_single_capacity": true,
+          "exact_pair_sum": true,
+          "exact_lookup_guests": true,
+          "quoted_numeric_label_unchanged": true,
+          "numeric_control_semantics": true,
+          "exact_accessible_value": true,
+          "exact_keyboard_steps": true
+        }
+      }
+    }
+  ],
+  "assertions": 372,
+  "browser_version": "153.0.8010.12",
+  "seconds": 16.977,
+  "passed": 20,
+  "total": 21
+}

@@ -1,0 +1,31 @@
+{"candidate": "c4944c0b71bb0b442e067f563e424889c11c9743", "passed": 20, "total": 21, "assertions": 372, "seconds": 16.977}
+PASS transport-public
+PASS authentication-keyboard
+PASS single-book-lookup-cancel
+FAIL lookup-status-exact
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 214, in lookup_status_exact
+    check(observation['innerText']==observation['status'],'exact status displayed text at '+str(observation['width']))
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: exact status displayed text at 1440
+
+PASS out-of-order-search
+PASS single-conflict
+PASS combined-conflict
+PASS lost-single
+PASS lost-combined
+PASS genuine-stage1-upgrade
+PASS combined-occupancy
+PASS changed-retry-form
+PASS empty-unavailable-lookup
+PASS lookup-race-privacy-cutoff
+PASS auth-inputs-loading
+PASS concurrent-pair-transport
+PASS party-safe-boundary
+PASS party-above-safe-integer
+PASS party-31-digits
+PASS party-401-digits
+PASS exact-numeric-keyboard-corrupt-response
