@@ -67,3 +67,20 @@ The only correction shortens seat-prefixed driver resource names, adds explicit
 DNS-label assertions and inspects actual client constraints. Production and
 protocol sources stay unchanged. A new unique execution is required; this
 failed run establishes no browser behavior or acceptance.
+
+## Full browser pass and narrow trace correction
+
+The corrected full run at unchanged f783598428a88d53490f68498063ed69e02201b3
+passes 43/43 scenarios, 793 assertions in 34.370 seconds; total driver
+117.110912042 seconds. Artifact interface-engineer-s2-reconstructed-20261004t054351394649z,
+89 genuine screenshots, seven cleanup commands all zero. Sources and resource
+identities match; clean clone remains retained. Five actual API responses retain
+integral decimal/exponent capacities, and their exact single/pair display succeeds.
+The third case trace extractor omitted the minus sign and stored a partial
+capacity token, while the independent Decimal value assertion and real browser
+flow passed. This is a trace-only regex defect; the original result/source stays
+unchanged. The recorder now recognizes the complete JSON number grammar. A
+labelled five-scenario integral-wire supplement will independently execute
+corrected capture against identical production; it is not a replacement or
+shortened version of the complete 43-scenario run. No official suite is selected
+or modified. The driver also seals its executed source in future run artifacts.

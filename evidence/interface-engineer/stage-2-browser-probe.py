@@ -702,7 +702,7 @@ async def integral_wire_presentation(context,page,spelling,party=900719925474099
     await tid(page,'booking-submit').click();check(await confirmed(page)==reference,'decimal/exponent unchanged retry')
     await page.get_by_role('link',name='View or cancel reservation').click();await tid(page,'lookup-submit').click()
     await expect(tid(page,'reservation-status')).to_have_text('confirmed')
-    capacity_tokens=__import__('re').findall(r'"capacity":(-?[0-9.eE+]+)',wire)
+    capacity_tokens=__import__('re').findall(r'"capacity":(-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?)',wire)
     REPORT['trace'].append({'scenario':'integral-wire-presentation','fixture_token':spelling,'real_response_capacity_tokens':capacity_tokens,'expected_integer':str(party),'single':single,'pair':pair,'original_reference':reference})
     await screenshots(page,'integral-wire-'+spelling.replace('.','d').replace('+','p').replace('-','m'))
 
@@ -774,6 +774,11 @@ async def main():
         cases.append(('opaque-unicode-identifiers',opaque_identifiers))
         for label,base,revision,stage,pair in [('historic-stage1',os.environ['S1_HIST_BASE'],os.environ['S1_HIST_REVISION'],1,False),('old-stage2-single',os.environ['S2_OLD_BASE'],os.environ['S2_OLD_REVISION'],2,False),('old-stage2-pair',os.environ['S2_OLD_BASE'],os.environ['S2_OLD_REVISION'],2,True)]:
             cases.append(('upgrade-'+label,lambda c,p,b=base,r=revision,s=stage,combined=pair:lost_response(c,p,combined,True,b,r,s)))
+        prefix=os.environ.get('S2_SCENARIO_PREFIX')
+        if prefix:
+            cases=[(name,callback) for name,callback in cases if name.startswith(prefix)]
+            if not cases:raise RuntimeError('No own supplemental scenario matches '+prefix)
+            REPORT['supplemental_scope_prefix']=prefix
         for name,callback in cases: await scenario(name,callback,browser)
         REPORT["browser_version"]=browser.version
         await browser.close()

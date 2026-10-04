@@ -20,6 +20,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--revision',required=True)
     parser.add_argument('--probe-revision',required=True)
+    parser.add_argument('--scenario-prefix',help='Own labelled supplement only; full run has no prefix')
     args=parser.parse_args()
     assert len(args.revision)==len(args.probe_revision)==40
     stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ').lower()
@@ -29,7 +30,7 @@ def main():
     # Each container name is one DNS label; keep every service label <=63 bytes.
     commands=[]; started=[]; network='interface-engineer-s2r-'+stamp
     created_network=False; contexts=[]; beginning=time.perf_counter()
-    report={'candidate':args.revision,'probe_revision':args.probe_revision,'accepted_stage1':ACCEPTED,'historic_stage1':HISTORIC,'old_stage2':OLD_S2,'clone':str(clone),'out':str(out),'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'harness':'Codex','configured_model':'gpt-6.1-sol','actual_model_override_effort_usage_cost':'unknown','commands':commands,'startup':{},'resources':{}}
+    report={'candidate':args.revision,'probe_revision':args.probe_revision,'supplemental_scope_prefix':args.scenario_prefix,'accepted_stage1':ACCEPTED,'historic_stage1':HISTORIC,'old_stage2':OLD_S2,'clone':str(clone),'out':str(out),'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'harness':'Codex','configured_model':'gpt-6.1-sol','actual_model_override_effort_usage_cost':'unknown','commands':commands,'startup':{},'resources':{}}
     def run(argv,label,check=True,input_bytes=None,binary=False):
         start=time.perf_counter()
         r=subprocess.run(argv,cwd=ROOT,input=input_bytes,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
@@ -56,6 +57,8 @@ def main():
         report['source_hashes']=hashes
         source=blob(args.probe_revision,PROBE); ast.parse(source)
         (out/'executed-probe.py').write_bytes(source)
+        driver=Path(__file__).read_bytes();(out/'executed-driver.py').write_bytes(driver)
+        report['driver_sha256']=hashlib.sha256(driver).hexdigest()
         report['probe_sha256']=hashlib.sha256(source).hexdigest()
         ast.parse(blob(args.revision,'stage-2/server.py'))
         run(['git','clone','--no-hardlinks','--no-checkout',str(ROOT),str(clone)],'clean-clone')
@@ -100,6 +103,7 @@ def main():
         assert len(runner.encode('ascii'))<=63
         argv=['docker','run','-i','--name',runner,'--network',network,'--cpus','2','--memory','2g']
         env={'S2_BASE':'http://'+names_by_label['current']+':9090','S2_DEST_BASE':'http://'+names_by_label['destination']+':8080','S1_BASE':'http://'+names_by_label['accepted']+':8080','S1_REVISION':ACCEPTED,'S1_HIST_BASE':'http://'+names_by_label['historic']+':8080','S1_HIST_REVISION':HISTORIC,'S2_OLD_BASE':'http://'+names_by_label['old-stage2']+':8080','S2_OLD_REVISION':OLD_S2,'CANDIDATE':args.revision,'PROBE_OUT':'/tmp/interface-engineer-out'}
+        if args.scenario_prefix:env['S2_SCENARIO_PREFIX']=args.scenario_prefix
         for key,value in env.items():argv+=['-e',key+'='+value]
         launcher="import sys;exec(compile(sys.stdin.buffer.read(),'sealed-interface-probe.py','exec'))"
         argv+=['df-harness-runner:latest','python','-B','-c',launcher]
