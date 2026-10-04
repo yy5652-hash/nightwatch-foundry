@@ -6,11 +6,16 @@ independently expected amendment generations/current representations change.
 import argparse,hashlib,json,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;H1=HERE.parent/'stage-1';H2=HERE.parent/'stage-2'
-p=argparse.ArgumentParser();p.add_argument('--family',choices=['baseline','snapshot','decoder'],required=True);a,rest=p.parse_known_args()
-sys.path.insert(0,str(H1));sys.path.insert(0,str(H2))
-script={'baseline':'probe.py','snapshot':'snapshot_probe.py','decoder':'decoder_probe.py'}[a.family]
-source=(H1/script).read_text();original_hash=hashlib.sha256(source.encode()).hexdigest()
-if a.family=='baseline':
+p=argparse.ArgumentParser();p.add_argument('--family',choices=['baseline','snapshot','decoder','retained-amend'],required=True);a,rest=p.parse_known_args()
+sys.path.insert(0,str(H1))
+script={'baseline':'probe.py','snapshot':'snapshot_probe.py','decoder':'decoder_probe.py','retained-amend':'amend_retained.py'}[a.family]
+origin=H2 if a.family=='retained-amend' else H1
+if origin==H2:sys.path.insert(0,str(H2))
+source=(origin/script).read_text();original_hash=hashlib.sha256(source.encode()).hexdigest()
+if a.family=='retained-amend':
+ source=source.replace("{'table_id','table_ids'}","{'table_id','table_ids','revision'}")
+ source=source.replace('status==200 and all(current[k]==original[k] for k in retained)','status==200 and current["revision"]==original["revision"]+1 and all(current[k]==original[k] for k in retained)')
+elif a.family=='baseline':
  old='all(value[k] == r[k] for k in r if k != "table_id")';assert source.count(old)==1
  source=source.replace(old,'all(value[k] == r[k] for k in r if k not in ("table_id", "table_ids", "revision")) and value.get("table_ids") == ["t2"] and value.get("revision") == r["revision"]+1')
 elif a.family=='decoder':
@@ -31,5 +36,5 @@ out=Path(rest[rest.index('--out')+1]);out.parent.mkdir(parents=True,exist_ok=Tru
 (out.parent/(a.family+'-source-binding.json')).write_text(json.dumps(dict(original_script=script,original_sha256=original_hash,
  executed_sha256=hashlib.sha256(source.encode()).hexdigest(),wrapper_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
  scope='Current Stage 3 expected real amendment revisions and Stage 2 seating; no response transformation or original receipt enrichment.'),indent=2)+'\n')
-sys.argv=[str(H1/script)]+rest
-exec(compile(source,str(H1/script),'exec'),{'__name__':'__main__','__file__':str(H1/script)})
+sys.argv=[str(origin/script)]+rest
+exec(compile(source,str(origin/script),'exec'),{'__name__':'__main__','__file__':str(origin/script)})
