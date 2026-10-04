@@ -19,7 +19,7 @@ def main():
   began=time.monotonic()
   with (out/(label+'.log')).open('w') as log:rc=subprocess.run(argv,cwd=R,stdout=log,stderr=subprocess.STDOUT).returncode
   commands.append(dict(label=label,argv=argv,cwd=str(R),returncode=rc,seconds=time.monotonic()-began,log=label+'.log'))
-  (out/'commands.json').write_text(json.dumps(commands,indent=2)+'\n');print(json.dumps(commands[-1]),flush=True)
+  (out/'commands.json').write_text(json.dumps(commands,indent=2)+'\n');print(json.dumps({k:commands[-1][k] for k in ('label','returncode','seconds')}),flush=True)
  if a.group=='stage3':
   families=(a.families or 'policies,explain,numeric,terms,series,rollback,moves,concurrency,retry,calendar,trace,first_error,upgrade,deep').split(',')
   for family in families:probe('stage-3','stage3_probe.py',family,positional=['--family',family,'--release',str(release),'--out','/evidence/'+family,'--execute'])
@@ -33,7 +33,10 @@ def main():
    ('stage-1','opaque_id_probe.py','opaque-ids',['--peer',u['peer']]),('stage-1','nesting_probe.py','nesting',['--peer',u['peer']]),
    ('stage-1','snapshot_probe.py','snapshot',['--peer',u['peer'],'--third',u['third']]),('stage-1','decoder_probe.py','decoder',['--peer',u['peer'],'--third',u['third']]),
    ('stage-2','api.py','pairs',['--peer',u['peer']]),('stage-2','amend_retained.py','retained-amend',['--peer',u['peer']])]:
-   if not a.families or label in a.families.split(','):probe(folder,script,label,extra)
+   if not a.families or label in a.families.split(','):
+    if label in ('baseline','snapshot','decoder'):
+     probe('stage-3','stage3_inherited.py',label,positional=['--family',label,'--base',u['target'],'--candidate',f['candidate'],'--out','/evidence/'+label]+extra)
+    else:probe(folder,script,label,extra)
   for script,label,args in [('large_minutes.py','large-minutes',[u['target'],f['candidate'],u['peer']]),('numeric_forms_current.py','numeric',[u['target'],f['candidate']]),
    ('fractional_party_probe.py','fractional',[u['target'],f['candidate']]),('very_deep_probe_c7.py','very-deep',[u['target'],u['peer'],f['candidate']]),('deep_race_c7.py','deep-race',[u['target'],u['peer'],f['candidate']])]:
    if not a.families or label in a.families.split(','):probe('stage-1',script,label,positional=args)

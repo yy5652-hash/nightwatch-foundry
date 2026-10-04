@@ -332,11 +332,16 @@ def retry_family(c):
         invalid={'count':False} if kind=='series' else {'slot_minutes':False}
         c.response(kind+'-'+kind+'-retry-different-body-priority',c.call('POST',path,invalid,token=token,key='receipt'),409,'idempotency_key_reuse')
         failed=deepcopy(value);failed['count' if kind=='series' else 'slot_minutes']=False
+        # The original anchor is already adopted. Use a real unadopted anchor
+        # when isolating invalid count and failed-key reuse; already_in_series
+        # is a specified anchor error, not a numeric validator failure.
+        companion=c.create(seats=('c',),key='companion') if kind=='series' else None
+        if companion:failed['anchor_reference']=companion['reference']
         c.response(kind+'-failed-key',c.call('POST',path,failed,token=token,key='failed'),422,'validation_failed')
         # Repair to a genuinely available second anchor for series (the first is
         # already adopted); failure did not claim the key.
         repaired=deepcopy(value)
-        if kind=='series':repaired['anchor_reference']=c.create(seats=('c',),key='companion')['reference']
+        if kind=='series':repaired['anchor_reference']=companion['reference']
         c.response(kind+'-'+kind+'-retry-failure-key-reuse',c.call('POST',path,repaired,token=token,key='failed'),201)
         if kind=='series':
             c.response('series-patch-exception',c.call('PATCH','/reservations/'+anchor['reference'],dict(party_size=3),token=c.tokens['u']),200)
