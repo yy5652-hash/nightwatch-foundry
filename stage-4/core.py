@@ -1,4 +1,4 @@
-"""Tablekeeper Stage 3 application. HTTP transport is deliberately separate.
+"""Tablekeeper Stage 4 application. HTTP transport is deliberately separate.
 
 The lock is the transaction boundary, including reads and retry resolution. There
 is no occupancy cache: confirmed reservation records are the source of truth.
@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from datetime import date, datetime, timedelta, timezone
+from fractions import Fraction
+from functools import cmp_to_key
 import hashlib
 import hmac
 import re
@@ -28,6 +30,8 @@ LOCAL_PATTERN = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}\Z")
 DATE_PATTERN = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")
 TIME_PATTERN = re.compile(r"(?:[01][0-9]|2[0-3]):[0-5][0-9]\Z")
 REFERENCE_PATTERN = re.compile(r"[A-Z0-9]{6,12}\Z")
+EXPLICIT_PATTERN = re.compile(r"([0-9]{4}-[0-9]{2}-[0-9]{2})[Tt]"
+    r"([0-9]{2}:[0-9]{2}:[0-9]{2})(?:\.([0-9]+))?([Zz]|[+-][0-9]{2}:[0-9]{2})\Z")
 SECOND_US = 1_000_000
 MINUTE_US = 60 * SECOND_US
 DAY_US = 86_400 * SECOND_US
@@ -212,6 +216,29 @@ def timestamp(value):
         fail()
 
 
+def explicit_instant(value):
+    """Exact closure instant, including decimal digits beyond microseconds."""
+    if not isinstance(value, str):
+        fail()
+    match = EXPLICIT_PATTERN.fullmatch(value)
+    if match is None:
+        fail()
+    day, clock, fraction, offset = match.groups()
+    try:
+        wall = datetime.fromisoformat(day + "T" + clock)
+        if offset.lower() == "z":
+            minutes = 0
+        else:
+            hours, mins = int(offset[1:3]), int(offset[4:6])
+            if hours > 23 or mins > 59:
+                fail()
+            minutes = (hours * 60 + mins) * (-1 if offset[0] == "-" else 1)
+        base = instant(wall.replace(tzinfo=timezone(timedelta(minutes=minutes))))
+        return Fraction(base) + (Fraction(int(fraction) * SECOND_US, 10 ** len(fraction)) if fraction else 0)
+    except (ValueError, OverflowError):
+        fail()
+
+
 def password_hash(password):
     salt = secrets.token_bytes(16)
     key = hashlib.scrypt(password.encode("utf-8"), salt=salt, n=16384, r=8, p=1,
@@ -236,10 +263,10 @@ class Engine:
 
     @staticmethod
     def _empty_state():
-        return {"schema": 3, "users": [], "restaurants": [], "tokens": {},
+        return {"schema": 4, "users": [], "restaurants": [], "tokens": {},
                 "reservations": [], "receipts": [], "policies": {},
                 "histories": {}, "history_origins": {}, "series": {},
-                "restaurant_revisions": {}}
+                "restaurant_revisions": {}, "plans": {}, "closures": []}
 
     def request(self, method: str, target: str, headers: Mapping[str, str],
                 body: object | None) -> tuple[int, object | None]:
@@ -310,7 +337,11 @@ class Engine:
 
         user = self._caller(headers)
         policy_write = len(segments) == 3 and segments[0] == "restaurants" and segments[2] == "policies"
-        if method == "POST" and (path in ("/reservations", "/reservation-moves", "/series") or policy_write):
+        replan_write = len(segments) == 3 and segments[0] == "restaurants" and segments[2] == "replans"
+        apply_write = len(segments) == 5 and segments[0] == "restaurants" and segments[2] == "replans" and segments[4] == "apply"
+        series_write = len(segments) == 3 and segments[0] == "series" and segments[2] == "amend"
+        if method == "POST" and (path in ("/reservations", "/reservation-moves", "/series") or
+                policy_write or replan_write or apply_write or series_write):
             data = object_body(body)
             json_value(data)
             key = headers.get("idempotency-key")
@@ -349,6 +380,36 @@ class Engine:
                     self._state["history_origins"].update({r["reference"]: "stage3" for r in generated})
                     self._state["series"][agreement["series_id"]] = agreement
                     self._bump([generated[0]["restaurant_id"]])
+            elif replan_write:
+                restaurant = self._manager_restaurant(segments[1], user)
+                plan = self._replan_candidate(restaurant, data)
+                response = self._plan_public(plan)
+                def commit():
+                    self._state["plans"][plan["plan_id"]] = plan
+            elif apply_write:
+                restaurant = self._manager_restaurant(segments[1], user)
+                plan, originals, proposed, histories = self._apply_candidate(restaurant, segments[3])
+                response = {"plan_id": plan["plan_id"],
+                            "restaurant_revision": plan["restaurant_revision"] + 1,
+                            "reservations": [self._public(r) for r in proposed]}
+                def commit():
+                    changed = []
+                    for old, new in zip(originals, proposed):
+                        if new["revision"] != old["revision"]:
+                            old.clear()
+                            old.update(new)
+                            changed.append(new["reference"])
+                    self._state["histories"].update(histories)
+                    self._state["closures"].append({"restaurant_id": restaurant["id"],
+                        "plan_id": plan["plan_id"], **copy_json(plan["closure"])})
+                    plan["applied"] = True
+                    self._bump([restaurant["id"]], changed, exception=False)
+            elif series_write:
+                agreement, originals, proposed = self._series_amend_candidate(segments[1], user, data)
+                histories = self._prepared_histories(originals, proposed)
+                response = self._series_public(agreement, proposed)
+                def commit():
+                    self._commit_changes(originals, proposed, histories, exception=False)
             else:
                 restaurant = self._restaurant(segments[1])
                 if user["id"] not in restaurant.get("manager_user_ids", []):
@@ -609,6 +670,164 @@ class Engine:
             fail(404, "not_found")
         return agreement
 
+    def _manager_restaurant(self, restaurant_id, user):
+        restaurant = self._restaurant(restaurant_id)
+        if user["id"] not in restaurant.get("manager_user_ids", []):
+            fail(403, "forbidden")
+        return restaurant
+
+    @staticmethod
+    def _closure(restaurant, data):
+        table_id = text_field(data, "table_id", maximum=64)
+        if table_id not in {t["id"] for t in restaurant["tables"]}:
+            fail(404, "not_found")
+        if explicit_instant(data.get("from")) >= explicit_instant(data.get("to")):
+            fail(message="Closure must have a positive interval")
+        return {"table_id": table_id, "from": data["from"], "to": data["to"]}
+
+    @staticmethod
+    def _interval_overlap(record, closure):
+        return (instant(timestamp(record["starts_at"])) < explicit_instant(closure["to"]) and
+                explicit_instant(closure["from"]) < instant(timestamp(record["ends_at"])))
+
+    @classmethod
+    def _closure_overlap(cls, record, closure):
+        return (record["restaurant_id"] == closure["restaurant_id"] and
+                closure["table_id"] in cls._members(record) and cls._interval_overlap(record, closure))
+
+    def _blocked(self, record, state=None):
+        state = self._state if state is None else state
+        return (any(r["status"] == "confirmed" and self._overlap(record, r) for r in state["reservations"])
+                or any(self._closure_overlap(record, c) for c in state["closures"]))
+
+    @staticmethod
+    def _plan_public(plan):
+        return {key: plan[key] for key in ("plan_id", "restaurant_revision", "closure",
+                                          "assignments", "moved_count", "unused_seats")}
+
+    @classmethod
+    def _reseated(cls, record, members):
+        changed = set(cls._members(record)) != set(members)
+        if not changed:
+            return dict(record)
+        result = {key: value for key, value in record.items() if key not in ("table_id", "table_ids")}
+        result.update(table_ids=list(members), revision=record["revision"] + 1)
+        if len(members) == 1:
+            result["table_id"] = members[0]
+        return result
+
+    def _replan_candidate(self, restaurant, data):
+        closure = self._closure(restaurant, data)
+        records = sorted((r for r in self._state["reservations"] if r["status"] == "confirmed"
+                          and r["restaurant_id"] == restaurant["id"] and self._interval_overlap(r, closure)),
+                         key=lambda r: r["reference"])
+        if len(restaurant["tables"]) > 6 or len(restaurant.get("combinable", [])) > 4 or len(records) > 6:
+            fail(422, "planning_limit")
+        refs = {r["reference"] for r in records}
+        fixed = [r for r in self._state["reservations"] if r["status"] == "confirmed" and r["reference"] not in refs]
+        closures = [*self._state["closures"], {"restaurant_id": restaurant["id"], **closure}]
+        options = [[t["id"]] for t in restaurant["tables"]] + restaurant.get("combinable", [])
+        choices = []
+        for record in records:
+            permitted = []
+            for rank, members in enumerate(options):
+                counts = [record["accepted_terms"]["capacities"][m] for m in members]
+                if not self._capacity_fits(counts, record["party_size"]):
+                    continue
+                candidate = {**record, "table_ids": list(members)}
+                if any(self._overlap(candidate, r) for r in fixed) or any(self._closure_overlap(candidate, c) for c in closures):
+                    continue
+                capacity = counts[0] if len(counts) == 1 else add_integers(*counts)
+                unused = 0 if same_json(capacity, record["party_size"]) else add_integers(capacity, multiply_integer(record["party_size"], -1))
+                permitted.append((set(self._members(record)) != set(members), unused, rank, candidate))
+            if not permitted:
+                fail(409, "no_feasible_plan")
+            def order(a, b):
+                return ((a[0] > b[0]) - (a[0] < b[0]) or compare_numbers(a[1], b[1])
+                        or (a[2] > b[2]) - (a[2] < b[2]))
+            choices.append(sorted(permitted, key=cmp_to_key(order)))
+        # The bounded search uses lower bounds independent of occupancy; they
+        # can only understate an achievable objective and therefore prune safely.
+        count = len(records)
+        min_moves, min_unused, min_ranks = [0] * (count + 1), [0] * (count + 1), [()] * (count + 1)
+        for index in range(count - 1, -1, -1):
+            min_moves[index] = min_moves[index + 1] + min(int(o[0]) for o in choices[index])
+            surplus = min((o[1] for o in choices[index]), key=cmp_to_key(compare_numbers))
+            min_unused[index] = add_integers(surplus, min_unused[index + 1])
+            min_ranks[index] = (min(o[2] for o in choices[index]),) + min_ranks[index + 1]
+        best, selected = None, None
+        def search(index, moved, unused, ranks, assigned):
+            nonlocal best, selected
+            lower_moved = moved + min_moves[index]
+            if best is not None:
+                if lower_moved > best[0]:
+                    return
+                if lower_moved == best[0]:
+                    comparison = compare_numbers(add_integers(unused, min_unused[index]), best[1])
+                    if comparison > 0 or (comparison == 0 and ranks + min_ranks[index] >= best[2]):
+                        return
+            if index == count:
+                best, selected = (moved, unused, ranks), list(assigned)
+                return
+            for change, surplus, rank, candidate in choices[index]:
+                if any(self._overlap(candidate, old) for old in assigned):
+                    continue
+                search(index + 1, moved + int(change), add_integers(unused, surplus), ranks + (rank,), [*assigned, candidate])
+        search(0, 0, 0, (), [])
+        if best is None:
+            fail(409, "no_feasible_plan")
+        return {"plan_id": self._new_id("plan_", set(self._state["plans"])), "restaurant_id": restaurant["id"],
+                "restaurant_revision": self._state["restaurant_revisions"][restaurant["id"]],
+                "closure": closure, "assignments": [{"reference": r["reference"], "table_ids": list(self._members(s)),
+                    "changed": set(self._members(r)) != set(self._members(s))} for r, s in zip(records, selected)],
+                "moved_count": best[0], "unused_seats": best[1], "applied": False,
+                "originals": copy_json(records)}
+
+    def _apply_candidate(self, restaurant, plan_id):
+        plan = self._state["plans"].get(plan_id)
+        if plan is None or plan["restaurant_id"] != restaurant["id"]:
+            fail(404, "not_found")
+        if plan["applied"]:
+            fail(409, "plan_already_applied")
+        if plan["restaurant_revision"] != self._state["restaurant_revisions"][restaurant["id"]]:
+            fail(409, "stale_plan")
+        by_ref = {r["reference"]: r for r in self._state["reservations"]}
+        originals = [by_ref[a["reference"]] for a in plan["assignments"]]
+        proposed = [self._reseated(r, a["table_ids"]) for r, a in zip(originals, plan["assignments"])]
+        histories = {}
+        for old, new in zip(originals, proposed):
+            if old["revision"] == new["revision"]:
+                continue
+            entries = self._state["histories"][old["reference"]]
+            entry = self._history_entry(new, old, "reassigned", entries)
+            entry["changes"] = [{"field": "table_ids", "from": list(self._members(old)), "to": list(self._members(new))}]
+            entry["plan_id"] = plan_id
+            histories[old["reference"]] = [*entries, entry]
+        return plan, originals, proposed, histories
+
+    def _series_amend_candidate(self, series_id, user, data):
+        agreement = self._owned_series(series_id, user)
+        expected = integer_field(data, "expected_revision", party=True)
+        index = integer_field(data, "from_index", minimum=0, party=True)
+        clock = data.get("local_time")
+        if compare_numbers(index, len(agreement["occurrences"])) >= 0 or not isinstance(clock, str) or not TIME_PATTERN.fullmatch(clock):
+            fail()
+        if not same_json(expected, agreement["revision"]):
+            fail(409, "stale_revision")
+        records = {r["reference"]: r for r in self._state["reservations"]}
+        originals, proposed = [], []
+        for occurrence in agreement["occurrences"][to_integer(index):]:
+            record = records[occurrence["reference"]]
+            if occurrence["exception"] or record["status"] == "cancelled":
+                continue
+            local = occurrence["scheduled_starts_at_local"][:10] + "T" + clock
+            candidate = dict(record) if local == record["starts_at_local"] else self._amend_candidate(record, {"starts_at_local": local})
+            originals.append(record)
+            proposed.append(candidate)
+        self._check_occupancy(proposed, {r["reference"] for r in originals})
+        changed = any(old["revision"] != new["revision"] for old, new in zip(originals, proposed))
+        return {**agreement, "revision": agreement["revision"] + int(changed)}, originals, proposed
+
     def _series_public(self, agreement, generated=()):
         records = {r["reference"]: r for r in [*self._state["reservations"], *generated]}
         return {key: agreement[key] for key in ("series_id", "revision", "interval_weeks")} | {
@@ -786,13 +1005,15 @@ class Engine:
                 instant(timestamp(right["starts_at"])) < instant(timestamp(left["ends_at"])))
 
 
-    def _check_occupancy(self, proposed, excluded=frozenset(), state=None):
+    def _check_occupancy(self, proposed, excluded=frozenset(), state=None, *, check_closures=True):
         state = self._state if state is None else state
         existing = [r for r in state["reservations"]
                     if r["status"] == "confirmed" and r["reference"] not in excluded]
         for index, candidate in enumerate(proposed):
             if candidate.get("status", "confirmed") != "confirmed":
                 continue
+            if check_closures and any(self._closure_overlap(candidate, c) for c in state["closures"]):
+                fail(409, "table_unavailable")
             if any(self._overlap(candidate, other) for other in existing):
                 fail(409, "table_unavailable")
             if any(other.get("status", "confirmed") == "confirmed" and self._overlap(candidate, other)
@@ -926,9 +1147,7 @@ class Engine:
                     candidate = {"restaurant_id": restaurant_id, "table_ids": members,
                                  "starts_at": wire_timestamp(start), "ends_at": wire_timestamp(end)}
                     counts = [capacities[member] for member in members]
-                    if self._capacity_fits(counts, party) and not any(
-                            r["status"] == "confirmed" and self._overlap(candidate, r)
-                            for r in self._state["reservations"]):
+                    if self._capacity_fits(counts, party) and not self._blocked(candidate):
                         capacity = counts[0] if len(counts) == 1 else add_integers(*counts)
                         options.append({"table_ids": list(members), "capacity": capacity})
                         if len(members) == 1:
@@ -942,8 +1161,7 @@ class Engine:
                         candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
                                      "starts_at": wire_timestamp(start), "ends_at": wire_timestamp(end)}
                         capacity = compare_numbers(party, table["capacity"]) <= 0
-                        clear = not any(r["status"] == "confirmed" and self._overlap(candidate, r)
-                                        for r in self._state["reservations"])
+                        clear = not self._blocked(candidate)
                         slot["explain"].append({"table_id": table["id"], "policy_version": terms["policy_version"],
                             "available": capacity and clear,
                             "rules": [{"rule": "capacity", "holds": capacity},
@@ -1097,7 +1315,8 @@ class Engine:
         source = object_body(source)
         json_value(source)
         schema = source.get("schema")
-        modern = same_json(schema, 3)
+        stage4 = same_json(schema, 4)
+        modern = same_json(schema, 3) or stage4
         if not (same_json(schema, 1) or same_json(schema, 2) or modern):
             fail()
         state = self._empty_state()
@@ -1173,7 +1392,12 @@ class Engine:
             key = text_field(row, "key", maximum=255)
             parts = [unquote(p) for p in urlsplit(path).path.split("/")[1:]]
             policy_path = len(parts) == 3 and parts[0] == "restaurants" and parts[2] == "policies"
-            if user_id not in user_ids or method != "POST" or (path not in ("/reservations", "/reservation-moves", "/series") and not policy_path):
+            preview_path = len(parts) == 3 and parts[0] == "restaurants" and parts[2] == "replans"
+            apply_path = len(parts) == 5 and parts[0] == "restaurants" and parts[2] == "replans" and parts[4] == "apply"
+            amend_path = len(parts) == 3 and parts[0] == "series" and parts[2] == "amend"
+            if user_id not in user_ids or method != "POST" or (path not in ("/reservations", "/reservation-moves", "/series") and not (policy_path or preview_path or apply_path or amend_path)):
+                fail()
+            if (preview_path or apply_path or amend_path) and not stage4:
                 fail()
             if not modern and path not in ("/reservations", "/reservation-moves"):
                 fail()
@@ -1220,38 +1444,62 @@ class Engine:
                 if policy is None or not same_json(response, {**original, "policy_version": version}) or not same_json(response, policy):
                     fail()
                 snapshots = []
+            elif preview_path or apply_path:
+                restaurant = self._restaurant(parts[1], state)
+                if user_id not in restaurant.get("manager_user_ids", []):
+                    fail()
+                text_field(response, "plan_id", maximum=64)
+                integer_field(response, "restaurant_revision", minimum=0, party=True)
+                if preview_path:
+                    if not same_json(self._closure(restaurant, body), response.get("closure")):
+                        fail()
+                    snapshots = []
+                else:
+                    if response["plan_id"] != parts[3] or not isinstance(response.get("reservations"), list):
+                        fail()
+                    snapshots = response["reservations"]
             else:
                 occurrences = response.get("occurrences")
                 if not isinstance(occurrences, list) or not 2 <= len(occurrences) <= 12:
                     fail()
-                if not same_json(body.get("count"), len(occurrences)) or not same_json(body.get("interval_weeks"), response.get("interval_weeks")):
-                    fail()
-                if not same_json(response.get("revision"), 1):
-                    fail()
+                if not amend_path:
+                    if not same_json(body.get("count"), len(occurrences)) or not same_json(body.get("interval_weeks"), response.get("interval_weeks")):
+                        fail()
+                    if not same_json(response.get("revision"), 1):
+                        fail()
+                else:
+                    expected = integer_field(body, "expected_revision", party=True)
+                    from_index = integer_field(body, "from_index", minimum=0, party=True)
+                    if (compare_numbers(from_index, len(occurrences)) >= 0 or not isinstance(body.get("local_time"), str)
+                            or not TIME_PATTERN.fullmatch(body["local_time"]) or response.get("series_id") != parts[1]
+                            or not any(same_json(response.get("revision"), v) for v in (expected, add_integers(expected, 1)))):
+                        fail()
                 text_field(response, "series_id", maximum=64)
                 snapshots = []
                 for index, occurrence in enumerate(occurrences):
                     occurrence = object_body(occurrence)
-                    if not same_json(occurrence.get("index"), index) or occurrence.get("exception") is not False:
+                    if not same_json(occurrence.get("index"), index) or type(occurrence.get("exception")) is not bool or (not amend_path and occurrence["exception"]):
                         fail()
                     snapshot = object_body(occurrence.get("reservation"))
                     if occurrence.get("reference") != snapshot.get("reference"):
                         fail()
                     snapshots.append(snapshot)
-                if body.get("anchor_reference") != snapshots[0].get("reference"):
+                if not amend_path and body.get("anchor_reference") != snapshots[0].get("reference"):
                     fail()
             for snapshot in snapshots:
                 saved = self._validate_record(snapshot, state, owner_required=False)
                 current = identities.get(saved["reference"])
-                if (saved["status"] != "confirmed" or current is None or current["user_id"] != user_id or
+                if ((saved["status"] != "confirmed" and not amend_path) or current is None or (current["user_id"] != user_id and not apply_path) or
                         any(current[k] != saved[k] for k in ("reservation_id", "restaurant_id", "created_at"))):
                     fail()
-            self._check_occupancy(snapshots, references, state)
+            self._check_occupancy(snapshots, references, state, check_closures=False)
             state["receipts"].append({"user_id": user_id, "method": method, "path": path,
                                      "key": key, "body": copy_json(body), "response": copy_json(response),
                                      "numeric_profile": profile})
         if modern:
             self._import_extensions(source, state)
+        if stage4:
+            self._import_plans(source, state)
         return state
 
     def _import_extensions(self, source, state):
@@ -1279,8 +1527,14 @@ class Engine:
                     fail()
                 previous_time = at
                 event, changes = entry.get("event"), entry.get("changes")
-                if event not in ("created", "changed", "cancelled") or not isinstance(changes, list):
+                if event not in ("created", "changed", "cancelled", "reassigned") or not isinstance(changes, list):
                     fail()
+                if event == "reassigned" and (not same_json(source.get("schema"), 4) or
+                        len(changes) != 1 or object_body(changes[0]).get("field") != "table_ids" or
+                        same_json(changes[0].get("from"), changes[0].get("to"))):
+                    fail()
+                if event == "reassigned":
+                    text_field(entry, "plan_id", maximum=64)
                 if event == "created" and (index != 1 or origin != "stage3"):
                     fail()
                 if index == 1 and origin == "stage3" and event != "created":
@@ -1348,7 +1602,8 @@ class Engine:
                     scheduled, restaurant_id = local, record["restaurant_id"]
                 if local != scheduled + timedelta(days=index * interval * 7) or record["restaurant_id"] != restaurant_id:
                     fail()
-                if not occurrence["exception"] and record["starts_at_local"] != local.isoformat(timespec="minutes"):
+                if not occurrence["exception"] and (record["starts_at_local"][:10] != local.isoformat()[:10] if same_json(source.get("schema"), 4)
+                        else record["starts_at_local"] != local.isoformat(timespec="minutes")):
                     fail()
                 adopted.add(reference)
                 normalized.append({"index": index, "reference": reference, "exception": occurrence["exception"],
@@ -1356,10 +1611,114 @@ class Engine:
             state["series"][series_id] = {"series_id": series_id, "user_id": owner, "revision": revision,
                                          "interval_weeks": interval, "occurrences": normalized}
         for receipt in state["receipts"]:
-            if receipt["path"] == "/series":
+            parts = [unquote(p) for p in urlsplit(receipt["path"]).path.split("/")[1:]]
+            if receipt["path"] == "/series" or (len(parts) == 3 and parts[0] == "series" and parts[2] == "amend"):
                 response = receipt["response"]
                 agreement = state["series"].get(response["series_id"])
                 if (agreement is None or agreement["user_id"] != receipt["user_id"] or
                         not same_json(agreement["interval_weeks"], response["interval_weeks"]) or
                         [o["reference"] for o in agreement["occurrences"]] != [o["reference"] for o in response["occurrences"]]):
+                    fail()
+
+    def _import_plans(self, source, state):
+        plans = object_body(source["plans"])
+        closures = source["closures"]
+        if not isinstance(closures, list):
+            fail()
+        records = {r["reference"]: r for r in state["reservations"]}
+        for plan_id, row in plans.items():
+            row = object_body(row)
+            if text_field(row, "plan_id", maximum=64) != plan_id or type(row.get("applied")) is not bool:
+                fail()
+            restaurant = self._restaurant(row.get("restaurant_id"), state)
+            revision = to_integer(integer_field(row, "restaurant_revision", minimum=0, party=True))
+            if revision > state["restaurant_revisions"][restaurant["id"]]:
+                fail()
+            closure = self._closure(restaurant, object_body(row.get("closure")))
+            originals, assignments = row.get("originals"), row.get("assignments")
+            if (len(restaurant["tables"]) > 6 or len(restaurant.get("combinable", [])) > 4 or
+                    not isinstance(originals, list) or len(originals) > 6 or not isinstance(assignments, list) or len(assignments) != len(originals)):
+                fail()
+            normalized, proposed, refs, unused, moved = [], [], [], 0, 0
+            for original, assignment in zip(originals, assignments):
+                old = self._validate_record(original, state)
+                current = records.get(old["reference"])
+                if (old["status"] != "confirmed" or old["restaurant_id"] != restaurant["id"] or current is None
+                        or any(old[k] != current[k] for k in ("reservation_id", "restaurant_id", "user_id", "created_at"))
+                        or not self._interval_overlap(old, closure)):
+                    fail()
+                assignment = object_body(assignment)
+                if assignment.get("reference") != old["reference"] or type(assignment.get("changed")) is not bool:
+                    fail()
+                members, _ = self._seating({"table_ids": assignment.get("table_ids")}, restaurant)
+                if members != assignment["table_ids"]:
+                    fail()
+                new = self._reseated(old, members)
+                change = old["revision"] != new["revision"]
+                if assignment["changed"] != change:
+                    fail()
+                counts = [old["accepted_terms"]["capacities"][m] for m in members]
+                if not self._capacity_fits(counts, old["party_size"]) or self._closure_overlap(new, {"restaurant_id": restaurant["id"], **closure}):
+                    fail()
+                capacity = counts[0] if len(counts) == 1 else add_integers(*counts)
+                unused = add_integers(unused, 0 if same_json(capacity, old["party_size"]) else add_integers(capacity, multiply_integer(old["party_size"], -1)))
+                moved += int(change)
+                refs.append(old["reference"])
+                normalized.append(old)
+                proposed.append(new)
+                if row["applied"] and change:
+                    events = [e for e in state["histories"][old["reference"]]
+                              if e["event"] == "reassigned" and e.get("plan_id") == plan_id]
+                    expected_changes = [{"field": "table_ids", "from": list(self._members(old)), "to": list(members)}]
+                    if (len(events) != 1 or events[0]["revision"] != new["revision"] or
+                            not same_json(events[0]["changes"], expected_changes) or
+                            not same_json(events[0]["accepted_terms"], old["accepted_terms"])):
+                        fail()
+            if refs != sorted(set(refs)) or not same_json(row.get("moved_count"), moved) or not same_json(row.get("unused_seats"), unused):
+                fail()
+            self._check_occupancy(proposed, set(records), state, check_closures=False)
+            if not row["applied"] and revision == state["restaurant_revisions"][restaurant["id"]]:
+                considered = sorted((r for r in state["reservations"] if r["status"] == "confirmed"
+                    and r["restaurant_id"] == restaurant["id"] and self._interval_overlap(r, closure)), key=lambda r: r["reference"])
+                if not same_json(considered, normalized):
+                    fail()
+                self._check_occupancy(proposed, set(refs), state, check_closures=False)
+            state["plans"][plan_id] = {**copy_json(row), "originals": normalized, "closure": closure,
+                                      "restaurant_revision": revision}
+        seen = set()
+        for row in closures:
+            row = object_body(row)
+            plan = state["plans"].get(row.get("plan_id"))
+            if plan is None or not plan["applied"] or row["plan_id"] in seen or row.get("restaurant_id") != plan["restaurant_id"]:
+                fail()
+            restaurant = self._restaurant(plan["restaurant_id"], state)
+            closure = self._closure(restaurant, row)
+            if not same_json(closure, plan["closure"]):
+                fail()
+            seen.add(row["plan_id"])
+            state["closures"].append({"restaurant_id": restaurant["id"], "plan_id": row["plan_id"], **closure})
+        if seen != {p["plan_id"] for p in state["plans"].values() if p["applied"]}:
+            fail()
+        self._check_occupancy(state["reservations"], set(records), state)
+        for reference, entries in state["histories"].items():
+            for entry in entries:
+                if entry["event"] == "reassigned":
+                    plan = state["plans"].get(entry["plan_id"])
+                    if plan is None or not plan["applied"] or not any(a["reference"] == reference and a["changed"] for a in plan["assignments"]):
+                        fail()
+        for receipt in state["receipts"]:
+            parts = [unquote(p) for p in urlsplit(receipt["path"]).path.split("/")[1:]]
+            if len(parts) not in (3, 5) or parts[0] != "restaurants" or parts[2] != "replans":
+                continue
+            response = receipt["response"]
+            plan = state["plans"].get(response["plan_id"])
+            if plan is None or plan["restaurant_id"] != parts[1]:
+                fail()
+            if len(parts) == 3:
+                if not same_json(response, self._plan_public(plan)):
+                    fail()
+            else:
+                expected = {"plan_id": plan["plan_id"], "restaurant_revision": plan["restaurant_revision"] + 1,
+                    "reservations": [self._public(self._reseated(r, a["table_ids"])) for r, a in zip(plan["originals"], plan["assignments"])]}
+                if not plan["applied"] or not same_json(response, expected):
                     fail()
