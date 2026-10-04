@@ -34,3 +34,13 @@ own client; its CLI error is in room tool history and is not a service defect.
 
 Highest independently accepted stage remains 3. Configured Codex/gpt-6.1-sol;
 actual model override, effort, tokens, estimates and billed spend are unknown.
+
+## Separate complete corrected execution
+
+The fresh full 04f7371dd8208c2be0b4981d8b281983b81b2cdc run at
+interface-engineer-s4-20261004t084356191794z passes84/84 scenarios and
+1,660 assertions,133.399 browser seconds/250.158384875 driver seconds.
+All9 cleanups exit0. Both repaired protocols now complete, using actual native
+Tab traversal and real404/401/403 responses. Production remains identical
+tree501d27abab7226546da42edb1131ef8aa037deaf. Original FAIL and downstream
+coverage limits remain unchanged. Independent Stage4 acceptance is pending.
