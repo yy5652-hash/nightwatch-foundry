@@ -1,0 +1,705 @@
+{
+  "kind": "API builder diagnostic, complete integrated image, no UI acceptance",
+  "core_revision": "ff8472b5edc8513c1cd994678ea01471e7fb1ddc",
+  "transport_revision": "ff8472b5edc8513c1cd994678ea01471e7fb1ddc",
+  "started_utc": "2026-10-04T01:46:17.495096+00:00",
+  "model": "configured gpt-6.1-sol; actual override/effort/usage/spend unknown",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "ls-tree",
+        "-r",
+        "-z",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc",
+        "--",
+        "stage-2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.012379499999951804,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/.dockerignore"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.008799167000688612,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/Dockerfile"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.007400041999062523,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/RUN.md"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.0081468339994899,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.00803358300072432,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.007581707999634091,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/web/app.css"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.006745250000676606,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/web/app.js"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.007509957998991013,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/web/index.html"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.006932833999599097,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "build",
+        "-t",
+        "systems-engineer-tablekeeper-s2:api-20261004t014617",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/systems-engineer-s2-api-context-5sebtuyf"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.8268609999995533,
+      "artifact": "build.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "systems-engineer-s2-api-20261004t014617-net"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.030681166999784182,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "inspect",
+        "systems-engineer-s2-api-20261004t014617-net"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.016115166999952635,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s2-api-20261004t014617-source",
+        "--network",
+        "systems-engineer-s2-api-20261004t014617-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18113",
+        "systems-engineer-tablekeeper-s2:api-20261004t014617"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.0771524159990804,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-source",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18113/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.14532204200077103,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s2-api-20261004t014617-source"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.02430629099944781,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.014848832999632577,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-source",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03412120800021512,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.009608541000488913,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-source",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03195708299972466,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s2-api-20261004t014617-destination",
+        "--network",
+        "systems-engineer-s2-api-20261004t014617-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18114",
+        "systems-engineer-tablekeeper-s2:api-20261004t014617"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.07969100000082108,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-destination",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18114/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.14095183399876987,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s2-api-20261004t014617-destination"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.02630250000038359,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.011572125000384403,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-destination",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03523533299994597,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "ff8472b5edc8513c1cd994678ea01471e7fb1ddc:stage-2/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.009293375000197557,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-destination",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03177237499949115,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s2-api-20261004t014617-accepted",
+        "--network",
+        "systems-engineer-s2-api-20261004t014617-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18115",
+        "systems-engineer-tablekeeper-s1:minute-04"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.07442512499983422,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-accepted",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18115/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.14328279199980898,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s2-api-20261004t014617-accepted"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.027919041998757166,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "2a4b0408a3453bc87d86bca3d0ec571f479e03ca:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.01586620800117089,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-accepted",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03568154100139509,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "2a4b0408a3453bc87d86bca3d0ec571f479e03ca:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.009581125001204782,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-accepted",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.031857416999628185,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s2-api-20261004t014617-legacy",
+        "--network",
+        "systems-engineer-s2-api-20261004t014617-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18116",
+        "systems-engineer-tablekeeper-s1:calendar-02"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.0736898340001062,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-legacy",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18116/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.1393977919997269,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s2-api-20261004t014617-legacy"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03162391599835246,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "49287b4a5a1481f995c470ccae31776f03d4b863:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.011607667000134825,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-legacy",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.036793666000448866,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "49287b4a5a1481f995c470ccae31776f03d4b863:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.010757125000964152,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s2-api-20261004t014617-legacy",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03159729199978756,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-s2-api-20261004t014617-source",
+        "python",
+        "-",
+        "--url",
+        "http://127.0.0.1:18113",
+        "--destination-url",
+        "http://systems-engineer-s2-api-20261004t014617-destination:18114",
+        "--source-url",
+        "http://systems-engineer-s2-api-20261004t014617-accepted:18115",
+        "--trace",
+        "/tmp/systems-engineer-s2-member-oracle.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 1.3803439580005943,
+      "artifact": "stage-2-http.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-s2-api-20261004t014617-source:/tmp/systems-engineer-s2-member-oracle.json",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-s2-integrated-api-01/member-oracle.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.031167458000709303,
+      "artifact": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-s2-api-20261004t014617-source",
+        "python",
+        "-",
+        "--stage",
+        "2",
+        "--url",
+        "http://127.0.0.1:18113",
+        "--destination-url",
+        "http://systems-engineer-s2-api-20261004t014617-destination:18114",
+        "--legacy-url",
+        "http://systems-engineer-s2-api-20261004t014617-legacy:18116"
+      ],
+      "returncode": 0,
+      "wall_seconds": 2.8582349579992297,
+      "artifact": "inherited-http.log"
+    }
+  ],
+  "containers": [
+    {
+      "name": "systems-engineer-s2-api-20261004t014617-source",
+      "port": 18113,
+      "image": "systems-engineer-tablekeeper-s2:api-20261004t014617",
+      "hashes": {
+        "core.py": {
+          "expected": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+          "actual": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+          "source_revision": "ff8472b5edc8513c1cd994678ea01471e7fb1ddc"
+        },
+        "server.py": {
+          "expected": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+          "actual": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+          "source_revision": "ff8472b5edc8513c1cd994678ea01471e7fb1ddc"
+        }
+      },
+      "post_launch_health_probe_seconds": 0.14533779199882702,
+      "running": true,
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s2-api-20261004t014617-net",
+      "mounts": []
+    },
+    {
+      "name": "systems-engineer-s2-api-20261004t014617-destination",
+      "port": 18114,
+      "image": "systems-engineer-tablekeeper-s2:api-20261004t014617",
+      "hashes": {
+        "core.py": {
+          "expected": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+          "actual": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+          "source_revision": "ff8472b5edc8513c1cd994678ea01471e7fb1ddc"
+        },
+        "server.py": {
+          "expected": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+          "actual": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+          "source_revision": "ff8472b5edc8513c1cd994678ea01471e7fb1ddc"
+        }
+      },
+      "post_launch_health_probe_seconds": 0.1409677500014368,
+      "running": true,
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s2-api-20261004t014617-net",
+      "mounts": []
+    },
+    {
+      "name": "systems-engineer-s2-api-20261004t014617-accepted",
+      "port": 18115,
+      "image": "systems-engineer-tablekeeper-s1:minute-04",
+      "hashes": {
+        "core.py": {
+          "expected": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+          "actual": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+          "source_revision": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca"
+        },
+        "server.py": {
+          "expected": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+          "actual": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+          "source_revision": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca"
+        }
+      },
+      "post_launch_health_probe_seconds": 0.1432983750000858,
+      "running": true,
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s2-api-20261004t014617-net",
+      "mounts": []
+    },
+    {
+      "name": "systems-engineer-s2-api-20261004t014617-legacy",
+      "port": 18116,
+      "image": "systems-engineer-tablekeeper-s1:calendar-02",
+      "hashes": {
+        "core.py": {
+          "expected": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+          "actual": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+          "source_revision": "49287b4a5a1481f995c470ccae31776f03d4b863"
+        },
+        "server.py": {
+          "expected": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+          "actual": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+          "source_revision": "49287b4a5a1481f995c470ccae31776f03d4b863"
+        }
+      },
+      "post_launch_health_probe_seconds": 0.1394134580004902,
+      "running": true,
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s2-api-20261004t014617-net",
+      "mounts": []
+    }
+  ],
+  "cleanup": [
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s2-api-20261004t014617-legacy"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s2-api-20261004t014617-accepted"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s2-api-20261004t014617-destination"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s2-api-20261004t014617-source"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "systems-engineer-s2-api-20261004t014617-net"
+      ],
+      "returncode": 0
+    }
+  ],
+  "build_source_sha256": {
+    ".dockerignore": "49a5ddcc7d9469a4a6e05957460e78ec6707c3e48a3c3b9d35f0fbbce2b271cf",
+    "Dockerfile": "c1eca1f177bd35118406d59737f4ce1c58cc836ba6fa116d751c3b1c317b4f1b",
+    "RUN.md": "f7f0a853a5ca488eeac5a41284fb14245d2e7b160918af650750377838c3e0a5",
+    "core.py": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+    "server.py": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+    "web/app.css": "03190d768b67a92d085a898f81f624268a158b777825901913c6d0dc992adb3e",
+    "web/app.js": "a8f056960b5cac5fbab4f0e7a507a9c2848c14b6beef61bc531fb19f773cc8d1",
+    "web/index.html": "29acc3b5ecf773d3107e91661df32c287576d5600307c2502efe39162383eb5f"
+  },
+  "internal_network": true,
+  "result": "passed",
+  "wall_seconds": 7.0724102499989385
+}

@@ -1,7 +1,8 @@
-"""Own constrained API diagnostic, not the final integrated browser image.
+"""Own constrained API diagnostic; browser interactions are separately owned.
 
-Committed Stage 2 core plus frozen accepted Stage 1 transport/runtime; two current
-processes, accepted Stage 1 migration source and genuine earlier receipt source.
+Default: committed Stage 2 core plus frozen accepted Stage 1 transport/runtime.
+With --integrated: the complete committed Stage 2 subtree. Both modes run two
+current processes, accepted Stage 1 migration source and earlier receipt source.
 Artifacts contain no exports, passwords or bearer tokens.
 """
 import argparse
@@ -16,6 +17,7 @@ import time
 parser = argparse.ArgumentParser()
 parser.add_argument("--revision", required=True)
 parser.add_argument("--out", required=True)
+parser.add_argument("--integrated", action="store_true", help="Build the complete named Stage 2 subtree")
 args = parser.parse_args()
 repository = Path(__file__).resolve().parents[2]
 workspace = repository.parents[1]
@@ -28,8 +30,9 @@ network = prefix + "-net"
 image = "systems-engineer-tablekeeper-s2:api-" + stamp
 accepted = "2a4b0408a3453bc87d86bca3d0ec571f479e03ca"
 legacy_revision = "49287b4a5a1481f995c470ccae31776f03d4b863"
-record = {"kind": "API builder diagnostic, frozen transport, no UI acceptance",
-          "core_revision": args.revision, "transport_revision": accepted,
+transport_revision = args.revision if args.integrated else accepted
+record = {"kind": "API builder diagnostic, " + ("complete integrated image" if args.integrated else "frozen transport") + ", no UI acceptance",
+          "core_revision": args.revision, "transport_revision": transport_revision,
           "started_utc": datetime.now(timezone.utc).isoformat(),
           "model": "configured gpt-6.1-sol; actual override/effort/usage/spend unknown",
           "commands": [], "containers": [], "cleanup": []}
@@ -51,18 +54,32 @@ def run(argv, *, artifact=None, payload=None):
 try:
     with tempfile.TemporaryDirectory(prefix="systems-engineer-s2-api-context-", dir=workspace / "band-work") as temporary:
         context = Path(temporary)
-        sources = {name: run(["git", "show", accepted + ":stage-1/" + name])
-                   for name in ("Dockerfile", "server.py", ".dockerignore")}
-        sources["core.py"] = run(["git", "show", args.revision + ":stage-2/core.py"])
+        if args.integrated:
+            sources = {}
+            tree = run(["git", "ls-tree", "-r", "-z", args.revision, "--", "stage-2"])
+            for entry in tree.decode().split("\0"):
+                if not entry:
+                    continue
+                attributes, path = entry.split("\t", 1)
+                mode, kind, object_id = attributes.split()
+                assert kind == "blob" and mode in ("100644", "100755")
+                relative = Path(path).relative_to("stage-2")
+                assert ".." not in relative.parts
+                sources[str(relative)] = run(["git", "show", args.revision + ":" + path])
+        else:
+            sources = {name: run(["git", "show", accepted + ":stage-1/" + name])
+                       for name in ("Dockerfile", "server.py", ".dockerignore")}
+            sources["core.py"] = run(["git", "show", args.revision + ":stage-2/core.py"])
         for name, value in sources.items():
+            (context / name).parent.mkdir(parents=True, exist_ok=True)
             (context / name).write_bytes(value)
         record["build_source_sha256"] = {name: hashlib.sha256(value).hexdigest() for name, value in sources.items()}
         run(["docker", "build", "-t", image, str(context)], artifact="build.log")
     run(["docker", "network", "create", "--internal", network])
     network_created = True
     record["internal_network"] = json.loads(run(["docker", "network", "inspect", network]))[0]["Internal"]
-    setup = [(prefix + "-source", 18113, image, args.revision, "stage-2", accepted),
-             (prefix + "-destination", 18114, image, args.revision, "stage-2", accepted),
+    setup = [(prefix + "-source", 18113, image, args.revision, "stage-2", transport_revision),
+             (prefix + "-destination", 18114, image, args.revision, "stage-2", transport_revision),
              (prefix + "-accepted", 18115, "systems-engineer-tablekeeper-s1:minute-04", accepted, "stage-1", accepted),
              (prefix + "-legacy", 18116, "systems-engineer-tablekeeper-s1:calendar-02", legacy_revision, "stage-1", legacy_revision)]
     for name, port, tag, revision, folder, transport_revision in setup:
@@ -75,8 +92,9 @@ try:
         health_elapsed = time.monotonic() - health_start
         settings = json.loads(run(["docker", "inspect", name]))[0]
         hashes = {}
+        transport_folder = "stage-2" if args.integrated and folder == "stage-2" else "stage-1"
         for filename, source_revision, source_folder in [("core.py", revision, folder),
-                                                         ("server.py", transport_revision, "stage-1")]:
+                                                         ("server.py", transport_revision, transport_folder)]:
             expected = hashlib.sha256(run(["git", "show", source_revision + ":" + source_folder + "/" + filename])).hexdigest()
             actual = run(["docker", "exec", name, "python", "-c",
                           "import hashlib;print(hashlib.sha256(open('/app/%s','rb').read()).hexdigest())" % filename]).decode().strip()
