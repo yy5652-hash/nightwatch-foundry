@@ -1,0 +1,4 @@
+Two own preparation patch calls were refused atomically before edits:
+1. apply_patch verification failed: Failed to find expected lines in PREPARATION.md: Export bytes and observed export depth are recorded as metrics while
+2. apply_patch verification failed: Failed to find expected lines in PREPARATION.md: No service or official check was executed. No image, container or network was
+The first selected a wrapped prose line incorrectly; the second contained an unnecessary extra context hunk. The next bounded patch changes only the known source predicates and a separately matched prose line. No HTTP, Docker, source-service edit or observed service result occurred in either refused patch call.
