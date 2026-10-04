@@ -41,3 +41,7 @@ Highest consecutive accepted stage: 0 at intake. No service startup, check count
 - Highest consecutive accepted stage is still 0 at this point. No Stage 2 service has been created.
 
 README.md, FACTORY.md, genuine final room.json export, public publishing, presentation/video and competition submission remain operator-authored or controlled. The factory may prepare measured source facts and evidence only. No room export is fabricated.
+
+## Stage 1 supplemental rejection
+
+At 2026-10-04 01:19 UTC the coordinator inspected supplemental verifier commit 86c745913b073eb1ac70698ff6c6deee19d72e56. It revokes candidate 3's earlier acceptance after three genuine failures for positive fixture minute counts of 10^18. Expanded coverage: 797 rows, 776 verified, 3 failed, 18 unverified because failed resets prevented subsequent checks. The earlier 120/120 official result is preserved and is not an acceptance claim. Evidence: evidence/independent-verifier/stage-1/candidate-3-large-minutes/VERDICT.md. Highest consecutive accepted stage remains 0; no accepted folder was frozen or extended before this finding. The owner received a complete five-part current-task/spec package and the full supplemental failing verdict.
