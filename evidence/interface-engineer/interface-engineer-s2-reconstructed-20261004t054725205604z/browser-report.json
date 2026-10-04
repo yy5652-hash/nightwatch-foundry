@@ -1,0 +1,179 @@
+{
+  "seed": 20261004,
+  "candidate": "f783598428a88d53490f68498063ed69e02201b3",
+  "scenarios": [
+    {
+      "name": "integral-wire-9007199254740993.0",
+      "verdict": "PASS",
+      "seconds": 0.764
+    },
+    {
+      "name": "integral-wire-9007199254740993e0",
+      "verdict": "PASS",
+      "seconds": 0.712
+    },
+    {
+      "name": "integral-wire-90071992547409930e-1",
+      "verdict": "PASS",
+      "seconds": 0.707
+    },
+    {
+      "name": "integral-wire-9.007199254740993E+15",
+      "verdict": "PASS",
+      "seconds": 0.721
+    },
+    {
+      "name": "integral-wire-0.9007199254740993e16",
+      "verdict": "PASS",
+      "seconds": 0.73
+    }
+  ],
+  "trace": [
+    {
+      "scenario": "integral-wire-presentation",
+      "fixture_token": "9007199254740993.0",
+      "real_response_capacity_tokens": [
+        "9007199254740993.0",
+        "4",
+        "4"
+      ],
+      "expected_integer": "9007199254740993",
+      "single": "Window 9007199254740993 \"quoted\"\n9007199254740993 seats \u00b7 Choose table",
+      "pair": "Garden + Window 9007199254740993 \"quoted\"\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+      "original_reference": "98A0679BD3"
+    },
+    {
+      "scenario": "integral-wire-presentation",
+      "fixture_token": "9007199254740993e0",
+      "real_response_capacity_tokens": [
+        "9007199254740993e0",
+        "4",
+        "4"
+      ],
+      "expected_integer": "9007199254740993",
+      "single": "Window 9007199254740993 \"quoted\"\n9007199254740993 seats \u00b7 Choose table",
+      "pair": "Garden + Window 9007199254740993 \"quoted\"\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+      "original_reference": "00FF8E37A4"
+    },
+    {
+      "scenario": "integral-wire-presentation",
+      "fixture_token": "90071992547409930e-1",
+      "real_response_capacity_tokens": [
+        "90071992547409930e-1",
+        "4",
+        "4"
+      ],
+      "expected_integer": "9007199254740993",
+      "single": "Window 9007199254740993 \"quoted\"\n9007199254740993 seats \u00b7 Choose table",
+      "pair": "Garden + Window 9007199254740993 \"quoted\"\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+      "original_reference": "C3546ECAE4"
+    },
+    {
+      "scenario": "integral-wire-presentation",
+      "fixture_token": "9.007199254740993E+15",
+      "real_response_capacity_tokens": [
+        "9.007199254740993E+15",
+        "4",
+        "4"
+      ],
+      "expected_integer": "9007199254740993",
+      "single": "Window 9007199254740993 \"quoted\"\n9007199254740993 seats \u00b7 Choose table",
+      "pair": "Garden + Window 9007199254740993 \"quoted\"\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+      "original_reference": "C45D6C991A"
+    },
+    {
+      "scenario": "integral-wire-presentation",
+      "fixture_token": "0.9007199254740993e16",
+      "real_response_capacity_tokens": [
+        "0.9007199254740993e16",
+        "4",
+        "4"
+      ],
+      "expected_integer": "9007199254740993",
+      "single": "Window 9007199254740993 \"quoted\"\n9007199254740993 seats \u00b7 Choose table",
+      "pair": "Garden + Window 9007199254740993 \"quoted\"\nTogether \u00b7 9007199254740997 seats \u00b7 Choose table",
+      "original_reference": "7E1C9914FC"
+    }
+  ],
+  "assertions": 90,
+  "direct_http_operations": 10,
+  "browser_originated_requests": 55,
+  "forwarded_fetch_operations": 0,
+  "http_trace": [
+    {
+      "kind": "direct-api-client",
+      "method": "POST",
+      "path": "/_test/reset",
+      "status": 204,
+      "seconds": 0.052092999999956646
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "GET",
+      "path": "/restaurants/r_garden",
+      "status": 200,
+      "seconds": 0.04438350000003766
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "POST",
+      "path": "/_test/reset",
+      "status": 204,
+      "seconds": 0.04703029099999867
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "GET",
+      "path": "/restaurants/r_garden",
+      "status": 200,
+      "seconds": 0.04866591600000447
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "POST",
+      "path": "/_test/reset",
+      "status": 204,
+      "seconds": 0.046811624999975265
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "GET",
+      "path": "/restaurants/r_garden",
+      "status": 200,
+      "seconds": 0.05107637500003648
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "POST",
+      "path": "/_test/reset",
+      "status": 204,
+      "seconds": 0.04363445899997487
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "GET",
+      "path": "/restaurants/r_garden",
+      "status": 200,
+      "seconds": 0.04848683299996992
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "POST",
+      "path": "/_test/reset",
+      "status": 204,
+      "seconds": 0.04542483299997002
+    },
+    {
+      "kind": "direct-api-client",
+      "method": "GET",
+      "path": "/restaurants/r_garden",
+      "status": 200,
+      "seconds": 0.04986904200001163
+    }
+  ],
+  "supplemental_scope_prefix": "integral-wire-",
+  "browser_version": "153.0.8010.12",
+  "seconds": 3.853,
+  "passed": 5,
+  "total": 5
+}
