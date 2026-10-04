@@ -1,5 +1,12 @@
 # Stage 2 Interface implementation and integration handoff
 
+**Current promotion status: highest independently accepted consecutive stage is
+0.** Supplemental rejection `fe68f4ef60580d73c17ba2a21c6a4d20b77e8e41` revokes
+the prior Stage 1 acceptance and rejects the older Stage 2 candidate. Coordinator
+has recorded the revocation and released a serialized Systems-only Stage 1 core
+repair. Both stages require new named independent verdicts. Interface production
+edits remain frozen pending the complete integration-review handoff; no Stage 3.
+
 **Update 2026-10-04:** the large-integer boundary, exact visible status and
 restaurant-local end-time repairs supersede the original candidate/counts below.
 Current tested full revision is `16aee9f0ea10de5b8fa81a84429cc337c3c4490f`:
@@ -12,7 +19,10 @@ Original results and failures remain preserved. Independent acceptance is pendin
 
 Interface implementation is complete for independent review. This is builder
 evidence, not promotion or a hidden judging result. Highest consecutive accepted
-stage remains 1 according to the coordinator's frozen manifest.
+stage is currently 0 under the supplemental verdict above. Historical source,
+accepted-then-revoked observations, failures and builder results remain preserved.
+
+The following original handoff facts are historical and superseded above:
 
 Final tested full revision: `1067ccd06d86145ca5ac9fcaedb9df3f404a6983`.
 Last service change: `93544c6c0ec8ba1424af15a120e51415e49df3c9`.
