@@ -22,6 +22,7 @@ parser.add_argument("--revision", default="f5e0a532dcf6c2f0c44eb32d5213a9bf7812c
 args = parser.parse_args()
 stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ").lower()
 slug = "interface-engineer-s1-candidate5-" + stamp
+resource_slug = "interface-engineer-s1-c5-" + stamp
 out = ROOT / "evidence/interface-engineer" / slug
 out.mkdir()
 clone = ROOT.parent / slug
@@ -130,7 +131,9 @@ try:
         ("destination", image, 9090, 18226, True, source),
         ("legacy", legacy_image, 8080, 18227, False, legacy_hashes),
     ):
-        name = slug + "-" + label
+        name = resource_slug + "-" + label
+        if len(name) > 63:
+            raise RuntimeError("Service DNS label must fit 63 characters")
         command = ["docker", "run", "-d", "--name", name, "--network", network,
                    "--cpus", "2", "--memory", "2g", "-p", str(host) + ":" + str(port)]
         if override:
@@ -165,7 +168,7 @@ try:
     inherited = json.loads(inherited)
     check("Own inherited transport/concurrency/time checks pass", inherited["failed"] == 0)
     urls = ["http://" + created_containers[i] + (":9090" if i == 1 else ":8080") for i in range(3)]
-    runner = slug + "-client"
+    runner = resource_slug + "-client"
     decimal_bytes = (ROOT / "evidence/interface-engineer/stage-1-candidate-5-probe.py").read_bytes()
     # The client also has constrained resources, but shares no interpreter with
     # any service. No mount is required: stdin carries only own probe source.
