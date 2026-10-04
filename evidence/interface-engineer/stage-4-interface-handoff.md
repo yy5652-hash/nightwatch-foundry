@@ -59,3 +59,13 @@ visual assessment remain disclosed. Configured Codex/gpt-6.1-sol; actual overrid
 effort, tokens, catalog-estimated and billed spend are unknown. Independent named
 acceptance, genuine final room export, public release and submission remain separate
 coordinator/operator gates.
+
+## Prospective protocol completion
+
+The initial committed 81-case preparation is preserved in Git. The current complete
+protocol now contains 84 scenarios: all 60 inherited plus 24 new. Added actual
+refused-apply transports, late current-confirmation reads and cross-restaurant
+amendments cover the remaining product boundaries. The manager product scenario
+now publishes a real later capacity reduction before planning, so the proposed
+seating must use each existing booking’s older accepted capacities. Two updated
+protocol/audit AST checks pass. No service execution is claimed by preparation.

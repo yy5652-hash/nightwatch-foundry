@@ -1038,6 +1038,8 @@ async def manager_product(context,page):
     reference=await confirmed(page)
     _,before=await request(context,BASE,'/reservations/'+reference,token=owner['token'])
     history_before=(await request(context,BASE,'/reservations/'+reference+'/history',token=owner['token']))[1]
+    reduced=policy3(duration=60,cutoff=0);reduced['capacities']={'t_window':1,'t_garden':1,'t_corner':2}
+    check((await request(context,BASE,'/restaurants/r_garden/policies','POST',reduced,owner['token'],'current-capacity-reduction'))[0]==201,'actual later policy lowers current capacities without changing accepted records')
     await manage4(page)
     await tid(page,'replan-to').press('Tab')
     check(await tid(page,'replan-preview-submit').evaluate('(e)=>e===document.activeElement'),'actual manager primary keyboard focus')
@@ -1072,6 +1074,7 @@ async def manager_product(context,page):
     await lookup3(page,reference)
     check('Garden' in await tid(page,'reservation-tables').inner_text() and 'Seating reassigned' in await tid(page,'reservation-history').inner_text(),'lookup uses applied seating and actual history')
     # The immutable apply receipt survives later real changes; current reads remain separate.
+    check((await request(context,BASE,'/restaurants/r_garden/policies','POST',policy3(duration=60,cutoff=0),owner['token'],'later-capacity-restoration'))[0]==201,'actual policy for later diner amendment')
     check((await request(context,BASE,'/reservations/'+reference,'PATCH',{'party_size':3},owner['token']))[0]==200,'later real diner change after applied receipt')
     await page.get_by_role('link',name='Restaurant tools',exact=True).click()
     await tid(page,'replan-apply-submit').click();await expect(tid(page,'replan-applied')).to_be_visible()
@@ -1388,6 +1391,64 @@ async def stage3_populated_bridge(context,page):
     check((await request(context,BASE,'/series', 'POST',json.loads(writes[0]['body']),owner['token'],writes[0]['key']))[1]==original[0],'old original series retry survives later Stage4 amendment/repair')
     REPORT['trace'].append({'scenario':'stage4-genuine-stage3-bridge','source_revision':revision,'writes':writes,'original_receipt':original[0],'source_current':old_current,'after_amend':current})
 
+async def apply_refused_outcomes(context,page):
+    _,owner,_=await stage4_fixture(context);await create3(context,owner)
+    _,stranger=await request(context,BASE,'/auth/signup','POST',{'email':'cara@example.test','password':'correct horse','display_name':'Cara'})
+    await login(page);await manage4(page);await tid(page,'replan-preview-submit').click();await expect(tid(page,'replan-proposal')).to_be_visible()
+    plan=await tid(page,'replan-plan-id').inner_text();pattern='**/replans/*/apply';writes=[]
+    for kind,code in [('unknown','not_found'),('anonymous','unauthenticated'),('nonmanager','forbidden')]:
+        async def actual_refusal(route,k=kind):
+            writes.append({'key':route.request.headers.get('idempotency-key'),'body':route.request.post_data})
+            kwargs={}
+            if k=='unknown':kwargs['url']=BASE+'/restaurants/r_garden/replans/ACTUAL-UNKNOWN-PLAN/apply'
+            else:
+                headers=dict(route.request.headers)
+                if k=='anonymous':headers.pop('authorization',None)
+                else:headers['authorization']='Bearer '+stranger['token']
+                kwargs['headers']=headers
+            response=await forwarded_fetch(route,**kwargs)
+            value=await response.json();check(value['error']['code']==code,'actual HTTP '+kind+' refusal')
+            await route.fulfill(response=response)
+        await page.route(pattern,actual_refusal);await tid(page,'replan-apply-submit').click();await expect(tid(page,'replan-apply-error')).to_be_visible()
+        check(await tid(page,'replan-applied').count()==0 and await tid(page,'replan-unapplied').count()==1,'actual '+kind+' rejection visibly unapplied')
+        await page.unroute_all(behavior='wait')
+    # An actual separate manager key applies it before this browser's first successful attempt.
+    check((await request(context,BASE,'/restaurants/r_garden/replans/'+plan+'/apply','POST',{},owner['token'],'other-successful-apply'))[0]==201,'actual separate application commits')
+    await tid(page,'replan-apply-submit').click();await expect(tid(page,'replan-apply-error')).to_be_visible()
+    check('already applied' in await tid(page,'replan-apply-error').inner_text() and await tid(page,'replan-applied').count()==0,'already-applied is not relabelled as own success')
+    check(all(x==writes[0] for x in writes),'all failed attempts preserve original client body/key')
+    await screenshots(page,'s4-refused-apply-outcomes')
+
+async def confirmation_current_race(context,page):
+    _,owner,_=await stage4_fixture(context);await login(page);await search(page);await open_booking(page);await tid(page,'booking-submit').click();reference=await confirmed(page)
+    await expect(tid(page,'confirmation-current-tables')).to_have_text('Window')
+    held=asyncio.Event();release=asyncio.Event();seen=0
+    async def delayed(route):
+        nonlocal seen
+        seen+=1;response=await forwarded_fetch(route)
+        if seen==1:held.set();await release.wait()
+        await route.fulfill(response=response)
+    await page.route('**/reservations/'+reference,delayed)
+    await tid(page,'confirmation-refresh').click();await held.wait()
+    status,plan=await request(context,BASE,'/restaurants/r_garden/replans','POST',{'table_id':'t_window','from':DATE+'T18:00:00+02:00','to':DATE+'T19:00:00+02:00'},owner['token'],'race-preview');check(status==201,'actual current-state race preview')
+    check((await request(context,BASE,'/restaurants/r_garden/replans/'+plan['plan_id']+'/apply','POST',{},owner['token'],'race-apply'))[0]==201,'actual manager application between current reads')
+    await tid(page,'confirmation-refresh').click();await expect(tid(page,'confirmation-current-tables')).to_have_text('Garden')
+    release.set();await page.unroute_all(behavior='wait')
+    check(await tid(page,'confirmation-current-tables').inner_text()=='Garden' and 'Window' in await tid(page,'confirmation-tables').inner_text(),'late earlier current read cannot overwrite newer current seating or rewrite original receipt')
+    await screenshots(page,'s4-current-confirmation-read-race')
+
+async def series_amend_other_restaurant(context,page):
+    _,owner,_=await stage4_fixture(context);_,garden=await create3(context,owner)
+    status,anchor=await request(context,BASE,'/reservations','POST',{'restaurant_id':'r_harbor','table_id':'t_booth','starts_at_local':DATE+'T19:00','party_size':2},owner['token'],'harbor-s4-anchor');check(status==201,'actual other restaurant anchor')
+    status,series=await request(context,BASE,'/series','POST',{'anchor_reference':anchor['reference'],'count':2,'interval_weeks':1},owner['token'],'harbor-s4-series');check(status==201,'actual other restaurant agreement')
+    await login(page);await lookup3(page,garden['reference']);await tid(page,'series-lookup-id').fill(series['series_id']);await tid(page,'series-refresh').click();await expect(tid(page,'series-amend-form')).to_be_visible()
+    await tid(page,'series-amend-local-time').fill('20:00');await tid(page,'series-amend-submit').click();await expect(tid(page,'series-amend-confirmation')).to_be_visible()
+    await expect(tid(page,'series-occurrences')).to_contain_text('Harbor House')
+    text=await tid(page,'series-occurrences').inner_text()
+    check(text.count('Harbor booth')==2 and 'Garden Room' not in text,'actual amended agreement retains its own restaurant human labels')
+    check((await request(context,BASE,'/reservations/'+garden['reference'],token=owner['token']))[1]['revision']==1,'other restaurant amendment does not change selected Garden booking')
+    await screenshots(page,'s4-series-other-restaurant-amendment')
+
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
     start=time.perf_counter()
@@ -1443,7 +1504,8 @@ async def main():
           ('stage4-series-empty-eligible',series_empty_and_repair),('stage4-series-seating-repair',lambda c,p:series_empty_and_repair(c,p,True)),
           ('stage4-accepted-stage3-single-upgrade',lambda c,p:lost_response(c,p,False,True,os.environ['S3_ACCEPTED_BASE'],os.environ['S3_ACCEPTED_REVISION'],3)),
           ('stage4-accepted-stage3-pair-upgrade',lambda c,p:lost_response(c,p,True,True,os.environ['S3_ACCEPTED_BASE'],os.environ['S3_ACCEPTED_REVISION'],3)),
-          ('stage4-accepted-stage3-populated-bridge',stage3_populated_bridge)])
+          ('stage4-accepted-stage3-populated-bridge',stage3_populated_bridge),('stage4-apply-refused-outcomes',apply_refused_outcomes),
+          ('stage4-current-confirmation-read-race',confirmation_current_race),('stage4-series-other-restaurant-amendment',series_amend_other_restaurant)])
         prefix=os.environ.get('S2_SCENARIO_PREFIX')
         if prefix:
             cases=[(name,callback) for name,callback in cases if name.startswith(prefix)]

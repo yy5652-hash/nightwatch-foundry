@@ -22,7 +22,7 @@ def main():
     browser=json.loads((run/'browser-report.json').read_bytes())
     git=lambda *argv:subprocess.check_output(['git',*argv],cwd=root)
     assert runtime['candidate']==browser['candidate']==args.candidate
-    assert browser['passed']==browser['total'] and browser['total']>=81
+    assert browser['passed']==browser['total'] and browser['total']>=84
     assert runtime['verdict']=='PASS'
     probe=git('show',runtime['probe_revision']+':evidence/interface-engineer/stage-4-browser-probe.py')
     assert (run/'executed-probe.py').read_bytes()==probe
