@@ -12,14 +12,18 @@ import importlib.util
 import json
 from pathlib import Path
 import random
+import re
+import subprocess
 import sys
 import unittest
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--url")
 parser.add_argument("--destination-url")
+parser.add_argument("--legacy-url")
 args, unittest_args = parser.parse_known_args()
 if not args.url or not args.destination_url:
     root = Path(__file__).resolve().parents[2]
@@ -29,9 +33,9 @@ if not args.url or not args.destination_url:
 
 
 class Client:
-    def __init__(self, url=None):
+    def __init__(self, url=None, engine=None):
         self.url = url
-        self.engine = module.Engine() if url is None else None
+        self.engine = (engine if engine is not None else module.Engine()) if url is None else None
 
     def request(self, method, path, body=None, headers=None):
         headers = headers or {}
@@ -332,6 +336,98 @@ class StageOne(unittest.TestCase):
                                                headers=self.auth)
                 self.expect(response, 200 if day.startswith("9999") else 409,
                             None if day.startswith("9999") else "cutoff_passed")
+
+    def test_exact_rfc3339_historical_representation(self):
+        pattern = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]+)?[+-][0-9]{2}:[0-9]{2}\Z")
+        epoch = datetime(1, 1, 1)
+
+        def absolute(value):
+            delta = value.replace(tzinfo=None) - epoch - value.utcoffset()
+            return (delta.days * 86400 + delta.seconds) * 1000000 + delta.microseconds
+
+        def oracle(value):
+            # Exhaust all legal minute offsets independently of production's
+            # bounded interval/clamped-neighbor selection.
+            valid = []
+            for minutes in range(-1439, 1440):
+                fixed = timedelta(minutes=minutes)
+                try:
+                    wall = value.replace(tzinfo=None) + (fixed - value.utcoffset())
+                except OverflowError:
+                    continue
+                distance = abs(fixed - value.utcoffset())
+                valid.append((distance, minutes, wall))
+            _, minutes, wall = min(valid, key=lambda item: (item[0], item[1]))
+            return wall.replace(tzinfo=timezone(timedelta(minutes=minutes))).isoformat()
+
+        cases = [
+            ("Europe/Berlin", "0001-01-01", "00:00", "06:00", "00:00"),
+            ("America/New_York", "0001-01-01", "18:00", "23:00", "18:00"),
+            ("Europe/Brussels", "1800-01-01", "18:00", "23:00", "18:00"),
+            ("America/New_York", "9999-12-31", "18:00", "23:00", "21:30"),
+            ("Europe/Berlin", "2026-10-25", "00:00", "05:00", "02:30")]
+        for zone, day, opening, closing, selected in cases:
+            with self.subTest(zone=zone, day=day):
+                self.expect(self.client.request("POST", "/_test/reset", fixture(zone, opening, closing)), 204)
+                self.auth = self.login("ada@example.test")
+                grid = self.expect(self.client.request("GET",
+                    f"/availability?restaurant_id=r&date={day}&party_size=2"), 200)
+                original = datetime.fromisoformat(day + "T" + selected).replace(tzinfo=ZoneInfo(zone), fold=0)
+                record = self.expect(self.create(self.body(start=day + "T" + selected), key="wire-receipt"), 201)
+                self.assertEqual(record["starts_at_local"], day + "T" + selected)
+                self.assertRegex(record["starts_at"], pattern)
+                self.assertRegex(record["ends_at"], pattern)
+                self.assertEqual(record["starts_at"], oracle(original))
+                self.assertEqual(absolute(datetime.fromisoformat(record["starts_at"])), absolute(original))
+                self.assertEqual(absolute(datetime.fromisoformat(record["ends_at"])) - absolute(original), 5400000000)
+                try:
+                    original_end = (original.astimezone(timezone.utc) + timedelta(minutes=90)).astimezone(ZoneInfo(zone))
+                except OverflowError:
+                    original_end = (original.replace(tzinfo=None) + timedelta(minutes=90)).replace(tzinfo=ZoneInfo(zone))
+                    self.assertEqual(original_end.utcoffset(), original.utcoffset())
+                self.assertEqual(record["ends_at"], oracle(original_end))
+                for available_slot in grid["slots"]:
+                    self.assertRegex(available_slot["starts_at"], pattern)
+                    actual_local = datetime.fromisoformat(available_slot["starts_at_local"]).replace(tzinfo=ZoneInfo(zone), fold=0)
+                    self.assertEqual(absolute(datetime.fromisoformat(available_slot["starts_at"])), absolute(actual_local))
+                slot = next(s for s in grid["slots"] if s["starts_at_local"] == day + "T" + selected)
+                self.assertEqual(slot["starts_at"], record["starts_at"])
+                exported = self.exported()
+                self.expect(self.client.request("POST", "/_test/import", exported), 204)
+                self.assertEqual(self.exported(), exported)
+                self.assertEqual(self.expect(self.create(self.body(start=day + "T" + selected), key="wire-receipt"), 200), record)
+
+    def test_legacy_receipt_strings_survive_new_import_and_replay(self):
+        if args.legacy_url:
+            legacy = Client(args.legacy_url)
+        else:
+            # This run's own previously committed Engine is diagnostic input,
+            # used only to produce a genuine pre-serializer export in memory.
+            code = subprocess.check_output(["git", "show",
+                "49287b4a5a1481f995c470ccae31776f03d4b863:stage-1/core.py"], cwd=root)
+            namespace = {"__name__": "systems_engineer_legacy_engine"}
+            exec(compile(code, "own-committed-legacy-core", "exec"), namespace)
+            legacy = Client(engine=namespace["Engine"]())
+        self.expect(legacy.request("POST", "/_test/reset", fixture("Europe/Berlin", "00:00", "06:00")), 204)
+        session = self.expect(legacy.request("POST", "/auth/login",
+            {"email": "ada@example.test", "password": "fixture password"}), 200)
+        auth = {"Authorization": "Bearer " + session["token"], "Idempotency-Key": "original-style"}
+        body = self.body(start="0001-01-01T00:00")
+        original = self.expect(legacy.request("POST", "/reservations", body, auth), 201)
+        self.assertTrue(original["starts_at"].endswith("+00:53:28"))
+        exported = self.expect(legacy.request("GET", "/_test/export"), 200)
+        self.expect(self.client.request("POST", "/_test/import", exported), 204)
+        self.assertEqual(self.exported(), exported)
+        self.assertEqual(self.expect(self.client.request("POST", "/reservations", body, auth), 200), original)
+        self.assertEqual(self.expect(self.client.request("GET", "/reservations/" + original["reference"], headers=auth), 200), original)
+        newer = self.expect(self.client.request("POST", "/reservations", self.body(start="0001-01-01T01:30"),
+            {**auth, "Idempotency-Key": "new-style"}), 201)
+        self.assertTrue(newer["starts_at"].endswith("+00:53"))
+        mixed = self.exported()
+        destination = Client(args.destination_url)
+        self.expect(destination.request("POST", "/_test/import", mixed), 204)
+        self.assertEqual(self.expect(destination.request("GET", "/_test/export"), 200), mixed)
+        self.assertEqual(self.expect(destination.request("POST", "/reservations", body, auth), 200), original)
 
 
 if __name__ == "__main__":

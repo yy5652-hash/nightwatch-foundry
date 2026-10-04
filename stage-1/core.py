@@ -141,6 +141,41 @@ def naive_at(value):
     return datetime(day.year, day.month, day.day, hour, minute, second, microsecond)
 
 
+def wire_timestamp(value):
+    """RFC3339 numeric-offset representation of the exact resolved instant.
+
+    Historical IANA offsets may contain seconds. Use the nearest representable
+    minute offset, adjusting the displayed clock rather than rounding the
+    instant. At an equal distance the lower numerical offset wins.
+    """
+    original_offset = delta_us(value.utcoffset())
+    if original_offset % MINUTE_US == 0:
+        return value.isoformat()
+    absolute = instant(value)
+    minimum_clock = DAY_US
+    maximum_clock = (date.max.toordinal() + 1) * DAY_US - 1
+    # ceil division is exact for both positive and negative integers.
+    lower = max(-1439, -((absolute - minimum_clock) // MINUTE_US))
+    upper = min(1439, (maximum_clock - absolute) // MINUTE_US)
+    if lower > upper:
+        fail(message="Instant has no representable RFC3339 timestamp")
+    floor = original_offset // MINUTE_US
+    candidates = {min(upper, max(lower, floor)), min(upper, max(lower, floor + 1))}
+    selected = min(candidates, key=lambda offset: (abs(offset * MINUTE_US - original_offset), offset))
+    wall = naive_at(absolute + selected * MINUTE_US)
+    return wall.replace(tzinfo=timezone(timedelta(minutes=selected))).isoformat()
+
+
+def assert_booking_fields(row, expected):
+    """Import validates timestamp instants without rewriting original strings."""
+    for key, value in expected.items():
+        if key in ("starts_at", "ends_at"):
+            if instant(timestamp(row.get(key))) != instant(timestamp(value)):
+                fail()
+        elif row.get(key) != value:
+            fail()
+
+
 def zoned_at(value, zone, hints):
     """Convert an absolute instant without requiring a representable UTC date.
 
@@ -411,8 +446,8 @@ class Engine:
         if party_size > table["capacity"]:
             fail(422, "party_exceeds_capacity")
         return {"restaurant_id": restaurant_id, "table_id": table_id, "party_size": party_size,
-                "starts_at_local": data["starts_at_local"], "starts_at": start.isoformat(),
-                "ends_at": end.isoformat()}
+                "starts_at_local": data["starts_at_local"], "starts_at": wire_timestamp(start),
+                "ends_at": wire_timestamp(end)}
 
     @staticmethod
     def _overlap(left, right):
@@ -445,7 +480,7 @@ class Engine:
         record = {"reservation_id": self._new_id("res_", {
             r["reservation_id"] for r in self._state["reservations"]}),
             "reference": reference, "user_id": user["id"], **fields, "status": "confirmed",
-            "created_at": datetime.now(UTC).isoformat()}
+            "created_at": wire_timestamp(datetime.now(UTC))}
         self._state["reservations"].append(record)
         return self._public(record)
 
@@ -462,7 +497,11 @@ class Engine:
         fields = {key: record[key] for key in (
             "restaurant_id", "table_id", "starts_at_local", "party_size")}
         fields.update({key: data[key] for key in ("table_id", "starts_at_local", "party_size") if key in data})
-        return {**record, **self._booking_fields(fields)}
+        revised = self._booking_fields(fields)
+        for key in ("starts_at", "ends_at"):
+            if instant(timestamp(revised[key])) == instant(timestamp(record[key])):
+                revised[key] = record[key]
+        return {**record, **revised}
 
     def _moves(self, user, data):
         moves = data.get("moves")
@@ -535,13 +574,13 @@ class Engine:
                 available = []
                 for table in restaurant["tables"]:
                     candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
-                                 "starts_at": start.isoformat(), "ends_at": end.isoformat()}
+                                 "starts_at": wire_timestamp(start), "ends_at": wire_timestamp(end)}
                     if table["capacity"] >= party and not any(
                             r["status"] == "confirmed" and self._overlap(candidate, r)
                             for r in self._state["reservations"]):
                         available.append(table["id"])
                 result["slots"].append({"starts_at_local": local.isoformat(timespec="minutes"),
-                    "starts_at": start.isoformat(), "available_table_ids": available})
+                    "starts_at": wire_timestamp(start), "available_table_ids": available})
         return result
 
     @staticmethod
@@ -626,7 +665,7 @@ class Engine:
             fields = self._booking_fields(row, state)
             record = {"reservation_id": reservation_id, "reference": reference,
                       "user_id": user_id, **fields, "status": "confirmed",
-                      "created_at": datetime.now(UTC).isoformat()}
+                      "created_at": wire_timestamp(datetime.now(UTC))}
             reservation_ids.add(reservation_id)
             references.add(reference)
             state["reservations"].append(record)
@@ -636,8 +675,8 @@ class Engine:
     def _validate_record(self, row, state, *, owner_required=True):
         row = object_body(row)
         fields = self._booking_fields(row, state)
-        if any(row.get(key) != value for key, value in fields.items()):
-            fail()
+        assert_booking_fields(row, fields)
+        fields.update({key: row[key] for key in ("starts_at", "ends_at")})
         record = {"reservation_id": text_field(row, "reservation_id", maximum=64),
                   "reference": text_field(row, "reference"), **fields,
                   "status": text_field(row, "status"), "created_at": text_field(row, "created_at")}
@@ -713,8 +752,7 @@ class Engine:
             if path == "/reservations":
                 snapshots = [response]
                 original_fields = self._booking_fields(body, state)
-                if any(response.get(k) != v for k, v in original_fields.items()):
-                    fail()
+                assert_booking_fields(response, original_fields)
             else:
                 moves = body.get("moves")
                 snapshots = response.get("reservations")
