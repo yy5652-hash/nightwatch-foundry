@@ -1,5 +1,14 @@
 # Measured factory facts for operator-authored documentation
 
+## Current Stage 2 acceptance and freeze (2026-10-04 06:41 UTC)
+
+Highest consecutive accepted stage is now 2. Stage 1 remains immutable at 75005d57fe0904753eac4eab5bf4e4c9a78b6d1b. Stage 2 is accepted at 4dba10246b07b2dda19de260d529f9d94ba0a1ed, tree 422380c814043021c2df2daad8edbbb34d5b5887. Full independent verdict is efd23ed509e039ca285012c0c1b23a952e8d92a0; concrete-file addendum is 9b0c7db9450a7a3b74a789dbe24e3bcfbaff1244. The original five directory-only links and failed coordinator audit remain preserved; the new complete matrix changes only those five evidence_path fields and passes all fourteen metadata/file checks with zero errors. Manifest: evidence/coordinator/accepted/stage-2.json. Both accepted source trees and all historical acceptance/revocation digests verify unchanged.
+
+Independent completed protocols: 8,455 HTTP-only requests / 9,398 assertions; eleven browser families / 1,134 assertions, 294 direct API operations, 1,603 browser-originated requests and 156 real screenshots, all completed assertions passing. Forwarded upgrade requests are separately scoped, not added as unique operations. Final matrix has 6,549 normative rows all verified, zero failed/unverified, plus 22 nonnormative diagnostics. Unchanged official isolated checks on the complete Stage 2 service: Stage 1 regression 120 collected/120 passed; Stage 2 25 collected/25 passed (8 API, 17 UI); all applicable failures/errors/skips/deselections/xfails zero. Separate Stage 3 overshoot collected 7, failed 1, left 6 unexecuted. Official wall time: 34.219868500 seconds. No Stage 3 acceptance is inferred.
+
+Fresh exact clean clone builds the complete nine-file service, offline 2 CPU/2 GiB/no mounts. Default/nondefault readiness measured 0.385168417 / 0.477205958 seconds before source inspection. Packaged hashes match the candidate; nine own cleanup commands exit zero. Genuine earlier-origin exports, open-browser retry recovery, deterministic independent member oracle seed 202610052 with 160 operations, exhaustive serial histories, concurrency, snapshots, deep exact JSON and scoped product/contrast evidence are in the full verdict. The 125 obsolete verifier expectation differences and one evidence-writer error remain distinct from current service failures, which are zero. Artifact private-session correction, shared-index provenance incident, adopted interpretations and finite-workload limits remain disclosed. Review activation-to-aggregation interval 1,807.946213 seconds; factory elapsed and final clean-clone checks are separate. Model override/effort/tokens/estimated and billed spend remain unknown.
+
+
 Run: TK-20261004. Track: tablekeeper. Official kickoff: 803560d2a678ace1414465c098eb0ab5380ffade.
 
 These are evidence notes for the human-authored README.md and FACTORY.md, not replacements for those documents.
