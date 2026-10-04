@@ -1,0 +1,17 @@
+test_genuine_accepted_stage1_export_tokens_and_original_receipts (__main__.StageTwo.test_genuine_accepted_stage1_export_tokens_and_original_receipts) ... FAIL
+
+======================================================================
+FAIL: test_genuine_accepted_stage1_export_tokens_and_original_receipts (__main__.StageTwo.test_genuine_accepted_stage1_export_tokens_and_original_receipts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-2-builder-probes.py", line 283, in test_genuine_accepted_stage1_export_tokens_and_original_receipts
+    self.expect(self.client.request("POST", "/_test/import", exported), 204)
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-2-builder-probes.py", line 78, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 422 != 204 : {'error': {'code': 'validation_failed', 'message': 'Invalid export envelope or state'}}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.183s
+
+FAILED (failures=1)
+Stage 2 builder integrity diagnostics; transport=Engine

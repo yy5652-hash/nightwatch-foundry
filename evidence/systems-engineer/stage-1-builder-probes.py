@@ -24,10 +24,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--url")
 parser.add_argument("--destination-url")
 parser.add_argument("--legacy-url")
+parser.add_argument("--stage", type=int, choices=(1, 2), default=1)
 args, unittest_args = parser.parse_known_args()
 if not args.url or not args.destination_url:
     root = Path(__file__).resolve().parents[2]
-    spec = importlib.util.spec_from_file_location("tablekeeper_builder_core", root / "stage-1/core.py")
+    spec = importlib.util.spec_from_file_location("tablekeeper_builder_core", root / f"stage-{args.stage}/core.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
 
@@ -419,7 +420,8 @@ class StageOne(unittest.TestCase):
         self.expect(self.client.request("POST", "/_test/import", exported), 204)
         self.assertEqual(self.exported(), exported)
         self.assertEqual(self.expect(self.client.request("POST", "/reservations", body, auth), 200), original)
-        self.assertEqual(self.expect(self.client.request("GET", "/reservations/" + original["reference"], headers=auth), 200), original)
+        lookup = {**original, "table_ids": [original["table_id"]]} if args.stage == 2 else original
+        self.assertEqual(self.expect(self.client.request("GET", "/reservations/" + original["reference"], headers=auth), 200), lookup)
         newer = self.expect(self.client.request("POST", "/reservations", self.body(start="0001-01-01T01:30"),
             {**auth, "Idempotency-Key": "new-style"}), 201)
         self.assertTrue(newer["starts_at"].endswith("+00:53"))
