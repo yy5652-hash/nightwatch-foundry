@@ -5,6 +5,8 @@ HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
  p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True);p.add_argument('--revision',required=True);a=p.parse_args()
  runtime=Path(a.runtime).resolve();out=Path(a.out).resolve();assert out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
+ a.revision=subprocess.check_output(['git','rev-parse',a.revision],cwd=R,text=True).strip()
+ assert len(a.revision)==40
  f=json.loads((runtime/'preflight.json').read_text());context=out/'context';context.mkdir();manifest=[];commands=[]
  for folder in ('stage-1','stage-2','stage-3'):
   target=context/folder;target.mkdir()
