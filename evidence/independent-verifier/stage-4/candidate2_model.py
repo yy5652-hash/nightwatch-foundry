@@ -15,7 +15,7 @@ def integers(v):
     return v
 def stripped(entries):return [{k:v for k,v in e.items() if k!='at'} for e in entries]
 def run(c):
-    controls=[control(i) for i in range(160)];(c.out/'small-unpruned-controls.json').write_bytes(raw(saved(controls)))
+    controls=[control(i) for i in range(160)];c.saved_artifacts={'small-unpruned-controls.json':raw(saved(controls))}
     c.seed();anchor=c.make();series=c.adopt(anchor,count=4)
     refs=[o['reference'] for o in series['occurrences']]
     c.response('model-setup-exception',c.call('PATCH','/reservations/'+refs[1],dict(party_size=2),token=c.tokens['u']),200)
@@ -67,10 +67,12 @@ def run(c):
             c.check('model-failure-raw-atomic',before==c.export());c.check('model-failure-reference-atomic',model_before==m.snapshot())
         elif kind!='replay':receipts.append((path,body,who,key,copy.deepcopy(result)))
         statecheck(index);traces.append(dict(index=index,kind=kind,path=path,body=body,expected_error=expected_error,restaurant_revision=m.restaurant_revision,series_revision=m.series[series['series_id']]['revision'],request_count=c.count))
-    (c.out/'actual-model-operation-traces.json').write_bytes(raw(traces));(c.out/'model-summary.json').write_text(json.dumps(dict(seed=SEED,actual_operations=160,small_unpruned_controls=160,private_state_saved=False),indent=2)+'\n')
+    c.saved_artifacts.update({'actual-model-operation-traces.json':raw(traces),'model-summary.json':(json.dumps(dict(seed=SEED,actual_operations=160,small_unpruned_controls=160,private_state_saved=False),indent=2)+'\n').encode()})
 def main():
     p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);a=p.parse_args();release=validate(json.loads(Path(a.release).read_text()));c=Client(release['urls']['target'],a.out,release['candidate']);error=None
     try:run(c)
     except BaseException as exc:error=repr(exc);raise
-    finally:c.save(error)
+    finally:
+        c.save(error)
+        for name,data in getattr(c,'saved_artifacts',{}).items():(c.out/name).write_bytes(data)
 if __name__=='__main__':main()

@@ -33,7 +33,7 @@ def prefix(c,release):
                 replay=c.response('atomic-prefix-original-apply-receipt',c.call('POST','/restaurants/r/replans/'+p['plan_id']+'/apply',{},token=c.tokens['m'],key='whole-'+str(wave),url=release['urls']['peer']),200)
                 c.check('atomic-prefix-receipt',same(replay,applied))
             snapshots.append(dict(wave=wave,index=index,bytes=len(body),sha256=sha(body),prefix='before' if body==before else 'after',unchanged_raw_transfer=True,private_bytes_saved=False))
-    (c.out/'raw-prefix-traces.json').write_text(json.dumps(snapshots,indent=2)+'\n')
+    c.saved_artifacts={'raw-prefix-traces.json':(json.dumps(snapshots,indent=2)+'\n').encode()}
 def invalid(c,release):
     s,t,p=prepare(c);c.response('atomic-invalid-apply',c.apply(p),201)
     c.response('atomic-invalid-cancel',c.call('POST','/reservations/'+s['occurrences'][2]['reference']+'/cancel',{},token=c.tokens['u']),200)
@@ -77,10 +77,12 @@ def invalid(c,release):
         c.response('atomic-invalid-original-accepted',c.transfer(c.base,c.base,before),204)
         c.check('atomic-invalid-original-preserved',before==c.export())
         traces.append(dict(case=kind,request_bytes=len(payload),request_sha256=sha(payload),expected_status=422,private_payload_saved=False))
-    (c.out/'corruption-traces.json').write_text(json.dumps(traces,indent=2)+'\n')
+    c.saved_artifacts={'corruption-traces.json':(json.dumps(traces,indent=2)+'\n').encode()}
 def main():
     p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--family',choices=['prefix','invalid'],required=True);a=p.parse_args();release=validate(json.loads(Path(a.release).read_text()));c=Client(release['urls']['target'],a.out,release['candidate']);error=None
     try:(prefix if a.family=='prefix' else invalid)(c,release)
     except BaseException as exc:error=repr(exc);raise
-    finally:c.save(error)
+    finally:
+        c.save(error)
+        for name,data in getattr(c,'saved_artifacts',{}).items():(c.out/name).write_bytes(data)
 if __name__=='__main__':main()
