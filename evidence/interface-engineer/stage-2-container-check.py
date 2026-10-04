@@ -91,7 +91,7 @@ try:
     args=['docker','run','--rm','--name',runner,'--network',network,'--cpus','2','--memory','2g',
         '-v',str(ROOT/'evidence/interface-engineer/stage-2-browser-probe.py')+':/work/probe.py:ro',
         '-v',str(OUT)+':/out','-e','S2_BASE=http://'+service+':9090','-e','S1_BASE=http://'+legacy+':8080',
-        '-e','S1_HIST_BASE=http://'+historic+':8080','-e','S1_HIST_REVISION='+historic_revision,
+        '-e','S1_HIST_BASE=http://'+historic+':8080','-e','S1_HIST_REVISION='+historic_revision,'-e','S2_DEST_BASE=http://'+default+':8080',
         '-e','CANDIDATE='+candidate,'-e','PROBE_OUT=/out','df-harness-runner:latest','python','-B','/work/probe.py']
     output=run(args,'browser',check=False)
     result=json.loads((OUT/'browser-report.json').read_text())

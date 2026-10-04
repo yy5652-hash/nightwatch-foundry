@@ -7,10 +7,15 @@ import asyncio
 import copy
 import json
 import os
+import sys
 import time
 import traceback
 from pathlib import Path
 from playwright.async_api import async_playwright, expect
+
+# The client oracle must encode/decode the same unbounded valid decimal integers.
+# This is confined to the probe process inside the dependency-runner container.
+sys.set_int_max_str_digits(0)
 
 BASE = os.environ["S2_BASE"]
 LEGACY = os.environ["S1_BASE"]
@@ -570,6 +575,58 @@ async def local_end_display(context,page,zone,local,expected,legacy=False):
     await screenshots(page,('legacy-' if legacy else '')+'local-end-'+zone.replace('/','-')+'-'+local[:10])
     check(observed.endswith(' · '+expected),'restaurant-local end display '+zone+' '+local)
 
+async def huge_decimal_transport(context,page):
+    import urllib.parse
+    huge=10**4300+1
+    fixture=copy.deepcopy(FIXTURE);restaurant=fixture['restaurants'][0]
+    restaurant['tables'][0]['capacity']=huge;restaurant['slot_minutes']=huge
+    status,_=await request(context,BASE,'/_test/reset','POST',raw=json.dumps(fixture))
+    check(status==204,'4301-digit raw numeric JSON reset')
+    status,detail=await request(context,BASE,'/restaurants/r_garden')
+    check(status==200 and type(detail['tables'][0]['capacity']) is int and detail['tables'][0]['capacity']==huge,'4301-digit exact integer response')
+    query=urllib.parse.urlencode({'restaurant_id':'r_garden','date':DATE,'party_size':str(huge)})
+    status,availability=await request(context,BASE,'/availability?'+query)
+    check(status==200 and len(availability['slots'])==1 and availability['slots'][0]['available_table_ids']==['t_window'],'4301-digit plain decimal query and grid count')
+    status,auth=await request(context,BASE,'/auth/login','POST',{'email':'ada@example.test','password':'correct horse'})
+    check(status==200,'huge transport real token')
+    body={'restaurant_id':'r_garden','table_id':'t_window','starts_at_local':DATE+'T18:00','party_size':huge,'ignored_number':huge}
+    status,original=await request(context,BASE,'/reservations','POST',raw=json.dumps(body),token=auth['token'],key='huge-raw-original')
+    check(status==201 and type(original['party_size']) is int and original['party_size']==huge,'huge raw create preserves integer and ignores unknown numeric field')
+    exported=await context.request.get(BASE+'/_test/export');snapshot=await exported.text()
+    check(exported.status==200,'huge exact export encoded without digit ceiling')
+    destination=os.environ['S2_DEST_BASE']
+    status,_=await request(context,destination,'/_test/import','POST',raw=snapshot)
+    check(status==204,'unchanged huge export imported into independent process')
+    status,current=await request(context,destination,'/reservations/'+original['reference'],token=auth['token'])
+    check(status==200 and current==original,'huge record and token survive independent import')
+    status,replay=await request(context,destination,'/reservations','POST',raw=json.dumps(body),token=auth['token'],key='huge-raw-original')
+    check(status==200 and replay==original,'huge original receipt and parsed body replay after import')
+    wrong=dict(body,party_size=str(huge))
+    status,error=await request(context,destination,'/reservations','POST',wrong,auth['token'],'huge-wrong-type')
+    check(status==422 and error['error']['code']=='validation_failed','large string party remains invalid')
+    status,error=await request(context,destination,'/reservations','POST',wrong,auth['token'],'huge-raw-original')
+    check(status==409 and error['error']['code']=='idempotency_key_reuse','large changed body conflicts before type validation')
+    for invalid in ['1e4300','4.0','+4','-'+str(huge)]:
+        query=urllib.parse.urlencode({'restaurant_id':'r_garden','date':DATE,'party_size':invalid})
+        status,error=await request(context,BASE,'/availability?'+query)
+        check(status==422 and error['error']['code']=='validation_failed','strict decimal query refusal '+invalid[:12])
+    restaurant['slot_minutes']=30;restaurant['reservation_duration_minutes']=huge
+    status,_=await request(context,BASE,'/_test/reset','POST',raw=json.dumps(fixture))
+    check(status==204,'4301-digit duration fixture accepted')
+    status,value=await request(context,BASE,'/availability?restaurant_id=r_garden&date='+DATE+'&party_size=2')
+    check(status==200 and value['slots']==[],'huge absolute duration has no fitting slots')
+    restaurant['reservation_duration_minutes']=60;restaurant['cancellation_cutoff_minutes']=huge
+    status,_=await request(context,BASE,'/_test/reset','POST',raw=json.dumps(fixture))
+    check(status==204,'4301-digit cutoff fixture accepted')
+    _,auth=await request(context,BASE,'/auth/login','POST',{'email':'ada@example.test','password':'correct horse'})
+    status,record=await request(context,BASE,'/reservations','POST',dict(body,party_size=2),auth['token'],'huge-cutoff-create')
+    check(status==201,'huge cutoff still permits real booking')
+    status,error=await request(context,BASE,'/reservations/'+record['reference']+'/cancel','POST',token=auth['token'])
+    check(status==409 and error['error']['code']=='cutoff_passed','huge cutoff gives ordinary stable refusal')
+    status,current=await request(context,BASE,'/reservations/'+record['reference'],token=auth['token'])
+    check(status==200 and current==record,'cutoff refusal leaves record unchanged')
+    REPORT['trace'].append({'scenario':'huge-decimal-transport','digits':4301,'independent_destination':True,'original_receipt_preserved':True,'json_type':'integer','base_counts':['capacity','slot_minutes','reservation_duration_minutes','cancellation_cutoff_minutes']})
+
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
     start=time.perf_counter()
@@ -585,6 +642,8 @@ async def main():
             ("party-above-safe-integer",lambda c,p:large_party_exactness(c,p,9007199254740993)),
             ("party-31-digits",lambda c,p:large_party_exactness(c,p,10**30+1)),
             ("party-401-digits",lambda c,p:large_party_exactness(c,p,10**400+1)),
+            ('party-4301-digits',lambda c,p:large_party_exactness(c,p,10**4300+1)),
+            ('huge-decimal-transport',huge_decimal_transport),
             ("exact-numeric-keyboard-corrupt-response",corrupt_response_and_numeric_keyboard)]
         end_cases=[('berlin-historic','Europe/Berlin','0001-01-01T18:00','19:30'),
             ('brussels-historic','Europe/Brussels','0001-01-01T18:00','19:30'),
