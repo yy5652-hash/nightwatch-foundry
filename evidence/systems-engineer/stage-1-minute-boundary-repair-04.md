@@ -24,3 +24,17 @@ Production diff deletes only the five-line obsolete check in `stage-1/core.py`. 
 Command `../../.venv/bin/python -B evidence/systems-engineer/stage-1-builder-probes.py` passed all 15 scenarios without skips in 1.972 s. Evidence: `stage-1-minute-regression-04.log`. Existing calendar endpoints, historic RFC3339 interpretation, genuine earlier-service receipt import, current-service import, DST, concurrency, swaps and rollback diagnostics remain included. Constrained fresh-image HTTP execution follows in an append-only entry.
 
 Only Systems-owned core/evidence files changed. Engine.request and the export schema remain unchanged. Stage 2 is not implemented. The coordinator's historic timestamp interpretation exception remains applicable: exact IANA instants/original wall fields are preserved using adjusted minute-offset wire clocks; successful imported legacy receipt strings are retained. Independent exact-revision re-execution is required before freeze. Harness Codex; configured gpt-6.1-sol; actual override, effort, usage and spend unknown.
+
+## Committed implementation and constrained HTTP result
+
+Implementation revision: `2a4b0408a3453bc87d86bca3d0ec571f479e03ca`. Build command `docker build -t systems-engineer-tablekeeper-s1:minute-04 stage-1` passed; `stage-1-minute-build-04.log` preserves output. Build cache was available; this is not an uncached-build claim.
+
+The full 15-scenario suite passed without skips over HTTP in 2.581 s (`stage-1-minute-http-04.log`). Two repaired service processes and one genuine prior serializer-free service ran independently, each at 2 CPU/2 GiB with no mounts on an internal Docker network. Ports: current source 18110, current destination 18111, legacy source 18112. All image core hashes match their named committed implementations, including legacy `49287b4a5a1481f995c470ccae31776f03d4b863`. The huge configurations were transferred between independent repaired processes; earlier receipt compatibility was checked against the genuine prior service. Export credentials/tokens remained in memory.
+
+Exact suite command:
+
+```sh
+docker exec -i systems-engineer-s1-minute-source-04 python - --url http://127.0.0.1:18110 --destination-url http://systems-engineer-s1-minute-destination-04:18111 --legacy-url http://systems-engineer-s1-minute-legacy-04:18112 < evidence/systems-engineer/stage-1-builder-probes.py
+```
+
+`stage-1-minute-runtime-04.json` records all exact setup/health/hash/probe/cleanup argv, revision/hash equality and resource/network observations. All three Systems-owned probe containers and their internal network were removed with zero cleanup return codes; the unchanged pre-repair reproduction container was also removed. Images are retained. Prior failed observations remain unchanged. This new full candidate requires independent review before the coordinator freezes Stage 1; builder diagnostics do not promote it or establish hidden-suite coverage.

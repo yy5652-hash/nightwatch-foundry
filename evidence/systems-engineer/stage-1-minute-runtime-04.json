@@ -1,0 +1,294 @@
+{
+  "implementation_revision": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "systems-engineer-s1-minute-net-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "inspect",
+        "systems-engineer-s1-minute-net-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s1-minute-source-04",
+        "--network",
+        "systems-engineer-s1-minute-net-04",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18110",
+        "systems-engineer-tablekeeper-s1:minute-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-minute-source-04",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18110/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s1-minute-source-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "2a4b0408a3453bc87d86bca3d0ec571f479e03ca:stage-1/core.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-minute-source-04",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s1-minute-destination-04",
+        "--network",
+        "systems-engineer-s1-minute-net-04",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18111",
+        "systems-engineer-tablekeeper-s1:minute-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-minute-destination-04",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18111/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s1-minute-destination-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "2a4b0408a3453bc87d86bca3d0ec571f479e03ca:stage-1/core.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-minute-destination-04",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s1-minute-legacy-04",
+        "--network",
+        "systems-engineer-s1-minute-net-04",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18112",
+        "systems-engineer-tablekeeper-s1:calendar-02"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-minute-legacy-04",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18112/health',timeout=1).status==200\n  break\n except Exception:\n  time.sleep(.05)\nelse: raise RuntimeError('health timeout')"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s1-minute-legacy-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "49287b4a5a1481f995c470ccae31776f03d4b863:stage-1/core.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-minute-legacy-04",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-s1-minute-source-04",
+        "python",
+        "-",
+        "--url",
+        "http://127.0.0.1:18110",
+        "--destination-url",
+        "http://systems-engineer-s1-minute-destination-04:18111",
+        "--legacy-url",
+        "http://systems-engineer-s1-minute-legacy-04:18112"
+      ],
+      "stdin": "evidence/systems-engineer/stage-1-builder-probes.py",
+      "returncode": 0
+    }
+  ],
+  "containers": [
+    {
+      "name": "systems-engineer-s1-minute-source-04",
+      "port": 18110,
+      "image": "systems-engineer-tablekeeper-s1:minute-04",
+      "revision": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+      "expected_core_sha256": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+      "actual_core_sha256": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s1-minute-net-04",
+      "running": true,
+      "mounts": []
+    },
+    {
+      "name": "systems-engineer-s1-minute-destination-04",
+      "port": 18111,
+      "image": "systems-engineer-tablekeeper-s1:minute-04",
+      "revision": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+      "expected_core_sha256": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+      "actual_core_sha256": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s1-minute-net-04",
+      "running": true,
+      "mounts": []
+    },
+    {
+      "name": "systems-engineer-s1-minute-legacy-04",
+      "port": 18112,
+      "image": "systems-engineer-tablekeeper-s1:calendar-02",
+      "revision": "49287b4a5a1481f995c470ccae31776f03d4b863",
+      "expected_core_sha256": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+      "actual_core_sha256": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+      "cpus": 2.0,
+      "memory_bytes": 2147483648,
+      "network": "systems-engineer-s1-minute-net-04",
+      "running": true,
+      "mounts": []
+    }
+  ],
+  "cleanup": [
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s1-minute-legacy-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s1-minute-destination-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s1-minute-source-04"
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "systems-engineer-s1-minute-net-04"
+      ],
+      "returncode": 0
+    }
+  ],
+  "network": true,
+  "wall_seconds": 4.113841625
+}
