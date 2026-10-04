@@ -112,6 +112,29 @@ def scopes(c,release):
 
 def pathcall(c,path,body,token,key):return c.call('POST',path,body,token=token,key=key)
 
+def selection(c,release):
+    f=fixture();f['restaurants'][1]['manager_user_ids']=[];c.setup(f)
+    pair=c.make(seats=('a','b'),party=4);before=c.make(local=DAY+'T17:30',key='before');after=c.make(seats=('d',),local=DAY+'T18:30',key='after');cancelled=c.make(seats=('f',),key='cancelled')
+    c.response('selection-cancel',c.call('POST','/reservations/'+cancelled['reference']+'/cancel',{},token=c.tokens['u']),200)
+    other=c.response('selection-other-owner',c.call('POST','/reservations',dict(restaurant_id='r',table_id='c',starts_at_local=DAY+'T18:00',party_size=1),token=c.tokens['v'],key='other-owner'),201)
+    c.response('selection-other-restaurant',c.call('POST','/reservations',dict(restaurant_id='r2',table_id='x',starts_at_local=DAY+'T18:00',party_size=1),token=c.tokens['u'],key='other-restaurant'),201)
+    refuse(c,'preview-restaurant-manager',lambda:c.call('POST','/restaurants/r2/replans',closure(table='x'),token=c.tokens['m'],key='restaurant-permission'),403,'forbidden')
+    old=parse(c.export());body=closure(table='f',end=DAY+'T18:30:00+00:00');p=c.preview(body);now=parse(c.export())
+    for field in old['state']:
+        if field not in ['plans','receipts']:c.check('preview-readonly-'+field,same(old['state'][field],now['state'][field]))
+    c.check('preview-selection',sorted(a['reference'] for a in p['assignments'])==sorted([pair['reference'],other['reference']]))
+    c.check('preview-set-equality',all(a['changed'] is False for a in p['assignments']) and next(a for a in p['assignments'] if a['reference']==pair['reference'])['table_ids']==['b','a'])
+    c.check('preview-plan-id',isinstance(p['plan_id'],str) and 1<=len(p['plan_id'])<=64)
+    c.check('preview-response-closure',same(p['closure'],body))
+    c.response('selection-unrelated-write',c.call('POST','/reservations',dict(restaurant_id='r2',table_id='x',starts_at_local=DAY+'T19:00',party_size=1),token=c.tokens['u'],key='unrelated'),201)
+    histories={r:c.history(r) for r in [pair['reference'],before['reference'],after['reference'],cancelled['reference']]};applied=c.response('apply-other-restaurant',c.apply(p),201);new=parse(c.export())
+    c.check('apply-response-id',applied['plan_id']==p['plan_id']);c.check('apply-response-all',[r['reference'] for r in applied['reservations']]==sorted([pair['reference'],other['reference']]))
+    for prior in old['state']['reservations']:
+        current=next(r for r in new['state']['reservations'] if r['reference']==prior['reference']);c.check('selection-identity-owner-status',all(same(prior[k],current[k]) for k in ['reservation_id','reference','user_id','created_at','starts_at','ends_at','starts_at_local','party_size','status','accepted_terms','table_ids','revision']))
+    for ref,h in histories.items():c.check('apply-unmoved-history',same(h,c.history(ref)))
+    c.check('revision-apply-once',integer(applied['restaurant_revision'])==integer(p['restaurant_revision'])+1)
+    refuse(c,'apply-already-before-stale',lambda:c.apply(p,key='fresh-applied'),409,'plan_already_applied')
+
 def competing(c,release):
     c.seed();s=c.adopt(c.make(),count=3);plans=[c.preview(key='p'+str(i)) for i in range(50)];barrier=threading.Barrier(50)
     def op(i):barrier.wait();return c.apply(plans[i],key='different'+str(i))
@@ -140,7 +163,7 @@ def private(c,release):
     c.make(seats=('b','a'),party=7);p=c.preview();template=parse(c.export());template['state']['plans'][p['plan_id']]['assignments'][0]['table_ids'].reverse()
     before=c.export();c.response('private-state-invalid-plan-rank',c.call('POST','/_test/import',body=raw(template)),422,'validation_failed');c.check('private-state-invalid-plan-rank',before==c.export())
 
-FAMILIES=dict(calendar=calendar,closures=closures,scopes=scopes,competing=competing,private=private)
+FAMILIES=dict(calendar=calendar,closures=closures,scopes=scopes,selection=selection,competing=competing,private=private)
 def main():
     p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--family',choices=FAMILIES,required=True);a=p.parse_args();r=validate(json.loads(Path(a.release).read_text()));c=Client(r['urls']['target'],a.out,r['candidate']);error=None
     try:FAMILIES[a.family](c,r)
