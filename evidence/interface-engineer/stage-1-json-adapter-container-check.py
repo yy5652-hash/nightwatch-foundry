@@ -12,6 +12,7 @@ import time
 ROOT = Path(__file__).resolve().parents[2]
 parser = argparse.ArgumentParser()
 parser.add_argument("--revision", required=True)
+parser.add_argument("--probe-revision", help="Named own diagnostic source revision; defaults to service revision")
 args = parser.parse_args()
 stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ").lower()
 slug = "interface-engineer-json-adapter-"+stamp
@@ -78,9 +79,11 @@ try:
     check("Frozen core and entire Stage2 remain unchanged", execute(["git", "diff", baseline, "--", "stage-1/core.py", "stage-2"], cwd=clone) == b'')
     for f in files[:3]:
         ast.parse((clone / "stage-1" / f).read_text())
-    probe_source = {f: (clone / "evidence/interface-engineer" / f).read_bytes() for f in probe_files}
+    probe_revision = args.probe_revision or candidate
+    probe_source = {f: execute(["git", "show", probe_revision+":evidence/interface-engineer/"+f]) for f in probe_files}
     (out / "source-proof.json").write_text(json.dumps({"candidate":candidate,"stage1_tree":tree,"clone":str(clone),
         "source_sha256":source,"module_revision":module_revision,"frozen_core_stage2_baseline":baseline,
+        "probe_revision":probe_revision,"driver_sha256":sha(Path(__file__).read_bytes()),
         "probe_sha256":{f:sha(data) for f,data in probe_source.items()},
         "scope":"Adapter/image intermediate only; complete codec/core receipt integration pending"},indent=2)+'\n')
     execute(["docker", "build", "-t", image, str(clone / "stage-1")], output="build.log")
@@ -138,7 +141,7 @@ finally:
     if any(r["returncode"] for r in cleanup):
         errors.append("Own cleanup returned nonzero")
     elapsed=time.monotonic()-start
-    (out / "run.json").write_text(json.dumps({"candidate":args.revision,"commands":commands,"checks":checks,"errors":errors,
+    (out / "run.json").write_text(json.dumps({"candidate":args.revision,"probe_revision":args.probe_revision or args.revision,"commands":commands,"checks":checks,"errors":errors,
         "resources":resources,"cleanup":cleanup,"elapsed_seconds":elapsed,"clone":str(clone),"image_retained":image,
         "model":"operator-configured gpt-6.1-sol","runtime_override_effort_usage_cost":"unknown","build_cache":"available; actual log retained"},indent=2)+'\n')
     print(json.dumps({"candidate":args.revision,"out":str(out),"seconds":elapsed,"failures":errors}))
