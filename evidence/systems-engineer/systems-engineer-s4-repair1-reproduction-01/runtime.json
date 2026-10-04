@@ -1,0 +1,123 @@
+{
+  "started_utc": "2026-10-04T09:20:11.886745+00:00",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s4-repro-092011886674",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "sha256:934973ca96214e3ce4ca5bfeb26be956724e66550e7a577236654e81552aada2"
+      ],
+      "exit": 0,
+      "seconds": 1.2793975000022328,
+      "log": "command-00"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s4-repro-092011886674",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor i in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:8080/health',timeout=.5).status==200\n  break\n except Exception:time.sleep(.05)\nelse:raise RuntimeError('health')"
+      ],
+      "exit": 0,
+      "seconds": 0.23015470900281798,
+      "log": "command-01"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s4-repro-092011886674"
+      ],
+      "exit": 0,
+      "seconds": 0.023685666994424537,
+      "log": "command-02"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s4-repro-092011886674",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "exit": 0,
+      "seconds": 0.04473404199961806,
+      "log": "command-03"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "261e4d9456a04a8b57ed46db71a09ac267ff15a9:stage-4/core.py"
+      ],
+      "exit": 0,
+      "seconds": 0.012516916001914069,
+      "log": "command-04"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-s4-repro-092011886674",
+        "python",
+        "-"
+      ],
+      "exit": 1,
+      "seconds": 0.29943812499550404,
+      "log": "command-05"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s4-repro-092011886674"
+      ],
+      "exit": 0,
+      "seconds": 0.05593300000327872,
+      "log": "command-06"
+    }
+  ],
+  "candidate": "261e4d9456a04a8b57ed46db71a09ac267ff15a9",
+  "fresh_build": false,
+  "service_image": "sha256:934973ca96214e3ce4ca5bfeb26be956724e66550e7a577236654e81552aada2",
+  "method": "actual HTTP; client runs via docker exec in the constrained service",
+  "probe_sha256": "0aa2b0888e99179004a26b34583c41a03d06a528dc315f6bdab3a88955b92071",
+  "constraints": {
+    "cpu": 2,
+    "memory_bytes": 2147483648,
+    "mounts": [],
+    "network": "none"
+  },
+  "packaged_core_sha256": "3110194d739e36f715c62b8166ef3c8a559fccfb0c56d9150e368971b33c899d",
+  "result": "reproduced twelve wrong-type cases; 24 status/code assertions fail as expected",
+  "summary": {
+    "method": "HTTP",
+    "started_utc": "2026-10-04T09:20:13.577500+00:00",
+    "finished_utc": "2026-10-04T09:20:13.765664+00:00",
+    "requests": 185,
+    "assertions": 197,
+    "failed": 24,
+    "wrong_type_cases": 12,
+    "interval_cases": 27,
+    "seconds": 0.18817441699999993,
+    "maximum_request_seconds": 0.049644749999999904,
+    "private_exports_saved": false
+  },
+  "cleanup_exit": 0,
+  "finished_utc": "2026-10-04T09:20:13.836243+00:00",
+  "wall_seconds": 1.9494792080004117
+}
