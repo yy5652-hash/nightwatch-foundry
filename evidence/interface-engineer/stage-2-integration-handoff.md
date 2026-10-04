@@ -2,10 +2,12 @@
 
 **Update 2026-10-04:** the large-integer boundary, exact visible status and
 restaurant-local end-time repairs supersede the original candidate/counts below.
-Current tested full revision is `87b816c63b59032e2bea6130a0b0308c47e9f6b0`:
-**32/32 scenarios, 510 assertions PASS**. Scoped end-time report:
-`stage-2-local-end-repair.md`. The separate 4301-digit core boundary is pending
-Systems' committed repair and is not claimed verified by this run.
+Current tested full revision is `16aee9f0ea10de5b8fa81a84429cc337c3c4490f`:
+**34/34 scenarios, 557 assertions PASS**. Scoped reports:
+`stage-2-local-end-repair.md` and `stage-2-integrated-digit-boundary.md`.
+This latest image includes Systems' committed Stage 2 integer-limit repair.
+Frozen Stage 1's separately reported boundary still requires coordinator routing
+and independent review; Interface did not edit its production files.
 Original results and failures remain preserved. Independent acceptance is pending.
 
 Interface implementation is complete for independent review. This is builder

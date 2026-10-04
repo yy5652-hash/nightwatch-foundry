@@ -87,3 +87,16 @@ real original-receipt replay and cleanup are recorded. A probe-only wrong-status
 assertion was preserved before correction in a separate commit. Integer-limit
 ownership was coordinated with Systems through room message
 `5fe7bfdc-53c9-471e-8a3f-0650b4219259`; Interface made no core or frozen Stage 1 edits.
+
+## Integrated 4301-digit boundary input and verification
+
+Systems elected the process-local startup change and committed it at
+`cf10edbcd2fc43a4458b1c8a12d441c3a292d7bf`. It became committed while the earlier
+historical evidence was being recorded. I therefore did not claim that evidence
+successor shared the earlier tested service tree. I added original outside-folder
+browser/raw HTTP/independent-process import cases, and enabled unlimited integer
+conversion solely in the containerized probe's Python process so its oracle could
+encode/decode valid large numeric tokens. No adapter/production change was needed.
+The final exact combined image was independently built and executed by Interface;
+no Systems or verifier test code was read or copied. Interface production files
+remain frozen after the end-time repair pending the independent review.

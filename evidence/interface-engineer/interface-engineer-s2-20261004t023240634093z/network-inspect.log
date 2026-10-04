@@ -1,0 +1,73 @@
+[
+    {
+        "Name": "interface-engineer-s2-20261004t023240634093z",
+        "Id": "c1e0ddce05ee75a6c1334803152f2247384f019f2925e7c89bd0069b2f188139",
+        "Created": "2026-10-04T02:32:42.571901376Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "03834bfaedfb41964361f56067a82882e8aceb4b4d4c99c1a80e6b6e617ff224": {
+                "Name": "interface-engineer-s2-20261004t023240634093z-default",
+                "EndpointID": "ab8724de87c9e0a59812c04fbfd122e53299f302d4836167cd1c9996b4142958",
+                "MacAddress": "42:5b:c2:1d:02:ee",
+                "IPv4Address": "172.18.0.4/16",
+                "IPv6Address": ""
+            },
+            "3d304b6364452ac47954f9d59f5fe37d1a6bed618427cf53f8e91a8c833bf3d1": {
+                "Name": "interface-engineer-s2-20261004t023240634093z-historic",
+                "EndpointID": "d386f2ddf6e0876a7bcf953b7bc20e2f2fa176d975d015ad0857b21234b4aefa",
+                "MacAddress": "c6:ef:d5:f0:1b:e5",
+                "IPv4Address": "172.18.0.5/16",
+                "IPv6Address": ""
+            },
+            "900753209ee0801be6a06d4937ce59c1227d627e79eac4d7564df6c604f49beb": {
+                "Name": "interface-engineer-s2-20261004t023240634093z-service",
+                "EndpointID": "9e2f22237137fda5d4d747df3b1ac2c9a9d9e7950265c598cf19390247181558",
+                "MacAddress": "56:a9:09:e1:41:8c",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            },
+            "a533d9973b5d6eda137547946701cfc5fb3288c6827658e55e898eee98a521ac": {
+                "Name": "interface-engineer-s2-20261004t023240634093z-legacy",
+                "EndpointID": "572120de6272ffb40ca0f4fda350a259b3b6cfaadbe50161a4183f21def856bb",
+                "MacAddress": "96:79:06:88:df:90",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 7,
+                        "DynamicIPsAvailable": 65529
+                    }
+                }
+            }
+        }
+    }
+]
