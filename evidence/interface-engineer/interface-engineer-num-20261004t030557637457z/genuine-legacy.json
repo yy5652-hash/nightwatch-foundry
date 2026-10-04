@@ -1,0 +1,330 @@
+{
+  "seconds": 0.056631624999909036,
+  "operations": 18,
+  "assertions": 37,
+  "passed": 37,
+  "failed": 0,
+  "stored_public_number_observation": {
+    "float_type": "float",
+    "float_repr": "9007199254740992.0",
+    "integer_type": "int",
+    "integer_decimal": "9007199254740993",
+    "receipt_has_parser_profile": false,
+    "state_schema": 1,
+    "state_fingerprint": "4b78e2416a4976954c5ddd16f520d87d3fb028f9c3de6d3d1b15e94425c83403"
+  },
+  "results": [
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Genuine earlier service reset",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Genuine earlier service issues session",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Genuine source issues original receipt",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Legacy export genuinely contains rounded float",
+      "passed": true
+    },
+    {
+      "name": "Legacy export integer leaf remains exact",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Frozen current accepts genuine unmodified old export",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Independent destination retains exact prior state",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Real source session/reference retained",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Same original decimal token recovers real receipt",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Other token with same old float meaning replays",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Different old parsed float value conflicts",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Integer token must not be rounded into old float receipt",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Exact integer equal to stored old value replays",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Real source session/reference retained",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Same original decimal token recovers real receipt",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Other token with same old float meaning replays",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Different old parsed float value conflicts",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Integer token must not be rounded into old float receipt",
+      "passed": true
+    },
+    {
+      "name": "JSON response framing",
+      "passed": true
+    },
+    {
+      "name": "Exact integer equal to stored old value replays",
+      "passed": true
+    }
+  ],
+  "trace": [
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/_test/reset",
+      "status": 204,
+      "code": null,
+      "request_sha256": "4d5c137f10ed2bf875367dc794bd029d15637b71d61ea40ce420171aced97537",
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "code": null,
+      "request_sha256": "fc27ecbd02b012adf920c02e66d295555e053cb4c7f365838d96a3160fa91475",
+      "response_sha256": "bfd25dc47870a516abd0b6682f076293ac282021698d635c0aa492528cf90b59"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 201,
+      "code": null,
+      "request_sha256": "5163f60397f4a06f56d9b2203de56a745909b4e4c8a2329b7c87222ac5f5ae56",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 0,
+      "method": "GET",
+      "path": "/_test/export",
+      "status": 200,
+      "code": null,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "response_sha256": "abd809034766910ac5bbd0dc48c15d885ad61be700f4a8ed67baaadecd1d100f"
+    },
+    {
+      "process": 1,
+      "method": "POST",
+      "path": "/_test/import",
+      "status": 204,
+      "code": null,
+      "request_sha256": "eea777d6011535279be4b3017887191386519bfcaab61cb4ec6ea76685bb5285",
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "process": 1,
+      "method": "GET",
+      "path": "/_test/export",
+      "status": 200,
+      "code": null,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "response_sha256": "8a886a38329cb44d42d97a2b426224580938a6f178a124f647ee1734c992d98d"
+    },
+    {
+      "process": 0,
+      "method": "GET",
+      "path": "/reservations/E7B6F7EBD4",
+      "status": 200,
+      "code": null,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 200,
+      "code": null,
+      "request_sha256": "5163f60397f4a06f56d9b2203de56a745909b4e4c8a2329b7c87222ac5f5ae56",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 200,
+      "code": null,
+      "request_sha256": "3029fd7f4742b2f55a472bcc570d0de413f65da2698c30dada33c19f6f557470",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 409,
+      "code": "idempotency_key_reuse",
+      "request_sha256": "5e03ac07e4e46277caf22a37480577404d04b2aae0fe64c9d6a7b2c056d2412d",
+      "response_sha256": "2b42a96c539152fcb2135ec70b68ac8da6df9264fe366266e11a895cda131456"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 409,
+      "code": "idempotency_key_reuse",
+      "request_sha256": "3656164f2bc5f7fd447b96545a8f8fdeb0de46f39f872ab01d37f21c1055d5e5",
+      "response_sha256": "2b42a96c539152fcb2135ec70b68ac8da6df9264fe366266e11a895cda131456"
+    },
+    {
+      "process": 0,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 200,
+      "code": null,
+      "request_sha256": "776c7d21f91ce57b9971407cf13ffe8cc86380c32d14d417c9af6ed6c4620ec9",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 1,
+      "method": "GET",
+      "path": "/reservations/E7B6F7EBD4",
+      "status": 200,
+      "code": null,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 1,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 200,
+      "code": null,
+      "request_sha256": "5163f60397f4a06f56d9b2203de56a745909b4e4c8a2329b7c87222ac5f5ae56",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 1,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 200,
+      "code": null,
+      "request_sha256": "3029fd7f4742b2f55a472bcc570d0de413f65da2698c30dada33c19f6f557470",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    },
+    {
+      "process": 1,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 409,
+      "code": "idempotency_key_reuse",
+      "request_sha256": "5e03ac07e4e46277caf22a37480577404d04b2aae0fe64c9d6a7b2c056d2412d",
+      "response_sha256": "2b42a96c539152fcb2135ec70b68ac8da6df9264fe366266e11a895cda131456"
+    },
+    {
+      "process": 1,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 409,
+      "code": "idempotency_key_reuse",
+      "request_sha256": "3656164f2bc5f7fd447b96545a8f8fdeb0de46f39f872ab01d37f21c1055d5e5",
+      "response_sha256": "2b42a96c539152fcb2135ec70b68ac8da6df9264fe366266e11a895cda131456"
+    },
+    {
+      "process": 1,
+      "method": "POST",
+      "path": "/reservations",
+      "status": 200,
+      "code": null,
+      "request_sha256": "776c7d21f91ce57b9971407cf13ffe8cc86380c32d14d417c9af6ed6c4620ec9",
+      "response_sha256": "f815065e65c6bc8ada3a51da20ce394839032cb7df56075195a2a91ff4c97442"
+    }
+  ]
+}

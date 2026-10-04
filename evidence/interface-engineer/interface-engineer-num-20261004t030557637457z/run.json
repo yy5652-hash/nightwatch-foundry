@@ -1,0 +1,277 @@
+{
+  "candidate": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "legacy_source": "49287b4a5a1481f995c470ccae31776f03d4b863",
+  "baseline_image_proof": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/interface-engineer/interface-engineer-s1-candidate5-20261004t024832530922z",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "interface-engineer-num-20261004t030557637457z"
+      ],
+      "seconds": 0.032039416997577064,
+      "returncode": 0,
+      "output": "network.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "--format",
+        "{{.Id}}",
+        "interface-engineer-tablekeeper-s1:legacy-candidate5-20261004t024832530922z"
+      ],
+      "seconds": 0.027560708000237355,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-num-20261004t030557637457z-legacy",
+        "--network",
+        "interface-engineer-num-20261004t030557637457z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=9090",
+        "-p",
+        "18228:9090",
+        "interface-engineer-tablekeeper-s1:legacy-candidate5-20261004t024832530922z"
+      ],
+      "seconds": 0.08196524999948451,
+      "returncode": 0,
+      "output": "run-legacy.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-num-20261004t030557637457z-legacy",
+        "python",
+        "-c",
+        "import hashlib,json,pathlib,time,urllib.request; print(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').glob('*.py')})); print(urllib.request.urlopen('http://127.0.0.1:9090/health',timeout=5).read().decode())"
+      ],
+      "seconds": 3.1599392909993185,
+      "returncode": 0,
+      "output": "identity-legacy.jsonl"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-num-20261004t030557637457z-legacy"
+      ],
+      "seconds": 3.0369267079986457,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "--format",
+        "{{.Id}}",
+        "interface-engineer-tablekeeper-s1:candidate5-20261004t024832530922z"
+      ],
+      "seconds": 0.05241141700025764,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-num-20261004t030557637457z-source",
+        "--network",
+        "interface-engineer-num-20261004t030557637457z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=9090",
+        "-p",
+        "18229:9090",
+        "interface-engineer-tablekeeper-s1:candidate5-20261004t024832530922z"
+      ],
+      "seconds": 0.11150566599826561,
+      "returncode": 0,
+      "output": "run-source.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-num-20261004t030557637457z-source",
+        "python",
+        "-c",
+        "import hashlib,json,pathlib,time,urllib.request; print(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').glob('*.py')})); print(urllib.request.urlopen('http://127.0.0.1:9090/health',timeout=5).read().decode())"
+      ],
+      "seconds": 3.169402292001905,
+      "returncode": 0,
+      "output": "identity-source.jsonl"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-num-20261004t030557637457z-source"
+      ],
+      "seconds": 3.037470082999789,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "--name",
+        "interface-engineer-num-20261004t030557637457z-client",
+        "--network",
+        "interface-engineer-num-20261004t030557637457z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "interface-engineer-tablekeeper-s1:candidate5-20261004t024832530922z",
+        "-",
+        "http://interface-engineer-num-20261004t030557637457z-legacy:9090",
+        "http://interface-engineer-num-20261004t030557637457z-source:9090"
+      ],
+      "seconds": 0.3143777080003929,
+      "returncode": 0,
+      "stdin_sha256": "e52f2322d37460ea86d3621327eec8b86893db986084efd16b3bc30f43edde0e",
+      "output": "genuine-legacy.json"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-num-20261004t030557637457z-source"
+      ],
+      "seconds": 3.037812499998836,
+      "returncode": 0,
+      "output": "logs-source.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-num-20261004t030557637457z-source"
+      ],
+      "seconds": 0.1283815000024333,
+      "returncode": 0,
+      "output": "cleanup-source.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-num-20261004t030557637457z-legacy"
+      ],
+      "seconds": 3.0397995000021183,
+      "returncode": 0,
+      "output": "logs-legacy.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-num-20261004t030557637457z-legacy"
+      ],
+      "seconds": 0.12323241699778009,
+      "returncode": 0,
+      "output": "cleanup-legacy.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "interface-engineer-num-20261004t030557637457z"
+      ],
+      "seconds": 0.0855394169993815,
+      "returncode": 0,
+      "output": "cleanup-network.txt"
+    }
+  ],
+  "identity_and_resources": [
+    {
+      "label": "legacy",
+      "image_id": "sha256:c35f06ddde53936203ce0d023bad5d8586daee4520d93c69d8cd2d4fa0e70160",
+      "runtime_hashes": {
+        "core.py": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+        "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+      },
+      "nano_cpus": 2000000000,
+      "memory": 2147483648,
+      "mounts": [],
+      "network_mode": "interface-engineer-num-20261004t030557637457z"
+    },
+    {
+      "label": "source",
+      "image_id": "sha256:4b7ae6724a87f76dc5516f655bd454dc1e8911ce41607c23d5ebe7fae6867ff2",
+      "runtime_hashes": {
+        "core.py": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+        "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+      },
+      "nano_cpus": 2000000000,
+      "memory": 2147483648,
+      "mounts": [],
+      "network_mode": "interface-engineer-num-20261004t030557637457z"
+    }
+  ],
+  "cleanup": [
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-num-20261004t030557637457z-source"
+      ],
+      "seconds": 0.1283815000024333,
+      "returncode": 0,
+      "output": "cleanup-source.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-num-20261004t030557637457z-legacy"
+      ],
+      "seconds": 0.12323241699778009,
+      "returncode": 0,
+      "output": "cleanup-legacy.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "interface-engineer-num-20261004t030557637457z"
+      ],
+      "seconds": 0.0855394169993815,
+      "returncode": 0,
+      "output": "cleanup-network.txt"
+    }
+  ],
+  "errors": [],
+  "seconds": 19.44531499999721,
+  "production_changes": false,
+  "scope": "Source-decision assessment, genuine legacy observations; no new codec implemented"
+}

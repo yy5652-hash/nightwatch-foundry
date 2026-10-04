@@ -1,0 +1,113 @@
+{
+  "purpose": "Stdlib JSON-value/provenance assessment only, not service implementation",
+  "values": [
+    {
+      "token": "1",
+      "exact_type": "int",
+      "integer_valued": true,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "1.0",
+      "exact_type": "Decimal",
+      "integer_valued": true,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "1e0",
+      "exact_type": "Decimal",
+      "integer_valued": true,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "9007199254740993.0",
+      "exact_type": "Decimal",
+      "integer_valued": true,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "1.5",
+      "exact_type": "Decimal",
+      "integer_valued": false,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "1e-4300",
+      "exact_type": "Decimal",
+      "integer_valued": false,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "1e4300",
+      "exact_type": "Decimal",
+      "integer_valued": true,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "-0.0",
+      "exact_type": "Decimal",
+      "integer_valued": true,
+      "finite": true,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "true",
+      "exact_type": "bool",
+      "integer_valued": false,
+      "finite": false,
+      "numeric_token_roundtrip_equal": true
+    },
+    {
+      "token": "\"1\"",
+      "exact_type": "str",
+      "integer_valued": false,
+      "finite": false,
+      "numeric_token_roundtrip_equal": true
+    }
+  ],
+  "comparisons": [
+    {
+      "left": "1",
+      "right": "1.0",
+      "exact_numeric_equal": true,
+      "legacy_projection_equal": true
+    },
+    {
+      "left": "1e0",
+      "right": "1",
+      "exact_numeric_equal": true,
+      "legacy_projection_equal": true
+    },
+    {
+      "left": "9007199254740993",
+      "right": "9007199254740993.0",
+      "exact_numeric_equal": true,
+      "legacy_projection_equal": false
+    },
+    {
+      "left": "9007199254740993.0",
+      "right": "9007199254740992.0",
+      "exact_numeric_equal": false,
+      "legacy_projection_equal": true
+    },
+    {
+      "left": "9007199254740993",
+      "right": "9007199254740993.0",
+      "exact_numeric_equal": true,
+      "legacy_projection_equal": false
+    },
+    {
+      "left": "true",
+      "right": "1",
+      "exact_numeric_equal": false,
+      "legacy_projection_equal": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+Command: python3 -B evidence/interface-engineer/stage-1-numeric-semantics-assessment.py
+Exit code: 1
+Observed before any output directory or Docker resource was created:
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/interface-engineer/stage-1-numeric-semantics-assessment.py", line 17, in <module>
+    sys.set_int_max_str_digits(0)
+AttributeError: module 'sys' has no attribute 'set_int_max_str_digits'
+
+The host's bare python3 lacks this version-specific API. The next execution uses
+the already configured official workspace .venv interpreter; no dependency or
+service source is installed/changed. This retained orchestration error is not an
+HTTP outcome or a production failure.
