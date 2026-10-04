@@ -13,6 +13,23 @@
   const labelsOf = (restaurant, ids) => ids.map(id => labelOf(restaurant, id)).join(' + ');
   const friendlyDate = value => new Intl.DateTimeFormat('en-GB', {weekday:'short',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(value+'T12:00:00Z'));
   const friendlyLocal = value => `${friendlyDate(value.slice(0,10))} · ${value.slice(11,16)}`;
+  // Historic wire offsets may be minute-aligned representations of an exact
+  // instant. Immutable older records can also contain offset seconds. Neither
+  // wire clock is necessarily the restaurant's wall clock.
+  const friendlyInstant = (value, zone) => {
+    const match=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?(Z|([+-])(\d{2}):(\d{2})(?::(\d{2}))?)$/.exec(value);
+    if(!match || !zone)return 'Local end time unavailable';
+    const clock=new Date(0);
+    clock.setUTCFullYear(Number(match[1]),Number(match[2])-1,Number(match[3]));
+    clock.setUTCHours(Number(match[4]),Number(match[5]),Number(match[6]),Number((match[7]||'').padEnd(3,'0').slice(0,3)));
+    const offset=match[8]==='Z'?0:(match[9]==='+'?1:-1)*(Number(match[10])*3600+Number(match[11])*60+Number(match[12]||0));
+    const instant=new Date(clock.getTime()-offset*1000);
+    try {
+      const format=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZone:zone});
+      const parts=Object.fromEntries(format.formatToParts(instant).map(part=>[part.type,part.value]));
+      return `${parts.weekday}, ${parts.day} ${parts.month} ${parts.year} · ${parts.hour}:${parts.minute}`;
+    } catch (_) { return 'Local end time unavailable'; }
+  };
   const today = () => {
     const date = new Date();
     return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
@@ -322,7 +339,7 @@
     const l=state.lookup,r=l.detail;
     feedbackPanel.innerHTML=feedback('reservation-error',l.error);
     if (!r) {panel.innerHTML=`<div class="booking-placeholder"><span class="place-symbol" aria-hidden="true">✦</span><h3>${l.phase==='loading'?'Finding your reservation':'A reference to your plans'}</h3><p>${l.phase==='loading'?'Checking the details with the restaurant…':'Your restaurant, table and time will appear here.'}</p></div>`;return;}
-    panel.innerHTML=`<section data-testid="reservation-detail" class="lookup-card"><div class="detail-heading"><p class="eyebrow">${esc(l.restaurant?.name || 'Your reservation')}</p><span data-testid="reservation-status" class="status ${r.status==='cancelled'?'cancelled':''}">${esc(r.status)}</span></div><h2><time datetime="${esc(r.starts_at_local)}">${esc(friendlyLocal(r.starts_at_local))}</time></h2><p data-testid="reservation-tables" class="booking-summary">${esc(labelsOf(l.restaurant,tablesOf(r)))}</p><dl class="detail-list"><div><dt>Guests</dt><dd>${esc(r.party_size)}</dd></div><div><dt>Booking reference</dt><dd class="reference small">${esc(r.reference)}</dd></div><div><dt>Local time zone</dt><dd>${esc(l.restaurant?.timezone || '')}</dd></div><div><dt>Ends at</dt><dd><time datetime="${esc(r.ends_at)}">${esc(friendlyLocal(r.ends_at))}</time></dd></div></dl>${r.status==='confirmed'?`<p class="input-hint">Cancellation is subject to the restaurant’s ${esc(l.restaurant?.cancellation_cutoff_minutes ?? '')} minute cutoff.</p><button type="button" data-testid="reservation-cancel-button" class="button secondary full" ${l.phase==='cancelling'?'disabled':''}>${l.phase==='cancelling'?'Cancelling…':'Cancel reservation'}</button>`:'<p class="feedback success">This reservation is cancelled. The table has been released.</p>'}</section>`;
+    panel.innerHTML=`<section data-testid="reservation-detail" class="lookup-card"><div class="detail-heading"><p class="eyebrow">${esc(l.restaurant?.name || 'Your reservation')}</p><span data-testid="reservation-status" class="status ${r.status==='cancelled'?'cancelled':''}">${esc(r.status)}</span></div><h2><time datetime="${esc(r.starts_at_local)}">${esc(friendlyLocal(r.starts_at_local))}</time></h2><p data-testid="reservation-tables" class="booking-summary">${esc(labelsOf(l.restaurant,tablesOf(r)))}</p><dl class="detail-list"><div><dt>Guests</dt><dd>${esc(r.party_size)}</dd></div><div><dt>Booking reference</dt><dd class="reference small">${esc(r.reference)}</dd></div><div><dt>Local time zone</dt><dd>${esc(l.restaurant?.timezone || '')}</dd></div><div><dt>Ends at</dt><dd><time datetime="${esc(r.ends_at)}">${esc(friendlyInstant(r.ends_at,l.restaurant?.timezone))}</time></dd></div></dl>${r.status==='confirmed'?`<p class="input-hint">Cancellation is subject to the restaurant’s ${esc(l.restaurant?.cancellation_cutoff_minutes ?? '')} minute cutoff.</p><button type="button" data-testid="reservation-cancel-button" class="button secondary full" ${l.phase==='cancelling'?'disabled':''}>${l.phase==='cancelling'?'Cancelling…':'Cancel reservation'}</button>`:'<p class="feedback success">This reservation is cancelled. The table has been released.</p>'}</section>`;
     test('reservation-cancel-button')?.addEventListener('click',cancelReservation);
   }
   async function lookup() {
