@@ -1,0 +1,153 @@
+{
+  "candidate": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "image": "systems-engineer-tablekeeper-s1:decimal-05-20261004t023841",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-s1-fraction-20261004t025143",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18122",
+        "systems-engineer-tablekeeper-s1:decimal-05-20261004t023841"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.0995857080015412
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-fraction-20261004t025143",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18122/health',timeout=1).status==200\n  break\n except Exception: time.sleep(.05)\nelse: raise RuntimeError('health')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.13263795899911202
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s1-fraction-20261004t025143"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.028051875000528526
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.017040709000866627
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-fraction-20261004t025143",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03379237499757437
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.010241874999337597
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-s1-fraction-20261004t025143",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.030201166999177076
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-s1-fraction-20261004t025143",
+        "python",
+        "-",
+        "http://127.0.0.1:18122",
+        "/tmp/systems-engineer-finite-fraction.json"
+      ],
+      "returncode": 1,
+      "wall_seconds": 0.17872791700210655
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-s1-fraction-20261004t025143:/tmp/systems-engineer-finite-fraction.json",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-s1-finite-fraction-01/probe.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.028563749998284038
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s1-fraction-20261004t025143"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03838562500095577
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "systems-engineer-s1-fraction-20261004t025143",
+      "returncode": 0
+    }
+  ],
+  "constraints": {
+    "cpus": 2.0,
+    "memory_bytes": 2147483648,
+    "network": "none",
+    "mounts": []
+  },
+  "hashes": {
+    "core.py": {
+      "expected": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+      "actual": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380"
+    },
+    "server.py": {
+      "expected": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+      "actual": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+    }
+  },
+  "summary": {
+    "operations": 8,
+    "assertions": 8,
+    "failed": 3,
+    "wall_seconds": 0.058199792000039
+  },
+  "result": "three service failures reproduced, not repaired",
+  "wall_seconds": 0.5986363749980228
+}

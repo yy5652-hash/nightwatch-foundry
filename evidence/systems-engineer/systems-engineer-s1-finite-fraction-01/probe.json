@@ -1,0 +1,148 @@
+{
+  "literal": {
+    "integer_digits": 4301,
+    "fractional_digits": 1,
+    "sha256": "0cd2a0ab5425f7cf91de26e6a633670a8273ec05df750a9d17e4a613764dee58",
+    "valid_json_number_grammar": true,
+    "exact_decimal_finite": true,
+    "stdlib_float_result": "infinity"
+  },
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_sha256": "7a285a7f1d1c36506a9488d268530513b128992c5ea7b976cd084878e2d23eca",
+      "expected_status": 204,
+      "expected_code": null,
+      "observed_status": 204,
+      "response": null,
+      "passed": true,
+      "wall_seconds": 0.034608334000040486
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "request_sha256": "a1f16e42e3a6a2b5985ceb3297c0416af290bce775d32340a9ad98a0dfe96556",
+      "expected_status": 200,
+      "expected_code": null,
+      "observed_status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Finite",
+        "token": {
+          "sha256": "dfa281786150c80e7a603bd19242638f613057bc0e8928353c67d896ef130048"
+        }
+      },
+      "passed": true,
+      "wall_seconds": 0.021874333000027946
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request_sha256": "016c6c09501704fb9c43ee5a94c8ef0d7e1a2b278fcbd4ae197b36831abf18e3",
+      "expected_status": 422,
+      "expected_code": "validation_failed",
+      "observed_status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "passed": true,
+      "wall_seconds": 0.0003194999999891479
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request_sha256": "a768919aa75a950e2eccaad605bc8470e12dd6e8ae5b651039ca4258ea15634a",
+      "expected_status": 422,
+      "expected_code": "validation_failed",
+      "observed_status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      },
+      "passed": false,
+      "wall_seconds": 0.0002552499999524116
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request_sha256": "b42819d1937a3d1c718f3b84ded45a541c90579b737c19164bf62c7972cc8598",
+      "expected_status": 201,
+      "expected_code": null,
+      "observed_status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      },
+      "passed": false,
+      "wall_seconds": 0.00021454199998061085
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request_sha256": "decb8d98678d0971bce995b6e370bb1cd948143ee9c11289ca11305312d68fda",
+      "expected_status": 201,
+      "expected_code": null,
+      "observed_status": 201,
+      "response": {
+        "reservation_id": "res_49950832ea17428baadd85dd7c06c6d9",
+        "reference": "0380A3217E",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2099-01-01T18:00",
+        "starts_at": "2099-01-01T18:00:00+00:00",
+        "ends_at": "2099-01-01T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T02:51:44.371207+00:00"
+      },
+      "passed": true,
+      "wall_seconds": 0.0002790830000094502
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request_sha256": "b42819d1937a3d1c718f3b84ded45a541c90579b737c19164bf62c7972cc8598",
+      "expected_status": 409,
+      "expected_code": "idempotency_key_reuse",
+      "observed_status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      },
+      "passed": false,
+      "wall_seconds": 0.0002842499999928805
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "request_sha256": "47dff84a8224acc418546a7e930f386d38e7b89466689e53de6dd06169a7b1e1",
+      "expected_status": 400,
+      "expected_code": "malformed_request",
+      "observed_status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      },
+      "passed": true,
+      "wall_seconds": 0.00019020799999225346
+    }
+  ],
+  "summary": {
+    "operations": 8,
+    "assertions": 8,
+    "failed": 3,
+    "wall_seconds": 0.058199792000039
+  }
+}
