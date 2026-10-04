@@ -56,6 +56,75 @@ def oracle(release,out):
     w.check('new-batch-both-fields-key-reusable',status==201 and value['reservations'][0]['reference']==receipt['reference'])
     return w.assertions,w.trace,dict(seed=model['seed'],operations=observed,scope='actual current-candidate HTTP outcomes and full resulting records; no service helper used',private_exports_saved=False),dict(requests=w.request_count)
 
+def coverage_http(release,out):
+    w=Wire(out);PARTIAL.update(results=w.assertions,trace=w.trace,detail={},counts={})
+    source=release['urls']['exact-s1'];target=release['urls']['target'];token=w.setup(source)
+    raw=encoded(dict(restaurant_id='r',table_id='a',table_ids={'ignored':True},party_size=2,starts_at_local=DAY+'T18:00'))
+    status,receipt,_=w.call(source,'POST','/reservations',raw,token,'exact-record');w.check('record-source-create',status==201)
+    moves=encoded(dict(moves=[dict(reference=receipt['reference'],party_size=3,table_ids='ignored by Stage1')]))
+    status,moved,_=w.call(source,'POST','/reservation-moves',moves,token,'exact-record-moves');w.check('record-source-moves',status==201)
+    status,before,_=w.call(source,'GET','/reservations/'+receipt['reference'],token=token)
+    snapshot=w.export(source);w.check('record-import',w.transfer(source,target,snapshot)==204)
+    status,after,_=w.call(target,'GET','/reservations/'+receipt['reference'],token=token)
+    for field in ['reservation_id','reference','created_at','starts_at','ends_at','status']:
+        w.check('record-'+field,status==200 and same(before[field],after[field]))
+    other_status,other,_=w.call(target,'POST','/auth/signup',encoded(dict(email='record-owner@probe.invalid',password='independent-pass',display_name='Other Diner')))
+    outsider,_,_=w.call(target,'GET','/reservations/'+receipt['reference'],token=other['token'])
+    w.check('record-user_id',other_status==201 and outsider==404 and after['reference']==before['reference'])
+    w.check('record-original-create',w.replay(target,'/reservations',raw,token,'exact-record',receipt))
+    w.check('record-original-moves',w.replay(target,'/reservation-moves',moves,token,'exact-record-moves',moved))
+    f=fixture();f['reservations']=[dict(id='old',reference='OLD001',user_id='u',restaurant_id='r',table_ids=['b','a'],party_size=2,starts_at_local='2000-01-03T18:00'),dict(id='next',reference='NEXT01',user_id='u',restaurant_id='r',table_id='c',party_size=2,starts_at_local=DAY+'T18:00')]
+    token=w.setup(target,f);before=w.export(target)
+    sequences=[([dict(reference='NEXT01',party_size=0),dict(reference='OLD001',party_size=0)],422,'validation_failed'),([dict(reference='OLD001',party_size=0),dict(reference='NEXT01',party_size=0)],409,'cutoff_passed'),([dict(reference='NEXT01'),dict(reference='OLD001',party_size=0)],409,'cutoff_passed')]
+    for i,(items,expected,code) in enumerate(sequences):
+        status,value,_=w.call(target,'POST','/reservation-moves',encoded(dict(moves=items)),token,'order-'+str(i))
+        w.check('pair-cutoff-order-'+str(i),status==expected and value['error']['code']==code)
+        w.check('pair-cutoff-rollback-'+str(i),w.export(target)==before)
+        status,_,_=w.call(target,'POST','/reservation-moves',encoded(dict(moves=[dict(reference='NEXT01')])),token,'order-'+str(i));w.check('pair-cutoff-failed-key-'+str(i),status==201)
+        before=w.export(target)
+    token=w.setup(target);status,record,_=w.call(target,'POST','/reservations',encoded(dict(restaurant_id='r',table_ids=['a','b'],party_size=2,starts_at_local=DAY+'T18:00')),token,'reverse')
+    w.check('reverse-noop-create',status==201)
+    for name,payload in [('reverse',dict(table_ids=['a','b'])),('empty',{})]:
+        status,changed,_=w.call(target,'PATCH','/reservations/'+record['reference'],encoded(payload),token)
+        w.check('noop-all-values-'+name,status==200 and same(record,changed))
+    return w.assertions,w.trace,dict(scope='actual accepted Stage1 record invariants and source meanings, pair current-start cutoff/input order/rollback/failed key and reverse/empty no-op values'),dict(requests=w.request_count)
+
+async def overflow_checks(release,out):
+    from playwright.async_api import async_playwright,expect
+    results=[];trace=[];counts=dict(direct=0,browser=0);PARTIAL.update(results=results,trace=trace,detail={},counts=counts);base=release['urls']['target']
+    def check(key,value):
+        results.append(dict(requirement_id='TK2-'+key,passed=bool(value)))
+        if not value:raise AssertionError(key)
+    async with async_playwright() as runtime:
+        http=await runtime.request.new_context();browser=await runtime.chromium.launch(headless=True)
+        for seating in ['single','pair']:
+            digits='1'+'0'*399+'1';n=int(digits);f=fixture();caps=[n,1,1] if seating=='single' else [n//2,n-n//2,1]
+            for table,capacity in zip(f['restaurants'][0]['tables'],caps):table['capacity']=capacity
+            response=await http.post(base+'/_test/reset',data=encoded(f),headers={'content-type':'application/json; charset=utf-8'});counts['direct']+=1
+            assert response.status==204
+            context=await browser.new_context(viewport={'width':375,'height':900});page=await context.new_page();page.set_default_timeout(5000)
+            def observe(request):
+                counts['browser']+=1;trace.append(dict(event='browser-request',path=urlsplit(request.url).path,query=urlsplit(request.url).query,body_sha256=sha((request.post_data or '').encode()),key_sha256=sha(request.headers.get('idempotency-key','').encode())))
+            page.on('request',observe);prefix='integer-'+seating+'-overflow-'
+            try:
+                await page.goto(base+'/login');await page.get_by_test_id('login-email').fill('reconstruct@probe.invalid');await page.get_by_test_id('login-password').fill('independent-pass');await page.get_by_test_id('login-submit').click();await expect(page.get_by_test_id('current-user')).to_contain_text('Independent Diner')
+                await page.goto(base+'/');await page.get_by_test_id('restaurant-select').select_option('r');await page.get_by_test_id('date-input').fill(DAY);await page.get_by_test_id('party-size-input').fill(digits)
+                async with page.expect_request(lambda r:urlsplit(r.url).path=='/availability') as pending:await page.get_by_test_id('search-button').click()
+                request=await pending.value;check(prefix+'query',parse_qs(urlsplit(request.url).query)['party_size']==[digits])
+                cell=page.get_by_test_id('slot-'+('a' if seating=='single' else 'b+a')+'-18:00');await expect(cell).to_be_visible();check(prefix+'grid',await cell.get_attribute('data-available')=='true');await cell.click();check(prefix+'prefill',await page.get_by_test_id('booking-party-size').input_value()==digits)
+                async with page.expect_response(lambda r:urlsplit(r.url).path=='/reservations' and r.request.method=='POST') as pending:await page.get_by_test_id('booking-submit').click()
+                response=await pending.value;receipt=parse(await response.body());body=response.request.post_data;header=response.request.headers
+                check(prefix+'body',same(parse(body)['party_size'],n) and re.search(r'"party_size"\s*:\s*'+digits+r'\s*[,}]',body) is not None)
+                await expect(page.get_by_test_id('confirmation')).to_be_visible();check(prefix+'success',response.status==201 and await page.get_by_test_id('confirmation-reference').text_content()==receipt['reference'])
+                async with page.expect_response(lambda r:urlsplit(r.url).path=='/reservations' and r.request.method=='POST') as pending:await page.get_by_test_id('booking-submit').click()
+                retry=await pending.value;replay=parse(await retry.body());check(prefix+'repeat-identity',retry.request.post_data==body and retry.request.headers['idempotency-key']==header['idempotency-key']);check(prefix+'repeat-reference',retry.status==200 and same(replay,receipt))
+                response=await http.get(base+'/reservations',headers={'authorization':header['authorization']});counts['direct']+=1;records=parse(await response.body())['reservations'];check(prefix+'one-record',response.status==200 and len(records)==1 and records[0]['reference']==receipt['reference']);check(prefix+'stored',same(records[0]['party_size'],n))
+                trace.append(dict(event='actual-current-owned-list',seating=seating,status=response.status,count=len(records),reference=receipt['reference'],party_digits=len(digits),response_sha256=sha(await response.body())))
+                await page.screenshot(path=str(out/(seating+'-confirmed.png')),full_page=True)
+            finally:await context.close()
+        await browser.close();await http.dispose()
+    return results,trace,dict(scope='fresh actual 401-digit singleton/pair search/prefill/body/replay/stored-list count obligations'),counts
+
 async def browser_checks(release,out):
     from playwright.async_api import async_playwright,expect
     results=[];trace=[];counts=dict(direct=0,browser=0);base=release['urls']['target']
@@ -116,10 +185,10 @@ async def browser_checks(release,out):
     return results,trace,dict(scope='five actual integral JSON capacity spellings, exact pair sums and actual quoted URI/Unicode numeric control/query/body/retry/lookup/cancel interactions'),counts
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--case',choices=['oracle','browser'],required=True);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--case',choices=['oracle','browser','coverage','overflow'],required=True);a=p.parse_args()
     release=validate_release(json.loads(Path(a.release).read_text()));out=Path(a.out);out.mkdir(parents=True,exist_ok=False);start=time.monotonic();errors=[]
     try:
-        results,trace,detail,counts=oracle(release,out) if a.case=='oracle' else asyncio.run(browser_checks(release,out))
+        results,trace,detail,counts=(oracle(release,out) if a.case=='oracle' else coverage_http(release,out) if a.case=='coverage' else asyncio.run(overflow_checks(release,out)) if a.case=='overflow' else asyncio.run(browser_checks(release,out)))
     except Exception as error:
         # An incomplete family is not promoted; the driver preserves this exit/log and source.
         errors.append(dict(type=type(error).__name__,message=str(error),classification='recorded-expectation' if isinstance(error,AssertionError) else 'runner-exception'))

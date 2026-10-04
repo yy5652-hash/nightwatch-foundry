@@ -3,7 +3,7 @@ import argparse,hashlib,json,subprocess,time
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--probe-revision',required=True);p.add_argument('--cases',nargs='+',choices=['oracle','browser'],default=['oracle','browser']);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--probe-revision',required=True);p.add_argument('--cases',nargs='+',choices=['oracle','browser','coverage','overflow'],default=['oracle','browser']);a=p.parse_args()
     out=Path(a.out).resolve();assert out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
     root=HERE/'candidate-2';facts=json.loads((root/'runtime-01/preflight.json').read_text());assembly=root/'assembly-03'
     image=json.loads((assembly/'client-proof.json').read_text())['image'];path='evidence/independent-verifier/stage-2/candidate2_supplement.py'
