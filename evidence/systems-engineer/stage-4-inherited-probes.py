@@ -70,7 +70,7 @@ def fixture(zone="Europe/Berlin", opening="18:00", closing="23:00", duration=90)
 def legacy_projection(value, schema):
     projected=json.loads(json.dumps(value))
     state=projected["state"]
-    for field in ("policies","histories","history_origins","series","restaurant_revisions"):state.pop(field,None)
+    for field in ("policies","histories","history_origins","series","restaurant_revisions","plans","closures"):state.pop(field,None)
     state["schema"]=schema
     for restaurant in state["restaurants"]:restaurant.pop("manager_user_ids",None)
     for record in state["reservations"]:

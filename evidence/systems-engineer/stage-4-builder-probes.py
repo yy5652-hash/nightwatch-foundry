@@ -61,9 +61,12 @@ def oracle(fixture, bookings, closure, previous=()):
                 continue
             rows.append((rank, members, capacity - b['party_size']))
         choices.append(rows)
+    incompatible = {(i,j,a[0],b[0]):clashes(considered[i],a[1],considered[j],b[1])
+                    for i in range(len(considered)) for j in range(i)
+                    for a in choices[i] for b in choices[j]}
     best = None
     for selection in itertools.product(*choices):
-        if any(clashes(considered[i], selection[i][1], considered[j], selection[j][1])
+        if any(incompatible[i,j,selection[i][0],selection[j][0]]
                for i in range(len(considered)) for j in range(i)):
             continue
         objective = (sum(set(b['table_ids']) != set(s[1]) for b, s in zip(considered, selection)),
@@ -327,6 +330,129 @@ class StageFour(old.StageThree):
         plan=self.expect(self.preview(),201);applied=self.expect(self.apply(plan),201)
         self.assertEqual(applied['reservations'],[]);self.assertEqual(applied['restaurant_revision'],plan['restaurant_revision']+1)
         self.transfer(self.c,self.peer)
+
+    def test_28_other_restaurant_does_not_stale_and_scoped_identity(self):
+        f=old.fixture();second=json.loads(json.dumps(f['restaurants'][0]));second['id']='r2';f['restaurants'].append(second)
+        self.expect(self.c.request('POST','/_test/reset',f),204);self.h=self.login(self.c,'u');self.m=self.login(self.c,'m')
+        original=self.expect(self.create(),201);plan=self.expect(self.preview(),201)
+        self.expect(self.apply(plan,restaurant='r2'),404,'not_found')
+        elsewhere=self.expect(self.write('/restaurants/r2/replans',{'table_id':'a','from':'2099-04-16T18:00:00Z','to':'2099-04-16T23:00:00Z'},self.m),201)
+        self.expect(self.apply(elsewhere,restaurant='r2'),201)
+        self.expect(self.write('/reservations',{'restaurant_id':'r2','table_id':'b','starts_at_local':'2099-04-16T18:00','party_size':1}),201)
+        self.expect(self.apply(plan),201)
+        self.assertEqual(self.current(original)['reference'],original['reference'])
+
+    def test_29_past_repair_ignores_diner_cutoff_and_bulk_noop(self):
+        f=old.fixture();f['reservations']=[{'id':'past','reference':'PAST001','user_id':'u','restaurant_id':'r','table_id':'a','party_size':1,'starts_at_local':'2001-04-16T18:00'}]
+        self.expect(self.c.request('POST','/_test/reset',f),204);self.h=self.login(self.c,'u');self.m=self.login(self.c,'m')
+        before=self.current({'reference':'PAST001'})
+        self.expect(self.patch(before,{'table_id':'b'}),409,'cutoff_passed')
+        plan=self.expect(self.preview(start='2001-04-16T18:00:00Z',end='2001-04-16T19:30:00Z'),201)
+        self.expect(self.apply(plan),201);self.assertEqual(self.current(before)['accepted_terms'],before['accepted_terms'])
+        # Earlier real Stage3 agreements are imported for actual cutoff control;
+        # no clock endpoint or synthetic successful past adoption is invented.
+
+    def test_30_multi_member_plan_series_counters_and_flags(self):
+        a=self.expect(self.create(party=1),201);s=self.expect(self.adopt(a),201)
+        b=self.expect(self.create(members=('a','b'),party=1,start='2099-04-16T20:00'),201);t=self.expect(self.adopt(b),201)
+        before=self.export();plan=self.expect(self.preview(end='2099-05-01T23:00:00Z'),201)
+        self.assertEqual(len(plan['assignments']),6)
+        self.expect(self.apply(plan),201);after=self.export()
+        self.assertEqual(after['state']['restaurant_revisions']['r'],before['state']['restaurant_revisions']['r']+1)
+        for agreement in (s,t):
+            current=self.series(agreement);self.assertEqual(current['revision'],agreement['revision']+1)
+            self.assertTrue(all(not o['exception'] for o in current['occurrences']))
+            self.assertEqual([o['reservation']['starts_at_local'] for o in current['occurrences']],[o['reservation']['starts_at_local'] for o in agreement['occurrences']])
+        self.transfer(self.c,self.peer)
+
+    def test_31_different_plan_keys_race_observers_and_concurrent_writer(self):
+        for round in range(5):
+            self.expect(self.c.request('POST','/_test/reset',old.fixture()),204);self.h=self.login(self.c,'u');self.m=self.login(self.c,'m')
+            a=self.expect(self.create(),201);b=self.expect(self.create(members=('b',),start='2099-04-16T19:30'),201)
+            plans=[self.expect(self.preview(),201),self.expect(self.preview(table='b'),201)]
+            with ThreadPoolExecutor(max_workers=50) as pool:
+                results=list(pool.map(lambda i:self.apply(plans[i%2],key='distinct'+str(i)) if i<25 else self.c.request('GET','/reservations',headers=self.h),range(50)))
+            applies=results[:25];self.assertEqual([r[0] for r in applies].count(201),1)
+            self.assertTrue(all(r[0]==201 or (r[0]==409 and r[1]['error']['code'] in ('stale_plan','plan_already_applied')) for r in applies))
+            initial={a['reference']:a['table_ids'],b['reference']:b['table_ids']}
+            winner=next(r[1] for r in applies if r[0]==201)
+            final={r['reference']:r['table_ids'] for r in winner['reservations']}
+            for response in results[25:]:
+                actual={r['reference']:r['table_ids'] for r in self.expect(response,200)['reservations']}
+                self.assertTrue(actual==initial or actual==final)
+            self.transfer(self.c,self.peer)
+        # A diner write and operator application admit complete serial outcomes.
+        self.expect(self.c.request('POST','/_test/reset',old.fixture()),204);self.h=self.login(self.c,'u');self.m=self.login(self.c,'m')
+        a=self.expect(self.create(),201);plan=self.expect(self.preview(),201)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            apply=pool.submit(self.apply,plan);write=pool.submit(self.patch,a,{'party_size':1});responses=[apply.result(),write.result()]
+        self.assertEqual(responses[1][0],200)
+        self.assertTrue(responses[0][0]==201 or (responses[0][0]==409 and responses[0][1]['error']['code']=='stale_plan'))
+        self.transfer(self.c,self.peer)
+
+    def test_32_invalid_modern_replacement_atomicity(self):
+        a=self.expect(self.create(),201);s=self.expect(self.adopt(a),201);plan=self.expect(self.preview(),201);self.expect(self.apply(plan),201)
+        self.expect(self.amend(self.series(s)),201)
+        source=self.export();variants=[]
+        for mutation in ('missing_plans','missing_closures','orphan_closure','bad_interval','bad_changed','bad_snapshot','bad_history','bad_series_date','bad_apply_response'):
+            candidate=json.loads(json.dumps(source));state=candidate['state']
+            if mutation=='missing_plans':state.pop('plans')
+            elif mutation=='missing_closures':state.pop('closures')
+            elif mutation=='orphan_closure':state['closures'][0]['plan_id']='missing'
+            elif mutation=='bad_interval':state['closures'][0]['to']=state['closures'][0]['from']
+            elif mutation=='bad_changed':state['plans'][plan['plan_id']]['assignments'][0]['changed']=False
+            elif mutation=='bad_snapshot':state['plans'][plan['plan_id']]['originals'][0]['party_size']=99
+            elif mutation=='bad_history':state['histories'][a['reference']][1]['plan_id']='missing'
+            elif mutation=='bad_series_date':state['series'][s['series_id']]['occurrences'][1]['scheduled_starts_at_local']='2099-04-24T18:00'
+            else:
+                receipt=next(r for r in state['receipts'] if r['path'].endswith('/apply'));receipt['response']['restaurant_revision']+=1
+            before=self.raw();self.expect(self.c.request('POST','/_test/import',candidate),422,'validation_failed');self.assertEqual(self.raw(),before)
+        self.transfer(self.c,self.peer)
+
+    def test_33_bulk_dst_nonoccupancy_priority_and_canonical_pair(self):
+        for zone,anchor_day,clock in [('Europe/Berlin','2035-03-18','02:30'),('America/New_York','2035-03-04','02:30')]:
+            f=old.fixture(zone=zone,opening='00:00',closing='06:00',duration=60)
+            self.expect(self.c.request('POST','/_test/reset',f),204);self.h=self.login(self.c,'u');self.m=self.login(self.c,'m');self.f=f
+            a=self.expect(self.create(members=('a','b'),start=anchor_day+'T01:00',party=5),201);s=self.expect(self.adopt(a,count=3),201)
+            # The first occurrence's occupancy refusal must wait until a later
+            # occurrence's real nonexistent-local-time validation is resolved.
+            self.expect(self.create(members=('b',),start=anchor_day+'T02:30',party=1),201)
+            before=self.raw();self.expect(self.amend(s,clock=clock),422,'invalid_local_time');self.assertEqual(self.raw(),before)
+        f=old.fixture(zone='America/New_York',opening='00:00',closing='06:00',duration=90)
+        self.expect(self.c.request('POST','/_test/reset',f),204);self.h=self.login(self.c,'u');self.f=f
+        a=self.expect(self.create(start='2035-10-28T00:00'),201);s=self.expect(self.adopt(a,count=2),201)
+        current=self.expect(self.amend(s,clock='01:30'),201)
+        second=current['occurrences'][1]['reservation'];self.assertEqual(second['starts_at'],'2035-11-04T01:30:00-04:00');self.assertEqual(second['ends_at'],'2035-11-04T02:00:00-05:00')
+        self.transfer(self.c,self.peer)
+
+    def test_34_deep_new_paths_exact_body_identity_and_original_receipts(self):
+        from urllib.request import Request, urlopen
+        from urllib.error import HTTPError
+        def wire(path, body, auth, key):
+            began=time.monotonic()
+            request=Request(self.c.url+path,data=body.encode(),method='POST',headers={**auth,'Idempotency-Key':key,'Content-Type':'application/json'})
+            try: response=urlopen(request,timeout=5)
+            except HTTPError as error:response=error
+            with response:raw=response.read();value=json.loads(raw)
+            old.operations+=1;old.trace.append({'method':'POST','path':path,'status':response.status,'body_bytes':len(body),
+                'body_sha256':hashlib.sha256(body.encode()).hexdigest(),'response_sha256':hashlib.sha256(raw).hexdigest(),'seconds':time.monotonic()-began})
+            return response.status,value
+        a=self.expect(self.create(),201);s=self.expect(self.adopt(a),201)
+        deep=lambda token:'['*20000+token+']'*20000
+        prefix='{"table_id":"a","from":"2099-04-16T18:00:00Z","to":"2099-04-16T23:00:00Z","ignored":'
+        plan=self.expect(wire('/restaurants/r/replans',prefix+deep('1e0')+'}',self.m,'deep-preview'),201)
+        self.assertEqual(self.expect(wire('/restaurants/r/replans',prefix+deep('1.0')+'}',self.m,'deep-preview'),200),plan)
+        self.expect(wire('/restaurants/r/replans',prefix+deep('true')+'}',self.m,'deep-preview'),409,'idempotency_key_reuse')
+        path='/restaurants/r/replans/'+plan['plan_id']+'/apply'
+        applied=self.expect(wire(path,'{"ignored":'+deep('2e0')+'}',self.m,'deep-apply'),201)
+        self.assertEqual(self.expect(wire(path,'{"ignored":'+deep('2.0')+'}',self.m,'deep-apply'),200),applied)
+        current=self.series(s);path='/series/'+s['series_id']+'/amend'
+        prefix='{"expected_revision":'+str(current['revision'])+',"from_index":0e0,"local_time":"20:00","ignored":'
+        changed=self.expect(wire(path,prefix+deep('3e0')+'}',self.h,'deep-amend'),201)
+        self.transfer(self.c,self.peer);self.transfer(self.peer,self.c)
+        self.assertEqual(self.expect(wire(path,prefix+deep('3.0')+'}',self.h,'deep-amend'),200),changed)
+        # Successful receipt comparison precedes current revision and field rules.
+        self.expect(wire(path,'{"expected_revision":false}',self.h,'deep-amend'),409,'idempotency_key_reuse')
 
 if __name__=='__main__':
     out=Path(args.out);out.mkdir(parents=True,exist_ok=False)

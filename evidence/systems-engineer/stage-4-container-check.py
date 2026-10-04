@@ -96,8 +96,8 @@ try:
         run(['docker','build','-t',tag,str(context)],timeout=300)
         specs.append((label,port,port,tag,revision,folder))
     context=Path(tempfile.mkdtemp(prefix=prefix+'-client-',dir=workspace/'band-work'));contexts.append(context)
-    probes=('stage-3-builder-probes.py','stage-4-builder-probes.py','stage-3-member-probes.py','stage-4-inherited-probes.py',
-            'stage-4-numeric-probes.py','stage-1-2-decimal-probes.py','stage-3-deep-http.py')
+    probes=('stage-3-builder-probes.py','stage-4-builder-probes.py','stage-4-member-probes.py','stage-4-inherited-probes.py',
+            'stage-4-numeric-probes.py','stage-1-2-decimal-probes.py','stage-3-deep-http.py','stage-4-direct-controls.py')
     record['probe_sha256']={}
     for filename in probes:
         (context/filename).write_bytes(run(['git','show',probe_revision+':evidence/systems-engineer/'+filename]))
@@ -131,7 +131,7 @@ try:
     base,peer,accepted,legacy,old,accepted2,accepted3=urls
     client('transitions',['stage-4-builder-probes.py','--url',base,'--peer',peer,'--stage1',accepted,
        '--stage2',accepted2,'--stage3',accepted3,'--legacy',legacy,'--out','/tmp/systems-transitions'],[('/tmp/systems-transitions','transitions')])
-    client('members',['stage-3-member-probes.py','--url',base,'--destination-url',peer,'--source-url',accepted,
+    client('members',['stage-4-member-probes.py','--url',base,'--destination-url',peer,'--source-url',accepted,
        '--trace','/tmp/systems-members.json'],[('/tmp/systems-members.json','member-oracle.json')])
     client('inherited',['stage-4-inherited-probes.py','--stage','4','--url',base,'--destination-url',peer,'--legacy-url',legacy],[])
     client('numbers',['stage-4-numeric-probes.py','--base',base,'--peer',peer,'--legacy',legacy,'--old',old,
@@ -139,6 +139,7 @@ try:
     client('digits',['stage-1-2-decimal-probes.py','--stage','2','--url',base,'--destination-url',peer,
        '--trace','/tmp/systems-digits.json'],[('/tmp/systems-digits.json','digits.json')])
     client('deep',['stage-3-deep-http.py','--base',base,'--peer',peer,'--out','/tmp/systems-deep'],[('/tmp/systems-deep','deep')])
+    client('controls',['stage-4-direct-controls.py','/tmp/systems-controls'],[('/tmp/systems-controls','controls')])
     for label,path in (('transitions','transitions/trace.json'),('numbers','numbers/trace.json'),('digits','digits.json'),('deep','deep/trace.json')):
         file=out/path
         record[label+'_summary']=json.loads(file.read_text()).get('summary') if file.exists() else None
