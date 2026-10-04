@@ -1,0 +1,329 @@
+{
+  "services": [
+    {
+      "name": "systems-engineer-legacy-number-20261004t030549-old",
+      "port": 18123,
+      "image": "systems-engineer-tablekeeper-s1:calendar-02",
+      "revision": "49287b4a5a1481f995c470ccae31776f03d4b863",
+      "health_check_seconds": 0.1363064580000355,
+      "image_id": "sha256:2023ebacef68b9eb463756e2873c5d0cd47d2257bc3a1c2a8f4c44ac8a912e77",
+      "constraints": {
+        "cpus": 2.0,
+        "memory_bytes": 2147483648,
+        "network": "systems-engineer-legacy-number-20261004t030549-net",
+        "mounts": []
+      },
+      "hashes": {
+        "core.py": {
+          "expected": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+          "actual": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40"
+        },
+        "server.py": {
+          "expected": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+          "actual": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        }
+      }
+    },
+    {
+      "name": "systems-engineer-legacy-number-20261004t030549-current",
+      "port": 18124,
+      "image": "systems-engineer-tablekeeper-s1:decimal-05-20261004t023841",
+      "revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "health_check_seconds": 0.1311161660014477,
+      "image_id": "sha256:304290e8cf3c0b80201d9349df40ef18059e67809caac67d54b7d33490096df9",
+      "constraints": {
+        "cpus": 2.0,
+        "memory_bytes": 2147483648,
+        "network": "systems-engineer-legacy-number-20261004t030549-net",
+        "mounts": []
+      },
+      "hashes": {
+        "core.py": {
+          "expected": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+          "actual": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380"
+        },
+        "server.py": {
+          "expected": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+          "actual": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        }
+      }
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "systems-engineer-legacy-number-20261004t030549-net"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.10088379199805786,
+      "log": "command-00.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-legacy-number-20261004t030549-old",
+        "--network",
+        "systems-engineer-legacy-number-20261004t030549-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18123",
+        "systems-engineer-tablekeeper-s1:calendar-02"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.08673683400047594,
+      "log": "command-01.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-legacy-number-20261004t030549-old",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18123/health',timeout=1).status==200\n  break\n except Exception: time.sleep(.05)\nelse: raise RuntimeError('health')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.1362983750004787,
+      "log": "command-02.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-legacy-number-20261004t030549-old"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.015196415999525925,
+      "log": "command-03.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "49287b4a5a1481f995c470ccae31776f03d4b863:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.009485250000579981,
+      "log": "command-04.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-legacy-number-20261004t030549-old",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.030348792002769187,
+      "log": "command-05.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "49287b4a5a1481f995c470ccae31776f03d4b863:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.009414957999979379,
+      "log": "command-06.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-legacy-number-20261004t030549-old",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.030339000000822125,
+      "log": "command-07.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-legacy-number-20261004t030549-current",
+        "--network",
+        "systems-engineer-legacy-number-20261004t030549-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18124",
+        "systems-engineer-tablekeeper-s1:decimal-05-20261004t023841"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.07294429100147681,
+      "log": "command-08.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-legacy-number-20261004t030549-current",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor attempt in range(100):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18124/health',timeout=1).status==200\n  break\n except Exception: time.sleep(.05)\nelse: raise RuntimeError('health')"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.13110387499909848,
+      "log": "command-09.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-legacy-number-20261004t030549-current"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03446095799881732,
+      "log": "command-10.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.013402249998762272,
+      "log": "command-11.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-legacy-number-20261004t030549-current",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.036693791997095104,
+      "log": "command-12.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.010235665999061894,
+      "log": "command-13.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-legacy-number-20261004t030549-current",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.030526167000061832,
+      "log": "command-14.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-legacy-number-20261004t030549-current",
+        "python",
+        "-",
+        "http://systems-engineer-legacy-number-20261004t030549-old:18123",
+        "http://127.0.0.1:18124",
+        "/tmp/systems-engineer-legacy-number.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.18089737500122283,
+      "log": "command-15.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-legacy-number-20261004t030549-current:/tmp/systems-engineer-legacy-number.json",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-s1-legacy-number-01/probe.json"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03317179199802922,
+      "log": "command-16.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-legacy-number-20261004t030549-current"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.07096383400130435,
+      "log": "command-17.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-legacy-number-20261004t030549-old"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.0852797500010638,
+      "log": "command-18.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "systems-engineer-legacy-number-20261004t030549-net"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.09376162499756902,
+      "log": "command-19.log"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "systems-engineer-legacy-number-20261004t030549-current",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-legacy-number-20261004t030549-old",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-legacy-number-20261004t030549-net",
+      "returncode": 0
+    }
+  ],
+  "client_sha256": "54086ac8c319d191112eab00d565c375535101abdfea11c280e2e1ed75bbb199",
+  "summary": {
+    "operations": 16,
+    "assertions": 24,
+    "failed": 0,
+    "wall_seconds": 0.06168145900005584
+  },
+  "result": "genuine old parser/export projection and original receipt replays observed",
+  "wall_seconds": 1.2129727089995868
+}
