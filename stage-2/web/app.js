@@ -1,0 +1,297 @@
+/* Tablekeeper's browser trusts accepted API responses, never cached success. */
+(() => {
+  'use strict';
+  const main = document.querySelector('#main');
+  const header = document.querySelector('#site-header');
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const test = id => document.querySelector(`[data-testid="${id}"]`);
+  const tablesOf = reservation => Array.isArray(reservation.table_ids) ? reservation.table_ids : [reservation.table_id];
+  const labelOf = (restaurant, id) => {
+    const label = restaurant?.tables?.find(t => t.id === id)?.label;
+    return label == null ? 'Table' : /^\d+$/.test(label) ? `Table ${label}` : label;
+  };
+  const labelsOf = (restaurant, ids) => ids.map(id => labelOf(restaurant, id)).join(' + ');
+  const today = () => {
+    const date = new Date();
+    return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+  };
+  const readSession = () => {
+    try {
+      const value = JSON.parse(sessionStorage.getItem('tablekeeper.session'));
+      return value && typeof value.token === 'string' && typeof value.display_name === 'string' ? value : null;
+    } catch (_) { return null; }
+  };
+  const state = {
+    route: location.pathname, user: readSession(), authEpoch: 0,
+    restaurants: [], cataloguePhase: 'loading', catalogueError: '',
+    query: {restaurantId:'', date:today(), party:'2'}, searchSeq:0,
+    result:null, searchPhase:'idle', searchError:'', authError:'',
+    booking:null, afterLogin:null,
+    lookup:{reference:'', phase:'idle', detail:null, restaurant:null, error:'', seq:0},
+  };
+  class Refusal extends Error {
+    constructor(status, value) { super(value?.error?.message || 'The request could not be accepted.'); this.status=status; this.code=value?.error?.code; }
+  }
+  async function api(path, {method='GET', body, rawBody, key, token=state.user?.token}={}) {
+    const headers = {Accept:'application/json'};
+    if (token) headers.Authorization = `Bearer ${token}`;
+    if (key) headers['Idempotency-Key'] = key;
+    if (body !== undefined || rawBody !== undefined) headers['Content-Type']='application/json; charset=utf-8';
+    const response = await fetch(path, {method, headers, body:rawBody ?? (body === undefined ? undefined : JSON.stringify(body)), cache:'no-store'});
+    let value;
+    if (response.status !== 204) {
+      try { value = await response.json(); }
+      catch (_) { throw new Error('The connection ended before a complete response arrived.'); }
+    }
+    if (!response.ok) {
+      if (response.status >= 500) throw new Error('The service could not confirm the outcome.');
+      throw new Refusal(response.status, value);
+    }
+    return value;
+  }
+  function rememberUser(user) {
+    state.user=user;
+    state.authEpoch++;
+    try { if (user) sessionStorage.setItem('tablekeeper.session', JSON.stringify(user)); else sessionStorage.removeItem('tablekeeper.session'); } catch (_) {}
+  }
+  const feedback = (id, message, kind='error') => message ? `<div data-testid="${id}" class="feedback ${kind}" role="${kind==='error'?'alert':'status'}">${esc(message)}</div>` : '';
+  const links = '<p class="muted">Already have an account? <a href="/login" data-route>Sign in</a>. New here? <a href="/signup" data-route>Create an account</a>.</p>';
+  function renderHeader() {
+    header.innerHTML=`<a href="/" data-route class="brand" aria-label="Tablekeeper home"><span class="brand-mark" aria-hidden="true">t</span><span>Tablekeeper<small>A place at the table</small></span></a>
+      <nav aria-label="Main navigation"><a href="/" data-route ${state.route==='/'?'aria-current="page"':''}>Find a table</a><a href="/lookup" data-route ${state.route==='/lookup'?'aria-current="page"':''}>Your reservation</a></nav>
+      <div class="account">${state.user ? `<span data-testid="current-user">${esc(state.user.display_name)}</span><button class="button secondary compact" data-testid="logout-button" type="button">Sign out</button>` : '<a href="/login" data-route>Sign in</a><a class="button secondary compact" href="/signup" data-route>Create account</a>'}</div>`;
+    test('logout-button')?.addEventListener('click', () => {
+      rememberUser(null); state.booking=null; state.afterLogin=null; state.authError='';
+      state.lookup.seq++; state.lookup.detail=null; state.lookup.restaurant=null; state.lookup.phase='idle'; state.lookup.error=''; render();
+    });
+  }
+  function navigate(route, replace=false) {
+    if (!['/','/signup','/login','/lookup'].includes(route)) return;
+    if (replace) history.replaceState(null,'',route); else if (route!==location.pathname) history.pushState(null,'',route);
+    state.route=route; state.authError=''; render();
+    main.focus();
+  }
+  document.addEventListener('click', event => {
+    const anchor=event.target.closest('a[data-route]');
+    if (!anchor || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault(); navigate(new URL(anchor.href).pathname);
+  });
+  addEventListener('popstate', () => { state.route=location.pathname; state.authError=''; render(); });
+  function render() {
+    renderHeader();
+    if (state.route==='/signup' || state.route==='/login') renderAuth();
+    else if (state.route==='/lookup') renderLookup();
+    else renderSearch();
+  }
+  function renderAuth() {
+    const signup=state.route==='/signup', prefix=signup?'signup':'login';
+    document.title=`${signup?'Create account':'Sign in'} · Tablekeeper`;
+    main.innerHTML=`<div class="auth-layout"><section class="auth-intro"><p class="eyebrow">${signup?'Make yourself at home':'Welcome back'}</p><h1>${signup?'Good company.<br>A table waiting.':'Your next meal<br>starts here.'}</h1><p class="lead">${signup?'Create an account to book a table and keep your reservation close at hand.':'Sign in to book, look up a reservation, or make room for your next visit.'}</p><div class="quiet-note">Browse restaurants and available times before signing in. Your selection will be here when you return.</div></section><section class="auth-card"><h2>${signup?'Create your account':'Sign in'}</h2>
+      ${state.user?`<p class="feedback success">You are signed in as ${esc(state.user.display_name)}.</p><a href="/" data-route class="button">Find a table</a>`:`<form id="auth-form" novalidate>
+        ${signup?'<label for="display-name">Your name</label><input id="display-name" data-testid="signup-display-name" name="display_name" autocomplete="name" required>':''}
+        <label for="auth-email">Email address</label><input id="auth-email" data-testid="${prefix}-email" name="email" type="email" autocomplete="email" required>
+        <label for="auth-password">Password</label><input id="auth-password" data-testid="${prefix}-password" name="password" type="password" autocomplete="${signup?'new-password':'current-password'}" required>${signup?'<p class="input-hint">Use at least 8 characters.</p>':''}
+        <div id="auth-feedback">${feedback('auth-error',state.authError)}</div><button data-testid="${prefix}-submit" class="button full" type="submit">${signup?'Create account':'Sign in'}</button></form>${links}`}
+      </section></div>`;
+    document.querySelector('#auth-form')?.addEventListener('submit', async event => {
+      event.preventDefault(); const form=event.currentTarget, button=test(`${prefix}-submit`);
+      const fields=new FormData(form); const body={email:fields.get('email'), password:fields.get('password')};
+      if (signup) body.display_name=fields.get('display_name');
+      button.disabled=true; button.textContent=signup?'Creating account…':'Signing in…';
+      document.querySelector('#auth-feedback').innerHTML='';
+      try {
+        const user=await api(`/auth/${prefix}`,{method:'POST',body,token:null});
+        if (!user || typeof user.token!=='string' || typeof user.display_name!=='string') throw new Error('Sign in could not be confirmed.');
+        rememberUser(user); state.authError='';
+        if (state.afterLogin) { state.booking=state.afterLogin; state.afterLogin=null; }
+        navigate('/');
+      } catch (error) {
+        if (state.route!==`/${prefix}`) return;
+        state.authError=error instanceof Refusal ? error.message : 'Unable to connect. Please try again.';
+        document.querySelector('#auth-feedback').innerHTML=feedback('auth-error',state.authError);
+        button.disabled=false; button.textContent=signup?'Create account':'Sign in';
+      }
+    });
+  }
+  function renderSearch() {
+    document.title='Find a table · Tablekeeper';
+    const q=state.query;
+    main.innerHTML=`<section class="hero"><div><p class="eyebrow">Time together, well spent</p><h1>Find your place<br>at the table.</h1><p class="lead">Choose a restaurant, a time, and a seat that suits your company.</p></div><p class="hero-note">Your table.<br>Your kind of evening.</p></section>
+      <section class="search-card" aria-label="Find availability"><form id="search-form" class="search-fields" novalidate>
+        <div><label for="restaurant">Restaurant</label><select id="restaurant" data-testid="restaurant-select" ${state.cataloguePhase==='loading'?'disabled':''}>${state.restaurants.length?state.restaurants.map(r=>`<option value="${esc(r.id)}" ${r.id===q.restaurantId?'selected':''}>${esc(r.name)}</option>`).join(''):'<option value="">'+(state.cataloguePhase==='loading'?'Loading restaurants…':'No restaurants available')+'</option>'}</select></div>
+        <div><label for="visit-date">Date</label><input id="visit-date" data-testid="date-input" type="date" value="${esc(q.date)}" required></div>
+        <div><label for="search-party">Guests</label><input id="search-party" data-testid="party-size-input" type="number" min="1" step="1" value="${esc(q.party)}" required></div>
+        <button type="submit" class="button" data-testid="search-button" ${!state.restaurants.length?'disabled':''}>Find a table</button>
+      </form><div id="search-feedback"></div></section><div class="results-layout"><section class="results-panel" id="results-panel" aria-live="polite"></section><aside id="booking-panel"></aside></div>`;
+    ['restaurant-select','date-input','party-size-input'].forEach(id=>test(id).addEventListener('input', () => {
+      const next={restaurantId:test('restaurant-select').value,date:test('date-input').value,party:test('party-size-input').value};
+      if (JSON.stringify(next)!==JSON.stringify(state.query)) {
+        state.query=next; state.searchSeq++; state.searchPhase='idle'; state.searchError=''; state.result=null; state.booking=null; state.afterLogin=null; state.authError='';
+        renderResults(); renderBooking();
+      }
+    }));
+    document.querySelector('#search-form').addEventListener('submit', event=>{event.preventDefault(); search();});
+    renderResults(); renderBooking();
+  }
+  function renderResults() {
+    const panel=document.querySelector('#results-panel'); if (!panel) return;
+    document.querySelector('#search-feedback').innerHTML=state.catalogueError?feedback('search-error',state.catalogueError):feedback('search-error',state.searchError);
+    if (state.cataloguePhase==='loading' || state.searchPhase==='loading') {
+      panel.innerHTML='<div class="empty-state"><span class="loading-dot" aria-hidden="true"></span><h2>Finding a place for you</h2><p class="muted">Checking tables and local opening times…</p></div>'; return;
+    }
+    if (state.cataloguePhase==='error') { panel.innerHTML='<div class="empty-state"><h2>We couldn’t load the restaurants</h2><p class="muted">Please try the connection again.</p><button id="catalogue-retry" class="button secondary">Try again</button></div>'; document.querySelector('#catalogue-retry').onclick=loadCatalogue; return; }
+    if (!state.restaurants.length) { panel.innerHTML='<div class="empty-state"><h2>No restaurants to browse yet</h2><p class="muted">Check back when restaurant details have been added.</p></div>';return; }
+    if (!state.result) { panel.innerHTML=`<div class="empty-state"><p class="eyebrow">A little planning, a lovely meal</p><h2>${state.searchError?'Try another search':'Where shall we meet?'}</h2><p class="muted">Choose your date and party size, then find a table.</p></div>`;return; }
+    const {restaurant,availability,query}=state.result;
+    let top=`<div class="results-heading"><div><p class="eyebrow">${esc(restaurant.name)}</p><h2>${esc(query.date)}</h2><p class="muted">${esc(query.party)} ${query.party==='1'?'guest':'guests'} · Times in ${esc(restaurant.timezone)}</p></div><span class="availability-key"><span></span>Available</span></div>${feedback('auth-error',state.authError)}`;
+    if (!availability.slots.length) { panel.innerHTML=top+'<div data-testid="no-slots" class="empty-state"><h3>No times on this date</h3><p class="muted">This restaurant has no booking slots for the selected day. Try another date.</p></div>';return; }
+    top+='<div data-testid="availability-grid" class="availability-grid">';
+    availability.slots.forEach((slot,slotIndex)=>{
+      top+=`<div class="slot-row"><div class="slot-heading"><strong>${esc(slot.starts_at_local.slice(11))}</strong><span>Local time</span></div><div class="seat-options">`;
+      const cell=(ids,available,combination=false)=>{
+        const selected=state.booking && state.booking.starts===slot.starts_at_local && JSON.stringify(state.booking.ids)===JSON.stringify(ids);
+        return `<button type="button" class="seat ${combination?'combination ':''}${selected?'selected':''}" data-testid="slot-${esc(ids.join('+'))}-${esc(slot.starts_at_local.slice(11))}" data-available="${available}" data-slot="${slotIndex}" data-tables="${esc(JSON.stringify(ids))}" ${available?'':'disabled'} aria-pressed="${!!selected}"><strong>${esc(labelsOf(restaurant,ids))}</strong><span>${combination?'Together · ':''}${ids.reduce((n,id)=>n+restaurant.tables.find(t=>t.id===id).capacity,0)} seats · ${available?'Choose table':'Unavailable'}</span></button>`;
+      };
+      restaurant.tables.forEach(table=>{top+=cell([table.id],slot.available_table_ids.includes(table.id));});
+      (slot.available_options || []).filter(option=>option.table_ids.length===2).forEach(option=>{top+=cell(option.table_ids,true,true);});
+      top+='</div></div>';
+    });
+    panel.innerHTML=top+'</div><p class="input-hint">Availability is checked again when you book. Combined tables are offered only as approved pairs.</p>';
+    panel.querySelectorAll('button[data-available="true"]').forEach(button=>button.addEventListener('click',()=>{
+      const booking={restaurant,ids:JSON.parse(button.dataset.tables),starts:availability.slots[Number(button.dataset.slot)].starts_at_local,party:query.party,identity:null,phase:'idle',error:'',uncertain:'',confirmation:null,changedNotice:''};
+      if (!state.user) { state.authError='Sign in to book this table. Your selection will be kept for you.';state.afterLogin=booking;renderResults();return; }
+      state.booking=booking; state.authError=''; renderResults();renderBooking();test('booking-party-size')?.focus();
+    }));
+  }
+  function decimal(raw) {
+    if (!/^[0-9]+$/.test(raw)) return null;
+    const value=BigInt(raw); return value>0n?value.toString():null;
+  }
+  async function search(preserveBooking=false) {
+    const seq=++state.searchSeq, query={...state.query}, party=decimal(query.party);
+    state.searchError='';
+    if (!query.restaurantId || !/^\d{4}-\d{2}-\d{2}$/.test(query.date) || !party) {
+      state.searchPhase='error';state.searchError='Choose a restaurant, a date, and a whole number of guests greater than zero.';renderResults();return;
+    }
+    query.party=party;state.searchPhase='loading';if (!preserveBooking) { state.booking=null;state.afterLogin=null; }
+    renderResults();renderBooking();
+    try {
+      const [restaurant,availability]=await Promise.all([
+        api(`/restaurants/${encodeURIComponent(query.restaurantId)}`),
+        api(`/availability?restaurant_id=${encodeURIComponent(query.restaurantId)}&date=${encodeURIComponent(query.date)}&party_size=${encodeURIComponent(party)}`)
+      ]);
+      if (seq!==state.searchSeq) return;
+      state.result={restaurant,availability,query};state.searchPhase='ready';state.authError='';renderResults();renderBooking();
+    } catch (error) {
+      if (seq!==state.searchSeq) return;
+      state.searchPhase='error';state.result=null;state.searchError=error instanceof Refusal?error.message:'Availability could not be loaded. Please try again.';renderResults();renderBooking();
+    }
+  }
+  function bookingBody(booking) {
+    const party=decimal(booking.party); if (!party) return null;
+    const selection=booking.ids.length===1?`"table_id":${JSON.stringify(booking.ids[0])}`:`"table_ids":${JSON.stringify(booking.ids)}`;
+    return `{"restaurant_id":${JSON.stringify(booking.restaurant.id)},${selection},"starts_at_local":${JSON.stringify(booking.starts)},"party_size":${party}}`;
+  }
+  function requestIdentity(booking) {
+    const rawBody=bookingBody(booking); if (!rawBody) return null;
+    if (!booking.identity || booking.identity.rawBody!==rawBody) {
+      const random=new Uint8Array(16);crypto.getRandomValues(random);
+      booking.identity={rawBody,key:'tk-'+Array.from(random,v=>v.toString(16).padStart(2,'0')).join('')};
+    }
+    return booking.identity;
+  }
+  function renderBooking() {
+    const panel=document.querySelector('#booking-panel');if (!panel) return;
+    const b=state.booking;
+    if (!b) {panel.innerHTML='<div class="booking-placeholder"><span class="place-symbol" aria-hidden="true">✦</span><h3>A seat for your occasion</h3><p>Choose an available table to see your booking details here.</p>'+(!state.user?'<a href="/login" data-route>Sign in to book</a>':'')+'</div>';return;}
+    panel.innerHTML=`<section data-testid="booking-form" class="booking-card"><p class="eyebrow">Your table</p><h2>${esc(b.restaurant.name)}</h2><p data-testid="booking-summary" class="booking-summary">${esc(labelsOf(b.restaurant,b.ids))}<br>${esc(b.starts)}</p><p class="input-hint">${esc(b.restaurant.timezone)} · ${esc(b.restaurant.reservation_duration_minutes)} minute reservation</p><form id="booking-fields" novalidate><fieldset ${b.phase==='submitting'?'disabled':''}><label for="booking-guests">Guests</label><input id="booking-guests" data-testid="booking-party-size" type="number" min="1" step="1" value="${esc(b.party)}" required><div id="booking-feedback"></div><button class="button full" data-testid="booking-submit" type="submit">${b.phase==='submitting'?'Confirming…':b.uncertain?'Retry this booking':b.confirmation?'Check confirmation again':'Confirm booking'}</button></fieldset></form><div id="booking-confirmation"></div><p class="input-hint">A reference appears only after the restaurant service confirms your booking.</p></section>`;
+    renderBookingFeedback();renderConfirmation();
+    test('booking-party-size').addEventListener('input',event=>{
+      const oldBody=bookingBody(b);b.party=event.target.value;
+      if (bookingBody(b)!==oldBody) {
+        b.changedNotice=b.uncertain?'Your previous attempt may have booked a table. This changed form will make a separate request. Retry the original selection to resolve an uncertain outcome.':'';
+        b.identity=null;b.error='';b.uncertain='';b.confirmation=null;b.phase='idle';renderBookingFeedback();renderConfirmation();
+        test('booking-submit').textContent='Confirm booking';
+      }
+    });
+    document.querySelector('#booking-fields').addEventListener('submit',event=>{event.preventDefault();submitBooking(b);});
+  }
+  function renderBookingFeedback() {
+    const panel=document.querySelector('#booking-feedback');if(!panel || !state.booking)return;
+    const b=state.booking;panel.innerHTML=feedback('booking-error',b.error)+feedback('booking-uncertain',b.uncertain,'uncertain')+(b.changedNotice?`<p class="feedback uncertain">${esc(b.changedNotice)}</p>`:'');
+  }
+  function renderConfirmation() {
+    const panel=document.querySelector('#booking-confirmation'); if (!panel)return;
+    const b=state.booking,r=b?.confirmation;
+    panel.innerHTML=r?`<section data-testid="confirmation" class="confirmation" role="status"><p class="eyebrow">Your table is confirmed</p><p class="input-hint">Booking reference</p><p data-testid="confirmation-reference" class="reference">${esc(r.reference)}</p><p data-testid="confirmation-details">${esc(b.restaurant.name)}<br>${esc(labelsOf(b.restaurant,tablesOf(r)))}<br>${esc(r.starts_at_local)}</p><p data-testid="confirmation-tables">${esc(labelsOf(b.restaurant,tablesOf(r)))}</p><a href="/lookup" data-route data-open-reference="${esc(r.reference)}">View or cancel reservation</a></section>`:'';
+    panel.querySelector('[data-open-reference]')?.addEventListener('click',event=>{state.lookup.reference=event.currentTarget.dataset.openReference;state.lookup.detail=null;state.lookup.phase='idle';state.lookup.error='';});
+  }
+  async function submitBooking(b) {
+    if (b.phase==='submitting' || state.booking!==b) return;
+    if (!state.user) {b.error='Sign in before confirming a booking.';renderBooking();return;}
+    const identity=requestIdentity(b);
+    if (!identity) {b.error='Enter a whole number of guests greater than zero.';b.uncertain='';b.confirmation=null;renderBooking();return;}
+    const epoch=state.authEpoch;b.phase='submitting';b.error='';b.uncertain='';b.confirmation=null;b.changedNotice='';renderBooking();
+    try {
+      const receipt=await api('/reservations',{method:'POST',rawBody:identity.rawBody,key:identity.key});
+      if (state.booking!==b || state.authEpoch!==epoch) return;
+      if (!receipt || typeof receipt.reference!=='string' || !/^[A-Z0-9]{6,12}$/.test(receipt.reference)) throw new Error('Booking confirmation was incomplete.');
+      b.confirmation=receipt;b.phase='confirmed';b.error='';b.uncertain='';renderBooking();
+    } catch (error) {
+      if (state.booking!==b || state.authEpoch!==epoch) return;
+      b.phase='idle';b.confirmation=null;
+      if (error instanceof Refusal) {
+        b.error=error.code==='table_unavailable'?'This table was just taken. We’ve refreshed availability; your details are kept below. Choose another option to continue.':error.message;
+        b.uncertain='';renderBooking();
+        if (error.code==='table_unavailable') await search(true);
+      } else { b.error='';b.uncertain='We couldn’t confirm the response. Your booking may have succeeded. Retry this unchanged form to recover its original reference.';renderBooking(); }
+    }
+  }
+  function renderLookup() {
+    document.title='Your reservation · Tablekeeper';
+    const l=state.lookup;
+    main.innerHTML=`<section class="hero compact-hero"><div><p class="eyebrow">Plans, close at hand</p><h1>Your reservation.</h1><p class="lead">Use your booking reference to find the details or cancel your table.</p></div></section><div class="lookup-layout"><section class="lookup-card"><h2>Find your booking</h2><form id="lookup-form" novalidate><label for="reference">Booking reference</label><input id="reference" data-testid="lookup-reference-input" value="${esc(l.reference)}" autocomplete="off" autocapitalize="characters" spellcheck="false"><p class="input-hint">Enter the reference exactly as shown on your confirmation.</p><button data-testid="lookup-submit" class="button full" ${l.phase==='loading'?'disabled':''}>${l.phase==='loading'?'Finding reservation…':'Find reservation'}</button></form>${!state.user?'<p class="quiet-note">Sign in to see your own reservations.</p>'+links:''}<div id="lookup-feedback"></div></section><section id="reservation-panel"></section></div>`;
+    renderLookupDetail();
+    test('lookup-reference-input').addEventListener('input',event=>{l.reference=event.target.value;l.seq++;l.detail=null;l.error='';l.phase='idle';renderLookupDetail();});
+    document.querySelector('#lookup-form').addEventListener('submit',event=>{event.preventDefault();lookup();});
+  }
+  function renderLookupDetail() {
+    const panel=document.querySelector('#reservation-panel'),feedbackPanel=document.querySelector('#lookup-feedback');if(!panel)return;
+    const l=state.lookup,r=l.detail;
+    feedbackPanel.innerHTML=feedback('reservation-error',l.error);
+    if (!r) {panel.innerHTML=`<div class="booking-placeholder"><span class="place-symbol" aria-hidden="true">✦</span><h3>${l.phase==='loading'?'Finding your reservation':'A reference to your plans'}</h3><p>${l.phase==='loading'?'Checking the details with the restaurant…':'Your restaurant, table and time will appear here.'}</p></div>`;return;}
+    panel.innerHTML=`<section data-testid="reservation-detail" class="lookup-card"><div class="detail-heading"><p class="eyebrow">${esc(l.restaurant?.name || 'Your reservation')}</p><span data-testid="reservation-status" class="status ${r.status==='cancelled'?'cancelled':''}">${esc(r.status)}</span></div><h2>${esc(r.starts_at_local)}</h2><p data-testid="reservation-tables" class="booking-summary">${esc(labelsOf(l.restaurant,tablesOf(r)))}</p><dl class="detail-list"><div><dt>Guests</dt><dd>${esc(r.party_size)}</dd></div><div><dt>Booking reference</dt><dd class="reference small">${esc(r.reference)}</dd></div><div><dt>Local time zone</dt><dd>${esc(l.restaurant?.timezone || '')}</dd></div><div><dt>Ends at</dt><dd>${esc(r.ends_at)}</dd></div></dl>${r.status==='confirmed'?`<p class="input-hint">Cancellation is subject to the restaurant’s ${esc(l.restaurant?.cancellation_cutoff_minutes ?? '')} minute cutoff.</p><button type="button" data-testid="reservation-cancel-button" class="button secondary full" ${l.phase==='cancelling'?'disabled':''}>${l.phase==='cancelling'?'Cancelling…':'Cancel reservation'}</button>`:'<p class="feedback success">This reservation is cancelled. The table has been released.</p>'}</section>`;
+    test('reservation-cancel-button')?.addEventListener('click',cancelReservation);
+  }
+  async function lookup() {
+    const l=state.lookup,seq=++l.seq,epoch=state.authEpoch,reference=l.reference;
+    l.error='';l.detail=null;
+    if(!state.user || !reference) {l.error=!state.user?'Sign in to look up your own reservation.':'Enter your booking reference.';l.phase='idle';renderLookup();return;}
+    l.phase='loading';renderLookup();
+    try {
+      const receipt=await api(`/reservations/${encodeURIComponent(reference)}`);
+      const restaurant=await api(`/restaurants/${encodeURIComponent(receipt.restaurant_id)}`);
+      if(seq!==l.seq || epoch!==state.authEpoch)return;
+      l.detail=receipt;l.restaurant=restaurant;l.phase='ready';renderLookup();
+    } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='idle';l.error=error instanceof Refusal?error.status===404?'No reservation was found for this account and reference.':error.message:'The reservation could not be loaded. Please try again.';renderLookup();}
+  }
+  async function cancelReservation() {
+    const l=state.lookup,seq=++l.seq,epoch=state.authEpoch,reference=l.detail?.reference;
+    if(!reference || l.phase==='cancelling')return;
+    l.phase='cancelling';l.error='';renderLookupDetail();
+    try {
+      const receipt=await api(`/reservations/${encodeURIComponent(reference)}/cancel`,{method:'POST'});
+      if(seq!==l.seq || epoch!==state.authEpoch)return;
+      l.detail=receipt;l.phase='ready';renderLookupDetail();
+    } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='ready';l.error=error instanceof Refusal?error.message:'The cancellation outcome could not be confirmed. Try again to check it.';renderLookupDetail();}
+  }
+  async function loadCatalogue() {
+    state.cataloguePhase='loading';state.catalogueError='';render();
+    try {
+      const value=await api('/restaurants');state.restaurants=value.restaurants;
+      if(!state.restaurants.some(r=>r.id===state.query.restaurantId))state.query.restaurantId=state.restaurants[0]?.id || '';
+      state.cataloguePhase='ready';render();
+    } catch(_) {state.cataloguePhase='error';state.catalogueError='Restaurants could not be loaded. Please try again.';render();}
+  }
+  render();loadCatalogue();
+})();
