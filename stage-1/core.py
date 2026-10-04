@@ -331,16 +331,19 @@ class Engine:
             fail(404, "not_found")
         zone = ZoneInfo(restaurant["timezone"])
         start = resolve_local(local, zone)
-        end = (start.astimezone(UTC) + timedelta(
-            minutes=restaurant["reservation_duration_minutes"])).astimezone(zone)
         hours = self._hours(restaurant, local.date())
         if hours is None:
             fail(422, "outside_opening_hours")
         opening = datetime.fromisoformat(f"{local.date().isoformat()}T{hours['opens']}")
         closing = datetime.fromisoformat(f"{local.date().isoformat()}T{hours['closes']}")
-        if local < opening or local >= closing or end.astimezone(UTC) > closing.replace(
-                tzinfo=zone, fold=0).astimezone(UTC):
+        start_utc = start.astimezone(UTC)
+        duration = timedelta(minutes=restaurant["reservation_duration_minutes"])
+        closing_utc = closing.replace(tzinfo=zone, fold=0).astimezone(UTC)
+        # Reject an interval that cannot fit before constructing its endpoint.
+        # Otherwise a late unbookable slot can overflow the maximum calendar year.
+        if local < opening or local >= closing or duration > closing_utc - start_utc:
             fail(422, "outside_opening_hours")
+        end = (start_utc + duration).astimezone(zone)
         minutes = int((local - opening).total_seconds() // 60)
         if minutes % restaurant["slot_minutes"]:
             fail(422, "not_on_slot_grid")
@@ -450,19 +453,24 @@ class Engine:
         if hours is None:
             return result
         zone = ZoneInfo(restaurant["timezone"])
-        local = datetime.fromisoformat(f"{local_date_string}T{hours['opens']}")
+        opening = datetime.fromisoformat(f"{local_date_string}T{hours['opens']}")
         close = datetime.fromisoformat(f"{local_date_string}T{hours['closes']}")
         close_utc = close.replace(tzinfo=zone, fold=0).astimezone(UTC)
-        while local < close:
+        duration = timedelta(minutes=restaurant["reservation_duration_minutes"])
+        # Grid offsets are bounded by this local day's opening window. Stepping
+        # past it must not attempt to construct another day (or another year).
+        window_minutes = int((close - opening).total_seconds() // 60)
+        for offset in range(0, window_minutes, restaurant["slot_minutes"]):
+            local = opening + timedelta(minutes=offset)
             try:
                 start = resolve_local(local, zone)
             except Refusal as error:
                 if error.code != "invalid_local_time":
                     raise
-                local += timedelta(minutes=restaurant["slot_minutes"])
                 continue
-            end_utc = start.astimezone(UTC) + timedelta(minutes=restaurant["reservation_duration_minutes"])
-            if end_utc <= close_utc:
+            start_utc = start.astimezone(UTC)
+            if duration <= close_utc - start_utc:
+                end_utc = start_utc + duration
                 available = []
                 for table in restaurant["tables"]:
                     candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
@@ -473,7 +481,6 @@ class Engine:
                         available.append(table["id"])
                 result["slots"].append({"starts_at_local": local.isoformat(timespec="minutes"),
                     "starts_at": start.isoformat(), "available_table_ids": available})
-            local += timedelta(minutes=restaurant["slot_minutes"])
         return result
 
     @staticmethod
@@ -499,7 +506,9 @@ class Engine:
                     timedelta(minutes=restaurant[key])
                 except OverflowError:
                     fail()
-            hours, tables = row.get("opening_hours"), row.get("tables")
+            if "opening_hours" not in row or "tables" not in row:
+                fail(message="Missing opening_hours or tables")
+            hours, tables = row["opening_hours"], row["tables"]
             if not isinstance(hours, list) or not isinstance(tables, list):
                 fail(400, "malformed_request")
             restaurant["opening_hours"], restaurant["tables"] = [], []

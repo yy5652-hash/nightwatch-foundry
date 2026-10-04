@@ -273,6 +273,38 @@ class StageOne(unittest.TestCase):
         self.expect(destination.request("GET", "/reservations", headers=self.auth), 401, "unauthenticated")
         self.assertEqual(self.expect(destination.request("GET", "/restaurants"), 200), {"restaurants": []})
 
+    def test_required_fixture_arrays_missing_versus_wrong_type(self):
+        before = self.exported()
+        for field in ("opening_hours", "tables"):
+            with self.subTest(field=field, value="missing"):
+                missing = fixture()
+                del missing["restaurants"][0][field]
+                self.expect(self.client.request("POST", "/_test/reset", missing), 422, "validation_failed")
+                self.assertEqual(self.exported(), before)
+            for wrong_type in (None, {}, False, 1, "array"):
+                with self.subTest(field=field, value=wrong_type):
+                    invalid = fixture()
+                    invalid["restaurants"][0][field] = wrong_type
+                    self.expect(self.client.request("POST", "/_test/reset", invalid), 400, "malformed_request")
+                    self.assertEqual(self.exported(), before)
+
+    def test_calendar_maximum_and_large_grid_steps(self):
+        seeded = fixture("UTC")
+        self.expect(self.client.request("POST", "/_test/reset", seeded), 204)
+        self.auth = self.login("ada@example.test")
+        query = "/availability?restaurant_id=r&date=9999-12-31&party_size=2"
+        available = self.expect(self.client.request("GET", query), 200)
+        expected = [f"9999-12-31T{hour:02}:{minute:02}"
+                    for hour in range(18, 22) for minute in (0, 30)]
+        self.assertEqual([slot["starts_at_local"] for slot in available["slots"]], expected)
+        self.assertTrue(all(slot["available_table_ids"] == ["a", "b"] for slot in available["slots"]))
+        self.expect(self.create(self.body(start="9999-12-31T21:30")), 201)
+        self.expect(self.create(self.body(table="b", start="9999-12-31T22:30")), 422, "outside_opening_hours")
+        seeded["restaurants"][0]["slot_minutes"] = 5256000
+        self.expect(self.client.request("POST", "/_test/reset", seeded), 204)
+        huge_grid = self.expect(self.client.request("GET", query), 200)
+        self.assertEqual([slot["starts_at_local"] for slot in huge_grid["slots"]], ["9999-12-31T18:00"])
+
 
 if __name__ == "__main__":
     print("Builder diagnostics; transport=" + ("HTTP" if args.url else "Engine") + "; model/spend unknown")

@@ -1,0 +1,41 @@
+test_required_fixture_arrays_missing_versus_wrong_type (__main__.StageOne.test_required_fixture_arrays_missing_versus_wrong_type) ... 
+  test_required_fixture_arrays_missing_versus_wrong_type (__main__.StageOne.test_required_fixture_arrays_missing_versus_wrong_type) (field='opening_hours', value='missing') ... FAIL
+  test_required_fixture_arrays_missing_versus_wrong_type (__main__.StageOne.test_required_fixture_arrays_missing_versus_wrong_type) (field='tables', value='missing') ... FAIL
+test_calendar_maximum_and_large_grid_steps (__main__.StageOne.test_calendar_maximum_and_large_grid_steps) ... FAIL
+
+======================================================================
+FAIL: test_required_fixture_arrays_missing_versus_wrong_type (__main__.StageOne.test_required_fixture_arrays_missing_versus_wrong_type) (field='opening_hours', value='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 282, in test_required_fixture_arrays_missing_versus_wrong_type
+    self.expect(self.client.request("POST", "/_test/reset", missing), 422, "validation_failed")
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 400 != 422 : {'error': {'code': 'malformed_request', 'message': 'malformed request'}}
+
+======================================================================
+FAIL: test_required_fixture_arrays_missing_versus_wrong_type (__main__.StageOne.test_required_fixture_arrays_missing_versus_wrong_type) (field='tables', value='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 282, in test_required_fixture_arrays_missing_versus_wrong_type
+    self.expect(self.client.request("POST", "/_test/reset", missing), 422, "validation_failed")
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 400 != 422 : {'error': {'code': 'malformed_request', 'message': 'malformed request'}}
+
+======================================================================
+FAIL: test_calendar_maximum_and_large_grid_steps (__main__.StageOne.test_calendar_maximum_and_large_grid_steps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 296, in test_calendar_maximum_and_large_grid_steps
+    available = self.expect(self.client.request("GET", query), 200)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 422 != 200 : {'error': {'code': 'validation_failed', 'message': 'Invalid value'}}
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.263s
+
+FAILED (failures=3)
+Builder diagnostics; transport=Engine; model/spend unknown
