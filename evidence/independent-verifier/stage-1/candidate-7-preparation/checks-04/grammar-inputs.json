@@ -1,0 +1,704 @@
+[
+  {
+    "label": "empty-object",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "raw_hex": "7b7d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "empty-array",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "raw_hex": "5b5d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "null",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 4,
+    "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "raw_hex": "6e756c6c",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "true",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 4,
+    "sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+    "raw_hex": "74727565",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "false",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 5,
+    "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+    "raw_hex": "66616c7365",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "integer",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 1,
+    "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "raw_hex": "31",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "negative-zero",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 2,
+    "sha256": "ed79f26d03f412bde3db206601a698e0bb451bea9e3cc25289636ac17ea74b0a",
+    "raw_hex": "2d30",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "zero-exponent",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 12,
+    "sha256": "27d10c1cecf6c4e51963936699c148f2785896587950da49f6291b8f5f372293",
+    "raw_hex": "2d302e303030652d34333030",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "negative-integer",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 3,
+    "sha256": "7ed00270e394c3e190d18a977f5d0e1ed889bdc03a637e8fe35f00946841b0bf",
+    "raw_hex": "2d3132",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "fraction",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 20,
+    "sha256": "d725c68ec0e643bc1a48505c7331a8c76a08c3be2fe84004c320bd9bee701d04",
+    "raw_hex": "302e313030303030303030303030303030303035",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "exp-plus",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 6,
+    "sha256": "d42ce5d8b6a3f550c1e99824cb967237bc7cecc488bf50abadae4afb5f3318bd",
+    "raw_hex": "31452b303034",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "underflow",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 7,
+    "sha256": "fb0eff39e487c47a130488f4d1fb983db5073085faf1628846612faa41174843",
+    "raw_hex": "31652d34333030",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "overflow",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 6,
+    "sha256": "92f9f8e9328d927338a1d88998e595f732fcf31903f45de0708a386c0aa845c7",
+    "raw_hex": "316534333030",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "huge-compact-exponent",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 82,
+    "sha256": "6bd8be6fb0da34e6a6acbac4ddcecee6bb71eb537f70993d6c5558096cf20758",
+    "raw_hex": "31653939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939393939",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "empty-string",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 2,
+    "sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+    "raw_hex": "2222",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "escaped-quote",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 4,
+    "sha256": "0c926fba014b31b506cd4ceb60d646c0c867432650fa0671fcafed6b772614a3",
+    "raw_hex": "225c2222",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "escaped-backslash",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 4,
+    "sha256": "687a9ed5a2b7019504648f874bb683f56e7787e1a4738493d84349c8d4e72b23",
+    "raw_hex": "225c5c22",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "escaped-slash",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 4,
+    "sha256": "7040fb3de3d569faa7bf72a920e4375290a0c4333d824ccc47c3e3e5ffcdaab5",
+    "raw_hex": "225c2f22",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "all-short-escapes",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 12,
+    "sha256": "88821412381596c0dc2c66e310ae7e66100d7e4196456e2e9f3d261d0b562746",
+    "raw_hex": "225c625c665c6e5c725c7422",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "unicode-escapes",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 20,
+    "sha256": "1412c2e190033e878a255805577ca52b9371191bf3f3259b4bc366e19dfefd73",
+    "raw_hex": "225c75303030305c75303065395c753663343922",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "surrogate-pair",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 14,
+    "sha256": "9d231df813d5c2c9ba7043e768d78043eb27262ebdaab8c00ec82ba3bed7124d",
+    "raw_hex": "225c75443833345c754444314522",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "escaped-surrogate",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 8,
+    "sha256": "e2abb8b90faadf0e98d5e6382fa5f354e814aaa72ce1155de80231de88c7724d",
+    "raw_hex": "225c754438303022",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "utf8",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 11,
+    "sha256": "c73ebd0ce4dc72b1a3522bb1a63b7f2d82271f9ab1eb9d28a6eab3af540b8251",
+    "raw_hex": "22c3a9e6b189f09d849e22",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "mixed-containers",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 45,
+    "sha256": "07b28c0ff0bbf6c21e534142ba2ec5476dd7c9eff0d920311b0909db67dfd1df",
+    "raw_hex": "7b2261223a5b6e756c6c2c66616c73652c747275652c312c7b7d2c5b5d5d2c2262223a7b2263223a2278227d7d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "json-whitespace",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 26,
+    "sha256": "b79015f6a38cf2c32d6e3267f47a0192a0844de45e2aec32b0b573e9362be981",
+    "raw_hex": "20090d0a207b20226122203a205b2031202c2032205d207d200a",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "number-looking-string",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 35,
+    "sha256": "2bb59016437c2e201737f61cdaccf3b1635a1f5a6fe8e3259dd5a9530e135cd6",
+    "raw_hex": "224e614e20496e66696e697479203031202b31202e3520316534333030205b7d5c2222",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "escaped-key",
+    "expected_valid": true,
+    "category": "scalar/container",
+    "bytes": 12,
+    "sha256": "16e77893bbd4cda3fe05ee0d47437f35bb7a626f47ccde535b94e3cd5ed85190",
+    "raw_hex": "7b225c7530303631223a317d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "empty",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_hex": "",
+    "http_scope": "diagnostic grammar only; no new HTTP mandate"
+  },
+  {
+    "label": "only-whitespace",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "9b8318187072010f3081af0de6d1c356f4695d1b5a5e1778629153663acad751",
+    "raw_hex": "200a09",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "bom",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "aa25e978046d680ef8740d837e6de5bc1e2a2dc6089dbda1012544b538d53f65",
+    "raw_hex": "efbbbf7b7d",
+    "http_scope": "diagnostic grammar only; no new HTTP mandate"
+  },
+  {
+    "label": "utf16",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 6,
+    "sha256": "83cd1053851a5a4b965a3272c63ffa0155543e74fc1dd91f7efca55bd7d899df",
+    "raw_hex": "fffe7b007d00",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "invalid-utf8",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 9,
+    "sha256": "dc2222acf0a31b9e965c6577a25c70f729766e07124482731257cb4bca738af7",
+    "raw_hex": "7b2261223a22ff227d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "overlong-utf8",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 10,
+    "sha256": "09b59b2361970905de8c2c956123c035852bbee8e9db2ea609ee82bb576a218c",
+    "raw_hex": "7b2261223a22c0af227d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "utf8-surrogate",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "ee4a76500d4d714ca691afe56c1fd9e0a5fbcb42d6c8f8d7178aae4ddb683cf7",
+    "raw_hex": "22eda08022",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "unclosed-string",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "aa885fb27a812abedb8978a3bb3218cbb01a22d270469b74f23995140175c462",
+    "raw_hex": "22616263",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "unclosed-escape",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "d09c091bb109fc110932b2b1e8f346f2db41d0a376b8b35f157d66dc88a9ba9a",
+    "raw_hex": "226162635c",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "bad-escape",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "722cd80a90dd9305fea073dd4dfeeace433b327fccf462fcf466cd13551c6aa9",
+    "raw_hex": "225c7122",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "unicode-short",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 7,
+    "sha256": "a42877b3b7845c0c073d08fb307b9a387f4088d2ece33e708eb76ad3631abd0a",
+    "raw_hex": "225c7531323322",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "unicode-nonhex",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 8,
+    "sha256": "576eefd63ea5a0aa3bffde7d84598b0ce1b3df93661be1c131467b1f8d55ad12",
+    "raw_hex": "225c753132473422",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "raw-nul",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "924f5f1e2d738cab52b99fa18fb5287ed264ce3070a41c712168d04bc1ffe039",
+    "raw_hex": "220022",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "raw-newline",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "29b8826ccd19850e8e3b631f54236379a651471d14fee3ab4af31a048d671e61",
+    "raw_hex": "22780a7922",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "raw-tab",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "7bb04915cec41b14e8af097414d95055bab85075ea97bd21a29a16eece203236",
+    "raw_hex": "2278097922",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "single-quote",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "62d9e539628b195b8df54c6b8fb6242fb0ba8da6aa793f7a482bdf723dd3edb5",
+    "raw_hex": "2761626327",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "nan",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "d5b592c05dc25b5032553f1b27f4139be95e881f73db33b02b05ab20c3f9981e",
+    "raw_hex": "4e614e",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "infinity",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 8,
+    "sha256": "d0067cad9a63e0813759a2bb841051ca73570c0da2e08e840a8eb45db6a7a010",
+    "raw_hex": "496e66696e697479",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "minus-infinity",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 9,
+    "sha256": "c64ddf11bcd45660f0cf66dd0c22d2b4570ef3d3fc6527a9a6f6c722aefa3c39",
+    "raw_hex": "2d496e66696e697479",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "undefined",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 9,
+    "sha256": "eb045d78d273107348b0300c01d29b7552d622abbc6faf81b3ec55359aa9950c",
+    "raw_hex": "756e646566696e6564",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "upper-true",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "3cbc87c7681f34db4617feaa2c8801931bc5e42d8d0f560e756dd4cd92885f18",
+    "raw_hex": "54727565",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "partial-null",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "99e6242759016035192f8efe5f53878a355026b61b0da04e0b56942148936eb2",
+    "raw_hex": "6e756c",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "leading-zero",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 2,
+    "sha256": "938db8c9f82c8cb58d3f3ef4fd250036a48d26a712753d2fde5abd03a85cabf4",
+    "raw_hex": "3031",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "minus-leading-zero",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "feba731c642f4032a06ddddcc422802c811a9d32ec28f63e367f3010fbb29ea6",
+    "raw_hex": "2d3031",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "plus",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 2,
+    "sha256": "c59dc4e44ff99288156d4dff2168f6ac7ddee6b1fc7ccc0754656ffaa6d351ea",
+    "raw_hex": "2b31",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "leading-dot",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 2,
+    "sha256": "4b1e53e66b4abd4fa86fe66980fa3affccd4252ec85897c978cf89173b3ad99e",
+    "raw_hex": "2e35",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "trailing-dot",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 2,
+    "sha256": "c977dbe785221d34114d345fdf8ff4e18bb4af66750751dbea29407f9738735f",
+    "raw_hex": "312e",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "empty-exponent",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 2,
+    "sha256": "a8196a36f4d736a540dff9a8a00387111ff0133f9848f4e149118092ac712426",
+    "raw_hex": "3165",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "signed-empty-exponent",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "fb346aaddef670dedd5e4209580bc32df6dde4b89ba9abd9a18fe3e0779cbb9f",
+    "raw_hex": "31652b",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "double-sign",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "f51aea0352bb03f35ff4e6608ce0a7e587bf5acbb4064dcc86365db934b81366",
+    "raw_hex": "2d2d31",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "hex",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "bf9c4d8ecd7280186783365c73316cd064c58d6abdfe7ffbb79b6b99a21f56d0",
+    "raw_hex": "30783130",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "underscore",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "5033ad0f2453310077c2a7969dea21a06947c6c4f06e6cba5cdaa754213affb2",
+    "raw_hex": "315f303030",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "array-unclosed",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 2,
+    "sha256": "4138c6ae42992f3ca53610b0c858e0f5a5a8d7e3424a81feb73b89f0f1877ba9",
+    "raw_hex": "5b31",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "object-unclosed",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 6,
+    "sha256": "8b0f0d75aabe01bbfba9341752c2cf7626f154e676aa791427b31aebfabc2592",
+    "raw_hex": "7b2261223a31",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "extra-close",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "2e7bc007d6bb19505cd17fd12ac670e8dd7e6e8b320bd2a7b1b89680cc9db135",
+    "raw_hex": "5b5d5d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "mismatched-close",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 3,
+    "sha256": "3f9899057e321daf9dac2c84dd00ddcfc1766ddaa3f05148a2391cce92076c30",
+    "raw_hex": "5b317d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "array-trailing-comma",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "886ad6246ed150b2930495926ba07d579307bc7fecaf4b391650dca8bae7bc66",
+    "raw_hex": "5b312c5d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "object-trailing-comma",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 8,
+    "sha256": "aa99a5ce3eb0dd8355f0bfb15376ea1d862ad75d0d278af1f8c280ca8c02c640",
+    "raw_hex": "7b2261223a312c7d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "double-comma",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 6,
+    "sha256": "1b4a2022b0702d87a15a49f031e9795ab6824cb3945c106bcfa5ad55c2e945cc",
+    "raw_hex": "5b312c2c325d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "array-missing-comma",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "9f901106b754d3b187811f5628437ca2076a61e68f2ac1696c4df25dd3c9852c",
+    "raw_hex": "5b3120325d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "object-missing-comma",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 13,
+    "sha256": "3ef3a1bf24a6efe60b488923af217a4922bb3b8ed4712f3911df15cd61df0c9a",
+    "raw_hex": "7b2261223a31202262223a327d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "object-missing-colon",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 7,
+    "sha256": "767ee938616b3ef0c272d90d58a86d091f76789ba877e30c18514a88a5fdb752",
+    "raw_hex": "7b22612220317d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "unquoted-key",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "f09a9231c12685ac5f0b6f0b06c9154f13dc3a5b3548db5142c19bde1383f261",
+    "raw_hex": "7b613a317d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "nonstring-key",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "f1d881702c53d1b618117fe64a13a6985cd49192f5ffe28081cb567d6a8eeaad",
+    "raw_hex": "7b313a327d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "missing-value",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 6,
+    "sha256": "6eb96aa0de9598c69117c7341dc4431affee0b3bfcb07cbf3c3641f25111e7e3",
+    "raw_hex": "7b2261223a7d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "leading-comma",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "2b3646f1ef5cf8b30a71b9e140e89b77da7eb4354ddc1f346f57ffc66ad68cd0",
+    "raw_hex": "5b2c315d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "trailing-value",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "6c1bd26e549ea058bfb8f4be8dcc58632031fde4c153afa7474579c66013a238",
+    "raw_hex": "7b7d205b5d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "trailing-text",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 6,
+    "sha256": "70c38f13f856614fa8d9f2e283e3b71d98d81669dd3041214145ae974e1991c1",
+    "raw_hex": "7b7d6a756e6b",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "line-comment",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 5,
+    "sha256": "98701fc2e1120b8fc952a98c7a0732c0dda2e128ddcc0cd04ee8488170d12087",
+    "raw_hex": "7b7d2f2f78",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "block-comment",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 7,
+    "sha256": "fb522fd8e8fa765a9a9d7506c11c4e51f626e536b295a7ad0da150b250013699",
+    "raw_hex": "2f2a782a2f7b7d",
+    "http_scope": "prospective HTTP obligation"
+  },
+  {
+    "label": "non-json-space",
+    "expected_valid": false,
+    "category": "syntax/encoding",
+    "bytes": 4,
+    "sha256": "31684aef345377e888144bdc4ab6b90e305dcd3d436dad626ba440178cbf45c9",
+    "raw_hex": "c2a07b7d",
+    "http_scope": "prospective HTTP obligation"
+  }
+]

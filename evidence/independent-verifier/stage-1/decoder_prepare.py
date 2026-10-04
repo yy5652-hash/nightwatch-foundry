@@ -11,12 +11,13 @@ import time
 from pathlib import Path
 from decoder_oracle import DEPTHS, SHAPES, LEAF, LEAF_ALIAS, LEAF_DIFFERENT, LEAF_TYPED, grammar_cases, randomized_values, self_check, sha, wrap
 from decoder_requirements import CASES, rows
+from coverage_metadata import responsible_owner, validate as validate_metadata
 
 HERE=Path(__file__).resolve().parent;REPO=HERE.parents[2];WORKSPACE=REPO.parents[1]
 INTAKE=HERE/"candidate-7-preparation/intake.json"
 REJECTED="ab0cf79767b6768153a73894bf5768bf3328491a"
 SEALED="7db8085f06bd6aa53443f5cf647ff4111bbaa771"
-SOURCES=["decoder_oracle.py","decoder_requirements.py","decoder_probe.py","decoder_runtime.py","decoder_prepare.py","Decoder.Probe.Dockerfile"]
+SOURCES=["decoder_oracle.py","decoder_requirements.py","decoder_probe.py","decoder_runtime.py","decoder_prepare.py","coverage_metadata.py","Decoder.Probe.Dockerfile"]
 
 def write_csv(path, values):
     keys=list(dict.fromkeys(k for row in values for k in row))
@@ -77,7 +78,10 @@ def main():
             previous_executable_command=row["executable_command_or_interaction"],candidate_full_revision="PENDING_NAMED_CANDIDATE",verdict="unverified",evidence_path="UNVERIFIED",
             executable_command_or_interaction="Fresh full candidate7 execution/audit required; see PREPARATION.md inherited run families.",
             preparation_origin="Candidate6 independent sealed matrix, reset prospectively; historical results remain immutable.")
-    supplement=rows();combined=previous+supplement
+    previous=[responsible_owner(row) for row in previous]
+    supplement=[responsible_owner(row) for row in rows()];combined=previous+supplement
+    metadata=validate_metadata(combined)
+    checks.append(dict(label="all-required-metadata-and-responsible-ownership",passed=True))
     assert len({r["requirement_id"] for r in combined})==len(combined)
     assert all(r["verdict"]=="unverified" and r["candidate_full_revision"]=="PENDING_NAMED_CANDIDATE" for r in combined)
     write_csv(out/"coverage-new-prepared.csv",supplement);write_csv(out/"coverage-cumulative-prepared.csv",combined)
@@ -91,7 +95,7 @@ def main():
     summary=dict(scope="Preparation and own oracle/AST self-checks only",candidate="PENDING_NAMED_CANDIDATE",complete_preparation_package=True,execution_authorized=False,
         seed=20261004,shapes=SHAPES,depths=DEPTHS,raw_deep_samples=len(samples),raw_deep_min_bytes=min(s["bytes"] for s in samples),raw_deep_max_bytes=max(s["bytes"] for s in samples),
         grammar_cases=len(grammar),valid_grammar=sum(g["expected_valid"] for g in grammar),invalid_grammar=sum(not g["expected_valid"] for g in grammar),
-        randomized_value_cases=len(random_trace),local_checks=len(checks),local_checks_passed=sum(c["passed"] for c in checks),syntax_files=5,
+        randomized_value_cases=len(random_trace),local_checks=len(checks),local_checks_passed=sum(c["passed"] for c in checks),syntax_files=sum(n.endswith(".py") for n in SOURCES),
         inherited_normative_rows=2657,new_normative_rows=len(supplement),cumulative_normative_rows=2657+len(supplement),diagnostic_rows=22,
         all_records=len(combined),verified=0,failed=0,unverified=len(combined),service_requests=0,official_checks=0,images_built=0,containers_started=0,
         task_startup_target_seconds=5,official_startup_limit_seconds=60,prior_rejection_unchanged=True,task_activation_marker=intake["task_activation_marker"],
@@ -102,6 +106,7 @@ def main():
         own_reused_helpers=[dict(path=str((HERE/n).relative_to(REPO)),sha256=sha((HERE/n).read_bytes())) for n in ["semantic_oracle.py","semantic_runtime.py","health.py"]],
         builder_test_oracle_reads=False,production_imports=False)),("commands.json",commands),("preparation-summary.json",summary)]:
         (out/name).write_text(json.dumps(data,indent=2))
+    (out/"metadata-validation.json").write_text(json.dumps(metadata,indent=2))
     print(json.dumps(summary))
 
 if __name__=="__main__":main()

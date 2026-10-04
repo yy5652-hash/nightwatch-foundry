@@ -1,0 +1,22 @@
+# Coverage ownership metadata correction
+
+The coordinator's metadata finding in message `39649b8c-8cdb-447b-9838-31e2f93f6333` is confirmed. The sealed candidate6 matrix has 2,679 unique candidate-bound records, including 2,657 normative obligations and 22 admission diagnostics. Its required `owner` is empty on **1,273 records: 1,251 normative obligations and 22 diagnostics**. Those rows already have explicit `implementation_owner` and `verification_owner`; the affected opaque-ID, nesting and snapshot exporters omitted the separate `owner` column value. This is a verifier bookkeeping gap. It is additional to the preserved service rejection and is not another HTTP failure.
+
+Candidate6 remains rejected at evidence revision `7db8085f06bd6aa53443f5cf647ff4111bbaa771`, against `ab0cf79767b6768153a73894bf5768bf3328491a`. Its entire sealed directory, observed requests, verdict and behavioral counts remain byte-for-byte unchanged. The recorded 2,638 verified / 15 failed / 4 unverified normative outcomes remain historical observations; this append does not make the original metadata complete. The earlier candidate7 preparation seal `8b87ccdf5160d4e3e1dd1a40c5ca7b4495a98420`, including checks01–03 and the shared-index authorship disclosures, also remains unchanged. No Git history is rewritten.
+
+The current **prospective** candidate7 export is [checks-04/coverage-cumulative-prepared.csv](../checks-04/coverage-cumulative-prepared.csv). It fills exactly those 1,273 missing owners from each row's previously declared implementation responsibility: 1,102 Systems and 171 Interface. It retains `implementation_owner` and `verification_owner` and adds an explicit correction-basis field. Every previously nonempty owner stays unchanged, including 57 jointly owned obligations. Row identifiers, source applicability, prospective verdicts, verification methods and all other metadata are unchanged from checks03.
+
+The new export has **4,237 unique records: 4,215 normative obligations and 22 separate diagnostics**. All 14 checked metadata fields are populated. Responsible ownership is 3,570 Systems / 610 Interface / 57 joint Systems and Interface; verification ownership is Independent Verifier throughout. All 4,237 remain `unverified`, bound to `PENDING_NAMED_CANDIDATE`, with `UNVERIFIED` execution evidence. Ownership completion is not behavioral verification.
+
+`coverage_metadata.py` now gates future preparation exports before writing them. It uses explicit existing responsibility, rejects absent or unknown implementation/verification ownership and mismatched owners, preserves joint assignments and refuses incomplete or duplicate rows. It supplies no default builder assignment. `coverage_metadata_audit.py` checks the sealed historical bytes, the complete prospective row comparison and refusal of every required empty/null field. Its [audit.json](audit.json) records all 1,273 changed identifiers, input byte hashes, actual Git argv and measured results.
+
+Executed from the absolute result repository:
+
+```sh
+../../.venv/bin/python -B evidence/independent-verifier/stage-1/decoder_prepare.py --out evidence/independent-verifier/stage-1/candidate-7-preparation/checks-04
+../../.venv/bin/python -B evidence/independent-verifier/stage-1/coverage_metadata_audit.py --out evidence/independent-verifier/stage-1/candidate-7-preparation/ownership-correction-01
+```
+
+The integrated preparation produced **440/440 local checks**, including six Python syntax/import checks and the pre-execution refusal guard, in **0.138185583 seconds**. The distinct metadata/provenance audit produced **49/49 checks** in **0.111829167 seconds**. These are local bookkeeping/oracle checks, not HTTP operations, normative passes or official checks. No runner failure occurred in these two commands. Their unique outputs preserve the original checks01 error and subsequent checks02/03 unchanged.
+
+There were **zero service requests, official checks, image builds or container starts**. No production, official harness, builder probe or oracle implementation was edited or executed. The future candidate execution remains held until the complete named candidate7 release and both committed complete builder handoffs arrive. Shared card15 remains active and highest independently accepted stage remains **0**. Bounded preparation cannot establish arbitrary-depth performance or hidden judging results. Configured harness/model: Codex / gpt-6.1-sol; actual model override, effort, usage and estimated/billed spend remain unknown.
