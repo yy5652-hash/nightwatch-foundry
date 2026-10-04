@@ -6,13 +6,16 @@ independently expected amendment generations/current representations change.
 import argparse,hashlib,json,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;H1=HERE.parent/'stage-1';H2=HERE.parent/'stage-2'
-p=argparse.ArgumentParser();p.add_argument('--family',choices=['baseline','snapshot','decoder','retained-amend','general'],required=True);a,rest=p.parse_known_args()
+p=argparse.ArgumentParser();p.add_argument('--family',choices=['baseline','snapshot','decoder','retained-amend','general','old-supplement'],required=True);a,rest=p.parse_known_args()
 sys.path.insert(0,str(H1))
-script={'baseline':'probe.py','snapshot':'snapshot_probe.py','decoder':'decoder_probe.py','retained-amend':'amend_retained.py','general':'browser.py'}[a.family]
-origin=H2 if a.family in ('retained-amend','general') else H1
+script={'baseline':'probe.py','snapshot':'snapshot_probe.py','decoder':'decoder_probe.py','retained-amend':'amend_retained.py','general':'browser.py','old-supplement':'candidate2_supplement.py'}[a.family]
+origin=H2 if a.family in ('retained-amend','general','old-supplement') else H1
 if origin==H2:sys.path.insert(0,str(H2))
 source=(origin/script).read_text();original_hash=hashlib.sha256(source.encode()).hexdigest()
-if a.family=='general':
+if a.family=='old-supplement':
+ old="{'restaurant_id':[rid],'date':[DAY],'party_size':[digits]}";assert source.count(old)==1
+ source=source.replace(old,"{'restaurant_id':[rid],'date':[DAY],'party_size':[digits],'explain':['true']}")
+elif a.family=='general':
  old='await page.get_by_test_id("party-size-input").get_attribute("type")=="number"';assert source.count(old)==1
  source=source.replace(old,'await page.get_by_test_id("party-size-input").get_attribute("role")=="spinbutton" and await page.get_by_test_id("party-size-input").get_attribute("inputmode")=="numeric" and await page.get_by_test_id("party-size-input").is_visible()')
  old='dict(restaurant_id=["r"],date=[DAY],party_size=["2"]) in queries';assert source.count(old)==1

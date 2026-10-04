@@ -63,7 +63,7 @@ def main():
  elif a.group=='inherited-upgrade':probe('stage-2','candidate2_upgrade.py','four-upgrades',positional=['--release',str(release),'--out','/evidence/four-upgrades'])
  elif a.group=='old-supplement':
   for case in (a.families or 'oracle,coverage,browser,overflow').split(','):
-   probe('stage-2','candidate2_supplement.py',case,positional=['--release',str(release),'--out','/evidence/'+case,'--case',case])
+   probe('stage-3','stage3_inherited.py',case,positional=['--family','old-supplement','--release',str(release),'--out','/evidence/'+case,'--case',case])
  else:
   for case in (a.families or 'origins,deep,opaque,numeric').split(','):
    probe('stage-2','reconstruction_browser_protocol.py' if a.group=='reconstruction-browser' else 'reconstruction_probe.py',case,positional=['--release',str(release),'--out','/evidence/'+case,'--case',case,'--execute'])
