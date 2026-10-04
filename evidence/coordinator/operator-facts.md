@@ -31,4 +31,13 @@ Highest consecutive accepted stage: 0 at intake. No service startup, check count
 
 ## Operator-controlled completion
 
+## Stage 1 measured progress before promotion
+
+- Candidate 1: 439b04e62325e7ddd82ea36bc6c9a07b8aaf94cd. Official isolated checks passed 120/120. Independent review rejected missing-array error classification and calendar-maximum handling. Verdict: evidence/independent-verifier/stage-1/candidate-1/VERDICT.md.
+- Candidate 2: dd644198b6c0c24cebaee74435ac13d4dc33bd99. Official isolated checks passed 120/120. Independent review rejected further calendar extremes and historical offset representation. Verdict: evidence/independent-verifier/stage-1/candidate-2/VERDICT.md.
+- Candidate 3: b4a124e3671ec22a4df0780343f6389ff4b70d05. Calendar repairs and timestamp representation decision are committed. Interface integration passed 577/577 assertions, including repeated transport checks; these are not distinct normative requirements or official test counts. Independent review is pending its final committed verdict, including one last minute-count fixture boundary.
+- Coordinator independently ran candidate 1 from a fresh clone in isolated mode: 120 collected, 120 passed, zero failed/errors/skipped/deselected. Stage 2 overshoot collected 25 and stopped after one failure, leaving 24 not executed. Evidence: evidence/coordinator/stage-1-diagnostic-report.json and band-work/final-checks/foundry-coordinator-s1-diagnostic-01/.
+- Historical timestamp interpretation is an explicit compliance exception, not proof of literal satisfaction of incompatible timestamp grammars: evidence/coordinator/timestamp-representation-decision.md. Exact resolved instants and original local fields are preserved; newly issued timestamps use the closest representable minute offset. Genuine imported original receipt strings remain immutable.
+- Highest consecutive accepted stage is still 0 at this point. No Stage 2 service has been created.
+
 README.md, FACTORY.md, genuine final room.json export, public publishing, presentation/video and competition submission remain operator-authored or controlled. The factory may prepare measured source facts and evidence only. No room export is fabricated.
