@@ -1,0 +1,29 @@
+{
+  "ast_files": [
+    "stage-3/server.py",
+    "evidence/interface-engineer/stage-3-browser-probe.py",
+    "evidence/interface-engineer/stage-3-container-check.py"
+  ],
+  "ast_passed": 3,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "interface-engineer-s3-syntax-20261004t065521851289z",
+    "--network",
+    "none",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "-i",
+    "df-harness-runner:latest",
+    "node",
+    "--check"
+  ],
+  "exit": 127,
+  "seconds": 1.2644352500028617,
+  "stdin_sha256": "9562deaf188d745d79eff7816c708a7a6eba895d614617d13138e683275e61cb",
+  "scope": "syntax only; no application/HTTP/UI execution"
+}

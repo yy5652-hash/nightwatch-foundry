@@ -1,0 +1,18 @@
+# Stage 3 Interface states and integration
+
+Complete INITIAL-1 package and both END markers were acknowledged before the seven-file base copy fda73c1631b68cf7a3c0077fd589dda4c0898b72. The all-nine-file proof and explicit release are 9c6f27a8c80201599c3e10eb95d2901fda8e8aec and inbound 8be18d52-55fb-4955-8a34-bfdacea49029. Highest independently accepted stage is 2; no Stage 3 acceptance or Stage 4 extension.
+
+| Flow | Normal and recovered | Loading/empty | Refused/uncertain/stale |
+| --- | --- | --- | --- |
+| Public search | Real explain=true availability; capacities from actual options; canonical human labels | Existing empty/closed/loading states | Existing search generation covers labels/grid/form. Both refused capacity/overlap rules derive from actual explanations |
+| Booking | Original successful response, reference, revision and accepted terms remain distinct from current lookup | Same labelled exact numeric form | Original body/key retained after committed response loss or malformed success; real 409 refresh preserves inputs |
+| Own current booking | GET reservation, decision and history; revision alignment checked | Explicit loading, no private details until owner lookup succeeds | Auth epoch/reference generation suppress stale responses; refusal exposes no private record. Old services' absent decision/history are labelled unavailable |
+| Accepted terms/history | Complete policy snapshot per current decision and each event; ordered seq/revision, human labels and actual changes | Expandable terms preserve readable hierarchy | No latest restaurant fixture policy substituted for accepted terms. A changing aggregate is refused for refresh rather than displayed inconsistently |
+| Recurring adoption | Existing reference is anchor; exact bounded integer count/interval; real POST response confirms original agreement | Submit disables fields; GET current series loads separately | Lost/malformed response retains original body/key; no confirmation/list manufactured. Field changes clear original feedback and warn about earlier uncertainty |
+| Current occurrences | Real GET series by server-issued ID; cancelled and exception states preserved; buttons retrieve current own lookup | Explicit loading and no cached current list while refreshing | Dedicated series read generation suppresses out-of-order responses. Not-found is account-scoped and never grants manager access |
+| Cross-version upgrade | Genuine accepted/historical Stage1 and old/accepted Stage2 exports forwarded unchanged between requests; same open browser/session/form/retry identity | Current fields read separately after upgrade | Original old receipt shapes/values/body/key never rewritten; private exports stay in memory |
+| Sign out | Clears identity, private current/history/terms and agreement map | Public browse remains | Auth epochs refuse late private rendering |
+
+Interface owns only the seven assigned runtime/web paths and its evidence. Systems owns core.py/json_codec.py. Transport uses the inherited strict UTF-8 bytes codec, required four-argument Engine.request and detached response serialization; no adapter business rule or invented capability. Dependencies and all assets stay in the buildable image. Tests are own black-box protocols outside graded folders; no peer oracle or official test source is used. Actual headless Chromium screenshots are distinguished from connected Chrome and model images.
+
+All four adopted timestamp/original-response/exact-number/semantic-control decisions remain inherited. Finite diagnostics do not establish arbitrary-input performance. Configured Codex/gpt-6.1-sol; actual override, effort, tokens and estimated/billed spend unknown.

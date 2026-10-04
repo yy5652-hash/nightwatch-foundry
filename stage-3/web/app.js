@@ -46,7 +46,9 @@
     query: {restaurantId:'', date:today(), party:'2'}, searchSeq:0,
     result:null, searchPhase:'idle', searchError:'', authError:'',
     booking:null, afterLogin:null,
-    lookup:{reference:'', phase:'idle', detail:null, restaurant:null, error:'', seq:0},
+    lookup:{reference:'', phase:'idle', detail:null, restaurant:null, error:'', seq:0,
+      decision:null, history:null, series:null, seriesError:'', recurrence:null},
+    seriesByReference:new Map(),
   };
   class Refusal extends Error {
     constructor(status, value) { super(value?.error?.message || 'The request could not be accepted.'); this.status=status; this.code=value?.error?.code; }
@@ -61,6 +63,8 @@
     not_on_slot_grid:'Choose one of the restaurant’s available start times.',
     validation_failed:context==='auth'?'Please check your email and account details. New passwords need at least 8 characters.':'Please check the date, seating choice and number of guests.',
     reservation_cancelled:'This reservation has already been cancelled.',
+    already_in_series:'This reservation already belongs to a recurring agreement. Use its agreement reference to load the current occurrences.',
+    stale_revision:'This reservation changed while you were viewing it. Refresh its details before trying again.',
   }[error.code] || error.message);
   function parseAPIJSON(raw) {
     // Validate syntax first: quoting a large numeric token must never turn an
@@ -125,6 +129,7 @@
   function rememberUser(user) {
     state.user=user;
     state.authEpoch++;
+    state.seriesByReference.clear();
     try { if (user) sessionStorage.setItem('tablekeeper.session', JSON.stringify(user)); else sessionStorage.removeItem('tablekeeper.session'); } catch (_) {}
   }
   const feedback = (id, message, kind='error') => message ? `<div data-testid="${id}" class="feedback ${kind}" role="${kind==='error'?'alert':'status'}">${esc(message)}</div>` : '';
@@ -156,7 +161,8 @@
       <div class="account">${state.user ? `<span data-testid="current-user">${esc(state.user.display_name)}</span><button class="button secondary compact" data-testid="logout-button" type="button">Sign out</button>` : '<a href="/login" data-route>Sign in</a><a class="button secondary compact" href="/signup" data-route>Create account</a>'}</div>`;
     test('logout-button')?.addEventListener('click', () => {
       rememberUser(null); state.booking=null; state.afterLogin=null; state.authError='';
-      state.lookup.seq++; state.lookup.detail=null; state.lookup.restaurant=null; state.lookup.phase='idle'; state.lookup.error=''; render();
+      state.lookup.seq++; state.lookup.detail=null; state.lookup.restaurant=null; state.lookup.phase='idle'; state.lookup.error='';
+      state.lookup.decision=null;state.lookup.history=null;state.lookup.series=null;state.lookup.recurrence=null;state.lookup.seriesError='';render();
     });
   }
   function navigate(route, replace=false) {
@@ -245,7 +251,11 @@
       top+=`<div class="slot-row"><div class="slot-heading"><strong>${esc(slot.starts_at_local.slice(11))}</strong><span>Local time</span></div><div class="seat-options">`;
       const cell=(ids,available,combination=false)=>{
         const selected=state.booking && state.booking.starts===slot.starts_at_local && JSON.stringify(state.booking.ids)===JSON.stringify(ids);
-        return `<button type="button" class="seat ${combination?'combination ':''}${selected?'selected':''}" data-testid="slot-${esc(ids.join('+'))}-${esc(slot.starts_at_local.slice(11))}" data-available="${available}" data-slot="${slotIndex}" data-tables="${esc(JSON.stringify(ids))}" ${available?'':'disabled'} aria-pressed="${!!selected}"><strong>${esc(labelsOf(restaurant,ids))}</strong><span>${combination?'Together · ':''}${ids.reduce((n,id)=>n+BigInt(restaurant.tables.find(t=>t.id===id).capacity),0n).toString()} seats · ${available?'Choose table':'Unavailable'}</span></button>`;
+        const option=slot.available_options?.find(option=>JSON.stringify(option.table_ids)===JSON.stringify(ids));
+        const capacity=option?.capacity ?? (!slot.explain?ids.reduce((n,id)=>n+BigInt(restaurant.tables.find(t=>t.id===id).capacity),0n).toString():null);
+        const reasons=ids.flatMap(id=>(slot.explain?.find(item=>item.table_id===id)?.rules||[]).filter(rule=>!rule.holds).map(rule=>rule.rule==='capacity'?'Too few seats':'Already booked'));
+        const description=available?'Choose table':reasons.length?[...new Set(reasons)].join(' · '):'Unavailable';
+        return `<button type="button" class="seat ${combination?'combination ':''}${selected?'selected':''}" data-testid="slot-${esc(ids.join('+'))}-${esc(slot.starts_at_local.slice(11))}" data-available="${available}" data-slot="${slotIndex}" data-tables="${esc(JSON.stringify(ids))}" ${available?'':'disabled'} aria-pressed="${!!selected}"><strong>${esc(labelsOf(restaurant,ids))}</strong><span>${combination?'Together · ':''}${capacity===null?'':esc(capacity)+' seats · '}${esc(description)}</span></button>`;
       };
       restaurant.tables.forEach(table=>{top+=cell([table.id],slot.available_table_ids.includes(table.id));});
       (slot.available_options || []).filter(option=>option.table_ids.length===2).forEach(option=>{top+=cell(option.table_ids,true,true);});
@@ -273,7 +283,7 @@
     try {
       const [restaurant,availability]=await Promise.all([
         api(`/restaurants/${encodeURIComponent(query.restaurantId)}`),
-        api(`/availability?restaurant_id=${encodeURIComponent(query.restaurantId)}&date=${encodeURIComponent(query.date)}&party_size=${encodeURIComponent(party)}`)
+        api(`/availability?restaurant_id=${encodeURIComponent(query.restaurantId)}&date=${encodeURIComponent(query.date)}&party_size=${encodeURIComponent(party)}&explain=true`)
       ]);
       if (seq!==state.searchSeq) return;
       state.result={restaurant,availability,query};state.searchPhase='ready';state.authError='';renderResults();renderBooking();
@@ -299,7 +309,7 @@
     const panel=document.querySelector('#booking-panel');if (!panel) return;
     const b=state.booking;
     if (!b) {panel.innerHTML='<div class="booking-placeholder"><span class="place-symbol" aria-hidden="true">✦</span><h3>A seat for your occasion</h3><p>Choose an available table to see your booking details here.</p>'+(!state.user?'<a href="/login" data-route>Sign in to book</a>':'')+'</div>';return;}
-    panel.innerHTML=`<section data-testid="booking-form" class="booking-card"><p class="eyebrow">Your table</p><h2>${esc(b.restaurant.name)}</h2><p data-testid="booking-summary" class="booking-summary">${esc(labelsOf(b.restaurant,b.ids))}<br><time datetime="${esc(b.starts)}">${esc(friendlyLocal(b.starts))}</time></p><p class="input-hint">${esc(b.restaurant.timezone)} · ${esc(b.restaurant.reservation_duration_minutes)} minute reservation</p><form id="booking-fields" novalidate><fieldset ${b.phase==='submitting'?'disabled':''}><label for="booking-guests">Guests</label>${guestNumber('booking-guests','booking-party-size',b.party)}<div id="booking-feedback"></div><button class="button full" data-testid="booking-submit" type="submit">${b.phase==='submitting'?'Confirming…':b.uncertain?'Retry this booking':b.confirmation?'Check confirmation again':'Confirm booking'}</button></fieldset></form><div id="booking-confirmation"></div><p class="input-hint">A reference appears only after the restaurant service confirms your booking.</p></section>`;
+    panel.innerHTML=`<section data-testid="booking-form" class="booking-card"><p class="eyebrow">Your table</p><h2>${esc(b.restaurant.name)}</h2><p data-testid="booking-summary" class="booking-summary">${esc(labelsOf(b.restaurant,b.ids))}<br><time datetime="${esc(b.starts)}">${esc(friendlyLocal(b.starts))}</time></p><p class="input-hint">${esc(b.restaurant.timezone)} · Booking terms are confirmed with your reservation.</p><form id="booking-fields" novalidate><fieldset ${b.phase==='submitting'?'disabled':''}><label for="booking-guests">Guests</label>${guestNumber('booking-guests','booking-party-size',b.party)}<div id="booking-feedback"></div><button class="button full" data-testid="booking-submit" type="submit">${b.phase==='submitting'?'Confirming…':b.uncertain?'Retry this booking':b.confirmation?'Check confirmation again':'Confirm booking'}</button></fieldset></form><div id="booking-confirmation"></div><p class="input-hint">A reference appears only after the restaurant service confirms your booking.</p></section>`;
     renderBookingFeedback();renderConfirmation();
     test('booking-party-size').addEventListener('input',event=>{
       const oldBody=bookingBody(b);b.party=event.target.value;
@@ -319,8 +329,8 @@
   function renderConfirmation() {
     const panel=document.querySelector('#booking-confirmation'); if (!panel)return;
     const b=state.booking,r=b?.confirmation;
-    panel.innerHTML=r?`<section data-testid="confirmation" class="confirmation" role="status"><p class="eyebrow">Your table is confirmed</p><p class="input-hint">Booking reference</p><p data-testid="confirmation-reference" class="reference">${esc(r.reference)}</p><p data-testid="confirmation-details">${esc(b.restaurant.name)}<br>${esc(labelsOf(b.restaurant,tablesOf(r)))}<br><time datetime="${esc(r.starts_at_local)}">${esc(friendlyLocal(r.starts_at_local))}</time></p><p data-testid="confirmation-tables">${esc(labelsOf(b.restaurant,tablesOf(r)))}</p><a href="/lookup" data-route data-open-reference="${esc(r.reference)}">View or cancel reservation</a></section>`:'';
-    panel.querySelector('[data-open-reference]')?.addEventListener('click',event=>{state.lookup.reference=event.currentTarget.dataset.openReference;state.lookup.detail=null;state.lookup.phase='idle';state.lookup.error='';});
+    panel.innerHTML=r?`<section data-testid="confirmation" class="confirmation" role="status"><p class="eyebrow">Original booking confirmation</p><p class="input-hint">Booking reference</p><p data-testid="confirmation-reference" class="reference">${esc(r.reference)}</p><p data-testid="confirmation-details">${esc(b.restaurant.name)}<br>${esc(labelsOf(b.restaurant,tablesOf(r)))}<br><time datetime="${esc(r.starts_at_local)}">${esc(friendlyLocal(r.starts_at_local))}</time></p><p data-testid="confirmation-tables">${esc(labelsOf(b.restaurant,tablesOf(r)))}</p><div data-testid="confirmation-terms">${r.accepted_terms?termsMarkup(r.accepted_terms,b.restaurant,'Terms accepted for this booking'):'<p class="input-hint">This original receipt predates booking terms. Look up the current reservation for its details.</p>'}</div>${r.revision?`<p class="input-hint">Original booking revision ${esc(r.revision)}</p>`:''}<a href="/lookup" data-route data-open-reference="${esc(r.reference)}">View current details, history or recurring visits</a></section>`:'';
+    panel.querySelector('[data-open-reference]')?.addEventListener('click',event=>{clearLookupExtras();state.lookup.reference=event.currentTarget.dataset.openReference;state.lookup.detail=null;state.lookup.phase='idle';state.lookup.error='';});
   }
   async function submitBooking(b) {
     if (b.phase==='submitting' || state.booking!==b) return;
@@ -348,7 +358,7 @@
     const l=state.lookup;
     main.innerHTML=`<section class="hero compact-hero"><div><p class="eyebrow">Plans, close at hand</p><h1>Your reservation.</h1><p class="lead">Use your booking reference to find the details or cancel your table.</p></div></section><div class="lookup-layout"><section class="lookup-card"><h2>Find your booking</h2><form id="lookup-form" novalidate><label for="reference">Booking reference</label><input id="reference" data-testid="lookup-reference-input" value="${esc(l.reference)}" autocomplete="off" autocapitalize="characters" spellcheck="false"><p class="input-hint">Enter the reference exactly as shown on your confirmation.</p><button data-testid="lookup-submit" class="button full" ${l.phase==='loading'?'disabled':''}>${l.phase==='loading'?'Finding reservation…':'Find reservation'}</button></form>${!state.user?'<p class="quiet-note">Sign in to see your own reservations.</p>'+links:''}<div id="lookup-feedback"></div></section><section id="reservation-panel"></section></div>`;
     renderLookupDetail();
-    test('lookup-reference-input').addEventListener('input',event=>{l.reference=event.target.value;l.seq++;l.detail=null;l.error='';l.phase='idle';test('lookup-submit').disabled=false;test('lookup-submit').textContent='Find reservation';renderLookupDetail();});
+    test('lookup-reference-input').addEventListener('input',event=>{clearLookupExtras();l.reference=event.target.value;l.seq++;l.detail=null;l.error='';l.phase='idle';test('lookup-submit').disabled=false;test('lookup-submit').textContent='Find reservation';renderLookupDetail();});
     document.querySelector('#lookup-form').addEventListener('submit',event=>{event.preventDefault();lookup();});
   }
   function renderLookupDetail() {
@@ -356,8 +366,91 @@
     const l=state.lookup,r=l.detail;
     feedbackPanel.innerHTML=feedback('reservation-error',l.error);
     if (!r) {panel.innerHTML=`<div class="booking-placeholder"><span class="place-symbol" aria-hidden="true">✦</span><h3>${l.phase==='loading'?'Finding your reservation':'A reference to your plans'}</h3><p>${l.phase==='loading'?'Checking the details with the restaurant…':'Your restaurant, table and time will appear here.'}</p></div>`;return;}
-    panel.innerHTML=`<section data-testid="reservation-detail" class="lookup-card"><div class="detail-heading"><p class="eyebrow">${esc(l.restaurant?.name || 'Your reservation')}</p><span data-testid="reservation-status" class="status ${r.status==='cancelled'?'cancelled':''}">${esc(r.status)}</span></div><h2><time datetime="${esc(r.starts_at_local)}">${esc(friendlyLocal(r.starts_at_local))}</time></h2><p data-testid="reservation-tables" class="booking-summary">${esc(labelsOf(l.restaurant,tablesOf(r)))}</p><dl class="detail-list"><div><dt>Guests</dt><dd>${esc(r.party_size)}</dd></div><div><dt>Booking reference</dt><dd class="reference small">${esc(r.reference)}</dd></div><div><dt>Local time zone</dt><dd>${esc(l.restaurant?.timezone || '')}</dd></div><div><dt>Ends at</dt><dd><time datetime="${esc(r.ends_at)}">${esc(friendlyInstant(r.ends_at,l.restaurant?.timezone))}</time></dd></div></dl>${r.status==='confirmed'?`<p class="input-hint">Cancellation is subject to the restaurant’s ${esc(l.restaurant?.cancellation_cutoff_minutes ?? '')} minute cutoff.</p><button type="button" data-testid="reservation-cancel-button" class="button secondary full" ${l.phase==='cancelling'?'disabled':''}>${l.phase==='cancelling'?'Cancelling…':'Cancel reservation'}</button>`:'<p class="feedback success">This reservation is cancelled. The table has been released.</p>'}</section>`;
+    panel.innerHTML=`<section data-testid="reservation-detail" class="lookup-card"><div class="detail-heading"><p class="eyebrow">${esc(l.restaurant?.name || 'Your reservation')}</p><span data-testid="reservation-status" class="status ${r.status==='cancelled'?'cancelled':''}">${esc(r.status)}</span></div><h2><time datetime="${esc(r.starts_at_local)}">${esc(friendlyLocal(r.starts_at_local))}</time></h2><p data-testid="reservation-tables" class="booking-summary">${esc(labelsOf(l.restaurant,tablesOf(r)))}</p><dl class="detail-list"><div><dt>Guests</dt><dd>${esc(r.party_size)}</dd></div><div><dt>Booking reference</dt><dd class="reference small">${esc(r.reference)}</dd></div><div><dt>Local time zone</dt><dd>${esc(l.restaurant?.timezone || '')}</dd></div><div><dt>Ends at</dt><dd><time datetime="${esc(r.ends_at)}">${esc(friendlyInstant(r.ends_at,l.restaurant?.timezone))}</time></dd></div></dl>${r.status==='confirmed'?`<p class="input-hint">Your accepted cancellation cutoff is ${esc(r.accepted_terms?.cancellation_cutoff_minutes ?? l.restaurant?.cancellation_cutoff_minutes ?? '')} minutes before this start.</p><button type="button" data-testid="reservation-cancel-button" class="button secondary full" ${l.phase==='cancelling'?'disabled':''}>${l.phase==='cancelling'?'Cancelling…':'Cancel reservation'}</button>`:'<p class="feedback success">This reservation is cancelled. The table has been released.</p>'}<div data-testid="reservation-current-terms">${l.decision?`<p data-testid="reservation-revision" class="revision-note">Current revision ${esc(l.decision.revision)}</p>${termsMarkup(l.decision.accepted_terms,l.restaurant,'Your accepted booking terms')}`:'<p class="input-hint">Accepted-term details are unavailable from this service.</p>'}</div></section>${historyMarkup()}<section id="series-panel"></section>`;
     test('reservation-cancel-button')?.addEventListener('click',cancelReservation);
+    renderSeries();
+  }
+  function clearLookupExtras() {
+    const l=state.lookup;l.seq++;l.decision=null;l.history=null;l.series=null;
+    l.seriesError='';l.seriesPhase='idle';l.seriesQuery='';l.seriesSeq=(l.seriesSeq||0)+1;l.recurrence=null;
+  }
+  function termsMarkup(terms,restaurant,title) {
+    if(!terms)return '';
+    const days={mon:'Monday',tue:'Tuesday',wed:'Wednesday',thu:'Thursday',fri:'Friday',sat:'Saturday',sun:'Sunday'};
+    return `<details class="terms-block"><summary>${esc(title)} · policy ${esc(terms.policy_version)}</summary><dl class="detail-list"><div><dt>Duration</dt><dd>${esc(terms.reservation_duration_minutes)} minutes</dd></div><div><dt>Cancellation cutoff</dt><dd>${esc(terms.cancellation_cutoff_minutes)} minutes before the start</dd></div><div><dt>Start-time grid</dt><dd>Every ${esc(terms.slot_minutes)} minutes from opening</dd></div></dl><h4>Accepted opening hours</h4><ul>${(terms.opening_hours||[]).map(day=>`<li>${esc(days[day.weekday]||day.weekday)} · ${esc(day.opens)}–${esc(day.closes)}</li>`).join('')||'<li>Closed every day</li>'}</ul><h4>Accepted table capacities</h4><ul>${Object.entries(terms.capacities||{}).map(([id,capacity])=>`<li>${esc(labelOf(restaurant,id))} · ${esc(capacity)} seats</li>`).join('')}</ul><p class="input-hint">These are the terms accepted for this reservation. Later published policies do not rewrite them.</p></details>`;
+  }
+  function historyMarkup() {
+    const l=state.lookup;
+    if(!l.history)return '<section class="lookup-card history-card"><h3>Your booking history</h3><p class="input-hint">History is unavailable from this service.</p></section>';
+    const fieldNames={table_id:'Table',table_ids:'Tables',starts_at_local:'Local start',party_size:'Guests'};
+    const value=(field,v)=>v===null?'Not previously booked':field==='table_ids'?labelsOf(l.restaurant,v):field==='table_id'?labelOf(l.restaurant,v):field==='starts_at_local'?friendlyLocal(v):String(v);
+    return `<section data-testid="reservation-history" class="lookup-card history-card"><p class="eyebrow">Your plans, as they changed</p><h3>Booking history</h3><ol class="history-list">${l.history.entries.map(entry=>`<li data-testid="history-entry-${esc(entry.seq)}"><div class="history-heading"><strong>${esc({created:'Booked',changed:'Changed',cancelled:'Cancelled'}[entry.event]||entry.event)}</strong><span>Revision ${esc(entry.revision)} · event ${esc(entry.seq)}</span></div><time datetime="${esc(entry.at)}">${esc(friendlyInstant(entry.at,l.restaurant?.timezone))}</time>${entry.changes.length?`<ul>${entry.changes.map(change=>`<li><strong>${esc(fieldNames[change.field]||change.field)}</strong>: ${esc(value(change.field,change.from))} → ${esc(value(change.field,change.to))}</li>`).join('')}</ul>`:'<p class="input-hint">No booking fields changed in this event.</p>'}${termsMarkup(entry.accepted_terms,l.restaurant,'Terms at this event')}</li>`).join('')}</ol></section>`;
+  }
+  async function optionalOwnerRead(path) {
+    try{return await api(path);}catch(error){if(error instanceof Refusal&&error.status===404)return null;throw error;}
+  }
+  async function loadCurrentDetails(reference) {
+    const path=`/reservations/${encodeURIComponent(reference)}`;
+    const receipt=await api(path);
+    const [restaurant,decision,entries]=await Promise.all([
+      api(`/restaurants/${encodeURIComponent(receipt.restaurant_id)}`),
+      optionalOwnerRead(path+'/decision'),optionalOwnerRead(path+'/history')
+    ]);
+    if(decision && (String(decision.revision)!==String(receipt.revision) || entries?.entries?.at(-1)?.revision!==receipt.revision))throw new Error('The reservation changed while its details were loading. Please refresh.');
+    return {receipt,restaurant,decision,history:entries};
+  }
+  function seriesBody(s) {
+    if(!/^\d+$/.test(s.count)||!/^\d+$/.test(s.interval))return null;
+    const count=Number(s.count),interval=Number(s.interval);
+    if(count<2||count>12||interval<1||interval>4)return null;
+    return JSON.stringify({anchor_reference:state.lookup.detail.reference,count,interval_weeks:interval});
+  }
+  function renderSeries() {
+    const panel=document.querySelector('#series-panel'),l=state.lookup,r=l.detail;
+    if(!panel||!r||!l.decision)return;
+    if(!l.recurrence)l.recurrence={count:'4',interval:'1',identity:null,phase:'idle',error:'',uncertain:'',original:null,notice:''};
+    const s=l.recurrence,known=state.seriesByReference.get(r.reference);
+    const occurrences=l.series?.occurrences;
+    panel.innerHTML=`<section class="lookup-card series-card"><p class="eyebrow">Make it a regular occasion</p><h3>Recurring visits</h3>${r.status==='confirmed'&&(!known||s.identity)?`<p>Keep this reservation as your first visit. Each later date is checked against its own booking terms and availability.</p><form data-testid="series-form" id="series-form" novalidate><fieldset ${s.phase==='submitting'?'disabled':''}><div class="series-fields"><div><label for="series-count">Total visits, including this one</label><input id="series-count" data-testid="series-count" type="number" min="2" max="12" step="1" value="${esc(s.count)}"></div><div><label for="series-interval">Weeks between visits</label><input id="series-interval" data-testid="series-interval-weeks" type="number" min="1" max="4" step="1" value="${esc(s.interval)}"></div></div><button data-testid="series-submit" class="button full">${s.phase==='submitting'?'Checking every visit…':s.uncertain?'Retry this recurring request':s.original?'Check original agreement again':'Arrange recurring visits'}</button></fieldset></form>`:known?'<p>This reservation belongs to a recurring agreement. Its references stay the same when an individual visit changes.</p>':'<p class="input-hint">A cancelled reservation cannot start a recurring agreement.</p>'}${feedback('series-error',s.error)}${feedback('series-uncertain',s.uncertain,'uncertain')}${s.notice?`<p class="feedback uncertain">${esc(s.notice)}</p>`:''}${s.original?`<div data-testid="series-confirmation" class="feedback success">The recurring request was confirmed.<br>Agreement reference: <span data-testid="series-id" class="reference small">${esc(s.original.series_id)}</span><p class="input-hint">This is the original successful request. The list below loads the agreement’s current states.</p></div>`:''}<form id="series-load-form" class="series-load"><label for="series-lookup-id">Agreement reference</label><input id="series-lookup-id" data-testid="series-lookup-id" value="${esc(l.seriesQuery||known||l.series?.series_id||'')}" autocomplete="off"><button class="button secondary full" data-testid="series-refresh" ${l.seriesPhase==='loading'?'disabled':''}>${l.seriesPhase==='loading'?'Loading current visits…':'Load current visits'}</button></form>${feedback('series-load-error',l.seriesError)}${occurrences?`<div data-testid="series-occurrences"><div class="history-heading"><h4>Current visits</h4><span data-testid="series-revision">Agreement revision ${esc(l.series.revision)}</span></div><ol class="occurrence-list">${occurrences.map(item=>`<li data-testid="series-occurrence-${esc(item.index)}"><div class="history-heading"><strong>Visit ${esc(Number(item.index)+1)}</strong><span class="status ${item.reservation.status==='cancelled'?'cancelled':''}">${esc(item.reservation.status)}</span></div><p>${esc(friendlyLocal(item.reservation.starts_at_local))}<br>${esc(labelsOf(l.restaurant,tablesOf(item.reservation)))}</p><p class="input-hint">${item.exception?'Individual change · permanent exception':'Part of the recurring agreement'}</p><button type="button" data-occurrence-reference="${esc(item.reference)}" class="button secondary compact">View ${esc(item.reference)}</button></li>`).join('')}</ol><p class="input-hint">Cancelling one visit keeps its siblings. An individually changed visit remains an exception.</p></div>`:l.seriesPhase==='loading'?'<p class="quiet-note" role="status">Checking the current occurrence list…</p>':''}</section>`;
+    panel.querySelector('#series-form')?.addEventListener('submit',event=>{event.preventDefault();submitSeries(s);});
+    [['series-count','count'],['series-interval-weeks','interval']].forEach(([id,key])=>test(id)?.addEventListener('input',event=>{
+      const old=seriesBody(s);s[key]=event.target.value;
+      if(seriesBody(s)!==old){s.notice=s.uncertain?'The previous request may have succeeded. Changing these values starts a separate request.':'';s.identity=null;s.phase='idle';s.error='';s.uncertain='';s.original=null;['series-error','series-uncertain','series-confirmation'].forEach(id=>test(id)?.remove());panel.querySelector('#series-changed-notice')?.remove();if(s.notice)panel.querySelector('#series-form').insertAdjacentHTML('afterend',`<p id="series-changed-notice" class="feedback uncertain">${esc(s.notice)}</p>`);test('series-submit').textContent='Arrange recurring visits';}
+    }));
+    test('series-lookup-id').addEventListener('input',event=>{l.seriesQuery=event.target.value;l.seriesSeq=(l.seriesSeq||0)+1;l.series=null;l.seriesPhase='idle';l.seriesError='';test('series-occurrences')?.remove();test('series-load-error')?.remove();test('series-refresh').disabled=false;test('series-refresh').textContent='Load current visits';});
+    panel.querySelector('#series-load-form').addEventListener('submit',event=>{event.preventDefault();refreshSeries(test('series-lookup-id').value,l.seq,state.authEpoch);});
+    panel.querySelectorAll('[data-occurrence-reference]').forEach(button=>button.addEventListener('click',()=>{clearLookupExtras();l.reference=button.dataset.occurrenceReference;lookup();}));
+  }
+  async function refreshSeries(id,seq,epoch) {
+    const l=state.lookup,loadSeq=l.seriesSeq=(l.seriesSeq||0)+1;l.seriesQuery=id;l.series=null;l.seriesError='';
+    if(!id){l.seriesError='Enter the agreement reference issued by the service.';renderSeries();return;}
+    l.seriesPhase='loading';renderSeries();
+    try {
+      const current=await api(`/series/${encodeURIComponent(id)}`);
+      if(seq!==l.seq||epoch!==state.authEpoch||loadSeq!==l.seriesSeq)return;
+      if(current.series_id!==id||!Array.isArray(current.occurrences))throw new Error('Incomplete recurring response');
+      const member=current.occurrences.find(item=>item.reference===l.detail?.reference);
+      if(member&&JSON.stringify(member.reservation)!==JSON.stringify(l.detail)){
+        const details=await loadCurrentDetails(member.reference);
+        if(seq!==l.seq||epoch!==state.authEpoch||loadSeq!==l.seriesSeq)return;
+        l.detail=details.receipt;l.decision=details.decision;l.history=details.history;
+      }
+      l.series=current;l.seriesPhase='ready';current.occurrences.forEach(item=>state.seriesByReference.set(item.reference,id));renderLookupDetail();
+    }catch(error){if(seq!==l.seq||epoch!==state.authEpoch||loadSeq!==l.seriesSeq)return;l.seriesPhase='idle';l.seriesError=error instanceof Refusal&&error.status===404?'No recurring agreement was found for this account and reference.':error instanceof Refusal?refusalText(error,'series'):'Current visits could not be loaded. Please retry.';renderSeries();}
+  }
+  async function submitSeries(s) {
+    const l=state.lookup;if(l.recurrence!==s||s.phase==='submitting')return;
+    const body=seriesBody(s);
+    if(!body){s.error='Choose 2 to 12 total visits and an interval of 1 to 4 weeks.';s.uncertain='';renderSeries();return;}
+    if(!s.identity||s.identity.rawBody!==body){const random=new Uint8Array(16);crypto.getRandomValues(random);s.identity={rawBody:body,key:'tk-series-'+Array.from(random,v=>v.toString(16).padStart(2,'0')).join('')};}
+    const seq=l.seq,epoch=state.authEpoch;s.phase='submitting';s.error='';s.uncertain='';s.original=null;s.notice='';l.series=null;renderSeries();
+    try {
+      const original=await api('/series',{method:'POST',rawBody:s.identity.rawBody,key:s.identity.key});
+      if(seq!==l.seq||epoch!==state.authEpoch||l.recurrence!==s)return;
+      if(typeof original?.series_id!=='string'||!Array.isArray(original.occurrences))throw new Error('Incomplete recurring confirmation');
+      s.original=original;s.phase='confirmed';original.occurrences.forEach(item=>state.seriesByReference.set(item.reference,original.series_id));renderSeries();
+      await refreshSeries(original.series_id,seq,epoch);
+    }catch(error){if(seq!==l.seq||epoch!==state.authEpoch||l.recurrence!==s)return;s.phase='idle';s.original=null;if(error instanceof Refusal){s.error=refusalText(error,'series');s.uncertain='';}else{s.error='';s.uncertain='We could not confirm the response. Every visit may already be arranged. Retry this unchanged request to recover its original agreement.';}renderSeries();}
   }
   async function lookup() {
     const l=state.lookup,seq=++l.seq,epoch=state.authEpoch,reference=l.reference;
@@ -365,10 +458,11 @@
     if(!state.user || !reference) {l.error=!state.user?'Sign in to look up your own reservation.':'Enter your booking reference.';l.phase='idle';renderLookup();return;}
     l.phase='loading';renderLookup();
     try {
-      const receipt=await api(`/reservations/${encodeURIComponent(reference)}`);
-      const restaurant=await api(`/restaurants/${encodeURIComponent(receipt.restaurant_id)}`);
+      const {receipt,restaurant,decision,history:entries}=await loadCurrentDetails(reference);
       if(seq!==l.seq || epoch!==state.authEpoch)return;
-      l.detail=receipt;l.restaurant=restaurant;l.phase='ready';renderLookup();
+      l.detail=receipt;l.restaurant=restaurant;l.decision=decision;l.history=entries;l.phase='ready';renderLookup();
+      const seriesId=state.seriesByReference.get(reference);
+      if(seriesId)await refreshSeries(seriesId,seq,epoch);
     } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='idle';l.error=error instanceof Refusal?error.status===404?'No reservation was found for this account and reference.':refusalText(error,'lookup'):'The reservation could not be loaded. Please try again.';renderLookup();}
   }
   async function cancelReservation() {
@@ -378,7 +472,10 @@
     try {
       const receipt=await api(`/reservations/${encodeURIComponent(reference)}/cancel`,{method:'POST'});
       if(seq!==l.seq || epoch!==state.authEpoch)return;
-      l.detail=receipt;l.phase='ready';renderLookupDetail();
+      const current=await loadCurrentDetails(reference);
+      if(seq!==l.seq || epoch!==state.authEpoch)return;
+      l.detail=current.receipt;l.decision=current.decision;l.history=current.history;l.phase='ready';renderLookupDetail();
+      const seriesId=state.seriesByReference.get(reference);if(seriesId)await refreshSeries(seriesId,seq,epoch);
     } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='ready';l.error=error instanceof Refusal?refusalText(error,'cancel'):'The cancellation outcome could not be confirmed. Try again to check it.';renderLookupDetail();}
   }
   async function loadCatalogue() {

@@ -1,12 +1,12 @@
-# Tablekeeper Stage 2
+# Tablekeeper Stage 3
 
 From this folder, build and start the complete HTTP service:
 
 ```sh
-docker build -t interface-engineer-tablekeeper-stage-2 .
-docker run --rm --name interface-engineer-tablekeeper-stage-2 \
+docker build -t interface-engineer-tablekeeper-stage-3 .
+docker run --rm --name interface-engineer-tablekeeper-stage-3 \
   --cpus=2 --memory=2g -e PORT=8080 -p 18200:8080 \
-  interface-engineer-tablekeeper-stage-2
+  interface-engineer-tablekeeper-stage-3
 ```
 
 In another terminal:
@@ -39,7 +39,7 @@ booking JSON numbers use exact plain decimal digits; no party-size maximum is
 introduced. Large integer API values remain exact for display and combined seat
 counts use integer arithmetic. Restaurant capacity rules remain server-authoritative.
 
-Stage 2 retains the JSON API. Browse `/restaurants`, restaurant details and
+Stage 3 retains the JSON API. Browse `/restaurants`, restaurant details and
 `/availability` without authentication. Sign up or log in through `/auth/signup`
 or `/auth/login`, then send `Authorization: Bearer <token>` for diner routes.
 Creating a reservation and moving several reservations require a caller-chosen
@@ -59,7 +59,7 @@ confirmation without creating another booking. There is no background polling.
 complete snapshot between independent processes. These unauthenticated test
 controls are enabled as required. Exported state contains password hashes and
 session tokens; keep exports as private test data rather than demo assets.
-Stage 2 also accepts genuine exports from the team's accepted Stage 1 service.
+Stage 3 also accepts genuine exports from the team's Stage 1 and Stage 2 services.
 Keep the browser page open during an import between requests. Its session token,
 pending form and retry identity remain available without a reload. The browser
 accepts original Stage 1 receipts with `table_id` and without `table_ids`.
@@ -92,3 +92,30 @@ still require plain digits. Original successful receipts retain their source
 representation and receipt-scoped numeric meaning across upgrades. The browser
 preserves unsafe whole numeric response values spelled with decimal points or
 exponents for exact displayed guest counts and summed capacities.
+
+The original booking confirmation keeps the successful response's original
+reference, revision and terms. The lookup screen loads the current reservation,
+owner-only decision and ordered history from the service. Open each accepted-term
+summary to see duration, cancellation cutoff, start grid, opening hours and table
+capacities. History shows the terms at each event; it does not attach newer
+policies to earlier events. Availability uses real `explain=true` responses and
+the selected policy's available-option capacities. Restaurant detail remains the
+original fixture configuration and does not override accepted booking terms.
+
+From a confirmed, editable booking on `/lookup`, choose 2–12 total recurring visits
+and 1–4 weeks between visits. The existing reservation is occurrence zero. The
+service checks every later occurrence before confirming the agreement. A lost
+response shows uncertainty; keep the form unchanged and retry with the retained
+body/key. The original successful recurring response remains separate from the
+current occurrence list, which is loaded with `GET /series/{series_id}`. Individual
+changes show permanent exceptions; cancellations remain in the list and do not
+cancel siblings. Load an agreement by its actual service-issued reference, or
+open a listed occurrence to retrieve its current booking/history. There is no
+background polling or later-stage bulk-amend/planner control.
+
+Only fixture `manager_user_ids` confer policy-publication permission. The product
+does not invent signup roles, and manager status never grants another diner's
+private lookup, decision, history or series. Signing out clears the private view
+and in-memory agreement references. Prior-version original receipts need not
+contain Stage 3 fields; their exact response/body/key remain untouched. Current
+details load separately after migration without replacing the original receipt.
