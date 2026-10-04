@@ -805,6 +805,8 @@ def main():
                  export=probe.export, conventions=probe.conventions)
     from supplemental import run as run_supplemental
     cases["extra"] = lambda: run_supplemental(probe)
+    from calendar_edges import run as run_calendar_edges
+    cases["calendar-edges"] = lambda: run_calendar_edges(probe)
     selected = list(cases) if args.case == "all" else args.case.split(",")
     for case in selected:
         try:

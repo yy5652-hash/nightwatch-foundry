@@ -19,6 +19,7 @@ def add(section, line, case, entries, method="black-box HTTP"):
                          source_line=line, introduced_stage=1,
                          applicable_stages="1,2,3,4", owner=implementation_owner,
                          implementation_owner=implementation_owner, verification_owner="independent-verifier",
+                         interpretation_note="",
                          requirement_text=obligation, candidate_full_revision="UNASSIGNED",
                          verification_method=method, case=case,
                          executable_command_or_interaction=(f"python3 evidence/independent-verifier/stage-1/runtime.py --repo RESULT_REPOSITORY --workspace WORKSPACE_ROOT --candidate FULL_REVISION --out NEW_DIRECTORY" if case in ["runtime", "provenance"] else f"python3 evidence/independent-verifier/stage-1/probe.py --base http://127.0.0.1:18300 --peer http://127.0.0.1:18301 --candidate FULL_REVISION --out NEW_DIRECTORY --case {case}"),
@@ -423,10 +424,23 @@ for label, zone in [("utc", "UTC"), ("berlin", "Europe/Berlin"), ("new-york", "A
         prefix = "edge-" + label + "-" + tag
         for suffix, meaning in [("availability", "returns 200 availability"), ("slots", "offers all eight fitting slots"), ("create", "accepts the last fitting slot with 201"), ("start-instant", "preserves the exact IANA start instant"), ("end-instant", "ends after 90 absolute minutes")]:
             add("4. Fixture format / 8. API / 9. Time and DST", 143, "calendar-edges", {prefix+"-"+suffix: f"Calendar boundary {day} in {zone} {meaning}, regardless of UTC representation range."})
+        for suffix, meaning in [("availability-wires", "availability timestamps equal the independent exact-instant wire oracle"), ("local-retained", "original starts_at_local survives unchanged"), ("start-wire", "start uses the deterministic nearest representable minute offset"), ("end-wire", "end uses that same serialization rule independently")]:
+            add("3.4 Conventions / 9. Time and DST / coordinator timestamp decision", 86, "calendar-edges", {prefix+"-"+suffix: f"Under the explicitly recorded historic-offset interpretation, {day} {zone}: {meaning}."})
         if tag == "min" and label != "utc":
             add("3.4 Conventions / 9. Time and DST", 86, "calendar-edges", {prefix+"-rfc3339": f"Historic {zone} reservation response timestamps are RFC3339 with explicit offsets."})
 for operation in ["availability", "create"]:
     add("4. Fixture format / 8. API / 9. Time and DST", 143, "calendar-edges", {"edge-berlin-min-midnight-"+operation: f"A fitting midnight slot at 0001-01-01 Europe/Berlin is accepted by {operation}, even before the UTC calendar minimum."})
+add("3.4 / 7. / 9. / 10. / coordinator timestamp decision", 86, "calendar-edges", {
+    "edge-berlin-min-midnight-wire": "Berlin minimum-date midnight uses the nearest RFC3339 minute offset that yields a representable clock, preserving the exact instant.",
+    "edge-berlin-min-midnight-local-retained": "Minimum-date historic serialization retains the original starts_at_local field.",
+    "edge-historic-replay": "A successful historic receipt replays with identical original JSON and 200.",
+    "edge-historic-import": "Historic timestamps, local fields, sessions and receipts survive independent-process export/import exactly.",
+    "edge-historic-replay-imported": "An imported historic create key replays its unchanged original receipt.",
+    "edge-wire-tie": "Historic half-minute IANA offset ties choose the lower numerical representable wire offset without rounding the instant.",
+})
+for row in ROWS:
+    if row["case"] == "calendar-edges":
+        row["interpretation_note"] = "Coordinator decision: exact IANA instant and original starts_at_local; nearest representable minute wire offset, lower numerical tie. Literal historical subminute wire offset is an explicit interpretation exception; earlier failed observations are preserved."
 
 
 def write_matrix(path):
