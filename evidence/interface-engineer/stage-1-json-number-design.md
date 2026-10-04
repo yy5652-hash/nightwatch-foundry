@@ -212,3 +212,54 @@ immutable older timestamp strings and successful original receipt shapes remain
 explicit risks. Modest payload experiments do not prove arbitrary-size resource
 performance. Harness: Codex; configured model: gpt-6.1-sol. Actual runtime override,
 reasoning effort, token usage, catalog-estimated and billed spend are unknown.
+
+## Reciprocal codec API agreement
+
+Systems' proposal in room message `28a09e83-62bd-4074-9bfa-f1397bf4c7c5` is
+accepted for Interface integration. This section supersedes the earlier proposed
+bytes-returning encoder with an explicitly agreed **text-returning** codec:
+
+| Systems-owned callable | Agreed behavior and Interface use |
+| --- | --- |
+| `JsonCodecError(ValueError)` | A codec refusal belongs to the existing transport's ValueError-compatible malformed-body handling. |
+| `loads(text: str) -> JSON tree` | Interface performs its existing strict UTF-8 decode after HTTP framing, then calls this function and retains its object-body check. Numeric leaves are exact integer-token ints or immutable provenance-carrying `JsonNumber`; booleans remain separate. |
+| `dumps(value) -> str` | ASCII string escapes, compact separators, exact finite bare numeric tokens. Interface encodes the returned text as UTF-8 before sending headers; it calculates Content-Length from those bytes. A 204 response bypasses encoding and stays zero bytes. |
+| `validate_json(value) -> None` | Systems owns portable JSON validation and raises `JsonCodecError` on unsupported/malformed values. The server does not add a separate numeric traversal or narrow the accepted number set. |
+| `same_value(left, right, profile='exact-v1')` | Systems-owned recursive exact JSON-value equality; object order does not matter, array order does, boolean/string values remain distinct from numbers. |
+| `same_value(left, right, profile='python-json-v1')` | Receipt-specific genuine historical comparison: project decimal/exponent provenance only; retain exact incoming integers and old parsed-body meaning. |
+
+`JsonNumber` carries immutable exact coefficient/exponent information plus
+decimal/exponent-token provenance. Unknown finite numbers do not pass through
+float, or expand their exponent merely to parse, compare or encode. Systems owns
+numeric predicates, integer normalization, archived response preservation and
+persisted per-receipt profile metadata. The existing Engine request signature and
+`(status, value)` result remain unchanged. I identify no adapter mismatch with
+this callable contract. It does not change key/auth/framing order or authorize
+source editing.
+
+Archived response numeric values still require the original emitted JSON value
+on replay. For example, legacy `0.1` remains `0.1`, rather than the exact decimal
+expansion of a binary floating ratio. That compatibility responsibility is inside
+the shared codec/core contract, not an adapter-specific float conversion.
+Systems' separately authored genuine evidence at
+`302e2c00a2e433302d92289cd8172cc3a7325168` observes original
+`0.100000000000000005` and `9007199254740993.0` retries before and after import:
+16 HTTP operations / 24 assertions / 0 failures. These are **received Systems
+builder observations**, not additional Interface execution. Its design and
+evidence were read to agree the module interface; its probe implementation was
+not opened or copied.
+
+Independent supplemental evidence
+`f371edd40eb4a336b87a3358a6616d6c6dd6aabb`, received in room message
+`dd9b0b68-14dc-4df6-956a-4a9b07b4daf6`, establishes eight true fractional-party
+and create/move precedence failures for frozen candidate 5: 38 HTTP requests,
+35 assertions, 8 failed assertions in 0.056724500 s. This now independently
+confirms the explicit party rules, separate from the fourteen unresolved
+base/integral-number questions. The original 932-row candidate-5 verdict and
+official 120/120 remain unchanged. No independent executable probe source was
+read, and this section is not a new Interface run or repaired-candidate result.
+
+Both owners agree the module-first, adapter/package-next, core-last sequence.
+The next source step still requires the coordinator's explicit release and
+Systems' committed module revision. Stage 1 and Stage 2 production remain
+unchanged, shared #11 stays active, and highest accepted stage remains 0.
