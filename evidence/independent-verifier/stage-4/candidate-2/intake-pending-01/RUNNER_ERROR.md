@@ -1,0 +1,3 @@
+# Preserved candidate2 pending-intake assembly stop
+
+The first pending-intake assembly returned1 with `KeyError: 'id'` after preserving the original full packet and original delivery bytes. It assumed the delivery object used the REPAIR-1 `id` field; this packet uses a different root identity field. It stopped before saving an intake record or running any candidate source/service/browser/check. Original partial output remains in this directory; the room retains the exact command and traceback. A new pending-intake record in intake-pending-02 uses the explicit actual package identifier and retains the original receipt part IDs. This is a verifier metadata error, not a service result or completed intake.
