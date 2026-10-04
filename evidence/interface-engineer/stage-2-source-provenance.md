@@ -54,3 +54,16 @@ specification. No verifier test/source was read, copied or used as an oracle.
 The Number-input interpretation and complete failed outputs were posted explicitly
 to the coordinator; independent review is still required. No human approval,
 external documentation, host dependency installation or later-stage scope.
+
+## Exact visible status follow-up input
+
+Verifier room message `20f901a8-f8e1-40f9-8485-c912e3037e6b` reported independently
+observed CSS capitalization on the older candidate, with its interpretation still
+pending. I read only that room observation, not verifier probe files or code.
+An original Interface browser scenario independently creates, looks up and cancels
+a real reservation, collecting both textContent and innerText at 1440px and 375px.
+Committed reproduction `c4944c0b71bb0b442e067f563e424889c11c9743` preserves the
+unchanged service and fails the visible-string check while all prior 20 scenarios
+pass. The correction replaces only the status badge's capitalize transformation
+with none, satisfying the written exact status text without requiring an ambiguity
+decision. No HTTP, JSON, core, retry, migration or frozen Stage 1 changes.
