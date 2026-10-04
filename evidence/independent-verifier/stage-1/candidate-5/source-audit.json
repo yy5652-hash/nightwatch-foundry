@@ -1,0 +1,103 @@
+{
+  "candidate": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "original_revoked_source": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+  "files": {
+    "core.py": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+    "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+    "Dockerfile": "c8eea299aa99098435d25c440172cc4fbd09f92320923216e99deb60d3c1145b",
+    "RUN.md": "eee6972f87dc025e8c7eb219dfd3b3529f3e5e98ff72eb75769c76f67f85e749",
+    ".dockerignore": "9f1b9601941647e488268600635b1b911516c8fdf164feb1737d5d75cd2e6267"
+  },
+  "imports": {
+    "core.py": [
+      "__future__",
+      "collections.abc",
+      "copy",
+      "datetime",
+      "hashlib",
+      "hmac",
+      "math",
+      "re",
+      "secrets",
+      "sys",
+      "threading",
+      "urllib.parse",
+      "uuid",
+      "zoneinfo"
+    ],
+    "server.py": [
+      "__future__",
+      "collections.abc",
+      "core",
+      "http.server",
+      "json",
+      "os",
+      "socket",
+      "sys"
+    ]
+  },
+  "inputs": [
+    {
+      "path": "evidence/systems-engineer/stage-1-source-provenance.md",
+      "full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "sha256": "a2e1be9dc470f4881daed9acbdfd6b819fe388feedce9c7a87cf96c9daccc18d",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-5/source-inputs/systems.md"
+    },
+    {
+      "path": "evidence/interface-engineer/stage-1-source-provenance.md",
+      "full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "sha256": "1816ef69ec5818c95c6c43e01c696cc268251fe9594ccebd03f4e8c86aa20533",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-5/source-inputs/interface.md"
+    },
+    {
+      "path": "evidence/systems-engineer/stage-1-decimal-repair-05.md",
+      "full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "sha256": "579b6a73ad5915d340ad8d213ad0abed709d99518c3fcc5d0754ede78103cc1f",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-5/source-inputs/decimal-repair.md"
+    },
+    {
+      "path": "evidence/coordinator/timestamp-representation-decision.md",
+      "full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "sha256": "e0ff7684c320e60acad28d580544460cbb22d5689039f8216dc1f235bed4482a",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-5/source-inputs/timestamp-decision.md"
+    },
+    {
+      "path": "evidence/coordinator/handoffs/TK-20261004-S1-systems-engineer-A.txt",
+      "full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "sha256": "9891ffe6cd95bdd31787037f94acfe9e00c972bf3fed0368047cb9bed42f773b",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-5/source-inputs/systems-handoff.txt"
+    },
+    {
+      "path": "evidence/coordinator/handoffs/TK-20261004-S1-interface-engineer-A.txt",
+      "full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+      "sha256": "1d405266866cdf87df12fab9921f81286016987ec2f99217f50b94ed94ace466",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-5/source-inputs/interface-handoff.txt"
+    },
+    {
+      "path": "kickoff/docs/participant-guide.md",
+      "full_revision": "803560d2a678ace1414465c098eb0ab5380ffade",
+      "sha256": "1533d255c833d7a0aa67f2ef06cde0a5e84d94c7d1c97f73d1818f04cfb685e4"
+    },
+    {
+      "path": "kickoff/tablekeeper/spec/stage-1.md",
+      "full_revision": "803560d2a678ace1414465c098eb0ab5380ffade",
+      "sha256": "9460189eac83802ce158f16ee90989af728a489b32a6147e2dc8e320f383055f"
+    },
+    {
+      "path": "factory/PRODUCT_ACCEPTANCE.md",
+      "sha256": "b09c5282c8ee9d59b07185e7b942e0c6cc3eac258cc1634308e44048a54af66c",
+      "role": "supplement only"
+    }
+  ],
+  "exact_core_repair_only": true,
+  "unchanged_interface_runtime": true,
+  "complete_initial_handoffs": true,
+  "empty_root_intake": true,
+  "stage_tree_matches_production_revision": true,
+  "symlink_or_submodule_entries": [],
+  "history_preserved": true,
+  "two_builders": true,
+  "construction_review": "server.main constructs Engine before Server binds/accepts requests; core initialization is the sole new behavior. All other source bytes match the separately reviewed revoked Stage 1 source.",
+  "source_provenance_method": "Full direct candidate package, complete source declarations/repair authoring-input report, initial handoffs, original empty intake, authored-path history, imports, current source/repair diff and dependency packaging reviewed. No builder probe/oracle implementation opened.",
+  "limitations": "Seat exclusions are declarations, not machine-wide forensic proof. Runtime observations are still pending. Full room export remains operator-controlled."
+}

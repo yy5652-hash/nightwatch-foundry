@@ -1,0 +1,622 @@
+{
+  "candidate_full_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "http_operations": 28,
+  "assertions": 25,
+  "failed_assertions": 12,
+  "duration_seconds": 0.11249758400003884,
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.014521333000061531
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 1.0, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.0005775829999947746
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00039058300001215684
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 1e0, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.0004250419999607402
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0003186249999771462
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 1.0, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.00042512499999247666
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00042625000003226887
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 1e0, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.0003079589999970267
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0002658749999682186
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 1.0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.0002717499999107531
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0002939160000323682
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 1e0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.0008559579999882772
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00032050000004346657
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 1.0}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.00048624999999447027
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00033874999996896804
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 1e0}]}], \"reservations\": []}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      },
+      "duration_seconds": 0.0003045830000019123
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0002726249999795982
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signup",
+      "raw_body": "[synthetic credentials redacted]",
+      "status": 201,
+      "response": {
+        "user_id": "u_7909e4ac114c4b98be3c1450f658c1f5",
+        "display_name": "Numeric Diner",
+        "token": "[private client value]"
+      },
+      "duration_seconds": 0.02437212500001351
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "raw_body": "{\"restaurant_id\":\"r\",\"table_id\":\"t\",\"starts_at_local\":\"2035-06-04T18:00\",\"party_size\":1.0}",
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "duration_seconds": 0.00041316600004392967
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0002108339999722375
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signup",
+      "raw_body": "[synthetic credentials redacted]",
+      "status": 201,
+      "response": {
+        "user_id": "u_074d7188ba304eb7bfe3e3047ba86319",
+        "display_name": "Numeric Diner",
+        "token": "[private client value]"
+      },
+      "duration_seconds": 0.02249454100001458
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "raw_body": "{\"restaurant_id\":\"r\",\"table_id\":\"t\",\"starts_at_local\":\"2035-06-04T18:00\",\"party_size\":1e0}",
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "duration_seconds": 0.0003124170000319282
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": []}",
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00019020899992483464
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signup",
+      "raw_body": "[synthetic credentials redacted]",
+      "status": 201,
+      "response": {
+        "user_id": "u_cbe53441ecdd4a6c918b9759e12e460d",
+        "display_name": "Unknown Diner",
+        "token": "[private client value]"
+      },
+      "duration_seconds": 0.021446833000027254
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "raw_body": "{\"restaurant_id\":\"r\",\"table_id\":\"t\",\"starts_at_local\":\"2035-06-04T18:00\",\"party_size\":2,\"unused\":1e4300}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      },
+      "duration_seconds": 0.00023304100000132166
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "raw_body": "{\"restaurant_id\":\"r\",\"table_id\":\"t\",\"starts_at_local\":\"2035-06-04T18:00\",\"party_size\":2}",
+      "status": 201,
+      "response": {
+        "reservation_id": "res_42df0710907441108006c2f24e8700a6",
+        "reference": "842EF9E07F",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-04T18:00",
+        "starts_at": "2035-06-04T18:00:00+00:00",
+        "ends_at": "2035-06-04T19:30:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T02:54:53.113704+00:00"
+      },
+      "duration_seconds": 0.00024787500001366425
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signup",
+      "raw_body": "[synthetic credentials redacted]",
+      "status": 201,
+      "response": {
+        "user_id": "u_f035c2dd9aaf42c5900c2bd81fa3e98f",
+        "display_name": "Second",
+        "token": "[private client value]"
+      },
+      "duration_seconds": 0.020860709000089628
+    },
+    {
+      "method": "POST",
+      "path": "/_test/reset",
+      "raw_body": "{\"users\": [], \"restaurants\": [{\"id\": \"r\", \"name\": \"Numeric Kitchen\", \"timezone\": \"UTC\", \"slot_minutes\": 30, \"reservation_duration_minutes\": 90, \"cancellation_cutoff_minutes\": 0, \"opening_hours\": [{\"weekday\": \"mon\", \"opens\": \"18:00\", \"closes\": \"23:00\"}], \"tables\": [{\"id\": \"t\", \"label\": \"Window\", \"capacity\": 2}]}], \"reservations\": [],\"unused\":1e4300}",
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      },
+      "duration_seconds": 0.00021025000000918226
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-slot_minutes-1.0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-slot_minutes-1e0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-reservation_duration_minutes-1.0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-reservation_duration_minutes-1e0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-cancellation_cutoff_minutes-1.0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-cancellation_cutoff_minutes-1e0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-capacity-1.0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-capacity-1e0",
+      "passed": false,
+      "expected": "204 for positive integer JSON number value1",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "malformed request"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-party-1.0",
+      "passed": false,
+      "expected": "201 for integer party JSON numeric value1",
+      "observed": {
+        "status": 422,
+        "response": {
+          "error": {
+            "code": "validation_failed",
+            "message": "validation failed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-party-1e0",
+      "passed": false,
+      "expected": "201 for integer party JSON numeric value1",
+      "observed": {
+        "status": 422,
+        "response": {
+          "error": {
+            "code": "validation_failed",
+            "message": "validation failed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-control-reset",
+      "passed": true,
+      "expected": 204,
+      "observed": {
+        "status": 204,
+        "response": null
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-unknown-exponent-create",
+      "passed": false,
+      "expected": "201; unknown valid finite JSON number ignored",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "Invalid JSON value"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-unknown-failed-key-control",
+      "passed": true,
+      "expected": "201 if preceding request failed and consumed no key",
+      "observed": {
+        "status": 201,
+        "response": {
+          "reservation_id": "res_42df0710907441108006c2f24e8700a6",
+          "reference": "842EF9E07F",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-04T18:00",
+          "starts_at": "2035-06-04T18:00:00+00:00",
+          "ends_at": "2035-06-04T19:30:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T02:54:53.113704+00:00"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-unknown-exponent-signup",
+      "passed": true,
+      "expected": "201; unknown valid finite JSON number ignored",
+      "observed": {
+        "status": 201,
+        "response": {
+          "user_id": "u_f035c2dd9aaf42c5900c2bd81fa3e98f",
+          "display_name": "Second",
+          "token": "[private client value]"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-numeric-unknown-exponent-reset",
+      "passed": false,
+      "expected": "204; unknown valid finite JSON number ignored",
+      "observed": {
+        "status": 400,
+        "response": {
+          "error": {
+            "code": "malformed_request",
+            "message": "Invalid JSON value"
+          }
+        }
+      }
+    }
+  ]
+}

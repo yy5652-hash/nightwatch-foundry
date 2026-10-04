@@ -1,0 +1,136 @@
+{
+  "candidate": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "checks": {
+    "dockerfile": true,
+    "run-document": true,
+    "single-image": true,
+    "offline": true,
+    "cpu": true,
+    "memory": true,
+    "startup": true,
+    "packaged-assets": true,
+    "listen-all": true,
+    "port-default": true,
+    "port-override": true,
+    "complete-clone": true,
+    "two-builders": true,
+    "history-preserved": true,
+    "own-stage": true,
+    "source-provenance": true
+  },
+  "readiness": [
+    {
+      "healthy": true,
+      "readiness_seconds": 0.34185825000167824,
+      "host_port": 18300,
+      "internal_port": 18309,
+      "port_override": true
+    },
+    {
+      "healthy": true,
+      "readiness_seconds": 0.409092708996468,
+      "host_port": 18301,
+      "internal_port": 8080,
+      "port_override": false
+    }
+  ],
+  "network_internal": true,
+  "service_image_hashes": {
+    "current_revision": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+    "legacy_revision": "49287b4a5a1481f995c470ccae31776f03d4b863",
+    "legacy_clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s1-f5e0a532dcf6-20261004t024727-legacy-clone",
+    "legacy_readiness_seconds": 0.40032466599950567,
+    "legacy_clean": true,
+    "hash_checks": [
+      {
+        "container": "independent-verifier-s1-f5e0a532dcf6-20261004t024727-source",
+        "expected": {
+          "core.py": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+          "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        },
+        "observed": {
+          "core.py": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+          "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        },
+        "passed": true
+      },
+      {
+        "container": "independent-verifier-s1-f5e0a532dcf6-20261004t024727-peer",
+        "expected": {
+          "core.py": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+          "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        },
+        "observed": {
+          "core.py": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380",
+          "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        },
+        "passed": true
+      },
+      {
+        "container": "independent-verifier-s1-f5e0a532dcf6-20261004t024727-legacy",
+        "expected": {
+          "core.py": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+          "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        },
+        "observed": {
+          "core.py": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40",
+          "server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+        },
+        "passed": true
+      }
+    ]
+  },
+  "clean_clone_head": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "clean_clone_status": "",
+  "cleanup": [
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-f5e0a532dcf6-20261004t024727-source"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "duration_seconds": 0.10421737499927985,
+      "log": "independent-verifier-s1-f5e0a532dcf6-20261004t024727-source-cleanup.log"
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-f5e0a532dcf6-20261004t024727-peer"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "duration_seconds": 0.09443495900268317,
+      "log": "independent-verifier-s1-f5e0a532dcf6-20261004t024727-peer-cleanup.log"
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-f5e0a532dcf6-20261004t024727-legacy"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "duration_seconds": 0.10205908299758448,
+      "log": "independent-verifier-s1-f5e0a532dcf6-20261004t024727-legacy-cleanup.log"
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "independent-verifier-s1-f5e0a532dcf6-20261004t024727-net"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "duration_seconds": 0.09276483299981919,
+      "log": "network-cleanup.log"
+    }
+  ],
+  "run_scope": "Equivalent documented single-image commands with required verifier-owned identities/ports and additional isolation constraints; cache available."
+}

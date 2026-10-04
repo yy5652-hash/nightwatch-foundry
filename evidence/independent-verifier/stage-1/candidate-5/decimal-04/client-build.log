@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Candidate5.Probe.Dockerfile
+#1 transferring dockerfile: 495B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 457B done
+#4 DONE 0.0s
+
+#5 [1/4] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#5 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 0.0s done
+#5 DONE 0.0s
+
+#6 [2/4] RUN apt-get update && apt-get install -y --no-install-recommends tzdata && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/4] WORKDIR /verifier
+#7 CACHED
+
+#8 [4/4] COPY requirements.py probe.py health.py supplemental.py reproduce.py calendar_edges.py reproduce_calendar.py race50.py wire_oracle.py legacy_receipts.py decimal_requirements.py decimal_probe.py large_minutes.py /verifier/
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:2f851e5feb99ffeac7cd3195318e1e11474ad50df76b20d5874f979fcd583512 done
+#9 exporting config sha256:6b477cab88a13ab388947e2b7a98389b7a12d225df36c66bf583bf07fdb1a99a done
+#9 exporting attestation manifest sha256:f266b2292ec9cae64ef0fa2fc6cdad3dd9acdba3e3b455e7036e895d831ab975 done
+#9 exporting manifest list sha256:2f17a9e976ce64bed2df1c96e81fae15deab38a56939603d965cf16d29461675 done
+#9 naming to docker.io/library/independent-verifier-s1-decimal04-20261004t025025:client done
+#9 unpacking to docker.io/library/independent-verifier-s1-decimal04-20261004t025025:client done
+#9 DONE 0.0s
