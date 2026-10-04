@@ -1,0 +1,317 @@
+{
+  "scope": "standalone codec diagnostic, not HTTP acceptance",
+  "started_at": "2026-10-04T03:37:46.087279+00:00",
+  "image_tag": "systems-engineer-json-codec:20261004t033746086869",
+  "container_name": "systems-engineer-codec-20261004t033746086869",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f^{commit}"
+      ],
+      "returncode": 0,
+      "seconds": 0.009694416999991518,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-00.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f:stage-1/json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.007184666999819456,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-01.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f:evidence/systems-engineer/stage-1-json-codec-probes.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.006455916998675093,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-02.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f:evidence/systems-engineer/stage-1-json-depth-probes.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.006018957999913255,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-03.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "build",
+        "-t",
+        "systems-engineer-json-codec:20261004t033746086869",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/systems-engineer-codec-v83uuonj"
+      ],
+      "returncode": 0,
+      "seconds": 0.6207225840007595,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-04.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "systems-engineer-json-codec:20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.04395149999982095,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-05.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "--name",
+        "systems-engineer-codec-20261004t033746086869",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "systems-engineer-json-codec:20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.05250562499713851,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-06.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-codec-20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.021524166000745026,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-07.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "systems-engineer-codec-20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.0450213750009425,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-08.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "wait",
+        "systems-engineer-codec-20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.12132916699920315,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-09.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "systems-engineer-codec-20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.030903000002581393,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-10.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-codec-20261004t033746086869:/tmp/systems-engineer-codec-output",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/probes"
+      ],
+      "returncode": 0,
+      "seconds": 0.02042329100004281,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-11.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-codec-20261004t033746086869:/probe/json_codec.py",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/packaged-json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.015279292001650902,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-12.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-codec-20261004t033746086869:/probe/probes.py",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/packaged-probes.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.021483874999830732,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-13.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "--name",
+        "systems-engineer-codec-20261004t033746086869-depth",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "systems-engineer-json-codec:20261004t033746086869",
+        "python",
+        "-B",
+        "depth.py",
+        "--module",
+        "json_codec.py",
+        "--out",
+        "/tmp/systems-engineer-depth-output"
+      ],
+      "returncode": 0,
+      "seconds": 0.058626083002309315,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-14.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-codec-20261004t033746086869-depth"
+      ],
+      "returncode": 0,
+      "seconds": 0.015943833997880574,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-15.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "systems-engineer-codec-20261004t033746086869-depth"
+      ],
+      "returncode": 0,
+      "seconds": 0.06284362500082352,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-16.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "wait",
+        "systems-engineer-codec-20261004t033746086869-depth"
+      ],
+      "returncode": 0,
+      "seconds": 0.2653150829974038,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-17.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "systems-engineer-codec-20261004t033746086869-depth"
+      ],
+      "returncode": 0,
+      "seconds": 0.02943754199804971,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-18.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-codec-20261004t033746086869-depth:/tmp/systems-engineer-depth-output",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/depth"
+      ],
+      "returncode": 0,
+      "seconds": 0.024656249999679858,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-19.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-codec-20261004t033746086869-depth:/probe/depth.py",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/packaged-depth.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.015437375001056353,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-20.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-codec-20261004t033746086869"
+      ],
+      "returncode": 0,
+      "seconds": 0.0205157499985944,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-21.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-codec-20261004t033746086869-depth"
+      ],
+      "returncode": 0,
+      "seconds": 0.022138707998237805,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-codec-container-02/command-22.log"
+    }
+  ],
+  "revision": "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f",
+  "source_sha256": {
+    "stage-1/json_codec.py": "771cd5c2ccd4e11bb74808998de65605845576d0bc6172fb2d428421bc83895c",
+    "evidence/systems-engineer/stage-1-json-codec-probes.py": "787f9e8fbd423580c3081c6d7d3275f22320791f496fcdf4a693059065156680",
+    "evidence/systems-engineer/stage-1-json-depth-probes.py": "dcc364f0b5b7d24a7dc7b589b2dfe2b5ea88ed861b802cb589474f39fcc965e9"
+  },
+  "image_id": "sha256:bd04bd492ef297bbdc95904299d6aa5fc5c81583cfe0bd30af083e468f8e7447",
+  "resource_proof": {
+    "network": "none",
+    "nano_cpus": 2000000000,
+    "memory_bytes": 2147483648,
+    "mounts": [],
+    "image_id": "sha256:bd04bd492ef297bbdc95904299d6aa5fc5c81583cfe0bd30af083e468f8e7447",
+    "user": "65532:65532"
+  },
+  "probe_exit_code": 0,
+  "summary": {
+    "assertions": 1442,
+    "passed": 1442,
+    "failed": 0,
+    "seed": 20261004,
+    "random_pairs": 180,
+    "parallel_tasks": 50,
+    "parallel_max_seconds": 4.320900000109873e-05,
+    "wall_seconds": 0.007052666999999957,
+    "module_sha256": "771cd5c2ccd4e11bb74808998de65605845576d0bc6172fb2d428421bc83895c"
+  },
+  "depth_exit_code": 0,
+  "depth_summary": {
+    "module_sha256": "771cd5c2ccd4e11bb74808998de65605845576d0bc6172fb2d428421bc83895c",
+    "assertions": 155,
+    "passed": 155,
+    "failed": 0,
+    "wall_seconds": 0.15923945900000192,
+    "maximum_payload_bytes": 17642,
+    "maximum_wrapping_depth": 1600,
+    "recursion_limit_unchanged": 1000
+  },
+  "cleanup_exit_codes": [
+    0,
+    0
+  ],
+  "cleanup_exit_code": 0,
+  "temporary_context_removed": true,
+  "successful": true,
+  "wall_seconds": 1.5400077500016778
+}
