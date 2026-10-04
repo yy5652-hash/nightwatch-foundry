@@ -3,7 +3,7 @@ import argparse, hashlib, json, shutil, subprocess, time
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True);p.add_argument('--probe-revision',required=True);p.add_argument('--group',choices=['assemble','http','browser','reconstruction-http','reconstruction-browser'],required=True);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True);p.add_argument('--probe-revision',required=True);p.add_argument('--assembly');p.add_argument('--group',choices=['assemble','http','inherited','origins','browser','reconstruction-http','reconstruction-browser'],required=True);a=p.parse_args()
     runtime=Path(a.runtime).resolve();out=Path(a.out).resolve();assert runtime.is_relative_to(W) and out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
     facts=json.loads((runtime/'preflight.json').read_text());C=facts['candidate'];prefix=facts['prefix'];u=facts['urls'];commands=[]
     def run(argv,label,cwd=R):
@@ -32,7 +32,8 @@ def main():
         (out/'client-proof.json').write_text(json.dumps(dict(image=image,probe_revision=a.probe_revision,manifest=manifest,dockerfile_sha256=hashlib.sha256(dockerfile.read_bytes()).hexdigest(),runtime=str(runtime),note='No service source changed; complete own protocol dependency/input assembly before first behavioural client invocation.'),indent=2)+'\n')
         release=json.loads((runtime/'release.json').read_text());release.update(systems_revision=release['systems_implementation'],interface_revision=release['interface_implementation'])
         (out/'release.json').write_text(json.dumps(release,indent=2)+'\n');return
-    assembly=json.loads((runtime.parent/'assembly-01/client-proof.json').read_text());runner=assembly['image'];release=runtime.parent/'assembly-01/release.json'
+    assembly_path=Path(a.assembly).resolve() if a.assembly else runtime.parent/'assembly-01'
+    assembly=json.loads((assembly_path/'client-proof.json').read_text());runner=assembly['image'];release=assembly_path/'release.json'
     source_copy=out/'executed-client-manifest.json';source_copy.write_text(json.dumps(assembly,indent=2)+'\n')
     def probe(folder,script,label,extra=(),positional=None,json_stdout=False):
         name=prefix+'-'+str(len(commands));assert len(name)<=63
@@ -48,6 +49,14 @@ def main():
         for script,label,extra in [('probe.py','baseline',['--peer',u['peer']]),('reproduce.py','original-minimal',[]),('reproduce_calendar.py','calendar-minimal',[]),('race50.py','race50',[]),('decimal_probe.py','decimal',['--peer',u['peer']]),('semantic_probe.py','semantic',['--peer',u['peer'],'--third',u['third'],'--legacy',u['legacy-s1']]),('opaque_id_probe.py','opaque-ids',['--peer',u['peer']]),('nesting_probe.py','nesting',['--peer',u['peer']]),('snapshot_probe.py','snapshot',['--peer',u['peer'],'--third',u['third']]),('decoder_probe.py','decoder',['--peer',u['peer'],'--third',u['third']])]:probe('stage-1',script,label,extra)
         for script,label,args in [('large_minutes.py','large-minutes',[u['target'],C,u['peer']]),('numeric_forms_current.py','numeric',[u['target'],C]),('fractional_party_probe.py','fractional',[u['target'],C]),('very_deep_probe_c7.py','very-deep',[u['target'],u['peer'],C]),('deep_race_c7.py','deep-race',[u['target'],u['peer'],C])]:probe('stage-1',script,label,positional=args,json_stdout=True)
         probe('stage-2','api.py','pairs',['--peer',u['peer']]);probe('stage-2','amend_retained.py','retained-amend',['--peer',u['peer']])
+    elif a.group=='inherited':
+        for family in ['baseline','snapshot','decoder','legacy']:
+            extra=['--family',family,'--base',u['target'],'--peer',u['peer'],'--candidate',C,'--out','/evidence/'+family]
+            if family in ['snapshot','decoder']:extra+=['--third',u['third']]
+            if family=='legacy':extra+=['--legacy',u['legacy-s1']]
+            probe('stage-2','candidate2_inherited.py',family,positional=extra)
+    elif a.group=='origins':
+        probe('stage-2','reconstruction_probe.py','origins',positional=['--release','/release.json','--out','/evidence/origins','--case','origins','--execute'])
     elif a.group=='browser':
         for script,label in [('browser.py','general'),('browser_boundaries.py','boundaries'),('browser_historical.py','historical'),('visual_detail.py','visual')]:probe('stage-2',script,label)
     else:
