@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import pathlib
+import shutil
 import subprocess
 import time
 import urllib.request
@@ -31,17 +32,32 @@ for path in ['server.py','core.py','Dockerfile','.dockerignore','RUN.md']:
     if expected!=(ROOT/'stage-1'/path).read_bytes(): raise RuntimeError('frozen Stage1 differs: '+path)
 image='interface-engineer-tablekeeper-s2:'+STAMP
 legacy_image='interface-engineer-tablekeeper-s1:upgrade-'+STAMP
+historic_revision='49287b4a5a1481f995c470ccae31776f03d4b863'
+historic_image='interface-engineer-tablekeeper-s1:historic-'+STAMP
+historic_context=OUT/'interface-engineer-historic-source'
 network='interface-engineer-s2-'+STAMP
 service=network+'-service';legacy=network+'-legacy';default=network+'-default';runner=network+'-probe'
+historic=network+'-historic'
 started=[];created_network=False
 report={'candidate':candidate,'started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source_hashes':hashes,'model_configured':'gpt-6.1-sol','harness':'Codex','runtime_model_effort_usage_spend':'unknown','out':str(OUT)}
 report['probe_hashes']={p:hashlib.sha256((ROOT/'evidence/interface-engineer'/p).read_bytes()).hexdigest() for p in ['stage-2-browser-probe.py','stage-2-container-check.py']}
 try:
+    historic_context.mkdir()
+    historic_hashes={}
+    for filename in ['server.py','core.py','Dockerfile','.dockerignore','RUN.md']:
+        argv=['git','show',historic_revision+':stage-1/'+filename]
+        source=subprocess.run(argv,cwd=ROOT,stdout=subprocess.PIPE,check=True).stdout
+        (historic_context/filename).write_bytes(source)
+        historic_hashes[filename]=hashlib.sha256(source).hexdigest()
+        COMMANDS.append({'argv':argv,'exit':0,'source_sha256':historic_hashes[filename]})
+    report['historic_source_revision']=historic_revision
+    report['historic_source_hashes']=historic_hashes
     run(['docker','build','-t',image,'stage-2'],'build-stage2')
     run(['docker','build','-t',legacy_image,'stage-1'],'build-accepted-stage1')
+    run(['docker','build','-t',historic_image,str(historic_context)],'build-genuine-historic-stage1')
     run(['docker','network','create','--internal',network],'network-create');created_network=True
     before=time.perf_counter()
-    for name,img,port,host in [(service,image,'9090','18210'),(legacy,legacy_image,'8080','18211'),(default,image,None,None)]:
+    for name,img,port,host in [(service,image,'9090','18210'),(legacy,legacy_image,'8080','18211'),(default,image,None,None),(historic,historic_image,None,None)]:
         args=['docker','run','-d','--name',name,'--network',network,'--cpus','2','--memory','2g']
         if port:args+=['-e','PORT='+port,'-p',host+':'+port]
         args+=[img]
@@ -68,9 +84,14 @@ try:
         if path.endswith(('Dockerfile','.dockerignore','RUN.md')):continue
         assert image_hashes['/app/'+path[len('stage-2/'):]]==digest
     report['image_hashes_match']=True
+    old_hashes=json.loads(run(['docker','exec',historic,'python','-c',code],'historic-image-hashes'))
+    for filename in ['server.py','core.py']:
+        assert old_hashes['/app/'+filename]==historic_hashes[filename]
+    report['historic_image_hashes_match']=True
     args=['docker','run','--rm','--name',runner,'--network',network,'--cpus','2','--memory','2g',
         '-v',str(ROOT/'evidence/interface-engineer/stage-2-browser-probe.py')+':/work/probe.py:ro',
         '-v',str(OUT)+':/out','-e','S2_BASE=http://'+service+':9090','-e','S1_BASE=http://'+legacy+':8080',
+        '-e','S1_HIST_BASE=http://'+historic+':8080','-e','S1_HIST_REVISION='+historic_revision,
         '-e','CANDIDATE='+candidate,'-e','PROBE_OUT=/out','df-harness-runner:latest','python','-B','/work/probe.py']
     output=run(args,'browser',check=False)
     result=json.loads((OUT/'browser-report.json').read_text())
@@ -85,6 +106,8 @@ finally:
         run(['docker','logs',name],'logs-'+name,check=False)
         run(['docker','rm','-f',name],'cleanup-'+name,check=False)
     if created_network:run(['docker','network','rm',network],'cleanup-network',check=False)
+    if historic_context.exists():shutil.rmtree(historic_context)
+    report['historic_context_removed']=not historic_context.exists()
     report['commands']=COMMANDS
     report['finished_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
     (OUT/'runtime-report.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -520,7 +520,7 @@ async def corrupt_response_and_numeric_keyboard(context,page):
     await page.unroute_all()
     await tid(page,'booking-submit').click();check(await confirmed(page)==committed[0]['reference'],'malformed receipt retry recovers real original')
 
-async def local_end_display(context,page,zone,local,expected):
+async def local_end_display(context,page,zone,local,expected,legacy=False):
     from datetime import datetime
     from zoneinfo import ZoneInfo
     fixture=copy.deepcopy(FIXTURE)
@@ -529,22 +529,44 @@ async def local_end_display(context,page,zone,local,expected):
         opening_hours=[{'weekday':day,'opens':'00:00','closes':'23:59'} for day in ['mon','tue','wed','thu','fri','sat','sun']])
     fixture['reservations']=[{'id':'local_end','reference':'LOCAL01','user_id':'u_ada','restaurant_id':restaurant['id'],
         'table_id':'t_window','starts_at_local':local,'party_size':2}]
-    status,_=await request(context,BASE,'/_test/reset','POST',fixture)
+    reference='LOCAL01'
+    if legacy:
+        fixture['reservations']=[];restaurant.pop('combinable')
+        source=os.environ['S1_HIST_BASE']
+        status,_=await request(context,source,'/_test/reset','POST',fixture)
+        check(status==204,'genuine pre-serializer Stage1 reset')
+        status,auth=await request(context,source,'/auth/login','POST',{'email':'ada@example.test','password':'correct horse'})
+        check(status==200,'genuine historical source token')
+        body={'restaurant_id':restaurant['id'],'table_id':'t_window','starts_at_local':local,'party_size':2}
+        status,original=await request(context,source,'/reservations','POST',body,auth['token'],'historic-original-receipt')
+        check(status==201,'genuine historical source booking')
+        reference=original['reference']
+        import re
+        check(bool(re.search(r'[+-]\d\d:\d\d:\d\d$',original['ends_at'])),'genuine immutable offset-seconds timestamp')
+        status,snapshot=await request(context,source,'/_test/export')
+        check(status==200,'genuine historical source export')
+        status,_=await request(context,BASE,'/_test/import','POST',snapshot)
+        check(status==204,'unchanged genuine historical export import')
+        status,replay=await request(context,BASE,'/reservations','POST',body,auth['token'],'historic-original-receipt')
+        check(status==200 and replay==original,'immutable genuine old receipt and token retained')
+    else:status,_=await request(context,BASE,'/_test/reset','POST',fixture)
     check(status==204,'local-end fixture accepted')
     await login(page)
-    await page.goto(BASE+'/lookup');await tid(page,'lookup-reference-input').fill('LOCAL01');await tid(page,'lookup-submit').click()
+    await page.goto(BASE+'/lookup');await tid(page,'lookup-reference-input').fill(reference);await tid(page,'lookup-submit').click()
     await expect(tid(page,'reservation-detail')).to_be_visible()
-    api=await context.request.get(BASE+'/reservations/LOCAL01',headers={'Authorization':'Bearer '+await page.evaluate("JSON.parse(sessionStorage.getItem('tablekeeper.session')).token")})
+    api=await context.request.get(BASE+'/reservations/'+reference,headers={'Authorization':'Bearer '+await page.evaluate("JSON.parse(sessionStorage.getItem('tablekeeper.session')).token")})
     record=await api.json();check(api.status==200,'actual private local-end record')
+    if legacy:check(record['ends_at']==original['ends_at'] and record['starts_at_local']==original['starts_at_local'],'import retains original timestamp and wall fields')
     oracle=datetime.fromisoformat(record['ends_at']).astimezone(ZoneInfo(zone)).strftime('%H:%M')
     check(oracle==expected,'independent IANA instant-to-local end oracle')
     end=tid(page,'reservation-detail').get_by_text('Ends at',exact=True).locator('..').locator('dd')
     observed=await end.inner_text()
     REPORT['trace'].append({'scenario':'local-end-display','zone':zone,'browser_timezone':'Pacific/Honolulu',
-        'starts_at_local':record['starts_at_local'],'ends_at':record['ends_at'],'expected_local_end':oracle,'displayed_local_end':observed})
+        'starts_at_local':record['starts_at_local'],'ends_at':record['ends_at'],'expected_local_end':oracle,'displayed_local_end':observed,
+        'genuine_legacy_source_revision':os.environ['S1_HIST_REVISION'] if legacy else None})
     check(await end.locator('time').get_attribute('datetime')==record['ends_at'],'immutable wire datetime remains unchanged')
     check(local[11:16] in await tid(page,'reservation-detail').locator('h2').inner_text(),'start retains original wall field')
-    await screenshots(page,'local-end-'+zone.replace('/','-')+'-'+local[:10])
+    await screenshots(page,('legacy-' if legacy else '')+'local-end-'+zone.replace('/','-')+'-'+local[:10])
     check(observed.endswith(' · '+expected),'restaurant-local end display '+zone+' '+local)
 
 async def main():
@@ -573,6 +595,8 @@ async def main():
             ('last-calendar-date','UTC','9999-12-31T18:00','19:30')]
         for name,zone,local,expected in end_cases:
             cases.append(('local-end-'+name,lambda c,p,z=zone,l=local,e=expected:local_end_display(c,p,z,l,e)))
+        for name,zone in [('berlin','Europe/Berlin'),('brussels','Europe/Brussels'),('new-york','America/New_York')]:
+            cases.append(('local-end-legacy-'+name,lambda c,p,z=zone:local_end_display(c,p,z,'0001-01-01T18:00','19:30',True)))
         for name,callback in cases: await scenario(name,callback,browser)
         REPORT["browser_version"]=browser.version
         await browser.close()
