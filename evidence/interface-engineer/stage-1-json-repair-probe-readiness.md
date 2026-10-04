@@ -70,3 +70,39 @@ independent named verdict. Modest compact/large-number inputs do not establish
 arbitrary-payload performance. No verifier probe or shipped test implementation
 was read/copied. Harness Codex; configured gpt-6.1-sol; actual runtime override,
 effort, usage and estimated/billed spend remain unknown.
+
+## Subsequent named-source binding after adapter handoff
+
+Coordinator `233e9d6e-0d6e-4962-97bd-d232021924dd` confirms the Interface wiring
+and releases Systems for disjoint core/module integration. This supersedes the
+historical preparation-time hold described above; original statements/results
+remain recorded as their earlier state. The final complete-service run is still
+held until Systems supplies its full named core commit. Stage 2 remains frozen.
+
+Adapter wiring is `3dae12788ff59dce8c4ce8a6faa71394f140e3d2`; complete adapter
+evidence is `c26c7b148ceb573d7b1e6c28d121443ffca95f27`. Exact original module009
+checks and later c2fcedc observations remain separate in that handoff. Latest
+module repair provenance is `c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f`, SHA
+`771cd5c2ccd4e11bb74808998de65605845576d0bc6172fb2d428421bc83895c`; the later
+complete core commit may include additional owner-integrated helpers. The final
+driver therefore derives all three Python source hashes from the exact detached
+coherent candidate and checks those actual bytes in both running images. It does
+not hard-code superseded009's module hash or use an uncommitted working tree.
+
+The driver now also binds each own HTTP probe blob to `--probe-revision`, or the
+current committed HEAD when omitted, and records those hashes and actual stdin
+digests. It does not read a mutable copy of probe source while claiming a named
+revision. Expected future invocation:
+
+```sh
+../../.venv/bin/python -B evidence/interface-engineer/stage-1-json-repair-container-check.py --revision <full-coherent-core-commit> --probe-revision <full-owned-evidence-commit>
+```
+
+No new HTTP operation, image build or service assertion occurs in this source
+binding update. AST/static ownership/hash-basis checks precede the future run.
+All remaining commits use `git commit --only` with explicit owned pathspecs and
+post-commit changed-path inspection. The shared-index incident acknowledgement,
+exact command/cause/32 verifier-owned path audit and preserved history are at
+`0a643d38acefde390db8e0dba5b30acc3b5f3955`; explicit mitigation is at
+`b9385d2967df4c3edb695cf3c0c35738a04a0a40`. No verifier implementation or oracle
+has been read, copied or executed by Interface. Highest accepted stage stays 0.

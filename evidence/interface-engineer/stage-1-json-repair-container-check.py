@@ -19,9 +19,12 @@ import time
 ROOT = Path(__file__).resolve().parents[2]
 parser = argparse.ArgumentParser()
 parser.add_argument("--revision", required=True, help="Full coherent implementation commit, never module-only")
+parser.add_argument("--probe-revision", help="Exact own committed evidence source; defaults to current HEAD")
 args = parser.parse_args()
 if len(args.revision) != 40 or any(c not in "0123456789abcdef" for c in args.revision):
     parser.error("An exact full revision is required")
+if args.probe_revision and (len(args.probe_revision) != 40 or any(c not in "0123456789abcdef" for c in args.probe_revision)):
+    parser.error("An exact full probe revision is required")
 stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ").lower()
 slug = "interface-engineer-s1-json-" + stamp
 short = "interface-engineer-js1-" + stamp
@@ -76,7 +79,7 @@ print(json.dumps({'seconds':time.monotonic()-start,'status':200}))
 HASH = "import hashlib,json,pathlib;print(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').glob('*.py')}))"
 
 try:
-    probe_revision = execute(["git", "rev-parse", "HEAD"]).decode().strip()
+    probe_revision = args.probe_revision or execute(["git", "rev-parse", "HEAD"]).decode().strip()
     execute(["git", "clone", "--no-hardlinks", str(ROOT), str(clone)], log="clone.log")
     execute(["git", "checkout", "--detach", args.revision], cwd=clone, log="checkout.log")
     head = execute(["git", "rev-parse", "HEAD"], cwd=clone).decode().strip()
@@ -92,9 +95,13 @@ try:
                 raise RuntimeError("Refuse intermediate unwired candidate: " + name)
     tree_id = execute(["git", "rev-parse", "HEAD:stage-1"], cwd=clone).decode().strip()
     probe_names = ("stage-1-json-repair-probe.py", "stage-1-json-repair-container-check.py", "stage-1-transport-probe.py")
+    probe_source = {name: execute(["git", "show", probe_revision+":evidence/interface-engineer/"+name]) for name in probe_names}
     (out / "source-proof.json").write_text(json.dumps({"candidate": head, "stage1_tree": tree_id,
         "clone": str(clone), "initial_status": status, "source_hashes": hashes,
-        "probe_revision": probe_revision, "probe_hashes": {n: digest((ROOT / "evidence/interface-engineer" / n).read_bytes()) for n in probe_names},
+        "module_identity_basis": "Actual json_codec.py blob from named full coherent service revision; never superseded module009 assumption",
+        "latest_module_repair_provenance": "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f; subsequent core owner may add required helpers",
+        "probe_revision": probe_revision, "probe_hashes": {n: digest(data) for n,data in probe_source.items()},
+        "executed_driver_sha256": digest(Path(__file__).read_bytes()),
         "source_inputs": "Complete assigned task/spec/adopted decisions, own prior probes/drivers, supplied owner/API handoffs and failure descriptions. No verifier probe or shipped test code read."}, indent=2)+"\n")
     execute(["docker", "build", "-t", current_image, str(clone / "stage-1")], log="build-current.log")
     images = [current_image, current_image]
@@ -149,13 +156,13 @@ try:
     net = json.loads(execute(["docker", "network", "inspect", network]))[0]
     check("Internal offline network", net["Internal"] is True)
     inherited = execute(["docker", "exec", "-i", created[1], "python", "-", "http://127.0.0.1:9090"],
-                        stdin=(ROOT / "evidence/interface-engineer/stage-1-transport-probe.py").read_bytes(),
+                        stdin=probe_source["stage-1-transport-probe.py"],
                         log="inherited-http.json", require=False)
     inherited = json.loads(inherited)
     check("Own inherited integration checks", inherited["failed"] == 0)
     repaired = execute(["docker", "run", "--rm", "-i", "--name", short+"-client", "--network", network,
                         "--cpus", "2", "--memory", "2g", "--entrypoint", "python", current_image, "-", *urls],
-                       stdin=(ROOT / "evidence/interface-engineer/stage-1-json-repair-probe.py").read_bytes(),
+                       stdin=probe_source["stage-1-json-repair-probe.py"],
                        log="json-repair-http.json", require=False)
     repaired = json.loads(repaired)
     check("Own JSON repair integration checks", repaired["failed"] == 0)
