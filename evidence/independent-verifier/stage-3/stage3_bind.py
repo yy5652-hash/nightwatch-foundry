@@ -6,7 +6,7 @@ sys.set_int_max_str_digits(0)
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];H=HERE/'candidate-1';C='91e2c471acded1b861b3fec725f202297b1c6740'
 GROUPS={'new-http-01':'policies,explain,numeric,terms,series,rollback,moves,concurrency,calendar,trace,first_error,upgrade,deep','new-http-02':'retry',
  'inherited-http-01':'original-minimal,calendar-minimal,race50,decimal,semantic,opaque-ids,nesting,snapshot,decoder,pairs,large-minutes,numeric,fractional,very-deep,deep-race','inherited-http-02':'baseline,retained-amend',
- 'supplement-01':'policies,explain,terms,series','read-races-01':'races','reconstruction-http-02':'origins,deep,opaque,numeric','old-supplement-01':'oracle,coverage','migrations-02':'migrations',
+ 'supplement-01':'policies,explain,terms,series','closures-01':'closures','read-races-01':'races','reconstruction-http-02':'origins,deep,opaque,numeric','old-supplement-01':'oracle,coverage','migrations-02':'migrations',
  'inherited-browser-01':'boundaries,historical,visual,calendar','inherited-browser-02':'general','reconstruction-browser-01':'upgrade,numeric,opaque','inherited-upgrade-01':'four-upgrades','old-supplement-02':'overflow','old-supplement-03':'browser',
  'browser-03':'product,accepted-s1,accepted-s2,accepted-s1-desktop,accepted-s2-desktop','extra-browser-01':'extra-browser'}
 def load(p):return json.loads(p.read_text())
@@ -17,7 +17,7 @@ def walk(value,pointer=''):
  elif isinstance(value,list):
   for i,v in enumerate(value):yield from walk(v,pointer+'/'+str(i))
 def main():
- p=argparse.ArgumentParser();p.add_argument('--out',required=True);a=p.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=False);evidence=defaultdict(list);runs=[]
+ p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--review-file');a=p.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=False);evidence=defaultdict(list);runs=[]
  for group,labels in GROUPS.items():
   commands=load(H/group/'commands.json')
   for label in labels.split(','):
@@ -46,8 +46,9 @@ def main():
  direct=load(H/'direct-01/summary.json');dcmd=next(x for x in load(H/'direct-01/commands.json') if x['log']=='execute.log')
  for item,pointer in walk(direct):
   assert item['passed'];evidence[item['requirement_id']].append(dict(passed=True,evidence_path=str((H/'direct-01/summary.json').relative_to(R))+'#'+pointer,command=shlex.join(dcmd['argv']),run='direct-01',method='labelled packaged Engine diagnostic; diagnostic clock substitution; not HTTP'))
- if (H/'review-checks.json').is_file():
-  for item in load(H/'review-checks.json'):evidence[item['requirement_id']].append(item)
+ review_file=Path(a.review_file) if a.review_file else H/'review-checks.json'
+ if review_file.is_file():
+  for item in load(review_file):evidence[item['requirement_id']].append(item)
  rows=list(csv.DictReader((HERE/'initial-1/checks-02/coverage.csv').open()));existing={r['requirement_id'] for r in rows}
  # Independently numbered extra legacy bootstrap/private-state constraints.
  for rid in sorted(evidence):
