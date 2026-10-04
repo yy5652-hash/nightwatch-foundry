@@ -969,6 +969,20 @@ async def series_read_race(context,page):
     check(b['reference'] in await tid(page,'series-occurrences').inner_text() and a['reference'] not in await tid(page,'series-occurrences').inner_text(),'late A cannot restore old occurrence list')
     await screenshots(page,'s3-series-read-race')
 
+async def series_restaurant_labels(context,page):
+    _,owner,_=await stage3_fixture(context);_,garden=await create3(context,owner)
+    body={'restaurant_id':'r_harbor','table_id':'t_booth','starts_at_local':DATE+'T19:00','party_size':2}
+    status,harbor=await request(context,BASE,'/reservations','POST',body,owner['token'],'harbor-anchor')
+    check(status==201,'real owned anchor in another restaurant')
+    status,agreement=await request(context,BASE,'/series','POST',{'anchor_reference':harbor['reference'],'count':2,'interval_weeks':1},owner['token'],'harbor-series')
+    check(status==201,'real other-restaurant recurring agreement')
+    await login(page);await lookup3(page,garden['reference'])
+    await tid(page,'series-lookup-id').fill(agreement['series_id']);await tid(page,'series-refresh').click()
+    await expect(tid(page,'series-occurrences')).to_be_visible()
+    text=await tid(page,'series-occurrences').inner_text()
+    check('Harbor House' in text and text.count('Harbor booth')==2 and 'Garden Room' not in text,'occurrence labels belong to actual agreement restaurant')
+    await screenshots(page,'s3-series-own-restaurant-labels')
+
 async def series_dst_refusal(context,page,zone,anchor_date):
     fixture=copy.deepcopy(FIXTURE);restaurant=fixture['restaurants'][0];restaurant['timezone']=zone
     restaurant['opening_hours']=[{'weekday':d,'opens':'00:00','closes':'06:00'} for d in ['mon','tue','wed','thu','fri','sat','sun']]
@@ -1022,7 +1036,7 @@ async def main():
         cases.extend([('stage3-policy-history-product',policy_history_product),('stage3-manager-privacy',history_privacy_product),('stage3-independent-explanations',explanation_product),
           ('stage3-series-keyboard',series_product),('stage3-series-committed-loss',lambda c,p:series_product(c,p,drop=True)),('stage3-series-malformed-response',lambda c,p:series_product(c,p,malformed=True)),
           ('stage3-series-real-refusal',series_refusal_product),('stage3-series-changed-identity',series_changed_identity),
-          ('stage3-pair-transition-history',pair_history_product),('stage3-series-read-race',series_read_race),
+          ('stage3-pair-transition-history',pair_history_product),('stage3-series-read-race',series_read_race),('stage3-series-restaurant-labels',series_restaurant_labels),
           ('stage3-series-dst-berlin',lambda c,p:series_dst_refusal(c,p,'Europe/Berlin','2032-03-21')),
           ('stage3-series-dst-new-york',lambda c,p:series_dst_refusal(c,p,'America/New_York','2032-03-07')),
           ('stage3-accepted-stage1-upgrade-adoption',lambda c,p:upgraded_adoption(c,p,os.environ['S1_BASE'],os.environ['S1_REVISION'],stage=1)),

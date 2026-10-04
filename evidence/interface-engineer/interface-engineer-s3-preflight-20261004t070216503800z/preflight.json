@@ -1,0 +1,33 @@
+{
+  "scope": "AST and packaged Node syntax only; no HTTP/browser execution",
+  "python_ast_files": [
+    "stage-3/server.py",
+    "evidence/interface-engineer/stage-3-browser-probe.py",
+    "evidence/interface-engineer/stage-3-container-check.py",
+    "evidence/interface-engineer/stage-3-evidence-audit.py"
+  ],
+  "python_ast_passed": 4,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "-i",
+    "--name",
+    "interface-engineer-s3-syntax-20261004t070216503800z",
+    "--network",
+    "none",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "df-harness-runner:latest",
+    "python",
+    "-B",
+    "-c",
+    "import pathlib,playwright,subprocess,sys;node=pathlib.Path(playwright.__file__).parent/'driver'/'node';raise SystemExit(subprocess.run([str(node),'--check'],input=sys.stdin.buffer.read()).returncode)"
+  ],
+  "exit": 0,
+  "seconds": 0.1996767499986163,
+  "stdin_sha256": "c52a445c49be615c268e8bb54c4fe7fa2290c5ac80ff3abaac6259f5ad214e81",
+  "code_review_change": "Own agreement list uses its actual restaurant response rather than current lookup restaurant labels"
+}
