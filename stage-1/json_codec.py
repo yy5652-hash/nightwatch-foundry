@@ -21,7 +21,9 @@ if hasattr(sys, "set_int_max_str_digits"):
 
 EXACT_PROFILE = "exact-v1"
 LEGACY_PROFILE = "python-json-v1"
-_NUMBER = re.compile(r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\Z")
+_NUMBER_GRAMMAR = r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?"
+_NUMBER = re.compile(_NUMBER_GRAMMAR + r"\Z")
+_NUMBER_TOKEN = re.compile(_NUMBER_GRAMMAR)
 
 
 class JsonCodecError(ValueError):
@@ -160,14 +162,98 @@ def _reject_constant(_value):
     raise JsonCodecError("JSON does not permit non-finite constants")
 
 
+def _decode(text):
+    """Parse containers with explicit grammar states, independent of depth."""
+    index, length = 0, len(text)
+    frames = []
+    root, have_root = None, False
+    while True:
+        while index < length and text[index] in " \t\r\n":
+            index += 1
+        if frames:
+            container, state, key = frames[-1]
+            char = text[index] if index < length else ""
+            closing = "}" if isinstance(container, dict) else "]"
+            if state == "after":
+                if char == closing:
+                    frames.pop()
+                    index += 1
+                    continue
+                if char != ",":
+                    raise JsonCodecError("Expected a JSON delimiter")
+                frames[-1][1] = "key" if isinstance(container, dict) else "value"
+                index += 1
+                continue
+            if state in ("key_or_end", "key"):
+                if state == "key_or_end" and char == "}":
+                    frames.pop()
+                    index += 1
+                    continue
+                if char != '"':
+                    raise JsonCodecError("Expected a JSON object key")
+                frames[-1][2], index = _json.decoder.scanstring(text, index + 1, True)
+                frames[-1][1] = "colon"
+                continue
+            if state == "colon":
+                if char != ":":
+                    raise JsonCodecError("Expected a JSON colon")
+                frames[-1][1] = "value"
+                index += 1
+                continue
+            if state == "first" and char == "]":
+                frames.pop()
+                index += 1
+                continue
+        elif have_root:
+            if index != length:
+                raise JsonCodecError("Unexpected trailing JSON data")
+            return root
+
+        if index == length:
+            raise JsonCodecError("Expected a JSON value")
+        char = text[index]
+        child_state = None
+        if char == "{":
+            value, child_state = {}, "key_or_end"
+            index += 1
+        elif char == "[":
+            value, child_state = [], "first"
+            index += 1
+        elif char == '"':
+            value, index = _json.decoder.scanstring(text, index + 1, True)
+        elif text.startswith("null", index):
+            value, index = None, index + 4
+        elif text.startswith("true", index):
+            value, index = True, index + 4
+        elif text.startswith("false", index):
+            value, index = False, index + 5
+        else:
+            number = _NUMBER_TOKEN.match(text, index)
+            if number is None:
+                raise JsonCodecError("Invalid JSON value")
+            token, index = number.group(), number.end()
+            value = JsonNumber(token) if "." in token or "e" in token.lower() else int(token)
+
+        if frames:
+            container, _, key = frames[-1]
+            if isinstance(container, dict):
+                container[key] = value
+            else:
+                container.append(value)
+            frames[-1][1] = "after"
+        else:
+            root, have_root = value, True
+        if child_state is not None:
+            frames.append([value, child_state, None])
+
+
 def loads(raw):
     """Decode strict UTF-8 bytes/string to an exact, provenance-carrying tree."""
     if type(raw) not in (bytes, str):
         raise JsonCodecError("JSON input must be bytes or text")
     try:
         text = raw.decode("utf-8") if type(raw) is bytes else raw
-        return _json.loads(text, parse_int=int, parse_float=JsonNumber,
-                           parse_constant=_reject_constant)
+        return _decode(text)
     except (ValueError, UnicodeError, RecursionError) as error:
         raise JsonCodecError("Invalid UTF-8 JSON text") from error
 
