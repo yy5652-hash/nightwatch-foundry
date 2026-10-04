@@ -1,0 +1,23 @@
+# Stage 1 serialized decimal repair
+
+Package: `TK-20261004-S1-systems-engineer-DECIMAL-REPAIR-1`, all six parts and END marker received. Completeness acknowledgement room message: `74c5a7e1-f533-4a3e-9ff3-c93864ea1511`. Shared Systems repair card: #7. This initial entry is analysis before explicit source release; it changes no production source. The original accepted/frozen source `2a4b0408a3453bc87d86bca3d0ec571f479e03ca`, its revoked acceptance and all failure artifacts remain preserved.
+
+## Invariants and chosen boundary
+
+Stage 1 sections 4/5/8 impose no numeric/digit ceiling on positive base grid/duration/capacity, nonnegative cutoff or a positive plain-digit party query. The exact 4301-digit integer is a correct JSON number and a modest payload. Existing applicability and conversion analysis is committed in `stage-1-2-decimal-applicability.md` (`69135c8fd1b4f3a1399b09217ec46d58032dd995`) and `stage-1-2-decimal-checkpoint.md` (`5c0b96e9d19db680059401237a3361569455cd2d`).
+
+The required invariant is exact integer representation through JSON parse/encode, query conversion, configuration, reservations, successful original parsed retry bodies/receipts and exported/imported state. Wrong types, booleans, fractions, invalid query lexical forms, nonpositive values, capacity/grid/opening/cutoff checks and their error precedence remain independent of conversion setup. A huge duration cannot fit an ordinary same-day window, so no huge endpoint timestamp is created. All local-calendar/timestamp and original-receipt decisions remain applicable.
+
+The chosen narrow repair, after explicit release, is the service-process standard-library decimal setting at Engine initialization, before the unchanged transport begins accepting requests. This covers the packaged JSON decoder/encoder and validated query conversion together without changing JSON number types, transaction boundaries or the schema. It makes no host/Docker/network change and touches no Interface-owned adapter/runtime files. This is the same independently justified boundary already implemented in Stage 2; that source and its diagnostics remain preserved.
+
+Reset/import continue to validate an entire proposed state before replacement under the Engine lock. Failed create/move requests retain reusable keys; successful create/move receipts preserve their original bodies and values after mutation and across independent-process import. No parsing shortcut, weakened grammar, new cap or receipt enrichment is authorized.
+
+## Preserved pre-repair observation and probe scope
+
+The own separately authored exact-image reproduction already executed unchanged genuine Stage 1: `systems-engineer-decimal-reproduction-01/stage-1.json` contains seven operations/seven assertions/five actual failures in 0.062868167 s. Four huge integer resets were 400 malformed_request, the plain-digit query was 422 validation_failed, and normal reset controls were 204. Its core/server hashes, 2 CPU/2 GiB, network none/no mounts and zero cleanup return codes are in that directory's `runtime.json`. This evidence remains unchanged; the coordinator-supplied independent reports are distinct. No verifier probe implementation was read or copied.
+
+After release the own black-box decimal regression will use `--stage 1`, two independent current processes and a separately built historical receipt source. It will cover the five actual boundaries, exact capacity/party values, giant grid/fit/cutoff outcomes, invalid type/fraction/query forms, failed reset atomicity, successful move receipts and full parsed giant request-body identity, cross-process replacement and original replay after mutations. Existing 15 inherited builder scenarios cover authentication, owner privacy, concurrency, half-open occupancy, rollback, DST/calendar extremes, legacy timestamp receipts and the earlier huge-minute repair.
+
+The service/client conversion settings are separate. A client enabling decimal parsing must never be mistaken for configuring the old source process. Traces retain credential/export fingerprints only. Modest 4301-digit passing probes do not imply arbitrary payload sizes meet CPU/memory/time requirements. The process-wide setting stays inside the single service interpreter and must be initialized before future transport request parsing.
+
+No Stage 1 source edit occurs until the explicit release. A named coherent production commit, fresh constrained exact-image evidence and full handoff will be appended after execution. Builder diagnostics do not restore acceptance; coordinator-owned Interface and independent official/806+ requirement review must precede renewed freeze or Stage 2 promotion. Harness Codex; configured model gpt-6.1-sol; actual override/effort/usage/spend unknown.
