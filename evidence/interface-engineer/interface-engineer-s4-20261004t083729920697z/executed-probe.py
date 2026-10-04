@@ -1269,13 +1269,7 @@ async def series_amend_product(context,page):
     await tid(page,'series-refresh').click();await expect(tid(page,'series-revision')).to_have_text('Agreement revision 3')
     await tid(page,'series-amend-use-current').click();await tid(page,'series-amend-local-time').fill('19:00')
     baseline=(await request(context,BASE,'/series/'+sid,token=owner['token']))[1]
-    steps=0
-    while steps<6 and not await tid(page,'series-amend-submit').evaluate('(e)=>e===document.activeElement'):
-        await page.keyboard.press('Tab');steps+=1
-    check(await tid(page,'series-amend-submit').evaluate('(e)=>e===document.activeElement'),'real keyboard traversal through native time segments reaches amendment button')
-    focus=await tid(page,'series-amend-submit').evaluate('(e)=>({width:getComputedStyle(e).outlineWidth,style:getComputedStyle(e).outlineStyle,color:getComputedStyle(e).outlineColor})')
-    check(float(focus['width'].replace('px',''))>0 and focus['style']!='none','actual visible amendment keyboard outline')
-    REPORT['trace'].append({'scenario':'stage4-series-keyboard-focus','Tab_steps':steps,'focus_style':focus})
+    await tid(page,'series-amend-local-time').press('Tab');check(await tid(page,'series-amend-submit').evaluate('(e)=>e===document.activeElement'),'real series amendment keyboard focus')
     await tid(page,'series-amend-submit').press('Enter');await expect(tid(page,'series-amend-confirmation')).to_be_visible();REPORT['assertions']+=1
     _,current=await request(context,BASE,'/series/'+sid,token=owner['token'])
     check(current['revision']==4,'whole real series amendment increments agreement once')
@@ -1402,25 +1396,20 @@ async def apply_refused_outcomes(context,page):
     _,stranger=await request(context,BASE,'/auth/signup','POST',{'email':'cara@example.test','password':'correct horse','display_name':'Cara'})
     await login(page);await manage4(page);await tid(page,'replan-preview-submit').click();await expect(tid(page,'replan-proposal')).to_be_visible()
     plan=await tid(page,'replan-plan-id').inner_text();pattern='**/replans/*/apply';writes=[]
-    observed=[]
-    def make_actual_refusal(kind):
-        async def actual_refusal(route):
+    for kind,code in [('unknown','not_found'),('anonymous','unauthenticated'),('nonmanager','forbidden')]:
+        async def actual_refusal(route,k=kind):
             writes.append({'key':route.request.headers.get('idempotency-key'),'body':route.request.post_data})
             kwargs={}
-            if kind=='unknown':kwargs['url']=BASE+'/restaurants/r_garden/replans/ACTUAL-UNKNOWN-PLAN/apply'
+            if k=='unknown':kwargs['url']=BASE+'/restaurants/r_garden/replans/ACTUAL-UNKNOWN-PLAN/apply'
             else:
                 headers=dict(route.request.headers)
-                if kind=='anonymous':headers.pop('authorization',None)
+                if k=='anonymous':headers.pop('authorization',None)
                 else:headers['authorization']='Bearer '+stranger['token']
                 kwargs['headers']=headers
             response=await forwarded_fetch(route,**kwargs)
-            value=await response.json();observed.append({'kind':kind,'status':response.status,'code':value.get('error',{}).get('code')})
+            value=await response.json();check(value['error']['code']==code,'actual HTTP '+kind+' refusal')
             await route.fulfill(response=response)
-        return actual_refusal
-    for kind,code in [('unknown','not_found'),('anonymous','unauthenticated'),('nonmanager','forbidden')]:
-        actual_refusal=make_actual_refusal(kind)
         await page.route(pattern,actual_refusal);await tid(page,'replan-apply-submit').click();await expect(tid(page,'replan-apply-error')).to_be_visible()
-        check(observed[-1]['code']==code,'actual HTTP '+kind+' refusal')
         check(await tid(page,'replan-applied').count()==0 and await tid(page,'replan-unapplied').count()==1,'actual '+kind+' rejection visibly unapplied')
         await page.unroute_all(behavior='wait')
     # An actual separate manager key applies it before this browser's first successful attempt.
@@ -1428,7 +1417,6 @@ async def apply_refused_outcomes(context,page):
     await tid(page,'replan-apply-submit').click();await expect(tid(page,'replan-apply-error')).to_be_visible()
     check('already applied' in await tid(page,'replan-apply-error').inner_text() and await tid(page,'replan-applied').count()==0,'already-applied is not relabelled as own success')
     check(all(x==writes[0] for x in writes),'all failed attempts preserve original client body/key')
-    REPORT['trace'].append({'scenario':'stage4-actual-apply-refusals','observations':observed,'writes':writes})
     await screenshots(page,'s4-refused-apply-outcomes')
 
 async def confirmation_current_race(context,page):

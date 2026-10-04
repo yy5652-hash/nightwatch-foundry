@@ -69,3 +69,12 @@ amendments cover the remaining product boundaries. The manager product scenario
 now publishes a real later capacity reduction before planning, so the proposed
 seating must use each existing booking’s older accepted capacities. Two updated
 protocol/audit AST checks pass. No service execution is claimed by preparation.
+
+## Original complete execution and prospective probe correction
+
+The full fd95c471 execution returned FAIL:82/84 scenarios and1,629 executed
+assertions,136.746 browser seconds/253.352270250 driver seconds. Original
+source/output remains unchanged in interface-engineer-s4-20261004t083729920697z.
+Both stops are diagnosed own probe keyboard/callback defects, described in
+stage-4-runner-issues.md. Production is unchanged. All9 cleanup commands exit0.
+A new complete fresh run is required after the prospective own probe repair.

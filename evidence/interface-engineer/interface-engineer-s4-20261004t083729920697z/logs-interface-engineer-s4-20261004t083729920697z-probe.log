@@ -1,0 +1,193 @@
+Error occurred in event listener
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_page.py", line 310, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 455, in handle
+    raise e
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 442, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 483, in _handle_internal
+    await asyncio.ensure_future(coro_or_future)
+  File "sealed-interface-probe.py", line 1410, in actual_refusal
+  File "sealed-interface-probe.py", line 44, in check
+AssertionError: actual HTTP unknown refusal
+{"candidate": "fd95c471c66f486f02798c696d7b5a315cbdae84", "passed": 82, "total": 84, "assertions": 1629, "seconds": 136.746, "direct_http_operations": 677, "browser_originated_requests": 1319, "forwarded_fetch_operations": 101}
+PASS transport-public
+PASS authentication-keyboard
+PASS single-book-lookup-cancel
+PASS lookup-status-exact
+PASS out-of-order-search
+PASS single-conflict
+PASS combined-conflict
+PASS lost-single
+PASS lost-combined
+PASS genuine-stage1-upgrade
+PASS combined-occupancy
+PASS changed-retry-form
+PASS empty-unavailable-lookup
+PASS lookup-race-privacy-cutoff
+PASS auth-inputs-loading
+PASS concurrent-pair-transport
+PASS party-safe-boundary
+PASS party-above-safe-integer
+PASS party-31-digits
+PASS party-401-digits
+PASS party-4301-digits
+PASS huge-decimal-transport
+PASS exact-numeric-keyboard-corrupt-response
+PASS local-end-berlin-historic
+PASS local-end-brussels-historic
+PASS local-end-new-york-historic
+PASS local-end-berlin-fall-back
+PASS local-end-new-york-fall-back
+PASS local-end-berlin-spring
+PASS local-end-new-york-spring
+PASS local-end-last-calendar-date
+PASS local-end-legacy-berlin
+PASS local-end-legacy-brussels
+PASS local-end-legacy-new-york
+PASS integral-wire-9007199254740993.0
+PASS integral-wire-9007199254740993e0
+PASS integral-wire-90071992547409930e-1
+PASS integral-wire-9.007199254740993E+15
+PASS integral-wire-0.9007199254740993e16
+PASS opaque-unicode-identifiers
+PASS upgrade-historic-stage1
+PASS upgrade-old-stage2-single
+PASS upgrade-old-stage2-pair
+PASS stage3-policy-history-product
+PASS stage3-manager-privacy
+PASS stage3-independent-explanations
+PASS stage3-series-keyboard
+PASS stage3-series-committed-loss
+PASS stage3-series-malformed-response
+PASS stage3-series-real-refusal
+PASS stage3-series-changed-identity
+PASS stage3-pair-transition-history
+PASS stage3-series-read-race
+PASS stage3-series-restaurant-labels
+PASS stage3-series-dst-berlin
+PASS stage3-series-dst-new-york
+PASS stage3-accepted-stage1-upgrade-adoption
+PASS stage3-historic-stage1-upgrade-adoption
+PASS stage3-accepted-stage2-upgrade-adoption
+PASS stage3-accepted-stage2-pair-upgrade-adoption
+PASS stage4-manager-product
+PASS stage4-manager-stale
+PASS stage4-manager-infeasible
+PASS stage4-preview-committed-loss
+PASS stage4-preview-malformed-response
+PASS stage4-apply-committed-loss
+PASS stage4-apply-malformed-response
+PASS stage4-apply-current-raw-upgrade
+PASS stage4-manager-permissions-validation-edited
+PASS stage4-closure-exact-boundaries
+PASS stage4-planning-full-bound-oracle
+FAIL stage4-series-amend-product
+Traceback (most recent call last):
+  File "sealed-interface-probe.py", line 127, in scenario
+  File "sealed-interface-probe.py", line 1272, in series_amend_product
+  File "sealed-interface-probe.py", line 44, in check
+AssertionError: real series amendment keyboard focus
+
+PASS stage4-series-amend-committed-loss
+PASS stage4-series-amend-malformed-response
+PASS stage4-series-amend-occupancy-refusal
+PASS stage4-series-amend-stale
+PASS stage4-series-empty-eligible
+PASS stage4-series-seating-repair
+PASS stage4-accepted-stage3-single-upgrade
+PASS stage4-accepted-stage3-pair-upgrade
+PASS stage4-accepted-stage3-populated-bridge
+FAIL stage4-apply-refused-outcomes
+Traceback (most recent call last):
+  File "sealed-interface-probe.py", line 127, in scenario
+  File "sealed-interface-probe.py", line 1412, in apply_refused_outcomes
+  File "/usr/local/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 23368, in to_be_visible
+    await self._impl_obj.to_be_visible(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 852, in to_be_visible
+    await self._expect_impl(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 128, in _expect_impl
+    _record_soft_or_raise(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 60, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_test_id("replan-apply-error") with timeout 5000ms
+  - waiting for get_by_test_id("replan-apply-error")
+
+Aria snapshot:
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Tablekeeper home":
+    - /url: /
+    - text: Tablekeeper A place at the table
+  - navigation "Main navigation":
+    - link "Find a table":
+      - /url: /
+    - link "Your reservation":
+      - /url: /lookup
+    - link "Restaurant tools":
+      - /url: /manage
+  - text: Ada
+  - button "Sign out"
+- main:
+  - paragraph: Keep every booking intact
+  - heading "Restaurant tools." [level=1]
+  - paragraph: Review seating before closing a table. A proposal keeps every affected booking’s time, guests and accepted terms.
+  - text: Restaurant
+  - combobox "Restaurant":
+    - option "Garden Room" [selected]
+    - option "Harbor House"
+  - paragraph: Garden Room · Europe/Berlin
+  - group:
+    - text: Table to close
+    - combobox "Table to close" [disabled]:
+      - option "Window" [disabled] [selected]
+      - option "Garden" [disabled]
+      - option "Corner" [disabled]
+    - text: Closure starts · include UTC offset
+    - textbox "Closure starts · include UTC offset" [disabled]:
+      - /placeholder: 2032-06-17T18:00:00+02:00
+      - text: 2032-06-17T18:00:00+02:00
+    - text: Closure ends · include UTC offset
+    - textbox "Closure ends · include UTC offset" [disabled]:
+      - /placeholder: 2032-06-17T19:00:00+02:00
+      - text: 2032-06-17T19:00:00+02:00
+    - paragraph: Use a complete date and time with its offset. A booking starting exactly at the closure’s end is outside the closure. Fractional seconds are retained as entered.
+    - button "Check original preview again" [disabled]
+  - paragraph: Proposed arrangement · not applied by this preview
+  - heading "Garden Room" [level=2]
+  - paragraph:
+    - text: Close Window
+    - time: 2032-06-17T18:00:00+02:00
+    - text: to
+    - time: 2032-06-17T19:00:00+02:00
+  - term: Plan reference
+  - definition: plan_4330fde87cb147b6ab9e5ccb9213b475
+  - term: Restaurant revision at preview
+  - definition: "1"
+  - term: Bookings that move
+  - definition: "1"
+  - term: Total unused seats
+  - definition: "2"
+  - term: Declared option ranks, in reference order
+  - definition: "1"
+  - list:
+    - listitem:
+      - strong: 7E350039D2
+      - paragraph: Garden
+      - text: Proposed move
+  - paragraph: Every assignment is proposed in booking-reference order. Times, guests and each booking’s own accepted terms remain intact. The service minimizes moved bookings, then unused seats, then declared option ranks.
+  - paragraph: No confirmed application is recorded for this attempt.
+  - button "Applying together…" [disabled]
+  - button "Create a fresh preview" [disabled]
+- contentinfo: Tablekeeper All booking times are local to the restaurant.
+
+PASS stage4-current-confirmation-read-race
+PASS stage4-series-other-restaurant-amendment
