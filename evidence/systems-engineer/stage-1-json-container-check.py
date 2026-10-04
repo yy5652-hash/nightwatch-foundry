@@ -141,19 +141,25 @@ try:
         exit_code = int(run(["docker", "wait", name], timeout=120).decode().strip())
         output = run(["docker", "logs", name])
         (out / (label + ".log")).write_bytes(output)
-        if label == "numbers":
-            run(["docker", "cp", name + ":/tmp/systems-engineer-json-numbers", str(out / "numbers")])
-        elif label == "digits":
-            run(["docker", "cp", name + ":/tmp/systems-engineer-json-digits.json", str(out / "digits.json")])
-        elif label == "ownership":
-            run(["docker", "cp", name + ":/tmp/systems-engineer-json-ownership.json", str(out / "ownership.json")])
         record["client_results"].append({"label": label, "exit_code": exit_code, "resource": info})
-    record["numeric_summary"] = json.loads((out / "numbers/trace.json").read_text())["summary"]
-    record["digit_summary"] = json.loads((out / "digits.json").read_text())["summary"]
-    record["ownership_summary"] = json.loads((out / "ownership.json").read_text())["summary"]
+        if label == "numbers":
+            run(["docker", "cp", name + ":/tmp/systems-engineer-json-numbers", str(out / "numbers")], required=False)
+        elif label == "digits":
+            run(["docker", "cp", name + ":/tmp/systems-engineer-json-digits.json", str(out / "digits.json")], required=False)
+        elif label == "ownership":
+            run(["docker", "cp", name + ":/tmp/systems-engineer-json-ownership.json", str(out / "ownership.json")], required=False)
+    for field, filename in (("numeric_summary", "numbers/trace.json"), ("digit_summary", "digits.json"),
+                            ("ownership_summary", "ownership.json")):
+        path = out / filename
+        record[field] = json.loads(path.read_text())["summary"] if path.exists() else None
     assert run(["git", "-C", str(clone), "status", "--porcelain"]) == b""
     record["clean_clone_after"] = True
-    record["result"] = "passed" if all(r["exit_code"] == 0 for r in record["client_results"]) else "failed"
+    record["result"] = "passed" if (all(r["exit_code"] == 0 for r in record["client_results"])
+                                    and all(record.get(field) is not None for field in
+                                            ("numeric_summary", "digit_summary", "ownership_summary"))) else "failed"
+except Exception as error:
+    record["result"] = "failed"
+    record["driver_exception"] = {"type": type(error).__name__, "message": str(error)}
 finally:
     for name in reversed(created):
         run(["docker", "logs", name], required=False)
@@ -167,7 +173,7 @@ finally:
     record["contexts_removed"] = all(not c.exists() for c in contexts)
     record["wall_seconds"] = time.monotonic() - started
     (out / "runtime.json").write_text(json.dumps(record, indent=2) + "\n")
-    print(json.dumps({k: record.get(k) for k in ("candidate", "result", "numeric_summary", "digit_summary",
+    print(json.dumps({k: record.get(k) for k in ("candidate", "result", "numeric_summary", "digit_summary", "ownership_summary",
                      "client_results", "wall_seconds", "contexts_removed")}))
     if record.get("result") != "passed":
         raise SystemExit(1)

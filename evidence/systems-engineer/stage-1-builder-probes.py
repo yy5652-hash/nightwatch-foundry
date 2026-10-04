@@ -418,7 +418,19 @@ class StageOne(unittest.TestCase):
         self.assertTrue(original["starts_at"].endswith("+00:53:28"))
         exported = self.expect(legacy.request("GET", "/_test/export"), 200)
         self.expect(self.client.request("POST", "/_test/import", exported), 204)
-        self.assertEqual(self.exported(), exported)
+        adopted = self.exported()
+        # The agreed private schema/profile migration changes metadata only;
+        # all original records, bodies, emitted responses and credentials stay.
+        if args.stage == 1:
+            self.assertEqual(adopted["state"]["schema"], 2)
+            self.assertTrue(all(r["numeric_profile"] == "python-json-v1" for r in adopted["state"]["receipts"]))
+            comparable = json.loads(json.dumps(adopted))
+            comparable["state"]["schema"] = 1
+            for receipt in comparable["state"]["receipts"]:
+                receipt.pop("numeric_profile")
+            self.assertEqual(comparable, exported)
+        else:
+            self.assertEqual(adopted, exported)
         self.assertEqual(self.expect(self.client.request("POST", "/reservations", body, auth), 200), original)
         lookup = {**original, "table_ids": [original["table_id"]]} if args.stage == 2 else original
         self.assertEqual(self.expect(self.client.request("GET", "/reservations/" + original["reference"], headers=auth), 200), lookup)

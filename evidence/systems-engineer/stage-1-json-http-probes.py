@@ -55,6 +55,31 @@ def digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def same_archived_tree(left, right):
+    """Independent tree check: complete mapping, ordered arrays, numeric tokens.
+
+    Opaque export byte order is not specified. Numeric lexemes are required to
+    remain identical here, a stronger check than mathematical alias equality.
+    This helper never calls or imports the service's codec/equality functions.
+    """
+    pending = [(left, right)]
+    while pending:
+        a, b = pending.pop()
+        if type(a) is not type(b):
+            return False
+        if type(a) is dict:
+            if a.keys() != b.keys():
+                return False
+            pending.extend((a[k], b[k]) for k in a)
+        elif type(a) is list:
+            if len(a) != len(b):
+                return False
+            pending.extend(zip(a, b))
+        elif a != b:
+            return False
+    return True
+
+
 def check(label, condition, detail=None):
     with lock:
         assertions.append({"label": label, "passed": bool(condition), "detail": detail})
@@ -172,6 +197,15 @@ def aliases_and_exact_bodies():
     for query in ("1e0", "2.0", "%2B2", "-2", "true"):
         http(args.base, "GET", "/availability?restaurant_id=r&date=2037-06-01&party_size=" + query,
              expected=422, code="validation_failed")
+    tiny = booking(table="b", unused=RawNumber("1e-4300"))
+    tiny_original = create(args.base, token, tiny, "tiny")
+    check("new underflow alias retains exact receipt", create(args.base, token,
+          {**tiny, "unused": RawNumber("10e-4301")}, "tiny", 200)[2] == tiny_original[2])
+    create(args.base, token, {**tiny, "unused": 0}, "tiny", 409, "idempotency_key_reuse")
+    snapshot = exported(args.base)[2]
+    http(args.peer, "POST", "/_test/import", raw=snapshot, expected=204)
+    check("new underflow identity survives independent import", create(args.peer, token, tiny, "tiny", 200)[2] == tiny_original[2])
+    create(args.peer, token, {**tiny, "unused": 0}, "tiny", 409, "idempotency_key_reuse")
 
 
 def fixture_value_statuses():
@@ -293,7 +327,8 @@ def nested_receipts_and_replacement():
         move_wire = b'{"moves":[{"reference":' + json.dumps(ref).encode() + b'}],"ignored":' + nested + b'}'
         moved = http(args.base, "POST", "/reservation-moves", raw=move_wire, token=token, key="deep-move-" + shape, expected=201)
         retained.append((wire, "deep-" + shape, result[2], move_wire, "deep-move-" + shape, moved[2]))
-    snapshot = exported(args.base)[2]
+    snapshot_result = exported(args.base)
+    snapshot = snapshot_result[2]
     http(args.peer, "POST", "/_test/import", raw=snapshot, expected=204)
     for base in (args.base, args.peer):
         for wire, key, original, move, move_key, moved in retained:
@@ -301,10 +336,13 @@ def nested_receipts_and_replacement():
                   token=token, key=key, expected=200)[2] == original)
             check("deep original batch independent destination", http(base, "POST", "/reservation-moves", raw=move,
                   token=token, key=move_key, expected=200)[2] == moved)
-    check("deep state unchanged opaque replacement", exported(args.peer)[2] == snapshot)
+    adopted = exported(args.peer)
+    check("deep state unchanged JSON replacement", same_archived_tree(adopted[1], snapshot_result[1]),
+          {"source_sha256": digest(snapshot), "destination_sha256": digest(adopted[2]),
+           "byte_order_identical": adopted[2] == snapshot})
     invalid = snapshot.replace(b'"numeric_profile":"exact-v1"', b'"numeric_profile":"invalid"', 1)
     http(args.peer, "POST", "/_test/import", raw=invalid, expected=422, code="validation_failed")
-    check("invalid profile atomic with deep bodies", exported(args.peer)[2] == snapshot)
+    check("invalid profile atomic with deep bodies", exported(args.peer)[2] == adopted[2])
 
 
 def genuine_legacy_mixed_profiles():
