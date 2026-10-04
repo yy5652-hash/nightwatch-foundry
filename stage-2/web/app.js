@@ -209,7 +209,7 @@
     test('booking-party-size').addEventListener('input',event=>{
       const oldBody=bookingBody(b);b.party=event.target.value;
       if (bookingBody(b)!==oldBody) {
-        b.changedNotice=b.uncertain?'Your previous attempt may have booked a table. This changed form will make a separate request. Retry the original selection to resolve an uncertain outcome.':'';
+        b.changedNotice=b.uncertain?'Your previous attempt may have booked a table. Changing these details starts a separate booking request.':'';
         b.identity=null;b.error='';b.uncertain='';b.confirmation=null;b.phase='idle';renderBookingFeedback();renderConfirmation();
         test('booking-submit').textContent='Confirm booking';
       }
@@ -252,7 +252,7 @@
     const l=state.lookup;
     main.innerHTML=`<section class="hero compact-hero"><div><p class="eyebrow">Plans, close at hand</p><h1>Your reservation.</h1><p class="lead">Use your booking reference to find the details or cancel your table.</p></div></section><div class="lookup-layout"><section class="lookup-card"><h2>Find your booking</h2><form id="lookup-form" novalidate><label for="reference">Booking reference</label><input id="reference" data-testid="lookup-reference-input" value="${esc(l.reference)}" autocomplete="off" autocapitalize="characters" spellcheck="false"><p class="input-hint">Enter the reference exactly as shown on your confirmation.</p><button data-testid="lookup-submit" class="button full" ${l.phase==='loading'?'disabled':''}>${l.phase==='loading'?'Finding reservation…':'Find reservation'}</button></form>${!state.user?'<p class="quiet-note">Sign in to see your own reservations.</p>'+links:''}<div id="lookup-feedback"></div></section><section id="reservation-panel"></section></div>`;
     renderLookupDetail();
-    test('lookup-reference-input').addEventListener('input',event=>{l.reference=event.target.value;l.seq++;l.detail=null;l.error='';l.phase='idle';renderLookupDetail();});
+    test('lookup-reference-input').addEventListener('input',event=>{l.reference=event.target.value;l.seq++;l.detail=null;l.error='';l.phase='idle';test('lookup-submit').disabled=false;test('lookup-submit').textContent='Find reservation';renderLookupDetail();});
     document.querySelector('#lookup-form').addEventListener('submit',event=>{event.preventDefault();lookup();});
   }
   function renderLookupDetail() {
