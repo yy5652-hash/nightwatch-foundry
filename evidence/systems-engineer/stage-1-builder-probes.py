@@ -421,16 +421,13 @@ class StageOne(unittest.TestCase):
         adopted = self.exported()
         # The agreed private schema/profile migration changes metadata only;
         # all original records, bodies, emitted responses and credentials stay.
-        if args.stage == 1:
-            self.assertEqual(adopted["state"]["schema"], 2)
-            self.assertTrue(all(r["numeric_profile"] == "python-json-v1" for r in adopted["state"]["receipts"]))
-            comparable = json.loads(json.dumps(adopted))
-            comparable["state"]["schema"] = 1
-            for receipt in comparable["state"]["receipts"]:
-                receipt.pop("numeric_profile")
-            self.assertEqual(comparable, exported)
-        else:
-            self.assertEqual(adopted, exported)
+        self.assertEqual(adopted["state"]["schema"], 2)
+        self.assertTrue(all(r["numeric_profile"] == "python-json-v1" for r in adopted["state"]["receipts"]))
+        comparable = json.loads(json.dumps(adopted))
+        comparable["state"]["schema"] = 1
+        for receipt in comparable["state"]["receipts"]:
+            receipt.pop("numeric_profile")
+        self.assertTrue(comparable == exported, "Only adopted private numeric metadata may change")
         self.assertEqual(self.expect(self.client.request("POST", "/reservations", body, auth), 200), original)
         lookup = {**original, "table_ids": [original["table_id"]]} if args.stage == 2 else original
         self.assertEqual(self.expect(self.client.request("GET", "/reservations/" + original["reference"], headers=auth), 200), lookup)

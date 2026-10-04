@@ -158,6 +158,43 @@ def multiply_integer(value, factor):
     return JsonNumber(str(coefficient) + "e" + str(exponent))
 
 
+def add_integers(left, right):
+    """Exact integral sum for an output that actually requires its digits."""
+    if not is_integral(left) or not is_integral(right):
+        raise JsonCodecError("Expected integral operands")
+    if type(left) is int and type(right) is int:
+        return left + right
+    an, ad, ae = number_key(left)
+    bn, bd, be = number_key(right)
+    exponent = min(ae, be)
+    coefficient = ((-1 if an else 1) * int(ad) * 10 ** (ae - exponent)
+                   + (-1 if bn else 1) * int(bd) * 10 ** (be - exponent))
+    return JsonNumber(str(coefficient) + "e" + str(exponent))
+
+
+def sum_at_least(left, right, target):
+    """Compare nonnegative integral capacities without expanding exponents.
+
+    When neither operand already reaches target, two operands with magnitude
+    more than one decimal place below target cannot reach it. In the remaining
+    case, subtracting the larger operand from target aligns only a number of
+    digits bounded by their input coefficient lengths, independent of exponent
+    metadata. Compare the smaller operand with that compact exact remainder.
+    """
+    if any(not is_integral(v) or compare_numbers(v, 0) < 0 for v in (left, right, target)):
+        raise JsonCodecError("Expected nonnegative integral operands")
+    if compare_numbers(left, target) >= 0 or compare_numbers(right, target) >= 0:
+        return True
+    larger, smaller = (left, right) if compare_numbers(left, right) >= 0 else (right, left)
+    _, ad, ae = number_key(larger)
+    _, td, te = number_key(target)
+    if len(td) + te - len(ad) - ae > 1:
+        return False
+    exponent = min(ae, te)
+    remainder = int(td) * 10 ** (te - exponent) - int(ad) * 10 ** (ae - exponent)
+    return compare_numbers(smaller, JsonNumber(str(remainder) + "e" + str(exponent))) >= 0
+
+
 def _reject_constant(_value):
     raise JsonCodecError("JSON does not permit non-finite constants")
 

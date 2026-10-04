@@ -1,4 +1,4 @@
-"""Tablekeeper Stage 1 application. HTTP transport is deliberately separate.
+"""Tablekeeper Stage 2 application. HTTP transport is deliberately separate.
 
 The lock is the transaction boundary, including reads and retry resolution. There
 is no occupancy cache: confirmed reservation records are the source of truth.
@@ -18,7 +18,7 @@ from urllib.parse import parse_qs, unquote, urlsplit
 import uuid
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from json_codec import (EXACT_PROFILE, LEGACY_PROFILE, JsonCodecError, compare_numbers,
-                        copy_json, is_integral, is_number, multiply_integer,
+                        add_integers, copy_json, is_integral, is_number, multiply_integer, sum_at_least,
                         same_value, to_integer, validate_json)
 
 
@@ -156,6 +156,9 @@ def assert_booking_fields(row, expected):
         if key in ("starts_at", "ends_at"):
             if instant(timestamp(row.get(key))) != instant(timestamp(value)):
                 fail()
+        elif key == "table_ids" and key not in row and value == [row.get("table_id")]:
+            # Successful Stage 1 originals retain their singleton-only shape.
+            continue
         elif not same_json(row.get(key), value):
             fail()
 
@@ -312,6 +315,7 @@ class Engine:
                 self._state["reservations"].append(record)
             else:
                 for original, candidate in zip(originals, proposed):
+                    original.clear()
                     original.update(candidate)
             self._state["receipts"].append(receipt)
             return 201, response
@@ -327,6 +331,7 @@ class Engine:
                 data = object_body(body)
                 proposed = self._amend_candidate(record, data)
                 self._check_occupancy([proposed], {record["reference"]})
+                record.clear()
                 record.update(proposed)
                 return 200, self._public(record)
         if (method == "POST" and len(segments) == 3 and segments[0] == "reservations"
@@ -398,9 +403,12 @@ class Engine:
             fail(404, "not_found")
         return restaurant
 
-    @staticmethod
-    def _public(record):
-        return {key: value for key, value in record.items() if key != "user_id"}
+    @classmethod
+    def _public(cls, record):
+        result = {key: value for key, value in record.items() if key != "user_id"}
+        result["table_ids"] = list(cls._members(record))
+        return result
+
 
     def _owned(self, reference, user):
         record = next((r for r in self._state["reservations"]
@@ -414,15 +422,84 @@ class Engine:
         return next((h for h in restaurant["opening_hours"]
                      if h["weekday"] == WEEKDAYS[local_date.weekday()]), None)
 
+    @staticmethod
+    def _members(record):
+        return record["table_ids"] if "table_ids" in record else [record["table_id"]]
+
+
+    @staticmethod
+    def _seating(data, restaurant):
+        if "table_ids" in data and "table_id" in data:
+            fail(message="Supply table_id or table_ids, not both")
+        if "table_ids" in data:
+            members = data["table_ids"]
+            if not isinstance(members, list):
+                fail(400, "malformed_request")
+            if not members:
+                fail()
+            for member in members:
+                text_field({"id": member}, "id", maximum=64)
+            if len(set(members)) != len(members):
+                fail(message="Duplicate table id")
+            if len(members) > 2:
+                fail(422, "combination_not_allowed")
+        else:
+            members = [text_field(data, "table_id", maximum=64)]
+        tables = {table["id"]: table for table in restaurant["tables"]}
+        if any(member not in tables for member in members):
+            fail(404, "not_found")
+        if len(members) == 2:
+            declared = next((pair for pair in restaurant.get("combinable", [])
+                             if set(pair) == set(members)), None)
+            if declared is None:
+                fail(422, "combination_not_allowed")
+            members = declared
+        return list(members), [tables[member]["capacity"] for member in members]
+
+
+    @classmethod
+    def _amend_fields(cls, record, data):
+        fields = {key: record[key] for key in ("restaurant_id", "starts_at_local", "party_size")}
+        if "table_ids" in data or "table_id" in data:
+            fields.update({key: data[key] for key in ("table_ids", "table_id") if key in data})
+        else:
+            fields["table_ids"] = cls._members(record)
+        fields.update({key: data[key] for key in ("starts_at_local", "party_size") if key in data})
+        return fields
+
+
+    def _record_fields(self, row, state):
+        # Response records may carry both singleton representations; request
+        # objects may not. Legacy records without table_ids are accepted.
+        data = {key: row[key] for key in ("restaurant_id", "starts_at_local", "party_size") if key in row}
+        if "table_ids" in row:
+            data["table_ids"] = row["table_ids"]
+        elif "table_id" in row:
+            data["table_id"] = row["table_id"]
+        fields = self._booking_fields(data, state)
+        for key in ("table_ids", "table_id"):
+            if key in row and row[key] != fields.get(key):
+                fail()
+        return fields
+
+
+    @staticmethod
+    def _capacity_fits(capacities, party):
+        return (compare_numbers(capacities[0], party) >= 0 if len(capacities) == 1
+                else sum_at_least(capacities[0], capacities[1], party))
+
+    @staticmethod
+    def _original_seating_body(body, snapshot):
+        # Public receipt origin is independent of its numeric parser profile.
+        # Stage 1 ignored table_ids, even when the new accepted receipt is exact.
+        return body if "table_ids" in snapshot else {key: value for key, value in body.items() if key != "table_ids"}
+
     def _booking_fields(self, data, state=None):
         restaurant_id = text_field(data, "restaurant_id", maximum=64)
-        table_id = text_field(data, "table_id", maximum=64)
         local = local_datetime(text_field(data, "starts_at_local"))
         party_size = integer_field(data, "party_size", party=True)
         restaurant = self._restaurant(restaurant_id, state)
-        table = next((t for t in restaurant["tables"] if t["id"] == table_id), None)
-        if table is None:
-            fail(404, "not_found")
+        members, capacities = self._seating(data, restaurant)
         zone = ZoneInfo(restaurant["timezone"])
         start = resolve_local(local, zone)
         hours = self._hours(restaurant, local.date())
@@ -445,19 +522,23 @@ class Engine:
         grid = restaurant["slot_minutes"]
         if minutes and (compare_numbers(grid, minutes) > 0 or minutes % to_integer(grid)):
             fail(422, "not_on_slot_grid")
-        if compare_numbers(party_size, table["capacity"]) > 0:
+        if not self._capacity_fits(capacities, party_size):
             fail(422, "party_exceeds_capacity")
-        return {"restaurant_id": restaurant_id, "table_id": table_id, "party_size": party_size,
-                "starts_at_local": data["starts_at_local"], "starts_at": wire_timestamp(start),
-                "ends_at": wire_timestamp(end)}
+        fields = {"restaurant_id": restaurant_id, "table_ids": members, "party_size": party_size,
+                  "starts_at_local": data["starts_at_local"], "starts_at": wire_timestamp(start),
+                  "ends_at": wire_timestamp(end)}
+        if len(members) == 1:
+            fields["table_id"] = members[0]
+        return fields
 
-    @staticmethod
-    def _overlap(left, right):
+    @classmethod
+    def _overlap(cls, left, right):
         if (left["restaurant_id"] != right["restaurant_id"] or
-                left["table_id"] != right["table_id"]):
+                not set(cls._members(left)).intersection(cls._members(right))):
             return False
         return (instant(timestamp(left["starts_at"])) < instant(timestamp(right["ends_at"])) and
                 instant(timestamp(right["starts_at"])) < instant(timestamp(left["ends_at"])))
+
 
     def _check_occupancy(self, proposed, excluded=frozenset(), state=None):
         state = self._state if state is None else state
@@ -495,16 +576,17 @@ class Engine:
         if record["status"] == "cancelled":
             fail(409, "reservation_cancelled")
         self._cutoff(record)
-        fields = {key: record[key] for key in (
-            "restaurant_id", "table_id", "starts_at_local", "party_size")}
-        fields.update({key: data[key] for key in ("table_id", "starts_at_local", "party_size") if key in data})
-        revised = self._booking_fields(fields)
+        revised = self._booking_fields(self._amend_fields(record, data))
         if same_json(revised["party_size"], record["party_size"]):
             revised["party_size"] = record["party_size"]
         for key in ("starts_at", "ends_at"):
             if instant(timestamp(revised[key])) == instant(timestamp(record[key])):
                 revised[key] = record[key]
-        return {**record, **revised}
+        if (self._members(record) == revised["table_ids"] and all(same_json(record[key], revised[key])
+                for key in ("restaurant_id", "party_size", "starts_at_local", "starts_at", "ends_at"))):
+            return dict(record)
+        return {**{key: value for key, value in record.items() if key not in ("table_id", "table_ids")},
+                **revised}
 
     def _moves(self, user, data):
         moves = data.get("moves")
@@ -574,16 +656,24 @@ class Engine:
             if compare_numbers(duration, close_value - start_value) <= 0:
                 end_value = start_value + to_integer(duration)
                 end = zoned_at(end_value, zone, (start, closing_zoned))
-                available = []
-                for table in restaurant["tables"]:
-                    candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
+                available, options = [], []
+                capacities = {table["id"]: table["capacity"] for table in restaurant["tables"]}
+                selections = [[table["id"]] for table in restaurant["tables"]]
+                selections.extend(restaurant.get("combinable", []))
+                for members in selections:
+                    candidate = {"restaurant_id": restaurant_id, "table_ids": members,
                                  "starts_at": wire_timestamp(start), "ends_at": wire_timestamp(end)}
-                    if compare_numbers(table["capacity"], party) >= 0 and not any(
+                    counts = [capacities[member] for member in members]
+                    if self._capacity_fits(counts, party) and not any(
                             r["status"] == "confirmed" and self._overlap(candidate, r)
                             for r in self._state["reservations"]):
-                        available.append(table["id"])
+                        capacity = counts[0] if len(counts) == 1 else add_integers(*counts)
+                        options.append({"table_ids": list(members), "capacity": capacity})
+                        if len(members) == 1:
+                            available.append(members[0])
                 result["slots"].append({"starts_at_local": local.isoformat(timespec="minutes"),
-                    "starts_at": wire_timestamp(start), "available_table_ids": available})
+                    "starts_at": wire_timestamp(start), "available_table_ids": available,
+                    "available_options": options})
         return result
 
     @staticmethod
@@ -628,6 +718,21 @@ class Engine:
                     fail()
                 table_ids.add(table["id"])
                 restaurant["tables"].append(table)
+            if "combinable" in row:
+                pairs = row["combinable"]
+                if not isinstance(pairs, list):
+                    fail(400, "malformed_request")
+                restaurant["combinable"] = []
+                for pair in pairs:
+                    if not isinstance(pair, list):
+                        fail(400, "malformed_request")
+                    if len(pair) != 2:
+                        fail()
+                    for member in pair:
+                        text_field({"id": member}, "id", maximum=64)
+                    if pair[0] == pair[1] or any(member not in table_ids for member in pair):
+                        fail()
+                    restaurant["combinable"].append(list(pair))
             restaurants.append(restaurant)
         return restaurants
 
@@ -661,8 +766,11 @@ class Engine:
                     or not REFERENCE_PATTERN.fullmatch(reference)):
                 fail()
             fields = self._booking_fields(row, state)
+            status = text_field(row, "status") if "status" in row else "confirmed"
+            if status not in ("confirmed", "cancelled"):
+                fail()
             record = {"reservation_id": reservation_id, "reference": reference,
-                      "user_id": user_id, **fields, "status": "confirmed",
+                      "user_id": user_id, **fields, "status": status,
                       "created_at": wire_timestamp(datetime.now(UTC))}
             reservation_ids.add(reservation_id)
             references.add(reference)
@@ -672,8 +780,10 @@ class Engine:
 
     def _validate_record(self, row, state, *, owner_required=True):
         row = object_body(row)
-        fields = self._booking_fields(row, state)
+        fields = self._record_fields(row, state)
         assert_booking_fields(row, fields)
+        if "table_ids" not in row:
+            fields.pop("table_ids")
         fields.update({key: row[key] for key in ("starts_at", "ends_at")})
         record = {"reservation_id": text_field(row, "reservation_id", maximum=64),
                   "reference": text_field(row, "reference"), **fields,
@@ -753,7 +863,8 @@ class Engine:
             response = object_body(row["response"])
             if path == "/reservations":
                 snapshots = [response]
-                original_fields = self._booking_fields(body, state)
+                original_body = self._original_seating_body(body, response)
+                original_fields = self._booking_fields(original_body, state)
                 assert_booking_fields(response, original_fields)
             else:
                 moves = body.get("moves")
@@ -769,14 +880,9 @@ class Engine:
                 if len({object_body(s).get("restaurant_id") for s in snapshots}) != 1:
                     fail()
                 for move, snapshot in zip(moves, snapshots):
-                    amended_fields = {k: snapshot[k] for k in (
-                        "restaurant_id", "table_id", "party_size", "starts_at_local")}
-                    amended_fields.update({k: move[k] for k in (
-                        "table_id", "party_size", "starts_at_local") if k in move})
-                    self._booking_fields(amended_fields, state)
-                    if any(not same_json(move[k], snapshot.get(k), profile=profile)
-                           for k in ("table_id", "party_size", "starts_at_local") if k in move):
-                        fail()
+                    original_move = self._original_seating_body(move, snapshot)
+                    amended_fields = self._booking_fields(self._amend_fields(snapshot, original_move), state)
+                    assert_booking_fields(snapshot, amended_fields)
             for snapshot in snapshots:
                 saved = self._validate_record(snapshot, state, owner_required=False)
                 current = identities.get(saved["reference"])
