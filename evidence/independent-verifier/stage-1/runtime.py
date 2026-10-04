@@ -3,7 +3,9 @@
 
 Review the saved preflight/RUN.md before invoking this script with --execute.
 This builds the documented Dockerfile, uses a private internal network, and runs
-default/override PORT containers. Official harness remains a separate command.
+default/override PORT containers. Clients execute INSIDE the internal Docker
+network, without assuming host port bindings are reachable. Official harness
+remains an unchanged, separate command.
 """
 import argparse
 import datetime as dt
@@ -24,6 +26,7 @@ def main():
     p.add_argument("--out", required=True)
     p.add_argument("--execute", action="store_true")
     p.add_argument("--keep-running", action="store_true")
+    p.add_argument("--run-probes", action="store_true")
     a = p.parse_args()
     if not re.fullmatch(r"[0-9a-f]{40}", a.candidate):
         p.error("--candidate requires a full commit revision")
@@ -75,10 +78,12 @@ def main():
         return
     network = prefix + "-net"
     image = prefix + ":candidate"
+    runner_image = prefix + ":probe-runner"
     containers = []
     created_network = False
     try:
         run(["docker", "build", "-t", image, "."], stage)
+        run(["docker", "build", "-f", "Probe.Dockerfile", "-t", runner_image, "."], Path(__file__).parent.resolve())
         run(["docker", "network", "create", "--internal", network])
         created_network = True
         for name, host_port, container_port, override in [(prefix + "-source", 18300, 18309, True), (prefix + "-peer", 18301, 8080, False)]:
@@ -89,25 +94,29 @@ def main():
             began = time.monotonic()
             run(cmd)
             containers.append(name)
-            healthy = False
-            while time.monotonic()-began < 60:
-                try:
-                    with urllib.request.urlopen(f"http://127.0.0.1:{host_port}/health", timeout=1) as response:
-                        healthy = response.status == 200 and json.load(response) == {"status": "ok"}
-                    if healthy:
-                        break
-                except Exception:
-                    pass
-                time.sleep(0.1)
-            preflight[name] = dict(healthy=healthy, readiness_seconds=time.monotonic()-began,
+            # The health client reaches the service over its container interface,
+            # so a 127.0.0.1-only product listener cannot pass this probe.
+            run(["docker", "run", "--rm", "--name", name + "-health", "--network", network,
+                 "--entrypoint", "python", runner_image, "/verifier/health.py",
+                 "--url", f"http://{name}:{container_port}/health", "--timeout", "57"])
+            readiness = time.monotonic()-began
+            healthy = readiness < 60
+            preflight[name] = dict(healthy=healthy, readiness_seconds=readiness,
                                    host_port=host_port, internal_port=container_port, port_override=override)
             run(["docker", "inspect", name])
             if not healthy:
                 run(["docker", "logs", name])
                 raise RuntimeError(f"Container did not become healthy within 60s: {name}")
         run(["docker", "network", "inspect", network])
-        preflight.update(image=image, network=network, containers=containers, runtime_started=True)
+        preflight.update(image=image, runner_image=runner_image, network=network, containers=containers, runtime_started=True,
+                         client_execution="inside internal Docker network",
+                         probe_command=["docker", "run", "--rm", "--name", prefix + "-probes", "--network", network,
+                                        "--cpus", "2", "--memory", "2g", "-v", str(out) + ":/evidence", runner_image,
+                                        "--base", f"http://{containers[0]}:18309", "--peer", f"http://{containers[1]}:8080",
+                                        "--candidate", a.candidate, "--out", "/evidence/probes"])
         (out / "preflight.json").write_text(json.dumps(preflight, indent=2))
+        if a.run_probes:
+            run(preflight["probe_command"])
         print(json.dumps(preflight))
     finally:
         if not a.keep_running:
