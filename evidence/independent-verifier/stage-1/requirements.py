@@ -8,13 +8,17 @@ import csv
 from pathlib import Path
 
 ROWS = []
+INTERFACE_KEYS = {"dockerfile", "run-document", "single-image", "packaged-assets", "listen-all", "port-override", "port-default",
+                  "health-status", "health-body", "health-public", "json-content-type", "error-envelope", "invalid-json", "nonobject-json"}
 
 
 def add(section, line, case, entries, method="black-box HTTP"):
     for key, obligation in entries.items():
+        implementation_owner = "interface-engineer" if key in INTERFACE_KEYS else "systems-engineer"
         ROWS.append(dict(requirement_id="TK1-" + key, source_section=section,
                          source_line=line, introduced_stage=1,
-                         applicable_stages="1,2,3,4", owner="independent-verifier",
+                         applicable_stages="1,2,3,4", owner=implementation_owner,
+                         implementation_owner=implementation_owner, verification_owner="independent-verifier",
                          requirement_text=obligation, candidate_full_revision="UNASSIGNED",
                          verification_method=method, case=case,
                          executable_command_or_interaction=(f"python3 evidence/independent-verifier/stage-1/runtime.py --repo RESULT_REPOSITORY --workspace WORKSPACE_ROOT --candidate FULL_REVISION --out NEW_DIRECTORY" if case in ["runtime", "provenance"] else f"python3 evidence/independent-verifier/stage-1/probe.py --base http://127.0.0.1:18300 --peer http://127.0.0.1:18301 --candidate FULL_REVISION --out NEW_DIRECTORY --case {case}"),
@@ -38,7 +42,10 @@ add("2. Delivery and deployment / Resource limits", 23, "runtime", {
     "startup": "First healthy response occurs within 60 seconds.",
     "max-concurrency": "Service supports 50 in-flight requests.",
     "request-timeout": "Ordinary requests complete within 5 seconds.",
-    "control-timeout": "Test control calls complete within 10 seconds.",
+    "reset-timeout": "POST /_test/reset completes within 10 seconds.",
+    "import-timeout": "POST /_test/import completes within 10 seconds.",
+    "export-timeout": "GET /_test/export completes within 10 seconds.",
+    "max-concurrency-timing": "Fifty concurrent ordinary requests each complete within 5 seconds.",
     "packaged-assets": "All runtime initialization, seed data and assets are in the image.",
 }, "clean clone, build and constrained offline execution")
 add("3.1 Listening", 58, "runtime", {
@@ -138,8 +145,38 @@ for path, public in {"restaurants": True, "restaurant-detail": True, "availabili
                      "reservation-list": False, "reservation-lookup": False,
                      "reservation-create": False, "reservation-cancel": False,
                      "reservation-patch": False, "moves": False}.items():
-    add("6. Authentication / 8. API", 214, "auth", {
-        "auth-" + path: f"{path} is public without token." if public else f"{path} rejects absent, malformed and unknown bearer tokens with 401 unauthenticated."})
+    if public:
+        add("6. Authentication / 8. API", 214, "auth", {"auth-" + path: f"{path} is public without token."})
+    else:
+        for variant, description in {"absent": "absent Authorization header", "unknown": "unknown Bearer token", "basic": "malformed Basic authorization",
+                                     "bearer-no-value": "malformed Bearer header without a token", "bearer-empty": "malformed Bearer header with empty value"}.items():
+            add("6. Authentication / 8. API", 214, "auth", {f"auth-{path}-{variant}": f"{path}: {description} gives 401 unauthenticated."})
+
+# Field/type/format alternatives are separately observable, rather than one
+# representative refusal covering several routes or validation precedence rules.
+VALIDATION_VARIANTS = [("party-string", "party_size", "string party size", 422), ("party-bool", "party_size", "boolean party size", 422),
+                       ("party-fraction", "party_size", "nonintegral party size", 422), ("party-zero", "party_size", "zero party size", 422),
+                       ("party-negative", "party_size", "negative party size", 422), ("time-wrong-type", "starts_at_local", "numeric local timestamp", 400),
+                       ("time-z", "starts_at_local", "local timestamp ending in Z", 422), ("time-offset", "starts_at_local", "local timestamp with explicit offset", 422),
+                       ("time-seconds", "starts_at_local", "local timestamp including seconds", 422), ("time-space", "starts_at_local", "space instead of T separator", 422),
+                       ("time-unpadded", "starts_at_local", "unpadded calendar components", 422), ("date-nonleap", "starts_at_local", "February 29 in a non-leap year", 422),
+                       ("date-month", "starts_at_local", "month thirteen", 422), ("date-day", "starts_at_local", "April 31", 422)]
+VALIDATION_VARIANTS += [(f"{field}-{kind}", field, f"{kind} {field}", 400) for field in ["restaurant_id", "table_id"] for kind in ["bool", "array", "object", "number", "null"]]
+for endpoint in ["create", "patch", "batch"]:
+    for variant, field, description, status in VALIDATION_VARIANTS:
+        if endpoint != "create" and field == "restaurant_id":
+            continue
+        add("5. Errors / 8. POST/PATCH /reservations / 11. Atomic reservation moves", 169, "validation",
+            {f"validation-{endpoint}-{variant}": f"{endpoint}: {description} returns {status} {'malformed_request' if status == 400 else 'validation_failed'}."})
+for variant, description in {"exponent": "1e9", "fraction": "4.0", "plus": "+4", "negative": "-4", "leading-space": "leading whitespace", "trailing-space": "trailing whitespace"}.items():
+    add("5. Errors", 175, "validation", {"query-decimal-" + variant: f"party_size query written as {description} returns 422 validation_failed."})
+for endpoint, fields in {"signup": ["email", "password", "display_name"], "login": ["email", "password"]}.items():
+    for field in fields:
+        for variant in ["bool", "number", "array", "object", "null"]:
+            add("5. Errors / 6. Authentication", 169, "auth", {f"{endpoint}-{field}-type-{variant}": f"{endpoint}: {variant} {field} returns 400 malformed_request."})
+for kind in ["user", "restaurant", "table", "reservation"]:
+    for bound in ["max", "over"]:
+        add("3.4 Conventions / 4. Fixture format", 89, "conventions", {f"fixture-id-{kind}-{bound}": f"Reset fixture {kind} IDs of {'64 characters are accepted' if bound == 'max' else '65 characters return 422 validation_failed'}."})
 
 for path in ["create", "batch"]:
     add("7. Idempotency", 229, "idempotency", {

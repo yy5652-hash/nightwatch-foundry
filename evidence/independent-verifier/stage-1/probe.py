@@ -63,6 +63,7 @@ class Probe:
         self.content_types = []
         self.latencies = []
         self.statuses = []
+        self.race_latencies = []
         self.tokens = {}
         self.started = time.monotonic()
 
@@ -101,7 +102,8 @@ class Probe:
             self.trace.append({"operation": self.counter, "method": method, "path": path,
                                "peer": base, "body": safe(body), "raw": "[invalid/alternate serialized body]" if raw is not None else None,
                                "has_token": token is not None or auth is not None,
-                               "key": key, "status": status, "response": safe(value), "duration_seconds": elapsed})
+                               "key": key, "status": status, "response": safe(value), "duration_seconds": elapsed,
+                               "request_started_monotonic": started, "request_finished_monotonic": started + elapsed})
             self.statuses.append(status)
             self.latencies.append((path, elapsed, status))
             if value is not None:
@@ -221,8 +223,9 @@ class Probe:
             for field in fields:
                 missing = {k: v for k, v in body.items() if k != field}
                 self.expect(f"{endpoint}-{field}-required", "POST", "/auth/" + endpoint, missing, status=422, code="validation_failed")
-                for invalid in [True, 5, [], {}, None]:
-                    self.expect(f"{endpoint}-{field}-type", "POST", "/auth/" + endpoint, dict(body, **{field: invalid}), status=400, code="malformed_request")
+                for variant, invalid in [("bool", True), ("number", 5), ("array", []), ("object", {}), ("null", None)]:
+                    self.expect(f"{endpoint}-{field}-type-{variant}", "POST", "/auth/" + endpoint, dict(body, **{field: invalid}), status=400, code="malformed_request")
+                    self.check(f"{endpoint}-{field}-type", self.results[-1]["passed"])
         self.check("tokens-multiple", all(self.call("GET", "/reservations", token=t)[0] == 200 for t in [first_token, login["token"], self.a, self.b]))
         paths = [("restaurants", "GET", "/restaurants", None, True), ("restaurant-detail", "GET", "/restaurants/r", None, True),
                  ("availability", "GET", "/availability?restaurant_id=r&date=" + DAY + "&party_size=2", None, True)]
@@ -232,8 +235,9 @@ class Probe:
                   ("reservation-create", "POST", "/reservations", self.body(), False), ("reservation-cancel", "POST", "/reservations/" + ref + "/cancel", {}, False),
                   ("reservation-patch", "PATCH", "/reservations/" + ref, {}, False), ("moves", "POST", "/reservation-moves", {"moves": [{"reference": ref}]}, False)]
         for name, method, path, body, public in paths:
-            for auth in [None, "Bearer missing-token", "Basic wrong", "Bearer", "Bearer "] if not public else [None]:
-                self.expect("auth-" + name, method, path, body, status=200 if public else 401, code=None if public else "unauthenticated", auth=auth, key="auth-test")
+            variants = [("absent", None), ("unknown", "Bearer missing-token"), ("basic", "Basic wrong"), ("bearer-no-value", "Bearer"), ("bearer-empty", "Bearer ")] if not public else [("public", None)]
+            for variant, auth in variants:
+                self.expect("auth-" + name + ("-" + variant if not public else ""), method, path, body, status=200 if public else 401, code=None if public else "unauthenticated", auth=auth, key="auth-test")
 
     def fixture_case(self):
         f = fixture(zone="Europe/Berlin")
@@ -323,10 +327,10 @@ class Probe:
         for value in [[], True, None, "object required"]:
             self.expect("nonobject-json", "POST", "/reservations", token=self.a, key="shape", raw=json.dumps(value), status=400, code="malformed_request")
         cases = [("party-string", "party_size", "2", 422), ("party-bool", "party_size", True, 422), ("party-fraction", "party_size", 1.5, 422),
-                 ("party-zero", "party_size", 0, 422), ("party-zero", "party_size", -1, 422), ("time-wrong-type", "starts_at_local", 1, 400)]
-        cases += [("bare-time", "starts_at_local", x, 422) for x in [DAY + "T18:10Z", DAY + "T18:10+00:00", DAY + "T18:10:00", DAY + " 18:10", "2035-6-4T18:10"]]
-        cases += [("invalid-date", "starts_at_local", x, 422) for x in ["2035-02-29T18:10", "2035-13-01T18:10", "2035-04-31T18:10"]]
-        cases += [("wrong-field-type", field, val, 400) for field in ["restaurant_id", "table_id"] for val in [True, [], {}, 2, None]]
+                 ("party-zero", "party_size", 0, 422), ("party-negative", "party_size", -1, 422), ("time-wrong-type", "starts_at_local", 1, 400)]
+        cases += [(tag, "starts_at_local", x, 422) for tag, x in [("time-z", DAY + "T18:10Z"), ("time-offset", DAY + "T18:10+00:00"), ("time-seconds", DAY + "T18:10:00"), ("time-space", DAY + " 18:10"), ("time-unpadded", "2035-6-4T18:10")]]
+        cases += [(tag, "starts_at_local", x, 422) for tag, x in [("date-nonleap", "2035-02-29T18:10"), ("date-month", "2035-13-01T18:10"), ("date-day", "2035-04-31T18:10")]]
+        cases += [(f"{field}-{tag}", field, val, 400) for field in ["restaurant_id", "table_id"] for tag, val in [("bool", True), ("array", []), ("object", {}), ("number", 2), ("null", None)]]
         for endpoint in ["create", "patch", "batch"]:
             for rid, field, invalid, status in cases:
                 if endpoint != "create" and field == "restaurant_id":
@@ -334,14 +338,18 @@ class Probe:
                 changes = {field: invalid}
                 path = "/reservations" if endpoint == "create" else "/reservations/" + r["reference"] if endpoint == "patch" else "/reservation-moves"
                 body = dict(self.body(), **changes) if endpoint == "create" else changes if endpoint == "patch" else {"moves": [dict(reference=r["reference"], **changes)]}
-                self.expect(rid, "PATCH" if endpoint == "patch" else "POST", path, body, token=self.a, key=f"val-{self.counter}", status=status, code="malformed_request" if status == 400 else "validation_failed")
-                self.check(f"{endpoint}-input-{field}", self.results[-1]["passed"])
+                self.expect(f"validation-{endpoint}-{rid}", "PATCH" if endpoint == "patch" else "POST", path, body, token=self.a, key=f"val-{self.counter}", status=status, code="malformed_request" if status == 400 else "validation_failed")
+                passed = self.results[-1]["passed"]
+                self.check(f"{endpoint}-input-{field}", passed)
+                generic = "bare-time" if rid.startswith("time-") and rid != "time-wrong-type" else "invalid-date" if rid.startswith("date-") else "wrong-field-type" if field in ["restaurant_id", "table_id"] else "party-zero" if rid == "party-negative" else rid
+                self.check(generic, passed)
         for field in self.body():
             body = self.body()
             del body[field]
             self.expect("missing-required", "POST", "/reservations", body, token=self.a, key=f"missing-{field}", status=422, code="validation_failed")
-        for party in ["1e9", "4.0", "+4", "-4", " 4", "4 "]:
-            self.expect("decimal-query", "GET", "/availability?restaurant_id=r&date=" + DAY + "&party_size=" + urllib.parse.quote(party), status=422, code="validation_failed")
+        for variant, party in [("exponent", "1e9"), ("fraction", "4.0"), ("plus", "+4"), ("negative", "-4"), ("leading-space", " 4"), ("trailing-space", "4 ")]:
+            self.expect("query-decimal-" + variant, "GET", "/availability?restaurant_id=r&date=" + DAY + "&party_size=" + urllib.parse.quote(party), status=422, code="validation_failed")
+            self.check("decimal-query", self.results[-1]["passed"])
         self.expect("query-positive", "GET", "/availability?restaurant_id=r&date=" + DAY + "&party_size=0", status=422, code="validation_failed")
         for day in ["2035-02-29", "2035-04-31", "2035-13-01", "2035-6-04", DAY + "T00:00"]:
             self.expect("query-date", "GET", "/availability?restaurant_id=r&party_size=2&date=" + urllib.parse.quote(day), status=422, code="validation_failed")
@@ -441,7 +449,13 @@ class Probe:
         barrier = threading.Barrier(50)
         def operation(i):
             barrier.wait(timeout=10)
-            return self.call("POST", path, body, token=self.a, key=key_prefix if same else key_prefix + str(i))
+            started = time.monotonic()
+            value = self.call("POST", path, body, token=self.a, key=key_prefix if same else key_prefix + str(i))
+            with self.lock:
+                finished = time.monotonic()
+                self.race_latencies.append({"request": i, "group": key_prefix, "elapsed_seconds": finished-started,
+                                            "started_monotonic": started, "finished_monotonic": finished, "status": value[0]})
+            return value
         with concurrent.futures.ThreadPoolExecutor(max_workers=50) as pool:
             return list(pool.map(operation, range(50)))
 
@@ -711,11 +725,26 @@ class Probe:
         v2 = self.call("GET", "/availability?restaurant_id=r&date=" + DAY + "&party_size=2&ignored=true")[1]
         self.check("unknown-query", v == v2)
         self.check("generated-id-limit", isinstance(r["reservation_id"], str) and len(r["reservation_id"]) <= 64)
-        for length in [64, 65]:
-            f = fixture()
-            f["restaurants"][0]["id"] = "r" * length
-            status, value = self.call("POST", "/_test/reset", f)
-            self.check("fixture-id-max" if length == 64 else "fixture-id-over", status == 204 if length == 64 else status == 422 and value.get("error", {}).get("code") == "validation_failed")
+        for kind in ["user", "restaurant", "table", "reservation"]:
+            for length in [64, 65]:
+                f = fixture()
+                f["reservations"] = [dict(self.body(), id="seed", reference="SEED01", user_id="u_a")]
+                identifier = "i" * length
+                if kind == "user":
+                    f["users"][0]["id"] = identifier
+                    f["reservations"][0]["user_id"] = identifier
+                elif kind == "restaurant":
+                    f["restaurants"][0]["id"] = identifier
+                    f["reservations"][0]["restaurant_id"] = identifier
+                elif kind == "table":
+                    f["restaurants"][0]["tables"][1]["id"] = identifier
+                    f["reservations"][0]["table_id"] = identifier
+                else:
+                    f["reservations"][0]["id"] = identifier
+                status, value = self.call("POST", "/_test/reset", f)
+                passed = status == 204 if length == 64 else status == 422 and value.get("error", {}).get("code") == "validation_failed"
+                self.check(f"fixture-id-{kind}-" + ("max" if length == 64 else "over"), passed)
+                self.check("fixture-id-max" if length == 64 else "fixture-id-over", passed)
         self.check("timestamp-offset", all(re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?[+-]\d{2}:\d{2}", r[k]) for k in ["starts_at", "ends_at", "created_at"]))
 
     def finish(self):
@@ -723,7 +752,13 @@ class Probe:
         self.check("error-envelope", bool(self.error_shapes) and all(self.error_shapes))
         self.check("no-5xx", all(0 < s < 500 for s in self.statuses), "no 5xx or transport failures", sorted(set(self.statuses)))
         self.check("request-timeout", all(seconds < 5 and status > 0 for path, seconds, status in self.latencies if not path.startswith("/_test/")))
-        self.check("control-timeout", all(seconds < 10 and status > 0 for path, seconds, status in self.latencies if path.startswith("/_test/")))
+        for endpoint in ["reset", "import", "export"]:
+            samples = [(seconds, status) for path, seconds, status in self.latencies if path == "/_test/" + endpoint]
+            if samples:
+                self.check(endpoint + "-timeout", all(seconds < 10 and status > 0 for seconds, status in samples), "all calls <10s", samples)
+        if self.race_latencies:
+            self.check("max-concurrency", len(self.race_latencies) >= 50 and all(x["status"] > 0 for x in self.race_latencies))
+            self.check("max-concurrency-timing", len(self.race_latencies) >= 50 and all(x["status"] > 0 and x["elapsed_seconds"] < 5 for x in self.race_latencies), "50 in-flight, each <5s", self.race_latencies)
         by_id = {}
         for result in self.results:
             by_id.setdefault(result["requirement_id"], []).append(result)
@@ -740,6 +775,7 @@ class Probe:
             w.writeheader()
             w.writerows(rows)
         (self.out / "assertions.json").write_text(json.dumps(self.results, indent=2))
+        (self.out / "concurrency-timing.json").write_text(json.dumps(self.race_latencies, indent=2))
         with (self.out / "operations.jsonl").open("w") as f:
             for op in self.trace:
                 f.write(json.dumps(op) + "\n")
