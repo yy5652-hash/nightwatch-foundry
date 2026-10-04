@@ -3,7 +3,7 @@ import argparse, hashlib, json, shutil, subprocess, time
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True);p.add_argument('--probe-revision',required=True);p.add_argument('--assembly');p.add_argument('--group',choices=['assemble','http','inherited','origins','browser','reconstruction-http','reconstruction-browser'],required=True);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True);p.add_argument('--probe-revision',required=True);p.add_argument('--assembly');p.add_argument('--group',choices=['assemble','http','inherited','origins','browser','upgrade','reconstruction-http','reconstruction-browser'],required=True);a=p.parse_args()
     runtime=Path(a.runtime).resolve();out=Path(a.out).resolve();assert runtime.is_relative_to(W) and out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
     facts=json.loads((runtime/'preflight.json').read_text());C=facts['candidate'];prefix=facts['prefix'];u=facts['urls'];commands=[]
     def run(argv,label,cwd=R):
@@ -58,7 +58,9 @@ def main():
     elif a.group=='origins':
         probe('stage-2','reconstruction_probe.py','origins',positional=['--release','/release.json','--out','/evidence/origins','--case','origins','--execute'])
     elif a.group=='browser':
-        for script,label in [('browser.py','general'),('browser_boundaries.py','boundaries'),('browser_historical.py','historical'),('visual_detail.py','visual')]:probe('stage-2',script,label)
+        for script,label in [('candidate2_browser.py','general'),('browser_boundaries.py','boundaries'),('browser_historical.py','historical'),('visual_detail.py','visual')]:probe('stage-2',script,label)
+    elif a.group=='upgrade':
+        probe('stage-2','candidate2_upgrade.py','four-upgrades',positional=['--release','/release.json','--out','/evidence/four-upgrades'])
     else:
         browser=a.group=='reconstruction-browser';script='reconstruction_browser_protocol.py' if browser else 'reconstruction_probe.py'
         for case in ['upgrade','numeric','opaque'] if browser else ['origins','deep','opaque','numeric']:
