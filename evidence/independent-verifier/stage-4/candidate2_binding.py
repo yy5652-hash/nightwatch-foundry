@@ -22,7 +22,7 @@ async def observe(release,out):
             response=await page.context.request.fetch(route.request.url,method='POST',data=route.request.post_data_buffer,headers=route.request.headers)
             body=await response.body();traffic.append(dict(kind='forward-then-drop',path=path,status=response.status,response_sha256=hashlib.sha256(body).hexdigest()))
             assert response.status==201
-            await page.unroute('**'+path,route_handler);await route.abort('failed')
+            await route.abort('failed');await page.unroute('**'+path,route_handler)
         await page.route('**'+path,route_handler)
     try:
         async with async_playwright() as pw:
