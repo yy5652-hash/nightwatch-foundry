@@ -1,0 +1,357 @@
+{
+  "candidate": "4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+  "manifest": [
+    {
+      "name": "server.py",
+      "sha256": "7ea970fec3b00387de8fb6ff8d448a42019424706407c0a7d41e2168c8376cc9"
+    },
+    {
+      "name": "Dockerfile",
+      "sha256": "7b24b3631fc680d46704076614da2bf5bb74f2f0107d5f31a263f79df59a7688"
+    },
+    {
+      "name": "core.py",
+      "sha256": "c5ddc11f9a7c7b80d7d85dd5f9ba93ff4f236a6bf1ee4f4cfc901efae02c957e"
+    },
+    {
+      "name": "json_codec.py",
+      "sha256": "3bf4c5dd7ccee1c99127d735822331fedb1491af3568d3490a81a092bae49501"
+    },
+    {
+      "name": ".dockerignore",
+      "sha256": "e97a8c8e3d6445b50ff05e3da076c393790e782fb4cd5c39719ee7f4c0d955be"
+    },
+    {
+      "name": "RUN.md",
+      "sha256": "07ef7b27c5378380c6d8f86fda4db119cb4f777808c72b853255bd08c7f8327d"
+    },
+    {
+      "name": "web/index.html",
+      "sha256": "29acc3b5ecf773d3107e91661df32c287576d5600307c2502efe39162383eb5f"
+    },
+    {
+      "name": "web/app.css",
+      "sha256": "8ae7d3ab947585bab548ccefdacde21e147bed1d73b3b9ec2c26e577e2038dcc"
+    },
+    {
+      "name": "web/app.js",
+      "sha256": "2132b5d7c105a106dfe91a0dc0748e77a10c663bb0cc53ee1a49cb7e678adb73"
+    }
+  ],
+  "checks": {
+    "two-builders": true,
+    "history-preserved": true,
+    "source-provenance": true,
+    "frozen-stage1": true,
+    "copied-base": true,
+    "stage2-delivery": true,
+    "stage2-source": true,
+    "hashed-source": true,
+    "detached-snapshot-under-lock": true,
+    "receipt-prepared-before-commit": true,
+    "shape-profile-independent": true,
+    "nonrecursive-json": true,
+    "serialize-before-headers": true,
+    "cutoff-inclusive-current-start": true
+  },
+  "source_notes": {
+    "source": "Full exact core/server/codec and browser numeric/time/retry source reviewed; black-box expectations were derived from supplied specs and own independent oracles, not product helpers.",
+    "transactions": "RLock encloses dispatch, response detachment, receipt preparation and commit. Import builds valid state before replacement; moves validate ordered proposals before occupancy and commit.",
+    "numeric": "Nonrecursive frames decode containers; numeric provenance and exact comparisons distinguish bool and numeric values. Stage2 exact aligned coefficient pair sums use numeric outputs. Legacy comparison profile is private per receipt and independent of public shape.",
+    "cutoff": "Labelled source supplement: _cutoff compares current stored start exact instant with now and rejects remaining <= cutoff, including equality; the HTTP API has no test clock.",
+    "provenance": "Source trees and base-copy objects independently compared. Current full direct handoff includes authoring declarations. Only builder commit metadata and declarative handoff content reviewed; no builder test/oracle implementation read.",
+    "shared_index": "Actual 182582c captured 32 verifier-authored preparation paths under Interface Git author. Original Git author and history stay unchanged; this does not attribute verification execution to Interface.",
+    "limits": "Finite source/black-box controls do not establish arbitrary input performance or literal simultaneous historical offset grammars."
+  },
+  "copy_comparisons": [
+    {
+      "file": ".dockerignore",
+      "source_object": "551bb00e35bfce52606ec71dbd5d00fe3528aed6",
+      "base_object": "551bb00e35bfce52606ec71dbd5d00fe3528aed6",
+      "matches": true
+    },
+    {
+      "file": "Dockerfile",
+      "source_object": "2df1db95776abcdeba49b8007f02f0f4d2fa9cf2",
+      "base_object": "2df1db95776abcdeba49b8007f02f0f4d2fa9cf2",
+      "matches": true
+    },
+    {
+      "file": "RUN.md",
+      "source_object": "cc37cf2786d9c506d05d4d142f755fcc127aed2d",
+      "base_object": "cc37cf2786d9c506d05d4d142f755fcc127aed2d",
+      "matches": true
+    },
+    {
+      "file": "core.py",
+      "source_object": "909e056a081e6de6395f58c017419b91c33471b8",
+      "base_object": "909e056a081e6de6395f58c017419b91c33471b8",
+      "matches": true
+    },
+    {
+      "file": "json_codec.py",
+      "source_object": "46e515aaa079fad5ca374f43c4ae90cb078ac193",
+      "base_object": "46e515aaa079fad5ca374f43c4ae90cb078ac193",
+      "matches": true
+    },
+    {
+      "file": "server.py",
+      "source_object": "0fca413c1a19d32c41e9c41c7bb4f173739bc432",
+      "base_object": "0fca413c1a19d32c41e9c41c7bb4f173739bc432",
+      "matches": true
+    }
+  ],
+  "trees": {
+    "4dba10246b07b2dda19de260d529f9d94ba0a1ed": "422380c814043021c2df2daad8edbbb34d5b5887",
+    "f783598428a88d53490f68498063ed69e02201b3": "422380c814043021c2df2daad8edbbb34d5b5887",
+    "1e3af87d78c2d6c037650a9c134453012d4fb0c6": "422380c814043021c2df2daad8edbbb34d5b5887"
+  },
+  "shared_index_captured_paths": [
+    "evidence/independent-verifier/ledger.jsonl",
+    "evidence/independent-verifier/stage-1/Semantic.Probe.Dockerfile",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/PREPARATION.md",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/artifact-manifest.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/coverage-prepared.csv",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/coverage-summary.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/execution-guard.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/execution-guard.log",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/intake.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/oracle-self-check.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/planned-probe-bindings.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/preparation-seal.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/preparation-validation.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/raw-fixture-validation.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/seal-orchestration-error-01.log",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/PRODUCT_ACCEPTANCE.md",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/TK-20261004-S1-independent-verifier-CANDIDATE-6-PREP.delivery.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/TK-20261004-S1-independent-verifier-CANDIDATE-6-PREP.txt",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/json-number-semantics-decision.md",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/participant-guide.md",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/stage-1.md",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/syntax-check.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-authored.log",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-check.json",
+    "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-original.log",
+    "evidence/independent-verifier/stage-1/semantic_oracle.py",
+    "evidence/independent-verifier/stage-1/semantic_prepare.py",
+    "evidence/independent-verifier/stage-1/semantic_probe.py",
+    "evidence/independent-verifier/stage-1/semantic_requirements.py",
+    "evidence/independent-verifier/stage-1/semantic_runtime.py",
+    "evidence/independent-verifier/stage-1/semantic_validate_preparation.py"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "log",
+        "--format=%H %an <%ae> %s",
+        "4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+        "--",
+        "stage-2"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "stage2-history.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "--format=fuller",
+        "--name-only",
+        "f783598428a88d53490f68498063ed69e02201b3"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "builder-systems.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "--format=fuller",
+        "--name-only",
+        "a040054f2a8d00c560bea7f02324d1443c5a3f14"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "builder-interface.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/.dockerignore"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-source-_dockerignore.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "41498b7ee24e8a50b48b6c14a60bccdadf39c076:stage-2/.dockerignore"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-base-_dockerignore.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/Dockerfile"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-source-Dockerfile.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "41498b7ee24e8a50b48b6c14a60bccdadf39c076:stage-2/Dockerfile"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-base-Dockerfile.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/RUN.md"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-source-RUN_md.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "41498b7ee24e8a50b48b6c14a60bccdadf39c076:stage-2/RUN.md"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-base-RUN_md.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/core.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-source-core_py.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "41498b7ee24e8a50b48b6c14a60bccdadf39c076:stage-2/core.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-base-core_py.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/json_codec.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-source-json_codec_py.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "41498b7ee24e8a50b48b6c14a60bccdadf39c076:stage-2/json_codec.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-base-json_codec_py.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/server.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-source-server_py.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "41498b7ee24e8a50b48b6c14a60bccdadf39c076:stage-2/server.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "copy-base-server_py.log"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+        "4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+        "--",
+        "stage-1"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "stage1-diff.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "4dba10246b07b2dda19de260d529f9d94ba0a1ed:stage-2"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "tree-4dba1024.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "f783598428a88d53490f68498063ed69e02201b3:stage-2"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "tree-f7835984.log"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "1e3af87d78c2d6c037650a9c134453012d4fb0c6:stage-2"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "tree-1e3af87d.log"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "--format=fuller",
+        "--name-only",
+        "182582c41d21a23d8ccd95688fa7f1afa0437460"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "returncode": 0,
+      "log": "shared-index-original.log"
+    }
+  ]
+}

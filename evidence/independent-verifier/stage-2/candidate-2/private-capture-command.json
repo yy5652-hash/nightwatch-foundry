@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "independent-verifier-c2-1004060100-privacy",
+    "--network",
+    "independent-verifier-c2-1004060100-net",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "-v",
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2:/evidence:ro",
+    "-v",
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2/assembly-03/release.json:/release.json:ro",
+    "-v",
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate2_private_capture.py:/capture.py:ro",
+    "--entrypoint",
+    "python",
+    "independent-verifier-c2-1004060100:complete-client-9c0004af",
+    "/capture.py",
+    "--verify"
+  ],
+  "returncode": 0
+}

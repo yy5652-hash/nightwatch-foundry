@@ -1,0 +1,37 @@
+[
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-c2-1004060100-supplement-oracle",
+      "--network",
+      "independent-verifier-c2-1004060100-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2/supplement-oracle-02:/evidence",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2/assembly-03/release.json:/release.json:ro",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2/supplement-oracle-02/executed-source.py:/verifier/stage-2/candidate2_supplement.py:ro",
+      "--entrypoint",
+      "python",
+      "independent-verifier-c2-1004060100:complete-client-9c0004af",
+      "/verifier/stage-2/candidate2_supplement.py",
+      "--release",
+      "/release.json",
+      "--case",
+      "oracle",
+      "--out",
+      "/evidence/oracle"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "oracle.log",
+    "returncode": 0,
+    "seconds": 0.5702780419996998
+  }
+]

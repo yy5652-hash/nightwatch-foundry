@@ -1,0 +1,158 @@
+[
+  {
+    "argv": [
+      "git",
+      "show",
+      "9912dbed382fa513f2186d4a13c37dfde39b4ed5:evidence/independent-verifier/stage-2/candidate2_calendar_browser.py"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "sealed-source.log",
+    "returncode": 0,
+    "seconds": 0.007304915998247452
+  },
+  {
+    "argv": [
+      "docker",
+      "network",
+      "create",
+      "--internal",
+      "independent-verifier-c2-calendar-net"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "network-create.log",
+    "returncode": 0,
+    "seconds": 0.03460104199984926
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "independent-verifier-c2-calendar-service",
+      "--network",
+      "independent-verifier-c2-calendar-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-e",
+      "PORT=18321",
+      "-p",
+      "18320:18321",
+      "independent-verifier-c2-1004060100:current"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "service-start.log",
+    "returncode": 0,
+    "seconds": 0.08835479099798249
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "independent-verifier-c2-calendar-service",
+      "python",
+      "-c",
+      "import time,urllib.request;deadline=time.monotonic()+4\nwhile True:\n try:\n  print(urllib.request.urlopen(\"http://127.0.0.1:18321/health\",timeout=.2).read().decode());break\n except Exception:\n  if time.monotonic()>deadline:raise\n  time.sleep(.02)"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "health.log",
+    "returncode": 0,
+    "seconds": 3.1597428749992105
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "independent-verifier-c2-calendar-service"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "service-inspect.log",
+    "returncode": 0,
+    "seconds": 3.0399432919984974
+  },
+  {
+    "argv": [
+      "docker",
+      "network",
+      "inspect",
+      "independent-verifier-c2-calendar-net"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "network-inspect.log",
+    "returncode": 0,
+    "seconds": 0.03340374999970663
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "independent-verifier-c2-calendar-service",
+      "python",
+      "-c",
+      "import pathlib,hashlib,json;print(json.dumps({str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path(\".\").rglob(\"*\") if p.is_file() and (p.suffix in [\".py\",\".html\",\".js\",\".css\"])}))"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "packaged-hashes.log",
+    "returncode": 0,
+    "seconds": 3.129831791997276
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-c2-calendar-client",
+      "--network",
+      "independent-verifier-c2-calendar-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2/calendar-browser-01:/evidence",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-2/candidate-2/calendar-browser-01/executed-source.py:/verifier/stage-2/candidate2_calendar_browser.py:ro",
+      "--entrypoint",
+      "python",
+      "independent-verifier-c2-1004060100:complete-client-9c0004af",
+      "/verifier/stage-2/candidate2_calendar_browser.py",
+      "--base",
+      "http://independent-verifier-c2-calendar-service:18321",
+      "--candidate",
+      "4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+      "--out",
+      "/evidence/calendar"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "calendar.log",
+    "returncode": 0,
+    "seconds": 3.5030310829970404
+  },
+  {
+    "argv": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-c2-calendar-service"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "cleanup-service.log",
+    "returncode": 0,
+    "seconds": 0.10281649999888032
+  },
+  {
+    "argv": [
+      "docker",
+      "network",
+      "rm",
+      "independent-verifier-c2-calendar-net"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "cleanup-network.log",
+    "returncode": 0,
+    "seconds": 0.08551104200159898
+  }
+]

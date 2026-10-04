@@ -1,0 +1,280 @@
+[
+  {
+    "requirement_id": "TK1-legacy-source-genuine",
+    "passed": true,
+    "expected": "actual earlier HTTP process supplies historical second offsets",
+    "observed": {
+      "reservation_id": "res_1e192fa5c7744ce394c7457c76fd75ae",
+      "reference": "BE8FC980FB",
+      "restaurant_id": "r",
+      "table_id": "t0",
+      "party_size": 2,
+      "starts_at_local": "0001-01-01T21:30",
+      "starts_at": "0001-01-01T21:30:00+00:53:28",
+      "ends_at": "0001-01-01T23:00:00+00:53:28",
+      "status": "confirmed",
+      "created_at": "2026-10-04T06:06:13.585923+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-batch-original",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_eaeb4e6f1520445aba09a0f5577936b7",
+            "reference": "D70A248497",
+            "restaurant_id": "r",
+            "table_id": "t0",
+            "party_size": 1,
+            "starts_at_local": "2070-01-01T18:00",
+            "starts_at": "2070-01-01T18:00:00+01:00",
+            "ends_at": "2070-01-01T19:30:00+01:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T06:06:13.586278+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-cancelled",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_eaeb4e6f1520445aba09a0f5577936b7",
+        "reference": "D70A248497",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 1,
+        "starts_at_local": "2070-01-01T18:00",
+        "starts_at": "2070-01-01T18:00:00+01:00",
+        "ends_at": "2070-01-01T19:30:00+01:00",
+        "status": "cancelled",
+        "created_at": "2026-10-04T06:06:13.586278+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-export-equality",
+    "passed": true,
+    "expected": "genuine original state values preserved; adopted private schema2/profile metadata added",
+    "observed": "equal"
+  },
+  {
+    "requirement_id": "TK1-legacy-export-equality",
+    "passed": true,
+    "expected": "unchanged captured source schema1",
+    "observed": 1
+  },
+  {
+    "requirement_id": "TK1-legacy-replacement",
+    "passed": true,
+    "expected": {
+      "status": 401,
+      "code": "unauthenticated"
+    },
+    "observed": {
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "unauthenticated"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-record-immutable",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-original-receipt",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-original-receipt",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-batch-original",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-cancelled",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-new-write",
+    "passed": true,
+    "expected": "0001-01-01T17:59:32+00:53",
+    "observed": {
+      "reservation_id": "res_fad5c8d841e64e7cb51120ed1bb760c7",
+      "reference": "FDF1C200FC",
+      "restaurant_id": "r",
+      "table_ids": [
+        "t0"
+      ],
+      "party_size": 2,
+      "starts_at_local": "0001-01-01T18:00",
+      "starts_at": "0001-01-01T17:59:32+00:53",
+      "ends_at": "0001-01-01T19:29:32+00:53",
+      "table_id": "t0",
+      "status": "confirmed",
+      "created_at": "2026-10-04T06:06:13.590944+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-mixed-transfer",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-legacy-mixed-transfer",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-peer-original-receipt",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-peer-original-receipt",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-legacy-peer-original-receipt",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-json-content-type",
+    "passed": true,
+    "expected": "application/json;charset=utf-8",
+    "observed": [
+      "application/json;charset=utf-8"
+    ]
+  },
+  {
+    "requirement_id": "TK1-error-envelope",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-no-5xx",
+    "passed": true,
+    "expected": "no 5xx or transport failures",
+    "observed": [
+      200,
+      201,
+      204,
+      401
+    ]
+  },
+  {
+    "requirement_id": "TK1-request-timeout",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-reset-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.05007516599999917,
+        204
+      ],
+      [
+        0.04417258299997684,
+        204
+      ]
+    ]
+  },
+  {
+    "requirement_id": "TK1-import-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.0007524170000010599,
+        204
+      ],
+      [
+        0.0033862089999843192,
+        204
+      ]
+    ]
+  },
+  {
+    "requirement_id": "TK1-export-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.00033254200002375,
+        200
+      ],
+      [
+        0.0004649169999879632,
+        200
+      ],
+      [
+        0.0004659999999603315,
+        200
+      ],
+      [
+        0.00047200000000202635,
+        200
+      ]
+    ]
+  }
+]

@@ -1,0 +1,87 @@
+[
+    {
+        "Name": "independent-verifier-c2-1004060100-net",
+        "Id": "73889e66cf8b70095c8818a8fa990cf17bb4407dda0d4be16acecfde73edefbc",
+        "Created": "2026-10-04T06:01:08.090884294Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "0d503b64cc7b9dfbc7dfb1653d5b29623cd54ca9c2bed6a97b9d1c5cf92a51ee": {
+                "Name": "independent-verifier-c2-1004060100-third",
+                "EndpointID": "9f83ae9ccf63d857ac3850c01cbdf7c4e740bc01727a840fe48b6d73f8a542f8",
+                "MacAddress": "1e:27:1e:98:90:65",
+                "IPv4Address": "172.18.0.4/16",
+                "IPv6Address": ""
+            },
+            "16ad622712b59ef2e6f2318fbb48f58ace8173d35581e29a4b5d4a0f5f12e6b6": {
+                "Name": "independent-verifier-c2-1004060100-peer",
+                "EndpointID": "6b4762bc111a0489c2f757d163e091b75c27a114a2f5c1fc25eeae4970ecdce9",
+                "MacAddress": "76:e3:e9:dd:76:34",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "68546c3678a776c7d34c6b10abf6e17f82b3a31828366da6ca8edb4b1b16a2a2": {
+                "Name": "independent-verifier-c2-1004060100-exact-s1",
+                "EndpointID": "bdd7f3e2937e1b26d95aedc25679db6b045992ad6b1025c0823d29588b2d23ec",
+                "MacAddress": "0e:4b:1d:1b:ed:7d",
+                "IPv4Address": "172.18.0.6/16",
+                "IPv6Address": ""
+            },
+            "79a6fee6c0cd4aaca840627900b504baecf7e00bea4b3f530bf815c2a6a21c22": {
+                "Name": "independent-verifier-c2-1004060100-legacy-s1",
+                "EndpointID": "260912769fb93dfcc3985f508b7881d467a1a4eaa1398b13ca9b27555e84089a",
+                "MacAddress": "f2:d5:dc:ad:dc:5b",
+                "IPv4Address": "172.18.0.5/16",
+                "IPv6Address": ""
+            },
+            "8dd69bddb9df64f852fac9120dfb7f38de7d033b8a32c7d2758c04f08a5a3546": {
+                "Name": "independent-verifier-c2-1004060100-target",
+                "EndpointID": "855ef7f100c75deb11db315a707da34b0faf1faebc94bdcd40d273bef52eb690",
+                "MacAddress": "82:d7:1b:33:bf:12",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            },
+            "9c9f117eb801c3a9f80f0cce3e07a56f525cef1d78824fd29bcda2ffac5a5179": {
+                "Name": "independent-verifier-c2-1004060100-legacy-s2",
+                "EndpointID": "581e11608de914fdef9af51936cb847dc0e1ebd0e7cbcfefb2046d6b21f7ea34",
+                "MacAddress": "2e:ad:b3:98:c8:6b",
+                "IPv4Address": "172.18.0.7/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 9,
+                        "DynamicIPsAvailable": 65527
+                    }
+                }
+            }
+        }
+    }
+]

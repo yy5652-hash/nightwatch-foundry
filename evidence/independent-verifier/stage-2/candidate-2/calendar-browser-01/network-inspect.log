@@ -1,0 +1,52 @@
+[
+    {
+        "Name": "independent-verifier-c2-calendar-net",
+        "Id": "75561f7edcd1034646a9b68647f9c74ac3edcfdb3be458c1d32ffb469c6bb6c6",
+        "Created": "2026-10-04T06:26:32.258481097Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "e48dc00aa26e9353a234f0c9c916735c289cfd345964092e6b9f40c19a110ab5": {
+                "Name": "independent-verifier-c2-calendar-service",
+                "EndpointID": "5223d21c53d83ef5d30a6a94f863f2a08a01249ce6da7c15ab54b8ab144331de",
+                "MacAddress": "ea:b0:99:ad:d8:2e",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 4,
+                        "DynamicIPsAvailable": 65532
+                    }
+                }
+            }
+        }
+    }
+]
