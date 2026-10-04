@@ -1,0 +1,7 @@
+# Preserved read-only shared-HEAD inspection stop
+
+After own inspection seal `9f6bc782d5ffb40cbabed097c1bc115fff389236` committed its two exclusively owned records, a read-only verification script resolved shared HEAD and asserted that its changed paths were those two files. Another seat had meanwhile advanced HEAD to `842af51049f9245e5262faa4f847b9ab51c0cc60`. The script returned1 with `AssertionError`. It made no Git/file/runtime mutation and establishes no service failure.
+
+The corrected read-only inspection resolves the actual named `9f6bc78` seal to `9f6bc782d5ffb40cbabed097c1bc115fff389236`. Its changed paths are exactly `initial-1/seal-01/commands-after-commit.json` and `initial-1/seal-01/commit-inspection.json` under the owned Stage4 evidence root; author is `Independent Verifier <independent-verifier@nightwatch-foundry.invalid>`. The own Stage4 evidence working tree is clean. A separate `git diff --quiet 91e2c471acded1b861b3fec725f202297b1c6740 -- stage-1 stage-2 stage-3` exits0. The original failed script output remains in the room tool log and is not converted to a pass.
+
+This prospective diagnostic addendum preserves the preparation report and all four local run outputs unchanged. It does not extend the sealed JSON audit manifest to later inspection/addendum records, does not authorize candidate execution, and does not transfer preparation facts to a guessed Stage4 tree.
