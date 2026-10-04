@@ -64,3 +64,52 @@ Observed 16 HTTP operations, 24 assertions, zero failures, 0.061681459 seconds; 
 Future repair verification must cover exact integer-valued spellings, true fractions and wrong types, complete nested JSON equality, unknown finite values, strict query grammar, invalid constants, key/error precedence, rollback/failed-key reuse and mixed genuine legacy/new exact receipts through two independent-process replacements. Existing calendar/timestamp/occupancy/auth/concurrency behavior must remain intact. Reviewers must independently derive these checks. No broad verifier oracle or probe code was read/copied.
 
 Only this Systems-owned document is added by the current request. Both production trees remain byte-identical to candidate `f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250`; highest independently accepted consecutive stage remains 0. This assessment needs a joint scoped release before implementation and independent named review before renewed acceptance. Harness Codex; configured model gpt-6.1-sol; actual runtime override, effort, usage and estimated/billed spend unknown. Factory elapsed is coordinator-owned.
+
+## Entry 2: proposed callable contract for JSON-REPAIR-1
+
+The complete package `TK-20261004-S1-systems-engineer-JSON-REPAIR-1`, parts 1–8 and END marker, was acknowledged before design work in room message `750d1c68-a380-48f8-b822-69c3c9d4b966`. Shared card 10 is in progress. Current room membership was refreshed: Interface is the existing participant responsible for the transport side. The proposal below was sent directly for reciprocal agreement in message `28a09e83-62bd-4074-9bfa-f1397bf4c7c5`. It is proposed until that agreement and the coordinator's numeric interpretation are recorded. Source release is pending; no graded path changes accompany this entry.
+
+### Ownership and callables
+
+Systems owns `stage-1/json_codec.py`. Interface can depend on these module callables after the committed module handoff:
+
+| Callable/type | Contract |
+|---|---|
+| `JsonCodecError(ValueError)` | Syntax, invalid JSON tree, unsupported value or unknown comparison-profile failure; does not determine an endpoint HTTP status itself |
+| `loads(text: str) -> object` | Decode one complete JSON value with exact finite numbers; reject invalid syntax and constants; leave object-only enforcement to the existing adapter |
+| `dumps(value: object) -> str` | Encode a valid tree as compact JSON with ASCII escapes and exact numeric tokens; no string fallback, binary rounding or non-finite constants |
+| `validate_json(value: object) -> None` | Recursively accept supported JSON leaves/containers or raise `JsonCodecError`; boolean is distinct from number |
+| `same_value(left, right, *, profile="exact-v1") -> bool` | Recursive exact JSON value equality for current receipts; explicit `python-json-v1` reproduces old numeric parser comparison only for identified legacy receipts |
+| `JsonNumber` | Immutable finite decimal/exponent leaf, retaining exact value and integer-token versus decimal/exponent-token provenance; no implicit float coercion |
+
+These names, return shapes and profile identifiers are the proposed stable interface. Systems' core integration also owns integral-value predicates and normalization, minimum/capacity comparisons and any bounded-use numeric arithmetic. Interface need not access coefficient fields or implement numeric policy. The module must be independent of core, HTTP, authentication and storage, with no import cycle. Standard-library dependencies only are proposed.
+
+`loads` does not reject mathematically finite numbers for overflowing a float or Decimal context. Parsing integer/exponent digit strings must avoid the interpreter's unstated conversion ceiling, preserving the already repaired integer boundary. Decimal/exponent leaves retain compact lexical and coefficient/exponent information rather than an expanded power of ten. Canonical value comparison may normalize zero, leading/trailing coefficient zeros and exponent arithmetic; token provenance remains separate. All zero numeric spellings are equal for the exact profile. Retaining provenance never makes exact aliases unequal.
+
+Tree encoding preserves numerical values and decimal-versus-integer provenance where legacy comparison requires it. Existing finite native floats supplied by old in-memory diagnostics may be handled according to their ordinary emitted JSON decimal spelling; they must not be expanded to their binary rational value. New HTTP decoding creates no such float leaves. Non-finite native floats and unsupported objects are invalid trees. Immutability/deep-copy behavior must preserve leaves in snapshots without leaking state aliases.
+
+### Adapter integration
+
+Interface's adapter keeps existing framing, UTF-8 decoding, body-object enforcement, case-insensitive headers and response-loss handling. Replace only numeric JSON decoding/encoding through the agreed codec. The API boundary remains `Engine.request(method, target, headers, body) -> (status, value)`. Malformed syntax and invalid constants are refused by the adapter with 400 before Engine dispatch. Exact finite trees reach Engine authentication and endpoint ordering. Response encoding finishes before sending status/headers; status 204 still has no payload and no codec invocation is required for its body. Output remains UTF-8 `application/json; charset=utf-8` with byte-accurate Content-Length.
+
+Do not introduce transport-side party/count validation, retry comparison or new body fields. Module `ValueError` inheritance lets the existing adapter's parse error handling remain narrow. Any finite valid JSON token refused by the codec is a codec defect to preserve and repair, not a new input bound. Intermediate module/adapter commits are unpromoted sequence steps; they do not establish full repaired service behavior while old core validation remains unwired.
+
+### Receipt/private-state contract
+
+Propose state schema 2 for new exports while preserving the public envelope `track: tablekeeper`, `format_version: 1`. Import accepts genuine unmodified schema-1 state and new schema-2 state. Each schema-2 receipt carries private `numeric_profile` equal to `exact-v1` or `python-json-v1`; missing/unknown profiles in schema 2 invalidate the state atomically. Schema-1 successful receipts without such metadata are the known old parser family and receive `python-json-v1` during validated import. New successes receive `exact-v1`. This marker is private implementation-defined state, not an API response field or source requirement. The coordinator/Interface agreement must bind the final private format before source integration.
+
+The original six body/response/key identity fields remain preserved. A legacy receipt's numeric leaves retain the numeric-token kind of the actual old export: float exports such as `0.1`, `0.0` and `9007199254740992.0` remain decimal/exponent leaves; exact old integer tokens remain integers. This supplies old stored parser projection without inventing original input spellings or changing emitted JSON values. During legacy matching only, project decimal/exponent leaves to the source float result, retain integer leaves exactly and compare recursively with booleans distinct. Underflow/rounding equivalences remain historical; valid finite overflow cannot match an old successful non-finite leaf and yields normal different-body reuse refusal.
+
+An exported mixed-origin state preserves every receipt profile and leaf provenance through a second import. New requests never inherit a global legacy parsing mode. Retrying a stored receipt returns its untouched archived response, not an enriched current view. Snapshots/current records remain separately validated; invalid profile/body/state replacement leaves destination state intact. Failed keys have no receipt to migrate. Genuine old create **and move** receipts, ignored nested fractions, underflow, higher-precision decimal spelling, integral float spelling and distinct integer/bool/string controls must be exercised on actual unmodified earlier services.
+
+### Core implications and bounded arithmetic
+
+Core will replace its float/int-only portable-value gate and Python-class body integer test with codec value handling under the adopted source interpretation. Retry equality passes the receipt's validated profile. Query grammar remains `[0-9]+`; authentication, idempotency precedence, batch input order/cutoff checks, occupancy and transaction locking do not move.
+
+Compact unknown exponent leaves need no materialization. Known positive integral grid/duration/cutoff/capacity values must preserve exactness; where a value exceeds a bounded opening interval or elapsed cutoff interval, compare it before constructing an endpoint or expanding an unnecessary magnitude. The grid has only this day's bounded candidates; a huge positive step gives the opening candidate when duration fits. No huge-duration timestamp is manufactured. This is a required behavior/design constraint, not a claim that an arbitrary-exponent arithmetic implementation already exists. Numeric value normalization and any internal representation switching must never become a visible maximum.
+
+### Sequence and remaining decisions
+
+After reciprocal committed design agreement and explicit coordinator release, the specified sequence is: Systems commits the codec module without importing it into core; Interface commits image packaging/transport wiring against that exact revision/API; Systems commits core validation/equality/state integration. The final complete image is then built from a clean named context for constrained own HTTP checks. Only that complete candidate can be routed for independent acceptance; no intermediate success restores stage acceptance. Stage 2 remains untouched.
+
+Outstanding before source edits: reciprocal Interface agreement on callable signatures/error boundary/profile encoding, coordinator adoption of integer-valued body/fractional-base statuses, and explicit source release. Own previous legacy evidence is retained at commit `302e2c00a2e433302d92289cd8172cc3a7325168`. This entry adds no new HTTP results and reads no other seat's probe implementation. Production diff against candidate 5 remains empty. Model/usage/spend and historical interpretation limitations remain as stated in Entry 1.
