@@ -8,11 +8,12 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+from acceptance_state import current_manifests, verify_history
 
 RESULT = Path(__file__).resolve().parents[2]
 reports = []
-for manifest in sorted((Path(__file__).parent / 'accepted').glob('stage-*.json')):
-    saved = json.loads(manifest.read_text())
+verify_history()
+for manifest, saved in current_manifests():
     verdict = RESULT / saved['independent_verdict_path']
     matrix = verdict.parent / 'coverage.csv'
     rows = list(csv.DictReader(matrix.open()))
