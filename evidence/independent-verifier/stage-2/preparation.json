@@ -1,0 +1,125 @@
+{
+  "utc": "2026-10-04T01:53:35.347511+00:00",
+  "phase": "stage-2-independent-preparation",
+  "package": "TK-20261004-S2-independent-verifier-VERIFY-PREP-1",
+  "completeness_ack": "8439c939-88ae-4ca6-b5e5-a68df41d27ce",
+  "candidate": null,
+  "rows": 1166,
+  "inherited": 801,
+  "new": 365,
+  "verified": 0,
+  "failed": 0,
+  "unverified": 1166,
+  "candidate_calls": 0,
+  "highest_independently_accepted_stage": 1,
+  "frozen_stage1": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+  "controls": {
+    "argv": [
+      "python3",
+      "-B",
+      "evidence/independent-verifier/stage-2/prep_check.py"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.076914708,
+    "candidate_calls": 0
+  },
+  "helper_builds": [
+    {
+      "argv": [
+        "docker",
+        "build",
+        "-f",
+        "stage-2/Browser.Dockerfile",
+        "-t",
+        "independent-verifier-s2:prepared-runner-01",
+        "."
+      ],
+      "returncode": 0,
+      "duration_seconds": 105.181372416,
+      "candidate_calls": 0,
+      "cache": "normal Docker cache available; uncached build not claimed"
+    },
+    {
+      "argv": [
+        "docker",
+        "build",
+        "-f",
+        "stage-2/Browser.Dockerfile",
+        "-t",
+        "independent-verifier-s2:prepared-runner-02",
+        "."
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.538452,
+      "candidate_calls": 0,
+      "cache": "normal Docker cache available; uncached build not claimed"
+    }
+  ],
+  "helper_smokes": [
+    {
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "independent-verifier-s2-helper-smoke-01",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "independent-verifier-s2:prepared-runner-01",
+        "-c",
+        "\nimport asyncio,json\nfrom playwright.async_api import async_playwright\nimport api,browser\nasync def main():\n    async with async_playwright() as runtime:\n        browser=await runtime.chromium.launch(headless=True)\n        context=await browser.new_context(viewport={'width':375,'height':812})\n        page=await context.new_page()\n        width=await page.evaluate('innerWidth')\n        assert width==375\n        print(json.dumps({'chromium_version':browser.version,'viewport_width':width,'imports':['api','browser'],'candidate_calls':0}))\n        await browser.close()\nasyncio.run(main())\n"
+      ],
+      "returncode": 1,
+      "duration_seconds": 0.555210708,
+      "candidate_calls": 0,
+      "note": "Verifier helper only; no service startup or requirement pass implied"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "independent-verifier-s2-helper-smoke-02",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "independent-verifier-s2:prepared-runner-02",
+        "-c",
+        "\nimport asyncio,json\nfrom playwright.async_api import async_playwright\nimport api,browser\nasync def main():\n    async with async_playwright() as runtime:\n        browser=await runtime.chromium.launch(headless=True)\n        context=await browser.new_context(viewport={'width':375,'height':812})\n        page=await context.new_page()\n        width=await page.evaluate('innerWidth')\n        assert width==375\n        print(json.dumps({'chromium_version':browser.version,'viewport_width':width,'imports':['api','browser'],'candidate_calls':0}))\n        await browser.close()\nasyncio.run(main())\n"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.49500825000000004,
+      "candidate_calls": 0,
+      "note": "Verifier helper only; no service startup or requirement pass implied"
+    }
+  ],
+  "pending": [
+    "Complete named committed Stage 2 candidate handoff",
+    "Coordinator original Stage 1 receipt shape decision",
+    "Real unchanged browser pending-body Stage 1 upgrade protocol"
+  ],
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_override_effort_usage_estimated_cost_billed_spend": "unknown",
+  "source_inputs": [
+    "Complete numbered task, supplementary brief and Stage 1+2 specifications",
+    "Complete participant guide read earlier in this run",
+    "Own independently authored Stage 1 coverage/probe assets and retained acceptance",
+    "Harness runtime Dockerfile and dependency pins only; no shipped test source",
+    "Python/HTTP/Playwright knowledge; no external lookup or implementation consultation"
+  ],
+  "limitations": "Prepared evidence only, no Stage 2 source review/startup/official checks/browser product execution/acceptance yet",
+  "format_check_note": "Source/docs whitespace check passed. Earlier full staged check flagged default CRLF in the prepared CSV and raw Docker output. CSV generator now emits LF; original raw build logs remain byte-preserved and are excluded from the source-only whitespace check."
+}
