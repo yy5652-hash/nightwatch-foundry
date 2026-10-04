@@ -17,14 +17,15 @@ import unittest
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-ROOT = Path(__file__).resolve().parents[2]
 parser = argparse.ArgumentParser()
 parser.add_argument("--url")
 parser.add_argument("--destination-url")
 args, unittest_args = parser.parse_known_args()
-spec = importlib.util.spec_from_file_location("tablekeeper_builder_core", ROOT / "stage-1/core.py")
-module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
+if not args.url or not args.destination_url:
+    root = Path(__file__).resolve().parents[2]
+    spec = importlib.util.spec_from_file_location("tablekeeper_builder_core", root / "stage-1/core.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
 
 
 class Client:
