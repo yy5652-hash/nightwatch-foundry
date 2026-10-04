@@ -549,8 +549,9 @@ async def local_end_display(context,page,zone,local,expected,legacy=False):
         check(status==204,'unchanged genuine historical export import')
         status,replay=await request(context,BASE,'/reservations','POST',body,auth['token'],'historic-original-receipt')
         check(status==200 and replay==original,'immutable genuine old receipt and token retained')
-    else:status,_=await request(context,BASE,'/_test/reset','POST',fixture)
-    check(status==204,'local-end fixture accepted')
+    else:
+        status,_=await request(context,BASE,'/_test/reset','POST',fixture)
+        check(status==204,'local-end fixture accepted')
     await login(page)
     await page.goto(BASE+'/lookup');await tid(page,'lookup-reference-input').fill(reference);await tid(page,'lookup-submit').click()
     await expect(tid(page,'reservation-detail')).to_be_visible()
