@@ -133,12 +133,16 @@ try:
                    "--cpus", "2", "--memory", "2g", "-p", str(18240+index)+":"+str(port)]
         if index == 1:
             command += ["-e", "PORT=9090"]
+        launch_utc = datetime.now(timezone.utc).isoformat()
         launch = time.monotonic()
         execute(command+[images[index]], log="run-"+label+".log")
         created.append(name)
         health = json.loads(execute(["docker", "exec", name, "python", "-c", HEALTH, str(port)], log="health-"+label+".json"))
         elapsed = time.monotonic()-launch
+        healthy_utc = datetime.now(timezone.utc).isoformat()
         check(label+" healthy within 60s", health["status"] == 200 and elapsed < 60)
+        if index < 2:
+            check(label+" early health observed within requested5s", health["status"] == 200 and elapsed < 5)
         info = json.loads(execute(["docker", "inspect", name]))[0]
         actual = json.loads(execute(["docker", "exec", name, "python", "-c", HASH], log="hash-"+label+".json"))
         py_files = ("core.py", "server.py", "json_codec.py") if index < 2 else ("core.py", "server.py")
@@ -152,7 +156,10 @@ try:
                           "image": info["Image"], "nano_cpus": info["HostConfig"]["NanoCpus"],
                           "memory_bytes": info["HostConfig"]["Memory"], "mounts": info["Mounts"],
                           "network": info["HostConfig"]["NetworkMode"], "port": port, "host_port": 18240+index,
-                          "health_from_launch_seconds": elapsed, "runtime_hashes": actual})
+                          "launch_utc": launch_utc, "healthy_observation_utc": healthy_utc,
+                          "health_from_launch_seconds": elapsed, "health_poll_seconds": health["seconds"],
+                          "startup_scope": "docker run invocation to successful health-command return, before all source inspection",
+                          "runtime_hashes": actual})
     net = json.loads(execute(["docker", "network", "inspect", network]))[0]
     check("Internal offline network", net["Internal"] is True)
     inherited = execute(["docker", "exec", "-i", created[1], "python", "-", "http://127.0.0.1:9090"],
