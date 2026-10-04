@@ -35,16 +35,16 @@ for manifest in sorted((Path(__file__).parent / 'accepted').glob('stage-*.json')
         stages = {s.strip() for s in row.get('applicable_stages', '').split(',')}
         if str(saved['stage']) not in stages:
             errors.append(label + ': current stage applicability absent')
-        evidence = row.get('evidence_path', '').split('#', 1)[0]
-        location = Path(evidence)
-        if not location.is_absolute():
-            location = RESULT / location
-        try:
-            location.resolve().relative_to(RESULT)
-        except ValueError:
-            errors.append(label + ': artifact is outside result clone')
-        if not location.is_file():
-            errors.append(label + ': artifact file missing')
+        for evidence in row.get('evidence_path', '').split(';'):
+            location = Path(evidence.strip().split('#', 1)[0])
+            if not location.is_absolute():
+                location = RESULT / location
+            try:
+                location.resolve().relative_to(RESULT)
+            except ValueError:
+                errors.append(label + ': artifact is outside result clone')
+            if not location.is_file():
+                errors.append(label + ': artifact file missing: ' + evidence.strip())
     if hashlib.sha256(verdict.read_bytes()).hexdigest() != saved['independent_verdict_sha256']:
         errors.append('Original accepted verdict hash differs from freeze')
     reports.append({'stage': saved['stage'], 'candidate_full_revision': saved['candidate_full_revision'],
