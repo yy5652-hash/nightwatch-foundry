@@ -1,0 +1,45 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 557B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 88B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3
+#4 resolve docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 30.10kB done
+#5 DONE 0.0s
+
+#6 [2/6] RUN apt-get update     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/6] WORKDIR /app
+#7 CACHED
+
+#8 [4/6] COPY server.py core.py ./
+#8 CACHED
+
+#9 [5/6] COPY web ./web
+#9 DONE 0.0s
+
+#10 [6/6] RUN python -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('.').glob('*.py')]"
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers 0.0s done
+#11 exporting manifest sha256:6a21c74eab0495d778a126e3b228542ff702c1744f7bc82adfd09d71780b60ed done
+#11 exporting config sha256:2d7f3bdf84f82cbbae2e0a35dac2153156036083d119703a4f7fb90bdafc8a28 done
+#11 exporting attestation manifest sha256:27ddf8e9fd11c1d18fdebdc7598f767e6a7380ba206e2a55653f70332467f76b done
+#11 exporting manifest list sha256:af1f261c1ef6be00d694584261cd033af5dec77046f3ba0234fd027f1107ad7b done
+#11 naming to docker.io/library/interface-engineer-tablekeeper-s2:20261004t015228380301z done
+#11 unpacking to docker.io/library/interface-engineer-tablekeeper-s2:20261004t015228380301z 0.0s done
+#11 DONE 0.1s

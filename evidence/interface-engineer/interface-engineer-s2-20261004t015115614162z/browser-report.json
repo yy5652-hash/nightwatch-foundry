@@ -1,0 +1,181 @@
+{
+  "seed": 20261004,
+  "candidate": "f1f348a7413685ad1970c66b9a595a40f50d6a48",
+  "scenarios": [
+    {
+      "name": "transport-public",
+      "verdict": "PASS",
+      "seconds": 0.59
+    },
+    {
+      "name": "authentication-keyboard",
+      "verdict": "PASS",
+      "seconds": 2.811
+    },
+    {
+      "name": "single-book-lookup-cancel",
+      "verdict": "PASS",
+      "seconds": 1.439
+    },
+    {
+      "name": "out-of-order-search",
+      "verdict": "PASS",
+      "seconds": 0.598
+    },
+    {
+      "name": "single-conflict",
+      "verdict": "PASS",
+      "seconds": 0.59
+    },
+    {
+      "name": "combined-conflict",
+      "verdict": "PASS",
+      "seconds": 0.581
+    },
+    {
+      "name": "lost-single",
+      "verdict": "PASS",
+      "seconds": 0.673
+    },
+    {
+      "name": "lost-combined",
+      "verdict": "PASS",
+      "seconds": 0.614
+    },
+    {
+      "name": "genuine-stage1-upgrade",
+      "verdict": "PASS",
+      "seconds": 1.017
+    },
+    {
+      "name": "combined-occupancy",
+      "verdict": "PASS",
+      "seconds": 0.546
+    },
+    {
+      "name": "changed-retry-form",
+      "verdict": "PASS",
+      "seconds": 0.542
+    },
+    {
+      "name": "empty-unavailable-lookup",
+      "verdict": "PASS",
+      "seconds": 0.745
+    },
+    {
+      "name": "lookup-race-privacy-cutoff",
+      "verdict": "PASS",
+      "seconds": 0.954
+    },
+    {
+      "name": "auth-inputs-loading",
+      "verdict": "PASS",
+      "seconds": 0.63
+    }
+  ],
+  "trace": [
+    {
+      "scenario": "ordinary",
+      "writes": [
+        {
+          "key": "tk-80b652d222928c4e1c8b8a42c0dd186c",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-80b652d222928c4e1c8b8a42c0dd186c",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "reference": "63564D83BA"
+    },
+    {
+      "scenario": "out-of-order",
+      "operations": [
+        "A fetch completed but response held",
+        "B selected and completed",
+        "B form opened",
+        "A released"
+      ],
+      "winner": "r_harbor"
+    },
+    {
+      "scenario": "lost-single",
+      "writes": [
+        {
+          "key": "tk-a79704734bf85055970fae77a816029a",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-a79704734bf85055970fae77a816029a",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-a79704734bf85055970fae77a816029a",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "committed_reference": "7C09A8429A",
+      "retained_reference": "B22893ED74"
+    },
+    {
+      "scenario": "lost-combined",
+      "writes": [
+        {
+          "key": "tk-a469a5ca5e1d092432f3a88a4126c0dc",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        },
+        {
+          "key": "tk-a469a5ca5e1d092432f3a88a4126c0dc",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        },
+        {
+          "key": "tk-a469a5ca5e1d092432f3a88a4126c0dc",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_ids\":[\"t_garden\",\"t_window\"],\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":6}"
+        }
+      ],
+      "committed_reference": "C8FEBC6464",
+      "retained_reference": "27D7568331"
+    },
+    {
+      "scenario": "upgrade",
+      "writes": [
+        {
+          "key": "tk-9f3dd0a68dd25c2a01f673a832a4bdfe",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-9f3dd0a68dd25c2a01f673a832a4bdfe",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-9f3dd0a68dd25c2a01f673a832a4bdfe",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        }
+      ],
+      "committed_reference": "56909D9957",
+      "retained_reference": "FA2F29F420"
+    },
+    {
+      "scenario": "changed-form",
+      "writes": [
+        {
+          "key": "tk-054d3b8712d19c39d56cdf66bfec83e1",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-054d3b8712d19c39d56cdf66bfec83e1",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":2}"
+        },
+        {
+          "key": "tk-6ecc9fc014afd44794d6ce3a65785cca",
+          "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1}"
+        }
+      ]
+    }
+  ],
+  "assertions": 232,
+  "browser_version": "153.0.8010.12",
+  "seconds": 12.551,
+  "passed": 14,
+  "total": 14
+}
