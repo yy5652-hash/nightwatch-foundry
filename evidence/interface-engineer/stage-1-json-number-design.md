@@ -326,3 +326,39 @@ committed in the preceding section at `bb2ef6b59f1dfc6f201963b147df501a4d928d61`
 Both design prerequisites are now recorded. Explicit production source release
 and the Systems module implementation commit remain pending; this confirmation
 changes no graded files and adds no HTTP count or acceptance claim.
+
+## Current callable contract — final bytes reconciliation
+
+Systems Entry 3 at `f589b7361bb11f0b9a7eae7217c546cf0c6d2b3d` and room
+messages `2d123c13-ecc7-491a-bd65-51fbe3fd5b9a` and
+`1b273268-b567-460c-ad49-0ce6a3c5a2af` supersede its earlier text-only callable
+proposal. The messages crossed Interface's acceptance of that earlier variant.
+The **current, reciprocal contract is bytes-based**:
+
+- `loads(raw: bytes | str) -> JSON tree`. Byte input decodes strictly as UTF-8;
+  there is no UTF-16 autodetection. Shared codec lexical grammar and constant
+  rejection produce `JsonCodecError(ValueError)`. The server retains framing,
+  object-only enforcement and parse-failure HTTP 400 mapping.
+- `dumps(value) -> bytes`. Compact JSON with ASCII string escapes produces UTF-8
+  bytes and exact numeric tokens. The server uses those bytes directly for
+  Content-Length and writing, with **no second encoding**. Empty 204 bypasses
+  the codec and retains zero bytes.
+- `validate_json(value)` and
+  `same_value(left, right, *, profile='exact-v1')` retain their agreed behavior.
+  Immutable exact `JsonNumber`, native integer-token ints and distinct booleans
+  retain the numeric/provenance semantics above.
+
+The text-returning section is historical and superseded by this final agreement;
+it must not be used for implementation. This reconciliation changes no field,
+authentication, key, transaction, profile or state rule. State schema 2 with
+required receipt `numeric_profile` values `exact-v1`/`python-json-v1`, genuine
+schema-1 legacy import, unchanged public format_version 1 and mixed second
+export/import preservation are explicitly agreed. The adopted complete source
+decision `483e8e75` is already recorded at Interface revision `bb2ef6b59f1dfc6f201963b147df501a4d928d61`;
+the source interpretation is no longer an outstanding design question.
+
+Both owners' callable/private-format agreement and source interpretation are
+now aligned. Systems owns the module/core, Interface owns adapter/packaging;
+module-first, adapter-next, core-last remains the sequence. The remaining source
+gates are explicit coordinator release and the actual committed codec module.
+No production edit, new HTTP execution or acceptance follows this entry.
