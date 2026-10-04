@@ -4,7 +4,7 @@ from pathlib import Path
 from collections import defaultdict,Counter
 sys.set_int_max_str_digits(0);csv.field_size_limit(sys.maxsize)
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];H=HERE/'candidate-2';C='58270860cb6a762c8a4c2a551672701fb00bd613'
-SELECTED={'current-http-01':None,'errors-02':None,'full-bound-02':None,'transitions-01':None,'extra-01':['retry','deep'],'extra-02':None,'atomic-02':['prefix'],'atomic-03':None,'model-01':None,'races-02':None,'inherited-http-01':None,'inherited-browser-01':None,'boundaries-01':None,'recovery-02':None,'product-01':None}
+SELECTED={'current-http-01':None,'errors-02':None,'full-bound-02':None,'transitions-01':None,'extra-01':['retry','deep'],'extra-02':None,'atomic-02':['prefix'],'atomic-03':None,'model-01':None,'races-02':None,'inherited-http-01':None,'inherited-browser-01':None,'boundaries-01':None,'recovery-02':None,'product-03':None}
 def load(p):return json.loads(p.read_text())
 def walk(v,pointer=''):
     if isinstance(v,dict):
@@ -27,7 +27,7 @@ def collect():
             assert payload,(group,label);data=load(payload);assert data.get('candidate',data.get('candidate_full_revision'))==C,(payload,'candidate')
             for k in ['failures','failed','failed_assertions','runner_errors','errors','error','stopped_after_expectation','blocked_paths','flow_errors']:assert not data.get(k),(payload,k)
             assert data.get('complete',True) is True
-            kind='browser' if group in ['inherited-browser-01','recovery-02','product-01'] else 'http';files=[folder/'assertions.json'] if (folder/'assertions.json').is_file() else [payload]
+            kind='browser' if group in ['inherited-browser-01','recovery-02','product-03'] else 'http';files=[folder/'assertions.json'] if (folder/'assertions.json').is_file() else [payload]
             if (folder/'api/assertions.json').is_file():files.append(folder/'api/assertions.json')
             count=0
             for file in files:
