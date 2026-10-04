@@ -17,4 +17,4 @@ event.setdefault('estimated_cost_usd', None)
 event.setdefault('billed_cost_usd', None)
 with (Path(__file__).parent / 'run-ledger.jsonl').open('a') as stream:
     stream.write(json.dumps(event, ensure_ascii=True) + '\n')
-print(event['event'])
+print(event.get('event', event.get('phase', 'unlabelled event')))
