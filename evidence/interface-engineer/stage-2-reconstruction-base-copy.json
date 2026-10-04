@@ -1,0 +1,134 @@
+{
+  "package": "TK-20261004-S2-interface-engineer-RECONSTRUCT-2",
+  "phase": "A",
+  "owner": "Interface Engineer",
+  "accepted_source_revision": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+  "accepted_stage_1_tree": "75f6ece6952c570eedf8a548f4428a5b2c986128",
+  "accepted_verdict_revision": "a22de6b769c1454c35650377da1251edc99de744",
+  "highest_consecutive_accepted_stage": 1,
+  "initial_shared_revision": "11c792d7b4a20475b31f170b26cf913035717751",
+  "received_parts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "end_marker_received": true,
+  "copy_commands": [
+    [
+      "git",
+      "show",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/server.py"
+    ],
+    [
+      "git",
+      "show",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/Dockerfile"
+    ],
+    [
+      "git",
+      "show",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/.dockerignore"
+    ],
+    [
+      "git",
+      "show",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1/RUN.md"
+    ]
+  ],
+  "copy_method": "subprocess immutable git show bytes followed by Path.write_bytes; no decoding or normalization",
+  "copy_results": [
+    {
+      "name": "server.py",
+      "source_path": "stage-1/server.py",
+      "target_path": "stage-2/server.py",
+      "source_blob": "0fca413c1a19d32c41e9c41c7bb4f173739bc432",
+      "before_sha256": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+      "before_bytes": 6572,
+      "source_sha256": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+      "source_bytes": 5265,
+      "target_sha256": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+      "byte_equal": true
+    },
+    {
+      "name": "Dockerfile",
+      "source_path": "stage-1/Dockerfile",
+      "target_path": "stage-2/Dockerfile",
+      "source_blob": "2df1db95776abcdeba49b8007f02f0f4d2fa9cf2",
+      "before_sha256": "c1eca1f177bd35118406d59737f4ce1c58cc836ba6fa116d751c3b1c317b4f1b",
+      "before_bytes": 518,
+      "source_sha256": "ee2fbc4476fdac158e83f18ffb254ff14c2643017092c9baf186c03d06bdb528",
+      "source_bytes": 517,
+      "target_sha256": "ee2fbc4476fdac158e83f18ffb254ff14c2643017092c9baf186c03d06bdb528",
+      "byte_equal": true
+    },
+    {
+      "name": ".dockerignore",
+      "source_path": "stage-1/.dockerignore",
+      "target_path": "stage-2/.dockerignore",
+      "source_blob": "551bb00e35bfce52606ec71dbd5d00fe3528aed6",
+      "before_sha256": "49a5ddcc7d9469a4a6e05957460e78ec6707c3e48a3c3b9d35f0fbbce2b271cf",
+      "before_bytes": 48,
+      "source_sha256": "393ca989893a3ceee4e6fe5366f6b7ac019a51900b9dadc08a56787688c1da1c",
+      "source_bytes": 49,
+      "target_sha256": "393ca989893a3ceee4e6fe5366f6b7ac019a51900b9dadc08a56787688c1da1c",
+      "byte_equal": true
+    },
+    {
+      "name": "RUN.md",
+      "source_path": "stage-1/RUN.md",
+      "target_path": "stage-2/RUN.md",
+      "source_blob": "cc37cf2786d9c506d05d4d142f755fcc127aed2d",
+      "before_sha256": "d7fa436f276aa3e124c0b239ad4c7c9e38b4dfc74d5b275a398f8acb06c4e5b2",
+      "before_bytes": 4862,
+      "source_sha256": "ac938287c37b9da1a76e230466362dd1cdf928fadf8676399c7b495aecb7530f",
+      "source_bytes": 2829,
+      "target_sha256": "ac938287c37b9da1a76e230466362dd1cdf928fadf8676399c7b495aecb7530f",
+      "byte_equal": true
+    }
+  ],
+  "stage_1_before_and_after_sha256": {
+    "stage-1/.dockerignore": "393ca989893a3ceee4e6fe5366f6b7ac019a51900b9dadc08a56787688c1da1c",
+    "stage-1/Dockerfile": "ee2fbc4476fdac158e83f18ffb254ff14c2643017092c9baf186c03d06bdb528",
+    "stage-1/RUN.md": "ac938287c37b9da1a76e230466362dd1cdf928fadf8676399c7b495aecb7530f",
+    "stage-1/core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+    "stage-1/json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263",
+    "stage-1/server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c"
+  },
+  "retained_stage_2_web_sha256": {
+    "stage-2/web/app.css": "8ae7d3ab947585bab548ccefdacde21e147bed1d73b3b9ec2c26e577e2038dcc",
+    "stage-2/web/app.js": "5e2f6fcdcd690c6e58712fed5190354d2d4dd0c299dd9a0d210005d945beb41a",
+    "stage-2/web/index.html": "29acc3b5ecf773d3107e91661df32c287576d5600307c2502efe39162383eb5f"
+  },
+  "assertions": {
+    "four_source_target_byte_comparisons": 4,
+    "stage_1_unchanged": true,
+    "web_assets_unchanged": true,
+    "systems_files_edited_by_interface": false
+  },
+  "started_utc": "2026-10-04T05:32:47.309959+00:00",
+  "finished_utc": "2026-10-04T05:32:47.423393+00:00",
+  "copy_and_checks_seconds": 0.113451709,
+  "runtime_execution": "none; intermediate base step is unpromoted and may be temporarily incompatible",
+  "extension_gate": "coordinator committed all-six-file hash proof and explicit Phase B release",
+  "own_commit_revision": "reported with exact resulting --only commit in room; not embedded self-referentially",
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_model_override": null,
+  "effort": null,
+  "token_usage": null,
+  "catalog_estimated_cost": null,
+  "billed_spend": null
+}

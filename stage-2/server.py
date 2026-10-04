@@ -2,23 +2,14 @@
 
 from __future__ import annotations
 
-import json
 import os
 import socket
 import sys
 from collections.abc import Mapping
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
-from urllib.parse import urlsplit
 
 from core import Engine
-
-WEB = Path(__file__).parent / "web"
-SCREENS = {"/", "/signup", "/login", "/lookup"}
-ASSETS = {
-    "/assets/app.css": ("app.css", "text/css; charset=utf-8"),
-    "/assets/app.js": ("app.js", "text/javascript; charset=utf-8"),
-}
+from json_codec import dumps, loads
 
 
 class RequestHeaders(Mapping):
@@ -39,10 +30,6 @@ class RequestHeaders(Mapping):
 
 class MalformedRequest(ValueError):
     pass
-
-
-def reject_constant(value):
-    raise MalformedRequest("JSON does not permit non-finite constants")
 
 
 class Server(ThreadingHTTPServer):
@@ -92,7 +79,7 @@ class Handler(BaseHTTPRequestHandler):
         if len(raw) != length:
             raise MalformedRequest("Incomplete request body")
         try:
-            body = json.loads(raw.decode("utf-8"), parse_constant=reject_constant)
+            body = loads(raw)
         except (ValueError, UnicodeError, RecursionError) as exc:
             raise MalformedRequest("Body must be valid UTF-8 JSON") from exc
         if not isinstance(body, dict):
@@ -103,18 +90,11 @@ class Handler(BaseHTTPRequestHandler):
         # Serialize before sending headers so serialization cannot leave a false
         # successful status on an incomplete response. ASCII escapes are UTF-8
         # compatible and also safely preserve JSON-escaped surrogate strings.
-        payload = b"" if status == 204 else json.dumps(
-            body, ensure_ascii=True, allow_nan=False, separators=(",", ":")
-        ).encode("utf-8")
-        self.respond_bytes(status, payload, "application/json; charset=utf-8")
-
-    def respond_bytes(self, status, payload, content_type):
+        payload = b"" if status == 204 else dumps(body)
         self.send_response(status)
-        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(payload)))
         self.send_header("Cache-Control", "no-store")
-        self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Content-Security-Policy", "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'")
         if self.close_connection:
             self.send_header("Connection", "close")
         self.end_headers()
@@ -131,15 +111,6 @@ class Handler(BaseHTTPRequestHandler):
             }})
             return
         try:
-            path = urlsplit(self.path).path
-            if self.command in {"GET", "HEAD"}:
-                if path in SCREENS:
-                    self.respond_bytes(200, (WEB / "index.html").read_bytes(), "text/html; charset=utf-8")
-                    return
-                if path in ASSETS:
-                    filename, content_type = ASSETS[path]
-                    self.respond_bytes(200, (WEB / filename).read_bytes(), content_type)
-                    return
             status, result = self.server.engine.request(
                 self.command, self.path, RequestHeaders(self.headers), body
             )
