@@ -407,6 +407,7 @@ async def concurrent_pair_transport(context,page):
     results=await asyncio.gather(*(request(context,BASE,"/reservations","POST",body,auth['token'],'pair-identical') for _ in range(50)))
     statuses=[r[0] for r in results]
     check(statuses.count(201)==1 and statuses.count(200)==49,"50 identical pair requests: one create, 49 replays")
+    identical_counts={str(s):statuses.count(s) for s in set(statuses)}
     original=results[statuses.index(201)][1]
     check(all(r[1]==original for r in results),"all concurrent receipts identical JSON")
     check(original['table_ids']==['t_garden','t_window'] and 'table_id' not in original,"pair canonicalization through adapter")
@@ -422,7 +423,7 @@ async def concurrent_pair_transport(context,page):
     check(len(bookings['reservations'])==1,"competition never partially persists")
     _,availability=await request(context,BASE,f"/availability?restaurant_id=r_garden&date={DATE}&party_size=1")
     check(availability['slots'][0]['available_table_ids']==['t_corner'],"both members atomically occupied at read")
-    REPORT['trace'].append({'scenario':'concurrent-pair-transport','identical_status_counts':{str(s):statuses.count(s) for s in set(statuses)},'races':50,'persisted':1})
+    REPORT['trace'].append({'scenario':'concurrent-pair-transport','identical_status_counts':identical_counts,'competing_status_counts':{str(s):statuses.count(s) for s in set(statuses)},'races':50,'persisted':1})
 
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
