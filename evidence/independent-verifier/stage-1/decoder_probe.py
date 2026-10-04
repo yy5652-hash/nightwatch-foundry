@@ -108,7 +108,10 @@ class DecoderProbe:
         # Add the deep value both to the whole request and an ignored item field.
         def move_body(value):
             item=inject(shallow(dict(reference=ref,table_id="b")),value)
-            return inject(b'{"moves":['+item+b','+shallow(dict(reference=second_ref,table_id="a"))+b']}',value)
+            # item already contains deep wrappers. Compose the independently
+            # known outer object grammar directly; inject validates only a
+            # shallow envelope and must not parse this composed deep object.
+            return b'{"moves":['+item+b','+shallow(dict(reference=second_ref,table_id="a"))+b'],"ignored":'+value+b'}'
         moves=move_body(nested);move_key="deep-moves"
         moved=expect("moves","POST","/reservation-moves",moves,token=token,key=move_key)
         if moved[0]!=201:self.blocked.append(dict(case=stem,reason="deep swap refused; real batch replay paths remain unverified"));return

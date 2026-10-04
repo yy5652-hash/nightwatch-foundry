@@ -1,0 +1,129 @@
+{
+  "candidate": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+  "original_probe_revision": "80799a5c9c42d2a88084b2fa340e275b91f34a2b",
+  "original_artifacts": "decoder-01 remains unchanged",
+  "original_requests": 151,
+  "original_assertions": 133,
+  "original_failed_assertions": 0,
+  "original_runner_errors": [
+    {
+      "type": "RecursionError",
+      "message": "maximum recursion depth exceeded while decoding a JSON array from a unicode string"
+    }
+  ],
+  "cause": "move_body called shallow-envelope inject on an already deep move item; exception occurred before the next HTTP request, not while forwarding an export",
+  "independent_reproduction": {
+    "type": "RecursionError",
+    "message": "maximum recursion depth exceeded while decoding a JSON array from a unicode string"
+  },
+  "client_default_recursion_limit": 1000,
+  "repair": "Compose the known outer moves object directly from its already valid item and raw ignored value. No deep client decode or recursion-limit change.",
+  "construction_checks": [
+    {
+      "shape": "array",
+      "depth": 1100,
+      "passed": true,
+      "bytes": 4771,
+      "sha256": "bc38e5efdb8a5344b2b555774eabbc7aba35cfc6052bcfeb1fab1459cfb710b7"
+    },
+    {
+      "shape": "array",
+      "depth": 5000,
+      "passed": true,
+      "bytes": 20371,
+      "sha256": "3ba25c1c4da4c220517095ae683611137b16bc73c6770481d0fa47813e96a877"
+    },
+    {
+      "shape": "array",
+      "depth": 10000,
+      "passed": true,
+      "bytes": 40371,
+      "sha256": "678fa795bbbf56959d19953cdd3689d4ea1918042e08995c63d47200a5d034d0"
+    },
+    {
+      "shape": "array",
+      "depth": 20000,
+      "passed": true,
+      "bytes": 80371,
+      "sha256": "5ec68ec95259fa7e57fabf29f83d367f2babaceb601681ff577c3203e5f3aeb9"
+    },
+    {
+      "shape": "object",
+      "depth": 1100,
+      "passed": true,
+      "bytes": 13571,
+      "sha256": "67c5bb9b8ced3b2d6bd9b3a34da02f85daabf41717dfb51a309aefdc023498d6"
+    },
+    {
+      "shape": "object",
+      "depth": 5000,
+      "passed": true,
+      "bytes": 60371,
+      "sha256": "250acbf6af796dd1da3e525c3019b70ec5ad3fc9824d7dfa7f2793b4c154bfd5"
+    },
+    {
+      "shape": "object",
+      "depth": 10000,
+      "passed": true,
+      "bytes": 120371,
+      "sha256": "a0b3f7340b182275451ebea226934ee41a07a74d8cf41c3e4bda8445245c70f4"
+    },
+    {
+      "shape": "object",
+      "depth": 20000,
+      "passed": true,
+      "bytes": 240371,
+      "sha256": "5b1b50264eff92a951c922d0327845975c7db8bd48b168def9aa7adb23282983"
+    },
+    {
+      "shape": "alternating",
+      "depth": 1100,
+      "passed": true,
+      "bytes": 9171,
+      "sha256": "6a1dbe984c8ab9e558f6f4823f71765c91848e5ce84b470da606b464e2814bba"
+    },
+    {
+      "shape": "alternating",
+      "depth": 5000,
+      "passed": true,
+      "bytes": 40371,
+      "sha256": "2b2148c981a6098710de13aa531d6dd2fac6c4275da8f868d4a69a0327831de9"
+    },
+    {
+      "shape": "alternating",
+      "depth": 10000,
+      "passed": true,
+      "bytes": 80371,
+      "sha256": "2eb5aef58e50b0d39fe4969d7b07f2e69c3644394c54e3a2eb8f0a05fe48aee4"
+    },
+    {
+      "shape": "alternating",
+      "depth": 20000,
+      "passed": true,
+      "bytes": 160371,
+      "sha256": "ef9fdba9e8f6f6656c2e440d80bf4cb051feeff69de73e0de7eacb8a46fdca6c"
+    }
+  ],
+  "original_cleanup": [
+    {
+      "resource": "independent-verifier-dec-1004051112357353-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-net",
+      "returncode": 0
+    }
+  ]
+}
