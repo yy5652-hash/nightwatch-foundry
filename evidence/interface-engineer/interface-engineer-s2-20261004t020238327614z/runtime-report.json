@@ -1,0 +1,321 @@
+{
+  "candidate": "496f996af35ec1d2545cc93c3d5dc617f9e815c2",
+  "started_at_utc": "2026-10-04T02:02:38.419511+00:00",
+  "source_hashes": {
+    "stage-2/server.py": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+    "stage-2/core.py": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+    "stage-2/Dockerfile": "c1eca1f177bd35118406d59737f4ce1c58cc836ba6fa116d751c3b1c317b4f1b",
+    "stage-2/.dockerignore": "49a5ddcc7d9469a4a6e05957460e78ec6707c3e48a3c3b9d35f0fbbce2b271cf",
+    "stage-2/RUN.md": "f7f0a853a5ca488eeac5a41284fb14245d2e7b160918af650750377838c3e0a5",
+    "stage-2/web/index.html": "29acc3b5ecf773d3107e91661df32c287576d5600307c2502efe39162383eb5f",
+    "stage-2/web/app.css": "c774d014d461af4456bc41c8427577b9eac43ddf59acb342ad0251159844722b",
+    "stage-2/web/app.js": "03bd58c59a54716e8fd662f08254a21a711fe330f08c922771e3ee497a6dd600"
+  },
+  "model_configured": "gpt-6.1-sol",
+  "harness": "Codex",
+  "runtime_model_effort_usage_spend": "unknown",
+  "out": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/interface-engineer/interface-engineer-s2-20261004t020238327614z",
+  "probe_hashes": {
+    "stage-2-browser-probe.py": "9a741bc38de3e19a6d6937802522eaaa3b37fe3628cb99ab0c81b932861dd9db",
+    "stage-2-container-check.py": "75e674eb8673ef6e69b085480d4a291bfc5ec757c0d172a247c8903381a054d5"
+  },
+  "override_healthy_seconds": 3.4,
+  "image_hashes_match": true,
+  "browser_summary": {
+    "passed": 18,
+    "total": 19,
+    "assertions": 308,
+    "seconds": 20.279,
+    "browser_version": "153.0.8010.12"
+  },
+  "verdict": "FAIL",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "seconds": 0.009,
+      "log": "revision.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "build",
+        "-t",
+        "interface-engineer-tablekeeper-s2:20261004t020238327614z",
+        "stage-2"
+      ],
+      "exit": 0,
+      "seconds": 0.713,
+      "log": "build-stage2.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "build",
+        "-t",
+        "interface-engineer-tablekeeper-s1:upgrade-20261004t020238327614z",
+        "stage-1"
+      ],
+      "exit": 0,
+      "seconds": 0.408,
+      "log": "build-accepted-stage1.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "interface-engineer-s2-20261004t020238327614z"
+      ],
+      "exit": 0,
+      "seconds": 0.028,
+      "log": "network-create.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-s2-20261004t020238327614z-service",
+        "--network",
+        "interface-engineer-s2-20261004t020238327614z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=9090",
+        "-p",
+        "18210:9090",
+        "interface-engineer-tablekeeper-s2:20261004t020238327614z"
+      ],
+      "exit": 0,
+      "seconds": 0.08,
+      "log": "start-interface-engineer-s2-20261004t020238327614z-service.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-s2-20261004t020238327614z-legacy",
+        "--network",
+        "interface-engineer-s2-20261004t020238327614z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=8080",
+        "-p",
+        "18211:8080",
+        "interface-engineer-tablekeeper-s1:upgrade-20261004t020238327614z"
+      ],
+      "exit": 0,
+      "seconds": 0.085,
+      "log": "start-interface-engineer-s2-20261004t020238327614z-legacy.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-s2-20261004t020238327614z-default",
+        "--network",
+        "interface-engineer-s2-20261004t020238327614z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "interface-engineer-tablekeeper-s2:20261004t020238327614z"
+      ],
+      "exit": 0,
+      "seconds": 0.097,
+      "log": "start-interface-engineer-s2-20261004t020238327614z-default.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-s2-20261004t020238327614z-default",
+        "python",
+        "-c",
+        "import urllib.request,json; r=urllib.request.urlopen('http://127.0.0.1:8080/health'); assert r.status==200 and json.load(r)=={'status':'ok'}; print('default PORT PASS')"
+      ],
+      "exit": 0,
+      "seconds": 0.133,
+      "log": "default-health.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-s2-20261004t020238327614z-service"
+      ],
+      "exit": 0,
+      "seconds": 3.034,
+      "log": "inspect-interface-engineer-s2-20261004t020238327614z-service.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-s2-20261004t020238327614z-legacy"
+      ],
+      "exit": 0,
+      "seconds": 3.044,
+      "log": "inspect-interface-engineer-s2-20261004t020238327614z-legacy.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-s2-20261004t020238327614z-default"
+      ],
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "inspect-interface-engineer-s2-20261004t020238327614z-default.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "inspect",
+        "interface-engineer-s2-20261004t020238327614z"
+      ],
+      "exit": 0,
+      "seconds": 0.031,
+      "log": "network-inspect.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-s2-20261004t020238327614z-service",
+        "python",
+        "-c",
+        "import hashlib,pathlib,json; print(json.dumps({str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').rglob('*') if p.is_file() and p.suffix in ('.py','.js','.css','.html')}))"
+      ],
+      "exit": 0,
+      "seconds": 3.12,
+      "log": "image-hashes.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "interface-engineer-s2-20261004t020238327614z-probe",
+        "--network",
+        "interface-engineer-s2-20261004t020238327614z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-v",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/interface-engineer/stage-2-browser-probe.py:/work/probe.py:ro",
+        "-v",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/interface-engineer/interface-engineer-s2-20261004t020238327614z:/out",
+        "-e",
+        "S2_BASE=http://interface-engineer-s2-20261004t020238327614z-service:9090",
+        "-e",
+        "S1_BASE=http://interface-engineer-s2-20261004t020238327614z-legacy:8080",
+        "-e",
+        "CANDIDATE=496f996af35ec1d2545cc93c3d5dc617f9e815c2",
+        "-e",
+        "PROBE_OUT=/out",
+        "df-harness-runner:latest",
+        "python",
+        "-B",
+        "/work/probe.py"
+      ],
+      "exit": 1,
+      "seconds": 20.513,
+      "log": "browser.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-s2-20261004t020238327614z-default"
+      ],
+      "exit": 0,
+      "seconds": 0.026,
+      "log": "logs-interface-engineer-s2-20261004t020238327614z-default.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-s2-20261004t020238327614z-default"
+      ],
+      "exit": 0,
+      "seconds": 0.097,
+      "log": "cleanup-interface-engineer-s2-20261004t020238327614z-default.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-s2-20261004t020238327614z-legacy"
+      ],
+      "exit": 0,
+      "seconds": 3.04,
+      "log": "logs-interface-engineer-s2-20261004t020238327614z-legacy.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-s2-20261004t020238327614z-legacy"
+      ],
+      "exit": 0,
+      "seconds": 0.127,
+      "log": "cleanup-interface-engineer-s2-20261004t020238327614z-legacy.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-s2-20261004t020238327614z-service"
+      ],
+      "exit": 0,
+      "seconds": 3.036,
+      "log": "logs-interface-engineer-s2-20261004t020238327614z-service.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-s2-20261004t020238327614z-service"
+      ],
+      "exit": 0,
+      "seconds": 0.124,
+      "log": "cleanup-interface-engineer-s2-20261004t020238327614z-service.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "interface-engineer-s2-20261004t020238327614z"
+      ],
+      "exit": 0,
+      "seconds": 0.1,
+      "log": "cleanup-network.log"
+    }
+  ],
+  "finished_at_utc": "2026-10-04T02:03:19.428299+00:00"
+}

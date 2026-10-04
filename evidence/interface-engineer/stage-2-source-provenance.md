@@ -40,3 +40,17 @@ claimed coverage counts were used to author the probes. Systems' exact Engine
 contract and old receipt-shape handoff were the only implementation coordination
 inputs. Frozen Stage 1 files are read solely to verify and build the permitted
 upgrade source, never altered or copied backwards.
+
+## Large-integer follow-up input
+
+Coordinator message `d1526e98-31d9-44b4-953f-fcc84ba8076c` identified the published
+party-size boundary for investigation within the same complete Stage 2 package.
+I authored and executed new black-box cases before repair. They confirmed exact
+queries/prefills/bodies already worked for finite large values, but exposed real
+capacity/lookup rounding and Chromium native numeric-input clearing beyond finite
+float range. Response scanning, integer sums and semantic exact-decimal number
+controls are original code derived from those observations and the supplied
+specification. No verifier test/source was read, copied or used as an oracle.
+The Number-input interpretation and complete failed outputs were posted explicitly
+to the coordinator; independent review is still required. No human approval,
+external documentation, host dependency installation or later-stage scope.

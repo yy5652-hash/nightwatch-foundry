@@ -1,0 +1,79 @@
+{"candidate": "496f996af35ec1d2545cc93c3d5dc617f9e815c2", "passed": 18, "total": 19, "assertions": 308, "seconds": 20.279}
+PASS transport-public
+PASS authentication-keyboard
+PASS single-book-lookup-cancel
+PASS out-of-order-search
+PASS single-conflict
+PASS combined-conflict
+PASS lost-single
+PASS lost-combined
+PASS genuine-stage1-upgrade
+PASS combined-occupancy
+PASS changed-retry-form
+PASS empty-unavailable-lookup
+PASS lookup-race-privacy-cutoff
+PASS auth-inputs-loading
+PASS concurrent-pair-transport
+PASS party-safe-boundary
+PASS party-above-safe-integer
+PASS party-31-digits
+FAIL party-401-digits
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 440, in large_party_exactness
+    await search(page,party=str(party))
+  File "/work/probe.py", line 72, in search
+    await expect(tid(page, "availability-grid")).to_be_visible()
+  File "/usr/local/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 23368, in to_be_visible
+    await self._impl_obj.to_be_visible(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 852, in to_be_visible
+    await self._expect_impl(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 128, in _expect_impl
+    _record_soft_or_raise(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 60, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_test_id("availability-grid") with timeout 5000ms
+  - waiting for get_by_test_id("availability-grid")
+
+Aria snapshot:
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Tablekeeper home":
+    - /url: /
+    - text: Tablekeeper A place at the table
+  - navigation "Main navigation":
+    - link "Find a table":
+      - /url: /
+    - link "Your reservation":
+      - /url: /lookup
+  - text: Ada
+  - button "Sign out"
+- main:
+  - paragraph: Time together, well spent
+  - heading "Find your place at the table." [level=1]
+  - paragraph: Choose a restaurant, a time, and a seat that suits your company.
+  - region "Find availability":
+    - text: Restaurant
+    - combobox "Restaurant":
+      - option "Garden Room" [selected]
+      - option "Harbor House"
+    - text: Date
+    - textbox "Date": 2032-06-17
+    - text: Guests
+    - spinbutton "Guests"
+    - button "Find a table"
+    - alert: Choose a restaurant, a date, and a whole number of guests greater than zero.
+  - paragraph: A little planning, a lovely meal
+  - heading "Try another search" [level=2]
+  - paragraph: Choose your date and party size, then find a table.
+  - complementary:
+    - heading "A seat for your occasion" [level=3]
+    - paragraph: Choose an available table to see your booking details here.
+- contentinfo: Tablekeeper All booking times are local to the restaurant.
+

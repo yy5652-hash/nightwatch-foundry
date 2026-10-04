@@ -1,0 +1,109 @@
+{"candidate": "e176224a7861f3b1a2396fdc51b559a1e3f40e8d", "passed": 15, "total": 19, "assertions": 300, "seconds": 20.79}
+PASS transport-public
+PASS authentication-keyboard
+PASS single-book-lookup-cancel
+PASS out-of-order-search
+PASS single-conflict
+PASS combined-conflict
+PASS lost-single
+PASS lost-combined
+PASS genuine-stage1-upgrade
+PASS combined-occupancy
+PASS changed-retry-form
+PASS empty-unavailable-lookup
+PASS lookup-race-privacy-cutoff
+PASS auth-inputs-loading
+PASS concurrent-pair-transport
+FAIL party-safe-boundary
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 462, in large_party_exactness
+    for name,passed in checks.items():check(passed,'large-party '+name+': '+json.dumps(observations))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: large-party exact_pair_sum: {"party": "9007199254740991", "query": ["9007199254740991"], "prefill": "9007199254740991", "writes": [{"key": "tk-cd11b3b718863f45b767e420fd24cd2d", "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740991}"}, {"key": "tk-cd11b3b718863f45b767e420fd24cd2d", "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740991}"}], "grid_single": "Window\n9007199254740991 seats \u00b7 Choose table", "grid_pair": "Garden + Window\nTogether \u00b7 9007199254740996 seats \u00b7 Choose table", "lookup_guests": "9007199254740991", "checks": {"plain_exact_query": true, "exact_prefill": true, "exact_json_numeric_body": true, "identical_key_body": true, "exact_single_capacity": true, "exact_pair_sum": false, "exact_lookup_guests": true}}
+
+FAIL party-above-safe-integer
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 462, in large_party_exactness
+    for name,passed in checks.items():check(passed,'large-party '+name+': '+json.dumps(observations))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: large-party exact_single_capacity: {"party": "9007199254740993", "query": ["9007199254740993"], "prefill": "9007199254740993", "writes": [{"key": "tk-a5482c573219c8a6b6fa2c7b5cd46b11", "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740993}"}, {"key": "tk-a5482c573219c8a6b6fa2c7b5cd46b11", "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":9007199254740993}"}], "grid_single": "Window\n9007199254740992 seats \u00b7 Choose table", "grid_pair": "Garden + Window\nTogether \u00b7 9007199254740996 seats \u00b7 Choose table", "lookup_guests": "9007199254740992", "checks": {"plain_exact_query": true, "exact_prefill": true, "exact_json_numeric_body": true, "identical_key_body": true, "exact_single_capacity": false, "exact_pair_sum": false, "exact_lookup_guests": false}}
+
+FAIL party-31-digits
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 462, in large_party_exactness
+    for name,passed in checks.items():check(passed,'large-party '+name+': '+json.dumps(observations))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/probe.py", line 38, in check
+    raise AssertionError(description)
+AssertionError: large-party exact_single_capacity: {"party": "1000000000000000000000000000001", "query": ["1000000000000000000000000000001"], "prefill": "1000000000000000000000000000001", "writes": [{"key": "tk-06fdddc591fa1ccd7f58d7ef8d745e5c", "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1000000000000000000000000000001}"}, {"key": "tk-06fdddc591fa1ccd7f58d7ef8d745e5c", "body": "{\"restaurant_id\":\"r_garden\",\"table_id\":\"t_window\",\"starts_at_local\":\"2032-06-17T18:00\",\"party_size\":1000000000000000000000000000001}"}], "grid_single": "Window\n1e+30 seats \u00b7 Choose table", "grid_pair": "Garden + Window\nTogether \u00b7 1e+30 seats \u00b7 Choose table", "lookup_guests": "1e+30", "checks": {"plain_exact_query": true, "exact_prefill": true, "exact_json_numeric_body": true, "identical_key_body": true, "exact_single_capacity": false, "exact_pair_sum": false, "exact_lookup_guests": false}}
+
+FAIL party-401-digits
+Traceback (most recent call last):
+  File "/work/probe.py", line 102, in scenario
+    await callback(context, page)
+  File "/work/probe.py", line 440, in large_party_exactness
+    await search(page,party=str(party))
+  File "/work/probe.py", line 72, in search
+    await expect(tid(page, "availability-grid")).to_be_visible()
+  File "/usr/local/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 23368, in to_be_visible
+    await self._impl_obj.to_be_visible(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 852, in to_be_visible
+    await self._expect_impl(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 128, in _expect_impl
+    _record_soft_or_raise(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_assertions.py", line 60, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_test_id("availability-grid") with timeout 5000ms
+  - waiting for get_by_test_id("availability-grid")
+
+Aria snapshot:
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Tablekeeper home":
+    - /url: /
+    - text: Tablekeeper A place at the table
+  - navigation "Main navigation":
+    - link "Find a table":
+      - /url: /
+    - link "Your reservation":
+      - /url: /lookup
+  - text: Ada
+  - button "Sign out"
+- main:
+  - paragraph: Time together, well spent
+  - heading "Find your place at the table." [level=1]
+  - paragraph: Choose a restaurant, a time, and a seat that suits your company.
+  - region "Find availability":
+    - text: Restaurant
+    - combobox "Restaurant":
+      - option "Garden Room" [selected]
+      - option "Harbor House"
+    - text: Date
+    - textbox "Date": 2032-06-17
+    - text: Guests
+    - spinbutton "Guests"
+    - button "Find a table"
+    - alert: Choose a restaurant, a date, and a whole number of guests greater than zero.
+  - paragraph: A little planning, a lovely meal
+  - heading "Try another search" [level=2]
+  - paragraph: Choose your date and party size, then find a table.
+  - complementary:
+    - heading "A seat for your occasion" [level=3]
+    - paragraph: Choose an available table to see your booking details here.
+- contentinfo: Tablekeeper All booking times are local to the restaurant.
+

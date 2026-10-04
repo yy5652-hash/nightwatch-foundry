@@ -1,5 +1,10 @@
 # Stage 2 Interface implementation and integration handoff
 
+**Update 2026-10-04:** the appended large-integer boundary repair supersedes the
+original candidate/counts below. Current tested full revision is
+`8035394fd718d4a99d7a1b934304e7761304a26f`: **20/20 scenarios, 359 assertions PASS**.
+Original results and failures remain preserved. Independent acceptance is pending.
+
 Interface implementation is complete for independent review. This is builder
 evidence, not promotion or a hidden judging result. Highest consecutive accepted
 stage remains 1 according to the coordinator's frozen manifest.
@@ -137,3 +142,73 @@ Harness: Codex. Operator-configured model: gpt-6.1-sol. Actual runtime model
 override, effort, token usage, catalog estimate and billed spend are unknown.
 Wall times, commands and commit provenance are measured in the append-only ledger;
 no judging score or independent acceptance is inferred from these diagnostics.
+
+## Large-integer boundary follow-up, 2026-10-04
+
+Input: coordinator source-boundary note `d1526e98-31d9-44b4-953f-fcc84ba8076c`,
+within the existing full Stage 2 package. No new external product/source or
+verifier probe code was consulted. The original client already retained exact
+plain-digit party queries, prefilled strings and emitted JSON numeric tokens.
+The new independent builder probes expanded that boundary to fixture capacities,
+pair sums, lookup counts, keyboard stepping and values beyond native float range.
+
+Reproduction `e176224a7861f3b1a2396fdc51b559a1e3f40e8d` used the original graded
+service tree. It passed 15/19 scenarios but exposed four new failures:
+`9007199254740991` had a rounded pair sum; `9007199254740993` and `10^30+1`
+had rounded/exponent-form capacity and lookup labels; native Chromium number
+input cleared `10^400+1` before submission. For the finite cases the exact query,
+prefill, request JSON number and unchanged body/key were already correct.
+Preserved artifacts: `interface-engineer-s2-20261004t020049436891z/`.
+
+Repair `496f996af35ec1d2545cc93c3d5dc617f9e815c2` validates response JSON syntax
+before scanning tokens, retains unsafe plain integer tokens as exact decimal
+strings inside the browser, leaves quoted text untouched, and sums table capacities
+with BigInt. This changes neither the API wire value/type nor any submitted
+request/receipt. MAX_SAFE_INTEGER selects an internal representation, never a
+party-size limit. That image passed 18/19 scenarios; the native input limitation
+remained. Its failure is retained in `interface-engineer-s2-20261004t020238327614z/`.
+
+Repair `78ace90ad6022e534f4c78003d883de98d47e883` uses exact-decimal numeric
+controls: text storage with numeric input mode, labelled spinbutton semantics,
+visible increment/decrement controls, exact arrow-key stepping and a minimum of
+one. It adds no upper cap. The published UI calls for Number/Number input without
+prescribing an HTML type; Interface explicitly interprets that as a semantic
+numeric control rather than an unbounded native float control. This interpretation
+was posted to coordinator and remains subject to independent review; no coordinator
+approval is invented. The control retains actual DOM input values, not mocked
+getters or hidden substitute values. Both required test IDs remain on the real
+visible editable numeric field. Server validation/limits remain authoritative.
+
+Final tested full revision `8035394fd718d4a99d7a1b934304e7761304a26f` includes
+RUN instructions and stronger accessible-value/keyboard assertions. Stage 2 tree:
+`045c05f05e57556048e2c8e2ed4faad6ee748ff5`. No core.py, server.py, Dockerfile,
+Stage 1 or other seat's implementation was changed in this follow-up.
+
+Observed final result: **20/20 scenarios PASS, no skips; 359 assertions; 15.964 s**.
+All previous 15 scenarios are rerun, including genuine Stage 1 recovery and 50-client
+pair races. New cases independently check `9007199254740991`, `9007199254740993`,
+`10^30+1` and `10^400+1`: exact plain query, exact prefill, integer JSON body,
+unchanged key/body replay, exact single capacity, exact pair sum, exact lookup
+guest count, quoted numeric label preservation, spinbutton/input-mode semantics,
+accessible value and exact keyboard increments/decrements. A real committed response
+is deliberately corrupted with an invalid unquoted numeric key; it remains uncertain
+and recovers the original reference on an unchanged retry. Invalid JSON is never
+made valid by the exact-integer scanner.
+
+Final directory: `evidence/interface-engineer/interface-engineer-s2-20261004t020650125411z/`.
+It retains candidate/probe/source hashes, 43 genuine screenshots, seeded traces,
+complete commands and resource/startup/cleanup evidence. Image source hashes match
+the committed candidate; default and override PORT succeed, override healthy
+measurement is 3.434 s. All service/browser containers run at 2 CPU/2 GiB on an
+internal network. Own containers/networks are removed; images retained. Desktop
+and 375px large-count views have no horizontal page scrolling. The original
+20/20 intermediate run remains in `interface-engineer-s2-20261004t020457946050z/`;
+the final run replaces its loosely labelled lookup-element assertion with real
+numeric-field role/mode/value/keyboard checks rather than claiming that old
+assertion proved those properties.
+
+Reproduce with the unchanged command above. Append-only ledger records every
+failure/repair/run separately. Highest accepted stage remains 1; the numeric-control
+interpretation, independent named review, official isolated regressions and
+clean-clone acceptance remain review gates. Historical timestamp interpretation
+and actual model/effort/spend unknowns are unchanged.
