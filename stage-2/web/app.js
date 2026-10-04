@@ -34,6 +34,17 @@
   class Refusal extends Error {
     constructor(status, value) { super(value?.error?.message || 'The request could not be accepted.'); this.status=status; this.code=value?.error?.code; }
   }
+  const refusalText = (error, context) => ({
+    email_taken:'An account already uses this email address. Sign in instead.',
+    unauthenticated:context==='auth'?'The email address or password was not recognised. Please check them and try again.':'Please sign in again to continue.',
+    cutoff_passed:'This reservation is too close to its start time to cancel or change.',
+    party_exceeds_capacity:'This seating option cannot accommodate that many guests. Choose a larger table or an approved pair.',
+    invalid_local_time:'This local time does not exist because the clocks change. Choose another available time.',
+    outside_opening_hours:'This time falls outside the restaurant’s booking hours. Choose an available time.',
+    not_on_slot_grid:'Choose one of the restaurant’s available start times.',
+    validation_failed:context==='auth'?'Please check your email and account details. New passwords need at least 8 characters.':'Please check the date, seating choice and number of guests.',
+    reservation_cancelled:'This reservation has already been cancelled.',
+  }[error.code] || error.message);
   async function api(path, {method='GET', body, rawBody, key, token=state.user?.token}={}) {
     const headers = {Accept:'application/json'};
     if (token) headers.Authorization = `Bearer ${token}`;
@@ -109,7 +120,7 @@
         navigate('/');
       } catch (error) {
         if (state.route!==`/${prefix}`) return;
-        state.authError=error instanceof Refusal ? error.message : 'Unable to connect. Please try again.';
+        state.authError=error instanceof Refusal ? refusalText(error,'auth') : 'Unable to connect. Please try again.';
         document.querySelector('#auth-feedback').innerHTML=feedback('auth-error',state.authError);
         button.disabled=false; button.textContent=signup?'Create account':'Sign in';
       }
@@ -186,7 +197,7 @@
       state.result={restaurant,availability,query};state.searchPhase='ready';state.authError='';renderResults();renderBooking();
     } catch (error) {
       if (seq!==state.searchSeq) return;
-      state.searchPhase='error';state.result=null;state.searchError=error instanceof Refusal?error.message:'Availability could not be loaded. Please try again.';renderResults();renderBooking();
+      state.searchPhase='error';state.result=null;state.searchError=error instanceof Refusal?refusalText(error,'search'):'Availability could not be loaded. Please try again.';renderResults();renderBooking();
     }
   }
   function bookingBody(booking) {
@@ -243,7 +254,7 @@
       if (state.booking!==b || state.authEpoch!==epoch) return;
       b.phase='idle';b.confirmation=null;
       if (error instanceof Refusal) {
-        b.error=error.code==='table_unavailable'?'This table was just taken. We’ve refreshed availability; your details are kept below. Choose another option to continue.':error.message;
+        b.error=error.code==='table_unavailable'?'This table was just taken. We’ve refreshed availability; your details are kept below. Choose another option to continue.':refusalText(error,'booking');
         b.uncertain='';renderBooking();
         if (error.code==='table_unavailable') await search(true);
       } else { b.error='';b.uncertain='We couldn’t confirm the response. Your booking may have succeeded. Retry this unchanged form to recover its original reference.';renderBooking(); }
@@ -275,7 +286,7 @@
       const restaurant=await api(`/restaurants/${encodeURIComponent(receipt.restaurant_id)}`);
       if(seq!==l.seq || epoch!==state.authEpoch)return;
       l.detail=receipt;l.restaurant=restaurant;l.phase='ready';renderLookup();
-    } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='idle';l.error=error instanceof Refusal?error.status===404?'No reservation was found for this account and reference.':error.message:'The reservation could not be loaded. Please try again.';renderLookup();}
+    } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='idle';l.error=error instanceof Refusal?error.status===404?'No reservation was found for this account and reference.':refusalText(error,'lookup'):'The reservation could not be loaded. Please try again.';renderLookup();}
   }
   async function cancelReservation() {
     const l=state.lookup,seq=++l.seq,epoch=state.authEpoch,reference=l.detail?.reference;
@@ -285,7 +296,7 @@
       const receipt=await api(`/reservations/${encodeURIComponent(reference)}/cancel`,{method:'POST'});
       if(seq!==l.seq || epoch!==state.authEpoch)return;
       l.detail=receipt;l.phase='ready';renderLookupDetail();
-    } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='ready';l.error=error instanceof Refusal?error.message:'The cancellation outcome could not be confirmed. Try again to check it.';renderLookupDetail();}
+    } catch(error) {if(seq!==l.seq || epoch!==state.authEpoch)return;l.phase='ready';l.error=error instanceof Refusal?refusalText(error,'cancel'):'The cancellation outcome could not be confirmed. Try again to check it.';renderLookupDetail();}
   }
   async function loadCatalogue() {
     state.cataloguePhase='loading';state.catalogueError='';render();
