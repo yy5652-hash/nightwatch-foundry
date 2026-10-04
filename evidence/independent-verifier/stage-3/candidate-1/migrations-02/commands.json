@@ -1,0 +1,38 @@
+[
+  {
+    "label": "migrations",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s3-1004072505-check",
+      "--network",
+      "independent-verifier-s3-1004072505-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1/migrations-02:/evidence",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1/runtime-01:/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1/runtime-01:ro",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1:/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1:ro",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1/assembly-08:/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1/assembly-08:ro",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s3-1004072505:client-f9d2ea62",
+      "/verifier/stage-3/stage3_legacy.py",
+      "--release",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-3/candidate-1/assembly-08/release.json",
+      "--out",
+      "/evidence/migrations"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "seconds": 1.0354317910023383,
+    "log": "migrations.log"
+  }
+]

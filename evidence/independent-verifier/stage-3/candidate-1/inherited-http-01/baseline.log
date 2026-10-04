@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/verifier/stage-3/stage3_inherited.py", line 35, in <module>
+    exec(compile(source,str(H1/script),'exec'),{'__name__':'__main__','__file__':str(H1/script)})
+  File "/verifier/stage-1/probe.py", line 821, in <module>
+    main()
+  File "/verifier/stage-1/probe.py", line 807, in main
+    from supplemental import run as run_supplemental
+  File "/verifier/stage-1/supplemental.py", line 5, in <module>
+    from requirements import FIXTURE_STRING_FIELDS, FIXTURE_NUMBER_FIELDS
+ImportError: cannot import name 'FIXTURE_STRING_FIELDS' from 'requirements' (/verifier/stage-2/requirements.py)

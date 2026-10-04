@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/verifier/stage-3/stage3_probe.py", line 513, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-3/stage3_probe.py", line 508, in main
+    else:FAMILIES[args.family](c)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-3/stage3_probe.py", line 335, in retry_family
+    c.response(kind+'-failed-key',c.call('POST',path,failed,token=token,key='failed'),422,'validation_failed')
+  File "/verifier/stage-3/stage3_probe.py", line 102, in response
+    actual,value,_=result;self.check(case,actual==status and (code is None or value.get('error',{}).get('code')==code),{'status':actual,'expected':status,'code':code})
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-3/stage3_probe.py", line 100, in check
+    if not condition:raise AssertionError(case)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: series-failed-key

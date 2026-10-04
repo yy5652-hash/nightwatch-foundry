@@ -1,0 +1,51 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 449B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/8] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#4 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.27MB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/8] RUN pip install --no-cache-dir playwright==1.63.0 && playwright install --with-deps chromium
+#6 CACHED
+
+#7 [3/8] RUN apt-get update && apt-get install -y --no-install-recommends tzdata && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/8] WORKDIR /verifier
+#8 CACHED
+
+#9 [5/8] COPY stage-2/*.py /verifier/stage-2/
+#9 DONE 0.0s
+
+#10 [6/8] COPY stage-1/*.py /verifier/stage-1/
+#10 DONE 0.0s
+
+#11 [7/8] WORKDIR /verifier/stage-2
+#11 DONE 0.0s
+
+#12 [8/8] COPY stage-3/*.py /verifier/stage-3/
+#12 DONE 0.0s
+
+#13 exporting to image
+#13 exporting layers 0.0s done
+#13 exporting manifest sha256:cc7daf5d2253513f11b6449f15c4244a74238e1d7a65a24aaa56a62963f7a73c done
+#13 exporting config sha256:bd4518fe5cc3edec0f16f3de1263d2e189c8cd34398512e120204bd728bedd5c done
+#13 exporting attestation manifest sha256:97cc2e9161352160979c978ba03bfea934b407c26ec2a39e9c8c1fb2c95bb883 done
+#13 exporting manifest list sha256:be9903a12d0215f32a3ed9704fed5d84c7a0e534c40ce7e9c0389e31c6ab398c done
+#13 naming to docker.io/library/independent-verifier-s3-1004072505:client done
+#13 unpacking to docker.io/library/independent-verifier-s3-1004072505:client 0.0s done
+#13 DONE 0.1s

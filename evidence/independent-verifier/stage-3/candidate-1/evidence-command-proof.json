@@ -1,0 +1,57 @@
+{
+  "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+  "commands": [
+    {
+      "argv": [
+        "../../.venv/bin/python",
+        "-B",
+        "evidence/independent-verifier/stage-3/stage3_review.py",
+        "--out",
+        "evidence/independent-verifier/stage-3/candidate-1/review-02"
+      ],
+      "returncode": 0,
+      "observed_tool_wall_seconds": 0.007744583
+    },
+    {
+      "argv": [
+        "../../.venv/bin/python",
+        "-B",
+        "evidence/independent-verifier/stage-3/stage3_bind.py",
+        "--out",
+        "evidence/independent-verifier/stage-3/candidate-1/binding-04",
+        "--review-file",
+        "evidence/independent-verifier/stage-3/candidate-1/review-02/review-checks.json"
+      ],
+      "returncode": 0,
+      "external_wall_seconds": null
+    },
+    {
+      "argv": [
+        "../../.venv/bin/python",
+        "-B",
+        "evidence/independent-verifier/stage-3/stage3_finalize.py"
+      ],
+      "returncode": 0,
+      "observed_tool_wall_seconds": 0.434028208
+    },
+    {
+      "argv": [
+        "../../.venv/bin/python",
+        "-B",
+        "evidence/independent-verifier/stage-3/stage3_artifact_audit.py",
+        "--out",
+        "evidence/independent-verifier/stage-3/candidate-1/artifact-audit.json"
+      ],
+      "returncode": 0,
+      "external_wall_seconds": null
+    }
+  ],
+  "scope": "Actual commands; no invented unmeasured external timings. Original source versions preserved in execution-source.",
+  "source_hashes": {
+    "stage3_artifact_audit.py": "e09253d28bb391855e6c473708cf04aaef451c990d8a9e79474034e245511b2f",
+    "stage3_cleanup.py": "0fb09a59e502fa9c4437bc6a3f89a4096c7303daa1220de03746e16ce9879c72",
+    "stage3_review.py": "b902c9df764ca816a04f6cce7de0f5c3e088983fa31a892e49cb3f903bd0c905",
+    "stage3_finalize.py": "9a1dcf285cef2023298abc58e44f054e2f9b3b2c3abf6b7fb924bd8e6d8db1fa",
+    "stage3_bind.py": "0469b12c0b4bd36beb301f5f87827f995a3e72cd7ac880366950fe58186f485c"
+  }
+}

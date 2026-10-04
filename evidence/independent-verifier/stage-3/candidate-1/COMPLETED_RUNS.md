@@ -1,0 +1,67 @@
+# Complete current independent protocols
+
+| Scope | Kind | Actual operations | Assertions | Seconds | Evidence |
+| --- | --- | ---: | ---: | ---: | --- |
+| new-http-01/policies | http | 25 | 38 | 0.379239875 | [new-http-01/policies](new-http-01/policies/summary.json) |
+| new-http-01/explain | http | 20 | 742 | 0.367171209 | [new-http-01/explain](new-http-01/explain/summary.json) |
+| new-http-01/numeric | http | 1304 | 1408 | 17.550657083 | [new-http-01/numeric](new-http-01/numeric/summary.json) |
+| new-http-01/terms | http | 36 | 59 | 0.377117791 | [new-http-01/terms](new-http-01/terms/summary.json) |
+| new-http-01/series | http | 50 | 70 | 0.374065917 | [new-http-01/series](new-http-01/series/summary.json) |
+| new-http-01/rollback | http | 100 | 106 | 1.019910542 | [new-http-01/rollback](new-http-01/rollback/summary.json) |
+| new-http-01/moves | http | 43 | 48 | 0.357795125 | [new-http-01/moves](new-http-01/moves/summary.json) |
+| new-http-01/concurrency | http | 117 | 20 | 0.650894542 | [new-http-01/concurrency](new-http-01/concurrency/summary.json) |
+| new-http-01/calendar | http | 42 | 48 | 0.734634333 | [new-http-01/calendar](new-http-01/calendar/summary.json) |
+| new-http-01/trace | http | 6386 | 27841 | 2.920627250 | [new-http-01/trace](new-http-01/trace/summary.json) |
+| new-http-01/first_error | http | 28 | 30 | 0.535610417 | [new-http-01/first_error](new-http-01/first_error/summary.json) |
+| new-http-01/upgrade | http | 50 | 54 | 0.759257917 | [new-http-01/upgrade](new-http-01/upgrade/summary.json) |
+| new-http-01/deep | http | 360 | 312 | 6.996241000 | [new-http-01/deep](new-http-01/deep/summary.json) |
+| new-http-02/retry | http | 34 | 40 | 0.515503583 | [new-http-02/retry](new-http-02/retry/summary.json) |
+| inherited-http-01/original-minimal | http | 4 | 9 | 0.232332542 | [inherited-http-01/original-minimal](inherited-http-01/original-minimal/summary.json) |
+| inherited-http-01/calendar-minimal | http | 8 | 12 | 0.324420333 | [inherited-http-01/calendar-minimal](inherited-http-01/calendar-minimal/summary.json) |
+| inherited-http-01/race50 | http | 55 | 11 | 0.341154708 | [inherited-http-01/race50](inherited-http-01/race50/summary.json) |
+| inherited-http-01/decimal | http | 196 | 124 | 1.800296375 | [inherited-http-01/decimal](inherited-http-01/decimal/summary.json) |
+| inherited-http-01/semantic | http | 631 | 481 | 4.239768209 | [inherited-http-01/semantic](inherited-http-01/semantic/summary.json) |
+| inherited-http-01/opaque-ids | http | 374 | 308 | 1.346259208 | [inherited-http-01/opaque-ids](inherited-http-01/opaque-ids/summary.json) |
+| inherited-http-01/nesting | http | 516 | 484 | 3.024740458 | [inherited-http-01/nesting](inherited-http-01/nesting/summary.json) |
+| inherited-http-01/snapshot | http | 810 | 531 | 6.355476209 | [inherited-http-01/snapshot](inherited-http-01/snapshot/summary.json) |
+| inherited-http-01/decoder | http | 2041 | 1702 | 14.605800250 | [inherited-http-01/decoder](inherited-http-01/decoder/probes.json) |
+| inherited-http-01/pairs | http | 949 | 2459 | 7.315882291 | [inherited-http-01/pairs](inherited-http-01/pairs/summary.json) |
+| inherited-http-01/large-minutes | http | 39 | 26 | 0.372192209 | [inherited-http-01/large-minutes](inherited-http-01/large-minutes.json) |
+| inherited-http-01/numeric | http | 30 | 27 | 0.298343875 | [inherited-http-01/numeric](inherited-http-01/numeric.json) |
+| inherited-http-01/fractional | http | 38 | 35 | 0.299814792 | [inherited-http-01/fractional](inherited-http-01/fractional.json) |
+| inherited-http-01/very-deep | http | 52 | 68 | 0.822452250 | [inherited-http-01/very-deep](inherited-http-01/very-deep.json) |
+| inherited-http-01/deep-race | http | 246 | 38 | 12.092869625 | [inherited-http-01/deep-race](inherited-http-01/deep-race.json) |
+| inherited-http-02/baseline | http | 1485 | 1497 | 8.477689250 | [inherited-http-02/baseline](inherited-http-02/baseline/summary.json) |
+| inherited-http-02/retained-amend | http | 5 | 2 | 0.345739333 | [inherited-http-02/retained-amend](inherited-http-02/retained-amend/summary.json) |
+| supplement-01/policies | http | 31 | 46 | 0.664288708 | [supplement-01/policies](supplement-01/policies/summary.json) |
+| supplement-01/explain | http | 11 | 112 | 0.366271459 | [supplement-01/explain](supplement-01/explain/summary.json) |
+| supplement-01/terms | http | 83 | 161 | 0.756844333 | [supplement-01/terms](supplement-01/terms/summary.json) |
+| supplement-01/series | http | 91 | 109 | 0.661869875 | [supplement-01/series](supplement-01/series/summary.json) |
+| closures-01/closures | http | 157 | 194 | 1.830951041 | [closures-01/closures](closures-01/closures/summary.json) |
+| read-races-01/races | http | 753 | 638 | 5.335670583 | [read-races-01/races](read-races-01/races/summary.json) |
+| reconstruction-http-02/origins | http | 127 | 84 | 0.867348708 | [reconstruction-http-02/origins](reconstruction-http-02/origins/summary.json) |
+| reconstruction-http-02/deep | http | 360 | 216 | 6.834611250 | [reconstruction-http-02/deep](reconstruction-http-02/deep/summary.json) |
+| reconstruction-http-02/opaque | http | 80 | 48 | 0.753464208 | [reconstruction-http-02/opaque](reconstruction-http-02/opaque/summary.json) |
+| reconstruction-http-02/numeric | http | 24 | 18 | 0.631734417 | [reconstruction-http-02/numeric](reconstruction-http-02/numeric/summary.json) |
+| old-supplement-01/oracle | http | 327 | 1169 | 0.643391250 | [old-supplement-01/oracle](old-supplement-01/oracle/summary.json) |
+| old-supplement-01/coverage | http | 32 | 24 | 0.538799791 | [old-supplement-01/coverage](old-supplement-01/coverage/summary.json) |
+| migrations-02/migrations | http | 247 | 287 | 1.035431791 | [migrations-02/migrations](migrations-02/migrations/summary.json) |
+| inherited-browser-01/boundaries | browser | 24 | 42 | 8.012465416 | [inherited-browser-01/boundaries](inherited-browser-01/boundaries/summary.json) |
+| inherited-browser-01/historical | browser | 12 | 6 | 2.704958458 | [inherited-browser-01/historical](inherited-browser-01/historical/summary.json) |
+| inherited-browser-01/visual | browser | 14 | 48 | 7.434932333 | [inherited-browser-01/visual](inherited-browser-01/visual/summary.json) |
+| inherited-browser-01/calendar | browser | 15 | 30 | 3.655871000 | [inherited-browser-01/calendar](inherited-browser-01/calendar/summary.json) |
+| inherited-browser-02/general | browser | 94 | 329 | 23.238640042 | [inherited-browser-02/general](inherited-browser-02/general/summary.json) |
+| reconstruction-browser-01/upgrade | browser | 10 | 26 | 2.715474875 | [reconstruction-browser-01/upgrade](reconstruction-browser-01/upgrade/summary.json) |
+| reconstruction-browser-01/numeric | browser | 51 | 420 | 52.714619625 | [reconstruction-browser-01/numeric](reconstruction-browser-01/numeric/summary.json) |
+| reconstruction-browser-01/opaque | browser | 8 | 56 | 8.313922291 | [reconstruction-browser-01/opaque](reconstruction-browser-01/opaque/summary.json) |
+| inherited-upgrade-01/four-upgrades | browser | 52 | 84 | 7.752440709 | [inherited-upgrade-01/four-upgrades](inherited-upgrade-01/four-upgrades/summary.json) |
+| old-supplement-02/overflow | browser | 4 | 18 | 5.942892458 | [old-supplement-02/overflow](old-supplement-02/overflow/summary.json) |
+| old-supplement-03/browser | browser | 10 | 75 | 12.597599791 | [old-supplement-03/browser](old-supplement-03/browser/summary.json) |
+| browser-03/product | browser | 24 | 82 | 9.469875541 | [browser-03/product](browser-03/product/browser-report.json) |
+| browser-03/accepted-s1 | browser | 7 | 21 | 2.869285292 | [browser-03/accepted-s1](browser-03/accepted-s1/upgrade-report.json) |
+| browser-03/accepted-s2 | browser | 7 | 21 | 3.281222250 | [browser-03/accepted-s2](browser-03/accepted-s2/upgrade-report.json) |
+| browser-03/accepted-s1-desktop | browser | 7 | 21 | 3.038218583 | [browser-03/accepted-s1-desktop](browser-03/accepted-s1-desktop/upgrade-report.json) |
+| browser-03/accepted-s2-desktop | browser | 7 | 21 | 4.742283667 | [browser-03/accepted-s2-desktop](browser-03/accepted-s2-desktop/upgrade-report.json) |
+| extra-browser-01/extra-browser | browser | 50 | 146 | 7.965681291 | [extra-browser-01/extra-browser](extra-browser-01/extra-browser/browser-report.json) |
+
+Docker argv for every scope are preserved in [completed-runs.json](completed-runs.json). Browser operations, browser-originated requests and forwarding transports remain separate. Per-run seconds measure the actual Docker command, not browser-only execution. The packaged Engine supplement is [separately labelled](direct-01/summary.json).

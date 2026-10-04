@@ -1,0 +1,1018 @@
+[
+  {
+    "method": "POST",
+    "path": "/_test/reset",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "users": [
+        {
+          "id": "u_a",
+          "email": "a@probe.invalid",
+          "password": {
+            "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+          },
+          "display_name": "Diner A"
+        },
+        {
+          "id": "u_b",
+          "email": "b@probe.invalid",
+          "password": {
+            "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+          },
+          "display_name": "Diner B"
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "r",
+          "name": "Verifier Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t0",
+              "label": "Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "t1",
+              "label": "Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "t2",
+              "label": "Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "t3",
+              "label": "Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "t1",
+              "t0"
+            ],
+            [
+              "t3",
+              "t2"
+            ],
+            [
+              "t2",
+              "t1"
+            ]
+          ]
+        },
+        {
+          "id": "other",
+          "name": "Other Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "other-t0",
+              "label": "Orchard Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "other-t1",
+              "label": "Orchard Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "other-t2",
+              "label": "Orchard Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "other-t3",
+              "label": "Orchard Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "other-t1",
+              "other-t0"
+            ],
+            [
+              "other-t3",
+              "other-t2"
+            ],
+            [
+              "other-t2",
+              "other-t1"
+            ]
+          ]
+        }
+      ],
+      "reservations": []
+    },
+    "key": null,
+    "has_token": false,
+    "status": 204,
+    "response": null,
+    "duration_seconds": 0.05109949999996388,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "a@probe.invalid",
+      "password": {
+        "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_a",
+      "display_name": "Diner A",
+      "token": {
+        "private_value_sha256": "78fba40de4410826b9568f556d1feccd1289341941a38d2dbbe081e2bb75b0d3"
+      }
+    },
+    "duration_seconds": 0.06297991700000694,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "b@probe.invalid",
+      "password": {
+        "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_b",
+      "display_name": "Diner B",
+      "token": {
+        "private_value_sha256": "5457304b2dd701377cad4a5ac0f25da78abce8d7864c5963f59587b213c458f2"
+      }
+    },
+    "duration_seconds": 0.0626435000000356,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/_test/reset",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "users": [
+        {
+          "id": "u_a",
+          "email": "a@probe.invalid",
+          "password": {
+            "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+          },
+          "display_name": "Diner A"
+        },
+        {
+          "id": "u_b",
+          "email": "b@probe.invalid",
+          "password": {
+            "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+          },
+          "display_name": "Diner B"
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "r",
+          "name": "Verifier Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t0",
+              "label": "Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "t1",
+              "label": "Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "t2",
+              "label": "Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "t3",
+              "label": "Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "t1",
+              "t0"
+            ],
+            [
+              "t3",
+              "t2"
+            ],
+            [
+              "t2",
+              "t1"
+            ]
+          ]
+        },
+        {
+          "id": "other",
+          "name": "Other Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "other-t0",
+              "label": "Orchard Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "other-t1",
+              "label": "Orchard Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "other-t2",
+              "label": "Orchard Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "other-t3",
+              "label": "Orchard Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "other-t1",
+              "other-t0"
+            ],
+            [
+              "other-t3",
+              "other-t2"
+            ],
+            [
+              "other-t2",
+              "other-t1"
+            ]
+          ]
+        }
+      ],
+      "reservations": []
+    },
+    "key": null,
+    "has_token": false,
+    "status": 204,
+    "response": null,
+    "duration_seconds": 0.0450674579999486,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "a@probe.invalid",
+      "password": {
+        "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_a",
+      "display_name": "Diner A",
+      "token": {
+        "private_value_sha256": "ccb789ea6dbcbdcd5fe20a2876ea2998119e753f7586a77fb300adaa73b31d13"
+      }
+    },
+    "duration_seconds": 0.0679458340000565,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "b@probe.invalid",
+      "password": {
+        "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_b",
+      "display_name": "Diner B",
+      "token": {
+        "private_value_sha256": "931ad888586a28b94f05c66c15e28e0b4ce656f8e52eea41d3dabb9885f93174"
+      }
+    },
+    "duration_seconds": 0.0665000000000191,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/reservations",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "restaurant_id": "r",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "starts_at_local": "2035-06-04T18:10",
+      "party_size": 6
+    },
+    "key": "visual-compete",
+    "has_token": true,
+    "status": 201,
+    "response": {
+      "reservation_id": "res_741c797b15ee4cf998b8108fe533f007",
+      "reference": "D184E6DD98",
+      "restaurant_id": "r",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "party_size": 6,
+      "starts_at_local": "2035-06-04T18:10",
+      "starts_at": "2035-06-04T18:10:00+00:00",
+      "ends_at": "2035-06-04T19:40:00+00:00",
+      "accepted_terms": {
+        "policy_version": 0,
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "mon",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "capacities": {
+          "t0": 2,
+          "t1": 4,
+          "t2": 6,
+          "t3": 8
+        }
+      },
+      "status": "confirmed",
+      "created_at": "2026-10-04T07:41:03.620759+00:00",
+      "revision": 1
+    },
+    "duration_seconds": 0.002325375000054919,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/_test/reset",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "users": [
+        {
+          "id": "u_a",
+          "email": "a@probe.invalid",
+          "password": {
+            "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+          },
+          "display_name": "Diner A"
+        },
+        {
+          "id": "u_b",
+          "email": "b@probe.invalid",
+          "password": {
+            "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+          },
+          "display_name": "Diner B"
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "r",
+          "name": "Verifier Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t0",
+              "label": "Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "t1",
+              "label": "Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "t2",
+              "label": "Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "t3",
+              "label": "Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "t1",
+              "t0"
+            ],
+            [
+              "t3",
+              "t2"
+            ],
+            [
+              "t2",
+              "t1"
+            ]
+          ]
+        },
+        {
+          "id": "other",
+          "name": "Other Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "other-t0",
+              "label": "Orchard Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "other-t1",
+              "label": "Orchard Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "other-t2",
+              "label": "Orchard Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "other-t3",
+              "label": "Orchard Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "other-t1",
+              "other-t0"
+            ],
+            [
+              "other-t3",
+              "other-t2"
+            ],
+            [
+              "other-t2",
+              "other-t1"
+            ]
+          ]
+        }
+      ],
+      "reservations": []
+    },
+    "key": null,
+    "has_token": false,
+    "status": 204,
+    "response": null,
+    "duration_seconds": 0.047974709000072835,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "a@probe.invalid",
+      "password": {
+        "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_a",
+      "display_name": "Diner A",
+      "token": {
+        "private_value_sha256": "66d88a547385be43f8e2a46c850d1c070b887a63de24fb26f90977e985c60beb"
+      }
+    },
+    "duration_seconds": 0.06673366699999406,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "b@probe.invalid",
+      "password": {
+        "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_b",
+      "display_name": "Diner B",
+      "token": {
+        "private_value_sha256": "3414fae8470fdddd2ba32ef2d0338fbb9bbf1ced8804b4ee0237d3e3ff2849de"
+      }
+    },
+    "duration_seconds": 0.07473812499995347,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/_test/reset",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "users": [
+        {
+          "id": "u_a",
+          "email": "a@probe.invalid",
+          "password": {
+            "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+          },
+          "display_name": "Diner A"
+        },
+        {
+          "id": "u_b",
+          "email": "b@probe.invalid",
+          "password": {
+            "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+          },
+          "display_name": "Diner B"
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "r",
+          "name": "Verifier Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t0",
+              "label": "Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "t1",
+              "label": "Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "t2",
+              "label": "Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "t3",
+              "label": "Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "t1",
+              "t0"
+            ],
+            [
+              "t3",
+              "t2"
+            ],
+            [
+              "t2",
+              "t1"
+            ]
+          ]
+        },
+        {
+          "id": "other",
+          "name": "Other Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "mon",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "wed",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "thu",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "fri",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sat",
+              "opens": "18:10",
+              "closes": "23:10"
+            },
+            {
+              "weekday": "sun",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "other-t0",
+              "label": "Orchard Window Alcove",
+              "capacity": 2
+            },
+            {
+              "id": "other-t1",
+              "label": "Orchard Garden Bench",
+              "capacity": 4
+            },
+            {
+              "id": "other-t2",
+              "label": "Orchard Cedar Booth",
+              "capacity": 6
+            },
+            {
+              "id": "other-t3",
+              "label": "Orchard Kitchen Nook",
+              "capacity": 8
+            }
+          ],
+          "combinable": [
+            [
+              "other-t1",
+              "other-t0"
+            ],
+            [
+              "other-t3",
+              "other-t2"
+            ],
+            [
+              "other-t2",
+              "other-t1"
+            ]
+          ]
+        }
+      ],
+      "reservations": []
+    },
+    "key": null,
+    "has_token": false,
+    "status": 204,
+    "response": null,
+    "duration_seconds": 0.04409766599997056,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "a@probe.invalid",
+      "password": {
+        "private_value_sha256": "4d956514834a848a3df00c81f0288d664052a12a2e749dd113c3e7a52c93a305"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_a",
+      "display_name": "Diner A",
+      "token": {
+        "private_value_sha256": "8cfdb9670bb4bdf643c2066030b8d685a4407e2fb699c1a9f159d002da5c12be"
+      }
+    },
+    "duration_seconds": 0.0675904580000406,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "email": "b@probe.invalid",
+      "password": {
+        "private_value_sha256": "24a291eb70e95d13aa5667833de3d848f4526cf11ac060f24fd948d137acad4d"
+      }
+    },
+    "key": null,
+    "has_token": false,
+    "status": 200,
+    "response": {
+      "user_id": "u_b",
+      "display_name": "Diner B",
+      "token": {
+        "private_value_sha256": "a6a5f5391caadff74cfc589b9ee8801ac03349162b460823fc98341f024343ea"
+      }
+    },
+    "duration_seconds": 0.06595387499999106,
+    "exact_numeric_decoder": false
+  },
+  {
+    "method": "POST",
+    "path": "/reservations",
+    "base": "http://independent-verifier-s3-1004072505-target:18309",
+    "body": {
+      "restaurant_id": "r",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "starts_at_local": "2035-06-04T18:10",
+      "party_size": 6
+    },
+    "key": "visual-compete",
+    "has_token": true,
+    "status": 201,
+    "response": {
+      "reservation_id": "res_06236e37321f49fa8da2e0e71a923f03",
+      "reference": "7C0E63E715",
+      "restaurant_id": "r",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "party_size": 6,
+      "starts_at_local": "2035-06-04T18:10",
+      "starts_at": "2035-06-04T18:10:00+00:00",
+      "ends_at": "2035-06-04T19:40:00+00:00",
+      "accepted_terms": {
+        "policy_version": 0,
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "mon",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "capacities": {
+          "t0": 2,
+          "t1": 4,
+          "t2": 6,
+          "t3": 8
+        }
+      },
+      "status": "confirmed",
+      "created_at": "2026-10-04T07:41:08.014927+00:00",
+      "revision": 1
+    },
+    "duration_seconds": 0.0020564999999805877,
+    "exact_numeric_decoder": false
+  }
+]
