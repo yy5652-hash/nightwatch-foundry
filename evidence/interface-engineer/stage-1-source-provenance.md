@@ -83,3 +83,17 @@ domain source inputs.
 Earlier room declaration: message `f8738479-3750-4add-a9d6-2fa7871a98dd`.
 This file makes the declaration inspectable and clarifies guide reread timing.
 Implementation and evidence commits remain preserved without history rewriting.
+
+## Later TIMESTAMP-3 interpretation and probe extension
+
+After the initial declaration, I read the coordinator's
+`evidence/coordinator/timestamp-representation-decision.md` and updated active
+plan when message `3b19f2a6-4b23-4528-9643-c4dcbbf202d6` assigned an integration
+regression under that decision. I extended only my own HTTP probe, committed at
+`94c4d59cffb71c2936434d3379673ad4951753e5`. The reference calculation uses
+packaged IANA offsets, ordinal arithmetic and independent exhaustive minute-offset
+enumeration from the decision. No production serializer or verifier probe source
+was opened or copied. Systems' committed-candidate handoff and my own resulting
+container output were later diagnostic inputs. Interface service files remained
+unchanged. The resulting integration evidence is in
+`stage-1-timestamp-03-check.md`; its interpretation is explicitly disclosed.
