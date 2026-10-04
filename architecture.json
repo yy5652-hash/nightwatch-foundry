@@ -1,0 +1,24 @@
+{
+  "kind": "layered",
+  "title": "Tablekeeper cumulative service",
+  "layers": [
+    {"id": "experience", "title": "Diner and manager experience", "items": [
+      {"id": "browser", "label": "Offline browser product", "detail": "Stage 2 onward; authoritative responses and stable retry identity"}
+    ]},
+    {"id": "service", "title": "Single-container HTTP service", "items": [
+      {"id": "transport", "label": "HTTP transport and runtime", "detail": "Interface Engineer owns integration, launch and presentation"},
+      {"id": "integrity", "label": "Atomic service engine", "detail": "Systems Engineer owns authentication, transactions and state invariants"},
+      {"id": "planning", "label": "Terms, recurrence and deterministic planning", "detail": "Cumulative Stage 3 and Stage 4 behavior only"}
+    ]},
+    {"id": "evidence", "title": "Independent evidence", "items": [
+      {"id": "verification", "label": "Coverage and black-box verification", "detail": "Independent Verifier; exact commits, retained failures and clean clones"},
+      {"id": "coordination", "label": "Sequential promotion and run ledger", "detail": "Foundry Coordinator; immutable accepted folders and full handoffs"}
+    ]}
+  ],
+  "flows": [
+    {"from": "browser", "to": "transport", "label": "JSON API"},
+    {"from": "transport", "to": "integrity", "label": "Engine.request"},
+    {"from": "integrity", "to": "planning", "label": "Atomic cumulative rules"},
+    {"from": "verification", "to": "coordination", "label": "Accept or reject exact candidate"}
+  ]
+}
