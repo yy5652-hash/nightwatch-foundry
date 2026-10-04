@@ -17,6 +17,7 @@ ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT))
 from stage3_probe import Client,fixture,policy,create_body,raw,validate_release,DAY
 from stage3_requirements import S1,S2
+from stage3_metrics import STYLE
 
 SELECTORS=('accepted_terms','history','series_count','series_interval','series_submit','series_result','series_error')
 def validate_selectors(release):
@@ -53,7 +54,12 @@ async def run(release,out):
         check(name+'-'+str(width)+'-no-page-scroll',dimensions['scroll']<=dimensions['width'],dimensions)
         await page.keyboard.press('Tab')
         focus=await page.evaluate('({tag:document.activeElement.tagName,outline:getComputedStyle(document.activeElement).outlineStyle,width:getComputedStyle(document.activeElement).outlineWidth})')
-        observations.append(dict(requirement_id='TK3-browser-'+name+'-'+str(width)+'-keyboard-focus',observed=focus,verdict='unverified-visual-review-required'))
+        check(name+'-'+str(width)+'-keyboard-focus',focus['tag']!='BODY' and focus['outline']!='none' and float(focus['width'].removesuffix('px'))>0,focus)
+        metrics=await page.evaluate(STYLE)
+        check(name+'-'+str(width)+'-contrast',bool(metrics['text']) and all(x['ratio']>=x['minimum'] for x in metrics['text']),metrics)
+        labels=await page.evaluate('''()=>Array.from(document.querySelectorAll('input,select')).filter(e=>e.getBoundingClientRect().height>0).map(e=>({id:e.id,labels:Array.from(e.labels||[]).map(l=>l.innerText.trim())}))''')
+        check(name+'-'+str(width)+'-visible-labels',all(x['labels'] and all(x['labels']) for x in labels),labels)
+        check(name+'-'+str(width)+'-real-screenshot',path.is_file() and path.stat().st_size>0)
     try:
         async with async_playwright() as pw:
             browser=await pw.chromium.launch(headless=True)
@@ -135,9 +141,18 @@ async def upgrade(release,out,origin):
     from playwright.async_api import async_playwright
     base=release['urls']['target'];source=release['urls'][origin];c=Client(base,out/'api',release['candidate'])
     c.setup(url=source);tokens=c.tokens.copy();retained=c.create(url=source,stage=1 if origin=='accepted-s1' else 2)
-    routing={'url':source,'drop':False};transport=[];error=None
+    routing={'url':source,'drop':False};transport=[];error=None;observations=[];width=release.get('browser_width',375);requests=[]
+    async def measure(page,scenario):
+        metrics=await page.evaluate(STYLE)
+        labels=await page.evaluate('''()=>Array.from(document.querySelectorAll('input,select')).filter(e=>e.getBoundingClientRect().height>0).map(e=>({id:e.id,labels:Array.from(e.labels||[]).map(l=>l.innerText.trim())}))''')
+        await page.keyboard.press('Tab');focus=await page.evaluate('''()=>({tag:document.activeElement.tagName,outline:getComputedStyle(document.activeElement).outlineStyle,width:getComputedStyle(document.activeElement).outlineWidth})''')
+        tests={'no-page-scroll':metrics['scroll']<=metrics['client'],'contrast':bool(metrics['text']) and all(t['ratio']>=t['minimum'] for t in metrics['text']),'visible-labels':all(v['labels'] and all(v['labels']) for v in labels),'keyboard-focus':focus['tag']!='BODY' and focus['outline']!='none' and float(focus['width'].removesuffix('px'))>0,'real-screenshot':True}
+        for key,value in tests.items():
+            observations.append(dict(requirement_id='TK3-browser-'+scenario+'-'+str(width)+'-'+key,passed=bool(value),origin=origin,metrics=metrics if key=='contrast' else labels if key=='visible-labels' else focus if key=='keyboard-focus' else None))
+            if not value:raise AssertionError(scenario+'-'+key)
     async with async_playwright() as pw:
-        browser=await pw.chromium.launch(headless=True);context=await browser.new_context(viewport={'width':375,'height':900});page=await context.new_page()
+        browser=await pw.chromium.launch(headless=True);context=await browser.new_context(viewport={'width':width,'height':900});page=await context.new_page();page.set_default_timeout(5000)
+        page.on('request',lambda r:requests.append(dict(method=r.method,path=urlsplit(r.url).path,body_sha256=hashlib.sha256(r.post_data_buffer or b'').hexdigest())))
         async def route_handler(route):
             request=route.request;path=urlsplit(request.url).path
             if not path.startswith(('/auth/','/restaurants','/availability','/reservations','/reservation-moves','/series')):
@@ -160,6 +175,7 @@ async def upgrade(release,out,origin):
             routing['drop']=True;await page.get_by_test_id('booking-submit').click();await page.get_by_test_id('booking-uncertain').wait_for()
             before_form=await page.get_by_test_id('booking-party-size').input_value();document_id=await page.evaluate('performance.timeOrigin')
             await page.screenshot(path=str(out/'uncertain-before-import.png'),full_page=True)
+            await measure(page,'uncertain-retry')
             export=c.export(source);c.response('upgrade-raw-transfer',c.transfer(source,base,export),204);routing['url']=base
             await page.get_by_test_id('booking-submit').click();await page.get_by_test_id('confirmation-reference').wait_for()
             recovered=await page.get_by_test_id('confirmation-reference').text_content()
@@ -169,20 +185,23 @@ async def upgrade(release,out,origin):
             if len(sent)!=2 or sent[0]['body_sha256']!=sent[1]['body_sha256'] or sent[0]['key_sha256']!=sent[1]['key_sha256'] or sent[1]['status']!=200:
                 raise AssertionError('unchanged key/body must recover real original receipt')
             await page.screenshot(path=str(out/'recovered-after-import.png'),full_page=True)
+            await measure(page,'upgrade')
             await page.goto(base+'/lookup');await page.get_by_test_id('lookup-reference-input').fill(retained['reference']);await page.get_by_test_id('lookup-submit').click()
             await page.get_by_test_id('reservation-detail').wait_for();await page.screenshot(path=str(out/'retained-lookup.png'),full_page=True)
+            await measure(page,'upgrade')
             if await page.get_by_test_id('reservation-status').text_content()!='confirmed':raise AssertionError('retained original reference lookup')
         except BaseException as exc:
             error=dict(kind='failed-expectation' if isinstance(exc,AssertionError) else 'runner-exception',type=type(exc).__name__,message=str(exc));raise
         finally:
             await context.close();await browser.close();c.save(error)
-            (out/'upgrade-report.json').write_text(json.dumps(dict(candidate=release['candidate'],origin=origin,complete=error is None,error=error,transport=transport,private_export_saved=False),indent=2)+'\n')
+            (out/'upgrade-report.json').write_text(json.dumps(dict(candidate=release['candidate'],origin=origin,width=width,complete=error is None,error=error,transport=transport,assertions=observations,request_trace=requests,private_export_saved=False),indent=2)+'\n')
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True)
-    p.add_argument('--mode',choices=['product','accepted-s1','accepted-s2'],default='product');p.add_argument('--execute',action='store_true');a=p.parse_args()
+    p.add_argument('--mode',choices=['product','accepted-s1','accepted-s2'],default='product');p.add_argument('--width',type=int,choices=[375,1280],default=375);p.add_argument('--execute',action='store_true');a=p.parse_args()
     if not a.execute:raise SystemExit('Prepared only: later release and --execute required')
     release=validate_release(json.loads(Path(a.release).read_text()));out=Path(a.out)
+    release['browser_width']=a.width
     if out.exists():raise SystemExit('New unique output required')
     out.mkdir(parents=True)
     asyncio.run(run(release,out) if a.mode=='product' else upgrade(release,out,a.mode))

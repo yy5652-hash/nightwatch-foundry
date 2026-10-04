@@ -4,7 +4,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
  p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True)
- p.add_argument('--group',choices=['stage3','supplement','races','binding','browser','old-supplement','inherited-http','inherited-browser','inherited-upgrade','reconstruction','reconstruction-browser'],required=True)
+ p.add_argument('--group',choices=['stage3','supplement','races','binding','browser','extra-browser','migrations','old-supplement','inherited-http','inherited-browser','inherited-upgrade','reconstruction','reconstruction-browser'],required=True)
  p.add_argument('--families');p.add_argument('--assembly');p.add_argument('--release-file');a=p.parse_args();runtime=Path(a.runtime).resolve();out=Path(a.out).resolve()
  assert runtime.is_relative_to(W) and out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
  f=json.loads((runtime/'preflight.json').read_text());assert f['status']=='running_for_independent_checks'
@@ -30,6 +30,8 @@ def main():
  if a.group=='stage3':
   families=(a.families or 'policies,explain,numeric,terms,series,rollback,moves,concurrency,retry,calendar,trace,first_error,upgrade,deep').split(',')
   for family in families:probe('stage-3','stage3_probe.py',family,positional=['--family',family,'--release',str(release),'--out','/evidence/'+family,'--execute'])
+ elif a.group in ('migrations','extra-browser'):
+  probe('stage-3','stage3_legacy.py' if a.group=='migrations' else 'stage3_browser_extra.py',a.group,positional=['--release',str(release),'--out','/evidence/'+a.group])
  elif a.group in ('binding','races'):
   probe('stage-3','stage3_browser_binding.py' if a.group=='binding' else 'stage3_read_races.py',a.group,positional=['--release',str(release),'--out','/evidence/'+a.group])
  elif a.group=='supplement':
@@ -37,7 +39,8 @@ def main():
    probe('stage-3','stage3_supplement.py',family,positional=['--family',family,'--release',str(release),'--out','/evidence/'+family])
  elif a.group=='browser':
   for mode in (a.families or 'product,accepted-s1,accepted-s2').split(','):
-   probe('stage-3','stage3_browser.py',mode,positional=['--mode',mode,'--release',str(release),'--out','/evidence/'+mode,'--execute'])
+   actual=mode.removesuffix('-desktop');width='1280' if mode.endswith('-desktop') else '375'
+   probe('stage-3','stage3_browser.py',mode,positional=['--mode',actual,'--width',width,'--release',str(release),'--out','/evidence/'+mode,'--execute'])
  elif a.group=='inherited-http':
   for folder,script,label,extra in [('stage-1','probe.py','baseline',['--peer',u['peer']]),
    ('stage-1','reproduce.py','original-minimal',[]),('stage-1','reproduce_calendar.py','calendar-minimal',[]),('stage-1','race50.py','race50',[]),
@@ -54,7 +57,9 @@ def main():
    if not a.families or label in a.families.split(','):probe('stage-1',script,label,positional=args)
  elif a.group=='inherited-browser':
   for script,label in [('candidate2_browser.py','general'),('browser_boundaries.py','boundaries'),('browser_historical.py','historical'),('visual_detail.py','visual'),('candidate2_calendar_browser.py','calendar')]:
-   if not a.families or label in a.families.split(','):probe('stage-2',script,label)
+   if not a.families or label in a.families.split(','):
+    if label=='general':probe('stage-3','stage3_inherited.py',label,positional=['--family','general','--base',u['target'],'--candidate',f['candidate'],'--out','/evidence/general'])
+    else:probe('stage-2',script,label)
  elif a.group=='inherited-upgrade':probe('stage-2','candidate2_upgrade.py','four-upgrades',positional=['--release',str(release),'--out','/evidence/four-upgrades'])
  elif a.group=='old-supplement':
   for case in (a.families or 'oracle,coverage,browser,overflow').split(','):
