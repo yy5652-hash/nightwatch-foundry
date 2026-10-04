@@ -290,8 +290,8 @@
     try {
       const value=await api('/restaurants');state.restaurants=value.restaurants;
       if(!state.restaurants.some(r=>r.id===state.query.restaurantId))state.query.restaurantId=state.restaurants[0]?.id || '';
-      state.cataloguePhase='ready';render();
-    } catch(_) {state.cataloguePhase='error';state.catalogueError='Restaurants could not be loaded. Please try again.';render();}
+      state.cataloguePhase='ready';if(state.route==='/')renderSearch();
+    } catch(_) {state.cataloguePhase='error';state.catalogueError='Restaurants could not be loaded. Please try again.';if(state.route==='/')renderSearch();}
   }
   render();loadCatalogue();
 })();
