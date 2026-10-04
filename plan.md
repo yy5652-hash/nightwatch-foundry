@@ -33,15 +33,15 @@ Within a stage, engine and transport/UI ownership are disjoint. Overlapping edit
 | Evidence claims exceed observed state | Coordinator/Verifier | Unverified stays unverified; costs unknown unless measured with provenance |
 | Time budget expires | Coordinator | Aim 16 hours; cease extension at 22 hours, commit accepted stages and report honest partial outcome |
 
-## Initial state
-
 ## Current promotion gate
 
-Stage 1 is independently accepted and frozen at 2a4b0408a3453bc87d86bca3d0ec571f479e03ca. Verifier evidence commit fcc0974e8cc44f7f3d57891d6b1759b499ede176 reports801/801 atomic rows verified, no failures/unverified rows,120/120 isolated official tests and fresh-clone startup. Acceptance follows the historical timestamp interpretation below. Previous rejected candidates and the revoked provisional acceptance remain preserved. Manifest: evidence/coordinator/accepted/stage-1.json. Stage 2 may now extend a copy; Systems performs the one serialized folder copy, then Interface edits its owned transport/runtime/UI paths. Stage1 files remain frozen. Stage2 combined seating, complete browser flow, competing clients, uncertain-response recovery and genuine Stage1 migration are the next independent gate.
+Stage 1 is independently accepted and frozen at 2a4b0408a3453bc87d86bca3d0ec571f479e03ca. Verifier evidence commit fcc0974e8cc44f7f3d57891d6b1759b499ede176 reports 801/801 atomic rows verified, no failures/unverified rows, 120/120 isolated official tests and fresh-clone startup. Acceptance follows the historical timestamp interpretation below. Previous rejected candidates and the revoked provisional acceptance remain preserved. Manifest: evidence/coordinator/accepted/stage-1.json. Stage 2 may now extend a copy; Systems performs the one serialized folder copy, then Interface edits its owned transport/runtime/UI paths. Stage 1 files remain frozen. Stage 2 combined seating, complete browser flow, competing clients, uncertain-response recovery and genuine Stage 1 migration are the next independent gate. Shared work cards 4/5/6 and all six parts of each owner's full cumulative task/spec package have been sent successfully; receivers must acknowledge completeness before execution.
+
+## Intake history and timestamp decision
 
 Stage 1 review found a historical-offset grammar conflict. The recorded resolution preserves exact IANA instants and original restaurant wall times while using deterministic RFC3339 minute-aligned transport offsets for historical subminute cases. See evidence/coordinator/timestamp-representation-decision.md. Independent acceptance must disclose this interpretation; prior failures remain intact.
 
-The result repository was empty and clean at intake. Four room identities are present and all three other seats replied with literal coordinator routing. Harness is Codex; model gpt-6.1-sol is operator-configured; actual runtime override and effort are not exposed. Token usage and cost are unknown. No stage is accepted yet.
+The result repository was empty and clean at intake. Four room identities are present and all three other seats replied with literal coordinator routing. Harness is Codex; model gpt-6.1-sol is operator-configured; actual runtime override and effort are not exposed. Token usage and cost are unknown. No stage was accepted at intake.
 
 The initial ledger lives in evidence/coordinator/requirements-ledger.csv. It deliberately retains nonnormative examples for source completeness. The independent verifier must split bundled obligations and schemas into atomic normative rows before counting coverage.
 
