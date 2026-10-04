@@ -35,6 +35,9 @@ Within a stage, engine and transport/UI ownership are disjoint. Overlapping edit
 
 ## Current promotion gate
 
+All four stages are independently accepted and frozen. Final fresh-clone isolated checks completed against exact evidence tip02098335749bc0d41e76f332ac0cf5ca4da03bbf: target1 120/120;target2 120/120+25/25;target3 adds7/7;target4 adds6/6, allotheroutcomeszero. Clone remains clean, all frozen trees/history/current coverage/concrete links/genericmandates/RUN.md verify. Actual reports/logs/proof: evidence/coordinator/final-review-01/. Full measured report: evidence/coordinator/final-report.md. Highest consecutive accepted4; no further implementation pending. Final evidence-only successor inspection and addressed room outcome remain to be posted. Four explicit interpretations/finite limits/unknown spend/operator-controlled steps remain disclosed. Earlierparagraphs preserve chronology.
+
+
 Stage 4 is accepted and frozen at58270860cb6a762c8a4c2a551672701fb00bd613/tree00e208c746a488a9b4cb0761efd04b90c4248dd8 against full independent seal91272cbb09f518cd2c51e311e8d55c06004b6fb2. Coordinator checked all4,895sealpaths are verifier evidence only, allcurrentdocuments/blobs/matrixdigest match, and pre-promotion coverage audit passes7,862unique rows/7,840normative allverified/22separate diagnostics/zeroerrors. Selected independent108completeprotocols:78HTTP35,381requests91,464assertions and30browser1,949assertions; official120/25/7/6allpass. Highest consecutive accepted4. Allfour sourcefolders now immutable, historical evidence preserved. Final fresh-clone isolated regression checks and final measured report remain pending. Four adopted interpretations and finite/source-only/scopedvisual limits remain disclosed. Earlierparagraphs preserve chronology.
 
 

@@ -1,0 +1,159 @@
+{
+  "started_utc": "2026-10-04T10:44:47.317840+00:00",
+  "candidate_full_revision": "02098335749bc0d41e76f332ac0cf5ca4da03bbf",
+  "highest_accepted": 4,
+  "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+  "output_root": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory",
+      "started_utc": "2026-10-04T10:44:47.318024+00:00",
+      "returncode": 0,
+      "wall_seconds": 0.14732575000380166,
+      "log": "clone.log"
+    },
+    {
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "02098335749bc0d41e76f332ac0cf5ca4da03bbf"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+      "started_utc": "2026-10-04T10:44:47.465508+00:00",
+      "returncode": 0,
+      "wall_seconds": 3.1754892919998383,
+      "log": "checkout.log"
+    },
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-B",
+        "evidence/coordinator/freeze_stage.py",
+        "verify"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+      "started_utc": "2026-10-04T10:44:51.052845+00:00",
+      "returncode": 0,
+      "wall_seconds": 0.0829258329977165,
+      "log": "freeze-history.log"
+    },
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-m",
+        "harness",
+        "run",
+        "--track",
+        "tablekeeper",
+        "--repo",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+        "--stage",
+        "1",
+        "--mode",
+        "isolated",
+        "--out",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-1"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/kickoff",
+      "started_utc": "2026-10-04T10:44:51.137821+00:00",
+      "returncode": 0,
+      "wall_seconds": 31.583439792004356,
+      "log": "stage-1-command.log"
+    },
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-m",
+        "harness",
+        "run",
+        "--track",
+        "tablekeeper",
+        "--repo",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+        "--stage",
+        "2",
+        "--mode",
+        "isolated",
+        "--out",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-2"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/kickoff",
+      "started_utc": "2026-10-04T10:45:22.721933+00:00",
+      "returncode": 0,
+      "wall_seconds": 35.878836500000034,
+      "log": "stage-2-command.log"
+    },
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-m",
+        "harness",
+        "run",
+        "--track",
+        "tablekeeper",
+        "--repo",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+        "--stage",
+        "3",
+        "--mode",
+        "isolated",
+        "--out",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-3"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/kickoff",
+      "started_utc": "2026-10-04T10:45:58.601387+00:00",
+      "returncode": 0,
+      "wall_seconds": 36.80951141699916,
+      "log": "stage-3-command.log"
+    },
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-m",
+        "harness",
+        "run",
+        "--track",
+        "tablekeeper",
+        "--repo",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+        "--stage",
+        "4",
+        "--mode",
+        "isolated",
+        "--out",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-4"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/kickoff",
+      "started_utc": "2026-10-04T10:46:35.411534+00:00",
+      "returncode": 0,
+      "wall_seconds": 38.69446841700119,
+      "log": "stage-4-command.log"
+    }
+  ],
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_model": null,
+  "effort": null,
+  "usage": null,
+  "estimated_cost": null,
+  "billed_spend": null,
+  "claim": "Observed fresh-clone checks, not an independent verdict or unseen score",
+  "accepted_stage_revisions": {
+    "1": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+    "2": "4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+    "3": "91e2c471acded1b861b3fec725f202297b1c6740",
+    "4": "58270860cb6a762c8a4c2a551672701fb00bd613"
+  },
+  "clone_status_after": "",
+  "finished_utc": "2026-10-04T10:47:14.169504+00:00",
+  "verdict": "commands-completed-review-official-reports"
+}

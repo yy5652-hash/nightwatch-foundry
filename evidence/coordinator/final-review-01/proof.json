@@ -1,0 +1,344 @@
+{
+  "checked_full_revision": "02098335749bc0d41e76f332ac0cf5ca4da03bbf",
+  "highest_consecutive_accepted": 4,
+  "fresh_clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+  "clone_clean_before_and_after": true,
+  "source_and_historical_freeze_verified": true,
+  "all_four_coverage_metadata_and_concrete_files_pass": true,
+  "mandates_unchanged": [
+    {
+      "name": "foundry-coordinator.md",
+      "sha256": "0736d3b1a8c64264f83aa30605d50b15d4ac9921eef72dcc1bb6f66c06305881"
+    },
+    {
+      "name": "independent-verifier.md",
+      "sha256": "047b633f03a1c662b0583dc4040c0dcd1885727fdb18fd6372a618f1c37a3312"
+    },
+    {
+      "name": "interface-engineer.md",
+      "sha256": "7a934178ba8140873997f4f97aaf8da5ca2af0935bfa3f6d077a7fa27f53f191"
+    },
+    {
+      "name": "systems-engineer.md",
+      "sha256": "feb6dbf4a2e354d82a190a725e1cc5a861650714be953a28a1c2dd23d7c38a14"
+    }
+  ],
+  "all_four_run_md_present": true,
+  "operator_readme_factory_room_json_absent": true,
+  "official_output_root": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+  "commands": [
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-B",
+        "evidence/coordinator/freeze_stage.py",
+        "verify"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+      "returncode": 0,
+      "log": "freeze-history-review.log"
+    },
+    {
+      "argv": [
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+        "-B",
+        "evidence/coordinator/audit_coverage.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/foundry-coordinator-final-scored-four-stage-20261004t104447z",
+      "returncode": 0,
+      "log": "coverage-metadata-review.log"
+    }
+  ],
+  "reports": [
+    {
+      "target_stage": 1,
+      "checks": {
+        "1": {
+          "collected": 120,
+          "passed": 120,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_1/test_health_reset_auth.py": {
+              "passed": 12,
+              "total": 12
+            },
+            "stage_1/test_reservations.py": {
+              "passed": 37,
+              "total": 37
+            },
+            "stage_1/test_restaurants_availability.py": {
+              "passed": 18,
+              "total": 18
+            },
+            "stage_1/test_retries_time_input.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_sample.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_seeded_state.py": {
+              "passed": 13,
+              "total": 13
+            }
+          }
+        }
+      },
+      "report_source": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-1/report.json",
+      "report_sha256": "a001d085375e6e746c5ce5ae728f9f9aeb2dd7386e0c715e1b89b57a20456228",
+      "external_command_wall_seconds": 31.583439792004356,
+      "mode": "isolated",
+      "revision": "02098335749bc0d41e76f332ac0cf5ca4da03bbf",
+      "overshoot": null
+    },
+    {
+      "target_stage": 2,
+      "checks": {
+        "1": {
+          "collected": 120,
+          "passed": 120,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_1/test_health_reset_auth.py": {
+              "passed": 12,
+              "total": 12
+            },
+            "stage_1/test_reservations.py": {
+              "passed": 37,
+              "total": 37
+            },
+            "stage_1/test_restaurants_availability.py": {
+              "passed": 18,
+              "total": 18
+            },
+            "stage_1/test_retries_time_input.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_sample.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_seeded_state.py": {
+              "passed": 13,
+              "total": 13
+            }
+          }
+        },
+        "2": {
+          "collected": 25,
+          "passed": 25,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_2/test_sample.py": {
+              "passed": 8,
+              "total": 8
+            },
+            "stage_2/test_ui.py": {
+              "passed": 17,
+              "total": 17
+            }
+          }
+        }
+      },
+      "report_source": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-2/report.json",
+      "report_sha256": "2af191d4dd944a835a2c8dfd545c1de1c6dd9d669347679be438bd13d66c390a",
+      "external_command_wall_seconds": 35.878836500000034,
+      "mode": "isolated",
+      "revision": "02098335749bc0d41e76f332ac0cf5ca4da03bbf",
+      "overshoot": null
+    },
+    {
+      "target_stage": 3,
+      "checks": {
+        "1": {
+          "collected": 120,
+          "passed": 120,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_1/test_health_reset_auth.py": {
+              "passed": 12,
+              "total": 12
+            },
+            "stage_1/test_reservations.py": {
+              "passed": 37,
+              "total": 37
+            },
+            "stage_1/test_restaurants_availability.py": {
+              "passed": 18,
+              "total": 18
+            },
+            "stage_1/test_retries_time_input.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_sample.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_seeded_state.py": {
+              "passed": 13,
+              "total": 13
+            }
+          }
+        },
+        "2": {
+          "collected": 25,
+          "passed": 25,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_2/test_sample.py": {
+              "passed": 8,
+              "total": 8
+            },
+            "stage_2/test_ui.py": {
+              "passed": 17,
+              "total": 17
+            }
+          }
+        },
+        "3": {
+          "collected": 7,
+          "passed": 7,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_3/test_sample.py": {
+              "passed": 7,
+              "total": 7
+            }
+          }
+        }
+      },
+      "report_source": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-3/report.json",
+      "report_sha256": "04e7c80dca2dabe7b5ce5c4670c4b686a67ac401192170e34ca6d90524310723",
+      "external_command_wall_seconds": 36.80951141699916,
+      "mode": "isolated",
+      "revision": "02098335749bc0d41e76f332ac0cf5ca4da03bbf",
+      "overshoot": null
+    },
+    {
+      "target_stage": 4,
+      "checks": {
+        "1": {
+          "collected": 120,
+          "passed": 120,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_1/test_health_reset_auth.py": {
+              "passed": 12,
+              "total": 12
+            },
+            "stage_1/test_reservations.py": {
+              "passed": 37,
+              "total": 37
+            },
+            "stage_1/test_restaurants_availability.py": {
+              "passed": 18,
+              "total": 18
+            },
+            "stage_1/test_retries_time_input.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_sample.py": {
+              "passed": 20,
+              "total": 20
+            },
+            "stage_1/test_seeded_state.py": {
+              "passed": 13,
+              "total": 13
+            }
+          }
+        },
+        "2": {
+          "collected": 25,
+          "passed": 25,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_2/test_sample.py": {
+              "passed": 8,
+              "total": 8
+            },
+            "stage_2/test_ui.py": {
+              "passed": 17,
+              "total": 17
+            }
+          }
+        },
+        "3": {
+          "collected": 7,
+          "passed": 7,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_3/test_sample.py": {
+              "passed": 7,
+              "total": 7
+            }
+          }
+        },
+        "4": {
+          "collected": 6,
+          "passed": 6,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "deselected": 0,
+          "xfailed": 0,
+          "files": {
+            "stage_4/test_sample.py": {
+              "passed": 6,
+              "total": 6
+            }
+          }
+        }
+      },
+      "report_source": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/foundry-coordinator-final-scored-four-stage-20261004t104447z/stage-4/report.json",
+      "report_sha256": "ccbc61a6400db9cc12540f2c2b4438ad85fc7944fcbb9c5e96b8d844cc27ef0f",
+      "external_command_wall_seconds": 38.69446841700119,
+      "mode": "isolated",
+      "revision": "02098335749bc0d41e76f332ac0cf5ca4da03bbf",
+      "overshoot": null
+    }
+  ],
+  "official_total_executed_checks_including_repeated_regressions": 575,
+  "distinct_stage_specific_official_checks": 158,
+  "reported_counts_scope": "Each target reruns all inherited suites. The575 executions are not575unique requirements.",
+  "service_or_browser_extra_runs_from_metadata_audit": 0
+}
