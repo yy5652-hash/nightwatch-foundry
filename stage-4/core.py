@@ -681,7 +681,7 @@ class Engine:
         table_id = text_field(data, "table_id", maximum=64)
         if table_id not in {t["id"] for t in restaurant["tables"]}:
             fail(404, "not_found")
-        if explicit_instant(data.get("from")) >= explicit_instant(data.get("to")):
+        if explicit_instant(text_field(data, "from")) >= explicit_instant(text_field(data, "to")):
             fail(message="Closure must have a positive interval")
         return {"table_id": table_id, "from": data["from"], "to": data["to"]}
 
