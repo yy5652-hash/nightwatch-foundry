@@ -4,7 +4,7 @@ Systems conclusion: **applicable to Stage 1 and inherited Stage 2**. This is a s
 
 ## Written requirements
 
-Stage 1 §4 defines the base restaurant counts and table capacity without a numeric or digit-length maximum (official source lines 101–106). Section 5 limits values exceeding a **stated** maximum or length (line 170); it does not declare the Python conversion limit as an application range. The same section requires integer query values to be plain decimal digits (lines 176–178). `10^4300+1` is positive, integral, 4301 plain ASCII digits, and a valid lexical JSON number when sent unquoted. It is neither a string nor a boolean, fraction, exponent-form query, NaN or Infinity.
+Stage 1 §4 defines the base restaurant counts and table capacity without a numeric or digit-length maximum (official source lines 101–106). Section 5 limits values exceeding a **stated** maximum or length (line 170); it does not declare the Python conversion limit as an application range. The same section requires integer query values to be plain decimal digits (lines 175–178). `10^4300+1` is positive, integral, 4301 plain ASCII digits, and a valid lexical JSON number when sent unquoted. It is neither a string nor a boolean, fraction, exponent-form query, NaN or Infinity.
 
 Section 8 requires each fitting slot even when no table meets party size; capacity filtering then gives empty single-table lists (lines 305–310). Stage 2 adds pair capacity filtering and empty available_options under the same condition. No independent query maximum is introduced. Booking capacity refusal is a separate rule and does not authorize refusing the availability search.
 
@@ -33,6 +33,7 @@ print(json.dumps({'python_version':sys.version.split()[0],
  'default_decimal_conversion_limit':sys.get_int_max_str_digits(),
  'lexical_digit_count':len(lexical),'integer_bit_length':value.bit_length(),
  'grid_offsets_in_5hour_window':list(range(0,300,value)),
+ 'ninety_minute_duration_fits_5hour_window':90<=300,
  'huge_duration_fits_5hour_window':value<=300,
  'huge_cutoff_refuses_ordinary_future_distance':1000000<=value,
  'huge_positive_party_has_no_capacity2_option':value>2}))
