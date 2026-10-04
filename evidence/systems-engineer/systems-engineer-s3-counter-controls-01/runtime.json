@@ -1,0 +1,77 @@
+{
+  "scope": "packaged direct Engine; no fresh-build or HTTP claim",
+  "image": "sha256:43f01c5e592ac3805fa06c7df1788be72f1fdff3c98a42d9beed1e6aec6ec99f",
+  "source_sha256": "37cdfe733b26235d43742515c8dbc68bb04d68cc567f336a1afbe5a75bff6e00",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-s3-counters-071240958680",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "sha256:43f01c5e592ac3805fa06c7df1788be72f1fdff3c98a42d9beed1e6aec6ec99f",
+        "python",
+        "-B",
+        "-"
+      ],
+      "exit_code": 0,
+      "log": "evidence/systems-engineer/systems-engineer-s3-counter-controls-01/command-0.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-s3-counters-071240958680"
+      ],
+      "exit_code": 0,
+      "log": "evidence/systems-engineer/systems-engineer-s3-counter-controls-01/command-1.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-s3-counters-071240958680"
+      ],
+      "exit_code": 0,
+      "log": "evidence/systems-engineer/systems-engineer-s3-counter-controls-01/command-2.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-s3-counters-071240958680"
+      ],
+      "exit_code": 0,
+      "log": "evidence/systems-engineer/systems-engineer-s3-counter-controls-01/command-3.log"
+    }
+  ],
+  "constraints": {
+    "cpu": 2,
+    "memory_bytes": 2147483648,
+    "mounts": [],
+    "network": "none"
+  },
+  "probe_exit_code": 0,
+  "result": "passed",
+  "summary": {
+    "kind": "packaged direct Engine, not HTTP",
+    "assertions": 26,
+    "failed": 0,
+    "wall_seconds": 0.06317941700012852,
+    "checked_utc": "2026-10-04T07:12:41.250094+00:00",
+    "core_sha256": "5ed0a09d1d2230981e0035be6f58c2938a10a15d47476c95296fd2f30f4d8197",
+    "codec_sha256": "3bf4c5dd7ccee1c99127d735822331fedb1491af3568d3490a81a092bae49501"
+  },
+  "cleanup_exit_code": 0,
+  "wall_seconds": 0.35403479199885624
+}
