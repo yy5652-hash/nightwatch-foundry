@@ -172,44 +172,67 @@ def loads(raw):
         raise JsonCodecError("Invalid UTF-8 JSON text") from error
 
 
-def _validate(value):
-    if value is None or type(value) in (str, bool) or is_number(value):
-        return
-    if isinstance(value, list):
-        for item in value:
-            _validate(item)
-        return
-    if isinstance(value, dict) and all(type(key) is str for key in value):
-        for item in value.values():
-            _validate(item)
-        return
-    raise JsonCodecError("Unsupported JSON value")
-
-
 def validate_json(value):
-    try:
-        _validate(value)
-    except RecursionError as error:
-        raise JsonCodecError("Invalid recursive JSON tree") from error
+    """Validate iteratively, refusing cycles but allowing repeated subtrees."""
+    pending = [(value, False)]
+    active = set()
+    while pending:
+        item, leaving = pending.pop()
+        if leaving:
+            active.remove(id(item))
+            continue
+        if item is None or type(item) in (str, bool) or is_number(item):
+            continue
+        if isinstance(item, list):
+            children = item
+        elif isinstance(item, dict) and all(type(key) is str for key in item):
+            children = item.values()
+        else:
+            raise JsonCodecError("Unsupported JSON value")
+        if id(item) in active:
+            raise JsonCodecError("Invalid cyclic JSON tree")
+        active.add(id(item))
+        pending.append((item, True))
+        pending.extend((child, False) for child in children)
 
 
 def _encode(value):
-    if value is None:
-        return "null"
-    if type(value) is bool:
-        return "true" if value else "false"
-    if type(value) is JsonNumber:
-        return value.token
-    if type(value) is int:
-        return str(value)
-    if type(value) is float:
-        return _json.dumps(value, allow_nan=False)
-    if type(value) is str:
-        return _json.dumps(value, ensure_ascii=True)
-    if isinstance(value, list):
-        return "[" + ",".join(_encode(item) for item in value) + "]"
-    return "{" + ",".join(_json.dumps(key, ensure_ascii=True) + ":" + _encode(item)
-                           for key, item in value.items()) + "}"
+    pieces = []
+    pending = [(value, False)]
+    while pending:
+        item, literal = pending.pop()
+        if literal:
+            pieces.append(item)
+        elif item is None:
+            pieces.append("null")
+        elif type(item) is bool:
+            pieces.append("true" if item else "false")
+        elif type(item) is JsonNumber:
+            pieces.append(item.token)
+        elif type(item) is int:
+            pieces.append(str(item))
+        elif type(item) is float:
+            pieces.append(_json.dumps(item, allow_nan=False))
+        elif type(item) is str:
+            pieces.append(_json.dumps(item, ensure_ascii=True))
+        elif isinstance(item, list):
+            pieces.append("[")
+            pending.append(("]", True))
+            for index in range(len(item) - 1, -1, -1):
+                pending.append((item[index], False))
+                if index:
+                    pending.append((",", True))
+        else:
+            pieces.append("{")
+            pending.append(("}", True))
+            entries = list(item.items())
+            for index in range(len(entries) - 1, -1, -1):
+                key, child = entries[index]
+                pending.append((child, False))
+                pending.append((_json.dumps(key, ensure_ascii=True) + ":", True))
+                if index:
+                    pending.append((",", True))
+    return "".join(pieces)
 
 
 def dumps(value):
@@ -233,23 +256,34 @@ def _legacy_number(value):
 
 
 def _same(left, right, profile):
-    if type(left) is bool or type(right) is bool:
-        return type(left) is type(right) and left == right
-    if is_number(left) and is_number(right):
-        if profile == EXACT_PROFILE:
-            return number_key(left) == number_key(right)
-        a, b = _legacy_number(left), _legacy_number(right)
-        # Genuine old successful receipts cannot contain infinity. A finite
-        # incoming overflow projection is a different valid body, not syntax.
-        if ((type(a) is float and not math.isfinite(a)) or
-                (type(b) is float and not math.isfinite(b))):
+    pending = [(left, right)]
+    while pending:
+        a, b = pending.pop()
+        if type(a) is bool or type(b) is bool:
+            if type(a) is not type(b) or a != b:
+                return False
+        elif is_number(a) and is_number(b):
+            if profile == EXACT_PROFILE:
+                if number_key(a) != number_key(b):
+                    return False
+            else:
+                av, bv = _legacy_number(a), _legacy_number(b)
+                # Genuine old successful receipts cannot contain infinity. A
+                # finite incoming overflow is a different body, not syntax.
+                if ((type(av) is float and not math.isfinite(av)) or
+                        (type(bv) is float and not math.isfinite(bv)) or av != bv):
+                    return False
+        elif isinstance(a, dict) and isinstance(b, dict):
+            if a.keys() != b.keys():
+                return False
+            pending.extend((a[key], b[key]) for key in a)
+        elif isinstance(a, list) and isinstance(b, list):
+            if len(a) != len(b):
+                return False
+            pending.extend(zip(a, b))
+        elif type(a) is not type(b) or a != b:
             return False
-        return a == b
-    if isinstance(left, dict) and isinstance(right, dict):
-        return left.keys() == right.keys() and all(_same(left[key], right[key], profile) for key in left)
-    if isinstance(left, list) and isinstance(right, list):
-        return len(left) == len(right) and all(_same(a, b, profile) for a, b in zip(left, right))
-    return type(left) is type(right) and left == right
+    return True
 
 
 def same_value(left, right, *, profile=EXACT_PROFILE):

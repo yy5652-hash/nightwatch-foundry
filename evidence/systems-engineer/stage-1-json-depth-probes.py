@@ -77,11 +77,53 @@ for depth in (750, 1000, 1100, 1200, 1600):
                 # Overflow cannot be present in a real archived successful old
                 # receipt. Here it must be a stable false comparison, not error.
                 lambda result: result is False, detail)
+        leaf = other
+        for _level in range(depth):
+            leaf = leaf["unused"] if type(leaf) is dict else leaf[0]
+        leaf["flag"] = False
+        observe(label + " deep changed exact value", lambda: codec.same_value(value, other),
+                lambda result: result is False, detail)
+        observe(label + " deep changed historical value", lambda: codec.same_value(value, other, profile="python-json-v1"),
+                lambda result: result is False, detail)
+        leaf["flag"] = True
+        leaf["finite"] = codec.loads("10e4299")
+        observe(label + " deep equal numeric alias", lambda: codec.same_value(value, other), lambda result: result, detail)
+
+        def malformed_tail():
+            try:
+                codec.loads(wire[:-1])
+            except codec.JsonCodecError:
+                return True
+            return False
+
+        observe(label + " malformed closing tail refused", malformed_tail, lambda result: result, detail)
+
+for label, tree in (("empty nested containers", [[], {}, {"empty": []}]),
+                    ("punctuation and key order", {"z": [1, 2, 3], "a": {"two": 2, "one": 1}})):
+    observe(label, lambda tree=tree: codec.dumps(tree), lambda wire: json.loads(wire) == tree,
+            {"independent_reference": "stdlib shallow JSON decoder"})
+shared = {"value": [codec.loads("0.100000000000000005")]}
+dag = [shared, shared]
+observe("repeated subtree remains valid", lambda: codec.validate_json(dag), lambda result: result is None,
+        {"shared_subtree": True, "cycle": False})
+observe("repeated subtree encodes twice", lambda: codec.dumps(dag),
+        lambda wire: codec.same_value(codec.loads(wire), dag), {"shared_subtree": True, "cycle": False})
+
+def cycle_refused():
+    cycle = {"self": None}
+    cycle["self"] = cycle
+    try:
+        codec.same_value(cycle, cycle)
+    except codec.JsonCodecError:
+        return True
+    return False
+
+observe("cyclic mapping equality refused", cycle_refused, lambda result: result, {"cycle": True})
 
 summary = {"module_sha256": hashlib.sha256(module_path.read_bytes()).hexdigest(),
            "assertions": len(events), "passed": sum(e["passed"] for e in events),
            "failed": sum(not e["passed"] for e in events), "wall_seconds": time.monotonic() - start,
-           "maximum_payload_bytes": max(e["construction"]["payload_bytes"] for e in events),
+           "maximum_payload_bytes": max(e["construction"].get("payload_bytes", 0) for e in events),
            "maximum_wrapping_depth": 1600, "recursion_limit_unchanged": sys.getrecursionlimit()}
 (out / "observations.json").write_text(json.dumps(events, indent=2) + "\n")
 (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
