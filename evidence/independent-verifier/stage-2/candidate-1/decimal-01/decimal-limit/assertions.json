@@ -1,0 +1,172 @@
+[
+  {
+    "requirement_id": "TK1-decimal-limit-stage2-slot_minutes",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-stage2-reservation_duration_minutes",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-stage2-cancellation_cutoff_minutes",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-stage2-capacity",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-stage2-query",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "available_table_ids": []
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-frozen-stage1-slot_minutes",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-frozen-stage1-reservation_duration_minutes",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-frozen-stage1-cancellation_cutoff_minutes",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-frozen-stage1-capacity",
+    "passed": false,
+    "expected": {
+      "status": 204,
+      "positive_decimal_digits": 4301
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Body must be a JSON object"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-decimal-limit-frozen-stage1-query",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "available_table_ids": []
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  }
+]

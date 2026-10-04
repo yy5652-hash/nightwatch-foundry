@@ -1,0 +1,55 @@
+{
+  "candidate": "4b92041057beb669d2e6c528e8268f4d0d1e6421",
+  "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s2-4b92041057be-20261004t020635",
+  "prefix": "independent-verifier-s2-4b92041057be-20261004t020635",
+  "clean": true,
+  "exact_revision": true,
+  "frozen_stage1_unchanged": true,
+  "tree_issues": [],
+  "source_hashes": {
+    "stage-1/.dockerignore": "9f1b9601941647e488268600635b1b911516c8fdf164feb1737d5d75cd2e6267",
+    "stage-1/Dockerfile": "c8eea299aa99098435d25c440172cc4fbd09f92320923216e99deb60d3c1145b",
+    "stage-1/RUN.md": "eee6972f87dc025e8c7eb219dfd3b3529f3e5e98ff72eb75769c76f67f85e749",
+    "stage-1/core.py": "a77c4f00b311e87bf3515e968ba24e6c0497902657d9e1980d116a9cb4272a91",
+    "stage-1/server.py": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168",
+    "stage-2/.dockerignore": "49a5ddcc7d9469a4a6e05957460e78ec6707c3e48a3c3b9d35f0fbbce2b271cf",
+    "stage-2/Dockerfile": "c1eca1f177bd35118406d59737f4ce1c58cc836ba6fa116d751c3b1c317b4f1b",
+    "stage-2/RUN.md": "f7f0a853a5ca488eeac5a41284fb14245d2e7b160918af650750377838c3e0a5",
+    "stage-2/core.py": "c494b370cfae4b801f7b9bf58001578b8833af984f016b5ee2debb04f88fb10d",
+    "stage-2/server.py": "397f5f27e38e287af27dc4bdfc01ebf10dbff6a18d28b24b582cbc06e60209a8",
+    "stage-2/web/app.css": "c774d014d461af4456bc41c8427577b9eac43ddf59acb342ad0251159844722b",
+    "stage-2/web/app.js": "81e697a55f6ac83aa2681f133a286de13185d055a95712464550b559080b49cc",
+    "stage-2/web/index.html": "29acc3b5ecf773d3107e91661df32c287576d5600307c2502efe39162383eb5f"
+  },
+  "verdict": "unverified",
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_override_effort_usage_estimated_cost_billed_spend": "unknown",
+  "runner_image": "independent-verifier-s2-4b92041057be-20261004t020635:browser-runner",
+  "network": "independent-verifier-s2-4b92041057be-20261004t020635-net",
+  "containers": [
+    {
+      "name": "independent-verifier-s2-4b92041057be-20261004t020635-source",
+      "image": "independent-verifier-s2-4b92041057be-20261004t020635:candidate",
+      "url": "http://independent-verifier-s2-4b92041057be-20261004t020635-source:18309",
+      "startup_to_health_seconds": 0.2725380829997448,
+      "port_override": true
+    },
+    {
+      "name": "independent-verifier-s2-4b92041057be-20261004t020635-peer",
+      "image": "independent-verifier-s2-4b92041057be-20261004t020635:candidate",
+      "url": "http://independent-verifier-s2-4b92041057be-20261004t020635-peer:8080",
+      "startup_to_health_seconds": 0.29220941700077674,
+      "port_override": false
+    },
+    {
+      "name": "independent-verifier-s2-4b92041057be-20261004t020635-stage1",
+      "image": "independent-verifier-s2-4b92041057be-20261004t020635:stage1-frozen",
+      "url": "http://independent-verifier-s2-4b92041057be-20261004t020635-stage1:18310",
+      "startup_to_health_seconds": 0.4073090419988148,
+      "port_override": true
+    }
+  ],
+  "runtime_started": true,
+  "note": "Run own probes in this internal network; service containers have no mounts. Host source/evidence mounts apply only to verifier runner."
+}

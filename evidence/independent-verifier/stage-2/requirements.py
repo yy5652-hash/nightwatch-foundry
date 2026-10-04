@@ -254,7 +254,7 @@ for name in ["one-member", "three-members", "same-member-twice", "unknown-member
     add("Combinable fixture model / inherited value rules", 157, "fixture", {"fixture-pair-"+name: f"Reset rejects a {name} combinable entry violating an in-restaurant two-member pair with 422 validation_failed."})
 for row in ROWS:
     if row["requirement_id"] in ["TK2-stage1-original-create", "TK2-stage1-original-batch"]:
-        row["interpretation_note"] = "Pending coordinator receipt-shape interpretation: preserve successful original Stage 1 JSON even when it predates table_ids. This row is unverified until decision and actual replay evidence exist."
+        row["interpretation_note"] = "The complete candidate handoff resolves precedence: successful original Stage 1 receipt JSON remains exact; current lookup/new-write views use Stage 2 fields. Actual genuine-source replay evidence remains required."
 
 for seating in ["single","pair"]:
     for value in ["unsafe","scientific"]:
@@ -276,6 +276,35 @@ for seating in ["single","pair"]:
         for row in ROWS[-12:]:
             row["interpretation_note"]="Stage 1 fixture capacity and positive party_size have no stated maximum. Later policy limits do not restrict the base fixture. Query decimal spelling is mandatory; JSON body evidence is checked by exact numeric value, not host floating point."
 
+
+for seating in ['single','pair']:
+    for label in ['unsafe','scientific']:
+        prefix='integer-'+seating+'-'+label+'-'
+        add('Product and visual direction / inherited exact capacities and reservation fields',54,'integer-display',{
+            prefix+'capacity-display':'Displayed seating capacity faithfully equals the exact declared singleton or summed pair capacity, including the final unit beyond Number precision.',
+            prefix+'lookup-display':'Displayed guest count faithfully equals the exact server-stored party size, without rounded or truncated numeric value.'
+        },owner='interface-engineer',method='browser text capture plus exact JSON/decimal HTTP controls')
+    originals=[r for r in ROWS if r['requirement_id'].startswith('TK2-integer-'+seating+'-unsafe-') and r['case']=='integer-boundary']
+    for old in originals:
+        new=copy.deepcopy(old);new['requirement_id']=new['requirement_id'].replace('-unsafe-','-overflow-')
+        new['interpretation_note']+=' The 401-digit value 10^400+1 is a valid modest input beyond native HTML number storage; downstream behavior stays unverified if the control clears it.'
+        ROWS.append(new)
+add('Existing clients after an upgrade / inherited §§3.4,7,10',129,'ignored-upgrade',{
+    'legacy-ignored-create-source':'The genuine source Stage 1 accepts and preserves an originally unknown table_ids field in a successful single create body.',
+    'legacy-ignored-batch-source':'The genuine source Stage 1 accepts and preserves an originally unknown table_ids field in a successful batch body.',
+    'legacy-ignored-import':'Stage 2 imports unchanged genuine old successful snapshots under their original field meanings.',
+    'legacy-ignored-create-replay':'The original body and key recover the exact old create receipt after import.',
+    'legacy-ignored-batch-replay':'The original body and key recover the exact old batch receipt after import.',
+    'legacy-ignored-create-new':'A new create key with both seating fields obeys the current Stage 2 validation rule.',
+    'legacy-ignored-batch-new':'A new batch key with both seating fields obeys the current Stage 2 validation rule.',
+    'legacy-ignored-key-conflict':'Changing an imported successful original body conflicts before current endpoint validation.'
+},method='independent real source/current HTTP transfer and exact replay')
+for zone in ['Europe/Berlin','Europe/Brussels','America/New_York']:
+    prefix='historical-'+zone.replace('/','-')+'-'
+    add('Product and visual direction / inherited §9 / recorded timestamp interpretation',54,'historical-display',{
+        prefix+'start-display':'The historical lookup displays the original restaurant-local starts_at_local clock faithfully.',
+        prefix+'end-display':'The displayed labelled local end clock follows the exact restaurant-zone instant, rather than an adjusted fixed-offset wire clock.'
+    },owner='interface-engineer',method='browser lookup text/screenshot and separate exact IANA duration oracle')
 
 def write_matrix(path):
     assert len({row["requirement_id"] for row in ROWS}) == len(ROWS)

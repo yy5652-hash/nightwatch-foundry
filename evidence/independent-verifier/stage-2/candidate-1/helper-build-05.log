@@ -1,0 +1,48 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Browser.Dockerfile
+#1 transferring dockerfile: 419B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#4 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 23.19kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/7] RUN pip install --no-cache-dir playwright==1.63.0 && playwright install --with-deps chromium
+#6 CACHED
+
+#7 [3/7] RUN apt-get update && apt-get install -y --no-install-recommends tzdata && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/7] WORKDIR /verifier
+#8 CACHED
+
+#9 [5/7] COPY stage-2/*.py /verifier/stage-2/
+#9 DONE 0.0s
+
+#10 [6/7] COPY stage-1/*.py /verifier/stage-1/
+#10 DONE 0.0s
+
+#11 [7/7] WORKDIR /verifier/stage-2
+#11 DONE 0.0s
+
+#12 exporting to image
+#12 exporting layers 0.0s done
+#12 exporting manifest sha256:850784332a7252bf6bfa0ee8023db016523e9e8c74933ed5ec4af150815c1cd4 done
+#12 exporting config sha256:d99da4d4036c0f2cd0d7c83c77863760322088f13872bf4c1a485069e5e81fa8 done
+#12 exporting attestation manifest sha256:e808b4aea8c6e8e907c1882b6c5ecfaba76e039790a35b2907e3f591b7cbf038 done
+#12 exporting manifest list sha256:baf709018b5d282b765e8822418580cbbcc7c7f47c10a116a61e011a6d196fa1 done
+#12 naming to docker.io/library/independent-verifier-s2:review-runner-05 done
+#12 unpacking to docker.io/library/independent-verifier-s2:review-runner-05 0.0s done
+#12 DONE 0.1s

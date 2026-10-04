@@ -1,0 +1,257 @@
+{
+  "initial": [
+    {
+      "reference": "9FF397CAA1",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "start": 0,
+      "end": 90,
+      "status": "confirmed"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "patch",
+      "reference": "9FF397CAA1",
+      "table_ids": [
+        "t2",
+        "t1"
+      ],
+      "started": 1375.92083725,
+      "finished": 1375.921924667,
+      "observed": {
+        "status": 200
+      }
+    },
+    {
+      "kind": "create",
+      "record": {
+        "reference": "NEW",
+        "table_ids": [
+          "t0"
+        ],
+        "start": 0,
+        "end": 90,
+        "status": "confirmed"
+      },
+      "started": 1375.920785125,
+      "finished": 1375.921562625,
+      "observed": {
+        "status": 409,
+        "code": "table_unavailable"
+      }
+    },
+    {
+      "kind": "read",
+      "started": 1375.9208885,
+      "finished": 1375.922893625,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "9FF397CAA1",
+            [
+              "t2",
+              "t1"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "read",
+      "started": 1375.920927334,
+      "finished": 1375.922926167,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "9FF397CAA1",
+            [
+              "t2",
+              "t1"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "read-availability",
+      "tables": [
+        {
+          "id": "t0",
+          "label": "Window Alcove",
+          "capacity": 2
+        },
+        {
+          "id": "t1",
+          "label": "Garden Bench",
+          "capacity": 4
+        },
+        {
+          "id": "t2",
+          "label": "Cedar Booth",
+          "capacity": 6
+        },
+        {
+          "id": "t3",
+          "label": "Kitchen Nook",
+          "capacity": 8
+        }
+      ],
+      "pairs": [
+        [
+          "t1",
+          "t0"
+        ],
+        [
+          "t3",
+          "t2"
+        ],
+        [
+          "t2",
+          "t1"
+        ]
+      ],
+      "started": 1375.920963875,
+      "finished": 1375.922787209,
+      "observed": {
+        "status": 200,
+        "options": [
+          {
+            "table_ids": [
+              "t0"
+            ],
+            "capacity": 2
+          },
+          {
+            "table_ids": [
+              "t3"
+            ],
+            "capacity": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "read-export",
+      "started": 1375.920729292,
+      "finished": 1375.921842125,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "9FF397CAA1",
+            [
+              "t1",
+              "t0"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    }
+  ],
+  "accepted_orders": [
+    [
+      1,
+      5,
+      0,
+      2,
+      3,
+      4
+    ],
+    [
+      1,
+      5,
+      0,
+      2,
+      4,
+      3
+    ],
+    [
+      1,
+      5,
+      0,
+      3,
+      2,
+      4
+    ],
+    [
+      1,
+      5,
+      0,
+      3,
+      4,
+      2
+    ],
+    [
+      1,
+      5,
+      0,
+      4,
+      2,
+      3
+    ],
+    [
+      1,
+      5,
+      0,
+      4,
+      3,
+      2
+    ],
+    [
+      5,
+      1,
+      0,
+      2,
+      3,
+      4
+    ],
+    [
+      5,
+      1,
+      0,
+      2,
+      4,
+      3
+    ],
+    [
+      5,
+      1,
+      0,
+      3,
+      2,
+      4
+    ],
+    [
+      5,
+      1,
+      0,
+      3,
+      4,
+      2
+    ],
+    [
+      5,
+      1,
+      0,
+      4,
+      2,
+      3
+    ],
+    [
+      5,
+      1,
+      0,
+      4,
+      3,
+      2
+    ]
+  ]
+}

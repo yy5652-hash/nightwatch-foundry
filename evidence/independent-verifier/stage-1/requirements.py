@@ -496,6 +496,17 @@ for row in ROWS:
         row["interpretation_note"] = "New output follows the recorded nearest representable minute-offset interpretation while retaining exact IANA instants and original local fields. Successful original imported record/receipt strings are immutable, including historical offset seconds; this is an explicit backward-preservation exception."
 
 
+for field in ['slot_minutes', 'reservation_duration_minutes', 'cancellation_cutoff_minutes', 'capacity']:
+    add('3.3 Reset / 4. Model / 5. Errors', 102, 'decimal-limit', {
+        'decimal-limit-'+field: f'A valid positive 4301-digit JSON integer {field} is not rejected by an unstated decimal-conversion ceiling; the small fixture resets with 204.'
+    })
+add('5. Errors / 8. GET availability', 319, 'decimal-limit', {
+    'decimal-limit-query': 'A required positive party_size query written as 4301 plain decimal digits remains valid; low-capacity tables yield empty availability lists with 200.'
+})
+for row in ROWS[-5:]:
+    row['interpretation_note'] = 'The existing base-field interpretation has no stated upper numeric maximum. These modest payloads are valid JSON/decimal grammar; a runtime digit-conversion limit is not a published field rule.'
+    row['executable_command_or_interaction'] = 'python3 evidence/independent-verifier/stage-2/decimal_repeat.py --runtime EXACT_RUNTIME_DIRECTORY --out NEW_DIRECTORY'
+
 def write_matrix(path):
     assert len({r["requirement_id"] for r in ROWS}) == len(ROWS)
     with Path(path).open("w", newline="") as f:

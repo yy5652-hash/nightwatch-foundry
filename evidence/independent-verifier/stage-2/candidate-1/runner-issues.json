@@ -1,0 +1,48 @@
+[
+  {
+    "classification": "verifier DNS-label error; no service startup failure inferred",
+    "evidence": [
+      "boundaries-02/commands.json",
+      "legacy-01/commands.json"
+    ],
+    "observed": "Verifier-generated container hostnames exceeded the DNS label length; health client could not resolve them.",
+    "repair": "Shorten own names, then repeat from fresh matching-image processes in boundaries-03, historical-02 and legacy-02 onward."
+  },
+  {
+    "classification": "verifier current-view assumption; original raw failures retained",
+    "evidence": [
+      "api-01/inherited/assertions.json",
+      "legacy-02/probes/assertions.json"
+    ],
+    "observed": "One amendment and three legacy lookup checks compared a newly derived Stage 2 table_ids view as though it must remain the old singleton value/shape.",
+    "repair": "Separate source-correct amendment observations in amend-02 and genuine old-service current-view probes in legacy-03/04; historical successful POST receipts still compare exact original JSON."
+  },
+  {
+    "classification": "incomplete/scheduled verifier migration protocol; no promotion evidence from these runs",
+    "evidence": [
+      "upgrade-browser-01",
+      "upgrade-browser-02"
+    ],
+    "observed": "First protocol imported login state before search; next corrected protocol overlapped own legacy transfer driver.",
+    "repair": "Route all compatible pre-upgrade API traffic transparently to the real Stage 1 process and repeat sequentially in upgrade-browser-03; final legacy-04 also runs sequentially."
+  },
+  {
+    "classification": "pending status text interpretation, not an asserted production defect",
+    "evidence": [
+      "browser-01/browser/assertions.json",
+      "upgrade-browser-03/upgrade-browser/assertions.json",
+      "boundaries-03/probes/assertions.json"
+    ],
+    "observed": "Five general-browser checks and one upgrade check used innerText and saw Confirmed/Cancelled. DOM textContent is exactly confirmed/cancelled; CSS text-transform is capitalize.",
+    "repair": "Keep four corresponding normative rows unverified pending the coordinator interpretation. No failure is converted in place."
+  },
+  {
+    "classification": "verifier report printer error after evidence/cleanup completed",
+    "evidence": [
+      "cleanup.json",
+      "assessment-printer-error.md"
+    ],
+    "observed": "TypeError: dict() got multiple values for keyword argument 'failed'",
+    "repair": "Rename the printed list field to failed_ids; rerun only evidence aggregation. All four primary cleanup return codes were already zero; no service check was repeated or altered."
+  }
+]

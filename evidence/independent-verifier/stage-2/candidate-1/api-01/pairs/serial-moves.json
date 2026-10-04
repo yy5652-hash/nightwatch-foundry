@@ -1,0 +1,281 @@
+{
+  "initial": [
+    {
+      "reference": "572C22BFE3",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "start": 0,
+      "end": 90,
+      "status": "confirmed"
+    },
+    {
+      "reference": "98CF2BC997",
+      "table_ids": [
+        "t3",
+        "t2"
+      ],
+      "start": 0,
+      "end": 90,
+      "status": "confirmed"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "moves",
+      "moves": [
+        {
+          "reference": "572C22BFE3",
+          "table_ids": [
+            "t3",
+            "t2"
+          ]
+        },
+        {
+          "reference": "98CF2BC997",
+          "table_ids": [
+            "t1",
+            "t0"
+          ]
+        }
+      ],
+      "started": 1376.0164095,
+      "finished": 1376.01810425,
+      "observed": {
+        "status": 409,
+        "code": "reservation_cancelled"
+      }
+    },
+    {
+      "kind": "cancel",
+      "reference": "572C22BFE3",
+      "started": 1376.016360584,
+      "finished": 1376.017742459,
+      "observed": {
+        "status": 200
+      }
+    },
+    {
+      "kind": "read",
+      "started": 1376.01645725,
+      "finished": 1376.017934459,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "572C22BFE3",
+            [
+              "t1",
+              "t0"
+            ],
+            "cancelled"
+          ],
+          [
+            "98CF2BC997",
+            [
+              "t3",
+              "t2"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "read",
+      "started": 1376.016520334,
+      "finished": 1376.017507459,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "572C22BFE3",
+            [
+              "t1",
+              "t0"
+            ],
+            "confirmed"
+          ],
+          [
+            "98CF2BC997",
+            [
+              "t3",
+              "t2"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "read-availability",
+      "tables": [
+        {
+          "id": "t0",
+          "label": "Window Alcove",
+          "capacity": 2
+        },
+        {
+          "id": "t1",
+          "label": "Garden Bench",
+          "capacity": 4
+        },
+        {
+          "id": "t2",
+          "label": "Cedar Booth",
+          "capacity": 6
+        },
+        {
+          "id": "t3",
+          "label": "Kitchen Nook",
+          "capacity": 8
+        }
+      ],
+      "pairs": [
+        [
+          "t1",
+          "t0"
+        ],
+        [
+          "t3",
+          "t2"
+        ],
+        [
+          "t2",
+          "t1"
+        ]
+      ],
+      "started": 1376.016555,
+      "finished": 1376.01756425,
+      "observed": {
+        "status": 200,
+        "options": []
+      }
+    },
+    {
+      "kind": "read-export",
+      "started": 1376.016310334,
+      "finished": 1376.018429417,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "572C22BFE3",
+            [
+              "t1",
+              "t0"
+            ],
+            "cancelled"
+          ],
+          [
+            "98CF2BC997",
+            [
+              "t3",
+              "t2"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    }
+  ],
+  "accepted_orders": [
+    [
+      3,
+      4,
+      1,
+      0,
+      2,
+      5
+    ],
+    [
+      3,
+      4,
+      1,
+      0,
+      5,
+      2
+    ],
+    [
+      3,
+      4,
+      1,
+      2,
+      0,
+      5
+    ],
+    [
+      3,
+      4,
+      1,
+      2,
+      5,
+      0
+    ],
+    [
+      3,
+      4,
+      1,
+      5,
+      0,
+      2
+    ],
+    [
+      3,
+      4,
+      1,
+      5,
+      2,
+      0
+    ],
+    [
+      4,
+      3,
+      1,
+      0,
+      2,
+      5
+    ],
+    [
+      4,
+      3,
+      1,
+      0,
+      5,
+      2
+    ],
+    [
+      4,
+      3,
+      1,
+      2,
+      0,
+      5
+    ],
+    [
+      4,
+      3,
+      1,
+      2,
+      5,
+      0
+    ],
+    [
+      4,
+      3,
+      1,
+      5,
+      0,
+      2
+    ],
+    [
+      4,
+      3,
+      1,
+      5,
+      2,
+      0
+    ]
+  ]
+}

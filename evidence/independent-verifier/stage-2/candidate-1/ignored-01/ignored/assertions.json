@@ -1,0 +1,152 @@
+[
+  {
+    "requirement_id": "TK2-legacy-ignored-create-source",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-batch-source",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-import",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-batch-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-create-new",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Supply table_id or table_ids, not both"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-batch-new",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Supply table_id or table_ids, not both"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-key-conflict",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-import",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-create-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-batch-replay",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-create-new",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Supply table_id or table_ids, not both"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-batch-new",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Supply table_id or table_ids, not both"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK2-legacy-ignored-key-conflict",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "idempotency_key_reuse",
+          "message": "idempotency key reuse"
+        }
+      }
+    }
+  }
+]
