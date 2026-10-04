@@ -35,7 +35,11 @@ Within a stage, engine and transport/UI ownership are disjoint. Overlapping edit
 
 ## Current promotion gate
 
-Highest current consecutive accepted stage is 0. Independent verdict fe68f4ef60580d73c17ba2a21c6a4d20b77e8e41 rejects genuinely frozen Stage 1 revision 2a4b0408a3453bc87d86bca3d0ec571f479e03ca for five valid 4,301-digit integer boundaries: 806 rows, 801 historical verified, five failed, zero unverified. Stage 2 candidate 4b92041057beb669d2e6c528e8268f4d0d1e6421 is rejected with 1,265 rows, 1,226 verified, 17 failed and 22 unverified despite official 120 inherited and 25 current tests passing. All original acceptance files, manifests, test outputs and commits remain unchanged. The append-only revocation is evidence/coordinator/accepted/revoked-stage-1-2a4b0408a3453bc87d86bca3d0ec571f479e03ca.json. Only Systems’ stage-1/core.py path has been explicitly released under complete six-part package TK-20261004-S1-systems-engineer-DECIMAL-REPAIR-1 and shared card 7. Interface integration and full independent named reacceptance must follow. Stage 2 source is frozen pending renewed Stage 1 acceptance and a complete updated candidate covering exact numeric controls, status, restaurant-local end times and upgrades. No Stage 3 or Stage 4 work has begun.
+Highest current consecutive accepted stage is 0. The original Stage 1 acceptance at 2a4b0408a3453bc87d86bca3d0ec571f479e03ca was revoked after genuine 4,301-digit boundary failures; its original evidence is preserved. Decimal repair candidate 5, f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250, is independently rejected at 6c01976c7b1b910f748efc97be7cc468b5963b18: 932 rows, 913 verified, five failed and fourteen source questions unverified, despite official 120/120 passing. Valid unknown finite JSON numbers were incorrectly refused. The new adopted value/legacy decision resolves those questions prospectively and does not rewrite the old verdict.
+
+Both builders acknowledged their complete eight-part JSON-REPAIR-1 packages. Their committed reciprocal API is loads(bytes | str) to an exact JSON tree and dumps(tree) to UTF-8 bytes. Systems owns stage-1/json_codec.py and core.py; Interface owns server.py, Dockerfile, .dockerignore and RUN.md. Schema-2 private receipts carry exact-v1 or python-json-v1 profiles; genuine schema-1 receipts preserve their old source comparison while original public responses remain unchanged. Systems is explicitly released for the module-only step under shared card 10. Interface adapter/image wiring under card 11 follows its committed module handoff, then Systems core integration. Intermediate commits cannot restore acceptance. Fresh independent named review, complete normative coverage and isolated checks must follow the complete candidate.
+
+Stage 2 candidate 4b92041057beb669d2e6c528e8268f4d0d1e6421 remains rejected: 1,265 rows, 1,226 verified, 17 failed and 22 unverified despite official 120 inherited and 25 current tests passing. Its later builder repairs have not been independently accepted. Stage 2 source is frozen pending renewed Stage 1 acceptance, then explicit inheritance reconciliation and complete updated review. No Stage 3 or Stage 4 work has begun. Original manifests, verdicts, test outputs and commits remain unchanged; the append-only revocation is evidence/coordinator/accepted/revoked-stage-1-2a4b0408a3453bc87d86bca3d0ec571f479e03ca.json.
 
 ## Intake history and timestamp decision
 
@@ -44,6 +48,8 @@ Stage 1 review found a historical-offset grammar conflict. The recorded resoluti
 The result repository was empty and clean at intake. Four room identities are present and all three other seats replied with literal coordinator routing. Harness is Codex; model gpt-6.1-sol is operator-configured; actual runtime override and effort are not exposed. Token usage and cost are unknown. No stage was accepted at intake.
 
 The initial ledger lives in evidence/coordinator/requirements-ledger.csv. It deliberately retains nonnormative examples for source completeness. The independent verifier must split bundled obligations and schemas into atomic normative rows before counting coverage.
+
+The complete numeric interpretation is evidence/coordinator/json-number-semantics-decision.md. Body integer fields use exact mathematical value, fractions use value-error statuses, booleans remain distinct and query spelling remains plain digits. Current receipt equality is exact; genuine legacy receipts retain their observed parser equivalences through an explicit private receipt profile. The original historical timestamp and immutable receipt-shape decisions remain applicable.
 
 ```arch
 {
@@ -55,6 +61,7 @@ The initial ledger lives in evidence/coordinator/requirements-ledger.csv. It del
     ]},
     {"id": "service", "title": "Single-container HTTP service", "items": [
       {"id": "transport", "label": "HTTP transport and runtime", "detail": "Interface Engineer owns integration, launch and presentation"},
+      {"id": "json_codec", "label": "Exact JSON values and legacy comparison", "detail": "Systems owns shared codec; Interface owns adapter wiring; receipt profiles preserve source semantics"},
       {"id": "integrity", "label": "Atomic service engine", "detail": "Systems Engineer owns authentication, transactions and state invariants"},
       {"id": "planning", "label": "Terms, recurrence and deterministic planning", "detail": "Cumulative Stage 3 and Stage 4 behavior only"}
     ]},
@@ -66,6 +73,8 @@ The initial ledger lives in evidence/coordinator/requirements-ledger.csv. It del
   "flows": [
     {"from": "browser", "to": "transport", "label": "JSON API"},
     {"from": "transport", "to": "integrity", "label": "Engine.request"},
+    {"from": "transport", "to": "json_codec", "label": "Strict UTF-8 decode and exact byte encode"},
+    {"from": "integrity", "to": "json_codec", "label": "Exact value comparison and receipt source profiles"},
     {"from": "integrity", "to": "planning", "label": "Atomic cumulative rules"},
     {"from": "verification", "to": "coordination", "label": "Accept or reject exact candidate"}
   ]

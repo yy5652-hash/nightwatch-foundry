@@ -7,6 +7,7 @@
     ]},
     {"id": "service", "title": "Single-container HTTP service", "items": [
       {"id": "transport", "label": "HTTP transport and runtime", "detail": "Interface Engineer owns integration, launch and presentation"},
+      {"id": "json_codec", "label": "Exact JSON values and legacy comparison", "detail": "Systems owns shared codec; Interface owns adapter wiring; receipt profiles preserve source semantics"},
       {"id": "integrity", "label": "Atomic service engine", "detail": "Systems Engineer owns authentication, transactions and state invariants"},
       {"id": "planning", "label": "Terms, recurrence and deterministic planning", "detail": "Cumulative Stage 3 and Stage 4 behavior only"}
     ]},
@@ -18,6 +19,8 @@
   "flows": [
     {"from": "browser", "to": "transport", "label": "JSON API"},
     {"from": "transport", "to": "integrity", "label": "Engine.request"},
+    {"from": "transport", "to": "json_codec", "label": "Strict UTF-8 decode and exact byte encode"},
+    {"from": "integrity", "to": "json_codec", "label": "Exact value comparison and receipt source profiles"},
     {"from": "integrity", "to": "planning", "label": "Atomic cumulative rules"},
     {"from": "verification", "to": "coordination", "label": "Accept or reject exact candidate"}
   ]
