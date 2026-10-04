@@ -263,3 +263,44 @@ Both owners agree the module-first, adapter/package-next, core-last sequence.
 The next source step still requires the coordinator's explicit release and
 Systems' committed module revision. Stage 1 and Stage 2 production remain
 unchanged, shared #11 stays active, and highest accepted stage remains 0.
+
+## Adopted source decision — prospective contract
+
+Coordinator message `483e8e75-0620-4c5f-821e-e885006cba7a` supplies the complete
+adopted decision, **JSON numeric values and historical receipt compatibility**.
+Interface agrees with it and with the callable API recorded above. It governs
+this repair and every later cumulative stage/review. It grants no production
+source release and is not an implementation acceptance verdict.
+
+The decision resolves body integer semantics by exact value: finite integral
+numbers, including `1`, `1.0`, `1e0`, satisfy a body integer field before its range
+checks. Base grid/duration/capacity are positive whole counts; cutoff is a
+nonnegative whole count. A genuine finite base fraction is a correct numeric
+JSON type with an invalid count value and gives 422 `validation_failed`. Other
+wrong types give 400, except the explicit invalid-party override gives 422.
+Missing required fields remain 422. Query integer spelling stays plain digits.
+Magnitude creates no new type or language-derived bound.
+
+New full-body recursive equality compares exact numeric values, treats signed
+zeros as equivalent, keeps booleans and other JSON types distinct, retains array
+order and complete object key/value mappings, and includes ignored fields. A
+used-key body difference precedes endpoint/resource checks. Numeric values remain
+JSON numbers through decode, receipts and replacement export/import. Valid finite
+unknown numbers do not cause malformed-request refusals; literal non-JSON
+NaN/Infinity constants and malformed JSON/UTF-8 remain 400.
+
+Genuinely imported old receipts retain a persisted receipt-scoped source profile.
+Only historical comparison projects incoming decimal/exponent provenance through
+the old decoder; integer-token values stay exact, boolean distinctions and
+observed old numeric cross-type equality remain. New receipts are exact. Mixed
+profiles survive independent-process export/import; original public response
+JSON values and strings stay unchanged. A finite incoming value that overflows
+the old projection is a different valid body (409 for a used legacy key), not a
+legitimate saved infinite receipt or a malformed new number.
+
+This decision resolves the fourteen prior base/integral-number **source
+questions prospectively**. Their original observed responses, provisional
+expectations and unverified candidate-5 verdict rows remain preserved; this
+document does not rewrite them as new implementation passes or acceptance.
+The coherent repaired service still needs new named-context builder evidence and
+independent source-aware coverage, startup, official and regression checks.
