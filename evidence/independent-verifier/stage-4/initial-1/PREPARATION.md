@@ -1,0 +1,47 @@
+# Stage 4 INITIAL-1 independent preparation
+
+**Prepared. Candidate execution held.** All19 numbered parts and both END markers of `TK-20261004-S4-independent-verifier-INITIAL-1` arrived and were acknowledged by `jam_reply_to_message` on final inbound `e81d30db-b3e3-4cd3-9c62-00dbffce53be` before preparation. The actual reciprocal reply ID is unknown. [Intake](checks-04/intake.json) records each actual inbound part ID and durable handoff hash. Shared card24 is in progress for the complete later review, with one textual `Components: verification, planning` line; no typed link claim.
+
+Highest consecutive independently accepted stage remains **3**, frozen at `91e2c471acded1b861b3fec725f202297b1c6740`, tree `a0f0a4741bb0ab0125856510a000ade385344a04`, against independent evidence `315631a0565cbc671ba112842b452eb0b8624313`. Accepted Stage1 `75005d57fe0904753eac4eab5bf4e4c9a78b6d1b` and Stage2 `4dba10246b07b2dda19de260d529f9d94ba0a1ed` remain immutable. All24 frozen production files compare byte-for-byte to their accepted Git blobs. This is provenance inspection, not another service build or execution.
+
+The current [coverage matrix](checks-04/coverage.csv) has **7,828 normative rows, all unverified**: 7,359 inherited Stage1–3 obligations and469 independently derived Stage4 cases. Twenty-two nonnormative fixture admission diagnostics remain separate and unverified, for7,850 unique records. All14 required metadata fields, exact implementation/verification owners, source section/line, inherited stage and concrete preparation file links pass the [metadata check](checks-04/metadata-self-check.json). Candidate fields explicitly remain pending. The exact prior Stage3 CSV is preserved unchanged; each new inherited row retains its prior candidate/verdict/command/evidence. Neither historical passes, builder counts nor local controls establish a current Stage4 pass. The row count is specification decomposition, not a hidden-test count or score.
+
+## Independent prepared mechanisms
+
+The [seating oracle](../stage4_oracle.py) enumerates complete feasible single/declared-pair assignments using each booking's own accepted capacities, half-open absolute intervals, fixed bookings and old/proposed closures. It minimizes changed table sets, then unused seats over all considered bookings, then the option rank vector in reference order. A separately written unpruned Cartesian enumerator controls small constructions. [Full supported-bound construction](checks-04/full-bound-construction.json) includes six tables, four pairs and six considered bookings with fixed occupancy and an old closure. [Reference trace](checks-04/reference-trace.json) saves160 deterministic model constructions, seed202610064, including feasible/infeasible results. These are model inputs/results, not actual candidate operations; the later client must save separately executed operations and server-issued identities.
+
+Exact [instant constructions](checks-04/exact-instant-constructions.json) retain Fraction seconds at1/6/7/18/64 fractional digits and equivalent offset spellings. Positive submicrosecond overlap differs from exact adjacency without float/datetime truncation. This helper covers the prepared standard explicit-offset RFC3339 subset; broader input grammar and leap seconds remain specifically labelled source-reconciliation questions, not fictional observed defects. Saved Fraction notation describes the reference model only and never substitutes strings for numeric wire fields.
+
+The finite [series transition model](checks-04/series-model.json) retains original scheduled dates and current seating, skips cancelled/permanent exception members, applies real changes atomically with selected terms and one whole-operation counter increment, retains all-no-op/empty state, and resolves stale revision before cutoff. [Serial model](checks-04/serial-model.json) independently checks a two-plan ordering. Abstract clock/editability inputs are reference controls, not a public HTTP clock endpoint.
+
+[HTTP protocol](../stage4_probe.py) prepares manager preview/application, exact boundaries, the full bound, explanations, current series changes, numeric type/value checks and fifty-client identical application/amendment waves. [Additional protocol](../stage4_extra.py) prepares exact full-body retries, original receipts after mutations, deep preview/apply/amend writes and unchanged raw transfers, genuine accepted Stage1/2/3 populated migration, actual old moves/exception/cancellation, subsequent current amendments/repairs and second peer replacement, and publicly observable staleness/counter effects. Private exports and tokens stay in client memory. [Thirty-six deep constructions](checks-04/deep-constructions.json) use balanced arrays/objects/alternating wrappers at1,100/5,000/10,000/20,000 around valid shallow finite leaves; no deep private export is decoded and no recursion limit is raised.
+
+[Browser protocol](../stage4_browser.py) prepares real manager preview/apply and owner series-amend flows at375/1280 CSSpx, actual keyboard submission, server truth comparisons, width checks and real screenshot capture. New product selectors must be observed and bound to a concrete current proof after release. No selector, DOM getter, manager capability, UI or successful response is invented. Further recovery/race/private/upgrade/contrast scopes are explicit in the [binding inventory](../PROTOCOL_BINDING.md); a prepared family pass cannot conceal an uncovered obligation. Exact current source/assembly, actual inherited protocols, all unchanged official isolated suites1–4, additional legacy chains, full concurrency/snapshot histories, private-state validation and row-specific bindings are later execution work.
+
+## Actual local observations
+
+Executed with the assigned workspace Python from the result root; each output is new and immutable:
+
+```sh
+../../.venv/bin/python -B evidence/independent-verifier/stage-4/stage4_prepare.py --out evidence/independent-verifier/stage-4/initial-1/checks-01
+../../.venv/bin/python -B evidence/independent-verifier/stage-4/stage4_prepare.py --out evidence/independent-verifier/stage-4/initial-1/checks-02
+../../.venv/bin/python -B evidence/independent-verifier/stage-4/stage4_prepare.py --out evidence/independent-verifier/stage-4/initial-1/checks-03
+../../.venv/bin/python -B evidence/independent-verifier/stage-4/stage4_prepare.py --out evidence/independent-verifier/stage-4/initial-1/checks-04
+```
+
+| Complete preparation run | Local controls | Measured seconds |
+| --- | ---: | ---: |
+| checks-01 | 8,181/8,181 |0.903664584 |
+| checks-02 | 8,187/8,187 |0.922860500 |
+| checks-03 | 8,214/8,214 |0.916391833 |
+| checks-04 | **8,218/8,218** |**0.968080750** |
+
+These controls include per-row metadata/file checks, AST parsing, exact source copies, frozen blobs, finite model objectives/transition invariants, balanced constructors and each release-denial flag. They are not candidate assertions. [Current execution](checks-04/execution.json) and [source commands](checks-04/commands.json) retain actual argv/timing and errors=null. Each run saves its exact executed Python source, preserving earlier prospective expectations before later refinement. [Preparation issues](../PREPARATION_ISSUES.md) disclose the invalid CLI subcommand and missing own-source lookup; neither touched a candidate or becomes a service pass.
+
+**Candidate HTTP requests0; browser interactions0; images built0; official checks0; production edits/imports/execution0.** The saved release template is explicitly not executable. The validator refuses incomplete package/source/runtime proof, unsupported origins/external URLs and unobserved UI bindings. No Stage4 source or builder protocol was read as an oracle. Authored inputs are only the complete cumulative direct requirements/guide/brief/decisions, authoritative room plan, frozen provenance and the verifier's own earlier semantic/member/calendar helpers.
+
+All four adopted interpretations remain: historical exact IANA instant/original wall field with nearest representable minute-offset serialization and immutable old seconds-offset strings; immutable original successful response schema/values/body meaning; exact mathematical JSON numbers plus genuine receipt-scoped legacy comparison; exact visible semantic numeric controls with native HTML input-type ambiguity disclosed. Genuine earlier imports retain revision1/fixture-policy0/empty prior histories/private counter0 without inventing earlier events or manager authority. Finite sizes/depth/exponents/optimizer/concurrency constructions do not prove arbitrary workload performance; visual/contrast certification is not established by preparation.
+
+The [owned seal audit](seal-01/artifact-audit.json) and [proof](seal-01/proof.json) record their scoped source/metadata/privacy/ownership checks. Source/log/handoff text, peer/prior artifacts and genuine full room export are excluded from the JSON privacy claim. The exact evidence revision is supplied only after owned commit/path/author inspection in the final room report; no circular self-identifier is embedded here. Previous evidence is untouched and no history is rewritten.
+
+Harness/configured model **Codex/gpt-6.1-sol**; actual override, effort, tokens, catalog-estimated cost and billed spend **unknown**. Timings above are local runs; whole-factory elapsed is coordinator-owned. Stage4 acceptance, public release, genuine room export and submission are not claimed.
