@@ -53,11 +53,6 @@ def verify():
 
 if sys.argv[1] == 'verify':
     verify()
-    current = {d['stage']: d for _, d in current_manifests()}
-    if stage in current:
-        raise ValueError('Stage already accepted; preserve and explicitly revoke before repair')
-    if stage > 1 and any(n not in current for n in range(1, stage)):
-        raise ValueError('Earlier consecutive accepted stage is missing')
 elif sys.argv[1] == 'freeze':
     stage = int(sys.argv[2])
     revision = git('rev-parse', sys.argv[3])
@@ -68,6 +63,11 @@ elif sys.argv[1] == 'freeze':
     if not verdict.is_file():
         raise ValueError('Independent verdict evidence is missing')
     verify()
+    current = {d['stage']: d for _, d in current_manifests()}
+    if stage in current:
+        raise ValueError('Stage already accepted; preserve and explicitly revoke before repair')
+    if stage > 1 and any(n not in current for n in range(1, stage)):
+        raise ValueError('Earlier consecutive accepted stage is missing')
     if git('status', '--porcelain', '--', f'stage-{stage}'):
         raise ValueError('Candidate stage has uncommitted changes')
     entries = tree(stage, revision)
