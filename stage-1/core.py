@@ -7,11 +7,9 @@ is no occupancy cache: confirmed reservation records are the source of truth.
 from __future__ import annotations
 
 from collections.abc import Mapping
-from copy import deepcopy
 from datetime import date, datetime, timedelta, timezone
 import hashlib
 import hmac
-import math
 import re
 import secrets
 import sys
@@ -19,6 +17,9 @@ import threading
 from urllib.parse import parse_qs, unquote, urlsplit
 import uuid
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from json_codec import (EXACT_PROFILE, LEGACY_PROFILE, JsonCodecError, compare_numbers,
+                        copy_json, is_integral, is_number, multiply_integer,
+                        same_value, to_integer, validate_json)
 
 
 UTC = timezone.utc
@@ -64,41 +65,23 @@ def integer_field(body, field, *, minimum=1, party=False):
     if field not in body:
         fail(message=f"Missing {field}")
     value = body[field]
-    if type(value) is not int:
+    if not is_number(value):
         fail(422 if party else 400, "validation_failed" if party else "malformed_request")
-    if value < minimum:
+    if not is_integral(value) or compare_numbers(value, minimum) < 0:
         fail(message=f"Invalid {field}")
     return value
 
 
 def json_value(value):
     """Validate a portable JSON tree, including ignored fields in retry bodies."""
-    if value is None or type(value) in (str, bool, int):
-        return
-    if type(value) is float and math.isfinite(value):
-        return
-    if isinstance(value, list):
-        for item in value:
-            json_value(item)
-        return
-    if isinstance(value, dict) and all(isinstance(k, str) for k in value):
-        for item in value.values():
-            json_value(item)
-        return
-    fail(400, "malformed_request", "Invalid JSON value")
+    try:
+        validate_json(value)
+    except JsonCodecError:
+        fail(400, "malformed_request", "Invalid JSON value")
 
 
-def same_json(left, right):
-    # JSON booleans are not numbers, despite Python's True == 1.
-    if type(left) is bool or type(right) is bool:
-        return type(left) is type(right) and left == right
-    if isinstance(left, dict) and isinstance(right, dict):
-        return left.keys() == right.keys() and all(same_json(left[k], right[k]) for k in left)
-    if isinstance(left, list) and isinstance(right, list):
-        return len(left) == len(right) and all(same_json(a, b) for a, b in zip(left, right))
-    if type(left) in (int, float) and type(right) in (int, float):
-        return left == right
-    return type(left) is type(right) and left == right
+def same_json(left, right, *, profile=EXACT_PROFILE):
+    return same_value(left, right, profile=profile)
 
 
 def local_datetime(value):
@@ -173,7 +156,7 @@ def assert_booking_fields(row, expected):
         if key in ("starts_at", "ends_at"):
             if instant(timestamp(row.get(key))) != instant(timestamp(value)):
                 fail()
-        elif row.get(key) != value:
+        elif not same_json(row.get(key), value):
             fail()
 
 
@@ -247,7 +230,7 @@ class Engine:
 
     @staticmethod
     def _empty_state():
-        return {"schema": 1, "users": [], "restaurants": [], "tokens": {},
+        return {"schema": 2, "users": [], "restaurants": [], "tokens": {},
                 "reservations": [], "receipts": []}
 
     def request(self, method: str, target: str, headers: Mapping[str, str],
@@ -255,7 +238,9 @@ class Engine:
         with self._lock:
             try:
                 result = self._dispatch(method, target, headers, body)
-                return result[0], deepcopy(result[1])
+                # Capture detached containers before releasing the state lock;
+                # transport encoding may overlap later independent writes.
+                return result[0], copy_json(result[1])
             except Refusal as error:
                 return error.status, {"error": {"code": error.code, "message": str(error)}}
             except (ValueError, OverflowError, UnicodeError, RecursionError):
@@ -280,8 +265,7 @@ class Engine:
             envelope = object_body(body)
             try:
                 if (envelope.get("track") != "tablekeeper" or
-                        type(envelope.get("format_version")) is not int or
-                        envelope["format_version"] != 1 or "state" not in envelope):
+                        not same_json(envelope.get("format_version"), 1) or "state" not in envelope):
                     fail()
                 candidate = self._import_state(envelope["state"])
             except (Refusal, ValueError, TypeError, KeyError, OverflowError, RecursionError):
@@ -311,15 +295,25 @@ class Engine:
             for receipt in self._state["receipts"]:
                 if (receipt["user_id"], receipt["method"], receipt["path"], receipt["key"]) == (
                         user["id"], method, path, key):
-                    if not same_json(receipt["body"], data):
+                    if not same_json(receipt["body"], data, profile=receipt["numeric_profile"]):
                         fail(409, "idempotency_key_reuse")
                     return 200, receipt["response"]
+            saved_body = copy_json(data)
             if path == "/reservations":
-                response = self._create(user, data)
+                record = self._create(user, data)
+                response = self._public(record)
             else:
-                response = self._moves(user, data)
-            self._state["receipts"].append({"user_id": user["id"], "method": method,
-                "path": path, "key": key, "body": deepcopy(data), "response": deepcopy(response)})
+                originals, proposed = self._moves(user, data)
+                response = {"reservations": [self._public(r) for r in proposed]}
+            receipt = {"user_id": user["id"], "method": method,
+                "path": path, "key": key, "body": saved_body, "response": copy_json(response),
+                "numeric_profile": EXACT_PROFILE}
+            if path == "/reservations":
+                self._state["reservations"].append(record)
+            else:
+                for original, candidate in zip(originals, proposed):
+                    original.update(candidate)
+            self._state["receipts"].append(receipt)
             return 201, response
         if method == "GET" and path == "/reservations":
             records = [r for r in self._state["reservations"] if r["user_id"] == user["id"]]
@@ -437,18 +431,21 @@ class Engine:
         opening = datetime.fromisoformat(f"{local.date().isoformat()}T{hours['opens']}")
         closing = datetime.fromisoformat(f"{local.date().isoformat()}T{hours['closes']}")
         start_value = instant(start)
-        duration = restaurant["reservation_duration_minutes"] * MINUTE_US
+        duration = multiply_integer(restaurant["reservation_duration_minutes"], MINUTE_US)
         closing_zoned = closing.replace(tzinfo=zone, fold=0)
         closing_value = instant(closing_zoned)
         # Reject an interval that cannot fit before constructing its endpoint.
         # Otherwise a late unbookable slot can overflow the maximum calendar year.
-        if local < opening or local >= closing or duration > closing_value - start_value:
+        if (local < opening or local >= closing or
+                compare_numbers(duration, closing_value - start_value) > 0):
             fail(422, "outside_opening_hours")
+        duration = to_integer(duration)  # Bounded by the actual closing instant.
         end = zoned_at(start_value + duration, zone, (start, closing_zoned))
         minutes = int((local - opening).total_seconds() // 60)
-        if minutes % restaurant["slot_minutes"]:
+        grid = restaurant["slot_minutes"]
+        if minutes and (compare_numbers(grid, minutes) > 0 or minutes % to_integer(grid)):
             fail(422, "not_on_slot_grid")
-        if party_size > table["capacity"]:
+        if compare_numbers(party_size, table["capacity"]) > 0:
             fail(422, "party_exceeds_capacity")
         return {"restaurant_id": restaurant_id, "table_id": table_id, "party_size": party_size,
                 "starts_at_local": data["starts_at_local"], "starts_at": wire_timestamp(start),
@@ -486,13 +483,12 @@ class Engine:
             r["reservation_id"] for r in self._state["reservations"]}),
             "reference": reference, "user_id": user["id"], **fields, "status": "confirmed",
             "created_at": wire_timestamp(datetime.now(UTC))}
-        self._state["reservations"].append(record)
-        return self._public(record)
+        return record  # Dispatch snapshots the receipt before committing it.
 
     def _cutoff(self, record):
         restaurant = self._restaurant(record["restaurant_id"])
         remaining = instant(timestamp(record["starts_at"])) - instant(datetime.now(UTC))
-        if remaining <= restaurant["cancellation_cutoff_minutes"] * MINUTE_US:
+        if compare_numbers(remaining, multiply_integer(restaurant["cancellation_cutoff_minutes"], MINUTE_US)) <= 0:
             fail(409, "cutoff_passed")
 
     def _amend_candidate(self, record, data):
@@ -503,6 +499,8 @@ class Engine:
             "restaurant_id", "table_id", "starts_at_local", "party_size")}
         fields.update({key: data[key] for key in ("table_id", "starts_at_local", "party_size") if key in data})
         revised = self._booking_fields(fields)
+        if same_json(revised["party_size"], record["party_size"]):
+            revised["party_size"] = record["party_size"]
         for key in ("starts_at", "ends_at"):
             if instant(timestamp(revised[key])) == instant(timestamp(record[key])):
                 revised[key] = record[key]
@@ -528,9 +526,7 @@ class Engine:
             originals.append(record)
             proposed.append(candidate)
         self._check_occupancy(proposed, set(references))
-        for original, candidate in zip(originals, proposed):
-            original.update(candidate)
-        return {"reservations": [self._public(r) for r in proposed]}
+        return originals, proposed  # Dispatch commits all records and receipt together.
 
     def _availability(self, query):
         def parameter(name):
@@ -560,11 +556,13 @@ class Engine:
         close = datetime.fromisoformat(f"{local_date_string}T{hours['closes']}")
         closing_zoned = close.replace(tzinfo=zone, fold=0)
         close_value = instant(closing_zoned)
-        duration = restaurant["reservation_duration_minutes"] * MINUTE_US
+        duration = multiply_integer(restaurant["reservation_duration_minutes"], MINUTE_US)
         # Grid offsets are bounded by this local day's opening window. Stepping
         # past it must not attempt to construct another day (or another year).
         window_minutes = int((close - opening).total_seconds() // 60)
-        for offset in range(0, window_minutes, restaurant["slot_minutes"]):
+        grid = restaurant["slot_minutes"]
+        step = window_minutes if compare_numbers(grid, window_minutes) >= 0 else to_integer(grid)
+        for offset in range(0, window_minutes, step):
             local = opening + timedelta(minutes=offset)
             try:
                 start = resolve_local(local, zone)
@@ -573,14 +571,14 @@ class Engine:
                     raise
                 continue
             start_value = instant(start)
-            if duration <= close_value - start_value:
-                end_value = start_value + duration
+            if compare_numbers(duration, close_value - start_value) <= 0:
+                end_value = start_value + to_integer(duration)
                 end = zoned_at(end_value, zone, (start, closing_zoned))
                 available = []
                 for table in restaurant["tables"]:
                     candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
                                  "starts_at": wire_timestamp(start), "ends_at": wire_timestamp(end)}
-                    if table["capacity"] >= party and not any(
+                    if compare_numbers(table["capacity"], party) >= 0 and not any(
                             r["status"] == "confirmed" and self._overlap(candidate, r)
                             for r in self._state["reservations"]):
                         available.append(table["id"])
@@ -692,7 +690,8 @@ class Engine:
     def _import_state(self, source):
         source = object_body(source)
         json_value(source)
-        if type(source.get("schema")) is not int or source["schema"] != 1:
+        schema = source.get("schema")
+        if not (same_json(schema, 1) or same_json(schema, 2)):
             fail()
         state = self._empty_state()
         state["restaurants"] = self._restaurants(source["restaurants"])
@@ -721,7 +720,7 @@ class Engine:
                 not isinstance(token, str) or not token or not isinstance(owner, str) or owner not in user_ids
                 for token, owner in tokens.items()):
             fail()
-        state["tokens"] = deepcopy(tokens)
+        state["tokens"] = copy_json(tokens)
         if not isinstance(source["reservations"], list) or not isinstance(source["receipts"], list):
             fail()
         references, reservation_ids = set(), set()
@@ -737,6 +736,9 @@ class Engine:
         receipt_keys = set()
         for row in source["receipts"]:
             row = object_body(row)
+            profile = LEGACY_PROFILE if same_json(schema, 1) else row.get("numeric_profile")
+            if type(profile) is not str or profile not in (EXACT_PROFILE, LEGACY_PROFILE):
+                fail(message="Invalid receipt numeric profile")
             user_id = text_field(row, "user_id", maximum=64)
             method = text_field(row, "method")
             path = text_field(row, "path")
@@ -772,7 +774,8 @@ class Engine:
                     amended_fields.update({k: move[k] for k in (
                         "table_id", "party_size", "starts_at_local") if k in move})
                     self._booking_fields(amended_fields, state)
-                    if any(move[k] != snapshot.get(k) for k in ("table_id", "party_size", "starts_at_local") if k in move):
+                    if any(not same_json(move[k], snapshot.get(k), profile=profile)
+                           for k in ("table_id", "party_size", "starts_at_local") if k in move):
                         fail()
             for snapshot in snapshots:
                 saved = self._validate_record(snapshot, state, owner_required=False)
@@ -782,5 +785,6 @@ class Engine:
                     fail()
             self._check_occupancy(snapshots, references, state)
             state["receipts"].append({"user_id": user_id, "method": method, "path": path,
-                                     "key": key, "body": deepcopy(body), "response": deepcopy(response)})
+                                     "key": key, "body": copy_json(body), "response": copy_json(response),
+                                     "numeric_profile": profile})
         return state

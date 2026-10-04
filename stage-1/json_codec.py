@@ -196,6 +196,27 @@ def validate_json(value):
         pending.extend((child, False) for child in children)
 
 
+def copy_json(value):
+    """Detach every mutable container without recursion or numeric conversion."""
+    validate_json(value)
+    if not isinstance(value, (dict, list)):
+        return value
+    result = {} if isinstance(value, dict) else []
+    pending = [(value, result)]
+    while pending:
+        source, target = pending.pop()
+        entries = source.items() if isinstance(source, dict) else enumerate(source)
+        for key, item in entries:
+            cloned = ({} if isinstance(item, dict) else []) if isinstance(item, (dict, list)) else item
+            if isinstance(target, dict):
+                target[key] = cloned
+            else:
+                target.append(cloned)
+            if isinstance(item, (dict, list)):
+                pending.append((item, cloned))
+    return result
+
+
 def _encode(value):
     pieces = []
     pending = [(value, False)]

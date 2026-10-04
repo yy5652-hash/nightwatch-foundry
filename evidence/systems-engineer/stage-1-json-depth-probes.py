@@ -98,6 +98,23 @@ for depth in (750, 1000, 1100, 1200, 1600):
 
         observe(label + " malformed closing tail refused", malformed_tail, lambda result: result, detail)
 
+        def detached_copy():
+            cloned = codec.copy_json(value)
+            if not codec.same_value(cloned, value):
+                return False
+            old, new = value, cloned
+            for _level in range(depth):
+                if old is new:
+                    return False
+                old = old["unused"] if type(old) is dict else old[0]
+                new = new["unused"] if type(new) is dict else new[0]
+            if old is new or old["finite"] is not new["finite"]:
+                return False
+            new["flag"] = False
+            return old["flag"] is True and not codec.same_value(value, cloned)
+
+        observe(label + " depth-safe detached container copy", detached_copy, lambda result: result, detail)
+
 for label, tree in (("empty nested containers", [[], {}, {"empty": []}]),
                     ("punctuation and key order", {"z": [1, 2, 3], "a": {"two": 2, "one": 1}})):
     observe(label, lambda tree=tree: codec.dumps(tree), lambda wire: json.loads(wire) == tree,
@@ -119,6 +136,17 @@ def cycle_refused():
     return False
 
 observe("cyclic mapping equality refused", cycle_refused, lambda result: result, {"cycle": True})
+
+def cycle_copy_refused():
+    cycle = []
+    cycle.append(cycle)
+    try:
+        codec.copy_json(cycle)
+    except codec.JsonCodecError:
+        return True
+    return False
+
+observe("cyclic copy refused", cycle_copy_refused, lambda result: result, {"cycle": True})
 
 summary = {"module_sha256": hashlib.sha256(module_path.read_bytes()).hexdigest(),
            "assertions": len(events), "passed": sum(e["passed"] for e in events),

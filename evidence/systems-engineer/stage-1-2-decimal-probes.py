@@ -227,7 +227,9 @@ try:
                    422, "invalid query " + bad, "validation_failed")
         token = login()
         before = snapshot()
-        for bad, status, code in ((str(HUGE), 400, "malformed_request"), (True, 400, "malformed_request"), (1.5, 400, "malformed_request"),
+        for bad, status, code in ((str(HUGE), 400, "malformed_request"), (True, 400, "malformed_request"),
+                                 (1.5, 422 if args.stage == 1 else 400,
+                                  "validation_failed" if args.stage == 1 else "malformed_request"),
                                   (-1, 422, "validation_failed")):
             bad_fixture = fixture()
             bad_fixture["restaurants"][0]["slot_minutes"] = bad
