@@ -94,7 +94,7 @@ async def screenshots(page, prefix):
 
 async def scenario(name, callback, browser):
     started = time.perf_counter()
-    context = await browser.new_context(viewport={"width": 1440, "height": 1000})
+    context = await browser.new_context(viewport={"width": 1440, "height": 1000},timezone_id='Pacific/Honolulu' if name.startswith('local-end-') else 'UTC')
     page = await context.new_page()
     errors=[]
     page.on("pageerror", lambda error: errors.append(str(error)))
@@ -520,6 +520,33 @@ async def corrupt_response_and_numeric_keyboard(context,page):
     await page.unroute_all()
     await tid(page,'booking-submit').click();check(await confirmed(page)==committed[0]['reference'],'malformed receipt retry recovers real original')
 
+async def local_end_display(context,page,zone,local,expected):
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    fixture=copy.deepcopy(FIXTURE)
+    restaurant=fixture['restaurants'][0];fixture['restaurants']=[restaurant]
+    restaurant.update(timezone=zone,reservation_duration_minutes=90,
+        opening_hours=[{'weekday':day,'opens':'00:00','closes':'23:59'} for day in ['mon','tue','wed','thu','fri','sat','sun']])
+    fixture['reservations']=[{'id':'local_end','reference':'LOCAL01','user_id':'u_ada','restaurant_id':restaurant['id'],
+        'table_id':'t_window','starts_at_local':local,'party_size':2}]
+    status,_=await request(context,BASE,'/_test/reset','POST',fixture)
+    check(status==204,'local-end fixture accepted')
+    await login(page)
+    await page.goto(BASE+'/lookup');await tid(page,'lookup-reference-input').fill('LOCAL01');await tid(page,'lookup-submit').click()
+    await expect(tid(page,'reservation-detail')).to_be_visible()
+    api=await context.request.get(BASE+'/reservations/LOCAL01',headers={'Authorization':'Bearer '+await page.evaluate("JSON.parse(sessionStorage.getItem('tablekeeper.session')).token")})
+    record=await api.json();check(api.status==200,'actual private local-end record')
+    oracle=datetime.fromisoformat(record['ends_at']).astimezone(ZoneInfo(zone)).strftime('%H:%M')
+    check(oracle==expected,'independent IANA instant-to-local end oracle')
+    end=tid(page,'reservation-detail').get_by_text('Ends at',exact=True).locator('..').locator('dd')
+    observed=await end.inner_text()
+    REPORT['trace'].append({'scenario':'local-end-display','zone':zone,'browser_timezone':'Pacific/Honolulu',
+        'starts_at_local':record['starts_at_local'],'ends_at':record['ends_at'],'expected_local_end':oracle,'displayed_local_end':observed})
+    check(await end.locator('time').get_attribute('datetime')==record['ends_at'],'immutable wire datetime remains unchanged')
+    check(local[11:16] in await tid(page,'reservation-detail').locator('h2').inner_text(),'start retains original wall field')
+    await screenshots(page,'local-end-'+zone.replace('/','-')+'-'+local[:10])
+    check(observed.endswith(' · '+expected),'restaurant-local end display '+zone+' '+local)
+
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
     start=time.perf_counter()
@@ -536,6 +563,16 @@ async def main():
             ("party-31-digits",lambda c,p:large_party_exactness(c,p,10**30+1)),
             ("party-401-digits",lambda c,p:large_party_exactness(c,p,10**400+1)),
             ("exact-numeric-keyboard-corrupt-response",corrupt_response_and_numeric_keyboard)]
+        end_cases=[('berlin-historic','Europe/Berlin','0001-01-01T18:00','19:30'),
+            ('brussels-historic','Europe/Brussels','0001-01-01T18:00','19:30'),
+            ('new-york-historic','America/New_York','0001-01-01T18:00','19:30'),
+            ('berlin-fall-back','Europe/Berlin','2026-10-25T02:30','03:00'),
+            ('new-york-fall-back','America/New_York','2026-11-01T01:30','02:00'),
+            ('berlin-spring','Europe/Berlin','2026-03-29T01:30','04:00'),
+            ('new-york-spring','America/New_York','2026-03-08T01:30','04:00'),
+            ('last-calendar-date','UTC','9999-12-31T18:00','19:30')]
+        for name,zone,local,expected in end_cases:
+            cases.append(('local-end-'+name,lambda c,p,z=zone,l=local,e=expected:local_end_display(c,p,z,l,e)))
         for name,callback in cases: await scenario(name,callback,browser)
         REPORT["browser_version"]=browser.version
         await browser.close()
