@@ -1,0 +1,13 @@
+# Coordinator Stage 3 actual capture review
+
+Observed 2026-10-04 07:19 UTC. Complete candidate: 91e2c471acded1b861b3fec725f202297b1c6740, Stage 3 tree a0f0a4741bb0ab0125856510a000ade385344a04. Scope: four actual owning-builder PNGs opened and visually reviewed, with independently computed file hashes/dimensions. No new browser interaction, complete accessibility certification or independent acceptance is claimed.
+
+| Capture | Dimensions | SHA-256 | Observed presentation |
+|---|---|---|---|
+| evidence/interface-engineer/interface-engineer-s3-20261004t071042348583z/s3-series-exception-cancelled-mobile.png | 375 × 3482 | f119b0e21d64a56769dcebc1a8e89156c8e9f58f5ccf3455e7645d23a5794dc4 | Current visit list visibly distinguishes a confirmed anchor, permanent individual exception and retained cancelled visit, with stable references and current agreement revision. |
+| evidence/interface-engineer/interface-engineer-s3-20261004t071042348583z/s3-upgraded-anchor-single-mobile.png | 375 × 3044 | f5d7f63de03ad1ba9ae29606ab762dad19667f51c34b24a1792cfcddc37c953c | Actual upgraded anchor shows an empty recorded-history explanation, current revision/terms and a real adopted visit list; no past creation event is invented. |
+| evidence/interface-engineer/interface-engineer-s3-20261004t071042348583z/s3-series-lost-mobile.png | 375 × 2622 | 3c8ea0814e06e82175e3211a4821bbd365ad764b5148c41a029bf7dcbc5d5f1d | Amber uncertain recurring result retains bounded form values and offers unchanged retry, with no displayed successful agreement or occurrence list. |
+| evidence/interface-engineer/interface-engineer-s3-20261004t071042348583z/s3-pair-transition-history-desktop.png | 1440 × 2195 | a0ce2a6e6f245a0eedf93cf64eb384c8249aba7163f249159d80f9f076df89e8 | Desktop current single seating and revision 2 are separate from ordered pair creation/transition history, full human before/after table labels and terms disclosures. |
+
+Warm cream surfaces, green primary actions, clay headings and amber uncertainty feedback remain consistent across the reviewed desktop/mobile captures. References, human table names, current status/revision and historic changes are visually distinct. These observations support presentation only. Runtime API truth, actual upgrades/keyboard/width behavior and timing remain bound to the owning-builder executable evidence and must be independently reviewed against the exact candidate. The Stage 3 source integration finding 01 is corrected in committed source and its real earlier-version upgrade scope passes in the complete Interface run; the stopped original run and unknown aggregate counts remain preserved. No live connected Chrome interaction is claimed.
+
