@@ -26,6 +26,9 @@ LOCAL_PATTERN = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}\Z")
 DATE_PATTERN = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")
 TIME_PATTERN = re.compile(r"(?:[01][0-9]|2[0-3]):[0-5][0-9]\Z")
 REFERENCE_PATTERN = re.compile(r"[A-Z0-9]{6,12}\Z")
+SECOND_US = 1_000_000
+MINUTE_US = 60 * SECOND_US
+DAY_US = 86_400 * SECOND_US
 
 
 class Refusal(Exception):
@@ -110,9 +113,66 @@ def local_datetime(value):
 
 def resolve_local(local, zone):
     first = local.replace(tzinfo=zone, fold=0)
-    if first.astimezone(UTC).astimezone(zone).replace(tzinfo=None) != local:
+    # ZoneInfo uses the pre-transition offset for fold 0 and post-transition
+    # offset for fold 1. A forward jump is a gap; a backward jump is a repeat.
+    # This avoids constructing UTC dates outside the local calendar's bounds.
+    if local.replace(tzinfo=zone, fold=1).utcoffset() > first.utcoffset():
         fail(422, "invalid_local_time")
     return first
+
+
+def delta_us(delta):
+    return delta.days * DAY_US + delta.seconds * SECOND_US + delta.microseconds
+
+
+def instant(value):
+    """Exact absolute microseconds, with an unrestricted integer day number."""
+    return (value.toordinal() * DAY_US + value.hour * 3600 * SECOND_US +
+            value.minute * MINUTE_US + value.second * SECOND_US + value.microsecond -
+            delta_us(value.utcoffset()))
+
+
+def naive_at(value):
+    ordinal, remainder = divmod(value, DAY_US)
+    day = date.fromordinal(ordinal)
+    seconds, microsecond = divmod(remainder, SECOND_US)
+    hour, seconds = divmod(seconds, 3600)
+    minute, second = divmod(seconds, 60)
+    return datetime(day.year, day.month, day.day, hour, minute, second, microsecond)
+
+
+def zoned_at(value, zone, hints):
+    """Convert an absolute instant without requiring a representable UTC date.
+
+    Ordinary instants use ZoneInfo's UTC conversion. At calendar boundaries,
+    invert the local offset relation and verify the exact instant. Both folds
+    are considered for an end time, which may be in the second repeated hour.
+    """
+    try:
+        return zone.fromutc(naive_at(value).replace(tzinfo=zone))
+    except (ValueError, OverflowError):
+        pass
+    pending = [delta_us(hint.replace(fold=fold).utcoffset()) for hint in hints for fold in (0, 1)]
+    visited = set()
+    while pending:
+        offset = pending.pop()
+        if offset in visited:
+            continue
+        visited.add(offset)
+        try:
+            local = naive_at(value + offset)
+        except (ValueError, OverflowError):
+            continue
+        is_gap = local.replace(tzinfo=zone, fold=1).utcoffset() > local.replace(
+            tzinfo=zone, fold=0).utcoffset()
+        for fold in (0, 1):
+            candidate = local.replace(tzinfo=zone, fold=fold)
+            actual_offset = delta_us(candidate.utcoffset())
+            if not is_gap and actual_offset == offset and instant(candidate) == value:
+                return candidate
+            if actual_offset not in visited:
+                pending.append(actual_offset)
+    fail(message="Instant has no representable local calendar time")
 
 
 def timestamp(value):
@@ -223,7 +283,7 @@ class Engine:
             return 201, response
         if method == "GET" and path == "/reservations":
             records = [r for r in self._state["reservations"] if r["user_id"] == user["id"]]
-            records.sort(key=lambda r: timestamp(r["starts_at"]).astimezone(UTC), reverse=True)
+            records.sort(key=lambda r: instant(timestamp(r["starts_at"])), reverse=True)
             return 200, {"reservations": [self._public(r) for r in records]}
         if len(segments) == 2 and segments[0] == "reservations":
             record = self._owned(segments[1], user)
@@ -336,14 +396,15 @@ class Engine:
             fail(422, "outside_opening_hours")
         opening = datetime.fromisoformat(f"{local.date().isoformat()}T{hours['opens']}")
         closing = datetime.fromisoformat(f"{local.date().isoformat()}T{hours['closes']}")
-        start_utc = start.astimezone(UTC)
-        duration = timedelta(minutes=restaurant["reservation_duration_minutes"])
-        closing_utc = closing.replace(tzinfo=zone, fold=0).astimezone(UTC)
+        start_value = instant(start)
+        duration = restaurant["reservation_duration_minutes"] * MINUTE_US
+        closing_zoned = closing.replace(tzinfo=zone, fold=0)
+        closing_value = instant(closing_zoned)
         # Reject an interval that cannot fit before constructing its endpoint.
         # Otherwise a late unbookable slot can overflow the maximum calendar year.
-        if local < opening or local >= closing or duration > closing_utc - start_utc:
+        if local < opening or local >= closing or duration > closing_value - start_value:
             fail(422, "outside_opening_hours")
-        end = (start_utc + duration).astimezone(zone)
+        end = zoned_at(start_value + duration, zone, (start, closing_zoned))
         minutes = int((local - opening).total_seconds() // 60)
         if minutes % restaurant["slot_minutes"]:
             fail(422, "not_on_slot_grid")
@@ -358,10 +419,8 @@ class Engine:
         if (left["restaurant_id"] != right["restaurant_id"] or
                 left["table_id"] != right["table_id"]):
             return False
-        return (timestamp(left["starts_at"]).astimezone(UTC) <
-                timestamp(right["ends_at"]).astimezone(UTC) and
-                timestamp(right["starts_at"]).astimezone(UTC) <
-                timestamp(left["ends_at"]).astimezone(UTC))
+        return (instant(timestamp(left["starts_at"])) < instant(timestamp(right["ends_at"])) and
+                instant(timestamp(right["starts_at"])) < instant(timestamp(left["ends_at"])))
 
     def _check_occupancy(self, proposed, excluded=frozenset(), state=None):
         state = self._state if state is None else state
@@ -392,8 +451,8 @@ class Engine:
 
     def _cutoff(self, record):
         restaurant = self._restaurant(record["restaurant_id"])
-        remaining = timestamp(record["starts_at"]).astimezone(UTC) - datetime.now(UTC)
-        if remaining <= timedelta(minutes=restaurant["cancellation_cutoff_minutes"]):
+        remaining = instant(timestamp(record["starts_at"])) - instant(datetime.now(UTC))
+        if remaining <= restaurant["cancellation_cutoff_minutes"] * MINUTE_US:
             fail(409, "cutoff_passed")
 
     def _amend_candidate(self, record, data):
@@ -455,8 +514,9 @@ class Engine:
         zone = ZoneInfo(restaurant["timezone"])
         opening = datetime.fromisoformat(f"{local_date_string}T{hours['opens']}")
         close = datetime.fromisoformat(f"{local_date_string}T{hours['closes']}")
-        close_utc = close.replace(tzinfo=zone, fold=0).astimezone(UTC)
-        duration = timedelta(minutes=restaurant["reservation_duration_minutes"])
+        closing_zoned = close.replace(tzinfo=zone, fold=0)
+        close_value = instant(closing_zoned)
+        duration = restaurant["reservation_duration_minutes"] * MINUTE_US
         # Grid offsets are bounded by this local day's opening window. Stepping
         # past it must not attempt to construct another day (or another year).
         window_minutes = int((close - opening).total_seconds() // 60)
@@ -468,13 +528,14 @@ class Engine:
                 if error.code != "invalid_local_time":
                     raise
                 continue
-            start_utc = start.astimezone(UTC)
-            if duration <= close_utc - start_utc:
-                end_utc = start_utc + duration
+            start_value = instant(start)
+            if duration <= close_value - start_value:
+                end_value = start_value + duration
+                end = zoned_at(end_value, zone, (start, closing_zoned))
                 available = []
                 for table in restaurant["tables"]:
                     candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
-                                 "starts_at": start.isoformat(), "ends_at": end_utc.isoformat()}
+                                 "starts_at": start.isoformat(), "ends_at": end.isoformat()}
                     if table["capacity"] >= party and not any(
                             r["status"] == "confirmed" and self._overlap(candidate, r)
                             for r in self._state["reservations"]):

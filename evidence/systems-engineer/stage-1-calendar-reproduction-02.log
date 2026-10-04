@@ -1,0 +1,55 @@
+test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) ... 
+  test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='America/New_York', operation='availability') ... FAIL
+  test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='America/New_York', operation='create') ... FAIL
+  test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='Europe/Berlin', operation='availability') ... FAIL
+  test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='Europe/Berlin', operation='create') ... FAIL
+
+======================================================================
+FAIL: test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='America/New_York', operation='availability')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 315, in test_local_calendar_extremes_outside_utc_range
+    grid = self.expect(self.client.request("GET",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 422 != 200 : {'error': {'code': 'validation_failed', 'message': 'Invalid value'}}
+
+======================================================================
+FAIL: test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='America/New_York', operation='create')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 319, in test_local_calendar_extremes_outside_utc_range
+    record = self.expect(self.create(self.body(start=day + "T" + booking_time)), 201)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 422 != 201 : {'error': {'code': 'validation_failed', 'message': 'Invalid value'}}
+
+======================================================================
+FAIL: test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='Europe/Berlin', operation='availability')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 315, in test_local_calendar_extremes_outside_utc_range
+    grid = self.expect(self.client.request("GET",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 422 != 200 : {'error': {'code': 'validation_failed', 'message': 'Invalid value'}}
+
+======================================================================
+FAIL: test_local_calendar_extremes_outside_utc_range (__main__.StageOne.test_local_calendar_extremes_outside_utc_range) (zone='Europe/Berlin', operation='create')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 319, in test_local_calendar_extremes_outside_utc_range
+    record = self.expect(self.create(self.body(start=day + "T" + booking_time)), 201)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-builder-probes.py", line 73, in expect
+    self.assertEqual(response[0], status, response[1])
+AssertionError: 422 != 201 : {'error': {'code': 'validation_failed', 'message': 'Invalid value'}}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.179s
+
+FAILED (failures=4)
+Builder diagnostics; transport=Engine; model/spend unknown

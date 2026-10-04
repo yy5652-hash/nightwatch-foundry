@@ -36,3 +36,7 @@ Production imports are Python standard library modules: `collections.abc`, `copy
 No existing domain product source code, API documentation or schema was accessed or reused. No toy solution, abandoned `band-work/result` implementation, outside-workspace implementation, prior-run implementation, web search or memory file was read or reused. No source code from another competition or project was inspected. Runtime dependency stack paths appearing in failure logs were not authoring inputs.
 
 Harness: Codex. Operator-configured model: gpt-6.1-sol. Actual runtime model override, reasoning effort, usage and spend: unknown (not exposed). Current independent candidate-review status and acceptance belong to the coordinator and verifier; this declaration makes no acceptance claim.
+
+## Later calendar repair diagnostic input
+
+After this declaration's first commit, I received verifier message `dcfe2eef-3041-4189-8adb-c1bd69ad973a` and read `band-work/final-checks/independent-verifier-s1-dd64419-runtime-01/calendar/assertions.json` to inspect expected/observed endpoint results. I did not read or copy the calendar probe implementation. Own new builder regressions reproduced four failures before the absolute-instant repair. The full original Stage 1 specification remains the authoring authority; `stage-1-calendar-repair-02.md` records the mathematical change and the historical-offset grammar conflict raised with the coordinator.

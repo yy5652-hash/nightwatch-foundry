@@ -305,6 +305,34 @@ class StageOne(unittest.TestCase):
         huge_grid = self.expect(self.client.request("GET", query), 200)
         self.assertEqual([slot["starts_at_local"] for slot in huge_grid["slots"]], ["9999-12-31T18:00"])
 
+    def test_local_calendar_extremes_outside_utc_range(self):
+        for zone, day, opening, closing, booking_time, expected_count in [
+            ("America/New_York", "9999-12-31", "18:00", "23:00", "21:30", 8),
+            ("Europe/Berlin", "0001-01-01", "00:00", "06:00", "00:00", 10)]:
+            with self.subTest(zone=zone, operation="availability"):
+                self.expect(self.client.request("POST", "/_test/reset", fixture(zone, opening, closing)), 204)
+                self.auth = self.login("ada@example.test")
+                grid = self.expect(self.client.request("GET",
+                    f"/availability?restaurant_id=r&date={day}&party_size=2"), 200)
+                self.assertEqual(len(grid["slots"]), expected_count)
+            with self.subTest(zone=zone, operation="create"):
+                record = self.expect(self.create(self.body(start=day + "T" + booking_time)), 201)
+                self.assertEqual(record["starts_at_local"], day + "T" + booking_time)
+                start, end = datetime.fromisoformat(record["starts_at"]), datetime.fromisoformat(record["ends_at"])
+                self.assertEqual((end.replace(tzinfo=None) - start.replace(tzinfo=None)) -
+                                 (end.utcoffset() - start.utcoffset()), timedelta(minutes=90))
+                listed = self.expect(self.client.request("GET", "/reservations", headers=self.auth), 200)
+                self.assertEqual(listed["reservations"], [record])
+                self.expect(self.create(self.body(start=day + "T" + booking_time)), 409, "table_unavailable")
+                destination = Client(args.destination_url)
+                export = self.exported()
+                self.expect(destination.request("POST", "/_test/import", export), 204)
+                self.assertEqual(self.expect(destination.request("GET", "/_test/export"), 200), export)
+                response = self.client.request("POST", "/reservations/" + record["reference"] + "/cancel",
+                                               headers=self.auth)
+                self.expect(response, 200 if day.startswith("9999") else 409,
+                            None if day.startswith("9999") else "cutoff_passed")
+
 
 if __name__ == "__main__":
     print("Builder diagnostics; transport=" + ("HTTP" if args.url else "Engine") + "; model/spend unknown")
