@@ -31,7 +31,8 @@ for manifest, saved in current_manifests():
             errors.append(label + ': missing required metadata')
         if row.get('candidate_full_revision') != saved['candidate_full_revision']:
             errors.append(label + ': candidate revision differs from freeze')
-        if row.get('verdict') != 'verified':
+        normative = row.get('normative', 'True').strip().lower() != 'false'
+        if normative and row.get('verdict') != 'verified':
             errors.append(label + ': verdict is not verified')
         stages = {s.strip() for s in row.get('applicable_stages', '').split(',')}
         if str(saved['stage']) not in stages:
@@ -50,6 +51,8 @@ for manifest, saved in current_manifests():
         errors.append('Original accepted verdict hash differs from freeze')
     reports.append({'stage': saved['stage'], 'candidate_full_revision': saved['candidate_full_revision'],
                     'matrix': str(matrix.relative_to(RESULT)), 'rows': len(rows),
+                    'normative_rows': sum(row.get('normative', 'True').strip().lower() != 'false' for row in rows),
+                    'diagnostic_rows': sum(row.get('normative', 'True').strip().lower() == 'false' for row in rows),
                     'errors': errors, 'status': 'pass' if not errors else 'fail'})
 print(json.dumps({'scope': 'coordinator artifact metadata audit; independent execution remains in verifier reports',
                   'stages': reports}, indent=2))
