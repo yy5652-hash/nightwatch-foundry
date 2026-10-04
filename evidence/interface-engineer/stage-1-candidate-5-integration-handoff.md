@@ -175,3 +175,41 @@ coverage and independent acceptance remain verifier/coordinator gates.
 Harness Codex; operator-configured model gpt-6.1-sol. Actual runtime override,
 reasoning effort, token usage, estimated or billed spend remain unknown. Measured
 run times above are scoped command times, not whole-factory elapsed time.
+
+## Exact raw-body artifact supplement
+
+Coordinator follow-up `a8fe7d33-7939-46ec-b884-0d1d8d52feba` requested the exact
+wire payload. Original full evidence handoff was committed at
+`d1e249be861310aeb9e60fbb6403da157096c359`; both original run directories and
+all their observations remain unchanged by this supplement.
+
+`stage-1-candidate-5-fractional-request.json` contains the exact **4,391 bytes**
+sent as the failed create request body, with no added newline. Its SHA-256 is
+`6c274edfdb0f233b146048059d742238439213c964a9ae9291e128d5d66cf30f`.
+It was reconstructed byte-for-byte from the unchanged committed probe's raw
+expression and matched to trace index **60 (zero-based)** in the corrected
+`decimal-legacy-http.json`. That recorded request is `POST /reservations`,
+status 400, code `malformed_request`. This supplements the original observation;
+it is not a new HTTP run or a newly captured response.
+
+`stage-1-candidate-5-fractional-request-proof.json` records the hash, byte count,
+matching trace metadata and expected 422/code. A separate artifact grammar check
+using stdlib `json.loads(..., parse_float=decimal.Decimal)` confirms that the body
+is valid JSON and `party_size` is a finite number with 4,302 coefficient digits,
+exponent -1 and last digit 5. This checks exact syntax/value without converting
+through a binary float; it does not configure or change any service process.
+The artifact contains no bearer token or exported state.
+
+The executable observed command remains the full exact-candidate driver command
+above. Its committed probe resets the normal capacity-4 fixture, obtains a real
+owner token, then sends these bytes using unused `Idempotency-Key: giant-fraction`
+and `Content-Type: application/json; charset=utf-8`. The private Authorization
+value is kept in memory. Every actual Docker/clone/probe argv and source proof
+remains in the two original `run.json` files; no command is relabelled or rerun.
+
+Systems confirmed source applicability in room message
+`a1ade857-483b-4ad1-87d3-8b960d1078b7`: the finite fractional/exponent decoding
+boundary is separate from the integer digit setting, and endpoint invalid-party
+precedence requires 422. Independent confirmation and the coordinator's complete
+serialized parser/core repair package remain pending. All graded source remains
+frozen and unchanged under this evidence-only assignment.

@@ -1,0 +1,30 @@
+{
+  "candidate": "f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250",
+  "payload_path": "evidence/interface-engineer/stage-1-candidate-5-fractional-request.json",
+  "bytes": 4391,
+  "sha256": "6c274edfdb0f233b146048059d742238439213c964a9ae9291e128d5d66cf30f",
+  "trace_path": "evidence/interface-engineer/interface-engineer-s1-candidate5-20261004t024832530922z/decimal-legacy-http.json",
+  "trace_index_zero_based": 60,
+  "observed": {
+    "process": 0,
+    "method": "POST",
+    "path": "/reservations",
+    "request_sha256": "6c274edfdb0f233b146048059d742238439213c964a9ae9291e128d5d66cf30f",
+    "response_sha256": "b8cc329bb32015f6ecb6f78cb4cb5e7a5aa982eaa383b9b98028d8303e55ba09",
+    "status": 400,
+    "code": "malformed_request",
+    "seconds": 0.00026433299996142523
+  },
+  "expected_status": 422,
+  "expected_code": "validation_failed",
+  "state_and_headers": "Normal capacity4 fixture, authenticated owner, unused key giant-fraction. Token/Authorization value intentionally omitted from artifact; executable probe obtains it from the real service.",
+  "capture": "Raw body reconstructed byte-for-byte from unchanged committed probe expression; its hash matches the already observed wire trace. This is an artifact supplement, not a new run.",
+  "independent_artifact_grammar_check": {
+    "parser": "stdlib json.loads with decimal.Decimal parse_float; separate artifact validation only",
+    "finite": true,
+    "decimal_coefficient_digits": 4302,
+    "exponent": -1,
+    "last_digit": 5,
+    "party_size_json_type": "number, not string"
+  }
+}
