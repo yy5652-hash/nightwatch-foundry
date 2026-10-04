@@ -163,7 +163,7 @@ def origin_cases(w,release):
             w.check(prefix+'pair-current',current.get('table_ids')==['b','a'] and 'table_id' not in current)
             status,availability,_=w.call(target,'GET','/availability?restaurant_id=r&date='+DAY+'&party_size=2')
             w.check(prefix+'pair-cancel',status==200 and 'a' in availability['slots'][0]['available_table_ids'] and 'b' in availability['slots'][0]['available_table_ids'])
-        newraw=body(table_ids=['a'] if stage==1 else ['b','a'],extra={'numeric_probe':Number('9007199254740993.0')})
+        newraw=body(table_ids=['b','a'],extra={'numeric_probe':Number('9007199254740993.0')})
         newkey='new-exact-'+origin
         status,newreceipt,_=w.call(target,'POST','/reservations',newraw,token,newkey);w.check(prefix+'mixed-new-exact',status==201)
         status,_,_=w.call(target,'POST','/reservations',newraw.replace(b'9007199254740993.0',b'9007199254740992.0'),token,newkey)
