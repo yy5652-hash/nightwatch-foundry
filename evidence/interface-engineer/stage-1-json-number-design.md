@@ -177,6 +177,16 @@ resource or assessment output directory was created. No source workaround or hos
 installation was made; the existing workspace Python executed the recorded run.
 This is an own runner/interpreter issue, not a service failure or a passing run.
 
+The first evidence field-name scan flagged ten fields named `token` in the
+semantic examples. These contain JSON lexical examples such as `1.0`, rather
+than authentication tokens. Its failed assertion/output is preserved in
+`assessment-source-secret-proof.json`. A separate scoped classification in
+`assessment-classified-secret-proof.json` checks only those ten explicit example
+leaves; no other raw sensitive field remains. All five Stage 1 and eight Stage 2
+working files match the frozen candidate's exact committed bytes. The initial
+scan failure was an evidence-check false positive; no HTTP run was repeated or
+rewritten. The ledger entry was appended only after this classification passed.
+
 ## Ownership, sequence and remaining gates
 
 Under the complete repair package, Systems owns `stage-1/json_codec.py` and
