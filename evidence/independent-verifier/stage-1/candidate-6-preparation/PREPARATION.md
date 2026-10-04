@@ -172,3 +172,8 @@ passes; all six archival copies match their original SHA-256/bytes.
 whitespace-check.json records both commands and scopes. No source byte was
 changed and no service result was reclassified. A rejected JavaScript seal call
 before any nested command execution is preserved in seal-orchestration-error-01.log.
+
+After the original diagnostic itself was staged, its quoted trailing spaces also
+triggered the source-only exclusion check. The final authored check excludes
+both exact source archives and that raw original diagnostic; it passes with no
+byte edits to either. Both scopes and the follow-up are recorded.

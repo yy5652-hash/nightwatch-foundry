@@ -26,9 +26,25 @@
       "returncode": 0,
       "log": "whitespace-authored.log",
       "scope": "authored evidence excluding archival source copies"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check",
+        "--",
+        "evidence/independent-verifier",
+        ":(exclude)evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/**",
+        ":(exclude)evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-original.log"
+      ],
+      "returncode": 0,
+      "log": "whitespace-authored-final.log",
+      "scope": "Authored evidence excluding exact archival sources and the retained raw checker diagnostic"
     }
   ],
   "archival_copies_unchanged": 6,
   "classification": "Original guide has trailing spaces and copied handoff/decision have terminal blank lines. These are preserved source bytes, not service failures. Authored evidence passes separately.",
-  "utc": "2026-10-04T03:38:12.943489+00:00"
+  "utc": "2026-10-04T03:38:12.943489+00:00",
+  "followup": "Staging the raw original diagnostic also stages its quoted trailing spaces. The source-only exclusion then returns2. Final authored scope excludes that raw diagnostic as well and passes; none of its bytes are edited."
 }
