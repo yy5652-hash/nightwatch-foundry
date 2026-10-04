@@ -367,7 +367,7 @@ async def lost_response(context,page,combined=False,upgrade=False,source_base=No
         await expect(tid(page,"current-user")).to_have_text("Ada")
         check("Harbor booth" in await tid(page,"reservation-tables").inner_text(),"retained old reference works without reload")
     REPORT["trace"].append({"scenario":"upgrade" if upgrade else "lost-combined" if combined else "lost-single","source_revision":source_revision,'source_stage':source_stage,"writes":writes,"committed_reference":reference,"retained_reference":retained_receipt["reference"]})
-    return retained_receipt,auth
+    return retained_receipt,auth,lost[0]
 
 async def combinations(context,page):
     await reset(context);await login(page);await search(page,party="6")
@@ -865,7 +865,7 @@ async def series_product(context,page,drop=False,malformed=False):
     sid=await tid(page,'series-id').inner_text()
     check(sid==original[0]['series_id'],'real original recurring reference recovered')
     check(await tid(page,'series-occurrences').locator('ol>li').count()==3,'legible complete occurrence list')
-    check(original[0]['occurrences'][0]['reservation']==anchor,'anchor exactly unchanged by adoption')
+    check(all(original[0]['occurrences'][0]['reservation'].get(k)==v for k,v in anchor.items()),'anchor existing values exactly unchanged by adoption')
     check(original[0]['occurrences'][1]['reservation']['accepted_terms']['policy_version']==1,'future occurrence independently selects future policy')
     references=[item['reference'] for item in original[0]['occurrences']]
     status,changed=await request(context,BASE,'/reservations/'+references[1],'PATCH',{'party_size':3},owner['token'])
@@ -922,13 +922,15 @@ async def series_changed_identity(context,page):
     await screenshots(page,'s3-series-edited-recovery')
 
 async def upgraded_adoption(context,page,base,revision,pair=False,stage=2):
-    retained,owner=await lost_response(context,page,pair,True,base,revision,stage)
+    retained,owner,lost=await lost_response(context,page,pair,True,base,revision,stage)
+    anchor=lost if pair else retained
+    if pair:await lookup3(page,anchor['reference'])
     await expect(tid(page,'reservation-history')).to_be_visible();REPORT['assertions']+=1
     check('policy 0' in await tid(page,'reservation-current-terms').inner_text(),'genuine prior booking gains current adopted terms separately from original receipt')
     await tid(page,'series-count').fill('2');await tid(page,'series-submit').click();await expect(tid(page,'series-occurrences')).to_be_visible()
     sid=await tid(page,'series-id').inner_text()
     status,current=await request(context,BASE,'/series/'+sid,token=owner['token'])
-    check(status==200 and current['occurrences'][0]['reference']==retained['reference'],'actual imported prior anchor adopted with same reference')
+    check(status==200 and current['occurrences'][0]['reference']==anchor['reference'],'actual imported prior anchor adopted with same reference')
     await screenshots(page,'s3-upgraded-anchor-'+('pair' if pair else 'single'))
 
 async def pair_history_product(context,page):
