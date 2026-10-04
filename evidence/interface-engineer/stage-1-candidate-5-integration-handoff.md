@@ -213,3 +213,31 @@ boundary is separate from the integer digit setting, and endpoint invalid-party
 precedence requires 422. Independent confirmation and the coordinator's complete
 serialized parser/core repair package remain pending. All graded source remains
 frozen and unchanged under this evidence-only assignment.
+
+## Subsequent independent verdict — candidate 5 rejected
+
+Independent room verdict `a7ba077b-95fd-43b6-bdb7-ebeac8c23aaf`, committed at
+`6c01976c7b1b910f748efc97be7cc468b5963b18`, **rejects the same exact candidate**
+`f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250`. Highest consecutive independently
+accepted stage remains 0. This section reports the verifier's result, not new
+Interface execution or a replacement for its coverage matrix.
+
+The independently established failures are finite JSON number `1e4300` in only
+an unknown create/reset body field: 400 observed instead of the specified
+201/204 under Stage 1 §3.4. The original five integer-digit refusals pass after
+the candidate's integer initialization repair. Fourteen fractional/integral-number
+source questions remain **unverified** in the final independent verdict; they are
+neither independently established production defects nor passes.
+
+The earlier Interface 400-vs-expected-422 fractional-party observation and Systems'
+applicability analysis remain preserved above, with their authors and scope. They
+must not be relabelled as independently accepted source interpretations. The
+coordinator must resolve those questions in the complete scoped repair assignment.
+The DNS runner failures remain separate from actual HTTP refusal observations.
+
+Authoritative independent report:
+`/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-5/VERDICT.md`.
+The verifier reports official isolated 120/120, while rejecting specification
+coverage; shipped checks do not restore acceptance. No verifier probe source was
+opened or copied by this update. No source change or additional test run occurred;
+Stage 1 and Stage 2 production remain frozen pending coordinated release.
