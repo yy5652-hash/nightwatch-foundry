@@ -382,6 +382,7 @@
   function historyMarkup() {
     const l=state.lookup;
     if(!l.history)return '<section class="lookup-card history-card"><h3>Your booking history</h3><p class="input-hint">History is unavailable from this service.</p></section>';
+    if(!l.history.entries.length)return '<section data-testid="reservation-history" class="lookup-card history-card"><h3>Booking history</h3><p class="input-hint">No recorded changes are available for this reservation. Future changes will appear here.</p></section>';
     const fieldNames={table_id:'Table',table_ids:'Tables',starts_at_local:'Local start',party_size:'Guests'};
     const value=(field,v)=>v===null?'Not previously booked':field==='table_ids'?labelsOf(l.restaurant,v):field==='table_id'?labelOf(l.restaurant,v):field==='starts_at_local'?friendlyLocal(v):String(v);
     return `<section data-testid="reservation-history" class="lookup-card history-card"><p class="eyebrow">Your plans, as they changed</p><h3>Booking history</h3><ol class="history-list">${l.history.entries.map(entry=>`<li data-testid="history-entry-${esc(entry.seq)}"><div class="history-heading"><strong>${esc({created:'Booked',changed:'Changed',cancelled:'Cancelled'}[entry.event]||entry.event)}</strong><span>Revision ${esc(entry.revision)} · event ${esc(entry.seq)}</span></div><time datetime="${esc(entry.at)}">${esc(friendlyInstant(entry.at,l.restaurant?.timezone))}</time>${entry.changes.length?`<ul>${entry.changes.map(change=>`<li><strong>${esc(fieldNames[change.field]||change.field)}</strong>: ${esc(value(change.field,change.from))} → ${esc(value(change.field,change.to))}</li>`).join('')}</ul>`:'<p class="input-hint">No booking fields changed in this event.</p>'}${termsMarkup(entry.accepted_terms,l.restaurant,'Terms at this event')}</li>`).join('')}</ol></section>`;
@@ -396,7 +397,8 @@
       api(`/restaurants/${encodeURIComponent(receipt.restaurant_id)}`),
       optionalOwnerRead(path+'/decision'),optionalOwnerRead(path+'/history')
     ]);
-    if(decision && (String(decision.revision)!==String(receipt.revision) || entries?.entries?.at(-1)?.revision!==receipt.revision))throw new Error('The reservation changed while its details were loading. Please refresh.');
+    const lastEntry=entries?.entries?.at(-1);
+    if(decision && (String(decision.revision)!==String(receipt.revision) || lastEntry && lastEntry.revision!==receipt.revision))throw new Error('The reservation changed while its details were loading. Please refresh.');
     return {receipt,restaurant,decision,history:entries};
   }
   function seriesBody(s) {

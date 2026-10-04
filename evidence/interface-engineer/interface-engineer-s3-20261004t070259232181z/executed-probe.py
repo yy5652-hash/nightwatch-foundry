@@ -110,10 +110,7 @@ async def screenshots(page, prefix):
     for width, height, suffix in [(1440, 1000, "desktop"), (375, 812, "mobile")]:
         await page.set_viewport_size({"width": width, "height": height})
         check(await page.evaluate("document.documentElement.scrollWidth <= innerWidth"), f"no horizontal page scroll at {width}")
-        dimensions=await page.evaluate('({width:innerWidth,height:innerHeight,pageHeight:document.documentElement.scrollHeight})')
-        full_page=dimensions['pageHeight']<=14000
-        await page.screenshot(path=str(OUT / f"{prefix}-{suffix}.png"), full_page=full_page)
-        REPORT['trace'].append({'scenario':'screenshot-capture','file':f'{prefix}-{suffix}.png','dimensions':dimensions,'full_page':full_page})
+        await page.screenshot(path=str(OUT / f"{prefix}-{suffix}.png"), full_page=True)
 
 async def scenario(name, callback, browser):
     started = time.perf_counter()
@@ -129,10 +126,8 @@ async def scenario(name, callback, browser):
         REPORT["scenarios"].append({"name": name, "verdict": "PASS", "seconds": round(time.perf_counter()-started, 3)})
     except Exception:
         REPORT["scenarios"].append({"name": name, "verdict": "FAIL", "seconds": round(time.perf_counter()-started, 3), "error": traceback.format_exc()})
-        try:await page.screenshot(path=str(OUT / f"failure-{name}.png"), full_page=False)
-        except Exception:REPORT['scenarios'][-1]['diagnostic_capture_error']=traceback.format_exc()
+        await page.screenshot(path=str(OUT / f"failure-{name}.png"), full_page=True)
     finally:
-        (OUT/'progress-report.json').write_text(json.dumps(REPORT,indent=2)+'\n')
         await context.close()
 
 async def transport(context, page):

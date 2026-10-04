@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "sealed-interface-probe.py", line 1065, in <module>
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "sealed-interface-probe.py", line 1051, in main
+  File "sealed-interface-probe.py", line 129, in scenario
+  File "/usr/local/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 10883, in screenshot
+    await self._impl_obj.screenshot(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_page.py", line 830, in screenshot
+    encoded_binary = await self._channel.send(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.screenshot: Protocol error (Page.captureScreenshot): Unable to capture screenshot
+Call log:
+  - taking page screenshot
+  - waiting for fonts to load...
+  - fonts loaded
+
