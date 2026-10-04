@@ -11,7 +11,9 @@ def main():
     if a.assembly:
         assembly=Path(a.assembly).resolve();b=json.loads((assembly/'client-proof.json').read_text());f.update(runner_image=b['image'],runner_image_id=b['image_id'],probe_revision=b['probe_revision'],client_manifest=b['manifest'])
     jobs=[]
-    if a.group=='basic':
+    if a.group=='gaps':
+        for name in (a.families or 'calendar,closures,scopes,competing,private').split(','):jobs.append((name,'/verifier/stage-4/candidate2_gaps.py',['--release',str(release),'--out','/evidence/'+name,'--family',name]))
+    elif a.group=='basic':
         for name in (a.families or 'closure-errors,preview,apply,oracle,amend,numeric,concurrency').split(','):
             script='stage4_closure_errors.py' if name=='closure-errors' else 'stage4_probe.py'
             args=['--release',str(release),'--out','/evidence/'+name]
