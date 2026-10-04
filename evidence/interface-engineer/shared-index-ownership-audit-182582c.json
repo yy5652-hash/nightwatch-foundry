@@ -1,0 +1,262 @@
+{
+  "audit": "Shared-index ownership deviation; file and Git object metadata only",
+  "at_utc": "2026-10-04T03:43:37.998712+00:00",
+  "request_message": "c5c0888d-b471-44cb-a1d1-f202a68cbf29",
+  "collision_commit": "182582c41d21a23d8ccd95688fa7f1afa0437460",
+  "parent": "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f",
+  "author_and_committer": "Interface Engineer <interface-engineer@nightwatch-foundry.invalid>\nInterface Engineer <interface-engineer@nightwatch-foundry.invalid>",
+  "observed_interface_staging_argv": [
+    "git",
+    "add",
+    "--",
+    "evidence/interface-engineer/stage-1-json-adapter-probe.py"
+  ],
+  "observed_interface_commit_argv": [
+    "git",
+    "-c",
+    "user.name=Interface Engineer",
+    "-c",
+    "user.email=interface-engineer@nightwatch-foundry.invalid",
+    "commit",
+    "-m",
+    "Repair own adapter parallel probe helper name"
+  ],
+  "cause": "Selective git add did not restrict a subsequent no-pathspec commit of the shared index. Interface omitted a final commit pathspec, capturing independently staged verifier paths.",
+  "responsibility": "Interface commit-command error. Verifier reports independent authorship and staging in inbound c5c0888d; Git author metadata does not establish probe authorship.",
+  "verifier_owned_changed_paths": [
+    {
+      "status": "M",
+      "path": "evidence/independent-verifier/ledger.jsonl",
+      "blob_oid": "e30f85405309e9926b25071f9490758b278927c9"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/Semantic.Probe.Dockerfile",
+      "blob_oid": "9868acc0092be29587513799809082cae13363ee"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/PREPARATION.md",
+      "blob_oid": "db4b1ff2338a6351a4557d92dceec3084682638c"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/artifact-manifest.json",
+      "blob_oid": "899568f7cdf0688bc5ef8f64f9677be8e969ea65"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/coverage-prepared.csv",
+      "blob_oid": "1d8a10137a924a460135f3c7631f56cbfcdf709f"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/coverage-summary.json",
+      "blob_oid": "77fd76c171cd67a12ebf93a75e49e88d5166f45e"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/execution-guard.json",
+      "blob_oid": "677ce4a08d90d2912ded64b2ccbb6fe8a49a6101"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/execution-guard.log",
+      "blob_oid": "7dd0c28500cc45b781b4df9bd4ebde52a2a77d5d"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/intake.json",
+      "blob_oid": "909a843baf42ea2258b1597898179198e6ff4a7e"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/oracle-self-check.json",
+      "blob_oid": "9805a3e418e782f4e9572c9d97d3b91164b4463c"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/planned-probe-bindings.json",
+      "blob_oid": "accce2143cf2a44ae748754379be977787e69bad"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/preparation-seal.json",
+      "blob_oid": "b6b6b993d2aa697bd101b50dd35032df46434624"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/preparation-validation.json",
+      "blob_oid": "bd6594f227aa847c34a7706e156b386e59287af3"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/raw-fixture-validation.json",
+      "blob_oid": "a21f3597b7679f60004e48c39c113995d2ab9dee"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/seal-orchestration-error-01.log",
+      "blob_oid": "2f98de10cc4df545a9e9474442f9b9008ef03f98"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs.json",
+      "blob_oid": "57c492ecfb3374d5e4583c7698b0530c8fcaabd0"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/PRODUCT_ACCEPTANCE.md",
+      "blob_oid": "95a1d07d3f186dd353ec5182668c60dbd7a16e4c"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/TK-20261004-S1-independent-verifier-CANDIDATE-6-PREP.delivery.json",
+      "blob_oid": "581a70db2d0c8fac7ab7219dcb938e6847dc4c01"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/TK-20261004-S1-independent-verifier-CANDIDATE-6-PREP.txt",
+      "blob_oid": "4060e651ed6664ca82c6ad827aaed49690bb241e"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/json-number-semantics-decision.md",
+      "blob_oid": "f7a0336f5512ac0fa0b27ef8bc5c3ae5c594895c"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/participant-guide.md",
+      "blob_oid": "ce08d36ef9e3ca1fa29aeefdd7824233e08fff32"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/source-inputs/stage-1.md",
+      "blob_oid": "e743048e666084d23402143157a340c1edaa2231"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/syntax-check.json",
+      "blob_oid": "934bfe7a62ab61b39bb19bc0a1e6f9d25fb8be2f"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-authored.log",
+      "blob_oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-check.json",
+      "blob_oid": "aa9c0716da2910814774e76f3100af3941200eae"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-original.log",
+      "blob_oid": "979eb5b436775fba89d4f2b82a45b6f1116815dc"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/semantic_oracle.py",
+      "blob_oid": "ec736da6b88fcd955864ebc0378eecee5231465a"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/semantic_prepare.py",
+      "blob_oid": "eb06a0e4bb52bcd4eb55e9a0317e2a2d41fb0aa3"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/semantic_probe.py",
+      "blob_oid": "fd9ed906ae21beef68e3be0ac96b173448656bbe"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/semantic_requirements.py",
+      "blob_oid": "4ebde32cda10de27b099ca134541a361dbcbe09f"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/semantic_runtime.py",
+      "blob_oid": "a22cc3f57a770bfaf837541bfa16c31ba10c7016"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/semantic_validate_preparation.py",
+      "blob_oid": "3fd2761b867efe52b33463205e4c06fbc354b9fb"
+    }
+  ],
+  "interface_owned_changed_paths": [
+    {
+      "status": "M",
+      "path": "evidence/interface-engineer/stage-1-json-adapter-probe.py",
+      "blob_oid": "53f07652087c5b9f6849a7f75f426b171d79c2f7"
+    }
+  ],
+  "verifier_followup_seal_commit": "138477bd077f7f15ceedfd547a6870ffb3dd796b",
+  "verifier_followup_seal_paths": [
+    {
+      "status": "M",
+      "path": "evidence/independent-verifier/ledger.jsonl",
+      "blob_oid": "5a962f9106d7cdb404f48508cbdeb497f0d7d27c"
+    },
+    {
+      "status": "M",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/PREPARATION.md",
+      "blob_oid": "33e5003f0ef253a3def12d9fa00d399631046bc4"
+    },
+    {
+      "status": "M",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/artifact-manifest.json",
+      "blob_oid": "a96a13baab6e89c603eea4422bd41039807ebe6c"
+    },
+    {
+      "status": "A",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-authored-final.log",
+      "blob_oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "status": "M",
+      "path": "evidence/independent-verifier/stage-1/candidate-6-preparation/whitespace-check.json",
+      "blob_oid": "99403d78ebafbfd84f40f388845ce6c036421024"
+    }
+  ],
+  "systems_module_parent_revision": "c2fcedc853e0fe33e96f9d3f39c0c807b4e08d9f",
+  "module_attribution": "Systems module changed in the parent, not in this Interface collision commit. Earlier multi-commit attribution was corrected in fc5e94dd-bd71-4e44-b647-c484dea7325b.",
+  "checks": {
+    "collision_changed_paths": 33,
+    "verifier_owned_paths": 32,
+    "interface_owned_paths": 1,
+    "other_paths": 0,
+    "graded_paths_changed_in_collision": 0,
+    "verifier_followup_seal_paths": 5,
+    "read_peer_implementation": false,
+    "executed_peer_tests": false,
+    "history_rewritten": false,
+    "new_http_operations": 0
+  },
+  "mitigation": "Preserve both commits; explicitly attribute verifier evidence. All subsequent Interface commits include final explicit owned pathspecs. No unstaging or editing another owner paths; no amend/rebase/rewrite.",
+  "prior_report_revision": "c26c7b148ceb573d7b1e6c28d121443ffca95f27",
+  "method_argv_shapes": [
+    [
+      "git",
+      "diff-tree",
+      "--no-commit-id",
+      "--name-status",
+      "-r",
+      "<commit>"
+    ],
+    [
+      "git",
+      "rev-parse",
+      "<commit>:<path>"
+    ],
+    [
+      "git",
+      "show",
+      "-s",
+      "--format=<metadata>",
+      "<commit>"
+    ]
+  ],
+  "highest_accepted_stage": 0
+}
