@@ -1,0 +1,77 @@
+"""Freeze or verify accepted stage trees; acceptance remains a human-readable verdict.
+
+Usage: python3 evidence/coordinator/freeze_stage.py freeze N FULL_REV VERDICT_PATH
+       python3 evidence/coordinator/freeze_stage.py verify
+No implementation files are written. Existing manifests are never overwritten.
+"""
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+from datetime import datetime, timezone
+
+RESULT = Path(__file__).resolve().parents[2]
+ACCEPTED = Path(__file__).parent / 'accepted'
+
+
+def git(*args):
+    return subprocess.check_output(['git', *args], cwd=RESULT, text=True).strip()
+
+
+def tree(stage, revision):
+    entries = []
+    for line in git('ls-tree', '-r', revision, '--', f'stage-{stage}').splitlines():
+        if not line:
+            continue
+        meta, path = line.split('\t', 1)
+        mode, kind, object_id = meta.split()
+        if kind != 'blob' or mode not in ('100644', '100755'):
+            raise ValueError('Stage contains a nested repository or symlink: ' + path)
+        entries.append({'path': path.split('/', 1)[1], 'mode': mode, 'object_id': object_id})
+    if not entries:
+        raise ValueError('No committed stage files')
+    return entries
+
+
+def verify():
+    for path in sorted(ACCEPTED.glob('stage-*.json')):
+        saved = json.loads(path.read_text())
+        stage = saved['stage']
+        if tree(stage, 'HEAD') != saved['tree']:
+            raise ValueError(f'Accepted Stage {stage} committed tree changed')
+        dirty = git('status', '--porcelain', '--', f'stage-{stage}')
+        if dirty:
+            raise ValueError(f'Accepted Stage {stage} has uncommitted changes')
+        print(f'Stage {stage}: frozen tree unchanged')
+
+
+if sys.argv[1] == 'verify':
+    verify()
+elif sys.argv[1] == 'freeze':
+    stage = int(sys.argv[2])
+    revision = git('rev-parse', sys.argv[3])
+    if revision != sys.argv[3] or len(revision) != 40:
+        raise ValueError('Provide the full 40-character candidate revision')
+    verdict = Path(sys.argv[4]).resolve()
+    verdict.relative_to(RESULT)
+    if not verdict.is_file():
+        raise ValueError('Independent verdict evidence is missing')
+    verify()
+    if git('status', '--porcelain', '--', f'stage-{stage}'):
+        raise ValueError('Candidate stage has uncommitted changes')
+    entries = tree(stage, revision)
+    if entries != tree(stage, 'HEAD'):
+        raise ValueError('Candidate stage differs from HEAD')
+    ACCEPTED.mkdir(exist_ok=True)
+    destination = ACCEPTED / f'stage-{stage}.json'
+    with destination.open('x') as stream:
+        json.dump({'stage': stage, 'candidate_full_revision': revision,
+                   'freeze_wall_time_utc': datetime.now(timezone.utc).isoformat(),
+                   'independent_verdict_path': str(verdict.relative_to(RESULT)),
+                   'independent_verdict_sha256': hashlib.sha256(verdict.read_bytes()).hexdigest(),
+                   'tree': entries}, stream, indent=2)
+        stream.write('\n')
+    print(destination)
+else:
+    raise ValueError('Expected freeze or verify')
