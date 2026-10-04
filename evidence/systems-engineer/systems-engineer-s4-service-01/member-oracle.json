@@ -1,0 +1,2044 @@
+{
+  "seed": 20261004,
+  "operations": [
+    {
+      "index": 0,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 1,
+      "operation": "cancel",
+      "reference": "F3FCF77DF4",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 2,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 3,
+      "operation": "cancel",
+      "reference": "789CF09BD2",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 4,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 5,
+      "operation": "patch",
+      "reference": "789CF09BD2",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 6,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 7,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 8,
+      "operation": "cancel",
+      "reference": "789CF09BD2",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 9,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 10,
+      "operation": "patch",
+      "reference": "34B1B63C56",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 11,
+      "operation": "patch",
+      "reference": "F3FCF77DF4",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 12,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 13,
+      "operation": "cancel",
+      "reference": "F3FCF77DF4",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 14,
+      "operation": "patch",
+      "reference": "4583B7EEA9",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 15,
+      "operation": "patch",
+      "reference": "4583B7EEA9",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 16,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 17,
+      "operation": "patch",
+      "reference": "493B7120FA",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 18,
+      "operation": "cancel",
+      "reference": "FFBB36D8B5",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 19,
+      "operation": "cancel",
+      "reference": "4583B7EEA9",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 20,
+      "operation": "cancel",
+      "reference": "F3FCF77DF4",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 21,
+      "operation": "cancel",
+      "reference": "493B7120FA",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 22,
+      "operation": "patch",
+      "reference": "4583B7EEA9",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 23,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 24,
+      "operation": "patch",
+      "reference": "4583B7EEA9",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 25,
+      "operation": "patch",
+      "reference": "FFBB36D8B5",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 26,
+      "operation": "patch",
+      "reference": "08DDBD4E50",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 27,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 28,
+      "operation": "cancel",
+      "reference": "FFBB36D8B5",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 29,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 30,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 31,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 32,
+      "operation": "patch",
+      "reference": "34B1B63C56",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 33,
+      "operation": "cancel",
+      "reference": "08DDBD4E50",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 34,
+      "operation": "patch",
+      "reference": "493B7120FA",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 35,
+      "operation": "patch",
+      "reference": "F3FCF77DF4",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 36,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 37,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 38,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 39,
+      "operation": "patch",
+      "reference": "493B7120FA",
+      "body": {
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 40,
+      "operation": "patch",
+      "reference": "FFBB36D8B5",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 41,
+      "operation": "cancel",
+      "reference": "F4749CDEEB",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 42,
+      "operation": "cancel",
+      "reference": "4583B7EEA9",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 43,
+      "operation": "cancel",
+      "reference": "F3FCF77DF4",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 44,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 45,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 46,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 47,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 48,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 49,
+      "operation": "patch",
+      "reference": "C5953DEF17",
+      "body": {
+        "table_ids": [
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 50,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 51,
+      "operation": "patch",
+      "reference": "4583B7EEA9",
+      "body": {
+        "table_ids": [
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 52,
+      "operation": "patch",
+      "reference": "1E602C2186",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 53,
+      "operation": "cancel",
+      "reference": "789CF09BD2",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 54,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 55,
+      "operation": "patch",
+      "reference": "1E602C2186",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 56,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 57,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 58,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 59,
+      "operation": "cancel",
+      "reference": "FFBB36D8B5",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 60,
+      "operation": "cancel",
+      "reference": "0E009C2407",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 61,
+      "operation": "patch",
+      "reference": "F4749CDEEB",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 62,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 63,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 64,
+      "operation": "cancel",
+      "reference": "1759C5D81F",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 65,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 66,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 67,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 68,
+      "operation": "cancel",
+      "reference": "493B7120FA",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 69,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 70,
+      "operation": "patch",
+      "reference": "34B1B63C56",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 71,
+      "operation": "patch",
+      "reference": "0E009C2407",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 72,
+      "operation": "cancel",
+      "reference": "F4749CDEEB",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 73,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 74,
+      "operation": "patch",
+      "reference": "789CF09BD2",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 75,
+      "operation": "cancel",
+      "reference": "FFBB36D8B5",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 76,
+      "operation": "cancel",
+      "reference": "789CF09BD2",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 77,
+      "operation": "cancel",
+      "reference": "A0CE81C114",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 78,
+      "operation": "patch",
+      "reference": "493B7120FA",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 79,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 80,
+      "operation": "patch",
+      "reference": "F3FCF77DF4",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 81,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 82,
+      "operation": "cancel",
+      "reference": "08DDBD4E50",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 83,
+      "operation": "cancel",
+      "reference": "34B1B63C56",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 84,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 85,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 86,
+      "operation": "cancel",
+      "reference": "4583B7EEA9",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 87,
+      "operation": "patch",
+      "reference": "34B1B63C56",
+      "body": {
+        "table_ids": [
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 88,
+      "operation": "patch",
+      "reference": "F4749CDEEB",
+      "body": {
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 89,
+      "operation": "cancel",
+      "reference": "A0CE81C114",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 90,
+      "operation": "cancel",
+      "reference": "FFBB36D8B5",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 91,
+      "operation": "patch",
+      "reference": "F3FCF77DF4",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 92,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 93,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 94,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 95,
+      "operation": "patch",
+      "reference": "FFBB36D8B5",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 96,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 97,
+      "operation": "cancel",
+      "reference": "0E009C2407",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 98,
+      "operation": "patch",
+      "reference": "34B1B63C56",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 99,
+      "operation": "patch",
+      "reference": "34B1B63C56",
+      "body": {
+        "table_ids": [
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 100,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 101,
+      "operation": "cancel",
+      "reference": "2A3F64A93E",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 102,
+      "operation": "cancel",
+      "reference": "A0CE81C114",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 103,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 104,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 105,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 106,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 107,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 108,
+      "operation": "patch",
+      "reference": "0E009C2407",
+      "body": {
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 109,
+      "operation": "cancel",
+      "reference": "1E602C2186",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 110,
+      "operation": "cancel",
+      "reference": "34B1B63C56",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 111,
+      "operation": "patch",
+      "reference": "5126CE20C0",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 112,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 113,
+      "operation": "cancel",
+      "reference": "1759C5D81F",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 114,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 115,
+      "operation": "cancel",
+      "reference": "C835E10A5E",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 116,
+      "operation": "cancel",
+      "reference": "5126CE20C0",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 117,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 118,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 119,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 120,
+      "operation": "cancel",
+      "reference": "ABE6C6745C",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 121,
+      "operation": "patch",
+      "reference": "A0CE81C114",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 122,
+      "operation": "patch",
+      "reference": "F4749CDEEB",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 123,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 124,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 125,
+      "operation": "cancel",
+      "reference": "34B1B63C56",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 126,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 127,
+      "operation": "patch",
+      "reference": "A0CE81C114",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 128,
+      "operation": "cancel",
+      "reference": "34B1B63C56",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 129,
+      "operation": "patch",
+      "reference": "14F13A5DDD",
+      "body": {
+        "table_ids": [
+          "b"
+        ],
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 130,
+      "operation": "patch",
+      "reference": "C835E10A5E",
+      "body": {
+        "table_ids": [
+          "c"
+        ],
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 131,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    },
+    {
+      "index": 132,
+      "operation": "patch",
+      "reference": "ABE6C6745C",
+      "body": {
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 133,
+      "operation": "cancel",
+      "reference": "5126CE20C0",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 134,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 135,
+      "operation": "cancel",
+      "reference": "ABE6C6745C",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 136,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 137,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 138,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 139,
+      "operation": "patch",
+      "reference": "16B6FDF858",
+      "body": {
+        "table_ids": [
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 140,
+      "operation": "cancel",
+      "reference": "34B1B63C56",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 141,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 142,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 143,
+      "operation": "cancel",
+      "reference": "0E009C2407",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 144,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 145,
+      "operation": "cancel",
+      "reference": "F4749CDEEB",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 146,
+      "operation": "cancel",
+      "reference": "4583B7EEA9",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 147,
+      "operation": "patch",
+      "reference": "0E009C2407",
+      "body": {
+        "table_ids": [
+          "b",
+          "a"
+        ],
+        "starts_at_local": "2099-04-16T19:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 148,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 149,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 150,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T18:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 151,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b",
+          "c"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 152,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "a"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 153,
+      "operation": "cancel",
+      "reference": "C835E10A5E",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 154,
+      "operation": "patch",
+      "reference": "16B6FDF858",
+      "body": {
+        "table_ids": [
+          "d"
+        ],
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 155,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T19:30"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 156,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "c",
+          "d"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T21:00"
+      },
+      "expected_status": 409,
+      "observed_status": 409
+    },
+    {
+      "index": 157,
+      "operation": "cancel",
+      "reference": "4583B7EEA9",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 158,
+      "operation": "cancel",
+      "reference": "F4749CDEEB",
+      "body": null,
+      "expected_status": 200,
+      "observed_status": 200
+    },
+    {
+      "index": 159,
+      "operation": "create",
+      "reference": null,
+      "body": {
+        "restaurant_id": "r",
+        "table_ids": [
+          "b"
+        ],
+        "party_size": 1,
+        "starts_at_local": "2099-04-16T20:00"
+      },
+      "expected_status": 201,
+      "observed_status": 201
+    }
+  ]
+}
