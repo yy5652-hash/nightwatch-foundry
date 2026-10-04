@@ -21,7 +21,7 @@ class Review:
         if not condition:raise AssertionError(name)
     async def page(self,browser,who='m',width=375):
         context=await browser.new_context(viewport=dict(width=width,height=900));page=await context.new_page();page.set_default_timeout(7000)
-        page.on('request',lambda q:self.traffic.append(dict(method=q.method,path=urlsplit(q.url).path,body_sha256=hashlib.sha256(q.post_data_buffer or b'').hexdigest())))
+        page.on('request',lambda q:self.traffic.append(dict(method=q.method,path=urlsplit(q.url).path,body_sha256=hashlib.sha256(q.post_data_buffer or b'').hexdigest(),key_sha256=hashlib.sha256(q.headers.get('idempotency-key','').encode()).hexdigest())))
         await self.login(page,who);return context,page
     async def login(self,page,who):
         await page.goto(self.c.base+'/login');await page.get_by_test_id('login-email').fill(who+'@stage3.invalid');await page.get_by_test_id('login-password').fill('independent-pass');await page.get_by_test_id('login-submit').click();await page.get_by_test_id('current-user').wait_for()
@@ -38,6 +38,14 @@ class Review:
         self.check(name+'-width',metrics['scroll']<=metrics['client'],dict(scroll=metrics['scroll'],client=metrics['client']))
         self.check(name+'-contrast',bool(metrics['text']) and all(t['ratio']>=t['minimum'] for t in metrics['text']),metrics)
         self.images.append(dict(path=p.name,sha256=hashlib.sha256(p.read_bytes()).hexdigest(),width=page.viewport_size['width']))
+    async def stale(self,browser):
+        c=self.c
+        for width in [375,1280]:
+            c.seed();anchor=c.make();context,page=await self.page(browser,width=width);b=closure();await self.manager(page,b);p=await self.submit(page,'replan-preview-submit','/restaurants/r/replans');await page.get_by_test_id('replan-proposal').wait_for()
+            c.make(seats=('f',),local=DAY+'T21:00',key='intervening');before=c.export();result=await self.submit(page,'replan-apply-submit','/restaurants/r/replans/'+p['plan_id']+'/apply',409);await page.get_by_test_id('replan-apply-error').wait_for()
+            self.check('stale-unapplied',result['error']['code']=='stale_plan' and before==c.export() and await page.get_by_test_id('replan-applied').count()==0 and c.lookup(anchor['reference'])['table_ids']==['a']);await self.shot(page,'stale-plan-unapplied-'+str(width))
+            old=next(x for x in reversed(self.traffic) if x['method']=='POST' and x['path']=='/restaurants/r/replans');await page.get_by_test_id('replan-from').fill(DAY+'T18:00:00.000001+00:00');newplan=await self.submit(page,'replan-preview-submit','/restaurants/r/replans');await page.get_by_test_id('replan-proposal').wait_for();new=next(x for x in reversed(self.traffic) if x['method']=='POST' and x['path']=='/restaurants/r/replans')
+            self.check('edited-identity',old['body_sha256']!=new['body_sha256'] and old['key_sha256']!=new['key_sha256'] and newplan['plan_id']!=p['plan_id']);await self.submit(page,'replan-apply-submit','/restaurants/r/replans/'+newplan['plan_id']+'/apply');await page.get_by_test_id('replan-applied').wait_for();await self.shot(page,'stale-plan-fresh-applied-'+str(width));await context.close()
     async def full(self,browser):
         c=self.c;construction=next(construct(i) for i in range(160) if 'error' not in construct(i)['expected']);f=fixture();r=f['restaurants'][0];r.update(slot_minutes=30,reservation_duration_minutes=90,cancellation_cutoff_minutes=0,combinable=copy.deepcopy(PAIRS))
         for t in r['tables']:t['capacity']=construction['original_capacities'][t['id']]
@@ -137,5 +145,5 @@ async def run(r,out,family):
         for name,value in [('assertions.json',review.checks),('traffic.json',review.traffic),('forwarding.json',review.forwards),('screenshots.json',review.images)]: (out/name).write_text(json.dumps(value,indent=2)+'\n')
         (out/'executed-source.py').write_bytes(Path(__file__).read_bytes());(out/'summary.json').write_text(json.dumps(dict(candidate=r['candidate'],family=family,complete=error is None,error=error,assertions=len(review.checks),failed=sum(not x['passed'] for x in review.checks),direct_api_requests=review.c.count,direct_api_assertions=len(review.c.assertions),browser_requests=len(review.traffic),forwarding_operations=len(review.forwards),screenshots=len(review.images),seconds=time.monotonic()-review.started,private_exports_saved=False),indent=2)+'\n')
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--family',choices=['full','members','types','numeric','bridge','racesui'],required=True);a=p.parse_args();r=validate(json.loads(Path(a.release).read_text()));asyncio.run(run(r,Path(a.out),a.family))
+    p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--family',choices=['full','members','types','numeric','bridge','racesui','stale'],required=True);a=p.parse_args();r=validate(json.loads(Path(a.release).read_text()));asyncio.run(run(r,Path(a.out),a.family))
 if __name__=='__main__':main()
