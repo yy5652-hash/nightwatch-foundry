@@ -1,0 +1,36 @@
+{
+  "scope": "Own post-commit provenance runner; no service or metadata-gate failure",
+  "failed_interpreter_argv": [
+    "../../.venv/bin/python",
+    "-B",
+    "-"
+  ],
+  "failed_interpreter_returncode": 1,
+  "actual_stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\nAssertionError\n",
+  "failed_logic": "rev-parse HEAD followed by assertion that changed-path count is 66 and paths are verifier-owned",
+  "concurrent_observed_head": "e02b2ad30211db5a7a7ffbca91eaa7ffc7d32fa0",
+  "concurrent_observed_author": "Foundry Coordinator <foundry-coordinator@nightwatch-foundry.invalid>",
+  "concurrent_changed_path": "evidence/coordinator/run-ledger.jsonl",
+  "subsequent_proof_commit_attempt_returncode": 1,
+  "subsequent_proof_commit_attempt_stderr": "error: pathspec 'evidence/independent-verifier/stage-1/candidate-7-preparation/ownership-correction-01/commit-proof.json' did not match any file(s) known to git\n",
+  "subsequent_proof_commit_attempt_argv": [
+    "git",
+    "-c",
+    "user.name=Independent Verifier",
+    "-c",
+    "user.email=independent-verifier@nightwatch-foundry.invalid",
+    "commit",
+    "--only",
+    "-m",
+    "Seal exact ownership correction commit provenance",
+    "--",
+    "evidence/independent-verifier/stage-1/candidate-7-preparation/ownership-correction-01/commit-proof.json"
+  ],
+  "explanation": "The failed inspection wrote no proof file; the dependent commit was attempted without that file. The corrected inspection resolves the actual correction commit explicitly.",
+  "corrected_exact_revision": "bbb6a13fbbaa8d6fa58b58f0ac632b3238657430",
+  "corrected_changed_paths": 66,
+  "metadata_checks_unchanged": 49,
+  "preparation_checks_unchanged": 440,
+  "service_requests": 0,
+  "history_rewritten": false
+}
