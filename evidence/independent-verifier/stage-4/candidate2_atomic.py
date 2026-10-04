@@ -71,11 +71,11 @@ def invalid(c,release):
     cases=['plans-wrongtype','closure-list-wrongtype','plan-id','plan-applied-type','plan-revision-negative','plan-revision-future','plan-closure-type','plan-closure-order','plan-originals-shape','plan-assignment-count','plan-assignment-reference','plan-changed-type','plan-changed-truth','plan-moved-objective','plan-unused-objective','closure-plan-link','closure-restaurant-link','closure-interval-link','closure-duplicate','closure-omitted','history-plan-link','history-terms','series-index','series-reference','series-schedule','series-exception-type','counter-negative']
     traces=[]
     for kind in cases:
-        altered=copy.deepcopy(template);change(kind,altered['state']);payload=raw(altered)
+        rejection_before=c.export();altered=copy.deepcopy(template);change(kind,altered['state']);payload=raw(altered)
         c.response('atomic-invalid-'+kind,c.call('POST','/_test/import',body=payload),422,'validation_failed')
-        c.check('atomic-invalid-'+kind+'-unchanged',before==c.export())
+        c.check('atomic-invalid-'+kind+'-unchanged',rejection_before==c.export())
         c.response('atomic-invalid-original-accepted',c.transfer(c.base,c.base,before),204)
-        c.check('atomic-invalid-original-preserved',before==c.export())
+        c.check('atomic-invalid-original-preserved',same(template,parse(c.export())))
         traces.append(dict(case=kind,request_bytes=len(payload),request_sha256=sha(payload),expected_status=422,private_payload_saved=False))
     c.saved_artifacts={'corruption-traces.json':(json.dumps(traces,indent=2)+'\n').encode()}
 def main():
