@@ -1,0 +1,49 @@
+{
+  "candidate": "b4a124e3671ec22a4df0780343f6389ff4b70d05",
+  "checks": {
+    "dockerfile": true,
+    "run-document": true,
+    "single-image": true,
+    "offline": true,
+    "cpu": true,
+    "memory": true,
+    "startup": true,
+    "packaged-assets": true,
+    "listen-all": true,
+    "port-override": true,
+    "port-default": true,
+    "complete-clone": true,
+    "two-builders": true,
+    "history-preserved": true,
+    "own-stage": true
+  },
+  "readiness": [
+    {
+      "healthy": true,
+      "readiness_seconds": 0.32599716699951387,
+      "host_port": 18300,
+      "internal_port": 18309,
+      "port_override": true
+    },
+    {
+      "healthy": true,
+      "readiness_seconds": 0.4112793340009375,
+      "host_port": 18301,
+      "internal_port": 8080,
+      "port_override": false
+    }
+  ],
+  "network_internal": true,
+  "resource_limits": [
+    {
+      "name": "/independent-verifier-s1-b4a124e3671e-20261004t010907-source",
+      "cpus": 2000000000,
+      "memory": 2147483648
+    },
+    {
+      "name": "/independent-verifier-s1-b4a124e3671e-20261004t010907-peer",
+      "cpus": 2000000000,
+      "memory": 2147483648
+    }
+  ]
+}

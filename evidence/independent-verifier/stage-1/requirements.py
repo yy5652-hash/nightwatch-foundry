@@ -441,6 +441,23 @@ add("3.4 / 7. / 9. / 10. / coordinator timestamp decision", 86, "calendar-edges"
 for row in ROWS:
     if row["case"] == "calendar-edges":
         row["interpretation_note"] = "Coordinator decision: exact IANA instant and original starts_at_local; nearest representable minute wire offset, lower numerical tie. Literal historical subminute wire offset is an explicit interpretation exception; earlier failed observations are preserved."
+add("7. Idempotency / 10. Export and import / coordinator legacy-preservation decision", 436, "legacy-receipts", {
+    "legacy-source-genuine": "Historical old-format receipt/export is produced by a genuine exact-revision earlier HTTP process.",
+    "legacy-import": "Current service accepts a genuine old historical export from another process.",
+    "legacy-export-equality": "Import retains all original accounts/configuration/tokens/records/receipts and timestamps exactly.",
+    "legacy-replacement": "Legacy import removes the destination's earlier session and state.",
+    "legacy-record-immutable": "Imported original historic record strings, identity and timestamps remain unchanged on lookup.",
+    "legacy-original-receipt": "Original legacy create receipts replay unchanged, including old historical strings and receipts for now-cancelled records.",
+    "legacy-batch-original": "Original legacy batch receipt survives later cancellation, import and replay unchanged.",
+    "legacy-cancelled": "Legacy cancelled records remain cancelled with original identity and timestamps after import.",
+    "legacy-new-write": "A new historic booking in an imported legacy state follows the new exact-instant serialization interpretation.",
+    "legacy-mixed-transfer": "Mixed old/new historic state atomically transfers into another current process without rewriting old strings.",
+    "legacy-peer-original-receipt": "Old tokens, references and original receipts remain valid after a second mixed-state process transfer.",
+})
+for row in ROWS:
+    if row["case"] == "legacy-receipts":
+        row["interpretation_note"] = "Explicit backward-preservation exception: successful original record/receipt strings, including historical offset seconds, are immutable. New writes use the recorded representation interpretation."
+        row["executable_command_or_interaction"] = "python3 evidence/independent-verifier/stage-1/legacy_receipts.py --base CURRENT_SERVICE --peer SECOND_CURRENT_SERVICE --legacy GENUINE_LEGACY_SERVICE --candidate FULL_REVISION --out NEW_DIRECTORY"
 
 
 def write_matrix(path):

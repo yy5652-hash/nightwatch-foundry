@@ -1,0 +1,59 @@
+[
+    {
+        "Name": "independent-verifier-s1-b4a124e3671e-20261004t010907-net",
+        "Id": "d0c262b78bc2b0cc44e383a39d49711092f42539ac43e7b2e3e488aa7095d750",
+        "Created": "2026-10-04T01:09:08.674783544Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "2a19bf54a5bd8870e44d0ce1f6730e26c5c58f71312dbaae563b7da1c903d504": {
+                "Name": "independent-verifier-s1-b4a124e3671e-20261004t010907-peer",
+                "EndpointID": "ed4a92247154f2b1f4f282a9f127f7bf12c2090b222063fc2584fd1525ca4951",
+                "MacAddress": "8a:7c:e4:61:10:a4",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "82a3066cd81c1cad5211ad3618b9c0b4b7342825e1f6abde5d60a53b438d82e5": {
+                "Name": "independent-verifier-s1-b4a124e3671e-20261004t010907-source",
+                "EndpointID": "c8b63a1520fae5f22fcbedf5f9212202e099fd7377d1b905d1a2e75308a08b91",
+                "MacAddress": "4a:d8:1e:08:26:14",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

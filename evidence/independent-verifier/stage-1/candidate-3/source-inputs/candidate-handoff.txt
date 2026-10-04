@@ -1,0 +1,765 @@
+Continue Stage1 shared board #3. New full candidate: b4a124e3671ec22a4df0780343f6389ff4b70d05. Production repair:f4eeac50227a59ce785768dbb37bb4641d83c88a, following calendar repair49287b4a5a1481f995c470ccae31776f03d4b863. Systems committed full evidence atb4a124e3671ec22a4df0780343f6389ff4b70d05; no Stage1 paths are dirty and no Stage2 exists. Collect all numbered parts and acknowledge completeness through jam_send before execution.
+Independently clone/build/start this exact candidate and rerun the entire current atomic matrix, all original/calendrical failures, your separately prepared timestamp interpretation oracle, 50-in-flight staged workload, cross-process and legacy receipt/import probes, and unchanged official isolated120-check Stage1 regression in new output directories. Review current provenance declarations and full source/history. Preserve every earlier failure, not-yet-executed row and limitation.
+Apply the explicit recorded timestamp interpretation below. New writes/availability must preserve exact IANA instant, unchanged starts_at_local and deterministic nearest representable minute-offset RFC3339 representation. Modern minute offsets remain unchanged. Original successful receipt bodies and imported original timestamps must remain immutable, including earlier genuine exports with historical offset seconds. This backward-preservation exception must be explicit in the verdict; do not claim all earlier imported strings are newly canonical or that incompatible original grammars simultaneously hold.
+Systems reports14/14 constrained HTTP scenarios and a separate exhaustive legal-offset builder oracle; these are diagnostics, not your independent evidence. Interface owns transport and separate integration regression; no coordinator service implementation occurred. Source declarations at evidence/systems-engineer/stage-1-source-provenance.md (061850b6a4c209b7cb5b0008edecb35711cb6bcf) and evidence/interface-engineer/stage-1-source-provenance.md (3829bbf42dfb5dadf7adc0ed40e47475ae3e6651) remain inspectable; distinguish declared exclusions from machine-wide forensic proof. Final genuine room export remains operator-controlled.
+A stage may be accepted only after every applicable normative row has evidence, clean startup, independently executed official regression and a named-full-revision verdict. Historical format rows must explicitly cite the interpretation, not silently erase previous failures. If other real failures remain, reject with exact trace and preserve repair history. Do not extend Stage2 before acceptance. Commit only verifier evidence paths, keep board status current, and hand off tested full candidate, full evidence revision, changed files, exact executed commands/counts, wall times, assumptions and known interpretation/legacy risks.
+
+EXPLICIT RECORDED DECISION
+# Timestamp representation decision — TK-20261004 Stage 1
+
+The published requirements conflict for historical IANA offsets with seconds: Stage1 §3.4 requires RFC3339 numeric offsets (hours/minutes), while §9 requires accurate IANA resolution and offsets. No human steering is permitted. This decision preserves both the original restaurant wall-clock fields and the exact resolved instant; it does not claim that an hours/minutes-only wire offset literally equals a historical seconds offset.
+
+Decision: resolve starts and absolute duration using the exact IANA offset/fold. Keep starts_at_local unchanged. For ordinary minute-aligned IANA offsets, retain the existing restaurant-local RFC3339 timestamp. For a historical subminute offset, serialize the same exact instant using a deterministic nearest minute-aligned fixed offset and an adjusted timestamp clock. Select a representable local calendar result at the supported date boundaries; ties choose the lower numerical offset. Do not round the instant, truncate seconds, restrict the published date range, add zone/date-specific branches, or alter a successful saved receipt on replay. Use the same serialization for availability and new reservation timestamps; verify export/import and original-receipt stability.
+
+The two historical format obligations must be assessed under this recorded interpretation, with independent checks of RFC3339 syntax, exact absolute instant and retained original wall time. Preserve the previous failed observations. A new production revision and independently executed evidence are required; no failed result is converted to a pass in place. All other requirements remain unchanged. The verifier may reject an implementation that violates this interpretation or any remaining requirement.
+
+Known interpretation risk: the literal historic wire offset is minute-aligned rather than the exact IANA subminute offset. The exact IANA resolution is preserved by the represented instant and original local field. Final acceptance must state this exception/interpretation explicitly and must not claim simultaneous literal compliance with incompatible offset grammars. Genuine final room export, operator documents, publication and submission remain operator-controlled.
+
+COMPLETE CURRENT FACTORY TASK
+Scored factory run TK-20261004. Target all four fully specification-complete consecutive Tablekeeper stages, with strong product quality and independent verification, not merely the public minimum. Use the configured seats for substantive implementation and independent review. Report partial completion honestly if genuinely blocked.
+
+Workspace root: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory
+Kickoff repository: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/kickoff
+Result repository: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result
+Check outputs: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks
+Track: tablekeeper
+
+Execution environment: all four seats run on the same macOS host and share the one result working tree above, so only one seat edits or commits a given path at a time and the coordinator sequences overlapping work. The official harness Python is <workspace root>/.venv/bin/python; run it from the kickoff directory, e.g. <workspace root>/.venv/bin/python -m harness run --track tablekeeper --repo <result repository> --stage N --mode isolated --out <check outputs>/<new-unique-name>.
+A Docker daemon is running on the host; the first isolated run builds the unchanged official runner image. Use a new --out directory for every run and never delete earlier outputs. Dependencies an implementation needs belong in its own buildable image, not on the host. The official kickoff revision is 803560d2a678ace1414465c098eb0ab5380ffade. Each seat is configured as Codex with model gpt-6.1-sol; record the model and effort your own runtime actually reports.
+When a seat runs a service or container directly it uses its own host port range: coordinator 18000-18099, systems 18100-18199, interface 18200-18299, verifier 18300-18399.
+Commit with your own seat identity, for example git -c user.name="<Seat Name>" -c user.email="<seat-slug>@nightwatch-foundry.invalid" commit ...
+Stay strictly inside the workspace root: do not read, write or execute anything outside it, do not inspect credentials or other projects on this machine, do not change system, Docker or network settings, and do not stop containers or processes you did not start.
+Configured seats: coordinator yy5652/foundry-coordinator; systems builder yy5652/systems-engineer; interface builder yy5652/interface-engineer; independent verifier yy5652/independent-verifier. Only these seats may participate.
+
+Authoritative instructions:
+
+1. Read the complete participant guide at kickoff/docs/participant-guide.md under the absolute workspace root before assigning work.
+2. Process stages 1 through 4 strictly in order. The complete stage specifications are kickoff/tablekeeper/spec/stage-1.md through stage-4.md. Stage N must extend the accepted Stage N-1 folder while remaining a complete, independent service.
+3. For every delegated assignment, include the complete applicable task and full specification text in the direct handoff. A file path or room-message pointer alone is not a complete handoff. The participant guide explicitly allows long handoffs as numbered direct messages. Use a single package identifier and part i/N, at most 12,000 characters per message including routing and context, with a final completion marker. Preserve the full applicable specs across parts. The receiver must confirm all parts arrived before working; an earlier part is not a new task. If transport rejects a part, split and resend that missing part transparently without dropping requirements or asking the human.
+4. The result must be created by the seats in this room. Human-authored stage code is forbidden. Preserve all commits and room evidence; never amend, rebase, squash, or rewrite history.
+5. Build to the specification, not the visible tests. The verifier must create a requirement coverage matrix and probe untested boundaries, concurrency, idempotency, recovery, upgrade, historical-truth, and deterministic planning behavior using black-box evidence derived from the specification. Number every normative requirement from the full specs. Each ledger row must carry the source section, applicable stage, owner, candidate full revision, verification method, executable command or observed browser interaction, evidence path and verdict. Split bundled obligations so a passing happy path cannot conceal an untested error, ordering, atomicity or recovery rule. Track inherited requirements explicitly; unsupported claims stay unverified. Use deterministic seeds and saved operation traces for randomized invariant checks, and a separately derived small reference oracle where appropriate. Do not copy another entry's implementation, tests or claimed coverage counts.
+6. The systems builder owns integrity-critical service behavior. The interface builder owns interface/integration behavior and presentation quality. Both must contribute substantive committed work. The verifier reviews candidates independently and may reject promotion. The coordinator may not silently do all implementation itself.
+7. A stage is accepted only after clean startup, applicable official harness checks, earlier-stage regression checks, specification coverage review, and an independent verifier verdict against a named full commit revision.
+8. Run final checks in isolated mode. The judged service has no outbound network, 2 vCPU and 2 GiB. Preserve every failure and repair in the room and Git history.
+9. Maintain an append-only evidence ledger with wall time, model, usage/cost estimate, commits, checks, rejected candidates, repairs, and remaining risk. Keep ledgers, coverage matrices, probes and other evidence outside the graded stage-N/ folders (for example under evidence/ in the result repository).
+10. Prepare measured facts for the operator-authored README.md and FACTORY.md, copy the four generic files in factory/mandates-final/ into mandates/ unchanged, and write one RUN.md per completed stage and all evidence needed for a fresh-clone review. Do not fabricate room.json; it is downloaded from Band after the run.
+11. During this run, this dispatch is the only human input. Do not ask the human for clarification, approval, debugging hints, or a go-ahead between stages. Resolve choices from the published requirements and communicate within the band. If truly blocked, report the blocker and evidence as the outcome.
+12. Finish with a final report stating the highest consecutive accepted stage, exact revisions, exact observed check counts, clean-clone status, known limitations, elapsed time, and measured or explicitly unknown model spend.
+13. Read factory/PRODUCT_ACCEPTANCE.md under the absolute workspace root as a supplementary task-specific acceptance brief, never as a replacement for the complete specs. Do not copy its track-specific content into mandates. Derive independent tests from the specs, including the behaviors absent from shipped checks.
+14. Aim for full specification coverage at every stage, not merely the minimum public claim threshold. Freeze each accepted stage before extending its copy. Do not sabotage a correct earlier requirement to fail an overshoot probe.
+15. Preserve genuine task ownership: substantial implementation by both builders, independent verifier execution against exact revisions, coordinator integration. Never fabricate disagreements, test counts, model costs, screenshots or handoffs.
+16. Keep the room economical: post decisions, handoffs, revisions, verdicts and evidence paths, not long raw logs. Store bulky output in files under the check outputs or evidence/ and cite the path.
+17. Time budget: aim to finish all four stages within about 16 hours of this dispatch. At 22 hours stop extending, make sure every accepted stage and the evidence are committed, and post the final report for the highest consecutive accepted stage. An honest partial result is better than an unfinished run.
+
+Begin by confirming all four configured seats already in this room, obtaining reciprocal literal handle messages, publishing the requirements ledger, and assigning Stage 1 work. Work only with these seats in this room. Do not contact other agents, inspect credentials, or access other competitions. Do not reuse toy solution code, the abandoned band-work/result repository, or replay their history into the fresh scored result. Public publishing, final room export and competition submission remain operator-controlled steps.
+
+Additional shared-tree discipline: write room messages, commits and documents in English. Stage/commit only owned explicit paths; no blanket add, stash, hard reset, clean, checkout-all, rebase, amend, force, pull or push. Wait/retry an index lock. Prefix containers, networks, images and temporary directories with your seat name; remove only your own. Every implementation handoff must report full committed revision, changed-file summary, commands run, results, assumptions and remaining risks. During this autonomous run communicate inside the Band room only. All exact local paths in this package are inspectable on this shared host.
+FULL SUPPLEMENTARY ACCEPTANCE BRIEF
+# Tablekeeper acceptance brief — task-specific, never a seat mandate
+
+Source: official kickoff `803560d2a678ace1414465c098eb0ab5380ffade`,
+`docs/participant-guide.md` and all four `tablekeeper/spec/stage-N.md` files.
+This is an operator-authored acceptance brief, not implementation or scored evidence.
+The complete official specifications prevail over this summary. Seats must derive
+their own exhaustive requirement ledger and code in the submitted Band room.
+
+## Target and evidence standard
+
+The target remains four consecutive, fully implemented stages, a polished product,
+and a reproducible autonomous factory. The public claim threshold is not our
+quality target. Public test percentages or a passing public suite do not establish
+hidden-test coverage, a judging score, or a prize.
+
+Every claimed behavior needs a requirement reference, candidate full commit,
+independent executable probe or observed UI flow, command, result and artifact path.
+Record `unverified` when any link is missing. Never manufacture a rejection.
+Tests belong outside graded stage folders unless genuinely needed by the service.
+Do not modify the official checker, omit suites, or convert skipped checks to passes.
+
+## Stage 1 — transaction and state foundations
+
+| Requirement family | Independent acceptance evidence beyond a happy path |
+|---|---|
+| Runtime | Fresh single-image build; nondefault PORT; 0.0.0.0 listener; health within 60 s; 2 CPU/2 GiB; no runtime internet or separate database service. |
+| Authentication | Hashed passwords; multiple active tokens; public browsing without token; owner-only reference lookup cannot reveal another account's booking. |
+| Validation | Distinguish wrong JSON types from invalid values; reject boolean party sizes; strictly parse decimal query integers and bare local timestamps; ignore unknown fields. |
+| Retry semantics | Same user+method+path+parsed JSON replays original response with 200; exactly one concurrent first request returns 201; same key on another path remains independent; different body conflicts before resource validation; failed keys remain reusable. |
+| Occupancy | Half-open boundaries; 50 competing requests; no double booking or partial mutation; capacity and grid constraints; closed-day and empty-slot ordering. |
+| Time | IANA rules, nonexistent local times, first occurrence in a repeated hour, absolute duration across transitions; do not reject dates merely because they are in the past. |
+| Amend/cancel | Cutoff measured against current start; failed amendment leaves old occupancy intact; repeated cancel is stable; reference and identity survive edits. |
+| Batch moves | 1..8 distinct references; same owner/restaurant; validate non-occupancy errors in input order before overlap; swap several occupied tables atomically; failed batch leaves receipts and every record unchanged. |
+| Export/import | Atomic replacement across independent processes; preserve hashes, tokens, identities, timestamps, successful original receipts and cancelled records; invalid import is all-or-nothing; reset removes all imported state. |
+
+Do not add the later browser or policy/series surfaces to this folder. Copy the
+accepted stage forward; never copy a final answer backwards.
+
+## Stage 2 — product experience and uncertain outcomes
+
+Product direction: a warm, calm hospitality product. Use a consistent type scale,
+warm neutral surfaces, a restrained accent, clear labels, and human table names.
+This is a direction, not a reference design to reproduce. Do not invent reviews,
+ratings, restaurant photos, usage counts, or claims about real establishments.
+All assets/fonts/scripts must be packaged for offline runtime.
+
+| Required flow | Evidence to capture |
+|---|---|
+| Browse before login | `/` is useful without authentication; restaurant, date, party size and table choices are legible; booking routes to authentication. |
+| Authentication routes | `/signup`, `/login`, `/lookup` load directly; visible labels and focus; signed-in identity visible on all screens; logout state works. |
+| Search race | Delay A, complete B, then release A: grid, labels and form remain B, not stale A. |
+| Booking conflict | Another client takes the selected option: show refusal, refresh availability, retain form inputs, and never show a false confirmation. |
+| Lost response | Commit then drop response: show uncertainty, not refusal/success; retry identical body/key and recover the original reference; another submit after success creates no duplicate. |
+| Changed form | A real field change creates a new request identity; an unchanged form retains the same retry identity. |
+| Combined seating | Only declared pairs, never transitive combinations; canonical declared order; atomically occupy/release both tables; show both human labels. |
+| Upgrade in place | Import a stage-1 export between browser requests: login token, open form, retained reference and uncertain retry still work without a reload. |
+| Responsive/accessibility | Real screenshots and keyboard flows at 375 CSS px and desktop; no horizontal page scroll; distinct loading, empty, available, unavailable, selected, success, refusal and uncertainty states. |
+
+Required test IDs are a contract, not a substitute for product-quality review.
+Verify text-only constraints (reference and reservation status) precisely.
+The Experience Engineer must contribute substantive UI/recovery code and evidence,
+not only cosmetic changes after another seat built the entire app.
+
+## Stage 3 — immutable terms, history and recurring agreements
+
+| Risk | Required independent probe |
+|---|---|
+| Explanation truth | Both capacity and overlap rules reported for each table in fixture order; validate explain=true only; no extra explanation fields when omitted. |
+| Policy ordering | Publish effective dates out of order and ties on the same date; select by local booking date then version; preserve existing bookings and immutable historic terms. |
+| Manager boundary | Only fixture managers publish; managers do not gain private diner lookup/history access; ordinary restaurant detail remains original fixture configuration. |
+| Revision/history | Contiguous seq; exact changed fields/order; no-op/replay/failure creates no event; accepted terms are snapshotted on each historical event; optimistic revision conflicts precede cutoff validation. |
+| Receipt longevity | Replay an old create/policy receipt after amendments and cancellation and after import: original body, revision and terms survive. |
+| Series adoption | Anchor remains identical; each future occurrence uses its own local date's policy and DST resolution; any failed occurrence rolls back every reservation/history/counter/key. |
+| Series exceptions | Real individual change permanently marks exception; cancellation retains occurrence but does not create exception; anchor cancellation does not cancel siblings. |
+| Combined history | Pair sets canonicalized; reverse input order alone is a no-op; single/pair transitions use the specified field representation. |
+| Batch and series counters | Several changed members in one transaction increment each affected series once and restaurant once; failed batches/replays increment nothing. |
+| Cross-version import | Independently export from both earlier stages and adopt imported reservations; preserve sessions and original receipts. |
+
+## Stage 4 — deterministic planning and atomic application
+
+1. Exercise the full supported bound: six tables, four declared pairs, six considered
+   bookings, with fixed bookings and existing closures present.
+2. Build an independent small exhaustive oracle from the written planning objective:
+   minimize changed booking sets, then total unused seats, then the rank vector in
+   reference order. Do not use the production solver as its own oracle.
+3. Use each booking's accepted capacities, not the latest policy's capacities.
+   Preserve its identity, time, party size, owner and accepted terms.
+4. Preview must not reserve occupancy, publish closure, increment revision or write
+   booking history. Infeasible preview must leave all observable state unchanged.
+5. Any intervening revision in that restaurant invalidates a plan; unrelated
+   restaurants do not. Replaying a successful apply returns its original receipt;
+   a different key for an already applied plan has its specified error.
+6. Concurrent applies cannot partially move bookings. Moved records get one revision
+   and reassigned event, unmoved records none; restaurant changes once per plan.
+7. Bulk series amendments exclude cancelled/exception members and use original
+   scheduled dates. Validate the series revision before member cutoff/validation;
+   apply occupancy across changed and unchanged members together.
+8. Empty eligible/no-op series changes succeed without incrementing revisions.
+   A seating repair preserves exception flags and increments each affected series once.
+9. Import populated states from every prior stage, including changed/cancelled series
+   members, and repeat these operations without losing tokens, receipts or history.
+
+## App-score interaction ownership
+
+The stage-3 and stage-4 specs say no new screens are required. The following are
+our product-quality targets, not organizer eligibility requirements. Implement
+them only in their applicable stage after core correctness, without changing the
+specified API or delaying required regression/upgrade coverage. Experience owns
+substantive UI/integration work alongside Systems rather than only a final skin.
+
+- In stage 3, make the existing diner's own confirmation/lookup flow explain
+  accepted terms and historical changes clearly. Offer recurring-booking creation
+  and a legible occurrence list with cancelled and exception states. Never expose
+  another diner's private lookup/history to a manager.
+- In stage 4, provide a manager-authorized closure preview/apply workflow showing
+  proposed changes separately from committed changes. A stale or infeasible plan
+  must remain visibly unapplied; never display optimistic success before evidence.
+  Keep diners' lookup/confirmation synchronized with actual applied assignments.
+- Make series amendment results distinguish changed, unchanged, cancelled and
+  exception occurrences. Preserve original references in the view; show failures
+  without implying that a partial operation committed.
+- Use actual API responses and declared capabilities only. No mocked manager
+  access, fake history, fabricated metrics, or later-stage controls in an earlier
+  folder. Capture the real authorized and refused flows in the independent review.
+
+## Promotion and presentation
+
+- Freeze each accepted stage at its full revision before the next copy. Keep every
+  applicable public check green as the working target, plus independent spec probes.
+- Every stage must claim its own number in isolated mode; the next-suite probe must
+  not establish a later stage in an earlier folder. Never intentionally break a
+  requirement merely to fail an overshoot probe.
+- Use clean clones, no nested Git repositories, submodules, escaping symlinks or
+  host-specific runtime dependencies. Preserve failed outputs in unique directories.
+- Capture real Band handoffs, a real independent verdict, actual product interactions,
+  upgrade/retry recovery and final stage results. Label rehearsal separately.
+- Do not publish exported fixture state with tokens/password hashes as a demo asset.
+  Inspect the genuine full room export for secrets before public release; follow the
+  official rotate-and-redact exception if one is found, never invent room events.
+- Include measured elapsed time and catalog-estimated cost only with provenance;
+  distinguish estimates from billed spend. Unknown is preferable to an invented value.
+
+FULL APPLICABLE STAGE 1 SPECIFICATION
+# Tablekeeper — Stage 1: reservations
+
+This stage defines the initial service and its API.
+
+Build from the supplied requirements. Source code, API documentation and schemas from
+existing products in this domain must not be used.
+
+## 1. Scope
+
+Diners can search restaurant availability, book a table and receive a confirmation
+reference. They can cancel or amend their bookings, including changing several bookings
+together. Each restaurant has its own table capacities, opening hours and cancellation policy.
+Only the HTTP API is required.
+
+Two `confirmed` reservations must never occupy the same table at overlapping times,
+including during concurrent requests. Occupancy is the half-open interval
+`[starts_at, starts_at + reservation_duration)`. A 90-minute booking at 19:00 therefore
+does not overlap a booking starting at 20:30. Retries and rejected requests must not
+create duplicate or partial bookings.
+
+## 2. Delivery and deployment
+
+Deliver an HTTP service, a `Dockerfile` and a `RUN.md` with a command that builds and
+starts the service without manual setup. Language, framework and storage are unrestricted.
+A `docker-compose.yml` is optional.
+
+The submission is a containerized HTTP service, not a Python package. Python is not
+required in the implementation. TypeScript/JavaScript, Go, Rust, Java, Python and any
+other language are equally valid. The harness builds the submitted `Dockerfile`, starts
+the resulting image and tests only its HTTP behavior; it does not import or execute the
+submission's source files on the judge host.
+
+The image must run on its own with `-e PORT=<port>` and a port mapping. Runtime networking
+has no outbound access. All runtime dependencies, initialization and seed data must work
+within that single container. Compose configuration is not used to start the service.
+
+### Resource limits
+
+The service must operate within these limits:
+
+| Limit | Value |
+|---|---|
+| CPU | 2 vCPU |
+| Memory | 2 GiB |
+| Start to first healthy response | 60 s |
+| Concurrent requests | up to 50 in flight |
+| Per-request timeout | 5 s (10 s for `POST /_test/reset`) |
+| Outbound network | available during `docker build`, **none at run time** |
+| Disk | ephemeral; state need not survive a container restart |
+
+Runtime assets and dependencies must be included in the image. This includes fonts,
+scripts and stylesheets; external services are unavailable at runtime.
+
+## 3. Runtime contract
+
+### 3.1 Listening
+
+Listen on `0.0.0.0` using the `PORT` environment variable, default `8080`.
+
+### 3.2 Health
+
+```http
+GET /health  ->  200  {"status": "ok"}
+```
+
+Return 200 once the service and its data store can serve requests, within 60 seconds
+of container start. Non-200 responses are permitted before the service is ready.
+
+### 3.3 Reset and seed
+
+```http
+POST /_test/reset
+Content-Type: application/json
+
+{ ...fixture... }
+
+->  204 No Content
+```
+
+Replace all service state with the fixture in the request body (§4). When reset returns
+204, subsequent requests must see only that fixture. Repeated resets are supported.
+This test endpoint must be enabled in the delivered image and requires no authentication.
+
+### 3.4 Conventions
+
+- Requests and responses are `application/json; charset=utf-8`.
+- Timestamps in responses are RFC 3339 with an explicit offset, e.g. `2026-09-24T19:00:00+02:00`.
+- Unknown fields in a request body are ignored, never an error.
+- Unknown query parameters are ignored.
+- IDs are opaque strings of at most 64 characters. Their format is yours. This limit
+  also applies to IDs supplied in reset fixtures.
+
+## 4. Model
+
+Restaurants and tables are supplied through `POST /_test/reset` only. Restaurant and
+table creation endpoints are out of scope.
+
+| Field | On | Meaning |
+|---|---|---|
+| `timezone` | Restaurant | IANA zone name, e.g. `Europe/Berlin`. All of the restaurant's times are local to this |
+| `slot_minutes` | Restaurant | Bookings start on a grid of this many minutes from opening time |
+| `reservation_duration_minutes` | Restaurant | How long every reservation occupies its table |
+| `cancellation_cutoff_minutes` | Restaurant | A booking cannot be cancelled or changed within this many minutes of its start |
+| `opening_hours` | Restaurant | Per weekday. A day with no entry is closed |
+| `capacity` | Table | Maximum party size |
+
+### Fixture format
+
+```json
+{
+  "users": [
+    { "id": "u_ada", "email": "ada@example.com",
+      "password": "correct horse", "display_name": "Ada" }
+  ],
+  "restaurants": [
+    {
+      "id": "r_anker",
+      "name": "Zum Anker",
+      "timezone": "Europe/Berlin",
+      "slot_minutes": 30,
+      "reservation_duration_minutes": 90,
+      "cancellation_cutoff_minutes": 120,
+      "opening_hours": [
+        { "weekday": "thu", "opens": "18:00", "closes": "23:00" },
+        { "weekday": "fri", "opens": "18:00", "closes": "23:30" }
+      ],
+      "tables": [
+        { "id": "t_1", "label": "1", "capacity": 2 },
+        { "id": "t_2", "label": "2", "capacity": 4 }
+      ]
+    }
+  ],
+  "reservations": []
+}
+```
+
+- `weekday` is one of `mon tue wed thu fri sat sun`.
+- `opens` and `closes` are local `HH:MM`, 24-hour. `closes` is always later than `opens` on the
+  same local day — opening hours never cross midnight.
+- Seeded users must be able to log in with the given password immediately.
+- `reservations` may seed confirmed bookings, with the same fields as a `POST /reservations`
+  body plus `id`, `reference` and `user_id`.
+
+Fixtures may use any calendar date. A booking must not be rejected solely because its
+start is in the past; the cancellation and amendment cutoff rules still apply.
+
+## 5. Errors
+
+Every 4xx and 5xx response carries this body:
+
+```json
+{ "error": { "code": "table_unavailable", "message": "human readable, any wording" } }
+```
+
+Use the specified HTTP status and `code`. The human-readable `message` may use any wording.
+Endpoint-specific errors are listed with each endpoint.
+
+| Status | `code` | When |
+|---|---|---|
+| 400 | `malformed_request` | Unparseable body, or a field of the wrong JSON type |
+| 400 | `missing_idempotency_key` | Required `Idempotency-Key` header absent or empty |
+| 401 | `unauthenticated` | Missing, malformed or unknown bearer token |
+| 403 | `forbidden` | Authenticated, but not permitted to touch this resource |
+| 404 | `not_found` | No such resource, or not visible to this caller |
+| 409 | `idempotency_key_reuse` | Key already used by this caller with a different request body |
+| 422 | `validation_failed` | A required field or query parameter is missing, or a stated rule is violated with no more specific code |
+
+A field of the correct JSON type with an invalid format or out-of-range value gives
+422 `validation_failed`, unless an endpoint specifies a different error. This includes
+invalid dates, negative counts and values exceeding a stated maximum or length. In addition:
+
+- Endpoint-specific field rules take precedence: invalid `party_size` values (including strings
+  and booleans) and `starts_at_local` strings that are not a bare local `YYYY-MM-DDTHH:MM` are
+  422 `validation_failed`. Other wrong JSON types follow the rule below.
+- An integer-valued **query parameter** is written as plain decimal digits: `1e9`, `4.0` and `+4`
+  are 422 `validation_failed` whatever their numeric value.
+- Reserve 400 `malformed_request` for a body that does not parse or a field of the wrong type.
+
+Shared ranges, enforced on every endpoint that takes them:
+
+| Field | Valid | Otherwise |
+|---|---|---|
+| `Idempotency-Key` | 1 to 255 characters | 422 `validation_failed` |
+
+Requests must not produce 5xx responses, including under concurrent load.
+
+## 6. Authentication
+
+Authentication supports signup and login. Email verification, password reset, refresh
+tokens and role-management endpoints are out of scope. Permissions specified elsewhere
+in these requirements still apply.
+
+```http
+POST /auth/signup
+{ "email": "a@example.com", "password": "correct horse", "display_name": "Ada" }
+
+->  201  { "user_id": "u_1", "display_name": "Ada", "token": "..." }
+```
+
+```http
+POST /auth/login
+{ "email": "a@example.com", "password": "correct horse" }
+
+->  200  { "user_id": "u_1", "display_name": "Ada", "token": "..." }
+```
+
+| Case | Response |
+|---|---|
+| Email already registered | 409 `email_taken` |
+| Password shorter than 8 characters | 422 `validation_failed` |
+| `email` not of the form `local@domain` | 422 `validation_failed` |
+| Wrong password or unknown email on login | 401 `unauthenticated` |
+
+Every other endpoint requires a bearer token, except `/health`, `/_test/reset`, the two above, and
+the three public endpoints named at the top of §8 — `GET /restaurants`, `GET /restaurants/{id}` and
+`GET /availability`:
+
+```http
+Authorization: Bearer <token>
+```
+
+Tokens do not expire. An account may have multiple valid tokens and concurrent sessions.
+
+Passwords must be stored using a password-hashing function such as bcrypt, scrypt or
+Argon2, or an equivalent. Plaintext password storage is not permitted.
+
+## 7. Idempotency
+
+Two write paths require an idempotency key: **`POST /reservations`** (§8) and
+**`POST /reservation-moves`** (§11).
+
+```http
+Idempotency-Key: <client-chosen string, 1..255 characters>
+```
+
+The key is scoped to **the authenticated user**. Two different users may use the same key string
+with no interaction between them.
+
+A replay means the same user sending the **same method, the same path and the same body**. The
+same key with the same body on a different path is a different request, not a replay, and must
+succeed normally.
+
+After the body has been parsed as a JSON object and the caller authenticated, idempotency
+is resolved before endpoint-specific field validation or current-resource checks. Thus a
+used key with a different JSON body returns `409 idempotency_key_reuse` even when that new
+body would otherwise be invalid.
+
+| Situation | Response |
+|---|---|
+| Header absent or empty | 400 `missing_idempotency_key` |
+| First use of the key | The normal response, **201** |
+| Replay: same key, same body | **200**, body identical to the original response as a JSON value |
+| Same key, different body | 409 `idempotency_key_reuse` |
+| Key reused after the original request failed with 4xx | Treated as a first use |
+
+"Same body" means the same JSON value after parsing — key order and whitespace do not matter.
+
+For concurrent identical requests with an unused key, exactly one returns 201.
+The others return 200 with the same body. The operation takes effect only once.
+
+A successful replay returns the original response, even after the resource changes or
+is cancelled. It makes no further state changes.
+
+## 8. API
+
+`GET /restaurants`, `GET /restaurants/{id}` and `GET /availability` are **public** — no bearer
+token. Everything else needs one. Diners browse before they sign in.
+
+### `GET /restaurants`
+
+```json
+{ "restaurants": [ { "id": "r_anker", "name": "Zum Anker", "timezone": "Europe/Berlin" } ] }
+```
+
+### `GET /restaurants/{id}`
+
+The restaurant with its `slot_minutes`, `reservation_duration_minutes`,
+`cancellation_cutoff_minutes`, `opening_hours` and `tables`, in the fixture's shape. 404 if
+unknown.
+
+### `GET /availability`
+
+```http
+GET /availability?restaurant_id=r_anker&date=2026-09-24&party_size=4
+```
+
+All three parameters are required; a missing one is 422 `validation_failed`. `date` is a local
+calendar date at the restaurant.
+
+```json
+{
+  "restaurant_id": "r_anker",
+  "date": "2026-09-24",
+  "timezone": "Europe/Berlin",
+  "slots": [
+    { "starts_at_local": "2026-09-24T18:00",
+      "starts_at": "2026-09-24T18:00:00+02:00",
+      "available_table_ids": ["t_2"] }
+  ]
+}
+```
+
+`starts_at_local` is the full `YYYY-MM-DDTHH:MM` and goes into `POST /reservations` unchanged.
+
+A slot appears for every `slot_minutes` step from `opens` such that
+`slot + reservation_duration_minutes <= closes`. `available_table_ids` lists the tables of that
+restaurant with `capacity >= party_size` and no overlapping confirmed reservation, in fixture
+order. A slot with no available table still appears, with an empty list.
+
+A closed day returns `"slots": []`.
+
+### `POST /reservations`
+
+`Idempotency-Key` is required; see §7.
+
+```http
+POST /reservations
+Authorization: Bearer <token>
+Idempotency-Key: 2f9c1a...
+
+{ "restaurant_id": "r_anker", "table_id": "t_2",
+  "starts_at_local": "2026-09-24T19:00", "party_size": 4 }
+```
+
+`starts_at_local` is wall-clock at the restaurant, with no offset and no `Z`. Resolve it against
+the restaurant's `timezone`.
+
+```json
+201
+{
+  "reservation_id": "res_7",
+  "reference": "K3P7QW",
+  "restaurant_id": "r_anker",
+  "table_id": "t_2",
+  "party_size": 4,
+  "status": "confirmed",
+  "starts_at_local": "2026-09-24T19:00",
+  "starts_at": "2026-09-24T19:00:00+02:00",
+  "ends_at": "2026-09-24T20:30:00+02:00",
+  "created_at": "2026-09-21T11:04:03+00:00"
+}
+```
+
+`reference` is 6 to 12 characters of `A-Z0-9`, unique across all reservations, and never changes.
+
+| Case | Response |
+|---|---|
+| The table is taken for an overlapping interval | 409 `table_unavailable` |
+| `starts_at_local` is not on the slot grid | 422 `not_on_slot_grid` |
+| Slot outside opening hours, or the reservation would end after `closes` | 422 `outside_opening_hours` |
+| `party_size` exceeds the table's `capacity` | 422 `party_exceeds_capacity` |
+| `party_size` below 1, or not an integer | 422 `validation_failed` |
+| `starts_at_local` is a local time that does not exist (see §9) | 422 `invalid_local_time` |
+| Unknown restaurant, unknown table, or the table belongs to another restaurant | 404 `not_found` |
+
+### `GET /reservations`
+
+The caller's reservations, `starts_at` descending, confirmed and cancelled alike.
+Return `200` with `{"reservations": [...]}`; each entry has the same shape as the
+create response. An empty list is `{"reservations": []}`.
+
+### `GET /reservations/{reference}`
+
+One reservation. **404 if it is not the caller's** — do not leak the existence of other people's
+bookings.
+
+### `POST /reservations/{reference}/cancel`
+
+```json
+200
+{ "reference": "K3P7QW", "status": "cancelled", ... }
+```
+
+Frees the table immediately: the next `GET /availability` must offer that slot again.
+
+| Case | Response |
+|---|---|
+| Already cancelled | 200 with the current state — cancelling twice is not an error |
+| Now is within `cancellation_cutoff_minutes` of `starts_at`, or later | 409 `cutoff_passed` |
+| Not the caller's reservation | 404 `not_found` |
+
+### `PATCH /reservations/{reference}`
+
+Change the time, the table or the party size. Any subset of `table_id`, `starts_at_local`,
+`party_size`. No idempotency key is required here.
+
+Validation is identical to `POST /reservations`, and the same cutoff rule as cancel applies
+(409 `cutoff_passed`), measured against the **current** start time. A cancelled reservation is
+409 `reservation_cancelled`. A successful amendment releases the old slot and reserves the
+new one together. A failed amendment leaves the original booking and its occupancy unchanged.
+
+`reference` and `reservation_id` survive a change.
+
+## 9. Time and DST
+
+Local dates and times follow the restaurant's `timezone`, including daylight-saving transitions.
+
+**Spring forward.** Local times in the skipped hour do not exist. They never appear in
+availability, and booking one is 422 `invalid_local_time`.
+
+**Fall back.** Local times in the repeated hour occur twice. **Always resolve to the first
+occurrence — the one before the clocks change.** The slot appears once in availability, and the
+second occurrence is not bookable.
+
+`reservation_duration_minutes` is **absolute time**, not wall-clock. A 90-minute reservation
+starting at 01:30 on a fall-back night ends 90 real minutes later, and its local `ends_at` will
+read 02:00, not 03:00.
+
+The transitions that must be handled:
+
+| Zone | Spring forward | Fall back |
+|---|---|---|
+| `Europe/Berlin` | 2026-03-29, 02:00 → 03:00 | 2026-10-25, 03:00 → 02:00 |
+| `America/New_York` | 2026-03-08, 02:00 → 03:00 | 2026-11-01, 02:00 → 01:00 |
+
+Offsets must follow the IANA rules for the specified zone and date.
+
+## 10. Export and import
+
+The service must support `GET /_test/export` and `POST /_test/import`. Like reset, these
+are unauthenticated test endpoints.
+Exports may contain credentials and session tokens; handle them as private test artifacts.
+Return 200 from export with a JSON object containing `track: "tablekeeper"`,
+`format_version: 1` and `state` (an implementation-defined JSON object). The state format
+is opaque to the caller and must be accepted unchanged by import.
+
+Import takes that entire object and atomically replaces the service's state, returning
+204. It must accept an unchanged export produced by this service. No dependency on the
+source process, files, volume, port or network address is allowed. Import is replacement,
+not merge; repeating it restores the exported state without duplicating anything. Invalid
+JSON follows §5; missing fields, wrong track/version or an invalid state give 422
+`validation_failed` without changing the destination. Test control calls have a 10-second
+timeout. Export is an atomic, read-only snapshot; subsequent source writes do not change it.
+
+Preserve accounts and hashed-password login, existing bearer tokens, fixture configuration,
+reservations, references, all completed idempotent request bodies and original responses.
+Identities, statuses and timestamps must not be regenerated. Failed request keys remain
+reusable. Existing receipts, references, tokens and retries must remain valid after import;
+replacing the state with a fresh fixture does not satisfy this requirement. Import removes
+all previous destination data and credentials. Reset continues to clear all state, including
+imported state. State need not survive an abrupt container restart.
+
+## 11. Atomic reservation moves
+
+A diner may change several bookings in one request.
+
+`POST /reservation-moves` requires authentication and an idempotency key. Body:
+
+```json
+{"moves": [{"reference": "BOOK01", "table_id": "t_2"},
+           {"reference": "BOOK02", "table_id": "t_1"}]}
+```
+
+`moves` contains 1..8 objects with distinct string references. Invalid shape or duplicate
+references gives 422 `validation_failed`. Every booking must belong to the caller and the
+same restaurant. Unknown/another owner's reference gives 404 `not_found`; different
+restaurants give 422 `validation_failed`. No token gives 401.
+
+Each item accepts the ordinary PATCH fields `table_id`, `starts_at_local`, `party_size`;
+omitted fields retain their current values and unknown fields are ignored. The booking's
+identity, owner and creation time never change. Cancelled bookings give 409
+`reservation_cancelled`. Each booking's existing cutoff applies. Non-occupancy errors use
+ordinary amendment codes and take precedence in input order, with cutoff errors preceding
+other changes for that booking. An overlap among resulting bookings or with an unlisted
+booking gives 409 `table_unavailable`. Unchanged listed bookings retain their occupancy.
+
+Either every move commits or nothing changes: occupancy, reservation records and retry
+keys. On success return 201 with `{"reservations": [...]}` in input order, including
+unchanged items.
+Replays return that original response with 200, even after amendments or cancellations.
+No-op moves retain all existing values. Export/import preserves successful batch receipts
+as well as the resulting bookings. No batch UI is required.
+
+COMPLETE CURRENT REJECTION/REPAIR HANDOFF EVIDENCE
+FILE /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-2/VERDICT.md
+# Candidate 2: reject
+
+Tested full revision: `dd644198b6c0c24cebaee74435ac13d4dc33bd99`.
+Stage 1 verdict: **reject**. Highest independently accepted consecutive stage: **0**.
+
+The candidate includes repair `6442d6d5aa3187aa090107733e41f685946044f1`, and its Stage 1 tree is identical to builder candidate `2e2e35b5ab0198fbaac3f96ac457ba9ef0a9c09d`. All three original rejection reproductions now pass. New independent calendar-boundary probes show that valid local bookings are still refused when their UTC instant falls outside Python's datetime calendar. The verifier changed no implementation files.
+
+| Source requirement and smallest interaction | Expected | Observed |
+|---|---|---|
+| §4 any calendar date, §8 fitting availability, §9 zone resolution: New York `9999-12-31`, Friday 18:00–23:00, 30-minute grid, 90-minute duration, capacity 2; `GET /availability?restaurant_id=r&date=9999-12-31&party_size=2` | 200; eight starts 18:00 through 21:30 | 422 `validation_failed`, message `Invalid value` |
+| Same fixture; create `starts_at_local: "9999-12-31T21:30"` | 201; start `9999-12-31T21:30:00-05:00`, end `9999-12-31T23:00:00-05:00` | 422 `validation_failed` |
+| Same source rules: Berlin `0001-01-01`, Monday 00:00–06:00; availability for that date | 200; fitting local slots | 422 `validation_failed` |
+| Same fixture; create `starts_at_local: "0001-01-01T00:00"` | 201; a fitting local booking | 422 `validation_failed` |
+
+These four HTTP failures reproduced in another fresh exact-revision process, in eight operations including each reset/login. The minimal fixture and command runner are `../reproduce_calendar.py`; full request/response trace is `runtime-02/calendar-minimal/operations.jsonl`. Exact executed Docker argv is in `runtime-02/extra-commands.json`. The wider probe is `../calendar_edges.py`, with `runtime-01/calendar/operations.jsonl` and `assertions.json`.
+
+Two additional format observations are retained separately. Successful year-0001 afternoon bookings return `+00:53:28` for Berlin and `-04:56:02` for New York. Those follow historical IANA offsets but violate RFC3339's hours/minutes numeric-offset grammar in §3.4. §9 also requires offsets to follow the specified zone/date. The all-calendar-date, exact-zone-offset and RFC3339 demands conflict if the response must retain that historical zone offset. The coordinator was asked to resolve that representation interpretation explicitly, including Berlin midnight's UTC year-zero instant. No date restriction or failed-result conversion was silently introduced. The New York maximum-date refusal is sufficient to reject regardless of that interpretation.
+
+The merged matrix has **735 atomic rows: 726 verified, 9 failed, 0 unverified**. Seven failed rows describe the two calendar-refusal families and their missing results; two are the unresolved historical format observations. Failed probe assertions remain failed observations, and the interpretation question is not an acceptance claim. Source-provenance coverage is now supported by the independent current-stage audit described below.
+
+Official command, executed from kickoff:
+
+```sh
+<workspace>/.venv/bin/python -m harness run --track tablekeeper \
+  --repo <workspace>/band-work/independent-verifier-s1-dd644198b6c0-20261004t004858 \
+  --stage 1 --mode isolated \
+  --out <workspace>/band-work/final-checks/independent-verifier-s1-dd64419-official-01
+```
+
+The unchanged isolated runner collected **120 Stage 1 checks, passed 120, failed/errors/skipped/deselected 0**, claimed Stage 1, and took **31.158 seconds** including build and overshoot. The next-stage invocation collected 25 checks, failed its first browser check and stopped: 0 passed, 1 failed, 24 not executed. The report's overshoot field is null; counts and log establish the observed outcome. This is public-check evidence, not a judging score.
+
+| Independent run | HTTP operations | Assertions | Failed assertions | Probe wall time |
+|---|---:|---:|---:|---:|
+| Complete prepared suite | 1,441 | 1,430 | 0 | 7.061 s |
+| Original three-defect reproduction | 4 | 9 | 0 | 0.016 s |
+| Extended calendar edges | 35 | 39 | 9 | 0.605 s |
+| New minimal date reproductions | 8 | 13 | 4 | 0.106 s |
+| Staged 50-request HTTP workload | 55 | 11 | 0 | 0.135 s |
+
+The complete suite's ordinary 50-client races reached 49 overlapping measured client intervals. An additional workload initiated 50 valid Content-Length-framed requests, held each final body byte until all 50 were in flight, then released them together. It achieved a measured peak of **50**, with one 201 and 49 original 200 receipts, one resulting reservation and all request durations below 5 seconds. This staging method is explicit in `../race50.py` and `runtime-03/race50/operations.jsonl`; no artificial service delay or production change was introduced. All complete-suite ordinary calls took at most 0.048 seconds and test controls at most 0.053 seconds. Request/timeout evidence is preserved, not inferred from source.
+
+Clean clones and separately built single-image processes followed RUN.md with verifier-owned names and host ports 18300/18301. Docker inspection confirmed 2 CPU and 2 GiB, an internal network, no service mounts, default port 8080 and override 18309 reached from another container. First-run health took 0.348 and 0.379 seconds. Build cache was available; no uncached-build claim is made. All own containers/networks were removed and cleanup return codes were zero. No symlink/submodule/nested-service-repository entry or uncommitted service dependency was found.
+
+`source-audit.json` preserves both builders' committed input declarations, the complete spec handoffs, root intake without service code, authored-path history, imports and source review. The intake commit is a root commit; Systems authored the engine/repair and Interface authored the transport/runtime documentation. The audit closes the current-stage source-input row using inspectable evidence. Builder exclusions remain seat declarations rather than a machine-wide forensic assertion. Post-candidate declarations concern unchanged candidate source. Genuine final room export is still operator-controlled; none was fabricated. Exports, password hashes and session tokens remained in memory; traces contain fingerprints.
+
+Required next step: owning-builder repair of the calendar range handling, explicit coordinator resolution of historic timestamp representation, a complete new candidate handoff, and independent full rerun. Failure evidence and history must remain intact. No Stage 1 freeze or Stage 2 extension follows from this verdict.
+
+Harness: Codex; operator model `gpt-6.1-sol`. Actual runtime override, effort, usage, estimated cost and billed spend are unknown. Per-run timings are measured above; complete factory elapsed time is coordinator-owned.
+
+FILE /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/stage-1-timestamp-repair-03.md
+# Stage 1 timestamp interpretation repair 3
+
+Complete package: `TK-20261004-S1-systems-engineer-TIMESTAMP-3`, parts 1/6 through 6/6 and completion marker; immediately visible completeness acknowledgement `1544872a-fd41-4807-bda5-b6fd58829605` preceded editing. This carries the complete existing task/specification and the coordinator's explicit historical-offset representation decision. The accepted-stage count remains coordinator/verifier-owned; no Stage 2 work was performed.
+
+## Decision implemented
+
+Resolve the start and duration using exact IANA offsets/folds. Keep `starts_at_local` unchanged. Minute-aligned IANA timestamps retain their existing local clock/offset representation. For subminute offsets, select the nearest minute-aligned fixed offset whose adjusted clock fits years 1–9999; equal distances select the lower numerical offset. The adjusted clock represents exactly the original integer instant. Neither the instant nor offset seconds are truncated or rounded.
+
+The implementation derives the allowed offset interval mathematically from the instant and representable clock bounds, then checks the clamped floor/ceiling neighbors of the exact offset. There are no zone/date-specific production branches. Availability and newly computed starts/ends use the same serializer; UTC creation timestamps retain their existing form.
+
+An independent builder oracle exhausts all legal numeric minute offsets -23:59 through +23:59, filters those with representable clocks and selects by distance then offset. It verifies syntax, exact instant, both start/end selections, unchanged wall fields, all availability start instants and receipt replay. Fixtures include Berlin midnight in year 0001, New York historical subminute offsets, Brussels' half-minute tie, New York year 9999 and modern Berlin fall-back duration.
+
+## Original timestamp and receipt preservation
+
+Import verifies starts/ends by exact instant rather than requiring their strings to equal newly generated canonical strings. It preserves the original stored strings. The same applies to successful create receipts, whose original strings remain immutable on replay. Unchanged timestamp instants in amendments retain their existing representations, preserving no-op values. All other booking, identity, occupancy and replacement validation remains in place.
+
+The builder legacy probe loads this run's own earlier core from commit `49287b4a5a1481f995c470ccae31776f03d4b863` as a diagnostic source service. It creates a genuine old-format receipt/export in memory, then imports it into the repaired engine and checks exact export equality, lookup and replay. A newer booking in the imported state uses the minute-aligned representation. The mixed state transfers to another repaired engine and retains old receipts. For container probes, a separate service from the retained pre-serializer image supplies the same legacy export; no hand-edited export is presented as an actual prior-service result.
+
+Existing successful historical receipts/records may therefore retain offset seconds when returned after upgrade, as required by immutable-receipt/import preservation. New serialization follows the explicit coordinator interpretation. The literal historical wire offset is minute-aligned instead of the exact IANA subminute offset; the exact instant and restaurant wall field preserve resolution. This is a recorded interpretation exception, not simultaneous literal compliance with the originally incompatible grammars.
+
+## Observed builder checks
+
+Before service edits, `StageOne.test_exact_rfc3339_historical_representation` reproduced three historical wire-format failures (Berlin, New York, Brussels); modern and maximum-year cases passed. Command: `../../.venv/bin/python -B evidence/systems-engineer/stage-1-builder-probes.py StageOne.test_exact_rfc3339_historical_representation`. Evidence: `stage-1-timestamp-reproduction-03.log`, three failing subcases, 0.349 s.
+
+Initial full post-repair builder run: 14/14 scenarios passed, no skipped tests, 1.851 s (`stage-1-timestamp-regression-03.log`). The final extended oracle and constrained HTTP run are recorded in the next append-only entry. Prior failure artifacts remain unchanged. Only `stage-1/core.py` and Systems-owned evidence paths changed; Engine.request, export schema and Stage 1 scope remain unchanged.
+
+Independent exact-revision acceptance, official isolated regression and clean-clone review remain pending. Harness Codex; configured gpt-6.1-sol; actual runtime model override, effort, usage and spend unknown.
+
+## Final implementation/container evidence
+
+Implementation revision: `f4eeac50227a59ce785768dbb37bb4641d83c88a`. Final extended-oracle Engine run passes 14/14 scenarios without skips, 1.675 s (`stage-1-timestamp-final-regression-03.log`). New image build `docker build -t systems-engineer-tablekeeper-s1:timestamp-03 stage-1` passed (`stage-1-timestamp-build-03.log`).
+
+Two repaired service processes and one actual prior-version service process ran on an internal network, each limited to 2 CPU and 2 GiB. Nondefault ports were 18106 (current source), 18107 (current destination) and 18108 (legacy source). Current containers used `systems-engineer-tablekeeper-s1:timestamp-03`; legacy used the retained `systems-engineer-tablekeeper-s1:calendar-02` image from implementation `49287b4a5a1481f995c470ccae31776f03d4b863`.
+
+Command: `docker exec -i systems-engineer-s1-timestamp-source-03 python - --url http://127.0.0.1:18106 --destination-url http://systems-engineer-s1-timestamp-destination-03:18107 --legacy-url http://systems-engineer-s1-timestamp-legacy-03:18108 < evidence/systems-engineer/stage-1-builder-probes.py`. All 14 HTTP scenarios passed without skips in 2.309 s (`stage-1-timestamp-http-03.log`), including exhaustive offset-oracle checks and genuine old receipt/export transfer to repaired processes. Exports and credentials stayed in memory.
+
+`stage-1-timestamp-runtime-03.log` contains expected/current image core hashes, expected/legacy image core hashes, all three constrained running states and Internal=true network setting. Both hash pairs match. All Systems-owned timestamp containers and network were removed after successful checks; images remain available. Service changes only affect core; the original Engine contract and deployment surface remain Interface-owned and unchanged.
+
+Builder completion does not promote the stage. The new full revision must receive the complete numbered review handoff and independent re-execution. Acceptance must retain the explicit interpretation exception: the subminute IANA offset is represented by a minute-aligned fixed offset plus an adjusted clock preserving its exact instant; imported successful old receipt strings are not rewritten.
+

@@ -1,0 +1,18 @@
+{
+  "classification": "verifier runner issues; no service defect established",
+  "preserved_run": "runtime-01",
+  "issues": [
+    {
+      "artifact": "runtime-01/legacy-client.log",
+      "observed": "Docker125 client name collides with own live legacy service; client never starts",
+      "repair": "Separate client suffix; actual legacy HTTP tests executed in runtime-02"
+    },
+    {
+      "artifact": "runtime-01/calendar-minimal/assertions.json",
+      "observed": "TK1-error-envelope false because no error responses occurred in all-success trace",
+      "repair": "Skip evidence for absent error responses; full suite separately verifies actual error envelopes"
+    }
+  ],
+  "rerun": "runtime-02",
+  "service_changed_for_runner_issues": false
+}

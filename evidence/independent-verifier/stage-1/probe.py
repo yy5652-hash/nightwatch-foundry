@@ -749,7 +749,8 @@ class Probe:
 
     def finish(self):
         self.check("json-content-type", bool(self.content_types) and all(x == "application/json;charset=utf-8" for x in self.content_types), "application/json;charset=utf-8", sorted(set(self.content_types)))
-        self.check("error-envelope", bool(self.error_shapes) and all(self.error_shapes))
+        if self.error_shapes:
+            self.check("error-envelope", all(self.error_shapes))
         self.check("no-5xx", all(0 < s < 500 for s in self.statuses), "no 5xx or transport failures", sorted(set(self.statuses)))
         self.check("request-timeout", all(seconds < 5 and status > 0 for path, seconds, status in self.latencies if not path.startswith("/_test/")))
         for endpoint in ["reset", "import", "export"]:
