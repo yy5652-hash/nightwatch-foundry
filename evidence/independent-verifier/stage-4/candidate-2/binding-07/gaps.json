@@ -1,0 +1,1234 @@
+[
+  {
+    "requirement_id": "TK4-preview-manager",
+    "requirement_text": "Fixture manager can preview.",
+    "case": "manager",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-unknown-table",
+    "requirement_text": "Unknown table receives 404 not_found.",
+    "case": "unknown-table",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-interval-order",
+    "requirement_text": "Require from strictly before to as exact absolute instants.",
+    "case": "interval-order",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-interval-offset",
+    "requirement_text": "Input instants must have explicit offsets.",
+    "case": "interval-offset",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-half-open",
+    "requirement_text": "Proposed closure is half open.",
+    "case": "half-open",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-all-confirmed",
+    "requirement_text": "Consider every overlapping confirmed booking, including a booking not seated on the closing table.",
+    "case": "all-confirmed",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-exclude-cancelled",
+    "requirement_text": "Cancelled bookings are not considered.",
+    "case": "exclude-cancelled",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-exclude-other-restaurant",
+    "requirement_text": "Other restaurants are excluded.",
+    "case": "exclude-other-restaurant",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-exclude-before",
+    "requirement_text": "An end equal to closure start is excluded.",
+    "case": "exclude-before",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-exclude-after",
+    "requirement_text": "A start equal to closure end is excluded.",
+    "case": "exclude-after",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-fixed-unchanged",
+    "requirement_text": "Nonconsidered bookings keep their assignments.",
+    "case": "fixed-unchanged",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-capacity-own",
+    "requirement_text": "Each option uses that booking own accepted capacities.",
+    "case": "capacity-own",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-not-latest",
+    "requirement_text": "Latest publication cannot replace a booking accepted capacities.",
+    "case": "not-latest",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-singles-pairs",
+    "requirement_text": "Options are singles and declared pairs only.",
+    "case": "singles-pairs",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-not-transitive",
+    "requirement_text": "Undeclared or transitive pairs are never assigned.",
+    "case": "not-transitive",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-fixed-conflict",
+    "requirement_text": "Options cannot conflict with fixed bookings.",
+    "case": "fixed-conflict",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-result-conflict",
+    "requirement_text": "Options cannot conflict with another resulting assignment.",
+    "case": "result-conflict",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-old-closure",
+    "requirement_text": "Options cannot intersect earlier applied closures.",
+    "case": "old-closure",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-proposed-closure",
+    "requirement_text": "Options cannot intersect the proposed closure.",
+    "case": "proposed-closure",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-absolute-overlap",
+    "requirement_text": "All conflicts use half-open absolute instants.",
+    "case": "absolute-overlap",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-cutoff-repair",
+    "requirement_text": "Diner cutoff does not prohibit a manager repair.",
+    "case": "cutoff-repair",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-identity-reference",
+    "requirement_text": "Every reference remains.",
+    "case": "identity-reference",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-identity-owner",
+    "requirement_text": "Every owner remains.",
+    "case": "identity-owner",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-identity-party",
+    "requirement_text": "Every party size remains.",
+    "case": "identity-party",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-identity-start",
+    "requirement_text": "Every start remains.",
+    "case": "identity-start",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-identity-end",
+    "requirement_text": "Every end remains.",
+    "case": "identity-end",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-identity-terms",
+    "requirement_text": "Every complete accepted snapshot remains.",
+    "case": "identity-terms",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-disappearance",
+    "requirement_text": "No booking disappears.",
+    "case": "no-disappearance",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-cancel",
+    "requirement_text": "No confirmed booking becomes cancelled.",
+    "case": "no-cancel",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-objective-changes",
+    "requirement_text": "First minimize table-set changes.",
+    "case": "objective-changes",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-objective-unused",
+    "requirement_text": "Then minimize unused seats over ALL considered bookings, including unmoved ones.",
+    "case": "objective-unused",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-objective-ranks",
+    "requirement_text": "Then minimize rank vector in ascending reference order.",
+    "case": "objective-ranks",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-rank-singles",
+    "requirement_text": "Singles rank first in fixture order starting zero.",
+    "case": "rank-singles",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-rank-pairs",
+    "requirement_text": "Pairs rank next in declaration order.",
+    "case": "rank-pairs",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-pair-canonical",
+    "requirement_text": "Returned pair members use declaration order.",
+    "case": "pair-canonical",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-response-order",
+    "requirement_text": "Assignments are in reference order.",
+    "case": "response-order",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-response-unused",
+    "requirement_text": "unused_seats equals accepted-capacity sum minus party over all considered bookings.",
+    "case": "response-unused",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-stores-plan",
+    "requirement_text": "Successful preview stores a replayable/applicable plan.",
+    "case": "stores-plan",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-closure-write",
+    "requirement_text": "Preview publishes no closure.",
+    "case": "no-closure-write",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-occupancy-write",
+    "requirement_text": "Preview alters no occupancy.",
+    "case": "no-occupancy-write",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-history-write",
+    "requirement_text": "Preview writes no history.",
+    "case": "no-history-write",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-booking-revision",
+    "requirement_text": "Preview changes no reservation revision.",
+    "case": "no-booking-revision",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-restaurant-revision",
+    "requirement_text": "Preview changes no restaurant revision.",
+    "case": "no-restaurant-revision",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-no-series-revision",
+    "requirement_text": "Preview changes no series revision.",
+    "case": "no-series-revision",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-infeasible-code",
+    "requirement_text": "No feasible assignment returns 409 no_feasible_plan.",
+    "case": "infeasible-code",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-empty-considered",
+    "requirement_text": "A valid interval without considered bookings supports an empty plan.",
+    "case": "empty-considered",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-bound-tables",
+    "requirement_text": "Support six tables.",
+    "case": "bound-tables",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-bound-pairs",
+    "requirement_text": "Support four declared pairs.",
+    "case": "bound-pairs",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-bound-bookings",
+    "requirement_text": "Support six considered bookings.",
+    "case": "bound-bookings",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-larger-choice",
+    "requirement_text": "Larger inputs may succeed correctly or return 422 planning_limit; an in-bound infeasible problem must not be labelled planning_limit.",
+    "case": "larger-choice",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-preview-unknown-ignored",
+    "requirement_text": "Unknown fields do not invalidate preview but remain part of complete retry identity.",
+    "case": "unknown-ignored",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-response-order",
+    "requirement_text": "Reservations are in reference order.",
+    "case": "response-order",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-closure-commit",
+    "requirement_text": "Closure and all assignments commit together.",
+    "case": "closure-commit",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-event-terms",
+    "requirement_text": "Reassigned stores unchanged complete accepted_terms.",
+    "case": "event-terms",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-event-seq",
+    "requirement_text": "Reassigned sequence follows the previous history contiguously.",
+    "case": "event-seq",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-unmoved-revision",
+    "requirement_text": "Unmoved reservation revision is unchanged.",
+    "case": "unmoved-revision",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-terms",
+    "requirement_text": "Accepted terms do not adopt newer policies.",
+    "case": "terms",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-failed-key",
+    "requirement_text": "A refused application key remains reusable.",
+    "case": "failed-key",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-apply-unknown-ignored",
+    "requirement_text": "Unknown body fields are ignored and retain full retry identity.",
+    "case": "unknown-ignored",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-export",
+    "requirement_text": "Closures and saved plans survive unchanged export/import.",
+    "case": "export",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-create-once",
+    "requirement_text": "Each successful new booking increments once.",
+    "case": "create-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-amend-once",
+    "requirement_text": "Each real individual amendment increments once.",
+    "case": "amend-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-cancel-once",
+    "requirement_text": "First cancellation increments once.",
+    "case": "cancel-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-policy-once",
+    "requirement_text": "First successful policy publication increments once.",
+    "case": "policy-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-batch-once",
+    "requirement_text": "A real collective batch increments once regardless of member count.",
+    "case": "batch-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-adopt-once",
+    "requirement_text": "Series adoption increments once including all generated bookings.",
+    "case": "adopt-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-series-amend-once",
+    "requirement_text": "Real series amendment increments once.",
+    "case": "series-amend-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-empty-series",
+    "requirement_text": "Empty eligible amendment does not increment.",
+    "case": "empty-series",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-preview-zero",
+    "requirement_text": "Preview does not increment.",
+    "case": "preview-zero",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-failure-zero",
+    "requirement_text": "Every refused write does not increment.",
+    "case": "failure-zero",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-revision-replay-zero",
+    "requirement_text": "Every successful replay does not increment.",
+    "case": "replay-zero",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-owner",
+    "requirement_text": "Owner can amend series.",
+    "case": "owner",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-manager-private",
+    "requirement_text": "Manager receives no private access to another diner series.",
+    "case": "manager-private",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-expected-required",
+    "requirement_text": "expected_revision is required.",
+    "case": "expected-required",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-index-required",
+    "requirement_text": "from_index is required.",
+    "case": "index-required",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-time-required",
+    "requirement_text": "local_time is required.",
+    "case": "time-required",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-unknown-ignored",
+    "requirement_text": "Unknown fields ignored for validation.",
+    "case": "unknown-ignored",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-eligible-index",
+    "requirement_text": "Only indices at or after from_index are considered.",
+    "case": "eligible-index",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-noop-fields",
+    "requirement_text": "Identical resulting fields are a no-op.",
+    "case": "noop-fields",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-real-old-cutoff",
+    "requirement_text": "Real change checks old accepted cutoff first.",
+    "case": "real-old-cutoff",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-unchanged-conflict",
+    "requirement_text": "Result cannot conflict with unchanged members.",
+    "case": "unchanged-conflict",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-outside-conflict",
+    "requirement_text": "Result cannot conflict with other bookings.",
+    "case": "outside-conflict",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-closure-conflict",
+    "requirement_text": "Result cannot conflict with applied closures.",
+    "case": "closure-conflict",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-nonoccupancy-order",
+    "requirement_text": "First nonoccupancy error in eligible index order wins before overlap.",
+    "case": "nonoccupancy-order",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-occupancy-last",
+    "requirement_text": "Otherwise any overlap is table_unavailable.",
+    "case": "occupancy-last",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-failed-records",
+    "requirement_text": "Failure preserves all reservation records.",
+    "case": "failed-records",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-failed-history",
+    "requirement_text": "Failure preserves all histories.",
+    "case": "failed-history",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-failed-receipt",
+    "requirement_text": "Failure leaves key reusable and existing successful receipts unchanged.",
+    "case": "failed-receipt",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-response-current",
+    "requirement_text": "Successful response is the complete current series shape.",
+    "case": "response-current",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-member-history",
+    "requirement_text": "Each changed member records one ordinary changed event with exact ordered fields.",
+    "case": "member-history",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-amend-restaurant-once",
+    "requirement_text": "Restaurant increments once if any member changed.",
+    "case": "restaurant-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-flags",
+    "requirement_text": "Repair preserves every existing exception flag.",
+    "case": "flags",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-schedule",
+    "requirement_text": "Repair preserves every original scheduled date.",
+    "case": "schedule",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-identity",
+    "requirement_text": "Repair preserves occurrence references/indices/reservation identities.",
+    "case": "identity",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-terms",
+    "requirement_text": "Repair preserves complete accepted terms and times.",
+    "case": "terms",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-series-once",
+    "requirement_text": "Each affected series increments once per plan regardless of moved member count.",
+    "case": "series-once",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-multiple-series",
+    "requirement_text": "Each of several affected series increments once.",
+    "case": "multiple-series",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-series-repair-subsequent-amend",
+    "requirement_text": "Subsequent collective amendment uses repaired current seats and original schedule while skipping exceptions/cancelled.",
+    "case": "subsequent-amend",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-amend-expected",
+    "requirement_text": "Concurrent real amendments using one expected series revision cannot both change.",
+    "case": "amend-expected",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-apply-create",
+    "requirement_text": "Concurrent plan application and create admit a serial ordering with occupancy/revisions intact.",
+    "case": "apply-create",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-apply-amend",
+    "requirement_text": "Concurrent plan application and individual/series amendment admit complete serial states.",
+    "case": "apply-amend",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-policy-apply",
+    "requirement_text": "Concurrent policy publication and apply observe stale-plan serialization.",
+    "case": "policy-apply",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-reads",
+    "requirement_text": "Concurrent lookup/list/series/explain observations are complete valid states.",
+    "case": "reads",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-exports",
+    "requirement_text": "Atomic exports captured during changes represent complete pre/post generations and receipts.",
+    "case": "exports",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-concurrency-peer-import",
+    "requirement_text": "Unchanged captured exports import to independent peers and preserve entire generations.",
+    "case": "peer-import",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-legacy-s1",
+    "requirement_text": "Preserve genuine legacy Stage1 receipt numeric meanings and strings.",
+    "case": "legacy-s1",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-legacy-s2",
+    "requirement_text": "Preserve genuine legacy Stage2 pair/single receipt shape independently of profile.",
+    "case": "legacy-s2",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-accounts",
+    "requirement_text": "Preserve hashes and password login.",
+    "case": "accounts",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-tokens",
+    "requirement_text": "Existing source tokens remain usable.",
+    "case": "tokens",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-identity",
+    "requirement_text": "Identities/references/status/timestamps remain exact.",
+    "case": "identity",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-terms-history",
+    "requirement_text": "Actual existing immutable terms/history retained.",
+    "case": "terms-history",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-exception-cancel",
+    "requirement_text": "Moved/exception/cancelled imported occurrences retain flags and history.",
+    "case": "exception-cancel",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-source-mutation",
+    "requirement_text": "Writes after capture do not alter captured replacement.",
+    "case": "source-mutation",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-repeat-import",
+    "requirement_text": "Repeated replacement restores without duplication.",
+    "case": "repeat-import",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-invalid-atomic",
+    "requirement_text": "Invalid new private-state plan/closure/series relationships reject atomically.",
+    "case": "invalid-atomic",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-upgrade-reset",
+    "requirement_text": "Reset clears all imported state and credentials.",
+    "case": "reset",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-manager-real",
+    "requirement_text": "Actual fixture manager can preview/apply through visible controls.",
+    "case": "manager-real",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-nonmanager-refused",
+    "requirement_text": "Actual nonmanager is refused without fabricated capability.",
+    "case": "nonmanager-refused",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-preview-proposed",
+    "requirement_text": "Preview displays proposed assignments separately from committed reservations.",
+    "case": "preview-proposed",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-preview-readonly",
+    "requirement_text": "Diner current lookup remains unchanged before application.",
+    "case": "preview-readonly",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-apply-authoritative",
+    "requirement_text": "Successful application displays actual authoritative current assignments.",
+    "case": "apply-authoritative",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-stale-unapplied",
+    "requirement_text": "Stale refusal remains visibly unapplied.",
+    "case": "stale-unapplied",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-infeasible-unapplied",
+    "requirement_text": "Infeasible refusal remains visibly unapplied.",
+    "case": "infeasible-unapplied",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-no-false-success",
+    "requirement_text": "No optimistic success is shown before server evidence.",
+    "case": "no-false-success",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-confirmation-current",
+    "requirement_text": "Current diner confirmation uses current view separately from immutable successful create receipt.",
+    "case": "confirmation-current",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-lookup-current",
+    "requirement_text": "Owned lookup reflects applied seating and reassigned history with unchanged terms.",
+    "case": "lookup-current",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-closure-explanation",
+    "requirement_text": "Refusal wording is truthful for both closures and bookings.",
+    "case": "closure-explanation",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-amend-real",
+    "requirement_text": "Actual owner submits expected_revision/from_index/local_time through visible controls.",
+    "case": "amend-real",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-amend-states",
+    "requirement_text": "Result distinguishes changed/unchanged/cancelled/exception members with stable references.",
+    "case": "amend-states",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-amend-failure",
+    "requirement_text": "Failure never implies partial commit.",
+    "case": "amend-failure",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-lost-apply",
+    "requirement_text": "Commit-then-drop apply stays uncertain and unchanged retry recovers actual receipt.",
+    "case": "lost-apply",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-lost-amend",
+    "requirement_text": "Commit-then-drop series amend stays uncertain and unchanged retry recovers actual receipt.",
+    "case": "lost-amend",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-malformed",
+    "requirement_text": "Malformed committed response cannot manufacture success.",
+    "case": "malformed",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-edited-identity",
+    "requirement_text": "Real field edit changes request identity.",
+    "case": "edited-identity",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-unchanged-identity",
+    "requirement_text": "Unchanged retry retains exact body/key.",
+    "case": "unchanged-identity",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-plan-race",
+    "requirement_text": "Delayed earlier preview cannot replace a newer preview/selection.",
+    "case": "plan-race",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-agreement-race",
+    "requirement_text": "Delayed series state cannot replace newer agreement/result.",
+    "case": "agreement-race",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-mobile",
+    "requirement_text": "Required real flows usable at 375 CSS pixels without horizontal scroll.",
+    "case": "mobile",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-desktop",
+    "requirement_text": "Required real flows usable at conventional desktop width.",
+    "case": "desktop",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-keyboard",
+    "requirement_text": "Actual Tab/Enter/focus flows complete preview/apply/amend/recovery.",
+    "case": "keyboard",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-labels",
+    "requirement_text": "Human restaurant/table labels remain prominent including combinations.",
+    "case": "labels",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-contrast",
+    "requirement_text": "Text/control contrast and visible focus remain sufficient.",
+    "case": "contrast",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-logout",
+    "requirement_text": "Logout clears private manager/diner history/series views.",
+    "case": "logout",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-private",
+    "requirement_text": "Manager cannot reveal another diner terms/history/series.",
+    "case": "private",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-offline",
+    "requirement_text": "All assets/routes/scripts/styles work without outbound services.",
+    "case": "offline",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-product-upgrade-browser",
+    "requirement_text": "Same document/form/user/body/key survives genuine earlier-source import and lost-response retry.",
+    "case": "upgrade-browser",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-preview-different-before-permission",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on preview: different-before-permission",
+    "case": "preview-different-before-permission",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-preview-failed-reusable",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on preview: failed-reusable",
+    "case": "preview-failed-reusable",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-preview-original-after-mutation",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on preview: original-after-mutation",
+    "case": "preview-original-after-mutation",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-preview-original-after-import",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on preview: original-after-import",
+    "case": "preview-original-after-import",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-apply-different-before-permission",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on apply: different-before-permission",
+    "case": "apply-different-before-permission",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-apply-failed-reusable",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on apply: failed-reusable",
+    "case": "apply-failed-reusable",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-apply-original-after-mutation",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on apply: original-after-mutation",
+    "case": "apply-original-after-mutation",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-apply-original-after-import",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on apply: original-after-import",
+    "case": "apply-original-after-import",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-amend-different-before-permission",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on amend: different-before-permission",
+    "case": "amend-different-before-permission",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-amend-failed-reusable",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on amend: failed-reusable",
+    "case": "amend-failed-reusable",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-amend-original-after-mutation",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on amend: original-after-mutation",
+    "case": "amend-original-after-mutation",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-retry-amend-original-after-import",
+    "requirement_text": "Stage1 parsed-body user/method/path key semantics on amend: original-after-import",
+    "case": "amend-original-after-import",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-private-state-invalid-closure-interval",
+    "requirement_text": "Independently derive invalid closure-interval state after genuine export; reject atomically without publishing raw private state.",
+    "case": "invalid-closure-interval",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-private-state-invalid-plan-assignment-reference",
+    "requirement_text": "Independently derive invalid plan-assignment-reference state after genuine export; reject atomically without publishing raw private state.",
+    "case": "invalid-plan-assignment-reference",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-private-state-invalid-plan-applied-flag",
+    "requirement_text": "Independently derive invalid plan-applied-flag state after genuine export; reject atomically without publishing raw private state.",
+    "case": "invalid-plan-applied-flag",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-private-state-invalid-plan-revision",
+    "requirement_text": "Independently derive invalid plan-revision state after genuine export; reject atomically without publishing raw private state.",
+    "case": "invalid-plan-revision",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-private-state-invalid-series-schedule",
+    "requirement_text": "Independently derive invalid series-schedule state after genuine export; reject atomically without publishing raw private state.",
+    "case": "invalid-series-schedule",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-private-state-invalid-series-exception",
+    "requirement_text": "Independently derive invalid series-exception state after genuine export; reject atomically without publishing raw private state.",
+    "case": "invalid-series-exception",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-from-null",
+    "requirement_text": "Closure from JSON null is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "from-null",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-from-true",
+    "requirement_text": "Closure from JSON true is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "from-true",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-from-false",
+    "requirement_text": "Closure from JSON false is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "from-false",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-from-number",
+    "requirement_text": "Closure from JSON number is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "from-number",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-from-array",
+    "requirement_text": "Closure from JSON array is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "from-array",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-from-object",
+    "requirement_text": "Closure from JSON object is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "from-object",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-to-null",
+    "requirement_text": "Closure to JSON null is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "to-null",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-to-true",
+    "requirement_text": "Closure to JSON true is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "to-true",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-to-false",
+    "requirement_text": "Closure to JSON false is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "to-false",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-to-number",
+    "requirement_text": "Closure to JSON number is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "to-number",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-to-array",
+    "requirement_text": "Closure to JSON array is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "to-array",
+    "introduced_stage": "4",
+    "normative": "True"
+  },
+  {
+    "requirement_id": "TK4-closure-type-to-object",
+    "requirement_text": "Closure to JSON object is a wrong endpoint field type:400 malformed_request; not422 invalid interval.",
+    "case": "to-object",
+    "introduced_stage": "4",
+    "normative": "True"
+  }
+]

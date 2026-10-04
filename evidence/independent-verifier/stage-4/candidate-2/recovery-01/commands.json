@@ -1,0 +1,39 @@
+[
+  {
+    "family": "preview-lost",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s4-1004095136-check",
+      "--network",
+      "independent-verifier-s4-1004095136-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2:/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2:ro",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2/recovery-01:/evidence",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s4-1004095136:client-c09b9264",
+      "/verifier/stage-4/candidate2_recovery.py",
+      "--release",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2/browser-release.json",
+      "--out",
+      "/evidence/preview-lost",
+      "--family",
+      "preview",
+      "--mode",
+      "lost",
+      "--execute"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 1,
+    "seconds": 1.1576955829950748,
+    "log": "preview-lost.log"
+  }
+]

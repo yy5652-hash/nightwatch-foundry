@@ -1,0 +1,36 @@
+[
+  {
+    "family": "stale",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s4-1004095136-check",
+      "--network",
+      "independent-verifier-s4-1004095136-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2:/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2:ro",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2/product-04:/evidence",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s4-1004095136:client-0ede4583",
+      "/verifier/stage-4/candidate2_product.py",
+      "--release",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2/browser-release.json",
+      "--out",
+      "/evidence/stale",
+      "--family",
+      "stale"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "seconds": 3.131907458002388,
+    "log": "stale.log"
+  }
+]

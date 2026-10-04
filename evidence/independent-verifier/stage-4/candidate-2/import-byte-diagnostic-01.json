@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "independent-verifier-s4-1004095136-diagnostic",
+    "--network",
+    "independent-verifier-s4-1004095136-net",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "-v",
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2:/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2:ro",
+    "--entrypoint",
+    "python",
+    "independent-verifier-s4-1004095136:client-abdd5a74",
+    "-c",
+    "import sys,json,hashlib\nfrom pathlib import Path\nsys.path.insert(0,'/verifier/stage-4')\nfrom candidate2_atomic import prepare\nfrom stage4_probe import Client,same,integer\nfrom semantic_oracle import parse\nr=json.loads(Path('/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-4/candidate-2/runtime-01/release.json').read_text());c=Client(r['urls']['target'],'/tmp/unused',r['candidate']);s,t,plan=prepare(c);c.response('apply',c.apply(plan),201);c.response('cancel',c.call('POST','/reservations/'+s['occurrences'][2]['reference']+'/cancel',{},token=c.tokens['u']),200);before=c.export();c.response('import',c.transfer(c.base,c.base,before),204);after=c.export();print(json.dumps(dict(byte_equal=before==after,json_value_equal=same(parse(before),parse(after)),before_length=len(before),after_length=len(after))))\n"
+  ],
+  "returncode": 0,
+  "output": "{\"byte_equal\": false, \"json_value_equal\": true, \"before_length\": 40915, \"after_length\": 40915}\n",
+  "stderr": "",
+  "scope": "Private bodies remained in memory; lengths and equality only"
+}

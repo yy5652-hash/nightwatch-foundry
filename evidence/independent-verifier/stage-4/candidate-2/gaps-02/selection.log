@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_gaps.py", line 172, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-4/candidate2_gaps.py", line 169, in main
+    try:FAMILIES[a.family](c,r)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_gaps.py", line 129, in selection
+    c.response('selection-unrelated-write',c.call('POST','/reservations',dict(restaurant_id='r2',table_id='x',starts_at_local=DAY+'T19:00',party_size=1),token=c.tokens['u'],key='unrelated'),201)
+  File "/verifier/stage-3/stage3_probe.py", line 102, in response
+    actual,value,_=result;self.check(case,actual==status and (code is None or value.get('error',{}).get('code')==code),{'status':actual,'expected':status,'code':code})
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/stage4_probe.py", line 56, in check
+    if not condition:raise AssertionError(case)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: selection-unrelated-write

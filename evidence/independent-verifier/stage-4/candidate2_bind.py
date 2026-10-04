@@ -34,6 +34,7 @@ def collect():
                 for item,pointer in walk(load(file)):
                     assert item['passed'];rid=item.get('requirement_id',item.get('requirement'));evidence[rid].append(dict(passed=True,evidence_path=str(file.relative_to(R))+'#'+pointer,command=shlex.join(cmd['argv']),run=group+'/'+label,method='actual browser/API' if kind=='browser' else 'black-box HTTP'));count+=1
             api=load(folder/'api/summary.json') if (folder/'api/summary.json').is_file() else {};counts=data.get('counts') or {};requests=data.get('requests',data.get('actual_http_requests',data.get('direct_api_requests',data.get('http_operations',counts.get('requests',counts.get('direct',counts.get('http',api.get('requests',0))))))));browser_requests=data.get('browser_requests',counts.get('browser',len(data.get('request_trace',[])))) if kind=='browser' else 0
+            if isinstance(browser_requests,list):browser_requests=len(browser_requests)
             forward=data.get('forwarding_operations',len(data.get('transport',[])))
             if (folder/'forwarding.json').is_file():forward=len(load(folder/'forwarding.json'))
             runs.append(dict(name=group+'/'+label,kind=kind,requests=requests,browser_requests=browser_requests,assertions=count,seconds=cmd['seconds'],forwardings=forward,screenshots=len(list(folder.rglob('*.png'))),command=shlex.join(cmd['argv']),summary=str(payload.relative_to(R))))

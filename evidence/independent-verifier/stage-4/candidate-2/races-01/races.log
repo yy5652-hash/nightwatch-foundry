@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_races.py", line 65, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-4/candidate2_races.py", line 60, in main
+    try:run(c,release)
+        ^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_races.py", line 46, in run
+    c.check('race-member-serialized-record',same(now['table_ids'],assignment[ref]['table_ids'] if move else old['table_ids']) and integer(now['revision'])==integer(old['revision'])+int(move)+int(amend) and now['starts_at_local']==(old['starts_at_local'][:11]+'20:00' if amend else old['starts_at_local']))
+  File "/verifier/stage-4/stage4_probe.py", line 56, in check
+    if not condition:raise AssertionError(case)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: race-member-serialized-record

@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/repair-1/full_bound.py", line 177, in <module>
+    main()
+  File "/verifier/stage-4/repair-1/full_bound.py", line 168, in main
+    (args.out / 'actual-operation-traces.json').write_bytes(raw(observed))
+                                                            ^^^^^^^^^^^^^
+  File "/verifier/stage-3/stage3_probe.py", line 30, in raw
+    def raw(value):return encode(value).encode('utf-8')
+                          ^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 64, in encode
+    if isinstance(value,list): return "["+",".join(encode(item) for item in value)+"]"
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 64, in <genexpr>
+    if isinstance(value,list): return "["+",".join(encode(item) for item in value)+"]"
+                                                   ^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 67, in encode
+    return "{"+",".join(encode(key)+":"+encode(item) for key,item in value.items())+"}"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 67, in <genexpr>
+    return "{"+",".join(encode(key)+":"+encode(item) for key,item in value.items())+"}"
+                                        ^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 64, in encode
+    if isinstance(value,list): return "["+",".join(encode(item) for item in value)+"]"
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 64, in <genexpr>
+    if isinstance(value,list): return "["+",".join(encode(item) for item in value)+"]"
+                                                   ^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 67, in encode
+    return "{"+",".join(encode(key)+":"+encode(item) for key,item in value.items())+"}"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 67, in <genexpr>
+    return "{"+",".join(encode(key)+":"+encode(item) for key,item in value.items())+"}"
+                                        ^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 68, in encode
+    raise TypeError("unsupported evidence JSON type")
+TypeError: unsupported evidence JSON type

@@ -1,0 +1,1394 @@
+[
+  {
+    "sequence": 1,
+    "kind": "wave-start",
+    "at": 404.878694641,
+    "mode": "send-barrier",
+    "wave": 0,
+    "lower": 0,
+    "upper": 3,
+    "route_launch_order": [
+      "list",
+      "availability",
+      "export"
+    ],
+    "write_generations": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "sequence": 2,
+    "kind": "capture-sent",
+    "at": 404.878985099,
+    "path": "/reservations",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 3,
+    "kind": "capture-sent",
+    "at": 404.879131599,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 4,
+    "kind": "capture-sent",
+    "at": 404.879188641,
+    "path": "/_test/export",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 5,
+    "kind": "writer-start",
+    "at": 404.879203474,
+    "mode": "send-barrier",
+    "wave": 0
+  },
+  {
+    "sequence": 6,
+    "kind": "receive-gate-release",
+    "at": 404.879214099,
+    "mode": "send-barrier",
+    "wave": 0
+  },
+  {
+    "sequence": 7,
+    "kind": "capture-finished",
+    "at": 404.879805099,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 8,
+    "kind": "capture-finished",
+    "at": 404.880610099,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 9,
+    "kind": "write-committed-response",
+    "at": 404.884065016,
+    "mode": "send-barrier",
+    "wave": 0,
+    "generation": 1
+  },
+  {
+    "sequence": 10,
+    "kind": "write-committed-response",
+    "at": 404.885912266,
+    "mode": "send-barrier",
+    "wave": 0,
+    "generation": 2
+  },
+  {
+    "sequence": 11,
+    "kind": "write-committed-response",
+    "at": 404.888013724,
+    "mode": "send-barrier",
+    "wave": 0,
+    "generation": 3
+  },
+  {
+    "sequence": 12,
+    "kind": "capture-finished",
+    "at": 405.092933433,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 156797
+  },
+  {
+    "sequence": 13,
+    "kind": "wave-settled",
+    "at": 405.092989558,
+    "mode": "send-barrier",
+    "wave": 0
+  },
+  {
+    "sequence": 14,
+    "kind": "wave-start",
+    "at": 405.286212558,
+    "mode": "send-barrier",
+    "wave": 1,
+    "lower": 3,
+    "upper": 6,
+    "route_launch_order": [
+      "export",
+      "availability",
+      "list"
+    ],
+    "write_generations": [
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "sequence": 15,
+    "kind": "capture-sent",
+    "at": 405.286462224,
+    "path": "/_test/export",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 16,
+    "kind": "capture-sent",
+    "at": 405.286510391,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 17,
+    "kind": "capture-sent",
+    "at": 405.286563599,
+    "path": "/reservations",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 18,
+    "kind": "writer-start",
+    "at": 405.286579474,
+    "mode": "send-barrier",
+    "wave": 1
+  },
+  {
+    "sequence": 19,
+    "kind": "receive-gate-release",
+    "at": 405.286588641,
+    "mode": "send-barrier",
+    "wave": 1
+  },
+  {
+    "sequence": 20,
+    "kind": "capture-finished",
+    "at": 405.291837558,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 21,
+    "kind": "capture-finished",
+    "at": 405.291993599,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 22,
+    "kind": "write-committed-response",
+    "at": 405.293496224,
+    "mode": "send-barrier",
+    "wave": 1,
+    "generation": 4
+  },
+  {
+    "sequence": 23,
+    "kind": "write-committed-response",
+    "at": 405.295243266,
+    "mode": "send-barrier",
+    "wave": 1,
+    "generation": 5
+  },
+  {
+    "sequence": 24,
+    "kind": "write-committed-response",
+    "at": 405.296967058,
+    "mode": "send-barrier",
+    "wave": 1,
+    "generation": 6
+  },
+  {
+    "sequence": 25,
+    "kind": "capture-finished",
+    "at": 405.506682183,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 248343
+  },
+  {
+    "sequence": 26,
+    "kind": "wave-settled",
+    "at": 405.506751058,
+    "mode": "send-barrier",
+    "wave": 1
+  },
+  {
+    "sequence": 27,
+    "kind": "wave-start",
+    "at": 405.781443225,
+    "mode": "send-barrier",
+    "wave": 2,
+    "lower": 6,
+    "upper": 9,
+    "route_launch_order": [
+      "availability",
+      "export",
+      "list"
+    ],
+    "write_generations": [
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "sequence": 28,
+    "kind": "capture-sent",
+    "at": 405.781600766,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 29,
+    "kind": "capture-sent",
+    "at": 405.781703808,
+    "path": "/_test/export",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 30,
+    "kind": "capture-sent",
+    "at": 405.781739183,
+    "path": "/reservations",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 31,
+    "kind": "writer-start",
+    "at": 405.781757808,
+    "mode": "send-barrier",
+    "wave": 2
+  },
+  {
+    "sequence": 32,
+    "kind": "receive-gate-release",
+    "at": 405.781765225,
+    "mode": "send-barrier",
+    "wave": 2
+  },
+  {
+    "sequence": 33,
+    "kind": "capture-finished",
+    "at": 405.789578766,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 34,
+    "kind": "capture-finished",
+    "at": 405.789750766,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 35,
+    "kind": "write-committed-response",
+    "at": 405.791289475,
+    "mode": "send-barrier",
+    "wave": 2,
+    "generation": 7
+  },
+  {
+    "sequence": 36,
+    "kind": "write-committed-response",
+    "at": 405.793049016,
+    "mode": "send-barrier",
+    "wave": 2,
+    "generation": 8
+  },
+  {
+    "sequence": 37,
+    "kind": "write-committed-response",
+    "at": 405.794744683,
+    "mode": "send-barrier",
+    "wave": 2,
+    "generation": 9
+  },
+  {
+    "sequence": 38,
+    "kind": "capture-finished",
+    "at": 406.01607835,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 339888
+  },
+  {
+    "sequence": 39,
+    "kind": "wave-settled",
+    "at": 406.016132683,
+    "mode": "send-barrier",
+    "wave": 2
+  },
+  {
+    "sequence": 40,
+    "kind": "wave-start",
+    "at": 406.3755986,
+    "mode": "send-barrier",
+    "wave": 3,
+    "lower": 9,
+    "upper": 12,
+    "route_launch_order": [
+      "list",
+      "export",
+      "availability"
+    ],
+    "write_generations": [
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "sequence": 41,
+    "kind": "capture-sent",
+    "at": 406.375908058,
+    "path": "/reservations",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 42,
+    "kind": "capture-sent",
+    "at": 406.3759416,
+    "path": "/_test/export",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 43,
+    "kind": "capture-sent",
+    "at": 406.376022892,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-barrier"
+  },
+  {
+    "sequence": 44,
+    "kind": "writer-start",
+    "at": 406.3760371,
+    "mode": "send-barrier",
+    "wave": 3
+  },
+  {
+    "sequence": 45,
+    "kind": "receive-gate-release",
+    "at": 406.376059475,
+    "mode": "send-barrier",
+    "wave": 3
+  },
+  {
+    "sequence": 46,
+    "kind": "capture-finished",
+    "at": 406.382133308,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7442
+  },
+  {
+    "sequence": 47,
+    "kind": "write-committed-response",
+    "at": 406.389525183,
+    "mode": "send-barrier",
+    "wave": 3,
+    "generation": 10
+  },
+  {
+    "sequence": 48,
+    "kind": "capture-finished",
+    "at": 406.3897191,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 49,
+    "kind": "write-committed-response",
+    "at": 406.391566267,
+    "mode": "send-barrier",
+    "wave": 3,
+    "generation": 11
+  },
+  {
+    "sequence": 50,
+    "kind": "write-committed-response",
+    "at": 406.393509225,
+    "mode": "send-barrier",
+    "wave": 3,
+    "generation": 12
+  },
+  {
+    "sequence": 51,
+    "kind": "capture-finished",
+    "at": 406.610871558,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 431529
+  },
+  {
+    "sequence": 52,
+    "kind": "wave-settled",
+    "at": 406.610921308,
+    "mode": "send-barrier",
+    "wave": 3
+  },
+  {
+    "sequence": 53,
+    "kind": "wave-start",
+    "at": 407.091562725,
+    "mode": "first-byte-held",
+    "wave": 0,
+    "lower": 0,
+    "upper": 3,
+    "route_launch_order": [
+      "availability",
+      "export",
+      "list"
+    ],
+    "write_generations": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "sequence": 54,
+    "kind": "capture-sent",
+    "at": 407.09183035,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 55,
+    "kind": "capture-sent",
+    "at": 407.091892184,
+    "path": "/reservations",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 56,
+    "kind": "capture-sent",
+    "at": 407.091912975,
+    "path": "/_test/export",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 57,
+    "kind": "capture-first-byte",
+    "at": 407.09416835,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 58,
+    "kind": "capture-first-byte",
+    "at": 407.094204684,
+    "path": "/_test/export",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 59,
+    "kind": "capture-first-byte",
+    "at": 407.094735309,
+    "path": "/reservations",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 60,
+    "kind": "writer-start",
+    "at": 407.094755642,
+    "mode": "first-byte-held",
+    "wave": 0
+  },
+  {
+    "sequence": 61,
+    "kind": "write-committed-response",
+    "at": 407.096505142,
+    "mode": "first-byte-held",
+    "wave": 0,
+    "generation": 1
+  },
+  {
+    "sequence": 62,
+    "kind": "receive-gate-release",
+    "at": 407.09651535,
+    "mode": "first-byte-held",
+    "wave": 0
+  },
+  {
+    "sequence": 63,
+    "kind": "capture-finished",
+    "at": 407.096662559,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 64,
+    "kind": "capture-finished",
+    "at": 407.096880642,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 65,
+    "kind": "write-committed-response",
+    "at": 407.098379892,
+    "mode": "first-byte-held",
+    "wave": 0,
+    "generation": 2
+  },
+  {
+    "sequence": 66,
+    "kind": "write-committed-response",
+    "at": 407.100048225,
+    "mode": "first-byte-held",
+    "wave": 0,
+    "generation": 3
+  },
+  {
+    "sequence": 67,
+    "kind": "capture-finished",
+    "at": 407.311944684,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 156821
+  },
+  {
+    "sequence": 68,
+    "kind": "wave-settled",
+    "at": 407.312023767,
+    "mode": "first-byte-held",
+    "wave": 0
+  },
+  {
+    "sequence": 69,
+    "kind": "wave-start",
+    "at": 407.511285892,
+    "mode": "first-byte-held",
+    "wave": 1,
+    "lower": 3,
+    "upper": 6,
+    "route_launch_order": [
+      "export",
+      "availability",
+      "list"
+    ],
+    "write_generations": [
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "sequence": 70,
+    "kind": "capture-sent",
+    "at": 407.511540934,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 71,
+    "kind": "capture-sent",
+    "at": 407.511567559,
+    "path": "/reservations",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 72,
+    "kind": "capture-sent",
+    "at": 407.511584684,
+    "path": "/_test/export",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 73,
+    "kind": "capture-first-byte",
+    "at": 407.512415434,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 74,
+    "kind": "capture-first-byte",
+    "at": 407.516979309,
+    "path": "/reservations",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 75,
+    "kind": "capture-first-byte",
+    "at": 407.517004725,
+    "path": "/_test/export",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 76,
+    "kind": "writer-start",
+    "at": 407.517023767,
+    "mode": "first-byte-held",
+    "wave": 1
+  },
+  {
+    "sequence": 77,
+    "kind": "write-committed-response",
+    "at": 407.518775475,
+    "mode": "first-byte-held",
+    "wave": 1,
+    "generation": 4
+  },
+  {
+    "sequence": 78,
+    "kind": "receive-gate-release",
+    "at": 407.518786184,
+    "mode": "first-byte-held",
+    "wave": 1
+  },
+  {
+    "sequence": 79,
+    "kind": "capture-finished",
+    "at": 407.51901985,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 80,
+    "kind": "capture-finished",
+    "at": 407.5190946,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 81,
+    "kind": "write-committed-response",
+    "at": 407.520741809,
+    "mode": "first-byte-held",
+    "wave": 1,
+    "generation": 5
+  },
+  {
+    "sequence": 82,
+    "kind": "write-committed-response",
+    "at": 407.522431642,
+    "mode": "first-byte-held",
+    "wave": 1,
+    "generation": 6
+  },
+  {
+    "sequence": 83,
+    "kind": "capture-finished",
+    "at": 407.7330606,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 248376
+  },
+  {
+    "sequence": 84,
+    "kind": "wave-settled",
+    "at": 407.733126851,
+    "mode": "first-byte-held",
+    "wave": 1
+  },
+  {
+    "sequence": 85,
+    "kind": "wave-start",
+    "at": 408.010638601,
+    "mode": "first-byte-held",
+    "wave": 2,
+    "lower": 6,
+    "upper": 9,
+    "route_launch_order": [
+      "list",
+      "availability",
+      "export"
+    ],
+    "write_generations": [
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "sequence": 86,
+    "kind": "capture-sent",
+    "at": 408.010831017,
+    "path": "/reservations",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 87,
+    "kind": "capture-sent",
+    "at": 408.010906392,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 88,
+    "kind": "capture-sent",
+    "at": 408.010945642,
+    "path": "/_test/export",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 89,
+    "kind": "capture-first-byte",
+    "at": 408.012302642,
+    "path": "/reservations",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 90,
+    "kind": "capture-first-byte",
+    "at": 408.012334392,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 91,
+    "kind": "capture-first-byte",
+    "at": 408.018587226,
+    "path": "/_test/export",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 92,
+    "kind": "writer-start",
+    "at": 408.018606517,
+    "mode": "first-byte-held",
+    "wave": 2
+  },
+  {
+    "sequence": 93,
+    "kind": "write-committed-response",
+    "at": 408.020368184,
+    "mode": "first-byte-held",
+    "wave": 2,
+    "generation": 7
+  },
+  {
+    "sequence": 94,
+    "kind": "receive-gate-release",
+    "at": 408.020381392,
+    "mode": "first-byte-held",
+    "wave": 2
+  },
+  {
+    "sequence": 95,
+    "kind": "capture-finished",
+    "at": 408.020639976,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 96,
+    "kind": "capture-finished",
+    "at": 408.020748392,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 97,
+    "kind": "write-committed-response",
+    "at": 408.022382642,
+    "mode": "first-byte-held",
+    "wave": 2,
+    "generation": 8
+  },
+  {
+    "sequence": 98,
+    "kind": "write-committed-response",
+    "at": 408.024067601,
+    "mode": "first-byte-held",
+    "wave": 2,
+    "generation": 9
+  },
+  {
+    "sequence": 99,
+    "kind": "capture-finished",
+    "at": 408.244561892,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 339930
+  },
+  {
+    "sequence": 100,
+    "kind": "wave-settled",
+    "at": 408.244617892,
+    "mode": "first-byte-held",
+    "wave": 2
+  },
+  {
+    "sequence": 101,
+    "kind": "wave-start",
+    "at": 408.605770851,
+    "mode": "first-byte-held",
+    "wave": 3,
+    "lower": 9,
+    "upper": 12,
+    "route_launch_order": [
+      "list",
+      "availability",
+      "export"
+    ],
+    "write_generations": [
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "sequence": 102,
+    "kind": "capture-sent",
+    "at": 408.606012268,
+    "path": "/reservations",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 103,
+    "kind": "capture-sent",
+    "at": 408.606042643,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 104,
+    "kind": "capture-sent",
+    "at": 408.606072309,
+    "path": "/_test/export",
+    "mode": "first-byte-held"
+  },
+  {
+    "sequence": 105,
+    "kind": "capture-first-byte",
+    "at": 408.607421476,
+    "path": "/reservations",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 106,
+    "kind": "capture-first-byte",
+    "at": 408.607453351,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 107,
+    "kind": "capture-first-byte",
+    "at": 408.616198143,
+    "path": "/_test/export",
+    "received_bytes": 1
+  },
+  {
+    "sequence": 108,
+    "kind": "writer-start",
+    "at": 408.616219268,
+    "mode": "first-byte-held",
+    "wave": 3
+  },
+  {
+    "sequence": 109,
+    "kind": "write-committed-response",
+    "at": 408.618010393,
+    "mode": "first-byte-held",
+    "wave": 3,
+    "generation": 10
+  },
+  {
+    "sequence": 110,
+    "kind": "receive-gate-release",
+    "at": 408.618021851,
+    "mode": "first-byte-held",
+    "wave": 3
+  },
+  {
+    "sequence": 111,
+    "kind": "capture-finished",
+    "at": 408.618243768,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7442
+  },
+  {
+    "sequence": 112,
+    "kind": "capture-finished",
+    "at": 408.618371518,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 113,
+    "kind": "write-committed-response",
+    "at": 408.619925934,
+    "mode": "first-byte-held",
+    "wave": 3,
+    "generation": 11
+  },
+  {
+    "sequence": 114,
+    "kind": "write-committed-response",
+    "at": 408.621632976,
+    "mode": "first-byte-held",
+    "wave": 3,
+    "generation": 12
+  },
+  {
+    "sequence": 115,
+    "kind": "capture-finished",
+    "at": 408.847379726,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 431580
+  },
+  {
+    "sequence": 116,
+    "kind": "wave-settled",
+    "at": 408.847430809,
+    "mode": "first-byte-held",
+    "wave": 3
+  },
+  {
+    "sequence": 117,
+    "kind": "wave-start",
+    "at": 409.338918893,
+    "mode": "send-held",
+    "wave": 0,
+    "lower": 0,
+    "upper": 3,
+    "route_launch_order": [
+      "availability",
+      "list",
+      "export"
+    ],
+    "write_generations": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "sequence": 118,
+    "kind": "capture-sent",
+    "at": 409.339135268,
+    "path": "/reservations",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 119,
+    "kind": "capture-sent",
+    "at": 409.33917781,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 120,
+    "kind": "capture-sent",
+    "at": 409.339232393,
+    "path": "/_test/export",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 121,
+    "kind": "writer-start",
+    "at": 409.339252101,
+    "mode": "send-held",
+    "wave": 0
+  },
+  {
+    "sequence": 122,
+    "kind": "write-committed-response",
+    "at": 409.344430976,
+    "mode": "send-held",
+    "wave": 0,
+    "generation": 1
+  },
+  {
+    "sequence": 123,
+    "kind": "write-committed-response",
+    "at": 409.34619581,
+    "mode": "send-held",
+    "wave": 0,
+    "generation": 2
+  },
+  {
+    "sequence": 124,
+    "kind": "write-committed-response",
+    "at": 409.347868435,
+    "mode": "send-held",
+    "wave": 0,
+    "generation": 3
+  },
+  {
+    "sequence": 125,
+    "kind": "receive-gate-release",
+    "at": 409.347878226,
+    "mode": "send-held",
+    "wave": 0
+  },
+  {
+    "sequence": 126,
+    "kind": "capture-finished",
+    "at": 409.348125393,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 127,
+    "kind": "capture-finished",
+    "at": 409.348230893,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 128,
+    "kind": "capture-finished",
+    "at": 409.562681435,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 187285
+  },
+  {
+    "sequence": 129,
+    "kind": "wave-settled",
+    "at": 409.56274181,
+    "mode": "send-held",
+    "wave": 0
+  },
+  {
+    "sequence": 130,
+    "kind": "wave-start",
+    "at": 409.783403893,
+    "mode": "send-held",
+    "wave": 1,
+    "lower": 3,
+    "upper": 6,
+    "route_launch_order": [
+      "export",
+      "availability",
+      "list"
+    ],
+    "write_generations": [
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "sequence": 131,
+    "kind": "capture-sent",
+    "at": 409.78362281,
+    "path": "/_test/export",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 132,
+    "kind": "capture-sent",
+    "at": 409.783641351,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 133,
+    "kind": "capture-sent",
+    "at": 409.783672435,
+    "path": "/reservations",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 134,
+    "kind": "writer-start",
+    "at": 409.783691768,
+    "mode": "send-held",
+    "wave": 1
+  },
+  {
+    "sequence": 135,
+    "kind": "write-committed-response",
+    "at": 409.79056056,
+    "mode": "send-held",
+    "wave": 1,
+    "generation": 4
+  },
+  {
+    "sequence": 136,
+    "kind": "write-committed-response",
+    "at": 409.792258351,
+    "mode": "send-held",
+    "wave": 1,
+    "generation": 5
+  },
+  {
+    "sequence": 137,
+    "kind": "write-committed-response",
+    "at": 409.793918893,
+    "mode": "send-held",
+    "wave": 1,
+    "generation": 6
+  },
+  {
+    "sequence": 138,
+    "kind": "receive-gate-release",
+    "at": 409.793932226,
+    "mode": "send-held",
+    "wave": 1
+  },
+  {
+    "sequence": 139,
+    "kind": "capture-finished",
+    "at": 409.794177768,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 140,
+    "kind": "capture-finished",
+    "at": 409.794274476,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 141,
+    "kind": "capture-finished",
+    "at": 410.003155685,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 248310
+  },
+  {
+    "sequence": 142,
+    "kind": "wave-settled",
+    "at": 410.003214477,
+    "mode": "send-held",
+    "wave": 1
+  },
+  {
+    "sequence": 143,
+    "kind": "wave-start",
+    "at": 410.278388893,
+    "mode": "send-held",
+    "wave": 2,
+    "lower": 6,
+    "upper": 9,
+    "route_launch_order": [
+      "list",
+      "availability",
+      "export"
+    ],
+    "write_generations": [
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "sequence": 144,
+    "kind": "capture-sent",
+    "at": 410.278622477,
+    "path": "/reservations",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 145,
+    "kind": "capture-sent",
+    "at": 410.278656143,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 146,
+    "kind": "capture-sent",
+    "at": 410.278693643,
+    "path": "/_test/export",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 147,
+    "kind": "writer-start",
+    "at": 410.278709518,
+    "mode": "send-held",
+    "wave": 2
+  },
+  {
+    "sequence": 148,
+    "kind": "write-committed-response",
+    "at": 410.28791906,
+    "mode": "send-held",
+    "wave": 2,
+    "generation": 7
+  },
+  {
+    "sequence": 149,
+    "kind": "write-committed-response",
+    "at": 410.289610977,
+    "mode": "send-held",
+    "wave": 2,
+    "generation": 8
+  },
+  {
+    "sequence": 150,
+    "kind": "write-committed-response",
+    "at": 410.291333102,
+    "mode": "send-held",
+    "wave": 2,
+    "generation": 9
+  },
+  {
+    "sequence": 151,
+    "kind": "receive-gate-release",
+    "at": 410.291342935,
+    "mode": "send-held",
+    "wave": 2
+  },
+  {
+    "sequence": 152,
+    "kind": "capture-finished",
+    "at": 410.291657685,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7426
+  },
+  {
+    "sequence": 153,
+    "kind": "capture-finished",
+    "at": 410.29171106,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 154,
+    "kind": "capture-finished",
+    "at": 410.522245018,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 339846
+  },
+  {
+    "sequence": 155,
+    "kind": "wave-settled",
+    "at": 410.522295185,
+    "mode": "send-held",
+    "wave": 2
+  },
+  {
+    "sequence": 156,
+    "kind": "wave-start",
+    "at": 410.887537144,
+    "mode": "send-held",
+    "wave": 3,
+    "lower": 9,
+    "upper": 12,
+    "route_launch_order": [
+      "list",
+      "export",
+      "availability"
+    ],
+    "write_generations": [
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "sequence": 157,
+    "kind": "capture-sent",
+    "at": 410.887777602,
+    "path": "/_test/export",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 158,
+    "kind": "capture-sent",
+    "at": 410.887800477,
+    "path": "/reservations",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 159,
+    "kind": "capture-sent",
+    "at": 410.887827019,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "mode": "send-held"
+  },
+  {
+    "sequence": 160,
+    "kind": "writer-start",
+    "at": 410.887843602,
+    "mode": "send-held",
+    "wave": 3
+  },
+  {
+    "sequence": 161,
+    "kind": "write-committed-response",
+    "at": 410.899376685,
+    "mode": "send-held",
+    "wave": 3,
+    "generation": 10
+  },
+  {
+    "sequence": 162,
+    "kind": "write-committed-response",
+    "at": 410.901115227,
+    "mode": "send-held",
+    "wave": 3,
+    "generation": 11
+  },
+  {
+    "sequence": 163,
+    "kind": "write-committed-response",
+    "at": 410.902852144,
+    "mode": "send-held",
+    "wave": 3,
+    "generation": 12
+  },
+  {
+    "sequence": 164,
+    "kind": "receive-gate-release",
+    "at": 410.902862269,
+    "mode": "send-held",
+    "wave": 3
+  },
+  {
+    "sequence": 165,
+    "kind": "capture-finished",
+    "at": 410.903169352,
+    "path": "/reservations",
+    "status": 200,
+    "response_bytes": 7442
+  },
+  {
+    "sequence": 166,
+    "kind": "capture-finished",
+    "at": 410.903223102,
+    "path": "/availability?restaurant_id=r&date=2035-06-04&party_size=1",
+    "status": 200,
+    "response_bytes": 2674
+  },
+  {
+    "sequence": 167,
+    "kind": "capture-finished",
+    "at": 411.127080102,
+    "path": "/_test/export",
+    "status": 200,
+    "response_bytes": 431478
+  },
+  {
+    "sequence": 168,
+    "kind": "wave-settled",
+    "at": 411.127148852,
+    "mode": "send-held",
+    "wave": 3
+  }
+]

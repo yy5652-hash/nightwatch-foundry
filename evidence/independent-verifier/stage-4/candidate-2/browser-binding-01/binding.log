@@ -1,0 +1,69 @@
+Error occurred in event listener
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_page.py", line 310, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 455, in handle
+    raise e
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 442, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 483, in _handle_internal
+    await asyncio.ensure_future(coro_or_future)
+  File "/verifier/stage-4/candidate2_binding.py", line 25, in route_handler
+    await page.unroute('**'+path,route_handler);await route.abort('failed')
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 727, in abort
+    return mapping.from_maybe_impl(await self._impl_obj.abort(errorCode=error_code))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_network.py", line 385, in abort
+    await self._handle_route(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_network.py", line 484, in _handle_route
+    raise e
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_network.py", line 480, in _handle_route
+    await callback()
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_network.py", line 580, in _race_with_page_close
+    raise cast(BaseException, fut.exception())
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Route.abort: Route is already handled!
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_binding.py", line 60, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-4/candidate2_binding.py", line 57, in main
+    p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);a=p.parse_args();release=validate(json.loads(Path(a.release).read_text()));out=Path(a.out);out.mkdir(parents=True,exist_ok=False);asyncio.run(observe(release,out))
+                                                                                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_binding.py", line 34, in observe
+    await page.locator(SELECTORS['manager_to']).fill(b['to']);await drop_once(page,'/restaurants/r/replans');await page.locator(SELECTORS['preview_submit']).click();await remember(page,['preview_uncertain'],'actual201-response-lost')
+                                                                                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_binding.py", line 15, in remember
+    node=page.locator(SELECTORS[key]);await node.wait_for(state='visible')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 20672, in wait_for
+    await self._impl_obj.wait_for(timeout=to_milliseconds(timeout), state=state)
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_locator.py", line 752, in wait_for
+    await self._frame.wait_for_selector(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 395, in wait_for_selector
+    await self._channel.send(
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 5000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"replan-uncertain\"]") to be visible
+

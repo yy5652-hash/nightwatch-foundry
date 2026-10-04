@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_product.py", line 141, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-4/candidate2_product.py", line 140, in main
+    p=argparse.ArgumentParser();p.add_argument('--release',required=True);p.add_argument('--out',required=True);p.add_argument('--family',choices=['full','members','types','numeric','bridge','racesui'],required=True);a=p.parse_args();r=validate(json.loads(Path(a.release).read_text()));asyncio.run(run(r,Path(a.out),a.family))
+                                                                                                                                                                                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_product.py", line 133, in run
+    browser=await p.chromium.launch(headless=True);await getattr(review,family)(browser);await browser.close()
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_product.py", line 111, in racesui
+    await page.route('**/reservations/'+ref,delayed_current);await page.get_by_test_id('confirmation-refresh').click();await asyncio.wait_for(started.wait(),7);plan=c.preview();applied=c.response('product-current-apply',c.apply(plan),201);tables=applied['reservations'][0]['table_ids'];await page.get_by_test_id('confirmation-refresh').click();await page.get_by_test_id('confirmation-current-tables').filter(has_text='Hospitality '+tables[0]).wait_for();release.set();await asyncio.wait_for(finished.wait(),7);await page.wait_for_timeout(100);current_text=await page.get_by_test_id('confirmation-current-tables').inner_text();self.check('current-read-A-cannot-restore',all('Hospitality '+t in current_text for t in tables));self.check('original-confirmation-immutable',await page.get_by_test_id('confirmation-details').inner_text()==original and await page.get_by_test_id('confirmation-reference').inner_text()==ref);await self.shot(page,'current-assignment-original-confirmation-mobile');await page.locator('[data-open-reference]').click();await page.get_by_test_id('lookup-submit').click();await page.get_by_test_id('reservation-detail').wait_for();await page.get_by_test_id('reservation-history').wait_for();self.check('lookup-applied-history-authoritative','reassigned' in (await page.get_by_test_id('reservation-detail').inner_text()).lower() or plan['plan_id'] in await page.get_by_test_id('reservation-detail').inner_text());await self.shot(page,'current-lookup-reassigned-mobile');await context.close()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_product.py", line 21, in check
+    if not condition:raise AssertionError(name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: lookup-applied-history-authoritative

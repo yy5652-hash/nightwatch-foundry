@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_atomic.py", line 86, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-4/candidate2_atomic.py", line 83, in main
+    try:(prefix if a.family=='prefix' else invalid)(c,release)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_atomic.py", line 36, in prefix
+    (c.out/'raw-prefix-traces.json').write_text(json.dumps(snapshots,indent=2)+'\n')
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/evidence/prefix/raw-prefix-traces.json'

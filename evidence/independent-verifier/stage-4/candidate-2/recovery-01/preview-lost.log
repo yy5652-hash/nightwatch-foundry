@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_recovery.py", line 216, in <module>
+    main()
+  File "/verifier/stage-4/candidate2_recovery.py", line 212, in main
+    asyncio.run(run(release, args.out, args.family, args.mode))
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_recovery.py", line 163, in run
+    check('focus-' + str(width), focus['active'] and focus['style'] != 'none' and float(focus['width'].removesuffix('px')) > 0, focus)
+  File "/verifier/stage-4/candidate2_recovery.py", line 70, in check
+    raise AssertionError(name)
+AssertionError: focus-375

@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/repair-1/error_matrix.py", line 130, in <module>
+    main()
+  File "/verifier/stage-4/repair-1/error_matrix.py", line 121, in main
+    run(c, args.family)
+  File "/verifier/stage-4/repair-1/error_matrix.py", line 76, in run
+    response = c.call('POST', path, bad, token=c.tokens[who], key=key)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-3/stage3_probe.py", line 85, in call
+    body=raw(value) if value is not None and body is None else body
+         ^^^^^^^^^^
+  File "/verifier/stage-3/stage3_probe.py", line 30, in raw
+    def raw(value):return encode(value).encode('utf-8')
+                          ^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 67, in encode
+    return "{"+",".join(encode(key)+":"+encode(item) for key,item in value.items())+"}"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 67, in <genexpr>
+    return "{"+",".join(encode(key)+":"+encode(item) for key,item in value.items())+"}"
+                                        ^^^^^^^^^^^^
+  File "/verifier/stage-1/semantic_oracle.py", line 68, in encode
+    raise TypeError("unsupported evidence JSON type")
+TypeError: unsupported evidence JSON type

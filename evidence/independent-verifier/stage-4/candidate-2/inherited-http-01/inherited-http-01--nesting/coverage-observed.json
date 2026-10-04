@@ -1,0 +1,3298 @@
+[
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-32-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth objects-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-999-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth objects-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1100-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth objects-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth objects-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-objects-1101-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth objects-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-32-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth arrays-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-999-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth arrays-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1100-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth arrays-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth arrays-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-arrays-1101-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth arrays-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-32.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-32-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth alternating-32.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-999.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-999-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth alternating-999.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-1100.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1100-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth alternating-1100.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-first",
+    "requirement_text": "create: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-alias",
+    "requirement_text": "create: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-number-difference",
+    "requirement_text": "create: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-type-difference",
+    "requirement_text": "create: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-missing-auth",
+    "requirement_text": "create: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-missing-key",
+    "requirement_text": "create: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-failed-value",
+    "requirement_text": "create: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-failed-key-reuse",
+    "requirement_text": "create: Correcting the refused party with the same key succeeds201. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-atomic",
+    "requirement_text": "create: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-immutable",
+    "requirement_text": "create: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-import-original",
+    "requirement_text": "create: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-create-import-difference",
+    "requirement_text": "create: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-first",
+    "requirement_text": "moves: A valid write with an ignored bounded nested JSON value succeeds201. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-alias",
+    "requirement_text": "moves: Complete-body exact numeric/object-order aliases replay the original receipt200. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-number-difference",
+    "requirement_text": "moves: A changed precise numeric leaf under the same used key gives409 idempotency_key_reuse. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-type-difference",
+    "requirement_text": "moves: Changing a numeric leaf to boolean under the used key gives409 idempotency_key_reuse. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-missing-auth",
+    "requirement_text": "moves: A valid deep body without authentication gives401 unauthenticated. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-missing-key",
+    "requirement_text": "moves: An authenticated valid deep write without a key gives400 missing_idempotency_key. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-failed-value",
+    "requirement_text": "moves: A new-key valid deep body with fractional party gives422 validation_failed. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-failed-key-reuse",
+    "requirement_text": "moves: Correcting the refused party with the same key succeeds201. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-atomic",
+    "requirement_text": "moves: Replays and refused deep writes leave complete state unchanged before a later successful correction. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-immutable",
+    "requirement_text": "moves: Original receipt replay remains200 and identical after current record mutation/cancellation. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-import-original",
+    "requirement_text": "moves: Original deep receipt replays unchanged200 in an independent imported destination. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-moves-import-difference",
+    "requirement_text": "moves: A changed deep leaf still conflicts409 after independent replacement. Shape/depth alternating-1101.",
+    "source_section": "3.4 / 5 / 6 / 7 / 8 / 10 / 11",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-reset",
+    "requirement_text": "A valid fixture with an ignored bounded nested value resets204. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-signup",
+    "requirement_text": "A valid signup with an ignored bounded nested value succeeds201. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-login",
+    "requirement_text": "A valid login with an ignored bounded nested value succeeds200. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-patch",
+    "requirement_text": "An ignored bounded nested PATCH value succeeds without changing state. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-export",
+    "requirement_text": "Export after deep successful writes returns200 valid JSON with the specified track/version/state envelope. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-import",
+    "requirement_text": "The unchanged opaque export imports204 into a separately running destination. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-replacement",
+    "requirement_text": "The independently imported full snapshot preserves the complete exact source state. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-retained-token",
+    "requirement_text": "The real source token and current private records survive independent replacement. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-malformed",
+    "requirement_text": "A truncated deep body remains400 malformed_request before auth/key processing. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-alternating-1101-malformed-atomic",
+    "requirement_text": "Refusing truncated deep JSON leaves complete source state unchanged. Shape/depth alternating-1101.",
+    "source_section": "3.3 / 3.4 / 5 / 7 / 10",
+    "source_line": 86,
+    "implementation_owner": "systems-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-charset",
+    "requirement_text": "All observed payloads have application/json;charset=utf-8.",
+    "source_section": "2 / 3.4 / 5",
+    "source_line": 48,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-byte-length",
+    "requirement_text": "Observed Content-Length equals actual response bytes.",
+    "source_section": "2 / 3.4 / 5",
+    "source_line": 48,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-duration",
+    "requirement_text": "Measured ordinary/control requests remain below5/10seconds for these bounded samples.",
+    "source_section": "2 / 3.4 / 5",
+    "source_line": 48,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-nesting-no-5xx",
+    "requirement_text": "Bounded nested JSON samples produce no5xx responses.",
+    "source_section": "2 / 3.4 / 5",
+    "source_line": 48,
+    "implementation_owner": "interface-engineer",
+    "verdict": "verified"
+  }
+]

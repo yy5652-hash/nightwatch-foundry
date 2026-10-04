@@ -1,0 +1,317 @@
+{
+  "candidate": "58270860cb6a762c8a4c2a551672701fb00bd613",
+  "stage_4_tree": "00e208c746a488a9b4cb0761efd04b90c4248dd8",
+  "verdict": "accept",
+  "highest_consecutive_accepted": 4,
+  "production_edits": 0,
+  "coverage": {
+    "candidate": "58270860cb6a762c8a4c2a551672701fb00bd613",
+    "records": 7862,
+    "normative": 7840,
+    "verified": 7840,
+    "failed": 0,
+    "unverified": 0,
+    "nonnormative_diagnostics": 22,
+    "required_fields": [
+      "requirement_id",
+      "requirement_text",
+      "source_section",
+      "source_line",
+      "introduced_stage",
+      "applicable_stages",
+      "owner",
+      "candidate_full_revision",
+      "verification_method",
+      "executable_command_or_interaction",
+      "evidence_path",
+      "verdict",
+      "implementation_owner",
+      "verification_owner"
+    ],
+    "all_fields_populated": true,
+    "unique_identifiers": true,
+    "concrete_evidence_files": true,
+    "missing_files": [],
+    "ownership_explicit": true,
+    "source_only_unreachable_permission_rows": [
+      "TK4-retry-preview-different-before-permission",
+      "TK4-retry-apply-different-before-permission",
+      "TK4-retry-amend-different-before-permission"
+    ],
+    "matrix_sha256": "2ca6df22b6355321fdf7e06385b5f092d3d31a4e77b3bf3dde700903116bdbb7"
+  },
+  "current_protocols": {
+    "http": {
+      "runs": 78,
+      "requests": 35381,
+      "assertions": 91464,
+      "browser_originated_requests": 0,
+      "forwardings": 0,
+      "retained_pngs": 0
+    },
+    "browser": {
+      "runs": 30,
+      "requests": 619,
+      "assertions": 1949,
+      "browser_originated_requests": 2822,
+      "forwardings": 125,
+      "retained_pngs": 233
+    }
+  },
+  "direct_diagnostic": {
+    "scope": "source-bound packaged Engine diagnostic, not HTTP",
+    "calls": 70,
+    "assertions": 71,
+    "failed": 0
+  },
+  "official": {
+    "stage1": 120,
+    "stage2": 25,
+    "stage3": 7,
+    "stage4": 6,
+    "passed": 158,
+    "failed": 0,
+    "errors": 0,
+    "skips": 0,
+    "deselections": 0,
+    "xfails": 0,
+    "claim": 4,
+    "external_command_seconds": 37.62366225000005
+  },
+  "image": "sha256:65f6b3ec816adb003d96d720add26f8d9e379e0da97740bf77ebb3a5a5975123",
+  "source_hashes": {
+    "server.py": "9cbbb424a2b3207e94f9d7f4a5d19b3f4ea3005ca5842bb8c6ddd715e127884e",
+    "Dockerfile": "7b24b3631fc680d46704076614da2bf5bb74f2f0107d5f31a263f79df59a7688",
+    "core.py": "9449cf0334c4ace4c688046eb42220e06c4ae9a4312e2b4551d0e6681f7f97d9",
+    "json_codec.py": "3bf4c5dd7ccee1c99127d735822331fedb1491af3568d3490a81a092bae49501",
+    ".dockerignore": "e97a8c8e3d6445b50ff05e3da076c393790e782fb4cd5c39719ee7f4c0d955be",
+    "RUN.md": "6589c38d77cae7cb701d39554c8ff95c6e77fc928e167043d5a6bf89177a8df4",
+    "web/index.html": "0f8a6b320c21458509bbc8bf8e7b42f255a15f85e88b2df599eb214e408581e4",
+    "web/app.css": "b71b470eca2643e8689831c31e56794d67a8085b98d0615defcd59ffde38ada7",
+    "web/app.js": "4684ba6f7053c2ad15ba9c7d3b808f11ba324454718b1e05860ccf6bfb7d93a4"
+  },
+  "cleanup": {
+    "candidate": "58270860cb6a762c8a4c2a551672701fb00bd613",
+    "services_before_removal": [
+      {
+        "name": "independent-verifier-s4-1004095136-target",
+        "role": "target",
+        "image": "sha256:65f6b3ec816adb003d96d720add26f8d9e379e0da97740bf77ebb3a5a5975123",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-peer",
+        "role": "peer",
+        "image": "sha256:65f6b3ec816adb003d96d720add26f8d9e379e0da97740bf77ebb3a5a5975123",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-third",
+        "role": "third",
+        "image": "sha256:65f6b3ec816adb003d96d720add26f8d9e379e0da97740bf77ebb3a5a5975123",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-accepted-s1",
+        "role": "accepted-s1",
+        "image": "sha256:f071f5d2f52d02726a353ba3df1c98e68af4001e2e9de0a8bf396d13b738cecc",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-accepted-s2",
+        "role": "accepted-s2",
+        "image": "sha256:6c148e37dda6b8b12590a296fd35d5d03c531c2ec6171fc2882def59cc70d4ed",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-legacy-s1",
+        "role": "legacy-s1",
+        "image": "sha256:4d68508cccdddf135b89e4b604aed08451d3b088a958afc5086a495059f4b3ed",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-legacy-s2",
+        "role": "legacy-s2",
+        "image": "sha256:1385487cb4624540202dce8484357d3e1375f90ac2b5366975cdefff41afd127",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      },
+      {
+        "name": "independent-verifier-s4-1004095136-accepted-s3",
+        "role": "accepted-s3",
+        "image": "sha256:92b9bcaea28ab33df8e58cec70c4d0a17d0771d26533ed1a9a01465f38a8533d",
+        "healthy": true,
+        "oom_killed": false,
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "mounts": []
+      }
+    ],
+    "clean_clones": [
+      {
+        "role": "current",
+        "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s4-1004095136-current",
+        "revision": "58270860cb6a762c8a4c2a551672701fb00bd613",
+        "clean": true
+      },
+      {
+        "role": "accepted-s3",
+        "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s4-1004095136-accepted-s3",
+        "revision": "91e2c471acded1b861b3fec725f202297b1c6740",
+        "clean": true
+      },
+      {
+        "role": "accepted-s1",
+        "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s4-1004095136-accepted-s1",
+        "revision": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+        "clean": true
+      },
+      {
+        "role": "accepted-s2",
+        "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s4-1004095136-accepted-s2",
+        "revision": "4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+        "clean": true
+      },
+      {
+        "role": "legacy-s1",
+        "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s4-1004095136-legacy-s1",
+        "revision": "49287b4a5a1481f995c470ccae31776f03d4b863",
+        "clean": true
+      },
+      {
+        "role": "legacy-s2",
+        "clone": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-s4-1004095136-legacy-s2",
+        "revision": "4b92041057beb669d2e6c528e8268f4d0d1e6421",
+        "clean": true
+      }
+    ],
+    "graded_diff_empty": true,
+    "cleanup_commands": 9,
+    "cleanup_exits": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "only_own_resources_removed": true,
+    "namespace_empty": true,
+    "remaining_containers": [],
+    "remaining_networks": [],
+    "completed_at": "2026-10-04T10:34:24.017264+00:00",
+    "images_and_clones_retained": true,
+    "commands_path": "evidence/independent-verifier/stage-4/candidate-2/cleanup-01/commands.json",
+    "executed_source_sha256": "40908ee074fd15f746dbb2d78dc26a0b107467c82b77cc691d634e1437eb09a7"
+  },
+  "startup_bounds": [
+    {
+      "role": "target",
+      "port": 18309,
+      "seconds": 0.5467119169989019,
+      "default": false
+    },
+    {
+      "role": "peer",
+      "port": 8080,
+      "seconds": 0.3875125409977045,
+      "default": true
+    },
+    {
+      "role": "third",
+      "port": 18311,
+      "seconds": 0.38982529200438876,
+      "default": false
+    },
+    {
+      "role": "accepted-s1",
+      "port": 18312,
+      "seconds": 0.3983585000023595,
+      "default": false
+    },
+    {
+      "role": "accepted-s2",
+      "port": 18313,
+      "seconds": 0.41312441699847113,
+      "default": false
+    },
+    {
+      "role": "legacy-s1",
+      "port": 18314,
+      "seconds": 0.29905000000144355,
+      "default": false
+    },
+    {
+      "role": "legacy-s2",
+      "port": 18315,
+      "seconds": 0.2938612500001909,
+      "default": false
+    },
+    {
+      "role": "accepted-s3",
+      "port": 18316,
+      "seconds": 0.3919010410027113,
+      "default": false
+    }
+  ],
+  "timing": {
+    "recorded_intake_at": "2026-10-04T09:50:07.386949+00:00",
+    "aggregation_at": "2026-10-04T10:36:41.861747+00:00",
+    "intake_record_to_aggregation_seconds": 2794.474798,
+    "whole_factory_elapsed": "coordinator-owned",
+    "seal_timing": "separate later evidence"
+  },
+  "model": {
+    "harness": "Codex",
+    "configured": "gpt-6.1-sol",
+    "actual_override": null,
+    "effort": null,
+    "tokens": null,
+    "catalog_estimated_cost": null,
+    "billed_spend": null
+  },
+  "known_interpretations": [
+    "Exact historical IANA instant and original wall fields, minute-aligned new wire offset and immutable old seconds-offset strings; incompatible literal grammars not claimed simultaneously.",
+    "Immutable original successful receipt schema/value/body meaning.",
+    "Exact current numeric values and genuine receipt-scoped legacy comparison only.",
+    "Visible exact semantic numeric control; native HTML type judging ambiguity."
+  ],
+  "limits": [
+    "Finite payload/depth/exponent/workload and supported-bound observations; no arbitrary performance guarantee.",
+    "Scoped visual and accessibility assessment, not complete WCAG certification.",
+    "Three unreachable public permission-loss rows use exact source ordering/applicability review.",
+    "Build cache available; no uncached build or host-published reachability claim.",
+    "Older source bootstrap: revision1/fixture-policy0/empty prior history/private counter0/no invented manager.",
+    "Public release, real room export, operator README/FACTORY and submission remain operator-controlled."
+  ]
+}

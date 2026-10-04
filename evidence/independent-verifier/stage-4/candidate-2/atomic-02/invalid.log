@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/verifier/stage-4/candidate2_atomic.py", line 88, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/verifier/stage-4/candidate2_atomic.py", line 83, in main
+    try:(prefix if a.family=='prefix' else invalid)(c,release)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/verifier/stage-4/candidate2_atomic.py", line 78, in invalid
+    c.check('atomic-invalid-original-preserved',before==c.export())
+  File "/verifier/stage-4/stage4_probe.py", line 56, in check
+    if not condition:raise AssertionError(case)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: atomic-invalid-original-preserved

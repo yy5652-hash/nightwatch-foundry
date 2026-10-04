@@ -1,0 +1,323 @@
+{
+  "candidate": "58270860cb6a762c8a4c2a551672701fb00bd613",
+  "complete": true,
+  "error": null,
+  "selectors": {
+    "manager_entry": "a[href=\"/manage\"]",
+    "manager_table": "[data-testid=\"replan-table\"]",
+    "manager_from": "[data-testid=\"replan-from\"]",
+    "manager_to": "[data-testid=\"replan-to\"]",
+    "preview_submit": "[data-testid=\"replan-preview-submit\"]",
+    "preview_result": "[data-testid=\"replan-proposal\"]",
+    "preview_uncertain": "[data-testid=\"replan-uncertain\"]",
+    "preview_error": "[data-testid=\"replan-error\"]",
+    "apply_submit": "[data-testid=\"replan-apply-submit\"]",
+    "apply_result": "[data-testid=\"replan-applied\"]",
+    "apply_uncertain": "[data-testid=\"replan-apply-uncertain\"]",
+    "apply_error": "[data-testid=\"replan-apply-error\"]",
+    "plan_feedback": "[data-testid=\"replan-unapplied\"]",
+    "series_entry": "[data-testid=\"series-lookup-id\"]",
+    "series_revision": "[data-testid=\"series-amend-expected-revision\"]",
+    "series_from_index": "[data-testid=\"series-amend-from-index\"]",
+    "series_clock": "[data-testid=\"series-amend-local-time\"]",
+    "series_amend_submit": "[data-testid=\"series-amend-submit\"]",
+    "series_current": "[data-testid=\"series-occurrences\"]",
+    "series_feedback": "[data-testid=\"series-amend-form\"]",
+    "series_amend_result": "[data-testid=\"series-amend-confirmation\"]",
+    "series_amend_uncertain": "[data-testid=\"series-amend-uncertain\"]",
+    "series_amend_error": "[data-testid=\"series-amend-error\"]",
+    "lookup_reference": "[data-testid=\"lookup-reference-input\"]",
+    "lookup_submit": "[data-testid=\"lookup-submit\"]",
+    "series_load_submit": "[data-testid=\"series-refresh\"]"
+  },
+  "workflows": {
+    "open_manager": [
+      {
+        "action": "click",
+        "selector_key": "manager_entry"
+      }
+    ],
+    "open_series": [
+      {
+        "action": "goto",
+        "value": "/lookup"
+      },
+      {
+        "action": "fill",
+        "selector_key": "lookup_reference",
+        "value": "${reference}"
+      },
+      {
+        "action": "click",
+        "selector_key": "lookup_submit"
+      },
+      {
+        "action": "fill",
+        "selector_key": "series_entry",
+        "value": "${series_id}"
+      },
+      {
+        "action": "click",
+        "selector_key": "series_load_submit"
+      }
+    ]
+  },
+  "observed": {
+    "manager_entry": [
+      {
+        "state": "real-manager-navigation",
+        "count": 1,
+        "visible": true,
+        "text": "Restaurant tools",
+        "tag": "A"
+      }
+    ],
+    "manager_table": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "Hospitality a\nHospitality b\nHospitality c\nHospitality d\nHospitality e\nHospitality f",
+        "tag": "SELECT"
+      }
+    ],
+    "manager_from": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "manager_to": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "preview_submit": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "Preview seating",
+        "tag": "BUTTON"
+      }
+    ],
+    "preview_error": [
+      {
+        "state": "actual422-refusal",
+        "count": 1,
+        "visible": true,
+        "text": "Check the table and complete closure timestamps, including offsets. The end must follow the start.",
+        "tag": "DIV"
+      }
+    ],
+    "preview_uncertain": [
+      {
+        "state": "actual201-response-lost",
+        "count": 1,
+        "visible": true,
+        "text": "The preview response was not confirmed. Retry this unchanged proposal with its retained request identity. No seating application is confirmed.",
+        "tag": "DIV"
+      }
+    ],
+    "preview_result": [
+      {
+        "state": "original-preview-replay",
+        "count": 1,
+        "visible": true,
+        "text": "PROPOSED ARRANGEMENT \u00b7 NOT APPLIED BY THIS PREVIEW\n\nJuniper Kitchen\n\nClose Hospitality a\n2035-06-04T18:00:00+00:00 to 2035-06-04T20:00:00+00:00\n\nPlan reference\nplan_46926a130eb24edab01e13590537849a\nRestaurant revision at preview\n1\nBookings that move\n1\nTotal unused seats\n2\nDeclared option ranks, in reference order\n1\n2C09556DC8\n\nHospitality b\n\nProposed move\n\nEvery assignment is proposed in booking-reference order. Times, guests and each booking\u2019s own accepted terms remain intact. The service minimizes moved bookings, then unused seats, then declared option ranks.\n\nNo confirmed application is recorded for this attempt.\n\nApply this closure and seatingCreate a fresh preview",
+        "tag": "SECTION"
+      }
+    ],
+    "apply_submit": [
+      {
+        "state": "original-preview-replay",
+        "count": 1,
+        "visible": true,
+        "text": "Apply this closure and seating",
+        "tag": "BUTTON"
+      }
+    ],
+    "plan_feedback": [
+      {
+        "state": "original-preview-replay",
+        "count": 1,
+        "visible": true,
+        "text": "No confirmed application is recorded for this attempt.",
+        "tag": "P"
+      }
+    ],
+    "apply_error": [
+      {
+        "state": "actual-stale-plan409",
+        "count": 1,
+        "visible": true,
+        "text": "The restaurant changed after this proposal. Nothing was applied by this attempt. Create a fresh preview before applying.",
+        "tag": "DIV"
+      }
+    ],
+    "apply_uncertain": [
+      {
+        "state": "actual-applied201-response-lost",
+        "count": 1,
+        "visible": true,
+        "text": "The application outcome is unknown. It may have committed. Retry this unchanged application to recover its original receipt; no success is assumed.",
+        "tag": "DIV"
+      }
+    ],
+    "apply_result": [
+      {
+        "state": "original-application-replay",
+        "count": 1,
+        "visible": true,
+        "text": "Application confirmed\n\nThis original application recorded the closure and assignments together at restaurant revision 3.\n\n2C09556DC8 \u00b7 Hospitality b\nMon, 4 June 2035 \u00b7 18:00 \u00b7 1 guests\n\nThis is the successful application receipt. Your reservation and availability views load their current state separately.",
+        "tag": "SECTION"
+      }
+    ],
+    "lookup_reference": [
+      {
+        "state": "actual-owner-lookup",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "lookup_submit": [
+      {
+        "state": "actual-owner-lookup",
+        "count": 1,
+        "visible": true,
+        "text": "Find reservation",
+        "tag": "BUTTON"
+      }
+    ],
+    "series_entry": [
+      {
+        "state": "actual-owner-lookup",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "series_load_submit": [
+      {
+        "state": "actual-owner-lookup",
+        "count": 1,
+        "visible": true,
+        "text": "Load current visits",
+        "tag": "BUTTON"
+      }
+    ],
+    "series_current": [
+      {
+        "state": "loaded-genuine-agreement",
+        "count": 1,
+        "visible": true,
+        "text": "Current visits \u00b7 Juniper Kitchen\nAgreement revision 1\nVisit 1\nconfirmed\n\nMon, 4 June 2035 \u00b7 18:00\nHospitality a\n\nPart of the recurring agreement\n\nView 4165C2535F\nVisit 2\nconfirmed\n\nMon, 11 June 2035 \u00b7 18:00\nHospitality a\n\nPart of the recurring agreement\n\nView 62F8700C82\nVisit 3\nconfirmed\n\nMon, 18 June 2035 \u00b7 18:00\nHospitality a\n\nPart of the recurring agreement\n\nView E2F192ABC5\nVisit 4\nconfirmed\n\nMon, 25 June 2035 \u00b7 18:00\nHospitality a\n\nPart of the recurring agreement\n\nView 8E3920A276\n\nCancelling one visit keeps its siblings. An individually changed visit remains an exception.",
+        "tag": "DIV"
+      }
+    ],
+    "series_revision": [
+      {
+        "state": "loaded-genuine-agreement",
+        "count": 1,
+        "visible": true,
+        "text": "This attempt uses agreement revision 1.",
+        "tag": "P"
+      }
+    ],
+    "series_from_index": [
+      {
+        "state": "loaded-genuine-agreement",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "series_clock": [
+      {
+        "state": "loaded-genuine-agreement",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "series_amend_submit": [
+      {
+        "state": "loaded-genuine-agreement",
+        "count": 1,
+        "visible": true,
+        "text": "Amend eligible visits together",
+        "tag": "BUTTON"
+      }
+    ],
+    "series_feedback": [
+      {
+        "state": "loaded-genuine-agreement",
+        "count": 1,
+        "visible": true,
+        "text": "Starting occurrence index \u00b7 first is 0\nNew restaurant-local time\n\nThis attempt uses agreement revision 1.\n\nAmend eligible visits together",
+        "tag": "FORM"
+      }
+    ],
+    "series_amend_error": [
+      {
+        "state": "visible-invalid-index",
+        "count": 1,
+        "visible": true,
+        "text": "Choose a valid occurrence index and a local time in HH:MM.",
+        "tag": "DIV"
+      }
+    ],
+    "series_amend_uncertain": [
+      {
+        "state": "actual-amended201-response-lost",
+        "count": 1,
+        "visible": true,
+        "text": "The amendment response could not be confirmed. The whole change may already have committed. Retry this unchanged body and key to recover its original result.",
+        "tag": "DIV"
+      }
+    ],
+    "series_amend_result": [
+      {
+        "state": "original-amendment-replay",
+        "count": 1,
+        "visible": true,
+        "text": "Amendment confirmed\n\nOriginal successful result \u00b7 agreement revision 2.\n\n4165C2535F \u00b7 Changed by this request\n62F8700C82 \u00b7 Changed by this request\nE2F192ABC5 \u00b7 Changed by this request\n8E3920A276 \u00b7 Changed by this request\n\nThe current visits above are loaded separately. Replaying this request returns this original result.",
+        "tag": "DIV"
+      }
+    ]
+  },
+  "traffic": [
+    {
+      "kind": "forward-then-drop",
+      "path": "/restaurants/r/replans",
+      "status": 201,
+      "response_sha256": "992a22fd9075c07d72bd390261d6ff8010ff8f0e8b5d377b6b1a08e7a48a923a"
+    },
+    {
+      "kind": "forward-then-drop",
+      "path": "/restaurants/r/replans/plan_90f8deeb52ed4620b0cc1757271afe6a/apply",
+      "status": 201,
+      "response_sha256": "7eb689e1cdd58d991b28048a32e12588231b92d1eb774c5f7d8ecc2a1dc8d5ac"
+    },
+    {
+      "kind": "forward-then-drop",
+      "path": "/series/ser_127f86a1285c4cfc95f0f04550f4ab02/amend",
+      "status": 201,
+      "response_sha256": "b0882cba412a2989f65df08c360872382404e5b92115cdccd874bfe84d166056"
+    }
+  ],
+  "source_sha256": "1abf028cb32aeb9afc011d5d3397f4dd4419340f414ab4e980f8202c85d54eb7",
+  "revision_control": "Actual revision paragraph and current-revision action; not an editable numeric input"
+}

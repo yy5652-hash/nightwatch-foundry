@@ -1,0 +1,232 @@
+{
+  "initial": [
+    {
+      "reference": "69BCF20147",
+      "table_ids": [
+        "t1",
+        "t0"
+      ],
+      "start": 0,
+      "end": 90,
+      "status": "confirmed"
+    },
+    {
+      "reference": "982DC2F7B5",
+      "table_ids": [
+        "t3",
+        "t2"
+      ],
+      "start": 0,
+      "end": 90,
+      "status": "confirmed"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "moves",
+      "moves": [
+        {
+          "reference": "69BCF20147",
+          "table_ids": [
+            "t3",
+            "t2"
+          ]
+        },
+        {
+          "reference": "982DC2F7B5",
+          "table_ids": [
+            "t1",
+            "t0"
+          ]
+        }
+      ],
+      "started": 434.788439113,
+      "finished": 434.79095928,
+      "observed": {
+        "status": 201
+      }
+    },
+    {
+      "kind": "cancel",
+      "reference": "69BCF20147",
+      "started": 434.788378738,
+      "finished": 434.79104203,
+      "observed": {
+        "status": 200
+      }
+    },
+    {
+      "kind": "read",
+      "started": 434.788482071,
+      "finished": 434.791673571,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "69BCF20147",
+            [
+              "t3",
+              "t2"
+            ],
+            "cancelled"
+          ],
+          [
+            "982DC2F7B5",
+            [
+              "t1",
+              "t0"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "read",
+      "started": 434.788518571,
+      "finished": 434.79173103,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "69BCF20147",
+            [
+              "t3",
+              "t2"
+            ],
+            "cancelled"
+          ],
+          [
+            "982DC2F7B5",
+            [
+              "t1",
+              "t0"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "read-availability",
+      "tables": [
+        {
+          "id": "t0",
+          "label": "Window Alcove",
+          "capacity": 2
+        },
+        {
+          "id": "t1",
+          "label": "Garden Bench",
+          "capacity": 4
+        },
+        {
+          "id": "t2",
+          "label": "Cedar Booth",
+          "capacity": 6
+        },
+        {
+          "id": "t3",
+          "label": "Kitchen Nook",
+          "capacity": 8
+        }
+      ],
+      "pairs": [
+        [
+          "t1",
+          "t0"
+        ],
+        [
+          "t3",
+          "t2"
+        ],
+        [
+          "t2",
+          "t1"
+        ]
+      ],
+      "started": 434.788568946,
+      "finished": 434.791140738,
+      "observed": {
+        "status": 200,
+        "options": []
+      }
+    },
+    {
+      "kind": "read-export",
+      "started": 434.788332405,
+      "finished": 434.789735446,
+      "observed": {
+        "status": 200,
+        "view": [
+          [
+            "69BCF20147",
+            [
+              "t1",
+              "t0"
+            ],
+            "confirmed"
+          ],
+          [
+            "982DC2F7B5",
+            [
+              "t3",
+              "t2"
+            ],
+            "confirmed"
+          ]
+        ]
+      }
+    }
+  ],
+  "accepted_orders": [
+    [
+      4,
+      5,
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      4,
+      5,
+      0,
+      1,
+      3,
+      2
+    ],
+    [
+      5,
+      0,
+      4,
+      1,
+      2,
+      3
+    ],
+    [
+      5,
+      0,
+      4,
+      1,
+      3,
+      2
+    ],
+    [
+      5,
+      4,
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      5,
+      4,
+      0,
+      1,
+      3,
+      2
+    ]
+  ]
+}

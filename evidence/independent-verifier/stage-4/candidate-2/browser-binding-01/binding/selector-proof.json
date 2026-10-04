@@ -1,0 +1,131 @@
+{
+  "candidate": "58270860cb6a762c8a4c2a551672701fb00bd613",
+  "complete": false,
+  "error": "TimeoutError('Locator.wait_for: Timeout 5000ms exceeded.\\nCall log:\\n  - waiting for locator(\"[data-testid=\\\\\"replan-uncertain\\\\\"]\") to be visible\\n')",
+  "selectors": {
+    "manager_entry": "a[href=\"/manage\"]",
+    "manager_table": "[data-testid=\"replan-table\"]",
+    "manager_from": "[data-testid=\"replan-from\"]",
+    "manager_to": "[data-testid=\"replan-to\"]",
+    "preview_submit": "[data-testid=\"replan-preview-submit\"]",
+    "preview_result": "[data-testid=\"replan-proposal\"]",
+    "preview_uncertain": "[data-testid=\"replan-uncertain\"]",
+    "preview_error": "[data-testid=\"replan-error\"]",
+    "apply_submit": "[data-testid=\"replan-apply-submit\"]",
+    "apply_result": "[data-testid=\"replan-applied\"]",
+    "apply_uncertain": "[data-testid=\"replan-apply-uncertain\"]",
+    "apply_error": "[data-testid=\"replan-apply-error\"]",
+    "plan_feedback": "[data-testid=\"replan-unapplied\"]",
+    "series_entry": "[data-testid=\"series-lookup-id\"]",
+    "series_revision": "[data-testid=\"series-amend-expected-revision\"]",
+    "series_from_index": "[data-testid=\"series-amend-from-index\"]",
+    "series_clock": "[data-testid=\"series-amend-local-time\"]",
+    "series_amend_submit": "[data-testid=\"series-amend-submit\"]",
+    "series_current": "[data-testid=\"series-occurrences\"]",
+    "series_feedback": "[data-testid=\"series-amend-form\"]",
+    "series_amend_result": "[data-testid=\"series-amend-confirmation\"]",
+    "series_amend_uncertain": "[data-testid=\"series-amend-uncertain\"]",
+    "series_amend_error": "[data-testid=\"series-amend-error\"]",
+    "lookup_reference": "[data-testid=\"lookup-reference-input\"]",
+    "lookup_submit": "[data-testid=\"lookup-submit\"]",
+    "series_load_submit": "[data-testid=\"series-refresh\"]"
+  },
+  "workflows": {
+    "open_manager": [
+      {
+        "action": "click",
+        "selector_key": "manager_entry"
+      }
+    ],
+    "open_series": [
+      {
+        "action": "goto",
+        "value": "/lookup"
+      },
+      {
+        "action": "fill",
+        "selector_key": "lookup_reference",
+        "value": "${reference}"
+      },
+      {
+        "action": "click",
+        "selector_key": "lookup_submit"
+      },
+      {
+        "action": "fill",
+        "selector_key": "series_entry",
+        "value": "${series_id}"
+      },
+      {
+        "action": "click",
+        "selector_key": "series_load_submit"
+      }
+    ]
+  },
+  "observed": {
+    "manager_entry": [
+      {
+        "state": "real-manager-navigation",
+        "count": 1,
+        "visible": true,
+        "text": "Restaurant tools",
+        "tag": "A"
+      }
+    ],
+    "manager_table": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "Hospitality a\nHospitality b\nHospitality c\nHospitality d\nHospitality e\nHospitality f",
+        "tag": "SELECT"
+      }
+    ],
+    "manager_from": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "manager_to": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "",
+        "tag": "INPUT"
+      }
+    ],
+    "preview_submit": [
+      {
+        "state": "fixture-listed-manager-form",
+        "count": 1,
+        "visible": true,
+        "text": "Preview seating",
+        "tag": "BUTTON"
+      }
+    ],
+    "preview_error": [
+      {
+        "state": "actual422-refusal",
+        "count": 1,
+        "visible": true,
+        "text": "Check the table and complete closure timestamps, including offsets. The end must follow the start.",
+        "tag": "DIV"
+      }
+    ]
+  },
+  "traffic": [
+    {
+      "kind": "forward-then-drop",
+      "path": "/restaurants/r/replans",
+      "status": 201,
+      "response_sha256": "176a5315d4af40aa4eeee723ce3adba56e244f0f1ba1ad43592555fa69520fad"
+    }
+  ],
+  "source_sha256": "7b601dab04bb476d1cb3372d32664b0f7c1f96e61abcf54e3fa1269d5cdf0f56",
+  "revision_control": "Actual revision paragraph and current-revision action; not an editable numeric input"
+}

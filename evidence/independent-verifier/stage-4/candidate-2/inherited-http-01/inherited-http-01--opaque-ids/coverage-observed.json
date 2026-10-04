@@ -1,0 +1,3302 @@
+[
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID ordinary before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ordinary-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID slash before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-slash-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID question-fragment before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-question-fragment-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID literal-percent before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-literal-percent-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID plus-semicolon before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-plus-semicolon-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID space before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-space-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID unicode before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID astral before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-astral-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID mixed-reserved before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-mixed-reserved-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID ascii64 before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-ascii64-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-admission",
+    "requirement_text": "Observe fixture admission for restaurant ID unicode64 before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-restaurant-unicode64-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: restaurant/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-admission",
+    "requirement_text": "Observe fixture admission for table ID ordinary before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ordinary-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/ordinary.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-admission",
+    "requirement_text": "Observe fixture admission for table ID slash before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-slash-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/slash.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-admission",
+    "requirement_text": "Observe fixture admission for table ID question-fragment before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-question-fragment-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/question-fragment.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-admission",
+    "requirement_text": "Observe fixture admission for table ID literal-percent before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-literal-percent-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/literal-percent.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-admission",
+    "requirement_text": "Observe fixture admission for table ID plus-semicolon before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-plus-semicolon-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/plus-semicolon.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-admission",
+    "requirement_text": "Observe fixture admission for table ID space before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-space-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/space.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-admission",
+    "requirement_text": "Observe fixture admission for table ID unicode before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/unicode.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-admission",
+    "requirement_text": "Observe fixture admission for table ID astral before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-astral-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/astral.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-admission",
+    "requirement_text": "Observe fixture admission for table ID mixed-reserved before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-mixed-reserved-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/mixed-reserved.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-admission",
+    "requirement_text": "Observe fixture admission for table ID ascii64 before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-ascii64-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/ascii64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-admission",
+    "requirement_text": "Observe fixture admission for table ID unicode64 before source applicability is adjudicated; no lexical defect inferred from refusal.",
+    "normative": false,
+    "source_section": "3.4 / 4",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw fixture admission diagnostic",
+    "verdict": "unverified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-list",
+    "requirement_text": "Public restaurant listing retains the accepted restaurant ID exactly. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-detail-status",
+    "requirement_text": "The correctly percent-encoded accepted restaurant detail route returns200. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-detail-identity",
+    "requirement_text": "Restaurant detail preserves accepted restaurant/table IDs in fixture order. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "interface-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-availability",
+    "requirement_text": "Correctly encoded restaurant_id query returns exact IDs and the fitting fixture table order. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-create-status",
+    "requirement_text": "Create with exact accepted restaurant/table IDs succeeds201. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-create-identity",
+    "requirement_text": "Create response retains exact accepted IDs and a valid stable reference. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-create-replay",
+    "requirement_text": "An unchanged successful create body/key replays its original response200. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-lookup",
+    "requirement_text": "Owner lookup returns the same accepted IDs and reservation identity. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-amend",
+    "requirement_text": "Amendment to the second accepted table retains identity and returns that exact table ID. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-moves",
+    "requirement_text": "A batch move back to the first accepted table succeeds and preserves exact IDs/identity. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-import-current",
+    "requirement_text": "Unchanged export into an independent destination preserves token/current IDs/reference. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-import-original",
+    "requirement_text": "The original create receipt replays unchanged after independent replacement. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-cancel-release",
+    "requirement_text": "Cancel releases the exact accepted table ID in correctly encoded availability. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  },
+  {
+    "requirement_id": "TK1-opaque-table-unicode64-unknown-route",
+    "requirement_text": "A correctly encoded unknown ordinary restaurant ID gives404 not_found. Fixture scenario: table/unicode64.",
+    "normative": true,
+    "source_section": "3.3 / 3.4 / 4 / 7 / 8 / 10 / 11",
+    "source_line": 90,
+    "implementation_owner": "systems-engineer",
+    "verification_method": "independent raw HTTP conditional on accepted fixture",
+    "verdict": "verified"
+  }
+]
