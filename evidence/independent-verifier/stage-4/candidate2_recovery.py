@@ -181,7 +181,7 @@ async def run(release, out, family, mode):
                 text = await page.locator(selectors[result_key]).inner_text()
                 receipt = attempt['receipt']
                 if family != 'amend':
-                    check('original-plan-id-' + str(width), receipt['plan_id'] in text)
+                    check('original-plan-id-' + str(width), receipt['plan_id'] in (text if family=='preview' else await page.get_by_test_id('replan-plan-id').inner_text()))
                 else:
                     check('original-series-references-' + str(width), all(o['reference'] in text for o in receipt['occurrences']))
                 await screenshot(page, family + '-' + mode + '-recovered-' + str(width))

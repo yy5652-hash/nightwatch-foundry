@@ -18,8 +18,12 @@ def main():
             if name!='closure-errors':args+=['--family',name,'--execute']
             jobs.append((name,'/verifier/stage-4/'+script,args))
     elif a.group=='full-bound':jobs=[('full-bound','/verifier/stage-4/candidate2_full_bound.py',['--release',str(release),'--out','/evidence/full-bound','--execute'])]
+    elif a.group=='model':jobs=[('model','/verifier/stage-4/candidate2_model.py',['--release',str(release),'--out','/evidence/model'])]
+    elif a.group=='inherited-binding':jobs=[('binding','/verifier/stage-3/stage3_browser_binding.py',['--release',str(release),'--out','/evidence/binding'])]
+    elif a.group=='atomic':
+        for name in (a.families or 'prefix,invalid').split(','):jobs.append((name,'/verifier/stage-4/candidate2_atomic.py',['--release',str(release),'--out','/evidence/'+name,'--family',name]))
     elif a.group in ('errors','transitions','extra'):
-        script={'errors':'candidate2_error_matrix.py','transitions':'repair-1/transitions.py','extra':'stage4_extra.py'}[a.group]
+        script={'errors':'candidate2_error_matrix.py','transitions':'repair-1/transitions.py','extra':'candidate2_extra.py'}[a.group]
         choices={'errors':'preview,apply,amend','transitions':'two-series,empty,ordering,distinct,atomic-reads','extra':'retry,deep,upgrade,staleness'}
         for name in (a.families or choices[a.group]).split(','):jobs.append((name,'/verifier/stage-4/'+script,['--release',str(release),'--out','/evidence/'+name,'--family',name,'--execute']))
     elif a.group in ('inherited-http','inherited-browser'):
