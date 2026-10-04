@@ -1,0 +1,34 @@
+Builder diagnostics; transport=HTTP; model/spend unknown
+test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) ... 
+  test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) (field='slot_minutes') ... FAIL
+  test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) (field='reservation_duration_minutes') ... FAIL
+  test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) (field='cancellation_cutoff_minutes') ... FAIL
+
+======================================================================
+FAIL: test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) (field='slot_minutes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<stdin>", line 437, in test_unbounded_base_fixture_minute_counts
+  File "<stdin>", line 77, in expect
+AssertionError: 422 != 204 : {'error': {'code': 'validation_failed', 'message': 'validation failed'}}
+
+======================================================================
+FAIL: test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) (field='reservation_duration_minutes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<stdin>", line 437, in test_unbounded_base_fixture_minute_counts
+  File "<stdin>", line 77, in expect
+AssertionError: 422 != 204 : {'error': {'code': 'validation_failed', 'message': 'validation failed'}}
+
+======================================================================
+FAIL: test_unbounded_base_fixture_minute_counts (__main__.StageOne.test_unbounded_base_fixture_minute_counts) (field='cancellation_cutoff_minutes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<stdin>", line 437, in test_unbounded_base_fixture_minute_counts
+  File "<stdin>", line 77, in expect
+AssertionError: 422 != 204 : {'error': {'code': 'validation_failed', 'message': 'validation failed'}}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.106s
+
+FAILED (failures=3)

@@ -601,11 +601,6 @@ class Engine:
                 fail()
             for key in ("slot_minutes", "reservation_duration_minutes", "cancellation_cutoff_minutes"):
                 restaurant[key] = integer_field(row, key, minimum=0 if key == "cancellation_cutoff_minutes" else 1)
-                # All minute counts must be representable by datetime arithmetic.
-                try:
-                    timedelta(minutes=restaurant[key])
-                except OverflowError:
-                    fail()
             if "opening_hours" not in row or "tables" not in row:
                 fail(message="Missing opening_hours or tables")
             hours, tables = row["opening_hours"], row["tables"]

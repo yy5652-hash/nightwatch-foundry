@@ -22,3 +22,7 @@ The initial UTC round-trip implementation above was superseded after independent
 ## Recorded timestamp interpretation
 
 The complete TIMESTAMP-3 package resolves the earlier pending grammar question. Newly computed subminute-offset timestamps use the nearest representable minute-aligned fixed offset and adjusted clock, with lower-offset ties; exact integer instants and original wall fields remain unchanged. Import and replay retain original timestamp strings and successful receipts rather than canonicalizing history. Ordinary minute-aligned timestamps retain the restaurant offset/clock. This is the coordinator's explicit interpretation exception, detailed and tested in `stage-1-timestamp-repair-03.md`.
+
+## Base-fixture minute-count validation
+
+The base fixture's three minute counts have no Stage 1 stated upper bound. Validation preserves positive integer grid/duration and nonnegative integer cutoff without requiring a timedelta representation. Grid candidates remain bounded by the local opening window; duration fit is checked with exact integer instants before endpoint conversion; cutoff also uses integer arithmetic. A huge duration therefore cannot produce an out-of-hours reservation, while a huge cutoff correctly refuses ordinary future edits/cancellation. Reset/import use the same configuration validation. Details and pre-repair HTTP failures are preserved in `stage-1-minute-boundary-repair-04.md`.

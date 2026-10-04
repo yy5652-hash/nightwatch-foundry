@@ -429,6 +429,42 @@ class StageOne(unittest.TestCase):
         self.assertEqual(self.expect(destination.request("GET", "/_test/export"), 200), mixed)
         self.assertEqual(self.expect(destination.request("POST", "/reservations", body, auth), 200), original)
 
+    def test_unbounded_base_fixture_minute_counts(self):
+        for field in ("slot_minutes", "reservation_duration_minutes", "cancellation_cutoff_minutes"):
+            with self.subTest(field=field):
+                huge = fixture("UTC")
+                huge["restaurants"][0][field] = 10 ** 18
+                self.expect(self.client.request("POST", "/_test/reset", huge), 204)
+                self.auth = self.login("ada@example.test")
+                detail = self.expect(self.client.request("GET", "/restaurants/r"), 200)
+                self.assertEqual(detail[field], 10 ** 18)
+                query = "/availability?restaurant_id=r&date=2099-04-16&party_size=2"
+                slots = self.expect(self.client.request("GET", query), 200)["slots"]
+                if field == "reservation_duration_minutes":
+                    self.assertEqual(slots, [])
+                    before = self.exported()
+                    self.expect(self.create(), 422, "outside_opening_hours")
+                    self.assertEqual(self.exported(), before)
+                else:
+                    if field == "slot_minutes":
+                        self.assertEqual([slot["starts_at_local"] for slot in slots], ["2099-04-16T18:00"])
+                    record = self.expect(self.create(key="huge-count-receipt"), 201)
+                    before = self.exported()
+                    if field == "slot_minutes":
+                        self.expect(self.create(self.body(table="b", start="2099-04-16T18:30")), 422,
+                                    "not_on_slot_grid")
+                    else:
+                        self.expect(self.client.request("PATCH", "/reservations/" + record["reference"],
+                            {"table_id": "b"}, self.auth), 409, "cutoff_passed")
+                        self.expect(self.client.request("POST", "/reservations/" + record["reference"] + "/cancel",
+                            headers=self.auth), 409, "cutoff_passed")
+                    self.assertEqual(self.exported(), before)
+                    self.assertEqual(self.expect(self.create(key="huge-count-receipt"), 200), record)
+                exported = self.exported()
+                destination = Client(args.destination_url)
+                self.expect(destination.request("POST", "/_test/import", exported), 204)
+                self.assertEqual(self.expect(destination.request("GET", "/_test/export"), 200), exported)
+
 
 if __name__ == "__main__":
     print("Builder diagnostics; transport=" + ("HTTP" if args.url else "Engine") + "; model/spend unknown")
