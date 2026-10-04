@@ -485,6 +485,15 @@ add("4. Model / 8. Cancel and PATCH / 11. Atomic moves", 105, "large-minutes", {
 for row in ROWS:
     if row["case"] == "large-minutes":
         row["executable_command_or_interaction"] = "python3 evidence/independent-verifier/stage-1/large_minutes_run.py --repo RESULT_REPOSITORY --workspace WORKSPACE_ROOT --candidate FULL_REVISION --out NEW_DIRECTORY"
+add("7. Idempotency / 10. Export and import", 240, "large-minutes", {
+    "large-grid-original-receipt": "A huge-grid original create receipt replays with 200 and unchanged JSON after an accepted amendment.",
+    "large-grid-imported-receipt": "A huge-grid original create receipt and token survive independent-process import and replay unchanged.",
+    "large-cutoff-original-receipt": "A huge-cutoff original create receipt replays unchanged after refused cancel/amend/batch operations.",
+    "large-cutoff-imported-receipt": "A huge-cutoff original create receipt and token survive independent-process import and replay unchanged.",
+})
+for row in ROWS:
+    if row["requirement_id"] == "TK1-timestamp-offset":
+        row["interpretation_note"] = "New output follows the recorded nearest representable minute-offset interpretation while retaining exact IANA instants and original local fields. Successful original imported record/receipt strings are immutable, including historical offset seconds; this is an explicit backward-preservation exception."
 
 
 def write_matrix(path):

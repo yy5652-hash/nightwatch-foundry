@@ -1,0 +1,9 @@
+[
+  {
+    "classification": "verifier probe error, not a service failure",
+    "evidence": "runtime-01/large-minutes.json",
+    "observed": "TypeError: expect() got multiple values for argument key; client aborted before recording its result object.",
+    "correction": "Rename the assertion identifier parameter to rid, separating it from the Idempotency-Key client argument.",
+    "rerun": "runtime-02/large-minutes.json: two fresh exact-revision current processes, 39 HTTP operations, 26 assertions, 0 failures."
+  }
+]

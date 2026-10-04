@@ -1,0 +1,59 @@
+[
+    {
+        "Name": "independent-verifier-s1-2a4b0408a345-20261004t012358-net",
+        "Id": "35269c9d1ed01971a0892f8be200c018238d8aca5e3b034683f03628474f0b21",
+        "Created": "2026-10-04T01:24:00.4430243Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "7222abd0aa557bc13a48441aa96520d2387e1b97ee6f11eecf3695f779d94a4c": {
+                "Name": "independent-verifier-s1-2a4b0408a345-20261004t012358-source",
+                "EndpointID": "de92be8aa5ddf91cef3f3433865e2caf2fbcb4a1cc558ac9627ff15f6d89f94e",
+                "MacAddress": "86:5d:33:98:6f:e3",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            },
+            "f4c1e917c194e334c5606159ea38d3cc8453ecfc21ef2a0010dc6313452f8fe1": {
+                "Name": "independent-verifier-s1-2a4b0408a345-20261004t012358-peer",
+                "EndpointID": "00178824c9b524e5f337dddd224f9c8e15d6986c2fb33072347815717ba327c8",
+                "MacAddress": "9e:76:ed:c9:19:0a",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

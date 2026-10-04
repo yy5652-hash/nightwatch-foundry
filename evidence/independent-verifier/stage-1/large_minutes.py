@@ -13,6 +13,7 @@ import urllib.request
 
 BASE = sys.argv[1]
 CANDIDATE = sys.argv[2]
+PEER = sys.argv[3] if len(sys.argv) > 3 else BASE
 HUGE = 10**18
 trace, assertions = [], []
 started = time.monotonic()
@@ -30,13 +31,13 @@ def safe(value):
     return value
 
 
-def call(method, path, body=None, token=None, key=None):
+def call(method, path, body=None, token=None, key=None, base=BASE):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     if token:
         headers["Authorization"] = "Bearer " + token
     if key:
         headers["Idempotency-Key"] = key
-    request = urllib.request.Request(BASE + path, data=None if body is None else json.dumps(body).encode(), headers=headers, method=method)
+    request = urllib.request.Request(base + path, data=None if body is None else json.dumps(body).encode(), headers=headers, method=method)
     began = time.monotonic()
     try:
         try:
@@ -48,7 +49,7 @@ def call(method, path, body=None, token=None, key=None):
         value = json.loads(raw) if raw else None
     except Exception as error:
         status, value = 0, {"transport_error": str(error)}
-    trace.append(dict(operation=len(trace)+1, method=method, path=path, body=safe(body), has_token=bool(token), key=key,
+    trace.append(dict(operation=len(trace)+1, method=method, path=path, peer=base, body=safe(body), has_token=bool(token), key=key,
                       status=status, response=safe(value), duration_seconds=time.monotonic()-began))
     return status, value
 
@@ -57,9 +58,9 @@ def check(key, passed, expected, observed):
     assertions.append(dict(requirement_id="TK1-"+key, passed=bool(passed), expected=safe(expected), observed=safe(observed)))
 
 
-def expect(key, method, path, body=None, status=200, code=None, **kwargs):
+def expect(rid, method, path, body=None, status=200, code=None, **kwargs):
     observed_status, value = call(method, path, body, **kwargs)
-    check(key, observed_status == status and (code is None or isinstance(value, dict) and value.get("error", {}).get("code") == code),
+    check(rid, observed_status == status and (code is None or isinstance(value, dict) and value.get("error", {}).get("code") == code),
           dict(status=status, code=code), dict(status=observed_status, body=value))
     return observed_status, value
 
@@ -81,8 +82,8 @@ for field in ["slot_minutes", "reservation_duration_minutes", "cancellation_cuto
     detail_status, detail = call("GET", "/restaurants/r")
     check(prefix+"-detail", detail_status == 200 and detail.get(field) == HUGE, HUGE, detail)
     export_status, exported = call("GET", "/_test/export")
-    import_status, _ = call("POST", "/_test/import", exported)
-    detail_status, imported_detail = call("GET", "/restaurants/r")
+    import_status, _ = call("POST", "/_test/import", exported, base=PEER)
+    detail_status, imported_detail = call("GET", "/restaurants/r", base=PEER)
     check(prefix+"-import", export_status == 200 and import_status == 204 and detail_status == 200 and imported_detail.get(field) == HUGE,
           "export/import preserves the positive count exactly", dict(export=export_status, import_status=import_status, detail=imported_detail))
     login_status, login = call("POST", "/auth/login", dict(email=current["users"][0]["email"], password=current["users"][0]["password"]))
@@ -93,9 +94,19 @@ for field in ["slot_minutes", "reservation_duration_minutes", "cancellation_cuto
         status, available = expect("large-grid-availability", "GET", "/availability?restaurant_id=r&date=2035-06-05&party_size=2")
         check("large-grid-one-opening-slot", status == 200 and [slot["starts_at_local"] for slot in available.get("slots", [])] == ["2035-06-05T18:10"],
               ["2035-06-05T18:10"], available)
-        expect("large-grid-create", "POST", "/reservations", booking, token=token, key="large-grid", status=201)
+        created, receipt = expect("large-grid-create", "POST", "/reservations", booking, token=token, key="large-grid", status=201)
         late = dict(booking, starts_at_local="2035-06-05T18:40")
         expect("large-grid-late", "POST", "/reservations", late, token=token, key="large-grid-late", status=422, code="not_on_slot_grid")
+        if created == 201:
+            amended, _ = call("PATCH", "/reservations/"+receipt["reference"], {"party_size": 1}, token=token)
+            replayed, original = call("POST", "/reservations", booking, token=token, key="large-grid")
+            check("large-grid-original-receipt", amended == 200 and replayed == 200 and original == receipt,
+                  "original receipt with 200 after amendment", dict(amend_status=amended, replay_status=replayed, receipt=original))
+            _, exported = call("GET", "/_test/export")
+            imported, _ = call("POST", "/_test/import", exported, base=PEER)
+            replayed, original = call("POST", "/reservations", booking, token=token, key="large-grid", base=PEER)
+            check("large-grid-imported-receipt", imported == 204 and replayed == 200 and original == receipt,
+                  "original huge-grid receipt with 200 in independent destination", dict(import_status=imported, replay_status=replayed, receipt=original))
     elif field == "reservation_duration_minutes":
         status, available = expect("large-duration-availability", "GET", "/availability?restaurant_id=r&date=2035-06-05&party_size=2")
         check("large-duration-no-fitting-slot", status == 200 and available.get("slots") == [], [], available)
@@ -111,6 +122,13 @@ for field in ["slot_minutes", "reservation_duration_minutes", "cancellation_cuto
         expect("large-cutoff-moves", "POST", "/reservation-moves", {"moves": [{"reference": reference, "party_size": 1}]}, token=token, key="large-cutoff-moves", status=409, code="cutoff_passed")
         _, after = call("GET", "/_test/export")
         check("large-cutoff-rollback", before == after, "records, occupancy and retry keys unchanged", dict(before_sha256=digest(before), after_sha256=digest(after)))
+        replayed, original = call("POST", "/reservations", booking, token=token, key="large-cutoff")
+        check("large-cutoff-original-receipt", replayed == 200 and original == receipt, "original receipt survives huge-cutoff failures", dict(status=replayed, receipt=original))
+        _, exported = call("GET", "/_test/export")
+        imported, _ = call("POST", "/_test/import", exported, base=PEER)
+        replayed, original = call("POST", "/reservations", booking, token=token, key="large-cutoff", base=PEER)
+        check("large-cutoff-imported-receipt", imported == 204 and replayed == 200 and original == receipt,
+              "original huge-cutoff receipt with 200 in independent destination", dict(import_status=imported, replay_status=replayed, receipt=original))
 
 result = dict(candidate_full_revision=CANDIDATE, value=HUGE, http_operations=len(trace), assertions=len(assertions),
               failed_assertions=sum(not item["passed"] for item in assertions), duration_seconds=time.monotonic()-started,
