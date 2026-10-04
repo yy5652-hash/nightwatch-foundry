@@ -35,6 +35,8 @@ Within a stage, engine and transport/UI ownership are disjoint. Overlapping edit
 
 ## Initial state
 
+Stage 1 review found a historical-offset grammar conflict. The recorded resolution preserves exact IANA instants and original restaurant wall times while using deterministic RFC3339 minute-aligned transport offsets for historical subminute cases. See evidence/coordinator/timestamp-representation-decision.md. Independent acceptance must disclose this interpretation; prior failures remain intact.
+
 The result repository was empty and clean at intake. Four room identities are present and all three other seats replied with literal coordinator routing. Harness is Codex; model gpt-6.1-sol is operator-configured; actual runtime override and effort are not exposed. Token usage and cost are unknown. No stage is accepted yet.
 
 The initial ledger lives in evidence/coordinator/requirements-ledger.csv. It deliberately retains nonnormative examples for source completeness. The independent verifier must split bundled obligations and schemas into atomic normative rows before counting coverage.
