@@ -1,0 +1,48 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 542B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 74B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3 done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 37.00kB done
+#6 DONE 0.0s
+
+#7 [2/5] RUN apt-get update     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [3/5] WORKDIR /app
+#8 CACHED
+
+#9 [4/5] COPY server.py core.py ./
+#9 DONE 0.0s
+
+#10 [5/5] RUN python -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('.').glob('*.py')]"
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers 0.0s done
+#11 exporting manifest sha256:0e373d93996ca6cf7599e6478db1d50efdb2e60ce4d4764b6a1e9dc24059a12c done
+#11 exporting config sha256:64d3fb6b4b2623fc5c15bd03129805f80ace19927e1e6798d12949c3be95f96e done
+#11 exporting attestation manifest sha256:ee59a0668d1bf316cec81f480102e7930b974f28fb709776abb3612ae935b1d8 done
+#11 exporting manifest list sha256:650af063162447776519718a13aba18180b7c486a3115249de678ca09941c728 done
+#11 naming to docker.io/library/systems-engineer-tablekeeper-s1:timestamp-03 done
+#11 unpacking to docker.io/library/systems-engineer-tablekeeper-s1:timestamp-03 done
+#11 DONE 0.0s

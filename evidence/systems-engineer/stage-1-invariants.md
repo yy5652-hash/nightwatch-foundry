@@ -18,3 +18,7 @@ Harness: Codex. Operator model: gpt-6.1-sol. Actual runtime model override and e
 ## Calendar repair update
 
 The initial UTC round-trip implementation above was superseded after independent calendar rejection. Absolute time is an ordinal-based integer microsecond value, so valid local years 1–9999 do not require representable UTC dates. ZoneInfo fold-offset comparisons reject gaps; ordinary endpoint conversion uses ZoneInfo.fromutc and boundary endpoint conversion verifies a local candidate against the exact integer instant. Occupancy, order, cutoff and absolute duration share this representation. The original locking, validation-before-mutation and immutable receipt invariants remain unchanged. Details and the historical IANA offset-seconds/RFC3339 grammar issue are recorded in `stage-1-calendar-repair-02.md`.
+
+## Recorded timestamp interpretation
+
+The complete TIMESTAMP-3 package resolves the earlier pending grammar question. Newly computed subminute-offset timestamps use the nearest representable minute-aligned fixed offset and adjusted clock, with lower-offset ties; exact integer instants and original wall fields remain unchanged. Import and replay retain original timestamp strings and successful receipts rather than canonicalizing history. Ordinary minute-aligned timestamps retain the restaurant offset/clock. This is the coordinator's explicit interpretation exception, detailed and tested in `stage-1-timestamp-repair-03.md`.

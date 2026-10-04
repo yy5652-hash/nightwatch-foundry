@@ -25,3 +25,15 @@ Before service edits, `StageOne.test_exact_rfc3339_historical_representation` re
 Initial full post-repair builder run: 14/14 scenarios passed, no skipped tests, 1.851 s (`stage-1-timestamp-regression-03.log`). The final extended oracle and constrained HTTP run are recorded in the next append-only entry. Prior failure artifacts remain unchanged. Only `stage-1/core.py` and Systems-owned evidence paths changed; Engine.request, export schema and Stage 1 scope remain unchanged.
 
 Independent exact-revision acceptance, official isolated regression and clean-clone review remain pending. Harness Codex; configured gpt-6.1-sol; actual runtime model override, effort, usage and spend unknown.
+
+## Final implementation/container evidence
+
+Implementation revision: `f4eeac50227a59ce785768dbb37bb4641d83c88a`. Final extended-oracle Engine run passes 14/14 scenarios without skips, 1.675 s (`stage-1-timestamp-final-regression-03.log`). New image build `docker build -t systems-engineer-tablekeeper-s1:timestamp-03 stage-1` passed (`stage-1-timestamp-build-03.log`).
+
+Two repaired service processes and one actual prior-version service process ran on an internal network, each limited to 2 CPU and 2 GiB. Nondefault ports were 18106 (current source), 18107 (current destination) and 18108 (legacy source). Current containers used `systems-engineer-tablekeeper-s1:timestamp-03`; legacy used the retained `systems-engineer-tablekeeper-s1:calendar-02` image from implementation `49287b4a5a1481f995c470ccae31776f03d4b863`.
+
+Command: `docker exec -i systems-engineer-s1-timestamp-source-03 python - --url http://127.0.0.1:18106 --destination-url http://systems-engineer-s1-timestamp-destination-03:18107 --legacy-url http://systems-engineer-s1-timestamp-legacy-03:18108 < evidence/systems-engineer/stage-1-builder-probes.py`. All 14 HTTP scenarios passed without skips in 2.309 s (`stage-1-timestamp-http-03.log`), including exhaustive offset-oracle checks and genuine old receipt/export transfer to repaired processes. Exports and credentials stayed in memory.
+
+`stage-1-timestamp-runtime-03.log` contains expected/current image core hashes, expected/legacy image core hashes, all three constrained running states and Internal=true network setting. Both hash pairs match. All Systems-owned timestamp containers and network were removed after successful checks; images remain available. Service changes only affect core; the original Engine contract and deployment surface remain Interface-owned and unchanged.
+
+Builder completion does not promote the stage. The new full revision must receive the complete numbered review handoff and independent re-execution. Acceptance must retain the explicit interpretation exception: the subminute IANA offset is represented by a minute-aligned fixed offset plus an adjusted clock preserving its exact instant; imported successful old receipt strings are not rewritten.
