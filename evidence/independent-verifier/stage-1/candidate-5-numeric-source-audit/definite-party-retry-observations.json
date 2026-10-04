@@ -1,0 +1,70 @@
+[
+  {
+    "requirement_id": "TK1-finite-party-create-value",
+    "passed": false,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-finite-party-reuse-before-value",
+    "passed": false,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-finite-party-moves-value",
+    "passed": false,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-finite-party-moves-reuse-before-value",
+    "passed": false,
+    "expected": {
+      "status": 409,
+      "code": "idempotency_key_reuse"
+    },
+    "observed": {
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      }
+    }
+  }
+]

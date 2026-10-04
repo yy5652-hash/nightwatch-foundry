@@ -1,0 +1,43 @@
+[
+  {
+    "requirement_id": "TK1-numeric-unknown-exponent-create",
+    "passed": false,
+    "expected": "201; unknown valid finite JSON number ignored",
+    "observed": {
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-numeric-unknown-exponent-signup",
+    "passed": true,
+    "expected": "201; unknown valid finite JSON number ignored",
+    "observed": {
+      "status": 201,
+      "response": {
+        "user_id": "u_f035c2dd9aaf42c5900c2bd81fa3e98f",
+        "display_name": "Second",
+        "token": "[private client value]"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-numeric-unknown-exponent-reset",
+    "passed": false,
+    "expected": "204; unknown valid finite JSON number ignored",
+    "observed": {
+      "status": 400,
+      "response": {
+        "error": {
+          "code": "malformed_request",
+          "message": "Invalid JSON value"
+        }
+      }
+    }
+  }
+]
