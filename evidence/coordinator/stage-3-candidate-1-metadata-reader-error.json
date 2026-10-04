@@ -1,0 +1,19 @@
+{
+  "recorded_utc": "2026-10-04 08:10:02 UTC",
+  "candidate_full_revision": "91e2c471acded1b861b3fec725f202297b1c6740",
+  "scope": "Coordinator metadata reader failure before audit output creation, not service failure.",
+  "command": [
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python",
+    "-B",
+    "evidence/coordinator/audit_candidate_coverage.py",
+    "3",
+    "91e2c471acded1b861b3fec725f202297b1c6740",
+    "evidence/independent-verifier/stage-3/candidate-1/coverage.csv",
+    "evidence/coordinator/stage-3-candidate-1-metadata-audit.json"
+  ],
+  "returncode": 1,
+  "error": "_csv.Error: field larger than field limit (131072)",
+  "location": "audit_candidate_coverage.py:22 csv.DictReader",
+  "mutation": "No coverage/graded/verdict changes; requested audit output was not created.",
+  "repair": "Prospectively increase own CSV reader field size to sys.maxsize, retain every full original binding cell, execute new unique audit output."
+}

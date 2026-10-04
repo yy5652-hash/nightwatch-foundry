@@ -7,11 +7,13 @@ Prints JSON; does not rewrite an existing verdict, matrix or evidence file.
 import csv
 import hashlib
 import json
+import sys
 from pathlib import Path
 from acceptance_state import current_manifests, verify_history
 
 RESULT = Path(__file__).resolve().parents[2]
 reports = []
+csv.field_size_limit(sys.maxsize)
 verify_history()
 for manifest, saved in current_manifests():
     verdict = RESULT / saved['independent_verdict_path']

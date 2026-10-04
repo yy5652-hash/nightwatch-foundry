@@ -19,6 +19,8 @@ if stage not in range(1, 5) or not re.fullmatch(r"[0-9a-f]{40}", revision):
     raise ValueError("Stage 1..4 and full hexadecimal revision required")
 if subprocess.check_output(["git", "rev-parse", revision], cwd=ROOT, text=True).strip() != revision:
     raise ValueError("Candidate revision does not resolve exactly")
+# Bindings may contain complete executed command lists; retain exact full cells.
+csv.field_size_limit(sys.maxsize)
 rows = list(csv.DictReader(matrix.open()))
 required = ("requirement_id", "source_section", "source_line", "introduced_stage",
             "applicable_stages", "owner", "implementation_owner", "verification_owner",
@@ -73,4 +75,3 @@ with destination.open("x") as stream:
 print(json.dumps({"output": str(destination.relative_to(ROOT)), "rows": len(rows),
                   "counts": counts, "error_count": len(errors), "status": record["status"]}))
 raise SystemExit(record["status"] != "pass")
-
