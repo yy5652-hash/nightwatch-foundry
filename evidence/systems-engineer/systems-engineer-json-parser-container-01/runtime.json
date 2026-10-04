@@ -1,0 +1,397 @@
+{
+  "candidate": "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de",
+  "image_id": "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:stage-1/json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.008917582999856677,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-000.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:evidence/systems-engineer/stage-1-iterative-parser-probes.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.008166915999026969,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-001.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-parser-20261004t044330175010-grammar",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "--module",
+        "/app/json_codec.py",
+        "--out",
+        "/tmp/systems-engineer-parser"
+      ],
+      "returncode": 0,
+      "seconds": 0.04882449999786331,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-002.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-parser-20261004t044330175010-grammar"
+      ],
+      "returncode": 0,
+      "seconds": 0.02019687500069267,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-003.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-parser-20261004t044330175010-grammar"
+      ],
+      "returncode": 0,
+      "seconds": 0.4540700420002395,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-004.log",
+      "stdin_sha256": "ce8437c668c59183be3ab645e886dcc581ed660a2377c2a95680694ccb996a39"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-parser-20261004t044330175010-grammar"
+      ],
+      "returncode": 0,
+      "seconds": 0.029662582997843856,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-005.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-parser-20261004t044330175010-grammar:/tmp/systems-engineer-parser",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/grammar"
+      ],
+      "returncode": 0,
+      "seconds": 0.018959375000122236,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-006.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-parser-20261004t044330175010-grammar"
+      ],
+      "returncode": 0,
+      "seconds": 0.02593979100129218,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-007.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:evidence/systems-engineer/stage-1-json-codec-probes.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.011109041999588953,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-008.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-parser-20261004t044330175010-numeric",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "--module",
+        "/app/json_codec.py",
+        "--out",
+        "/tmp/systems-engineer-parser"
+      ],
+      "returncode": 0,
+      "seconds": 0.03430991700224695,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-009.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-parser-20261004t044330175010-numeric"
+      ],
+      "returncode": 0,
+      "seconds": 0.01846233300238964,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-010.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-parser-20261004t044330175010-numeric"
+      ],
+      "returncode": 0,
+      "seconds": 0.19208420799986925,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-011.log",
+      "stdin_sha256": "787f9e8fbd423580c3081c6d7d3275f22320791f496fcdf4a693059065156680"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-parser-20261004t044330175010-numeric"
+      ],
+      "returncode": 0,
+      "seconds": 0.02914391699960106,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-012.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-parser-20261004t044330175010-numeric:/tmp/systems-engineer-parser",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/numeric"
+      ],
+      "returncode": 0,
+      "seconds": 0.020256832998711616,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-013.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-parser-20261004t044330175010-numeric"
+      ],
+      "returncode": 0,
+      "seconds": 0.025010540997755015,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-014.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:evidence/systems-engineer/stage-1-json-depth-probes.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.011293125000520376,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-015.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-parser-20261004t044330175010-copy",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "--module",
+        "/app/json_codec.py",
+        "--out",
+        "/tmp/systems-engineer-parser"
+      ],
+      "returncode": 0,
+      "seconds": 0.0328111250018992,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-016.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-parser-20261004t044330175010-copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.017639958001382183,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-017.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-parser-20261004t044330175010-copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.411005624999234,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-018.log",
+      "stdin_sha256": "94819444d3b96cee455db9d6be7c0ce627b8e9815ec919b5c2f617c04a7ec4bc"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-parser-20261004t044330175010-copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.029741207999904873,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-019.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-parser-20261004t044330175010-copy:/tmp/systems-engineer-parser",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.021831333000591258,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-020.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-parser-20261004t044330175010-copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.026849874997424195,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-parser-container-01/command-021.log",
+      "stdin_sha256": null
+    }
+  ],
+  "runs": [
+    {
+      "label": "grammar",
+      "summary": {
+        "assertions": 722,
+        "passed": 722,
+        "failed": 0,
+        "seconds": 0.27843287500000713,
+        "seed": 2026100402,
+        "default_recursion_limit": 1000,
+        "module_sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263",
+        "scope": "codec diagnostics, not HTTP"
+      },
+      "exit_code": 0,
+      "oom_killed": false,
+      "process_exit_code": 0,
+      "cpu": 2,
+      "memory_bytes": 2147483648,
+      "mounts": [],
+      "network": "none"
+    },
+    {
+      "label": "numeric",
+      "summary": {
+        "assertions": 1442,
+        "passed": 1442,
+        "failed": 0,
+        "seed": 20261004,
+        "random_pairs": 180,
+        "parallel_tasks": 50,
+        "parallel_max_seconds": 4.6584000003235815e-05,
+        "wall_seconds": 0.007609874999999988,
+        "module_sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+      },
+      "exit_code": 0,
+      "oom_killed": false,
+      "process_exit_code": 0,
+      "cpu": 2,
+      "memory_bytes": 2147483648,
+      "mounts": [],
+      "network": "none"
+    },
+    {
+      "label": "copy",
+      "summary": {
+        "module_sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263",
+        "assertions": 171,
+        "passed": 171,
+        "failed": 0,
+        "wall_seconds": 0.23757583299999396,
+        "maximum_payload_bytes": 17642,
+        "maximum_wrapping_depth": 1600,
+        "recursion_limit_unchanged": 1000
+      },
+      "exit_code": 0,
+      "oom_killed": false,
+      "process_exit_code": 0,
+      "cpu": 2,
+      "memory_bytes": 2147483648,
+      "mounts": [],
+      "network": "none"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "systems-engineer-parser-20261004t044330175010-grammar",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-parser-20261004t044330175010-numeric",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-parser-20261004t044330175010-copy",
+      "returncode": 0
+    }
+  ],
+  "scope": "codec diagnostics only, not HTTP",
+  "wall_seconds": 1.4978777910000645,
+  "passed": true
+}

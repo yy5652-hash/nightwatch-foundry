@@ -1,0 +1,412 @@
+{
+  "candidate": "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de",
+  "image_id": "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.011788959000114119,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-000.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.01013191699894378,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-001.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de:stage-1/json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.010542667001573136,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-002.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "systems-engineer-deep-20261004t044350414453-net"
+      ],
+      "returncode": 0,
+      "seconds": 0.033425375000661006,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-003.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-deep-20261004t044350414453-0",
+        "--network",
+        "systems-engineer-deep-20261004t044350414453-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18161",
+        "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666"
+      ],
+      "returncode": 0,
+      "seconds": 0.09542337499806308,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-004.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-deep-20261004t044350414453-0",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor i in range(200):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18161/health',timeout=1).status==200\n  break\n except Exception:time.sleep(.05)\nelse:raise RuntimeError('health')"
+      ],
+      "returncode": 0,
+      "seconds": 0.19839262500318,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-005.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-deep-20261004t044350414453-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.03129662500214181,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-006.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-deep-20261004t044350414453-0",
+        "python",
+        "-c",
+        "import hashlib,json;print(json.dumps({n:hashlib.sha256(open('/app/'+n,'rb').read()).hexdigest() for n in ('core.py','server.py','json_codec.py')}))"
+      ],
+      "returncode": 0,
+      "seconds": 0.061822416999348206,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-007.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-deep-20261004t044350414453-1",
+        "--network",
+        "systems-engineer-deep-20261004t044350414453-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-e",
+        "PORT=18162",
+        "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666"
+      ],
+      "returncode": 0,
+      "seconds": 0.07671858300091117,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-008.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-deep-20261004t044350414453-1",
+        "python",
+        "-c",
+        "import time,urllib.request\nfor i in range(200):\n try:\n  assert urllib.request.urlopen('http://127.0.0.1:18162/health',timeout=1).status==200\n  break\n except Exception:time.sleep(.05)\nelse:raise RuntimeError('health')"
+      ],
+      "returncode": 0,
+      "seconds": 0.20467975000065053,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-009.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-deep-20261004t044350414453-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.030802749999566004,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-010.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-deep-20261004t044350414453-1",
+        "python",
+        "-c",
+        "import hashlib,json;print(json.dumps({n:hashlib.sha256(open('/app/'+n,'rb').read()).hexdigest() for n in ('core.py','server.py','json_codec.py')}))"
+      ],
+      "returncode": 0,
+      "seconds": 0.06159416599984979,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-011.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-deep-20261004t044350414453-client",
+        "--network",
+        "systems-engineer-deep-20261004t044350414453-net",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "http://systems-engineer-deep-20261004t044350414453-0:18161",
+        "http://systems-engineer-deep-20261004t044350414453-1:18162",
+        "/tmp/systems-engineer-deep-http.json"
+      ],
+      "returncode": 0,
+      "seconds": 0.052286000001913635,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-012.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-deep-20261004t044350414453-client"
+      ],
+      "returncode": 0,
+      "seconds": 7.6494752500002505,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-013.log",
+      "stdin_sha256": "093b9aebebdbef834d65cc843c89213b724a017f5e1d42c338932ce2a86c7be6"
+    },
+    {
+      "argv": [
+        "docker",
+        "cp",
+        "systems-engineer-deep-20261004t044350414453-client:/tmp/systems-engineer-deep-http.json",
+        "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/probe.json"
+      ],
+      "returncode": 0,
+      "seconds": 0.03665204099888797,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-014.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-deep-20261004t044350414453-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.016143374999955995,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-015.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-deep-20261004t044350414453-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.0180145829981484,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-016.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-deep-20261004t044350414453-client"
+      ],
+      "returncode": 0,
+      "seconds": 0.013744791998760775,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-017.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-deep-20261004t044350414453-client"
+      ],
+      "returncode": 0,
+      "seconds": 0.025740582997968886,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-018.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-deep-20261004t044350414453-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.08419345800211886,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-019.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-deep-20261004t044350414453-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.1027352079981938,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-020.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "systems-engineer-deep-20261004t044350414453-net"
+      ],
+      "returncode": 0,
+      "seconds": 0.0996638750002603,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-deep-decoder-http-01/command-021.log",
+      "stdin_sha256": null
+    }
+  ],
+  "services": [
+    {
+      "name": "systems-engineer-deep-20261004t044350414453-0",
+      "port": 18161,
+      "startup_seconds": 0.38711829200110515,
+      "source_sha256": {
+        "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+        "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+        "json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+      },
+      "image_id": "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+      "cpu": 2,
+      "memory_bytes": 2147483648,
+      "mounts": [],
+      "offline_internal_network": "systems-engineer-deep-20261004t044350414453-net"
+    },
+    {
+      "name": "systems-engineer-deep-20261004t044350414453-1",
+      "port": 18162,
+      "startup_seconds": 0.37426583300111815,
+      "source_sha256": {
+        "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+        "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+        "json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+      },
+      "image_id": "sha256:bb38e67289a3af6a8a09b1f99016003284b8cf3bcdb6d27655d8bc6379cd4666",
+      "cpu": 2,
+      "memory_bytes": 2147483648,
+      "mounts": [],
+      "offline_internal_network": "systems-engineer-deep-20261004t044350414453-net"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "systems-engineer-deep-20261004t044350414453-client",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-deep-20261004t044350414453-1",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-deep-20261004t044350414453-0",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-deep-20261004t044350414453-net",
+      "returncode": 0
+    }
+  ],
+  "client_sha256": "093b9aebebdbef834d65cc843c89213b724a017f5e1d42c338932ce2a86c7be6",
+  "client_exit_code": 0,
+  "summary": {
+    "requests": 249,
+    "assertions": 202,
+    "failed": 0,
+    "seconds": 7.381416587000004,
+    "export_decoder_calls": 0,
+    "deep_export_cases": 6,
+    "blocked_deep_export_cases": 0
+  },
+  "states_after_probe": {
+    "systems-engineer-deep-20261004t044350414453-0": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 2733,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-04T04:43:50.525581718Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "systems-engineer-deep-20261004t044350414453-1": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 2826,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-04T04:43:50.904504135Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "systems-engineer-deep-20261004t044350414453-client": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-04T04:43:51.324939385Z",
+      "FinishedAt": "2026-10-04T04:43:58.870156305Z"
+    }
+  },
+  "wall_seconds": 8.926954874998046
+}

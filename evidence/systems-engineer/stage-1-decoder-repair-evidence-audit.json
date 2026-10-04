@@ -1,0 +1,1857 @@
+{
+  "summary": {
+    "recorded_utc": "2026-10-04T04:46:56.281605+00:00",
+    "candidate": "9e6143bd4ff8d4429f51728cd3b3d96fd1f088de",
+    "stage1_tree": "75f6ece6952c570eedf8a548f4428a5b2c986128",
+    "json_object_records": 29205,
+    "files_hashed": 349,
+    "credential_state_fingerprints": 62,
+    "raw_private_payload_findings": [],
+    "forwarding_checks": [
+      {
+        "case": "array-1100",
+        "export_trace_index": 16,
+        "unchanged_bytes": 10346,
+        "sha256": "08324bf78d3a89b672639aeae5ce11819bac97abb3cbfefb634dbed0291a5989",
+        "passed": true
+      },
+      {
+        "case": "object-1100",
+        "export_trace_index": 49,
+        "unchanged_bytes": 23549,
+        "sha256": "9e14ae5a0915e87eae3fe3a3f61cc84927761066ddcf45466fb06e7b9d2fb108",
+        "passed": true
+      },
+      {
+        "case": "array-10000",
+        "export_trace_index": 82,
+        "unchanged_bytes": 63749,
+        "sha256": "c893893e940aa1b39fb89635eceafa1554254d9c07427652de8f364277b6181a",
+        "passed": true
+      },
+      {
+        "case": "object-10000",
+        "export_trace_index": 115,
+        "unchanged_bytes": 183752,
+        "sha256": "35dffc23253a5842703ceaac5e8ccba312777e8b675816a0c8e7c10d79b58deb",
+        "passed": true
+      },
+      {
+        "case": "array-20000",
+        "export_trace_index": 148,
+        "unchanged_bytes": 123749,
+        "sha256": "03e1b3fa91316b63b395b24cc794d2ac6331dda244cb7d2cc7b7193eb80d801a",
+        "passed": true
+      },
+      {
+        "case": "object-20000",
+        "export_trace_index": 231,
+        "unchanged_bytes": 484663,
+        "sha256": "25e408208d8d055688bff0bcf5918326fbd6d87535f189aac8644c30b4b80897",
+        "passed": true
+      }
+    ],
+    "every_export_trace_not_decoded": true,
+    "all_deep_http_requests_within_applicable_timeout": true,
+    "maximum_deep_request_seconds": 3.2606014599999895,
+    "maximum_deep_request_bytes": 484665,
+    "graded_diff_against_tested_candidate_empty": true,
+    "graded_changes_against_rejected_candidate": [
+      "stage-1/json_codec.py"
+    ],
+    "cleanup_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "large_isolated_assertions": 36,
+    "large_isolated_failed_assertions": 0,
+    "large_isolated_maximum_seconds": 0.04853870800000948,
+    "large_isolated_maximum_rss_linux_kib": 31976,
+    "scope": "Own saved JSON records and file hashes only; logs/source strings are not credential inventories; no genuine room-export review. Direct codec checks are distinct from real HTTP transfer."
+  },
+  "files": [
+    {
+      "path": "systems-engineer-json-parser-host-01/assertions.json",
+      "bytes": 50710,
+      "sha256": "8508f34f9ab4ee3b4ab229acc9ef6522999ba6cb0869a233cc6fe874733141cb"
+    },
+    {
+      "path": "systems-engineer-json-parser-host-01/executed-probe.py",
+      "bytes": 7575,
+      "sha256": "2c709b2bac483cd019c373b1c7f0ffaa6f11116a1b0da257e0fe934cb390b9be"
+    },
+    {
+      "path": "systems-engineer-json-parser-host-01/summary.json",
+      "bytes": 274,
+      "sha256": "6ccaaf5393a4eac983dacd6cebbf301d63b880749ec034b4eba773310ca8cf01"
+    },
+    {
+      "path": "systems-engineer-json-parser-host-01/trace.json",
+      "bytes": 73845,
+      "sha256": "e0efeeced591e2d1ceff11e836cce5ab705a314ed9bd7e37d6a87a72706879f8"
+    },
+    {
+      "path": "systems-engineer-json-parser-host-02/assertions.json",
+      "bytes": 55868,
+      "sha256": "4b6830aea62653daefb3f5af0d1e64709d99e43477b3f48f898fe570b58d909f"
+    },
+    {
+      "path": "systems-engineer-json-parser-host-02/summary.json",
+      "bytes": 276,
+      "sha256": "e73f96328442f2a6214f4d0a817b3a9dc709f47aea87c41cce21e614af1294ff"
+    },
+    {
+      "path": "systems-engineer-json-parser-host-02/trace.json",
+      "bytes": 73790,
+      "sha256": "b90234935bdf407d0d02347852018500da010d1cce35b0e46bdd6dd580991277"
+    },
+    {
+      "path": "systems-engineer-json-parser-numeric-host-01/assertions.json",
+      "bytes": 166844,
+      "sha256": "18a7966f366aaec6be1d5c2fd2d3bf7535f9a6e555c5c9a97b538d2ec58552dd"
+    },
+    {
+      "path": "systems-engineer-json-parser-numeric-host-01/random-trace.json",
+      "bytes": 26600,
+      "sha256": "daca64e04fcc944a60df9d55f01389dfbf85b611c7c35f87f296016aad578c24"
+    },
+    {
+      "path": "systems-engineer-json-parser-numeric-host-01/summary.json",
+      "bytes": 300,
+      "sha256": "43cc75339300a7fc0656187edd6b18f44b6df22014d9e94823e83d28df563e00"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/alternating-1000.json",
+      "bytes": 6542,
+      "sha256": "c2bc87be37ae3c92e8858db8e7f73a4b0c79900ed73bf4db0b19bf140603665d"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/alternating-1100.json",
+      "bytes": 7192,
+      "sha256": "4ad69f73773002042ae542d3ec7e55dc107f1e6965f0b1c754a950ba6cab5773"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/alternating-1200.json",
+      "bytes": 7842,
+      "sha256": "112712ad22a9e57e574c58d3426e01e5e61789a05457ec9d589f5b500e358b56"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/alternating-1600.json",
+      "bytes": 10442,
+      "sha256": "7cbba90d1c001e14aa24349a147691bb77b2b2462ecf7912fd1a3e451a57c473"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/alternating-750.json",
+      "bytes": 4917,
+      "sha256": "c3882845ef72c18e8fe14d378719dad2ffea4369886eeaf29d4d7029c7276c93"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/array-1000.json",
+      "bytes": 2042,
+      "sha256": "b2222d6338296c17d85e68a672f68eafdba518fe2be324447aaa2157e9fb049d"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/array-1100.json",
+      "bytes": 2242,
+      "sha256": "230da17ddbdb155225c21340ac2f1e57d49421d74c8eb47e89cf5647383ebd3e"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/array-1200.json",
+      "bytes": 2442,
+      "sha256": "4229016810076b02568088b700c1508e43425fea385e9e9120c93f4640a6fdd1"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/array-1600.json",
+      "bytes": 3242,
+      "sha256": "cee637317c436c4b0461316593e7b83aaa035850d6445293eb9f757d0ab78d09"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/array-750.json",
+      "bytes": 1542,
+      "sha256": "9da1cf418553144cd0f08dd691fef02c227a714064a92f1ce3d5d56679c44b74"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/object-1000.json",
+      "bytes": 11042,
+      "sha256": "66431d1ecd1c7a0e070df88740354ebe9407219e48e1420ae2f295790d21a577"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/object-1100.json",
+      "bytes": 12142,
+      "sha256": "8d6a3424a4e33f94146847ba1ae494f9efcaef8580072ad235a587b8482c2616"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/object-1200.json",
+      "bytes": 13242,
+      "sha256": "aa0e1a8a7544e6ccf0b90ae7151ffe5f4d68e69d08e54bceaf3c6bc9807261fb"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/object-1600.json",
+      "bytes": 17642,
+      "sha256": "5db1aaf44f260b93a2bcf4a69e9551431579fe0b46e1e8779ac0f627a4790f23"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/object-750.json",
+      "bytes": 8292,
+      "sha256": "dc4c03184399eaec942ef84a7062b62bea8e1ab4d645bcf3f3fb8e185cb34747"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/observations.json",
+      "bytes": 84656,
+      "sha256": "4acaaffc7589c3784167729554ea5881cd64b23df4e59beaddc96fbb70e7b5b7"
+    },
+    {
+      "path": "systems-engineer-json-parser-copy-host-01/summary.json",
+      "bytes": 287,
+      "sha256": "764816be0e9958ba69b51499a3e3d38d6d281a1588d04b2ac7ab11d9ba121429"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-00.log",
+      "bytes": 41,
+      "sha256": "2fb9696b9ddeaff5c1c11935e16cf90a4920eb672ad7839e154d5d3aa8f6de97"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-01.log",
+      "bytes": 184,
+      "sha256": "035ccde85c25d809f8ab7d4fee41c807813a28067e94aa134cf6f7c99e48b14e"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-02.log",
+      "bytes": 80,
+      "sha256": "132f23bfb809fcb04977274439c70ebf6ed118c49224f08b1459549ae02adc60"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-03.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-04.log",
+      "bytes": 1922,
+      "sha256": "9cc0a426adb467e5f0afcb9a4492cbfc3fb7e61a4be3151f0a3c0818ab584631"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-05.log",
+      "bytes": 503,
+      "sha256": "c8eea299aa99098435d25c440172cc4fbd09f92320923216e99deb60d3c1145b"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-06.log",
+      "bytes": 5498,
+      "sha256": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-07.log",
+      "bytes": 35126,
+      "sha256": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-08.log",
+      "bytes": 34,
+      "sha256": "9f1b9601941647e488268600635b1b911516c8fdf164feb1737d5d75cd2e6267"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-09.log",
+      "bytes": 2574,
+      "sha256": "eee6972f87dc025e8c7eb219dfd3b3529f3e5e98ff72eb75769c76f67f85e749"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-10.log",
+      "bytes": 1750,
+      "sha256": "990aaeb9d493619a46bdeeeaf89eb1b7a5d5dee0b43d0784509f03a4abdfc790"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-11.log",
+      "bytes": 503,
+      "sha256": "c8eea299aa99098435d25c440172cc4fbd09f92320923216e99deb60d3c1145b"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-12.log",
+      "bytes": 5498,
+      "sha256": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-13.log",
+      "bytes": 36996,
+      "sha256": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-14.log",
+      "bytes": 34,
+      "sha256": "9f1b9601941647e488268600635b1b911516c8fdf164feb1737d5d75cd2e6267"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-15.log",
+      "bytes": 2574,
+      "sha256": "eee6972f87dc025e8c7eb219dfd3b3529f3e5e98ff72eb75769c76f67f85e749"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-16.log",
+      "bytes": 1744,
+      "sha256": "2ba9281359e8c7cd0d52ccfb52377865fbe8620d0fc70c98fb8c753fb9bf4c43"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-17.log",
+      "bytes": 1534,
+      "sha256": "b4143455ff8a88c5adac39fb5ca2d685bbd2f75d3b7f6720d07ca420d296ad48"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-18.log",
+      "bytes": 65,
+      "sha256": "dc51be1f6af434cee2d2ce8b0ab12e6561e21927f66bf444fe0a522ca8487d68"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-19.log",
+      "bytes": 1208,
+      "sha256": "cd84a4a97166622dc0433ddc5f97b5a18961c8d22b5cb4946ddfcb61b0fd18f5"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-20.log",
+      "bytes": 65,
+      "sha256": "5a2ae0a98650ba6a269942adbc4ef21edcc949adb566cb1115d74117a9e8c363"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-21.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-22.log",
+      "bytes": 7611,
+      "sha256": "d1c351d74b836c24624ededad890c9c376456fd5cd1820c990a214a2f206d888"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-23.log",
+      "bytes": 37881,
+      "sha256": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-24.log",
+      "bytes": 65,
+      "sha256": "a51c67370a157878d4aeea4d40e7b5286e1670a787a52662d964a084197aff44"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-25.log",
+      "bytes": 5265,
+      "sha256": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-26.log",
+      "bytes": 65,
+      "sha256": "ad5f4f6abe925d8d0eff477ce78f66a37eec2323d0f1c95ef281bc633cac91ac"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-27.log",
+      "bytes": 14993,
+      "sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-28.log",
+      "bytes": 65,
+      "sha256": "03cb56149614b094c3f66161290cd11828ba255197c321094d4f28b570198f02"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-29.log",
+      "bytes": 65,
+      "sha256": "0d91d8915307c957b9bcbd23110a148fca8857187592eec3c44e9785042ff2d0"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-30.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-31.log",
+      "bytes": 7675,
+      "sha256": "7df420b1555b24143c6c6f7a87362729d60e029062ecae065ff4664cd1ef4905"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-32.log",
+      "bytes": 37881,
+      "sha256": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-33.log",
+      "bytes": 65,
+      "sha256": "a51c67370a157878d4aeea4d40e7b5286e1670a787a52662d964a084197aff44"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-34.log",
+      "bytes": 5265,
+      "sha256": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-35.log",
+      "bytes": 65,
+      "sha256": "ad5f4f6abe925d8d0eff477ce78f66a37eec2323d0f1c95ef281bc633cac91ac"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-36.log",
+      "bytes": 14993,
+      "sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-37.log",
+      "bytes": 65,
+      "sha256": "03cb56149614b094c3f66161290cd11828ba255197c321094d4f28b570198f02"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-38.log",
+      "bytes": 65,
+      "sha256": "a06d7e2bdfc541c3c9b9483630a0cb28586817f5c388a630baabbc8f0cf0cd45"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-39.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-40.log",
+      "bytes": 7692,
+      "sha256": "bfd2f09f5e831fea6591bcce71ef40c3012b33e260ea88947434c8e0f0e8e25e"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-41.log",
+      "bytes": 35126,
+      "sha256": "eb5771483ec6d7fbdf770b7ede09394b4838fc55c3aa66325e77fa0f3145ec40"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-42.log",
+      "bytes": 65,
+      "sha256": "8dfaa9c483a1ab5aceade90990503e794f31bf08c6683e62aae8ee112ad5dae1"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-43.log",
+      "bytes": 5498,
+      "sha256": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-44.log",
+      "bytes": 65,
+      "sha256": "60d567c386ddc7709f8d30f001f33419e6e8a8cfca73c06c32e4b3d0b8d25537"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-45.log",
+      "bytes": 65,
+      "sha256": "504ca7e9c4e41e413b821504cbc9cfdbbed97d198b8ab76f79c1c064e9d44cc3"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-46.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-47.log",
+      "bytes": 7685,
+      "sha256": "a53e19bce7eba98bdd026849893b5aed8ddd85e7a99ea2318b9c78f5e748a403"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-48.log",
+      "bytes": 36996,
+      "sha256": "324c6535bb81f13a61244da554b33c385544f13556e5d894ad5ae53578847380"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-49.log",
+      "bytes": 65,
+      "sha256": "6bf09405d7828fa41dbf4c2a3a5a0acea18b9fa929efcbef216c68d740cf0776"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-50.log",
+      "bytes": 5498,
+      "sha256": "0651a641eec4656d68cb141d8931ca8d65d6e3cc8a092de288f037fab80c6168"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-51.log",
+      "bytes": 65,
+      "sha256": "60d567c386ddc7709f8d30f001f33419e6e8a8cfca73c06c32e4b3d0b8d25537"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-52.log",
+      "bytes": 65,
+      "sha256": "8cde6e0ce685408a438a96b1b1f6892e11393c178ba3215efe5de219f87caa00"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-53.log",
+      "bytes": 7558,
+      "sha256": "f4b9a5ebd019f62ffb2c5c5f3238c84b747efdba2f6eddc23e4e13d33c428dd6"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-54.log",
+      "bytes": 52,
+      "sha256": "66c0e3019f7f4173817e04b820bad7e218d6d3d845ef085b27cf39df56dbfaf6"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-55.log",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-56.log",
+      "bytes": 227,
+      "sha256": "184f134c9bc603b8c5bb0153f5535530118f711f7e4dc63f4e3bdfbd143e4710"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-57.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-58.log",
+      "bytes": 65,
+      "sha256": "c791d1aa04dacec4a9e3bf8e28781cb0104a952aab28782c3163678a47703061"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-59.log",
+      "bytes": 7232,
+      "sha256": "beb0771943e43f1429197dc961bce82a88070c86d91dfe861448035396c1c8ab"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-60.log",
+      "bytes": 54,
+      "sha256": "69af2a939d6ac6bba47731bbb2e68c24ee948702b2add3a3bfe75150a086a762"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-61.log",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-62.log",
+      "bytes": 1821,
+      "sha256": "9ec093d96d5337edfe01e4f7058fa6c0e057d0b776a59ee8d0c42714f5a7e297"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-63.log",
+      "bytes": 65,
+      "sha256": "cdb1c4ce10dcbe87bde41aa065c84e29e68f645e2bbc49910e12cf0826fba806"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-64.log",
+      "bytes": 7261,
+      "sha256": "e6b30e7aca1976dd8df0204397978b286448d173484a56f6bd945a0d5f13cb20"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-65.log",
+      "bytes": 51,
+      "sha256": "d10560a892f35999550fc1463af91559a363b7db62f693c835b109b8fea9aaac"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-66.log",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-67.log",
+      "bytes": 87,
+      "sha256": "227bf2e85e502d576d9113b20a7aac84ab691c73b29bc91c98035fbd2f30bbc0"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-68.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-69.log",
+      "bytes": 65,
+      "sha256": "e9809d48f3c6023445bbefe86468653aa2340f0d3660bf113e141d2a10901265"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-70.log",
+      "bytes": 6732,
+      "sha256": "b2aa65c9ca50e4842664df02d59d984a473b26e59752ecb253be8341679cde89"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-71.log",
+      "bytes": 54,
+      "sha256": "8f44cdf6be614ead391335d1fce4d94a3ace97b39cc7128b0a29e8372ca00499"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-72.log",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-73.log",
+      "bytes": 154,
+      "sha256": "31dfe56a58b10fdf77409d600837a3bdb1fd3a8f4321b9900f82a6ff425cd250"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-74.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-75.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-76.log",
+      "bytes": 154,
+      "sha256": "31dfe56a58b10fdf77409d600837a3bdb1fd3a8f4321b9900f82a6ff425cd250"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-77.log",
+      "bytes": 54,
+      "sha256": "8f44cdf6be614ead391335d1fce4d94a3ace97b39cc7128b0a29e8372ca00499"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-78.log",
+      "bytes": 87,
+      "sha256": "227bf2e85e502d576d9113b20a7aac84ab691c73b29bc91c98035fbd2f30bbc0"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-79.log",
+      "bytes": 51,
+      "sha256": "d10560a892f35999550fc1463af91559a363b7db62f693c835b109b8fea9aaac"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-80.log",
+      "bytes": 1821,
+      "sha256": "9ec093d96d5337edfe01e4f7058fa6c0e057d0b776a59ee8d0c42714f5a7e297"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-81.log",
+      "bytes": 54,
+      "sha256": "69af2a939d6ac6bba47731bbb2e68c24ee948702b2add3a3bfe75150a086a762"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-82.log",
+      "bytes": 227,
+      "sha256": "184f134c9bc603b8c5bb0153f5535530118f711f7e4dc63f4e3bdfbd143e4710"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-83.log",
+      "bytes": 52,
+      "sha256": "66c0e3019f7f4173817e04b820bad7e218d6d3d845ef085b27cf39df56dbfaf6"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-84.log",
+      "bytes": 39,
+      "sha256": "6bc060b96c66c730a246caa7c0a2c91ae270fdadec4f10d5e5d25e827980e215"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-85.log",
+      "bytes": 48,
+      "sha256": "6b04e9e518a49c65de0640f8c732510bb7bebb28bcc0b6945f8fc3d3814c274d"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-86.log",
+      "bytes": 39,
+      "sha256": "fb617dad34897a2aa92e22ba523fcc0354b3ece0ba016a9a78c1354d7df86861"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-87.log",
+      "bytes": 51,
+      "sha256": "7a75ea37daaafb043055d71f04a4cf19add8e2a5eee2bb9ef9de0116382159bc"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-88.log",
+      "bytes": 39,
+      "sha256": "3fa039615ee9cb97a9f30d1329411de56f08149dbd79c9e2e6a22d53c9f7fefc"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-89.log",
+      "bytes": 46,
+      "sha256": "b63725fd2dde8aca343cfdc76de013f1674f54244c429f1c7eb10259260152b3"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-90.log",
+      "bytes": 38,
+      "sha256": "1cd044468f8a9561b469bc0d6863fa95cf36999e361b1fef6441e2e2c4e7447a"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-91.log",
+      "bytes": 46,
+      "sha256": "f4d5406b568b153b82b2892c066e635460a9ef73c941aa4c881b9c1c1553326d"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/command-92.log",
+      "bytes": 48,
+      "sha256": "65e866b7dcf61128465296879942062685e1ba4f2c235263dffa84c036bed5fe"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/digits.json",
+      "bytes": 97804,
+      "sha256": "2598babf78acaafa033c54bde2d4ec6bc05f2f6128a946e0d071a729bcca4cb2"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/digits.log",
+      "bytes": 87,
+      "sha256": "227bf2e85e502d576d9113b20a7aac84ab691c73b29bc91c98035fbd2f30bbc0"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/inherited.log",
+      "bytes": 1821,
+      "sha256": "9ec093d96d5337edfe01e4f7058fa6c0e057d0b776a59ee8d0c42714f5a7e297"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/numbers/trace.json",
+      "bytes": 399374,
+      "sha256": "b2b7406e3cf811612e77dba055b37962e32c34e752a86552af7a40eab7df8313"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/numbers.log",
+      "bytes": 227,
+      "sha256": "184f134c9bc603b8c5bb0153f5535530118f711f7e4dc63f4e3bdfbd143e4710"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/ownership.json",
+      "bytes": 1528,
+      "sha256": "b3e2bc08626580eee461e950551ffcd722cde058d0233a536d9498cdc8e24498"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/ownership.log",
+      "bytes": 154,
+      "sha256": "31dfe56a58b10fdf77409d600837a3bdb1fd3a8f4321b9900f82a6ff425cd250"
+    },
+    {
+      "path": "systems-engineer-json-decoder-service-01/runtime.json",
+      "bytes": 55282,
+      "sha256": "1a546c96928dc767a5186b07448f489b789d78c197bb0733f0497c06b216e69b"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-000.log",
+      "bytes": 14993,
+      "sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-001.log",
+      "bytes": 7512,
+      "sha256": "ce8437c668c59183be3ab645e886dcc581ed660a2377c2a95680694ccb996a39"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-002.log",
+      "bytes": 65,
+      "sha256": "dadc8aa5461655657a0e2964098a09d3a61f1c03b1f8f10f27d562e8310fcf5c"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-003.log",
+      "bytes": 6845,
+      "sha256": "be4235df3ce6e128ecc4751c8f73680288931bc26c83b89f78c26e17565c2be8"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-004.log",
+      "bytes": 258,
+      "sha256": "7ff6cce94ebc29570dc549a066f2577142c8fc98b7c3cb3e99842d0d9c40ad0b"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-005.log",
+      "bytes": 7392,
+      "sha256": "7e7187b70e7b91b8d0a28a987d41fcb06b900897aba1cc1ec1d175f057d684ff"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-006.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-007.log",
+      "bytes": 54,
+      "sha256": "19ea9b3bc9a813a2b14245084eaf4f307e8a3b0aedb76589036175e156684da5"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-008.log",
+      "bytes": 11012,
+      "sha256": "787f9e8fbd423580c3081c6d7d3275f22320791f496fcdf4a693059065156680"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-009.log",
+      "bytes": 65,
+      "sha256": "7d4013c08914a2399e73a2f8932cdd7bf036b6b1780916370546276d292269d5"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-010.log",
+      "bytes": 6846,
+      "sha256": "49b9599bbd711aa0ce288da703d02550cbc1730781cec0baf2383518d31c9861"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-011.log",
+      "bytes": 282,
+      "sha256": "18e6d897a1c64f7d02dd948e7b10e320c6ec174617827fde4b6d61e3ace5501b"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-012.log",
+      "bytes": 7390,
+      "sha256": "828bd7503b6ae2823bb19957104d2e29457d43f39a514be93f792d5fa8807bc3"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-013.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-014.log",
+      "bytes": 54,
+      "sha256": "b06b1eb73315a49308303b58a19f4149939dd250073064e2e654b04c0499583f"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-015.log",
+      "bytes": 7562,
+      "sha256": "94819444d3b96cee455db9d6be7c0ce627b8e9815ec919b5c2f617c04a7ec4bc"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-016.log",
+      "bytes": 65,
+      "sha256": "503934d01ac2322dc6b4b38c8ceb36d7c038806d9a92721dedb745b97b00d3dd"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-017.log",
+      "bytes": 6843,
+      "sha256": "0501666d8d8c12128188412f008a7030fa0be8bdcd4012373aee8ac3e396a91a"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-018.log",
+      "bytes": 269,
+      "sha256": "0357ed3f32ba8bb8cb9fddc016013dc3b6e458b4ef6979e2a705d956c7480579"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-019.log",
+      "bytes": 7385,
+      "sha256": "dce3331990ebd35cb18d4b511b6b66b6daab4612462609708a78b6917da10e07"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-020.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/command-021.log",
+      "bytes": 51,
+      "sha256": "dcacab830cc1280904bd3007f0c39ed0c2094322a16bfe5657d9d461cfeb4a29"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/alternating-1000.json",
+      "bytes": 6542,
+      "sha256": "c2bc87be37ae3c92e8858db8e7f73a4b0c79900ed73bf4db0b19bf140603665d"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/alternating-1100.json",
+      "bytes": 7192,
+      "sha256": "4ad69f73773002042ae542d3ec7e55dc107f1e6965f0b1c754a950ba6cab5773"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/alternating-1200.json",
+      "bytes": 7842,
+      "sha256": "112712ad22a9e57e574c58d3426e01e5e61789a05457ec9d589f5b500e358b56"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/alternating-1600.json",
+      "bytes": 10442,
+      "sha256": "7cbba90d1c001e14aa24349a147691bb77b2b2462ecf7912fd1a3e451a57c473"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/alternating-750.json",
+      "bytes": 4917,
+      "sha256": "c3882845ef72c18e8fe14d378719dad2ffea4369886eeaf29d4d7029c7276c93"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/array-1000.json",
+      "bytes": 2042,
+      "sha256": "b2222d6338296c17d85e68a672f68eafdba518fe2be324447aaa2157e9fb049d"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/array-1100.json",
+      "bytes": 2242,
+      "sha256": "230da17ddbdb155225c21340ac2f1e57d49421d74c8eb47e89cf5647383ebd3e"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/array-1200.json",
+      "bytes": 2442,
+      "sha256": "4229016810076b02568088b700c1508e43425fea385e9e9120c93f4640a6fdd1"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/array-1600.json",
+      "bytes": 3242,
+      "sha256": "cee637317c436c4b0461316593e7b83aaa035850d6445293eb9f757d0ab78d09"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/array-750.json",
+      "bytes": 1542,
+      "sha256": "9da1cf418553144cd0f08dd691fef02c227a714064a92f1ce3d5d56679c44b74"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/object-1000.json",
+      "bytes": 11042,
+      "sha256": "66431d1ecd1c7a0e070df88740354ebe9407219e48e1420ae2f295790d21a577"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/object-1100.json",
+      "bytes": 12142,
+      "sha256": "8d6a3424a4e33f94146847ba1ae494f9efcaef8580072ad235a587b8482c2616"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/object-1200.json",
+      "bytes": 13242,
+      "sha256": "aa0e1a8a7544e6ccf0b90ae7151ffe5f4d68e69d08e54bceaf3c6bc9807261fb"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/object-1600.json",
+      "bytes": 17642,
+      "sha256": "5db1aaf44f260b93a2bcf4a69e9551431579fe0b46e1e8779ac0f627a4790f23"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/object-750.json",
+      "bytes": 8292,
+      "sha256": "dc4c03184399eaec942ef84a7062b62bea8e1ab4d645bcf3f3fb8e185cb34747"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/observations.json",
+      "bytes": 84649,
+      "sha256": "97c2a0b3e083077608f7734f91bad2b9e787ee8a55f8ae082662b49a2f03ebea"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/copy/summary.json",
+      "bytes": 287,
+      "sha256": "a66b4380c5c2bb54e78139a26872bbbee609b76a174da55b397e21fbbc87b1e3"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/executed-stage-1-iterative-parser-probes.py",
+      "bytes": 7512,
+      "sha256": "ce8437c668c59183be3ab645e886dcc581ed660a2377c2a95680694ccb996a39"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/executed-stage-1-json-codec-probes.py",
+      "bytes": 11012,
+      "sha256": "787f9e8fbd423580c3081c6d7d3275f22320791f496fcdf4a693059065156680"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/executed-stage-1-json-depth-probes.py",
+      "bytes": 7562,
+      "sha256": "94819444d3b96cee455db9d6be7c0ce627b8e9815ec919b5c2f617c04a7ec4bc"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/grammar/assertions.json",
+      "bytes": 55868,
+      "sha256": "4b6830aea62653daefb3f5af0d1e64709d99e43477b3f48f898fe570b58d909f"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/grammar/summary.json",
+      "bytes": 276,
+      "sha256": "11d91ce60afe19be511e259227b7c21007cb479039140b9c489453ce6c95432b"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/grammar/trace.json",
+      "bytes": 73790,
+      "sha256": "f3027b5b443a0734bfd55f9fe658d17b33cbf7a60432ea89ea9ed25cc90b1477"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/numeric/assertions.json",
+      "bytes": 166851,
+      "sha256": "9756de5616be21da982fcf6d8ec8d9682921fdacc8362fb9fb70539502da6a69"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/numeric/random-trace.json",
+      "bytes": 26600,
+      "sha256": "daca64e04fcc944a60df9d55f01389dfbf85b611c7c35f87f296016aad578c24"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/numeric/summary.json",
+      "bytes": 302,
+      "sha256": "9e42733ba24e9748fc714a9ba5482614dff4d16e21646dd99a05bac5baf25821"
+    },
+    {
+      "path": "systems-engineer-json-parser-container-01/runtime.json",
+      "bytes": 14781,
+      "sha256": "985111bd714a1846538e92cea118207e5baa1fbca8a524968af93a1ae2c7e3fa"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-000.log",
+      "bytes": 37881,
+      "sha256": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-001.log",
+      "bytes": 5265,
+      "sha256": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-002.log",
+      "bytes": 14993,
+      "sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-003.log",
+      "bytes": 65,
+      "sha256": "211bbcd55b7a6c367bb0f26aca181f7dc919ba316b37996dfe766a908645f606"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-004.log",
+      "bytes": 65,
+      "sha256": "ab084cb8cb224436c5b04a71a123e42198ae9308e118244c34274227777fce6b"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-005.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-006.log",
+      "bytes": 7470,
+      "sha256": "6e974fd408c3053f872448d7e7f40f68e7cd064b3f70e63877b21e24616ad7d8"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-007.log",
+      "bytes": 246,
+      "sha256": "923b44e1454ad64fa881b2c9234ef5a237fac8ea2cf87f88323f0acd167d50c0"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-008.log",
+      "bytes": 65,
+      "sha256": "756e1672c286be57c25c54d89f3218d26aa8b968fecbd659d9dfa3c1823a935f"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-009.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-010.log",
+      "bytes": 7469,
+      "sha256": "db511cb4f85e0be5644c7e3e472533773c89c98feee69cdf0b01572d67a8e01d"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-011.log",
+      "bytes": 246,
+      "sha256": "923b44e1454ad64fa881b2c9234ef5a237fac8ea2cf87f88323f0acd167d50c0"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-012.log",
+      "bytes": 65,
+      "sha256": "252d4814eba3722513473f9ac6c441598817b9db1ba2e2467ceca8d35f24085d"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-013.log",
+      "bytes": 163,
+      "sha256": "ac8344f18f1629082085c19cda23e4ddcedbc449ec5f6a5bd1d8f6919eeb9ad4"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-014.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-015.log",
+      "bytes": 7470,
+      "sha256": "6e974fd408c3053f872448d7e7f40f68e7cd064b3f70e63877b21e24616ad7d8"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-016.log",
+      "bytes": 7469,
+      "sha256": "db511cb4f85e0be5644c7e3e472533773c89c98feee69cdf0b01572d67a8e01d"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-017.log",
+      "bytes": 7761,
+      "sha256": "9fde4f41c86cd593d7e78a22ce4193c5e7d22c1b5f5ff1153f08e96a8dd4c1b1"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-018.log",
+      "bytes": 51,
+      "sha256": "e90cd458446272546b8cb474e80bda0dc4e0893e4496831b6d0732bea84b6ae5"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-019.log",
+      "bytes": 46,
+      "sha256": "7ace6bbc142bbeb3f31eb507cc65e83453ae5fadbe052ec1414c8494ab90e323"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-020.log",
+      "bytes": 46,
+      "sha256": "f2f30442ab50415d48d9c00bb34d747893cffddacc1c7d50e97e1b757d69a489"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/command-021.log",
+      "bytes": 48,
+      "sha256": "5c0517f7c57fb753bcb259ed799f439ad9c61a7672078d4393904751b4412570"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/executed-client.py",
+      "bytes": 13936,
+      "sha256": "093b9aebebdbef834d65cc843c89213b724a017f5e1d42c338932ce2a86c7be6"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/probe.json",
+      "bytes": 135195,
+      "sha256": "b1fcb218470b8dfde1f71e546a86051badd08c3f3882f77c2bfb05c87f11a73f"
+    },
+    {
+      "path": "systems-engineer-json-deep-decoder-http-01/runtime.json",
+      "bytes": 15878,
+      "sha256": "f177f4cbf5c2ec17b083d4f20b45ce51562e7fc9be0e43c98a82b4d0cc614084"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-10000-copy.log",
+      "bytes": 1284,
+      "sha256": "42977684710e2fc8423cefe50122ee73536a1f5f59bac14c18f78d6948c2ed03"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-10000-decoder.log",
+      "bytes": 1149,
+      "sha256": "db1f267a147f2bda38bb2f9f2d9a970f51c93b7c4ad98e29bcbdfbb961f1e067"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-10000-encoder.log",
+      "bytes": 1147,
+      "sha256": "e145e9efbf86e3392a365ad05ddcf023fbad3132ae180652124b9ca48daa44e5"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-10000-equality.log",
+      "bytes": 1191,
+      "sha256": "5fbad005bcc3ef30d6c2da47cc9df330368c22e4460eb3fc44185e7f0110f04b"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-10000-roundtrip.log",
+      "bytes": 1200,
+      "sha256": "f0e7783f818823ccd70998eb3522f180ce3e9235d1dbf08d12a1d81ac1ed5bf3"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-10000-validation.log",
+      "bytes": 1138,
+      "sha256": "33e0118ce3b273f1090fb29ee0ba26633d5efe7f45b4c73bbd2632beec0e1d92"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-20000-copy.log",
+      "bytes": 1284,
+      "sha256": "3e232c6579be4df1ebf1721b1fe211ca30e1e34bdca6431ebc8fd272213356b8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-20000-decoder.log",
+      "bytes": 1148,
+      "sha256": "13ac4e5df45ecc481afdee3ddcf8f9e5f73f7db04d2092c0faa5cee5cdd01c40"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-20000-encoder.log",
+      "bytes": 1147,
+      "sha256": "523f5e189ad8a569d460daf7473995332241ed45bc5cbba4a918aaeb06ab05eb"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-20000-equality.log",
+      "bytes": 1190,
+      "sha256": "a0acbb9f7f2abd4bfafc20ceb2739d72aa7fa8292f9b6626d62d0cb0d16d59a6"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-20000-roundtrip.log",
+      "bytes": 1199,
+      "sha256": "cac96f28adbc572695330f44804cfde22b2198892b137de0927a98b2ce70a4be"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/array-20000-validation.log",
+      "bytes": 1138,
+      "sha256": "d1b24f4db46d798b6812cec7e109c75878a73d9e978f72d3ae99daee5783df9a"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-000.log",
+      "bytes": 14993,
+      "sha256": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-001.log",
+      "bytes": 65,
+      "sha256": "15044adb9509dd0726ee9f496f7acb14c874e5fc90bb216b3d3cb46fcc435251"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-002.log",
+      "bytes": 6719,
+      "sha256": "558da1f3289254d535be4f3e17c26de4b01fe390b7feb1dcbfdf61d162be8ac6"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-003.log",
+      "bytes": 1149,
+      "sha256": "db1f267a147f2bda38bb2f9f2d9a970f51c93b7c4ad98e29bcbdfbb961f1e067"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-004.log",
+      "bytes": 7264,
+      "sha256": "d9ccfe89bb9bc8a8930292a9bf40f29d0b13e3ae3828ad5703c35f46a10d814b"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-005.log",
+      "bytes": 47,
+      "sha256": "68375c08725d8d3a65cde6ad4dbda8452672261651fc1591fab1146a5250adb4"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-006.log",
+      "bytes": 65,
+      "sha256": "8db39f3a0ba14a9f97771a561bddccdb85c49ff801e132a7aad466b4531f2d9e"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-007.log",
+      "bytes": 6725,
+      "sha256": "58ba10a0a137b8cce732c27a7b74fbeb67129915bd3dae76b089437b5574caab"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-008.log",
+      "bytes": 1138,
+      "sha256": "33e0118ce3b273f1090fb29ee0ba26633d5efe7f45b4c73bbd2632beec0e1d92"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-009.log",
+      "bytes": 7272,
+      "sha256": "bf33187ca6a8c72b4143d5f426b8a158a42760e258c4898989aea1e4a1ebea8c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-010.log",
+      "bytes": 47,
+      "sha256": "2d3252b479a8cf86c7353376b8ff228996e4262a996d916d899d5dda082b134c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-011.log",
+      "bytes": 65,
+      "sha256": "31b87e18d0af5111c7050460cdd2c3f9b43ce2099205dc37fb4e9876fd033cd1"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-012.log",
+      "bytes": 6721,
+      "sha256": "27fc6e2769c98914d2d0c6da66f2989d35b31c03fb5224ee5f4427cd3bb9178f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-013.log",
+      "bytes": 1191,
+      "sha256": "5fbad005bcc3ef30d6c2da47cc9df330368c22e4460eb3fc44185e7f0110f04b"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-014.log",
+      "bytes": 7268,
+      "sha256": "a0f818086d4c033d6606399222bde31401084b40034c6be088faa204cde85738"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-015.log",
+      "bytes": 47,
+      "sha256": "4ecc5407ef1f413665d27d6dc0a13e98e01b64674c9813c73d5a4f77c7dd1242"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-016.log",
+      "bytes": 65,
+      "sha256": "9b6e0e334072a61df3d283b2cab3132fa3525f3e697e68d2e37951c2d7beac0f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-017.log",
+      "bytes": 6719,
+      "sha256": "5654126c9eee3c7c544c576347b09799e7f1b7172e6abe41490ba8ecd0c5cd57"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-018.log",
+      "bytes": 1147,
+      "sha256": "e145e9efbf86e3392a365ad05ddcf023fbad3132ae180652124b9ca48daa44e5"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-019.log",
+      "bytes": 7266,
+      "sha256": "f2ed85ed8b6e4f2370c75f31fb4b74898082c1cd1400fb88ac9533d749cf41f3"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-020.log",
+      "bytes": 47,
+      "sha256": "ee8543af6144d57d395d6807687cb19a4c734ad8ee4507aad3fa99ed30c9a351"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-021.log",
+      "bytes": 65,
+      "sha256": "ff7d5d4beddbcdac6007122f4bda1258e387854b3c32363739b425085bee606a"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-022.log",
+      "bytes": 6713,
+      "sha256": "f6cab946f2c471a4a530265eff9aad05c0bb44c8ee719fa8ef24c8d9cf32f4dc"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-023.log",
+      "bytes": 1284,
+      "sha256": "42977684710e2fc8423cefe50122ee73536a1f5f59bac14c18f78d6948c2ed03"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-024.log",
+      "bytes": 7260,
+      "sha256": "2549d1dbd93bacd9af0242ea89fd3a47d25043b9c724404221ac43adfb77a187"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-025.log",
+      "bytes": 47,
+      "sha256": "329294753496528b572baee8938d38c2e63a532d62a75f727a4eec9bab879148"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-026.log",
+      "bytes": 65,
+      "sha256": "ad7060e4f1e66ca5e9bedf8bdfb24b4c131ce6ad287ece7c4da9a3b3061e9ce7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-027.log",
+      "bytes": 6723,
+      "sha256": "2c7d587b3882e27f0c49d129062f81f7bbfcdd0e8c3a8c7bd2379fcaac275a58"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-028.log",
+      "bytes": 1200,
+      "sha256": "f0e7783f818823ccd70998eb3522f180ce3e9235d1dbf08d12a1d81ac1ed5bf3"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-029.log",
+      "bytes": 7270,
+      "sha256": "9ec3c217b4146d2b60ea93845481226e99d4421c65f0ff1568f95f09ed56d6b9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-030.log",
+      "bytes": 47,
+      "sha256": "77ba7d218c7ccb59e5ec3cfe7372197ade2effb58e2cda9b75d0bd3e112f378e"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-031.log",
+      "bytes": 65,
+      "sha256": "5cb8942d5dfd463737216c0befe14d35df3aaadabfce487f5ba009cf7310b390"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-032.log",
+      "bytes": 6721,
+      "sha256": "cc66da365b9b0dd9f441fd3c6c64dff913feaaa0ff77d56236b0b000722df5a0"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-033.log",
+      "bytes": 1152,
+      "sha256": "47d8e3959ddb4285f72b0f21bd667d0643658604a62cf7bee160fde0354da08e"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-034.log",
+      "bytes": 7267,
+      "sha256": "f0be88ef5283eda911e8f01e6a3e6558669db587a5415374e08e235cddadcc12"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-035.log",
+      "bytes": 47,
+      "sha256": "9d3eaf4e9973314e7328a43cd77e65b40211bf07062a77649a6ce72ac41c4e94"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-036.log",
+      "bytes": 65,
+      "sha256": "bc11f347f07b860ea3751df18011679d3df091079302a831b9863d0e1a44ac7b"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-037.log",
+      "bytes": 6726,
+      "sha256": "b33207aa0e6d783288a0186ca691a236ee093298f8334a1b313433b78cb21fe9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-038.log",
+      "bytes": 1142,
+      "sha256": "bcd7669b49e09d3780ea743ad5c197d77047a66cd634ed0b69f30ca366145762"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-039.log",
+      "bytes": 7273,
+      "sha256": "31f360b242a34affb44353bdb6515a9a18e41532425da8204b9e6c75bb547d80"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-040.log",
+      "bytes": 47,
+      "sha256": "fa379e139e2931cb62431a9fcc8845796a0b0eac2f8ae6f8935cbc25471f0961"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-041.log",
+      "bytes": 65,
+      "sha256": "3122ef69c8d4bb3d13add5a4c4f9291d2d5ff38bb866df85289ea635e34f673c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-042.log",
+      "bytes": 6723,
+      "sha256": "7dec4e68d133410d838242a8c33cb03a673b6a2c903ffa6d06899ce651e47f8f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-043.log",
+      "bytes": 1194,
+      "sha256": "a77930c2a94346b3ffec2b1e4af97985bbe11e874841ab23c8b3d339c48c30e8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-044.log",
+      "bytes": 7269,
+      "sha256": "ffbec0635e9a3660491536fe4077b6b3d7cf7edae81b0388b477f10a32dd67b8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-045.log",
+      "bytes": 47,
+      "sha256": "f54d9d112fcf0ca0fe2f113891a2b7f82aa03dbdd5f838367c9a220418313512"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-046.log",
+      "bytes": 65,
+      "sha256": "2d84bed9877bf5ee1e1bbe82797f6bf22c7e7bb135964dede2e7382a7f03b9c7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-047.log",
+      "bytes": 6721,
+      "sha256": "19652a5f0ca51bd54907f21e8c0879e90af42f61a436096ced6909282251a323"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-048.log",
+      "bytes": 1151,
+      "sha256": "268c45301ad786dda0c01ac5ef3e200900d816cb943d69eba0dfe20bbe653de8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-049.log",
+      "bytes": 7267,
+      "sha256": "3c7900e640c0f9700856a8a5c8d2cadd0648a629a3148358cb919df921d28b30"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-050.log",
+      "bytes": 47,
+      "sha256": "3055c19bdb5c8aa379b86ab2edb3cc9fdc78f9ecf7fc106a79f86434e3387444"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-051.log",
+      "bytes": 65,
+      "sha256": "b28e582c119ee37569127e271799ea0ec5a2f1cd6c3a2282fde8d3deddca2b37"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-052.log",
+      "bytes": 6715,
+      "sha256": "cdd9cd14272c61b6fa34e0f3557362c35a368cfdac498d28f96d707baed816bb"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-053.log",
+      "bytes": 1288,
+      "sha256": "518ba50b31061a4bd4f34c9b4a6d7de34281bee73c0c57c43fe4e38619cfee42"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-054.log",
+      "bytes": 7262,
+      "sha256": "9f3cbea238a8694fa373351f1be8b6f9cbfe7038ff7069a5b11afd8a2af88a0f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-055.log",
+      "bytes": 48,
+      "sha256": "8e61aa2c50d9940559f75d0e275e70884e445f4eff806a0ee77d90f4d1082102"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-056.log",
+      "bytes": 65,
+      "sha256": "64aab82a68613a94367b6cdeb3e8d08d81ca4b9bce46973949c14911f5e80f8f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-057.log",
+      "bytes": 6726,
+      "sha256": "4db116e3178c5897072cb96edceb0c6dfd535c85113a3590621b9b103f460d04"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-058.log",
+      "bytes": 1204,
+      "sha256": "f1c14a62c66d181968f06d47b8d089058fb36a719b8226e34657ab18b521e5c5"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-059.log",
+      "bytes": 7273,
+      "sha256": "534b85f1113fd3136be4089749f8f1ce55cfa59447c80750ca8667a101b5c663"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-060.log",
+      "bytes": 48,
+      "sha256": "e79bf1715f1d919cf4ede83fd55c63f49026424fd3b6487fe211b7d9ffba2544"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-061.log",
+      "bytes": 65,
+      "sha256": "76e14a21d70c79cfc3343c45a2de77cd389e8406c926ac9b06eeac43ba71c59f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-062.log",
+      "bytes": 6719,
+      "sha256": "778ef20350392e58e0f2c5b0864fe25ea44e6eea7b0a271f9a402e5bfd7fde68"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-063.log",
+      "bytes": 1148,
+      "sha256": "13ac4e5df45ecc481afdee3ddcf8f9e5f73f7db04d2092c0faa5cee5cdd01c40"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-064.log",
+      "bytes": 7265,
+      "sha256": "c751463d92ff061e449a7cb3b6ac56dacc313f519c3d979fc96d24acf17986e8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-065.log",
+      "bytes": 48,
+      "sha256": "2a028d2c2566b3a52f2872055e9e5ea80af65d2c24104cf50306e563afe298d8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-066.log",
+      "bytes": 65,
+      "sha256": "b00f8150742f894a47842b0eddb09b66b80d85114a7642bed4bfce574998faff"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-067.log",
+      "bytes": 6726,
+      "sha256": "509cf52c33bc26127311fa7e9a6243891695b203f26d1a043af1a9aede5bf6a9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-068.log",
+      "bytes": 1138,
+      "sha256": "d1b24f4db46d798b6812cec7e109c75878a73d9e978f72d3ae99daee5783df9a"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-069.log",
+      "bytes": 7273,
+      "sha256": "24f61f4572e296dc35499d47ca678ca9583aeb13ec2e286b09a155bd39e217f7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-070.log",
+      "bytes": 48,
+      "sha256": "76e4fc26cbccfbd3b35a2783d08fc894d35f82329dec08e5d2ddc84f20d99d03"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-071.log",
+      "bytes": 65,
+      "sha256": "e18cc71aee729febb1716533acf04e711d143fc8b23f044de660417c5157c043"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-072.log",
+      "bytes": 6722,
+      "sha256": "d28c76cbb0c9371831ae149d99ca512de157b41f5e485c755b57d0e7fbd40aed"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-073.log",
+      "bytes": 1190,
+      "sha256": "a0acbb9f7f2abd4bfafc20ceb2739d72aa7fa8292f9b6626d62d0cb0d16d59a6"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-074.log",
+      "bytes": 7268,
+      "sha256": "7641cd6a7aa1197faac21892169626b39a95e0dad1629d3d95f4d78fb108893a"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-075.log",
+      "bytes": 48,
+      "sha256": "58475c6d07238537120733d34b042125b41c0fba0142e056ba1d4936ed1f2d1c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-076.log",
+      "bytes": 65,
+      "sha256": "7dfb42355851a9994fc36cf52a94ad2413678a2ad62156f0be251a4cf712dcc2"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-077.log",
+      "bytes": 6720,
+      "sha256": "7aed39dae22ba750d32d9f504d0d9e639335b5dbe34ee65748fcffe4480d91e7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-078.log",
+      "bytes": 1147,
+      "sha256": "523f5e189ad8a569d460daf7473995332241ed45bc5cbba4a918aaeb06ab05eb"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-079.log",
+      "bytes": 7267,
+      "sha256": "178230119a384b9b9a5810db1175cdad75a5302720c392cacb6068ebbd74f5c9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-080.log",
+      "bytes": 48,
+      "sha256": "3ef61b49445d00f7853822de99586bbe59379ecc02844abbb825723afb61a9f6"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-081.log",
+      "bytes": 65,
+      "sha256": "de4846a0b95464aac097448f13879c27017a165244e21decde892615f7a104c9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-082.log",
+      "bytes": 6714,
+      "sha256": "7a7eef48ce78fd87bb38b8ae522092a1a0c4fcbd57821a6adeedfdce878cb2bf"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-083.log",
+      "bytes": 1284,
+      "sha256": "3e232c6579be4df1ebf1721b1fe211ca30e1e34bdca6431ebc8fd272213356b8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-084.log",
+      "bytes": 7261,
+      "sha256": "97dad9d688a2e39427a8387fee1e050ebc035eba03a00d4d5e64e0a6f24ef9d9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-085.log",
+      "bytes": 48,
+      "sha256": "9696c0a7bd188f1607fb175eb96e33d93bb9c947370d053f93589538b385a999"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-086.log",
+      "bytes": 65,
+      "sha256": "47c67e218729a814d8d9c4f4313af79e97c3a1cdbb2aa973696232e00469b63c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-087.log",
+      "bytes": 6724,
+      "sha256": "3440c54cf93ebe9d8f1849d8ab9a008a4ad276beea2268d6beb89fc0675f398f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-088.log",
+      "bytes": 1199,
+      "sha256": "cac96f28adbc572695330f44804cfde22b2198892b137de0927a98b2ce70a4be"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-089.log",
+      "bytes": 7271,
+      "sha256": "fa3daaab2e8e0bafbb7569e965932d0268bc6c4fb0ab84a56c2bef71d3d9d0c6"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-090.log",
+      "bytes": 48,
+      "sha256": "d15047f35c898be05d0641a66c2bf294cae1201fbfb5786991c4b843a7955191"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-091.log",
+      "bytes": 65,
+      "sha256": "1d240d13bbbc5c02443d77b5adc572dc34522db8697371654dcca1e448a3a588"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-092.log",
+      "bytes": 6722,
+      "sha256": "2b38b88ba25e3dd807cf01c109134d1e56048c273bbb1a4f5d82e60487ad8822"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-093.log",
+      "bytes": 1152,
+      "sha256": "0c2387e2732fbc791a1754e01e04ca08107de70e61a4b5206429808cb3e29be7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-094.log",
+      "bytes": 7269,
+      "sha256": "e97deb009a826588fec76ca0ca9a2d68b106eb64a083704935f2b1f7d7dc5cd9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-095.log",
+      "bytes": 48,
+      "sha256": "687484b42e3357f1cbfb53e7e52b47a8f6d51635400793863eb7089948f271b3"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-096.log",
+      "bytes": 65,
+      "sha256": "eaa9bd18cfafd83574547382ee8d380b01cea628a3ee6e84b2ce40632216fa26"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-097.log",
+      "bytes": 6728,
+      "sha256": "824cbf99c2fd3367e3cebc14dbfd0f4c169a0918ca96640c5fd620707bd1b5c9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-098.log",
+      "bytes": 1142,
+      "sha256": "fb6fd45570cc87e5afdf793048623cb34380af11a4fd06a323e6157aa9f99b5c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-099.log",
+      "bytes": 7275,
+      "sha256": "a331e45bd8d4f9877af5a62b38cef5f08d6f37a3db54983a7cf69845d70d763e"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-100.log",
+      "bytes": 48,
+      "sha256": "ef05b29641b25ad77e42de7a5f03005f0135f7e444a17a0ad2ec7da7c3e36085"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-101.log",
+      "bytes": 65,
+      "sha256": "513dc6aeb611247aadfda528879478a57d4a63c2167bed323e61acaeab6a858d"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-102.log",
+      "bytes": 6724,
+      "sha256": "65bb6d142b60c233380df2e9fec6433a66b419d3877edba404d1e1765882146f"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-103.log",
+      "bytes": 1194,
+      "sha256": "20e353d4ee6a7e15961508f507dedf7b45f23b675aa05d400e899e38b84573bb"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-104.log",
+      "bytes": 7271,
+      "sha256": "defa819b7d081e54e6ec156d61c7778d7fbc27e409c3fc05d354928588276471"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-105.log",
+      "bytes": 48,
+      "sha256": "dc60d4975beea12905d352f2b334ca172fd551a4d8610f8f4f14fcae5b78efb2"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-106.log",
+      "bytes": 65,
+      "sha256": "8b3820e5ef6a5340b65f5c64e2167087716595e8330ee1c8e3984b6588804bda"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-107.log",
+      "bytes": 6722,
+      "sha256": "f1deb34d55b5cf6ccefc7f467d624145ef0b1cb5d001c49f6e6d532bed0ca72e"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-108.log",
+      "bytes": 1150,
+      "sha256": "e705e3aab4a303f9e720e74b98ccf1f9302dbf9d55fc9af1f81918249d365ed7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-109.log",
+      "bytes": 7268,
+      "sha256": "0fc56a16da3e5bc73432862bbf5f9d1332f7063cbe6faa9e96a8f6e3e0941e4a"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-110.log",
+      "bytes": 48,
+      "sha256": "ce34504e4c556b281b86f328c77e72db313976401da67ed45bf0530e3076ba63"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-111.log",
+      "bytes": 65,
+      "sha256": "280860ea8661f0cbb80a5b61c8f63e10f0532074811d95c03632e954d0ca8ea1"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-112.log",
+      "bytes": 6715,
+      "sha256": "9428cd506522b15bce6505888204107cec97a98df7f6f5f40012b17172bf0479"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-113.log",
+      "bytes": 1287,
+      "sha256": "9d7129409e80d964ae9bae42a348d1a1e4df1c4488da10c1b962ca18f8d81b71"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-114.log",
+      "bytes": 7262,
+      "sha256": "8e1e2e4e2cbbd121e559b52cab7bed7d190475df3240147953b7d82a15ec0848"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-115.log",
+      "bytes": 48,
+      "sha256": "14c4ac91cfac0ebc4dc0a9cb223869dde70c01ac3b49ce882fc4e880b19141c3"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-116.log",
+      "bytes": 65,
+      "sha256": "5e5739622adf95c0945d8314416919046b67d05bef659baf03c83217f0a0ac23"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-117.log",
+      "bytes": 6726,
+      "sha256": "4e15024b9efc3341d1c87ba6b0f3bf5b3497abd9dffe5d475a7972a369a18ee3"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-118.log",
+      "bytes": 1205,
+      "sha256": "9355fded14ffbcfa09c25e369e1b8c4eefffed2ca74c1714b6547a9abfe2dabe"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-119.log",
+      "bytes": 7272,
+      "sha256": "743c2ad7cbc12087223e898ca9f7f799f99dfb584ffa83a7bcaf306de6bd48a9"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/command-120.log",
+      "bytes": 48,
+      "sha256": "f6c235334ea4005ef7e1d1cc00c86cb00117cacac4482c830147cffc9a55735b"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/executed-probe.py",
+      "bytes": 4375,
+      "sha256": "6fb8941df1d67254ad615f834456f12a9efcc9795d05c9030969e8a326f681dd"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-10000-copy.log",
+      "bytes": 1288,
+      "sha256": "518ba50b31061a4bd4f34c9b4a6d7de34281bee73c0c57c43fe4e38619cfee42"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-10000-decoder.log",
+      "bytes": 1152,
+      "sha256": "47d8e3959ddb4285f72b0f21bd667d0643658604a62cf7bee160fde0354da08e"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-10000-encoder.log",
+      "bytes": 1151,
+      "sha256": "268c45301ad786dda0c01ac5ef3e200900d816cb943d69eba0dfe20bbe653de8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-10000-equality.log",
+      "bytes": 1194,
+      "sha256": "a77930c2a94346b3ffec2b1e4af97985bbe11e874841ab23c8b3d339c48c30e8"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-10000-roundtrip.log",
+      "bytes": 1204,
+      "sha256": "f1c14a62c66d181968f06d47b8d089058fb36a719b8226e34657ab18b521e5c5"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-10000-validation.log",
+      "bytes": 1142,
+      "sha256": "bcd7669b49e09d3780ea743ad5c197d77047a66cd634ed0b69f30ca366145762"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-20000-copy.log",
+      "bytes": 1287,
+      "sha256": "9d7129409e80d964ae9bae42a348d1a1e4df1c4488da10c1b962ca18f8d81b71"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-20000-decoder.log",
+      "bytes": 1152,
+      "sha256": "0c2387e2732fbc791a1754e01e04ca08107de70e61a4b5206429808cb3e29be7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-20000-encoder.log",
+      "bytes": 1150,
+      "sha256": "e705e3aab4a303f9e720e74b98ccf1f9302dbf9d55fc9af1f81918249d365ed7"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-20000-equality.log",
+      "bytes": 1194,
+      "sha256": "20e353d4ee6a7e15961508f507dedf7b45f23b675aa05d400e899e38b84573bb"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-20000-roundtrip.log",
+      "bytes": 1205,
+      "sha256": "9355fded14ffbcfa09c25e369e1b8c4eefffed2ca74c1714b6547a9abfe2dabe"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/object-20000-validation.log",
+      "bytes": 1142,
+      "sha256": "fb6fd45570cc87e5afdf793048623cb34380af11a4fd06a323e6157aa9f99b5c"
+    },
+    {
+      "path": "systems-engineer-json-large-depth-after-01/runtime.json",
+      "bytes": 119851,
+      "sha256": "586a24eff644c2456600cfac10f7e2c4c4a30b7d3a912efcd0944f277f65f8dd"
+    }
+  ]
+}
