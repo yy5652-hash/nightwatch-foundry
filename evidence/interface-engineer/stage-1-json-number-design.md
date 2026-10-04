@@ -304,3 +304,25 @@ expectations and unverified candidate-5 verdict rows remain preserved; this
 document does not rewrite them as new implementation passes or acceptance.
 The coherent repaired service still needs new named-context builder evidence and
 independent source-aware coverage, startup, official and regression checks.
+
+## Committed private-state contract confirmation
+
+Systems' committed Entry 2 at `9ac7bf6f42085ffa71db489ad9a64e1063816152` was
+read after room handoff `91497ffd-d100-4f8c-9063-c4d85f10b172`. Interface agrees
+with its exact callable signatures, including keyword-only `profile`, and the
+private state format: new exports use state schema 2 with required per-receipt
+`numeric_profile` (`exact-v1` or `python-json-v1`); genuine unmodified schema-1
+receipts import under the old profile. Missing/unknown schema-2 profiles make
+import invalid atomically. The public envelope remains format_version 1, and
+ordinary API responses gain no profile fields. Original six receipt identity,
+body and response fields retain their values; numeric provenance and mixed
+profiles survive another export/import. Finite native float diagnostics encode
+their ordinary emitted JSON decimal values without expanding binary ratios;
+nonfinite native floats remain invalid trees. The adapter has no private-schema
+or numeric-policy branch. I identify no private-format/API mismatch.
+
+The coordinator's complete adopted source decision was already agreed and
+committed in the preceding section at `bb2ef6b59f1dfc6f201963b147df501a4d928d61`.
+Both design prerequisites are now recorded. Explicit production source release
+and the Systems module implementation commit remain pending; this confirmation
+changes no graded files and adds no HTTP count or acceptance claim.
