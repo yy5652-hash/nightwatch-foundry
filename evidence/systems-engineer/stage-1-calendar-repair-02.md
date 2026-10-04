@@ -22,3 +22,11 @@ The full builder regression passes 12 scenarios (`stage-1-calendar-regression-02
 Europe/Berlin at year 0001 has the exact IANA offset +00:53:28. Section 9 requires IANA offsets; the general response convention says RFC 3339, whose offset grammar has only hours and minutes. Exact IANA local-offset serialization and that grammar cannot both describe this historical offset. This was escalated to the coordinator through room message `7d382ed1-9f46-4ae1-b989-88b51a4e5efd`. The range repair preserves the existing exact IANA ISO serialization, including offset seconds; it does not silently round or alter the instant. Acceptance must record the interpretation/limitation rather than claim simultaneous compliance with incompatible grammars.
 
 Only Systems-owned service/evidence paths changed. Engine.request and Stage 1 scope remain unchanged. Independent re-verification and promotion are pending. Harness Codex; configured gpt-6.1-sol; actual runtime override, effort and spend unknown.
+
+## Final builder/container result
+
+Implementation revision `49287b4a5a1481f995c470ccae31776f03d4b863` includes the boundary inversion gap guard. The complete Engine run passed 12 scenarios in 1.343 s (`stage-1-calendar-final-regression-02.log`). Fresh image build `docker build -t systems-engineer-tablekeeper-s1:calendar-02 stage-1` passed (`stage-1-calendar-build-02.log`).
+
+Two independent services ran with nondefault ports 18104/18105, 2 CPU/2 GiB each and an internal Docker network. Command: `docker exec -i systems-engineer-s1-calendar-source-02 python - --url http://127.0.0.1:18104 --destination-url http://systems-engineer-s1-calendar-destination-02:18105 < evidence/systems-engineer/stage-1-builder-probes.py`. All 12 HTTP scenarios passed in 1.625 s (`stage-1-calendar-http-02.log`), including cross-process import of both boundary-year records and prior concurrency/DST/rollback cases. Image core SHA-256 matches the implementation revision; resource/network settings and hashes are in `stage-1-calendar-runtime-02.log`.
+
+Systems-owned calendar containers/network were removed; images are retained. The earlier failure logs remain committed. These are builder diagnostics; independent exact-revision re-execution, official isolated checks and the historical-offset interpretation remain acceptance responsibilities.
