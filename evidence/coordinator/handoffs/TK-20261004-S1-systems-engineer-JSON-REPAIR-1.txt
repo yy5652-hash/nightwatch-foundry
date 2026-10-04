@@ -1,0 +1,1025 @@
+# TK-20261004-S1-systems-engineer-JSON-REPAIR-1
+
+You own the integrity-critical exact JSON representation, body equality, portable state and receipt compatibility. Lead the shared module contract, with evidence at evidence/systems-engineer/stage-1-json-number-design.md, and coordinate directly with the current Interface participant after checking room membership. Do not mention future reviewers in the current handoff. Independently justify implementation choices; the coordinator supplies requirements and sequences ownership, not a solution implementation. Keep shared card 10 current. Until the explicit source release, write only your own evidence/design; then follow the declared module → transport → core order and commit only your explicit owned paths.
+This is a new complete Stage 1 JSON-number repair assignment following independently rejected candidate f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250. The committed independent rejection is 6c01976c7b1b910f748efc97be7cc468b5963b18: 932 atomic rows, 913 verified, five failed and fourteen numeric-type interpretations unverified. Official isolated Stage 1 remained 120/120. Highest consecutive accepted stage is zero. Original accepted/rejected verdicts, freeze/revocation manifests and every actual runner/service failure remain preserved.
+
+Collect every numbered part and END marker and confirm completeness before beginning. Earlier parts are not a new task. Immediate authorization is for design and evidence only; production source release follows the committed shared codec contract and explicit coordinator message. No Stage 2 source edits or Stage 3 work. The full factory task, complete Stage 1 specification, supplementary brief, recorded decisions and complete independent/builder rejection handoffs follow unshortened.
+
+Definite requirements: syntactically valid finite JSON numbers remain valid JSON values even when a binary float decoder overflows. Unknown request fields remain ignored, never an error. An invalid true fractional party size receives 422 validation_failed. A used key with a different valid parsed body receives 409 before endpoint validation. Literal NaN/Infinity, malformed UTF-8/JSON and nonobject bodies remain 400. Do not fix only a party error mapping, allow Python infinity, clamp/round, stringify numeric wire values, add an unstated numeric maximum or consume a failed key. Preserve all ordinary correct type/value/error precedence, empty 204, authentication, privacy, RLock atomicity, occupancy, calendar and exact original successful responses.
+
+The repair must form one coherent decoder/value-validation/canonical-body/encoder/private-state path. Preserve exact finite values through ignored fields, parsed-body comparison, stored create and move receipts, export/import between independent processes, and subsequent successful original retries. Mathematical integer versus token-spelling semantics is still under source review: §5 explicitly restricts query spelling, while body integers and §7 same JSON value need a durable decision. Separate published text from interpretation in your design; do not treat numeric magnitude as a different JSON type. Preserve plain-digit query restrictions. Consider exact large fractions, overflow/underflow and compact exponent spellings, equal-valued numeric aliases, distinct ignored fractions and number-versus-string/bool values. A normal exact-decimal constructor alone does not establish correct encoding, canonical equality, arbitrary exponent metadata or context-independent precision.
+
+Genuine historical compatibility is required. Use unmodified separately running earlier source services, real login/create/move receipts and unchanged in-memory exports, including successful ignored ordinary floating values with higher-precision spelling, underflow and integer-valued forms. Existing original requests/tokens/references/replays must remain valid. Preserve original public successful response JSON values and historic timestamp strings; do not reconstruct a demo export or silently rewrite past parsed-body meaning. Any legacy numeric decoding context needed for body matching must be explicit in private state and scoped to real legacy receipts; new requests must follow the adopted semantics. Different request bodies and types must still conflict correctly. Never use another seat's probe implementation as your oracle.
+
+Sequence the shared source coherently. Systems owns stage-1/json_codec.py and core.py only. Interface owns stage-1/server.py, Dockerfile, .dockerignore and RUN.md only. First publish the proposed codec representation and callable API in each owner's evidence/design file and obtain reciprocal room agreement. After coordinator source release, Systems commits the new codec module first without importing it into core. Interface then commits image packaging and transport wiring against that committed API. Systems then completes core validation, canonical equality and state import/export integration. An intermediate repair commit is not a promoted candidate; do not run or label official acceptance until the complete service is wired and committed. No path has simultaneous owners. If your design requires a different sequence, explain the coherent alternative in the shared contract before source edits.
+
+Build the final complete independent Stage 1 image from a clean named committed context. Use only your prefixed resources and allocated host ports, two independently running repaired destinations plus genuine old services, 2 CPU/2 GiB, internal offline network and no service mounts. Dependencies belong in the image; no host installs. Preserve every failed and repaired output under a new directory; stop only your own resources. Run meaningful existing inherited regressions plus separately derived numeric, malformed-body, rollback, idempotency and cross-version probes. Save deterministic traces and exact commands/source/image/resource/timing/cleanup evidence with credential/export fingerprints. Modest payload probes are measured evidence, not a claim of arbitrary-size performance.
+
+Each owning handoff must be committed and give its full revision, changed files, exact commands and observed counts, assumptions, outstanding questions and risks. Coordinator integrates the final named candidate and routes a complete independent coverage/startup/official/regression review. Builder checks cannot restore acceptance. Stage 2 can inherit the accepted fix only after renewed Stage 1 acceptance and a separate complete cumulative assignment. All four stages remain the factory objective.
+
+## Complete current factory task
+Scored factory run TK-20261004. Target all four fully specification-complete consecutive Tablekeeper stages, with strong product quality and independent verification, not merely the public minimum. Use the configured seats for substantive implementation and independent review. Report partial completion honestly if genuinely blocked.
+
+Workspace root: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory
+Kickoff repository: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/kickoff
+Result repository: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result
+Check outputs: /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks
+Track: tablekeeper
+
+Execution environment: all four seats run on the same macOS host and share the one result working tree above, so only one seat edits or commits a given path at a time and the coordinator sequences overlapping work. The official harness Python is <workspace root>/.venv/bin/python; run it from the kickoff directory, e.g. <workspace root>/.venv/bin/python -m harness run --track tablekeeper --repo <result repository> --stage N --mode isolated --out <check outputs>/<new-unique-name>.
+A Docker daemon is running on the host; the first isolated run builds the unchanged official runner image. Use a new --out directory for every run and never delete earlier outputs. Dependencies an implementation needs belong in its own buildable image, not on the host. The official kickoff revision is 803560d2a678ace1414465c098eb0ab5380ffade. Each seat is configured as Codex with model gpt-6.1-sol; record the model and effort your own runtime actually reports.
+When a seat runs a service or container directly it uses its own host port range: coordinator 18000-18099, systems 18100-18199, interface 18200-18299, verifier 18300-18399.
+Commit with your own seat identity, for example git -c user.name="<Seat Name>" -c user.email="<seat-slug>@nightwatch-foundry.invalid" commit ...
+Stay strictly inside the workspace root: do not read, write or execute anything outside it, do not inspect credentials or other projects on this machine, do not change system, Docker or network settings, and do not stop containers or processes you did not start.
+Configured seats: coordinator yy5652/foundry-coordinator; systems builder yy5652/systems-engineer; interface builder yy5652/interface-engineer; independent verifier yy5652/independent-verifier. Only these seats may participate.
+
+Authoritative instructions:
+
+1. Read the complete participant guide at kickoff/docs/participant-guide.md under the absolute workspace root before assigning work.
+2. Process stages 1 through 4 strictly in order. The complete stage specifications are kickoff/tablekeeper/spec/stage-1.md through stage-4.md. Stage N must extend the accepted Stage N-1 folder while remaining a complete, independent service.
+3. For every delegated assignment, include the complete applicable task and full specification text in the direct handoff. A file path or room-message pointer alone is not a complete handoff. The participant guide explicitly allows long handoffs as numbered direct messages. Use a single package identifier and part i/N, at most 12,000 characters per message including routing and context, with a final completion marker. Preserve the full applicable specs across parts. The receiver must confirm all parts arrived before working; an earlier part is not a new task. If transport rejects a part, split and resend that missing part transparently without dropping requirements or asking the human.
+4. The result must be created by the seats in this room. Human-authored stage code is forbidden. Preserve all commits and room evidence; never amend, rebase, squash, or rewrite history.
+5. Build to the specification, not the visible tests. The verifier must create a requirement coverage matrix and probe untested boundaries, concurrency, idempotency, recovery, upgrade, historical-truth, and deterministic planning behavior using black-box evidence derived from the specification. Number every normative requirement from the full specs. Each ledger row must carry the source section, applicable stage, owner, candidate full revision, verification method, executable command or observed browser interaction, evidence path and verdict. Split bundled obligations so a passing happy path cannot conceal an untested error, ordering, atomicity or recovery rule. Track inherited requirements explicitly; unsupported claims stay unverified. Use deterministic seeds and saved operation traces for randomized invariant checks, and a separately derived small reference oracle where appropriate. Do not copy another entry's implementation, tests or claimed coverage counts.
+6. The systems builder owns integrity-critical service behavior. The interface builder owns interface/integration behavior and presentation quality. Both must contribute substantive committed work. The verifier reviews candidates independently and may reject promotion. The coordinator may not silently do all implementation itself.
+7. A stage is accepted only after clean startup, applicable official harness checks, earlier-stage regression checks, specification coverage review, and an independent verifier verdict against a named full commit revision.
+8. Run final checks in isolated mode. The judged service has no outbound network, 2 vCPU and 2 GiB. Preserve every failure and repair in the room and Git history.
+9. Maintain an append-only evidence ledger with wall time, model, usage/cost estimate, commits, checks, rejected candidates, repairs, and remaining risk. Keep ledgers, coverage matrices, probes and other evidence outside the graded stage-N/ folders (for example under evidence/ in the result repository).
+10. Prepare measured facts for the operator-authored README.md and FACTORY.md, copy the four generic files in factory/mandates-final/ into mandates/ unchanged, and write one RUN.md per completed stage and all evidence needed for a fresh-clone review. Do not fabricate room.json; it is downloaded from Band after the run.
+11. During this run, this dispatch is the only human input. Do not ask the human for clarification, approval, debugging hints, or a go-ahead between stages. Resolve choices from the published requirements and communicate within the band. If truly blocked, report the blocker and evidence as the outcome.
+12. Finish with a final report stating the highest consecutive accepted stage, exact revisions, exact observed check counts, clean-clone status, known limitations, elapsed time, and measured or explicitly unknown model spend.
+13. Read factory/PRODUCT_ACCEPTANCE.md under the absolute workspace root as a supplementary task-specific acceptance brief, never as a replacement for the complete specs. Do not copy its track-specific content into mandates. Derive independent tests from the specs, including the behaviors absent from shipped checks.
+14. Aim for full specification coverage at every stage, not merely the minimum public claim threshold. Freeze each accepted stage before extending its copy. Do not sabotage a correct earlier requirement to fail an overshoot probe.
+15. Preserve genuine task ownership: substantial implementation by both builders, independent verifier execution against exact revisions, coordinator integration. Never fabricate disagreements, test counts, model costs, screenshots or handoffs.
+16. Keep the room economical: post decisions, handoffs, revisions, verdicts and evidence paths, not long raw logs. Store bulky output in files under the check outputs or evidence/ and cite the path.
+17. Time budget: aim to finish all four stages within about 16 hours of this dispatch. At 22 hours stop extending, make sure every accepted stage and the evidence are committed, and post the final report for the highest consecutive accepted stage. An honest partial result is better than an unfinished run.
+
+Begin by confirming all four configured seats already in this room, obtaining reciprocal literal handle messages, publishing the requirements ledger, and assigning Stage 1 work. Work only with these seats in this room. Do not contact other agents, inspect credentials, or access other competitions. Do not reuse toy solution code, the abandoned band-work/result repository, or replay their history into the fresh scored result. Public publishing, final room export and competition submission remain operator-controlled steps.
+
+Additional shared-tree discipline: write room messages, commits and documents in English. Stage/commit only owned explicit paths; no blanket add, stash, hard reset, clean, checkout-all, rebase, amend, force, pull or push. Wait/retry an index lock. Prefix containers, networks, images and temporary directories with your seat name; remove only your own. Every implementation handoff must report full committed revision, changed-file summary, commands run, results, assumptions and remaining risks. During this autonomous run communicate inside the Band room only. All exact local paths in this package are inspectable on this shared host.
+## Supplementary acceptance brief
+# Tablekeeper acceptance brief — task-specific, never a seat mandate
+
+Source: official kickoff `803560d2a678ace1414465c098eb0ab5380ffade`,
+`docs/participant-guide.md` and all four `tablekeeper/spec/stage-N.md` files.
+This is an operator-authored acceptance brief, not implementation or scored evidence.
+The complete official specifications prevail over this summary. Seats must derive
+their own exhaustive requirement ledger and code in the submitted Band room.
+
+## Target and evidence standard
+
+The target remains four consecutive, fully implemented stages, a polished product,
+and a reproducible autonomous factory. The public claim threshold is not our
+quality target. Public test percentages or a passing public suite do not establish
+hidden-test coverage, a judging score, or a prize.
+
+Every claimed behavior needs a requirement reference, candidate full commit,
+independent executable probe or observed UI flow, command, result and artifact path.
+Record `unverified` when any link is missing. Never manufacture a rejection.
+Tests belong outside graded stage folders unless genuinely needed by the service.
+Do not modify the official checker, omit suites, or convert skipped checks to passes.
+
+## Stage 1 — transaction and state foundations
+
+| Requirement family | Independent acceptance evidence beyond a happy path |
+|---|---|
+| Runtime | Fresh single-image build; nondefault PORT; 0.0.0.0 listener; health within 60 s; 2 CPU/2 GiB; no runtime internet or separate database service. |
+| Authentication | Hashed passwords; multiple active tokens; public browsing without token; owner-only reference lookup cannot reveal another account's booking. |
+| Validation | Distinguish wrong JSON types from invalid values; reject boolean party sizes; strictly parse decimal query integers and bare local timestamps; ignore unknown fields. |
+| Retry semantics | Same user+method+path+parsed JSON replays original response with 200; exactly one concurrent first request returns 201; same key on another path remains independent; different body conflicts before resource validation; failed keys remain reusable. |
+| Occupancy | Half-open boundaries; 50 competing requests; no double booking or partial mutation; capacity and grid constraints; closed-day and empty-slot ordering. |
+| Time | IANA rules, nonexistent local times, first occurrence in a repeated hour, absolute duration across transitions; do not reject dates merely because they are in the past. |
+| Amend/cancel | Cutoff measured against current start; failed amendment leaves old occupancy intact; repeated cancel is stable; reference and identity survive edits. |
+| Batch moves | 1..8 distinct references; same owner/restaurant; validate non-occupancy errors in input order before overlap; swap several occupied tables atomically; failed batch leaves receipts and every record unchanged. |
+| Export/import | Atomic replacement across independent processes; preserve hashes, tokens, identities, timestamps, successful original receipts and cancelled records; invalid import is all-or-nothing; reset removes all imported state. |
+
+Do not add the later browser or policy/series surfaces to this folder. Copy the
+accepted stage forward; never copy a final answer backwards.
+
+## Stage 2 — product experience and uncertain outcomes
+
+Product direction: a warm, calm hospitality product. Use a consistent type scale,
+warm neutral surfaces, a restrained accent, clear labels, and human table names.
+This is a direction, not a reference design to reproduce. Do not invent reviews,
+ratings, restaurant photos, usage counts, or claims about real establishments.
+All assets/fonts/scripts must be packaged for offline runtime.
+
+| Required flow | Evidence to capture |
+|---|---|
+| Browse before login | `/` is useful without authentication; restaurant, date, party size and table choices are legible; booking routes to authentication. |
+| Authentication routes | `/signup`, `/login`, `/lookup` load directly; visible labels and focus; signed-in identity visible on all screens; logout state works. |
+| Search race | Delay A, complete B, then release A: grid, labels and form remain B, not stale A. |
+| Booking conflict | Another client takes the selected option: show refusal, refresh availability, retain form inputs, and never show a false confirmation. |
+| Lost response | Commit then drop response: show uncertainty, not refusal/success; retry identical body/key and recover the original reference; another submit after success creates no duplicate. |
+| Changed form | A real field change creates a new request identity; an unchanged form retains the same retry identity. |
+| Combined seating | Only declared pairs, never transitive combinations; canonical declared order; atomically occupy/release both tables; show both human labels. |
+| Upgrade in place | Import a stage-1 export between browser requests: login token, open form, retained reference and uncertain retry still work without a reload. |
+| Responsive/accessibility | Real screenshots and keyboard flows at 375 CSS px and desktop; no horizontal page scroll; distinct loading, empty, available, unavailable, selected, success, refusal and uncertainty states. |
+
+Required test IDs are a contract, not a substitute for product-quality review.
+Verify text-only constraints (reference and reservation status) precisely.
+The Experience Engineer must contribute substantive UI/recovery code and evidence,
+not only cosmetic changes after another seat built the entire app.
+
+## Stage 3 — immutable terms, history and recurring agreements
+
+| Risk | Required independent probe |
+|---|---|
+| Explanation truth | Both capacity and overlap rules reported for each table in fixture order; validate explain=true only; no extra explanation fields when omitted. |
+| Policy ordering | Publish effective dates out of order and ties on the same date; select by local booking date then version; preserve existing bookings and immutable historic terms. |
+| Manager boundary | Only fixture managers publish; managers do not gain private diner lookup/history access; ordinary restaurant detail remains original fixture configuration. |
+| Revision/history | Contiguous seq; exact changed fields/order; no-op/replay/failure creates no event; accepted terms are snapshotted on each historical event; optimistic revision conflicts precede cutoff validation. |
+| Receipt longevity | Replay an old create/policy receipt after amendments and cancellation and after import: original body, revision and terms survive. |
+| Series adoption | Anchor remains identical; each future occurrence uses its own local date's policy and DST resolution; any failed occurrence rolls back every reservation/history/counter/key. |
+| Series exceptions | Real individual change permanently marks exception; cancellation retains occurrence but does not create exception; anchor cancellation does not cancel siblings. |
+| Combined history | Pair sets canonicalized; reverse input order alone is a no-op; single/pair transitions use the specified field representation. |
+| Batch and series counters | Several changed members in one transaction increment each affected series once and restaurant once; failed batches/replays increment nothing. |
+| Cross-version import | Independently export from both earlier stages and adopt imported reservations; preserve sessions and original receipts. |
+
+## Stage 4 — deterministic planning and atomic application
+
+1. Exercise the full supported bound: six tables, four declared pairs, six considered
+   bookings, with fixed bookings and existing closures present.
+2. Build an independent small exhaustive oracle from the written planning objective:
+   minimize changed booking sets, then total unused seats, then the rank vector in
+   reference order. Do not use the production solver as its own oracle.
+3. Use each booking's accepted capacities, not the latest policy's capacities.
+   Preserve its identity, time, party size, owner and accepted terms.
+4. Preview must not reserve occupancy, publish closure, increment revision or write
+   booking history. Infeasible preview must leave all observable state unchanged.
+5. Any intervening revision in that restaurant invalidates a plan; unrelated
+   restaurants do not. Replaying a successful apply returns its original receipt;
+   a different key for an already applied plan has its specified error.
+6. Concurrent applies cannot partially move bookings. Moved records get one revision
+   and reassigned event, unmoved records none; restaurant changes once per plan.
+7. Bulk series amendments exclude cancelled/exception members and use original
+   scheduled dates. Validate the series revision before member cutoff/validation;
+   apply occupancy across changed and unchanged members together.
+8. Empty eligible/no-op series changes succeed without incrementing revisions.
+   A seating repair preserves exception flags and increments each affected series once.
+9. Import populated states from every prior stage, including changed/cancelled series
+   members, and repeat these operations without losing tokens, receipts or history.
+
+## App-score interaction ownership
+
+The stage-3 and stage-4 specs say no new screens are required. The following are
+our product-quality targets, not organizer eligibility requirements. Implement
+them only in their applicable stage after core correctness, without changing the
+specified API or delaying required regression/upgrade coverage. Experience owns
+substantive UI/integration work alongside Systems rather than only a final skin.
+
+- In stage 3, make the existing diner's own confirmation/lookup flow explain
+  accepted terms and historical changes clearly. Offer recurring-booking creation
+  and a legible occurrence list with cancelled and exception states. Never expose
+  another diner's private lookup/history to a manager.
+- In stage 4, provide a manager-authorized closure preview/apply workflow showing
+  proposed changes separately from committed changes. A stale or infeasible plan
+  must remain visibly unapplied; never display optimistic success before evidence.
+  Keep diners' lookup/confirmation synchronized with actual applied assignments.
+- Make series amendment results distinguish changed, unchanged, cancelled and
+  exception occurrences. Preserve original references in the view; show failures
+  without implying that a partial operation committed.
+- Use actual API responses and declared capabilities only. No mocked manager
+  access, fake history, fabricated metrics, or later-stage controls in an earlier
+  folder. Capture the real authorized and refused flows in the independent review.
+
+## Promotion and presentation
+
+- Freeze each accepted stage at its full revision before the next copy. Keep every
+  applicable public check green as the working target, plus independent spec probes.
+- Every stage must claim its own number in isolated mode; the next-suite probe must
+  not establish a later stage in an earlier folder. Never intentionally break a
+  requirement merely to fail an overshoot probe.
+- Use clean clones, no nested Git repositories, submodules, escaping symlinks or
+  host-specific runtime dependencies. Preserve failed outputs in unique directories.
+- Capture real Band handoffs, a real independent verdict, actual product interactions,
+  upgrade/retry recovery and final stage results. Label rehearsal separately.
+- Do not publish exported fixture state with tokens/password hashes as a demo asset.
+  Inspect the genuine full room export for secrets before public release; follow the
+  official rotate-and-redact exception if one is found, never invent room events.
+- Include measured elapsed time and catalog-estimated cost only with provenance;
+  distinguish estimates from billed spend. Unknown is preferable to an invented value.
+
+## Recorded timestamp decision
+# Timestamp representation decision — TK-20261004 Stage 1
+
+The published requirements conflict for historical IANA offsets with seconds: Stage1 §3.4 requires RFC3339 numeric offsets (hours/minutes), while §9 requires accurate IANA resolution and offsets. No human steering is permitted. This decision preserves both the original restaurant wall-clock fields and the exact resolved instant; it does not claim that an hours/minutes-only wire offset literally equals a historical seconds offset.
+
+Decision: resolve starts and absolute duration using the exact IANA offset/fold. Keep starts_at_local unchanged. For ordinary minute-aligned IANA offsets, retain the existing restaurant-local RFC3339 timestamp. For a historical subminute offset, serialize the same exact instant using a deterministic nearest minute-aligned fixed offset and an adjusted timestamp clock. Select a representable local calendar result at the supported date boundaries; ties choose the lower numerical offset. Do not round the instant, truncate seconds, restrict the published date range, add zone/date-specific branches, or alter a successful saved receipt on replay. Use the same serialization for availability and new reservation timestamps; verify export/import and original-receipt stability.
+
+The two historical format obligations must be assessed under this recorded interpretation, with independent checks of RFC3339 syntax, exact absolute instant and retained original wall time. Preserve the previous failed observations. A new production revision and independently executed evidence are required; no failed result is converted to a pass in place. All other requirements remain unchanged. The verifier may reject an implementation that violates this interpretation or any remaining requirement.
+
+Known interpretation risk: the literal historic wire offset is minute-aligned rather than the exact IANA subminute offset. The exact IANA resolution is preserved by the represented instant and original local field. Final acceptance must state this exception/interpretation explicitly and must not claim simultaneous literal compliance with incompatible offset grammars. Genuine final room export, operator documents, publication and submission remain operator-controlled.
+
+## Recorded original-receipt decision
+# Original successful receipt shape across upgrades
+
+The explicit original-response rules in Stage1 §7 and §10, and Stage2 existing-client upgrade requirements, govern successful historical replays. A replay returns the exact JSON body issued when the request originally succeeded, with the specified replay HTTP status200. Introducing new response fields in a later stage does not enrich or rewrite that old body. Newly executed writes and current-state lookup/list responses use the current stage's representation. Thus current Stage2 singleton responses carry table_ids and table_id, while a genuine Stage1 original receipt can retain only its original table_id field. The browser must recover the real server-issued original reference and support that legal older shape. The same rule extends to later introduced terms, revisions and histories: successful original receipts retain their original schema and values.
+
+Request identity also remains original. A field ignored by the source stage may become recognized later; import must validate genuine old successful snapshots using their original meaning, preserve the complete original parsed body/key/method/path, and not rerun current endpoint validation as if the old operation were a new write. New requests obey current rules. Failures retain reusable keys.
+
+For independent Stage1-to-Stage2 browser migration, Stage1 has no required HTML application. A valid real-browser probe may serve Stage2's unmodified packaged assets while transparently forwarding its old-compatible API requests to a genuine separately built accepted Stage1 service. That service must actually issue the token and successful booking, including a committed request whose browser response is dropped. Transfer its unchanged in-memory HTTP export to the current Stage2 service between requests, then switch API routing without reloading, authenticating anew, editing the form or regenerating the body/key. The unchanged browser retry must obtain the original real receipt. A retained reference must also work through lookup. The proxy only transports real requests/responses; it does not manufacture state or evidence, and does not claim a Stage1 UI existed. Independent verifier code must implement its own probe protocol rather than copying builder tests.
+
+This records compatibility precedence from the complete supplied specifications. Historical timestamp representation remains governed by the separately recorded decision and its disclosed legacy-string exception. No human approval or new specification field is introduced.
+
+## Complete Stage 1 specification
+# Tablekeeper — Stage 1: reservations
+
+This stage defines the initial service and its API.
+
+Build from the supplied requirements. Source code, API documentation and schemas from
+existing products in this domain must not be used.
+
+## 1. Scope
+
+Diners can search restaurant availability, book a table and receive a confirmation
+reference. They can cancel or amend their bookings, including changing several bookings
+together. Each restaurant has its own table capacities, opening hours and cancellation policy.
+Only the HTTP API is required.
+
+Two `confirmed` reservations must never occupy the same table at overlapping times,
+including during concurrent requests. Occupancy is the half-open interval
+`[starts_at, starts_at + reservation_duration)`. A 90-minute booking at 19:00 therefore
+does not overlap a booking starting at 20:30. Retries and rejected requests must not
+create duplicate or partial bookings.
+
+## 2. Delivery and deployment
+
+Deliver an HTTP service, a `Dockerfile` and a `RUN.md` with a command that builds and
+starts the service without manual setup. Language, framework and storage are unrestricted.
+A `docker-compose.yml` is optional.
+
+The submission is a containerized HTTP service, not a Python package. Python is not
+required in the implementation. TypeScript/JavaScript, Go, Rust, Java, Python and any
+other language are equally valid. The harness builds the submitted `Dockerfile`, starts
+the resulting image and tests only its HTTP behavior; it does not import or execute the
+submission's source files on the judge host.
+
+The image must run on its own with `-e PORT=<port>` and a port mapping. Runtime networking
+has no outbound access. All runtime dependencies, initialization and seed data must work
+within that single container. Compose configuration is not used to start the service.
+
+### Resource limits
+
+The service must operate within these limits:
+
+| Limit | Value |
+|---|---|
+| CPU | 2 vCPU |
+| Memory | 2 GiB |
+| Start to first healthy response | 60 s |
+| Concurrent requests | up to 50 in flight |
+| Per-request timeout | 5 s (10 s for `POST /_test/reset`) |
+| Outbound network | available during `docker build`, **none at run time** |
+| Disk | ephemeral; state need not survive a container restart |
+
+Runtime assets and dependencies must be included in the image. This includes fonts,
+scripts and stylesheets; external services are unavailable at runtime.
+
+## 3. Runtime contract
+
+### 3.1 Listening
+
+Listen on `0.0.0.0` using the `PORT` environment variable, default `8080`.
+
+### 3.2 Health
+
+```http
+GET /health  ->  200  {"status": "ok"}
+```
+
+Return 200 once the service and its data store can serve requests, within 60 seconds
+of container start. Non-200 responses are permitted before the service is ready.
+
+### 3.3 Reset and seed
+
+```http
+POST /_test/reset
+Content-Type: application/json
+
+{ ...fixture... }
+
+->  204 No Content
+```
+
+Replace all service state with the fixture in the request body (§4). When reset returns
+204, subsequent requests must see only that fixture. Repeated resets are supported.
+This test endpoint must be enabled in the delivered image and requires no authentication.
+
+### 3.4 Conventions
+
+- Requests and responses are `application/json; charset=utf-8`.
+- Timestamps in responses are RFC 3339 with an explicit offset, e.g. `2026-09-24T19:00:00+02:00`.
+- Unknown fields in a request body are ignored, never an error.
+- Unknown query parameters are ignored.
+- IDs are opaque strings of at most 64 characters. Their format is yours. This limit
+  also applies to IDs supplied in reset fixtures.
+
+## 4. Model
+
+Restaurants and tables are supplied through `POST /_test/reset` only. Restaurant and
+table creation endpoints are out of scope.
+
+| Field | On | Meaning |
+|---|---|---|
+| `timezone` | Restaurant | IANA zone name, e.g. `Europe/Berlin`. All of the restaurant's times are local to this |
+| `slot_minutes` | Restaurant | Bookings start on a grid of this many minutes from opening time |
+| `reservation_duration_minutes` | Restaurant | How long every reservation occupies its table |
+| `cancellation_cutoff_minutes` | Restaurant | A booking cannot be cancelled or changed within this many minutes of its start |
+| `opening_hours` | Restaurant | Per weekday. A day with no entry is closed |
+| `capacity` | Table | Maximum party size |
+
+### Fixture format
+
+```json
+{
+  "users": [
+    { "id": "u_ada", "email": "ada@example.com",
+      "password": "correct horse", "display_name": "Ada" }
+  ],
+  "restaurants": [
+    {
+      "id": "r_anker",
+      "name": "Zum Anker",
+      "timezone": "Europe/Berlin",
+      "slot_minutes": 30,
+      "reservation_duration_minutes": 90,
+      "cancellation_cutoff_minutes": 120,
+      "opening_hours": [
+        { "weekday": "thu", "opens": "18:00", "closes": "23:00" },
+        { "weekday": "fri", "opens": "18:00", "closes": "23:30" }
+      ],
+      "tables": [
+        { "id": "t_1", "label": "1", "capacity": 2 },
+        { "id": "t_2", "label": "2", "capacity": 4 }
+      ]
+    }
+  ],
+  "reservations": []
+}
+```
+
+- `weekday` is one of `mon tue wed thu fri sat sun`.
+- `opens` and `closes` are local `HH:MM`, 24-hour. `closes` is always later than `opens` on the
+  same local day — opening hours never cross midnight.
+- Seeded users must be able to log in with the given password immediately.
+- `reservations` may seed confirmed bookings, with the same fields as a `POST /reservations`
+  body plus `id`, `reference` and `user_id`.
+
+Fixtures may use any calendar date. A booking must not be rejected solely because its
+start is in the past; the cancellation and amendment cutoff rules still apply.
+
+## 5. Errors
+
+Every 4xx and 5xx response carries this body:
+
+```json
+{ "error": { "code": "table_unavailable", "message": "human readable, any wording" } }
+```
+
+Use the specified HTTP status and `code`. The human-readable `message` may use any wording.
+Endpoint-specific errors are listed with each endpoint.
+
+| Status | `code` | When |
+|---|---|---|
+| 400 | `malformed_request` | Unparseable body, or a field of the wrong JSON type |
+| 400 | `missing_idempotency_key` | Required `Idempotency-Key` header absent or empty |
+| 401 | `unauthenticated` | Missing, malformed or unknown bearer token |
+| 403 | `forbidden` | Authenticated, but not permitted to touch this resource |
+| 404 | `not_found` | No such resource, or not visible to this caller |
+| 409 | `idempotency_key_reuse` | Key already used by this caller with a different request body |
+| 422 | `validation_failed` | A required field or query parameter is missing, or a stated rule is violated with no more specific code |
+
+A field of the correct JSON type with an invalid format or out-of-range value gives
+422 `validation_failed`, unless an endpoint specifies a different error. This includes
+invalid dates, negative counts and values exceeding a stated maximum or length. In addition:
+
+- Endpoint-specific field rules take precedence: invalid `party_size` values (including strings
+  and booleans) and `starts_at_local` strings that are not a bare local `YYYY-MM-DDTHH:MM` are
+  422 `validation_failed`. Other wrong JSON types follow the rule below.
+- An integer-valued **query parameter** is written as plain decimal digits: `1e9`, `4.0` and `+4`
+  are 422 `validation_failed` whatever their numeric value.
+- Reserve 400 `malformed_request` for a body that does not parse or a field of the wrong type.
+
+Shared ranges, enforced on every endpoint that takes them:
+
+| Field | Valid | Otherwise |
+|---|---|---|
+| `Idempotency-Key` | 1 to 255 characters | 422 `validation_failed` |
+
+Requests must not produce 5xx responses, including under concurrent load.
+
+## 6. Authentication
+
+Authentication supports signup and login. Email verification, password reset, refresh
+tokens and role-management endpoints are out of scope. Permissions specified elsewhere
+in these requirements still apply.
+
+```http
+POST /auth/signup
+{ "email": "a@example.com", "password": "correct horse", "display_name": "Ada" }
+
+->  201  { "user_id": "u_1", "display_name": "Ada", "token": "..." }
+```
+
+```http
+POST /auth/login
+{ "email": "a@example.com", "password": "correct horse" }
+
+->  200  { "user_id": "u_1", "display_name": "Ada", "token": "..." }
+```
+
+| Case | Response |
+|---|---|
+| Email already registered | 409 `email_taken` |
+| Password shorter than 8 characters | 422 `validation_failed` |
+| `email` not of the form `local@domain` | 422 `validation_failed` |
+| Wrong password or unknown email on login | 401 `unauthenticated` |
+
+Every other endpoint requires a bearer token, except `/health`, `/_test/reset`, the two above, and
+the three public endpoints named at the top of §8 — `GET /restaurants`, `GET /restaurants/{id}` and
+`GET /availability`:
+
+```http
+Authorization: Bearer <token>
+```
+
+Tokens do not expire. An account may have multiple valid tokens and concurrent sessions.
+
+Passwords must be stored using a password-hashing function such as bcrypt, scrypt or
+Argon2, or an equivalent. Plaintext password storage is not permitted.
+
+## 7. Idempotency
+
+Two write paths require an idempotency key: **`POST /reservations`** (§8) and
+**`POST /reservation-moves`** (§11).
+
+```http
+Idempotency-Key: <client-chosen string, 1..255 characters>
+```
+
+The key is scoped to **the authenticated user**. Two different users may use the same key string
+with no interaction between them.
+
+A replay means the same user sending the **same method, the same path and the same body**. The
+same key with the same body on a different path is a different request, not a replay, and must
+succeed normally.
+
+After the body has been parsed as a JSON object and the caller authenticated, idempotency
+is resolved before endpoint-specific field validation or current-resource checks. Thus a
+used key with a different JSON body returns `409 idempotency_key_reuse` even when that new
+body would otherwise be invalid.
+
+| Situation | Response |
+|---|---|
+| Header absent or empty | 400 `missing_idempotency_key` |
+| First use of the key | The normal response, **201** |
+| Replay: same key, same body | **200**, body identical to the original response as a JSON value |
+| Same key, different body | 409 `idempotency_key_reuse` |
+| Key reused after the original request failed with 4xx | Treated as a first use |
+
+"Same body" means the same JSON value after parsing — key order and whitespace do not matter.
+
+For concurrent identical requests with an unused key, exactly one returns 201.
+The others return 200 with the same body. The operation takes effect only once.
+
+A successful replay returns the original response, even after the resource changes or
+is cancelled. It makes no further state changes.
+
+## 8. API
+
+`GET /restaurants`, `GET /restaurants/{id}` and `GET /availability` are **public** — no bearer
+token. Everything else needs one. Diners browse before they sign in.
+
+### `GET /restaurants`
+
+```json
+{ "restaurants": [ { "id": "r_anker", "name": "Zum Anker", "timezone": "Europe/Berlin" } ] }
+```
+
+### `GET /restaurants/{id}`
+
+The restaurant with its `slot_minutes`, `reservation_duration_minutes`,
+`cancellation_cutoff_minutes`, `opening_hours` and `tables`, in the fixture's shape. 404 if
+unknown.
+
+### `GET /availability`
+
+```http
+GET /availability?restaurant_id=r_anker&date=2026-09-24&party_size=4
+```
+
+All three parameters are required; a missing one is 422 `validation_failed`. `date` is a local
+calendar date at the restaurant.
+
+```json
+{
+  "restaurant_id": "r_anker",
+  "date": "2026-09-24",
+  "timezone": "Europe/Berlin",
+  "slots": [
+    { "starts_at_local": "2026-09-24T18:00",
+      "starts_at": "2026-09-24T18:00:00+02:00",
+      "available_table_ids": ["t_2"] }
+  ]
+}
+```
+
+`starts_at_local` is the full `YYYY-MM-DDTHH:MM` and goes into `POST /reservations` unchanged.
+
+A slot appears for every `slot_minutes` step from `opens` such that
+`slot + reservation_duration_minutes <= closes`. `available_table_ids` lists the tables of that
+restaurant with `capacity >= party_size` and no overlapping confirmed reservation, in fixture
+order. A slot with no available table still appears, with an empty list.
+
+A closed day returns `"slots": []`.
+
+### `POST /reservations`
+
+`Idempotency-Key` is required; see §7.
+
+```http
+POST /reservations
+Authorization: Bearer <token>
+Idempotency-Key: 2f9c1a...
+
+{ "restaurant_id": "r_anker", "table_id": "t_2",
+  "starts_at_local": "2026-09-24T19:00", "party_size": 4 }
+```
+
+`starts_at_local` is wall-clock at the restaurant, with no offset and no `Z`. Resolve it against
+the restaurant's `timezone`.
+
+```json
+201
+{
+  "reservation_id": "res_7",
+  "reference": "K3P7QW",
+  "restaurant_id": "r_anker",
+  "table_id": "t_2",
+  "party_size": 4,
+  "status": "confirmed",
+  "starts_at_local": "2026-09-24T19:00",
+  "starts_at": "2026-09-24T19:00:00+02:00",
+  "ends_at": "2026-09-24T20:30:00+02:00",
+  "created_at": "2026-09-21T11:04:03+00:00"
+}
+```
+
+`reference` is 6 to 12 characters of `A-Z0-9`, unique across all reservations, and never changes.
+
+| Case | Response |
+|---|---|
+| The table is taken for an overlapping interval | 409 `table_unavailable` |
+| `starts_at_local` is not on the slot grid | 422 `not_on_slot_grid` |
+| Slot outside opening hours, or the reservation would end after `closes` | 422 `outside_opening_hours` |
+| `party_size` exceeds the table's `capacity` | 422 `party_exceeds_capacity` |
+| `party_size` below 1, or not an integer | 422 `validation_failed` |
+| `starts_at_local` is a local time that does not exist (see §9) | 422 `invalid_local_time` |
+| Unknown restaurant, unknown table, or the table belongs to another restaurant | 404 `not_found` |
+
+### `GET /reservations`
+
+The caller's reservations, `starts_at` descending, confirmed and cancelled alike.
+Return `200` with `{"reservations": [...]}`; each entry has the same shape as the
+create response. An empty list is `{"reservations": []}`.
+
+### `GET /reservations/{reference}`
+
+One reservation. **404 if it is not the caller's** — do not leak the existence of other people's
+bookings.
+
+### `POST /reservations/{reference}/cancel`
+
+```json
+200
+{ "reference": "K3P7QW", "status": "cancelled", ... }
+```
+
+Frees the table immediately: the next `GET /availability` must offer that slot again.
+
+| Case | Response |
+|---|---|
+| Already cancelled | 200 with the current state — cancelling twice is not an error |
+| Now is within `cancellation_cutoff_minutes` of `starts_at`, or later | 409 `cutoff_passed` |
+| Not the caller's reservation | 404 `not_found` |
+
+### `PATCH /reservations/{reference}`
+
+Change the time, the table or the party size. Any subset of `table_id`, `starts_at_local`,
+`party_size`. No idempotency key is required here.
+
+Validation is identical to `POST /reservations`, and the same cutoff rule as cancel applies
+(409 `cutoff_passed`), measured against the **current** start time. A cancelled reservation is
+409 `reservation_cancelled`. A successful amendment releases the old slot and reserves the
+new one together. A failed amendment leaves the original booking and its occupancy unchanged.
+
+`reference` and `reservation_id` survive a change.
+
+## 9. Time and DST
+
+Local dates and times follow the restaurant's `timezone`, including daylight-saving transitions.
+
+**Spring forward.** Local times in the skipped hour do not exist. They never appear in
+availability, and booking one is 422 `invalid_local_time`.
+
+**Fall back.** Local times in the repeated hour occur twice. **Always resolve to the first
+occurrence — the one before the clocks change.** The slot appears once in availability, and the
+second occurrence is not bookable.
+
+`reservation_duration_minutes` is **absolute time**, not wall-clock. A 90-minute reservation
+starting at 01:30 on a fall-back night ends 90 real minutes later, and its local `ends_at` will
+read 02:00, not 03:00.
+
+The transitions that must be handled:
+
+| Zone | Spring forward | Fall back |
+|---|---|---|
+| `Europe/Berlin` | 2026-03-29, 02:00 → 03:00 | 2026-10-25, 03:00 → 02:00 |
+| `America/New_York` | 2026-03-08, 02:00 → 03:00 | 2026-11-01, 02:00 → 01:00 |
+
+Offsets must follow the IANA rules for the specified zone and date.
+
+## 10. Export and import
+
+The service must support `GET /_test/export` and `POST /_test/import`. Like reset, these
+are unauthenticated test endpoints.
+Exports may contain credentials and session tokens; handle them as private test artifacts.
+Return 200 from export with a JSON object containing `track: "tablekeeper"`,
+`format_version: 1` and `state` (an implementation-defined JSON object). The state format
+is opaque to the caller and must be accepted unchanged by import.
+
+Import takes that entire object and atomically replaces the service's state, returning
+204. It must accept an unchanged export produced by this service. No dependency on the
+source process, files, volume, port or network address is allowed. Import is replacement,
+not merge; repeating it restores the exported state without duplicating anything. Invalid
+JSON follows §5; missing fields, wrong track/version or an invalid state give 422
+`validation_failed` without changing the destination. Test control calls have a 10-second
+timeout. Export is an atomic, read-only snapshot; subsequent source writes do not change it.
+
+Preserve accounts and hashed-password login, existing bearer tokens, fixture configuration,
+reservations, references, all completed idempotent request bodies and original responses.
+Identities, statuses and timestamps must not be regenerated. Failed request keys remain
+reusable. Existing receipts, references, tokens and retries must remain valid after import;
+replacing the state with a fresh fixture does not satisfy this requirement. Import removes
+all previous destination data and credentials. Reset continues to clear all state, including
+imported state. State need not survive an abrupt container restart.
+
+## 11. Atomic reservation moves
+
+A diner may change several bookings in one request.
+
+`POST /reservation-moves` requires authentication and an idempotency key. Body:
+
+```json
+{"moves": [{"reference": "BOOK01", "table_id": "t_2"},
+           {"reference": "BOOK02", "table_id": "t_1"}]}
+```
+
+`moves` contains 1..8 objects with distinct string references. Invalid shape or duplicate
+references gives 422 `validation_failed`. Every booking must belong to the caller and the
+same restaurant. Unknown/another owner's reference gives 404 `not_found`; different
+restaurants give 422 `validation_failed`. No token gives 401.
+
+Each item accepts the ordinary PATCH fields `table_id`, `starts_at_local`, `party_size`;
+omitted fields retain their current values and unknown fields are ignored. The booking's
+identity, owner and creation time never change. Cancelled bookings give 409
+`reservation_cancelled`. Each booking's existing cutoff applies. Non-occupancy errors use
+ordinary amendment codes and take precedence in input order, with cutoff errors preceding
+other changes for that booking. An overlap among resulting bookings or with an unlisted
+booking gives 409 `table_unavailable`. Unchanged listed bookings retain their occupancy.
+
+Either every move commits or nothing changes: occupancy, reservation records and retry
+keys. On success return 201 with `{"reservations": [...]}` in input order, including
+unchanged items.
+Replays return that original response with 200, even after amendments or cancellations.
+No-op moves retain all existing values. Export/import preserves successful batch receipts
+as well as the resulting bookings. No batch UI is required.
+
+## Full independent candidate 5 rejection
+# Stage 1 candidate 5: reject
+
+Exact full candidate `f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250`, production source `78732dde56ba6116d0722136beba74b674811105`: **reject**. Highest independently accepted consecutive stage remains **0**. The original five 4,301-digit refusals are repaired, but this candidate rejects valid JSON numbers in unknown fields. No Stage 2 promotion or Stage 3 extension follows this report.
+
+The smallest reproduced failure adds only `"unused":1e4300` to an otherwise valid create body or reset fixture. This is a valid JSON number and finite mathematically; its short spelling is a modest payload. Stage 1 §3.4 says unknown request-body fields are ignored, never an error. Expected create201/reset204; observed both400 `malformed_request`, message `Invalid JSON value`. Signup with that same unknown value returns201. An ordinary create using the failed key succeeds201, confirming that the refusal consumed no key. These two endpoint failures also invalidate the inherited general `TK1-unknown-body` obligation. They do not depend on any interpretation of fractional or integral field types. The inherited endpoint-specific unknown-create and unknown-reset rows are also failed; an earlier draft linking only the general row is preserved in coverage-link-correction-01, with no new raw observation.
+
+The independent client and exact command are in [numeric_forms.py](../numeric_forms.py) and [numeric_forms_run.py](../numeric_forms_run.py). From the result root, the executed command was:
+
+```sh
+/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/.venv/bin/python -B evidence/independent-verifier/stage-1/numeric_forms_run.py --repo /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result --workspace /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory --candidate f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250 --out /Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/independent-verifier-s1-f5e0a532-numeric-01
+```
+
+Use a new unique `--out` directory to reproduce. Actual raw create/reset bodies, responses and counts are in `numeric-01/probes.json`; `commands.json`, `identity.json`, `inspect.json`, `image-hashes.json` and `client-source-proof.json` bind the clean detached clone, named source/image, client code, constraints and cleanup. Tokens/passwords/export payloads are redacted or fingerprinted, not published.
+
+The final matrix has **932 rows: 913 verified, 5 failed, 14 unverified**. Every previous806 row was retested or freshly reviewed with current-candidate evidence; none of the old801 passes was reused as current proof. The111 decimal rows and15 numeric-form rows are independently derived additions. Fourteen additional raw expectation failures remain source questions: base-field1.5 gives400 rather than provisional422 (four), base-field1.0/1e0 gives400 rather than provisional204 (eight), and party1.0/1e0 gives422 rather than provisional201 (two). Their observed responses are preserved; the final matrix marks these interpretations **unverified**, not established service failures. Coordinator source-question messages are `af72866f-e5ae-4b5e-9c92-a2a90ab2102b` and `d09328ff-60fd-416a-8ee7-d33da74aa86c`. Earlier917-row observed counts remain separately unchanged.
+
+Current independent execution totals **1841 HTTP requests, 1728 assertions and 16 raw expected-versus-observed failures**. Raw failures comprise the two clear unknown-field failures and fourteen interpretation questions; these are not sixteen established distinct normative defects.
+
+| Run | Requests | Assertions | Raw failures | Seconds |
+|---|---:|---:|---:|---:|
+| probes | 1485 | 1497 | 0 | 7.626438 |
+| original-minimal | 4 | 9 | 0 | 0.015322 |
+| calendar-minimal | 8 | 12 | 0 | 0.101923 |
+| race50 | 55 | 11 | 0 | 0.116309 |
+| legacy | 26 | 24 | 0 | 0.193448 |
+| decimal-04 | 196 | 124 | 4 | 1.146868 |
+| 10^18 minute boundaries | 39 | 26 | 0 | 0.178628 |
+| JSON numeric forms | 28 | 25 | 12 | 0.112498 |
+
+Unchanged official isolated Stage1: **120 collected,120 passed,0 failed/errors/skipped/deselected/xfailed**, 30.943953s. Stage2 overshoot: **25 collected,0 passed,1 failed,24 not executed**,0 errors/skips/deselections/xfailed. The unchanged Stage1 service correctly claims1 on shipped checks; passing those checks does not override this independent rejection. Earlier-stage regression: none applies. Official output is preserved under `official/` and the original unique final-checks directory. The harness/test selection was not modified.
+
+Fresh default8080 and override18309 startup/cross-container health measured0.409093s and0.341858s respectively. Current source/destination and genuine pre-serializer source `49287b4a5a1481f995c470ccae31776f03d4b863` ran in constrained offline images; current and legacy core/server hashes matched. Tests include separately staged50-client traffic, deterministic seed20261004/160-operation occupancy trace, atomic rollback/read snapshots, calendar/DST boundaries, genuine old tokens/references/create+batch receipts, and independent destination replacement. Full current configuration, giant integer request/receipt values and original receipt replay survive import. The decimal suite's maximum ordinary/control request times were0.021956s/0.050374s. These modest values do not prove arbitrary-size performance.
+
+All own service containers and networks were removed with successful cleanup; images and clean clones remain. No other seat's process was touched. The clean exact candidate's five-file Stage1 subtree matches named production78732dde; four Interface runtime files match the revoked original2a4 source byte-for-byte. Source declarations, complete handoffs, empty original intake, both builder contributions, dependency imports and history are reviewed in `source-audit.json` and `source-inputs/`. No builder test/oracle implementation or external domain code was read. Build cache was available; no uncached-build claim is made.
+
+Preserved verifier runner mistakes are separate: an AST selector chose the wrong `__init__`, the first decimal client's helper argument collided with `key`, the next driver used a relative Dockerfile path from the wrong directory, and an overlong container DNS label prevented a health client from reaching the service. Original error artifacts/source versions remain under `source-runner-error-01`, `decimal-runner-error-01/02/03`, `runtime-01/decimal-client.log`, `decimal-02` and `decimal-03`. Decimal04 and numeric01 are newly executed observations, not relabeled earlier runs.
+
+Historical timestamps follow the recorded exact-instant/nearest representable minute-offset interpretation; original wall fields and genuine old offset-seconds receipt strings remain immutable. Literal historic IANA subminute wire offsets cannot simultaneously satisfy the minute-only RFC3339 grammar and are an explicitly disclosed interpretation risk. No receipt schema/value is enriched on historical replay.
+
+This review elapsed880.605s from2026-10-04T02:43:20.153000+00:00 to2026-10-04T02:58:00.757771+00:00; per-run durations are measured separately. Whole factory elapsed is coordinator-owned. HarnessCodex; operator-configured modelgpt-6.1-sol. Actual model override, effort, token usage, catalog-estimated cost and billed spend are unknown. Hidden judging results, full genuine room export, publication and final submission remain operator-controlled. A new complete repair-candidate handoff and independent exact-revision reexecution are required before acceptance.
+
+## Full Interface integration failure handoff
+# Stage 1 candidate 5 Interface integration handoff
+
+Current outcome: **integration refusal remains unresolved; no acceptance claimed**.
+Highest independently accepted consecutive stage remains **0** after the preserved
+supplemental rejection `fe68f4ef60580d73c17ba2a21c6a4d20b77e8e41`.
+Stage 2 production remains frozen. No Stage 3 work was started.
+
+Package `TK-20261004-S1-interface-engineer-CANDIDATE-5`, parts 1–7 and END marker,
+was acknowledged complete in room message `19f3cda1-9705-4ba0-800e-8cbea7a060ec`
+before execution. Shared assignment is #8. This review changes only Interface
+evidence; no graded source, Engine, verifier file or Stage 2 file was edited.
+
+Exact reviewed full candidate: `f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250`.
+Stage 1 implementation source: `78732dde56ba6116d0722136beba74b674811105`.
+Reviewed Stage 1 tree: `938fe8d78be5650b989d18fe7540b0aa1cff4e80`.
+Own initial probe commit: `76763bb2cbf54d5da8780768ae89399d3106a8fc`.
+Own runner-only DNS-label repair: `74dff654931980cdacbb63dec61a649fa47a9a81`.
+The commit containing this report is the evidence handoff revision; its full hash
+is supplied in the room handoff, avoiding a self-referential commit hash.
+
+## Observed results and actual failure
+
+The completed corrected-run result is:
+
+| Observation | Measured result |
+| --- | --- |
+| Runtime/source/clone checks, excluding the two suite aggregate flags | 20/20 passed |
+| Own inherited transport/concurrency/time assertions | 577/577 passed, 0 failures, 0.1186 s |
+| New own decimal/legacy HTTP interactions | 132 operations, 518 assertions, 517 passed, 1 failed, 0.530112459 s |
+| Complete build/start/probes/cleanup | 53.305537584 s |
+| Candidate default 8080 health, measured from `docker run` start | 3.271080792 s |
+| Candidate overridden 9090 health, measured from `docker run` start | 3.251947708 s |
+| Genuine older service health | 3.251559333 s |
+| Own service/network cleanup | Four removal commands, all exit 0 |
+
+These are assertions, with repeated HTTP media-type/framing/timing assertions;
+they are not normative requirement counts or an independent promotion verdict.
+There are no skipped cases or flow exceptions in the corrected run.
+
+The failed interaction uses a normal capacity-4 fixture, an authenticated diner
+and a previously unused key. Its raw create body contains a **JSON number**, not
+a string: `party_size` is the decimal digits of `10**4300 + 1` followed by `.5`.
+The complete body is generated explicitly in `stage-1-candidate-5-probe.py`.
+This is a finite, syntactically valid JSON fractional value with a 4,301-digit
+integer part. Observed: **400 `malformed_request`**. Expected from Stage 1 §§5/8:
+**422 `validation_failed`**, because `party_size` is not an integer. Ordinary
+`1.5`, boolean/string/zero/negative party controls return the expected 422.
+
+Diagnosis from read-only inspection: the unchanged adapter's default
+`json.loads` floating decoder represents this valid decimal fraction as Python
+positive infinity. Core's `json_value` then refuses a non-finite float with 400
+before endpoint party validation. This diagnosis does not make an explicit
+`NaN`/`Infinity` token legal: those malformed constants continue to be rejected.
+The integer conversion repair therefore resolves the tested integer ceilings
+but does not resolve this floating-decimal transport boundary.
+
+The failure and source applicability were sent to the coordinator and Systems in
+room message `42c1bc6d-6731-4cfe-a19d-73527ee2a91f`. No repair was performed in
+an owned runtime or overlapping Engine path. Source coordination and independent
+review must resolve this remaining refusal before this report can support a
+passing integration claim. Existing accepted/rejected reports remain unchanged.
+
+## Passing integration scope
+
+All four isolated 4,301-digit base-field resets return an empty 204, and public
+restaurant responses retain the exact JSON integer. A huge grid produces one
+bounded opening candidate; a huge duration produces no fitting starts and the
+ordinary fit refusal; huge cutoff amendments/cancellation refuse atomically.
+Exact giant party queries correctly offer a fitting singleton or empty lists for
+ordinary capacities. No undocumented safe-integer or digit cap was introduced.
+
+Giant party JSON values survive create, amendment, batch move, cancellation,
+current-state lookup, public response encoding and independent-process import.
+Full parsed retry bodies retain giant ignored integers and nested JSON types.
+Key-order/whitespace replay, changed-body conflicts before invalid field/resource
+checks, failed-key reuse and immutable original create/move receipts pass.
+
+Strict malformed UTF-8/JSON/constants/nonobject behavior, other wrong field
+types, booleans/ordinary fractions, query lexical/value refusals, failed reset/import
+atomicity, HTTP JSON charset/byte lengths and zero-byte 204 responses pass.
+Inherited probes exercise two 50-client barriers (identical retry and occupancy
+competition), partial committed-response loss followed by recovery, Unicode and
+case-insensitive headers, public browsing, bodyless cancel, reset/session clearing,
+both repeated-hour IANA cases, a skipped local time, and historical/calendar
+timestamp serialization under the recorded interpretation.
+
+A separately built, genuinely running older source at full revision
+`49287b4a5a1481f995c470ccae31776f03d4b863` issued two active sessions, original
+create references and an atomic swap receipt. That source then amended and
+cancelled the records. Its unchanged HTTP export was imported into **each of two
+independent candidate processes**. Both retain exact source state, current record
+identities/statuses/timestamps, both tokens, password login and original create
+and batch receipt JSON, including a field ignored by that old Stage 1 source.
+Repeated replacement adds no duplicate; previous destination sessions disappear;
+reset removes imported sessions and credentials. A later source write leaves the
+captured snapshot unchanged. No state was manufactured from fixture reconstruction.
+
+## Exact build, runtime and commands
+
+Both executions ran this command from the result repository:
+
+```sh
+python3 -B evidence/interface-engineer/stage-1-candidate-5-container-check.py \
+  --revision f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250
+```
+
+The host runs only standard-library evidence orchestration. The driver creates
+a clean detached clone at the named full candidate, reads/hashes the exact source
+and RUN instructions, parses both service files with AST without importing host
+service dependencies, and builds the complete five-file Stage 1 folder using its
+Dockerfile. The old build context is generated from its exact committed five files.
+Build cache was available and reused; no uncached-build claim is made.
+
+Current and older image core/server hashes match the named source revisions.
+All three service processes ran with 2 CPU, 2 GiB, no mounts and an internal
+offline network. Candidate listeners were observed at `0.0.0.0:8080` and
+`0.0.0.0:9090`; the decimal client reached them by their internal network names,
+so loopback-only binding cannot explain the passing remote HTTP interactions.
+Host mappings used only 18225–18227. Host-published access was not asserted;
+the already observed host mapping limitation is not relabelled as success.
+The separate stdlib client also ran with 2 CPU/2 GiB and no service interpreter
+sharing; its own integer-conversion setting cannot configure any source service.
+
+Both clones remain clean after builds and checks. Retained corrected clone:
+`/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/interface-engineer-s1-candidate5-20261004t024832530922z`.
+The four Interface runtime files are byte-identical to the original revoked source
+`2a4b0408a3453bc87d86bca3d0ec571f479e03ca`; the repaired core is explicitly different.
+Per-file original/candidate SHA-256 values are in `source-proof.json`.
+
+## Preserved runner failure and artifacts
+
+Initial run: `interface-engineer-s1-candidate5-20261004t024714780674z/`.
+The destination DNS label was 67 characters, exceeding the 63-character label
+bound. Python's HTTP client raised `UnicodeError` before that destination could
+be addressed. Partial results were 64 operations/250 assertions/248 passes and
+two flow exceptions; inherited assertions were 577/577. Wall time was
+53.052897584 s. All own cleanup commands exited 0. This is an own runner defect,
+not a passing service run or two manufactured production failures.
+
+The runner-only commit shortens resource labels and validates their length.
+The corrected output is separate:
+`interface-engineer-s1-candidate5-20261004t024832530922z/`.
+Each folder retains `run.json` (every executed argv, timing, source/resource/cleanup
+proof), `source-proof.json`, both build logs, health/listener/image hash observations,
+`inherited-http.json`, `decimal-legacy-http.json`, `summary.json` and service logs.
+Own service containers, client and network were removed; image tags and clean
+clones remain. Temporary old build contexts were removed. No other seat's resource
+was stopped or changed.
+
+Durable HTTP traces contain statuses, error codes and request/response digests;
+full exports, token values/maps and password hashes stay only in client memory.
+A recursive inspection of 2,450 saved JSON object records found zero raw fields
+named password/password_hash/token/tokens/state/authorization. This scoped scan
+is not a secret review of the final room export or unrelated evidence.
+
+## Inputs, assumptions and remaining risk
+
+Inputs were the complete seven-part assigned task/spec/brief/decisions, the
+participant guide and active room plan, own existing authored probes, exact current
+and older runtime files, Systems' supplied handoff and independent failure
+descriptions supplied in the package. After the new failure, bounded read-only
+core inspection examined `json_value` and write dispatch for diagnosis. No shipped
+test or verifier probe implementation was opened/copied/executed; no external
+domain code/API/schema, toy/abandoned result, outside-workspace implementation or
+memory source was used. No host dependency was installed.
+
+Ordinary transport uses Content-Length-framed JSON; unsupported transfer encoding
+is refused. Modest 4,301-digit payloads do not establish arbitrary-size request
+performance. Historical exact-instant/wall-field serialization still follows the
+coordinator's adjusted minute-offset interpretation; literal historic wire offsets
+and immutable older strings remain disclosed exceptions. Successful old receipts
+retain their original representation. Official isolated checks, renewed complete
+coverage and independent acceptance remain verifier/coordinator gates.
+
+Harness Codex; operator-configured model gpt-6.1-sol. Actual runtime override,
+reasoning effort, token usage, estimated or billed spend remain unknown. Measured
+run times above are scoped command times, not whole-factory elapsed time.
+
+## Exact raw-body artifact supplement
+
+Coordinator follow-up `a8fe7d33-7939-46ec-b884-0d1d8d52feba` requested the exact
+wire payload. Original full evidence handoff was committed at
+`d1e249be861310aeb9e60fbb6403da157096c359`; both original run directories and
+all their observations remain unchanged by this supplement.
+
+`stage-1-candidate-5-fractional-request.json` contains the exact **4,391 bytes**
+sent as the failed create request body, with no added newline. Its SHA-256 is
+`6c274edfdb0f233b146048059d742238439213c964a9ae9291e128d5d66cf30f`.
+It was reconstructed byte-for-byte from the unchanged committed probe's raw
+expression and matched to trace index **60 (zero-based)** in the corrected
+`decimal-legacy-http.json`. That recorded request is `POST /reservations`,
+status 400, code `malformed_request`. This supplements the original observation;
+it is not a new HTTP run or a newly captured response.
+
+`stage-1-candidate-5-fractional-request-proof.json` records the hash, byte count,
+matching trace metadata and expected 422/code. A separate artifact grammar check
+using stdlib `json.loads(..., parse_float=decimal.Decimal)` confirms that the body
+is valid JSON and `party_size` is a finite number with 4,302 coefficient digits,
+exponent -1 and last digit 5. This checks exact syntax/value without converting
+through a binary float; it does not configure or change any service process.
+The artifact contains no bearer token or exported state.
+
+The executable observed command remains the full exact-candidate driver command
+above. Its committed probe resets the normal capacity-4 fixture, obtains a real
+owner token, then sends these bytes using unused `Idempotency-Key: giant-fraction`
+and `Content-Type: application/json; charset=utf-8`. The private Authorization
+value is kept in memory. Every actual Docker/clone/probe argv and source proof
+remains in the two original `run.json` files; no command is relabelled or rerun.
+
+Systems confirmed source applicability in room message
+`a1ade857-483b-4ad1-87d3-8b960d1078b7`: the finite fractional/exponent decoding
+boundary is separate from the integer digit setting, and endpoint invalid-party
+precedence requires 422. Independent confirmation and the coordinator's complete
+serialized parser/core repair package remain pending. All graded source remains
+frozen and unchanged under this evidence-only assignment.
+
+## Subsequent independent verdict — candidate 5 rejected
+
+Independent room verdict `a7ba077b-95fd-43b6-bdb7-ebeac8c23aaf`, committed at
+`6c01976c7b1b910f748efc97be7cc468b5963b18`, **rejects the same exact candidate**
+`f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250`. Highest consecutive independently
+accepted stage remains 0. This section reports the verifier's result, not new
+Interface execution or a replacement for its coverage matrix.
+
+The independently established failures are finite JSON number `1e4300` in only
+an unknown create/reset body field: 400 observed instead of the specified
+201/204 under Stage 1 §3.4. The original five integer-digit refusals pass after
+the candidate's integer initialization repair. Fourteen fractional/integral-number
+source questions remain **unverified** in the final independent verdict; they are
+neither independently established production defects nor passes.
+
+The earlier Interface 400-vs-expected-422 fractional-party observation and Systems'
+applicability analysis remain preserved above, with their authors and scope. They
+must not be relabelled as independently accepted source interpretations. The
+coordinator must resolve those questions in the complete scoped repair assignment.
+The DNS runner failures remain separate from actual HTTP refusal observations.
+
+Authoritative independent report:
+`/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-5/VERDICT.md`.
+The verifier reports official isolated 120/120, while rejecting specification
+coverage; shipped checks do not restore acceptance. No verifier probe source was
+opened or copied by this update. No source change or additional test run occurred;
+Stage 1 and Stage 2 production remain frozen pending coordinated release.
+
+## Full Systems independent reproduction and source analysis
+# Finite JSON fraction classification: applicable defect
+
+Interface notification: `42c1bc6d-6731-4cfe-a19d-73527ee2a91f`. Tested candidate: `f5e0a532dcf6c2f0c44eb32d5213a9bf7812c250`, with unchanged Stage 1 source from `78732dde56ba6116d0722136beba74b674811105`. This is evidence-only analysis under the production review freeze; no graded source was edited.
+
+## Applicability and actual classification
+
+The literal `str(10**4300+1)+'.5'` has valid JSON number grammar and is a mathematically finite, noninteger decimal. Stage 1 section 5 explicitly prioritizes endpoint-specific party rules; section 8 assigns 422 validation_failed to a noninteger party_size. A valid numeric token overflowing the implementation's binary float representation does not become malformed JSON or a literal NaN/Infinity constant. The expected 422 is applicable.
+
+Current standard json.loads converts the literal to Python float infinity, while an independently checked Decimal constructor retains a finite exact decimal with exponent -1. The Engine's global json_value check rejects nonfinite float values as 400 malformed_request before ordinary party/idempotency handling. The earlier process-local integer conversion repair covers JSON integer tokens and int(query) only; it cannot change parse_float behavior. Input grammar and actual numerical value must survive this conversion boundary before correct field/error rules can apply.
+
+Ordering detail from source inspection: authenticated writes call _caller first, then json_value before idempotency header/receipt resolution and endpoint fields. The earlier room progress message's inclusion of authentication in the preempted checks was too broad; no authentication-order defect is claimed. Reset/import also validate portable JSON values before candidate-state replacement. Coordinator follow-up `701c0401-c3c0-4fa3-a13b-2fbebad4014e` confirms analysis scope and continued source freeze.
+
+## Owning-builder black-box reproduction
+
+Command from the result repository:
+
+```sh
+../../.venv/bin/python -B evidence/systems-engineer/stage-1-finite-fraction-run.py --out evidence/systems-engineer/systems-engineer-s1-finite-fraction-01
+```
+
+The retained own image `systems-engineer-tablekeeper-s1:decimal-05-20261004t023841` started independently with 2 CPU, 2 GiB, network none, no mounts and port 18122. Runtime core/server hashes matched the named candidate. The client imports no service implementation, independently checks the JSON number grammar/finite exact value, and saves request hashes rather than live credentials or exports. No Interface/verifier probe implementation was read or copied.
+
+Eight HTTP operations/eight assertions produced **three genuine failures** in 0.058199792 s:
+
+| Applicable behavior | Expected | Observed |
+|---|---|---|
+| Section 5/8: huge finite fractional party_size, valid normal fixture/token/new key | 422 validation_failed | 400 malformed_request |
+| Section 3.4: valid ordinary create, unknown ignored_number containing that finite fraction | 201 | 400 malformed_request |
+| Section 7: successful key reused with a different body containing the unknown finite fraction | 409 idempotency_key_reuse | 400 malformed_request |
+
+Normal reset/login, ordinary 1.5 party refusal, an ordinary successful create, and forbidden raw NaN constant all pass their expected 204/200/422/201/400 controls. Exact raw construction is executable in `stage-1-finite-fraction-client.py`; `systems-engineer-s1-finite-fraction-01/probe.json` preserves status/code/body, lexical/value checks, hashes and timing. `runtime.json` preserves executed argv, candidate hashes, resource proof and cleanup. Total run/start/probe/cleanup was 0.598636375 s; the only own container was removed successfully. This is source-review evidence, not a new repaired candidate or acceptance claim.
+
+## Required general boundary and ownership
+
+A general repair must preserve finite JSON numeric values through decoding, ignored fields, full parsed retry-body equality, storage, export/import and response serialization while keeping actual NaN/Infinity tokens and malformed JSON refused. Merely changing the party error mapping, permitting Python infinity in json_value, or reordering one field check would leave unknown-field/idempotency behavior incorrect; json.dumps(allow_nan=False) would also fail on successful stored receipts/exports if infinity were admitted. Clamping/rounding or converting numeric tokens to JSON strings would lose original-body semantics.
+
+Interface owns transport decoding/encoding. Systems owns portable JSON-value validation/equality and transaction/receipt import behavior. A coherent exact finite-number representation/codec must cross that boundary without allowing extra unsupported numeric types to escape wire encoding or changing bool/type/field/error precedence. Using a standard exact decimal representation is one candidate, but parser/encoder and import/equality behavior require explicit joint design and executable probes; Decimal construction alone is not a complete codec or arbitrary-exponent/resource proof. No implementation is selected or applied by this analysis.
+
+Coordinator must route the scoped complete repair package and release the respective owned paths before production edits. Stage 2 carries the same source pattern but was not executed by this new probe, so its finite-fraction result remains unverified here. Existing integer-only passes, earlier failures, current named verdicts and historical timestamp/original receipt interpretations remain preserved. No numeric cap, rounding, weaker grammar or endpoint-only special case is authorized by this finding. Highest accepted stage remains 0. Harness Codex; configured gpt-6.1-sol; actual override/effort/usage/spend unknown.
+
