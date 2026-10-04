@@ -1,4 +1,4 @@
-"""Tablekeeper Stage 2 application. HTTP transport is deliberately separate.
+"""Tablekeeper Stage 3 application. HTTP transport is deliberately separate.
 
 The lock is the transaction boundary, including reads and retry resolution. There
 is no occupancy cache: confirmed reservation records are the source of truth.
@@ -159,6 +159,9 @@ def assert_booking_fields(row, expected):
         elif key == "table_ids" and key not in row and value == [row.get("table_id")]:
             # Successful Stage 1 originals retain their singleton-only shape.
             continue
+        elif key == "accepted_terms" and key not in row:
+            # Older successful responses never acquire later-stage fields.
+            continue
         elif not same_json(row.get(key), value):
             fail()
 
@@ -233,8 +236,10 @@ class Engine:
 
     @staticmethod
     def _empty_state():
-        return {"schema": 2, "users": [], "restaurants": [], "tokens": {},
-                "reservations": [], "receipts": []}
+        return {"schema": 3, "users": [], "restaurants": [], "tokens": {},
+                "reservations": [], "receipts": [], "policies": {},
+                "histories": {}, "history_origins": {}, "series": {},
+                "restaurant_revisions": {}}
 
     def request(self, method: str, target: str, headers: Mapping[str, str],
                 body: object | None) -> tuple[int, object | None]:
@@ -286,8 +291,26 @@ class Engine:
         if method == "GET" and path == "/availability":
             return 200, self._availability(query)
 
+        if method == "GET" and len(segments) == 3 and segments[0] == "restaurants" and segments[2] == "policies":
+            restaurant = self._restaurant(segments[1])
+            return 200, {"policies": self._state["policies"].get(restaurant["id"], [])}
+        if method == "GET" and ((len(segments) == 3 and segments[0] == "reservations"
+                and segments[2] in ("history", "decision")) or
+                (len(segments) == 2 and segments[0] == "series")):
+            try:
+                user = self._caller(headers)
+            except Refusal:
+                fail(404, "not_found")
+            if segments[0] == "series":
+                return 200, self._series_public(self._owned_series(segments[1], user))
+            record = self._owned(segments[1], user)
+            if segments[2] == "history":
+                return 200, {"reference": record["reference"], "entries": self._state["histories"][record["reference"]]}
+            return 200, {key: record[key] for key in ("reference", "revision", "accepted_terms")}
+
         user = self._caller(headers)
-        if method == "POST" and path in ("/reservations", "/reservation-moves"):
+        policy_write = len(segments) == 3 and segments[0] == "restaurants" and segments[2] == "policies"
+        if method == "POST" and (path in ("/reservations", "/reservation-moves", "/series") or policy_write):
             data = object_body(body)
             json_value(data)
             key = headers.get("idempotency-key")
@@ -305,18 +328,41 @@ class Engine:
             if path == "/reservations":
                 record = self._create(user, data)
                 response = self._public(record)
-            else:
+                entries = [self._history_entry(record, None, "created", [])]
+                def commit():
+                    self._state["reservations"].append(record)
+                    self._state["histories"][record["reference"]] = entries
+                    self._state["history_origins"][record["reference"]] = "stage3"
+                    self._bump([record["restaurant_id"]])
+            elif path == "/reservation-moves":
                 originals, proposed = self._moves(user, data)
                 response = {"reservations": [self._public(r) for r in proposed]}
+                histories = self._prepared_histories(originals, proposed)
+                def commit():
+                    self._commit_changes(originals, proposed, histories)
+            elif path == "/series":
+                agreement, generated, histories = self._series_candidate(user, data)
+                response = self._series_public(agreement, generated)
+                def commit():
+                    self._state["reservations"].extend(generated)
+                    self._state["histories"].update(histories)
+                    self._state["history_origins"].update({r["reference"]: "stage3" for r in generated})
+                    self._state["series"][agreement["series_id"]] = agreement
+                    self._bump([generated[0]["restaurant_id"]])
+            else:
+                restaurant = self._restaurant(segments[1])
+                if user["id"] not in restaurant.get("manager_user_ids", []):
+                    fail(403, "forbidden")
+                policies = self._state["policies"].get(restaurant["id"], [])
+                response = {**self._policy(data, restaurant), "policy_version": len(policies) + 1}
+                saved_policy = copy_json(response)
+                def commit():
+                    self._state["policies"].setdefault(restaurant["id"], []).append(saved_policy)
+                    self._bump([restaurant["id"]])
             receipt = {"user_id": user["id"], "method": method,
                 "path": path, "key": key, "body": saved_body, "response": copy_json(response),
                 "numeric_profile": EXACT_PROFILE}
-            if path == "/reservations":
-                self._state["reservations"].append(record)
-            else:
-                for original, candidate in zip(originals, proposed):
-                    original.clear()
-                    original.update(candidate)
+            commit()
             self._state["receipts"].append(receipt)
             return 201, response
         if method == "GET" and path == "/reservations":
@@ -331,9 +377,10 @@ class Engine:
                 data = object_body(body)
                 proposed = self._amend_candidate(record, data)
                 self._check_occupancy([proposed], {record["reference"]})
-                record.clear()
-                record.update(proposed)
-                return 200, self._public(record)
+                histories = self._prepared_histories([record], [proposed])
+                response = copy_json(self._public(proposed))
+                self._commit_changes([record], [proposed], histories)
+                return 200, response
         if (method == "POST" and len(segments) == 3 and segments[0] == "reservations"
                 and segments[2] == "cancel"):
             if body is not None:
@@ -341,7 +388,12 @@ class Engine:
             record = self._owned(segments[1], user)
             if record["status"] != "cancelled":
                 self._cutoff(record)
-                record["status"] = "cancelled"
+                proposed = {**record, "status": "cancelled", "revision": record["revision"] + 1}
+                entries = self._state["histories"][record["reference"]]
+                histories = {record["reference"]: [*entries, self._history_entry(proposed, record, "cancelled", entries)]}
+                response = copy_json(self._public(proposed))
+                self._commit_changes([record], [proposed], histories, exception=False)
+                return 200, response
             return 200, self._public(record)
         fail(404, "not_found")
 
@@ -418,6 +470,190 @@ class Engine:
         return record
 
     @staticmethod
+    def _base_terms(restaurant):
+        return {"policy_version": 0,
+                **{key: restaurant[key] for key in ("slot_minutes", "reservation_duration_minutes",
+                    "cancellation_cutoff_minutes", "opening_hours")},
+                "capacities": {table["id"]: table["capacity"] for table in restaurant["tables"]}}
+
+    def _terms(self, restaurant, local_date, state=None):
+        state = self._state if state is None else state
+        eligible = [policy for policy in state["policies"].get(restaurant["id"], [])
+                    if date.fromisoformat(policy["effective_from"]) <= local_date]
+        if not eligible:
+            return copy_json(self._base_terms(restaurant))
+        policy = max(eligible, key=lambda p: (p["effective_from"], to_integer(p["policy_version"])))
+        return copy_json({key: value for key, value in policy.items() if key != "effective_from"})
+
+    @staticmethod
+    def _decision_restaurant(restaurant, terms):
+        return {**restaurant,
+                **{key: terms[key] for key in ("slot_minutes", "reservation_duration_minutes",
+                    "cancellation_cutoff_minutes", "opening_hours")},
+                "tables": [{**table, "capacity": terms["capacities"][table["id"]]}
+                           for table in restaurant["tables"]]}
+
+    @staticmethod
+    def _policy(data, restaurant):
+        # Every invalid complete policy, including a wrong field type, is 422.
+        try:
+            effective = data.get("effective_from")
+            if not isinstance(effective, str) or not DATE_PATTERN.fullmatch(effective):
+                fail()
+            date.fromisoformat(effective)
+            result = {"effective_from": effective}
+            for key, lower, upper in (("slot_minutes", 1, 1440),
+                    ("reservation_duration_minutes", 1, 1440),
+                    ("cancellation_cutoff_minutes", 0, 10080)):
+                value = data.get(key)
+                if not is_number(value) or not is_integral(value) or compare_numbers(value, lower) < 0 or compare_numbers(value, upper) > 0:
+                    fail()
+                result[key] = value
+            hours = data.get("opening_hours")
+            if not isinstance(hours, list):
+                fail()
+            result["opening_hours"], days = [], set()
+            for entry in hours:
+                if not isinstance(entry, dict):
+                    fail()
+                row = {key: entry.get(key) for key in ("weekday", "opens", "closes")}
+                if (any(not isinstance(v, str) for v in row.values()) or
+                        row["weekday"] not in WEEKDAYS or row["weekday"] in days or
+                        not TIME_PATTERN.fullmatch(row["opens"]) or not TIME_PATTERN.fullmatch(row["closes"]) or
+                        row["opens"] >= row["closes"]):
+                    fail()
+                days.add(row["weekday"])
+                result["opening_hours"].append(row)
+            capacities = data.get("capacities")
+            if not isinstance(capacities, dict) or set(capacities) != {t["id"] for t in restaurant["tables"]}:
+                fail()
+            for value in capacities.values():
+                if not is_number(value) or not is_integral(value) or compare_numbers(value, 1) < 0 or compare_numbers(value, 100) > 0:
+                    fail()
+            result["capacities"] = copy_json(capacities)
+            return result
+        except (Refusal, ValueError, TypeError):
+            fail(message="Invalid complete policy")
+
+    def _valid_terms(self, value, restaurant, state):
+        value = object_body(value)
+        version = integer_field(value, "policy_version", minimum=0, party=True)
+        if same_json(version, 0):
+            expected = self._base_terms(restaurant)
+        else:
+            policy = next((p for p in state["policies"].get(restaurant["id"], [])
+                           if same_json(p["policy_version"], version)), None)
+            if policy is None:
+                fail()
+            expected = {key: val for key, val in policy.items() if key != "effective_from"}
+        if not same_json(value, expected):
+            fail(message="Invalid accepted terms")
+        return copy_json(value)
+
+    @classmethod
+    def _changes(cls, record, previous=None):
+        members = cls._members(record)
+        before = cls._members(previous) if previous else None
+        changes = []
+        if previous is None or members != before:
+            pair = len(members) == 2 or (before is not None and len(before) == 2)
+            changes.append({"field": "table_ids" if pair else "table_id",
+                            "from": None if before is None else (list(before) if pair else before[0]),
+                            "to": list(members) if pair else members[0]})
+        for key in ("starts_at_local", "party_size"):
+            if previous is None or not same_json(previous[key], record[key]):
+                changes.append({"field": key, "from": None if previous is None else previous[key], "to": record[key]})
+        return changes
+
+    def _history_entry(self, record, previous, event, entries):
+        at = record["created_at"] if event == "created" else wire_timestamp(datetime.now(UTC))
+        if entries and instant(timestamp(at)) < instant(timestamp(entries[-1]["at"])):
+            at = entries[-1]["at"]
+        return {"seq": len(entries) + 1, "at": at, "event": event,
+                "changes": [] if event == "cancelled" else copy_json(self._changes(record, previous)),
+                "revision": record["revision"], "accepted_terms": copy_json(record["accepted_terms"])}
+
+    def _prepared_histories(self, originals, proposed):
+        histories = {}
+        for old, new in zip(originals, proposed):
+            if new["revision"] != old["revision"]:
+                entries = self._state["histories"][old["reference"]]
+                histories[old["reference"]] = [*entries, self._history_entry(new, old, "changed", entries)]
+        return histories
+
+    def _bump(self, restaurants, references=(), *, exception=True):
+        for restaurant_id in set(restaurants):
+            counters = self._state["restaurant_revisions"]
+            counters[restaurant_id] = counters.get(restaurant_id, 0) + 1
+        references = set(references)
+        for agreement in self._state["series"].values():
+            affected = [o for o in agreement["occurrences"] if o["reference"] in references]
+            if affected:
+                agreement["revision"] += 1
+                if exception:
+                    for occurrence in affected:
+                        occurrence["exception"] = True
+
+    def _commit_changes(self, originals, proposed, histories, *, exception=True):
+        changed = [(old, new) for old, new in zip(originals, proposed) if old["revision"] != new["revision"]]
+        for old, new in changed:
+            old.clear()
+            old.update(new)
+        self._state["histories"].update(histories)
+        self._bump([new["restaurant_id"] for _, new in changed],
+                   [new["reference"] for _, new in changed], exception=exception)
+
+    def _owned_series(self, series_id, user):
+        agreement = self._state["series"].get(series_id)
+        if agreement is None or agreement["user_id"] != user["id"]:
+            fail(404, "not_found")
+        return agreement
+
+    def _series_public(self, agreement, generated=()):
+        records = {r["reference"]: r for r in [*self._state["reservations"], *generated]}
+        return {key: agreement[key] for key in ("series_id", "revision", "interval_weeks")} | {
+                "occurrences": [{key: occurrence[key] for key in ("index", "reference", "exception")} |
+                    {"reservation": self._public(records[occurrence["reference"]])}
+                    for occurrence in agreement["occurrences"]]}
+
+    def _series_candidate(self, user, data):
+        anchor = self._owned(text_field(data, "anchor_reference"), user)
+        if anchor["status"] == "cancelled":
+            fail(409, "reservation_cancelled")
+        if any(any(o["reference"] == anchor["reference"] for o in s["occurrences"])
+               for s in self._state["series"].values()):
+            fail(409, "already_in_series")
+        self._cutoff(anchor)
+        count = integer_field(data, "count", minimum=2, party=True)
+        interval = integer_field(data, "interval_weeks", party=True)
+        if compare_numbers(count, 12) > 0 or compare_numbers(interval, 4) > 0:
+            fail()
+        count, interval = to_integer(count), to_integer(interval)
+        original = local_datetime(anchor["starts_at_local"])
+        generated, histories = [], {}
+        references = {r["reference"] for r in self._state["reservations"]}
+        ids = {r["reservation_id"] for r in self._state["reservations"]}
+        occurrences = [{"index": 0, "reference": anchor["reference"], "exception": False,
+                        "scheduled_starts_at_local": anchor["starts_at_local"]}]
+        for index in range(1, count):
+            local = original + timedelta(days=index * interval * 7)
+            fields = self._booking_fields({"restaurant_id": anchor["restaurant_id"],
+                "table_ids": self._members(anchor), "party_size": anchor["party_size"],
+                "starts_at_local": local.isoformat(timespec="minutes")})
+            self._check_occupancy([*generated, fields])
+            record = self._new_record(user, fields, references, ids)
+            references.add(record["reference"])
+            ids.add(record["reservation_id"])
+            generated.append(record)
+            histories[record["reference"]] = [self._history_entry(record, None, "created", [])]
+            occurrences.append({"index": index, "reference": record["reference"], "exception": False,
+                                "scheduled_starts_at_local": record["starts_at_local"]})
+        agreement = {"series_id": self._new_id("ser_", set(self._state["series"])),
+                     "user_id": user["id"], "revision": 1, "interval_weeks": interval,
+                     "occurrences": occurrences}
+        return agreement, generated, histories
+
+    @staticmethod
     def _hours(restaurant, local_date):
         return next((h for h in restaurant["opening_hours"]
                      if h["weekday"] == WEEKDAYS[local_date.weekday()]), None)
@@ -476,7 +712,15 @@ class Engine:
             data["table_ids"] = row["table_ids"]
         elif "table_id" in row:
             data["table_id"] = row["table_id"]
-        fields = self._booking_fields(data, state)
+        restaurant = self._restaurant(data.get("restaurant_id"), state)
+        terms = row.get("accepted_terms", self._base_terms(restaurant))
+        version = terms.get("policy_version") if isinstance(terms, dict) else None
+        if version is not None and not same_json(version, 0):
+            policy = next((p for p in state["policies"].get(restaurant["id"], [])
+                           if same_json(p["policy_version"], version)), None)
+            if policy is None or policy["effective_from"] > data.get("starts_at_local", "")[:10]:
+                fail()
+        fields = self._booking_fields(data, state, terms=terms)
         for key in ("table_ids", "table_id"):
             if key in row and row[key] != fields.get(key):
                 fail()
@@ -494,11 +738,13 @@ class Engine:
         # Stage 1 ignored table_ids, even when the new accepted receipt is exact.
         return body if "table_ids" in snapshot else {key: value for key, value in body.items() if key != "table_ids"}
 
-    def _booking_fields(self, data, state=None):
+    def _booking_fields(self, data, state=None, *, terms=None):
         restaurant_id = text_field(data, "restaurant_id", maximum=64)
         local = local_datetime(text_field(data, "starts_at_local"))
         party_size = integer_field(data, "party_size", party=True)
         restaurant = self._restaurant(restaurant_id, state)
+        terms = self._terms(restaurant, local.date(), state) if terms is None else terms
+        restaurant = self._decision_restaurant(restaurant, terms)
         members, capacities = self._seating(data, restaurant)
         zone = ZoneInfo(restaurant["timezone"])
         start = resolve_local(local, zone)
@@ -526,7 +772,7 @@ class Engine:
             fail(422, "party_exceeds_capacity")
         fields = {"restaurant_id": restaurant_id, "table_ids": members, "party_size": party_size,
                   "starts_at_local": data["starts_at_local"], "starts_at": wire_timestamp(start),
-                  "ends_at": wire_timestamp(end)}
+                  "ends_at": wire_timestamp(end), "accepted_terms": copy_json(terms)}
         if len(members) == 1:
             fields["table_id"] = members[0]
         return fields
@@ -557,36 +803,47 @@ class Engine:
         fields = self._booking_fields(data)
         self._check_occupancy([fields])
         references = {r["reference"] for r in self._state["reservations"]}
+        ids = {r["reservation_id"] for r in self._state["reservations"]}
+        return self._new_record(user, fields, references, ids)
+
+    def _new_record(self, user, fields, references, ids):
         reference = secrets.token_hex(5).upper()
         while reference in references:
             reference = secrets.token_hex(5).upper()
-        record = {"reservation_id": self._new_id("res_", {
-            r["reservation_id"] for r in self._state["reservations"]}),
+        record = {"reservation_id": self._new_id("res_", ids),
             "reference": reference, "user_id": user["id"], **fields, "status": "confirmed",
-            "created_at": wire_timestamp(datetime.now(UTC))}
+            "created_at": wire_timestamp(datetime.now(UTC)), "revision": 1}
         return record  # Dispatch snapshots the receipt before committing it.
 
     def _cutoff(self, record):
-        restaurant = self._restaurant(record["restaurant_id"])
         remaining = instant(timestamp(record["starts_at"])) - instant(datetime.now(UTC))
-        if compare_numbers(remaining, multiply_integer(restaurant["cancellation_cutoff_minutes"], MINUTE_US)) <= 0:
+        if compare_numbers(remaining, multiply_integer(record["accepted_terms"]["cancellation_cutoff_minutes"], MINUTE_US)) <= 0:
             fail(409, "cutoff_passed")
 
     def _amend_candidate(self, record, data):
+        if "expected_revision" in data:
+            expected = integer_field(data, "expected_revision", party=True)
+            if not same_json(expected, record["revision"]):
+                fail(409, "stale_revision")
         if record["status"] == "cancelled":
             fail(409, "reservation_cancelled")
         self._cutoff(record)
-        revised = self._booking_fields(self._amend_fields(record, data))
+        fields = self._amend_fields(record, data)
+        local_datetime(text_field(fields, "starts_at_local"))
+        party = integer_field(fields, "party_size", party=True)
+        restaurant = self._restaurant(record["restaurant_id"])
+        members, _ = self._seating(fields, restaurant)
+        if (members == self._members(record) and same_json(party, record["party_size"])
+                and fields["starts_at_local"] == record["starts_at_local"]):
+            return dict(record)
+        revised = self._booking_fields(fields)
         if same_json(revised["party_size"], record["party_size"]):
             revised["party_size"] = record["party_size"]
         for key in ("starts_at", "ends_at"):
             if instant(timestamp(revised[key])) == instant(timestamp(record[key])):
                 revised[key] = record[key]
-        if (self._members(record) == revised["table_ids"] and all(same_json(record[key], revised[key])
-                for key in ("restaurant_id", "party_size", "starts_at_local", "starts_at", "ends_at"))):
-            return dict(record)
         return {**{key: value for key, value in record.items() if key not in ("table_id", "table_ids")},
-                **revised}
+                **revised, "revision": record["revision"] + 1}
 
     def _moves(self, user, data):
         moves = data.get("moves")
@@ -611,6 +868,9 @@ class Engine:
         return originals, proposed  # Dispatch commits all records and receipt together.
 
     def _availability(self, query):
+        explain = "explain" in query
+        if explain and (query["explain"] != ["true"]):
+            fail()
         def parameter(name):
             if name not in query or not query[name][0]:
                 fail(message=f"Missing {name}")
@@ -628,6 +888,8 @@ class Engine:
         if party < 1:
             fail()
         restaurant = self._restaurant(restaurant_id)
+        terms = self._terms(restaurant, local_date)
+        restaurant = self._decision_restaurant(restaurant, terms)
         result = {"restaurant_id": restaurant_id, "date": local_date_string,
                   "timezone": restaurant["timezone"], "slots": []}
         hours = self._hours(restaurant, local_date)
@@ -671,9 +933,22 @@ class Engine:
                         options.append({"table_ids": list(members), "capacity": capacity})
                         if len(members) == 1:
                             available.append(members[0])
-                result["slots"].append({"starts_at_local": local.isoformat(timespec="minutes"),
+                slot = {"starts_at_local": local.isoformat(timespec="minutes"),
                     "starts_at": wire_timestamp(start), "available_table_ids": available,
-                    "available_options": options})
+                    "available_options": options}
+                if explain:
+                    slot["explain"] = []
+                    for table in restaurant["tables"]:
+                        candidate = {"restaurant_id": restaurant_id, "table_id": table["id"],
+                                     "starts_at": wire_timestamp(start), "ends_at": wire_timestamp(end)}
+                        capacity = compare_numbers(party, table["capacity"]) <= 0
+                        clear = not any(r["status"] == "confirmed" and self._overlap(candidate, r)
+                                        for r in self._state["reservations"])
+                        slot["explain"].append({"table_id": table["id"], "policy_version": terms["policy_version"],
+                            "available": capacity and clear,
+                            "rules": [{"rule": "capacity", "holds": capacity},
+                                      {"rule": "no_overlap", "holds": clear}]})
+                result["slots"].append(slot)
         return result
 
     @staticmethod
@@ -733,6 +1008,14 @@ class Engine:
                     if pair[0] == pair[1] or any(member not in table_ids for member in pair):
                         fail()
                     restaurant["combinable"].append(list(pair))
+            managers = row.get("manager_user_ids", [])
+            if not isinstance(managers, list):
+                fail(400, "malformed_request")
+            for manager in managers:
+                text_field({"id": manager}, "id", maximum=64)
+            if len(set(managers)) != len(managers):
+                fail()
+            restaurant["manager_user_ids"] = list(managers)
             restaurants.append(restaurant)
         return restaurants
 
@@ -740,6 +1023,8 @@ class Engine:
         state = self._empty_state()
         json_value(fixture)
         state["restaurants"] = self._restaurants(fixture.get("restaurants", []))
+        state["policies"] = {r["id"]: [] for r in state["restaurants"]}
+        state["restaurant_revisions"] = {r["id"]: 0 for r in state["restaurants"]}
         users = fixture.get("users", [])
         reservations = fixture.get("reservations", [])
         if not isinstance(users, list) or not isinstance(reservations, list):
@@ -771,10 +1056,17 @@ class Engine:
                 fail()
             record = {"reservation_id": reservation_id, "reference": reference,
                       "user_id": user_id, **fields, "status": status,
-                      "created_at": wire_timestamp(datetime.now(UTC))}
+                      "created_at": wire_timestamp(datetime.now(UTC)), "revision": 1}
             reservation_ids.add(reservation_id)
             references.add(reference)
             state["reservations"].append(record)
+            entries = [self._history_entry(record, None, "created", [])]
+            if status == "cancelled":
+                # Reset is the observed creation of an already-cancelled seed;
+                # no unobserved historical cancellation event is fabricated.
+                entries[0]["event"] = "created"
+            state["histories"][reference] = entries
+            state["history_origins"][reference] = "stage3"
         self._check_occupancy(state["reservations"], references, state)
         return state
 
@@ -791,6 +1083,10 @@ class Engine:
         if not REFERENCE_PATTERN.fullmatch(record["reference"]) or record["status"] not in ("confirmed", "cancelled"):
             fail()
         timestamp(record["created_at"])
+        restaurant = self._restaurant(record["restaurant_id"], state)
+        record["accepted_terms"] = self._valid_terms(fields["accepted_terms"], restaurant, state)
+        revision = integer_field({"revision": row.get("revision", 1)}, "revision", party=True)
+        record["revision"] = to_integer(revision)
         if owner_required:
             record["user_id"] = text_field(row, "user_id", maximum=64)
             if record["user_id"] not in {u["id"] for u in state["users"]}:
@@ -801,10 +1097,28 @@ class Engine:
         source = object_body(source)
         json_value(source)
         schema = source.get("schema")
-        if not (same_json(schema, 1) or same_json(schema, 2)):
+        modern = same_json(schema, 3)
+        if not (same_json(schema, 1) or same_json(schema, 2) or modern):
             fail()
         state = self._empty_state()
         state["restaurants"] = self._restaurants(source["restaurants"])
+        restaurant_ids = {r["id"] for r in state["restaurants"]}
+        state["policies"] = {rid: [] for rid in restaurant_ids}
+        state["restaurant_revisions"] = {rid: 0 for rid in restaurant_ids}
+        if modern:
+            policies = object_body(source["policies"])
+            if set(policies) != restaurant_ids:
+                fail()
+            for rid, rows in policies.items():
+                if not isinstance(rows, list):
+                    fail()
+                restaurant = self._restaurant(rid, state)
+                for index, row in enumerate(rows, 1):
+                    row = object_body(row)
+                    policy = self._policy(row, restaurant)
+                    if not same_json(row.get("policy_version"), index):
+                        fail()
+                    state["policies"][rid].append({**policy, "policy_version": index})
         if not isinstance(source["users"], list):
             fail()
         user_ids, emails = set(), set()
@@ -835,12 +1149,16 @@ class Engine:
             fail()
         references, reservation_ids = set(), set()
         for row in source["reservations"]:
+            if modern and (not isinstance(row, dict) or "revision" not in row or "accepted_terms" not in row):
+                fail()
             record = self._validate_record(row, state)
             if record["reference"] in references or record["reservation_id"] in reservation_ids:
                 fail()
             references.add(record["reference"])
             reservation_ids.add(record["reservation_id"])
             state["reservations"].append(record)
+            state["histories"][record["reference"]] = []
+            state["history_origins"][record["reference"]] = "legacy"
         self._check_occupancy(state["reservations"], references, state)
         identities = {r["reference"]: r for r in state["reservations"]}
         receipt_keys = set()
@@ -853,7 +1171,11 @@ class Engine:
             method = text_field(row, "method")
             path = text_field(row, "path")
             key = text_field(row, "key", maximum=255)
-            if user_id not in user_ids or method != "POST" or path not in ("/reservations", "/reservation-moves"):
+            parts = [unquote(p) for p in urlsplit(path).path.split("/")[1:]]
+            policy_path = len(parts) == 3 and parts[0] == "restaurants" and parts[2] == "policies"
+            if user_id not in user_ids or method != "POST" or (path not in ("/reservations", "/reservation-moves", "/series") and not policy_path):
+                fail()
+            if not modern and path not in ("/reservations", "/reservation-moves"):
                 fail()
             identity = (user_id, method, path, key)
             if identity in receipt_keys:
@@ -864,9 +1186,11 @@ class Engine:
             if path == "/reservations":
                 snapshots = [response]
                 original_body = self._original_seating_body(body, response)
-                original_fields = self._booking_fields(original_body, state)
+                restaurant = self._restaurant(response.get("restaurant_id"), state)
+                terms = response.get("accepted_terms", self._base_terms(restaurant))
+                original_fields = self._booking_fields(original_body, state, terms=terms)
                 assert_booking_fields(response, original_fields)
-            else:
+            elif path == "/reservation-moves":
                 moves = body.get("moves")
                 snapshots = response.get("reservations")
                 if (not isinstance(moves, list) or not 1 <= len(moves) <= 8 or
@@ -881,8 +1205,41 @@ class Engine:
                     fail()
                 for move, snapshot in zip(moves, snapshots):
                     original_move = self._original_seating_body(move, snapshot)
-                    amended_fields = self._booking_fields(self._amend_fields(snapshot, original_move), state)
+                    restaurant = self._restaurant(snapshot.get("restaurant_id"), state)
+                    terms = snapshot.get("accepted_terms", self._base_terms(restaurant))
+                    amended_fields = self._booking_fields(self._amend_fields(snapshot, original_move), state, terms=terms)
                     assert_booking_fields(snapshot, amended_fields)
+            elif policy_path:
+                restaurant = self._restaurant(parts[1], state)
+                if user_id not in restaurant.get("manager_user_ids", []):
+                    fail()
+                original = self._policy(body, restaurant)
+                version = response.get("policy_version")
+                policy = next((p for p in state["policies"][restaurant["id"]]
+                               if same_json(p["policy_version"], version)), None)
+                if policy is None or not same_json(response, {**original, "policy_version": version}) or not same_json(response, policy):
+                    fail()
+                snapshots = []
+            else:
+                occurrences = response.get("occurrences")
+                if not isinstance(occurrences, list) or not 2 <= len(occurrences) <= 12:
+                    fail()
+                if not same_json(body.get("count"), len(occurrences)) or not same_json(body.get("interval_weeks"), response.get("interval_weeks")):
+                    fail()
+                if not same_json(response.get("revision"), 1):
+                    fail()
+                text_field(response, "series_id", maximum=64)
+                snapshots = []
+                for index, occurrence in enumerate(occurrences):
+                    occurrence = object_body(occurrence)
+                    if not same_json(occurrence.get("index"), index) or occurrence.get("exception") is not False:
+                        fail()
+                    snapshot = object_body(occurrence.get("reservation"))
+                    if occurrence.get("reference") != snapshot.get("reference"):
+                        fail()
+                    snapshots.append(snapshot)
+                if body.get("anchor_reference") != snapshots[0].get("reference"):
+                    fail()
             for snapshot in snapshots:
                 saved = self._validate_record(snapshot, state, owner_required=False)
                 current = identities.get(saved["reference"])
@@ -893,4 +1250,116 @@ class Engine:
             state["receipts"].append({"user_id": user_id, "method": method, "path": path,
                                      "key": key, "body": copy_json(body), "response": copy_json(response),
                                      "numeric_profile": profile})
+        if modern:
+            self._import_extensions(source, state)
         return state
+
+    def _import_extensions(self, source, state):
+        records = {r["reference"]: r for r in state["reservations"]}
+        histories = object_body(source["histories"])
+        origins = object_body(source["history_origins"])
+        if set(histories) != set(records) or set(origins) != set(records):
+            fail()
+        for reference, entries in histories.items():
+            record = records[reference]
+            origin = origins[reference]
+            if origin not in ("legacy", "stage3") or not isinstance(entries, list):
+                fail()
+            if not entries:
+                if origin != "legacy" or record["revision"] != 1:
+                    fail()
+            previous_time = None
+            for index, entry in enumerate(entries, 1):
+                entry = object_body(entry)
+                expected_revision = index + (1 if origin == "legacy" else 0)
+                if not same_json(entry.get("seq"), index) or not same_json(entry.get("revision"), expected_revision):
+                    fail()
+                at = instant(timestamp(entry.get("at")))
+                if previous_time is not None and at < previous_time:
+                    fail()
+                previous_time = at
+                event, changes = entry.get("event"), entry.get("changes")
+                if event not in ("created", "changed", "cancelled") or not isinstance(changes, list):
+                    fail()
+                if event == "created" and (index != 1 or origin != "stage3"):
+                    fail()
+                if index == 1 and origin == "stage3" and event != "created":
+                    fail()
+                if event == "cancelled" and (changes or index != len(entries) or record["status"] != "cancelled"):
+                    fail()
+                names = [object_body(change).get("field") for change in changes]
+                if any(name not in ("table_id", "table_ids", "starts_at_local", "party_size") for name in names):
+                    fail()
+                expected_order = [name for name in ("table_id", "table_ids", "starts_at_local", "party_size") if name in names]
+                if names != expected_order or ("table_id" in names and "table_ids" in names):
+                    fail()
+                if event == "created" and (names not in (["table_id", "starts_at_local", "party_size"], ["table_ids", "starts_at_local", "party_size"]) or any(c.get("from") is not None for c in changes)):
+                    fail()
+                if event == "changed" and (not changes or any(same_json(c.get("from"), c.get("to")) for c in changes)):
+                    fail()
+                self._valid_terms(entry.get("accepted_terms"), self._restaurant(record["restaurant_id"], state), state)
+            if entries and (not same_json(entries[-1]["revision"], record["revision"]) or
+                    not same_json(entries[-1]["accepted_terms"], record["accepted_terms"])):
+                fail()
+            # Follow actual changed fields backwards from the current view,
+            # checking every saved resulting snapshot under its historic terms.
+            fields = {"restaurant_id": record["restaurant_id"], "table_ids": self._members(record),
+                      "starts_at_local": record["starts_at_local"], "party_size": record["party_size"]}
+            for entry in reversed(entries):
+                self._booking_fields(fields, state, terms=entry["accepted_terms"])
+                for change in entry["changes"]:
+                    name = change["field"]
+                    current = fields["table_ids"][0] if name == "table_id" else fields.get(name)
+                    if not same_json(change.get("to"), current):
+                        fail()
+                    if entry["event"] != "created":
+                        if name == "table_id":
+                            fields["table_ids"] = [change["from"]]
+                        else:
+                            fields[name] = copy_json(change["from"])
+            state["histories"][reference] = copy_json(entries)
+            state["history_origins"][reference] = origin
+        counters = object_body(source["restaurant_revisions"])
+        if set(counters) != {r["id"] for r in state["restaurants"]}:
+            fail()
+        state["restaurant_revisions"] = {rid: to_integer(integer_field({"revision": value}, "revision", minimum=0, party=True)) for rid, value in counters.items()}
+        series = object_body(source["series"])
+        adopted = set()
+        for series_id, agreement in series.items():
+            agreement = object_body(agreement)
+            if text_field(agreement, "series_id", maximum=64) != series_id:
+                fail()
+            owner = text_field(agreement, "user_id", maximum=64)
+            revision = to_integer(integer_field(agreement, "revision", party=True))
+            interval = to_integer(integer_field(agreement, "interval_weeks", party=True))
+            occurrences = agreement.get("occurrences")
+            if interval > 4 or not isinstance(occurrences, list) or not 2 <= len(occurrences) <= 12:
+                fail()
+            normalized, scheduled, restaurant_id = [], None, None
+            for index, occurrence in enumerate(occurrences):
+                occurrence = object_body(occurrence)
+                reference = text_field(occurrence, "reference")
+                record = records.get(reference)
+                if (not same_json(occurrence.get("index"), index) or record is None or record["user_id"] != owner or
+                        reference in adopted or type(occurrence.get("exception")) is not bool):
+                    fail()
+                local = local_datetime(text_field(occurrence, "scheduled_starts_at_local"))
+                if index == 0:
+                    scheduled, restaurant_id = local, record["restaurant_id"]
+                if local != scheduled + timedelta(days=index * interval * 7) or record["restaurant_id"] != restaurant_id:
+                    fail()
+                if not occurrence["exception"] and record["starts_at_local"] != local.isoformat(timespec="minutes"):
+                    fail()
+                adopted.add(reference)
+                normalized.append({"index": index, "reference": reference, "exception": occurrence["exception"],
+                                   "scheduled_starts_at_local": occurrence["scheduled_starts_at_local"]})
+            state["series"][series_id] = {"series_id": series_id, "user_id": owner, "revision": revision,
+                                         "interval_weeks": interval, "occurrences": normalized}
+        for receipt in state["receipts"]:
+            if receipt["path"] == "/series":
+                response = receipt["response"]
+                agreement = state["series"].get(response["series_id"])
+                if (agreement is None or agreement["user_id"] != receipt["user_id"] or
+                        not same_json(agreement["interval_weeks"], response["interval_weeks"]) or
+                        [o["reference"] for o in agreement["occurrences"]] != [o["reference"] for o in response["occurrences"]]):
+                    fail()
