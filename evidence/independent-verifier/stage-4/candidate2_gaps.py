@@ -104,11 +104,11 @@ def scopes(c,release):
     original=c.preview(closure(table='c'),key='priority');refuse(c,'retry-preview-different-before-resource',lambda:c.call('POST','/restaurants/r/replans',closure(table='missing'),token=c.tokens['m'],key='priority'),409,'idempotency_key_reuse')
     now=c.current_series(s);body=dict(expected_revision=now['revision'],from_index=0,local_time='19:00');c.response('amend-priority',pathcall(c,paths['amend'],body,c.tokens['u'],'priority'),201)
     refuse(c,'retry-amend-different-before-resource',lambda:pathcall(c,paths['amend'],{**body,'local_time':'invalid'},c.tokens['u'],'priority'),409,'idempotency_key_reuse')
-    # The source permits a valid manager-declaration replacement. This source-derived
-    # diagnostic derives a state in memory, not a genuine unchanged upgrade claim.
+    # There is no public permission revocation API. A source-derived diagnostic
+    # establishes that a declaration contradicting existing manager receipts is
+    # invalid state; it cannot manufacture a reachable permission-loss scenario.
     snapshot=parse(c.export());snapshot['state']['restaurants'][0]['manager_user_ids']=[]
-    c.response('manager-declaration-import-diagnostic',c.call('POST','/_test/import',body=raw(snapshot)),204)
-    for name,path,body in [('preview',paths['preview'],closure(table='missing')),('apply','/restaurants/r/replans/'+plan['plan_id']+'/apply',{'ignored':2})]:refuse(c,'retry-'+name+'-different-before-permission',lambda:pathcall(c,path,body,c.tokens['m'],'priority' if name=='preview' else 'shared-user'),409,'idempotency_key_reuse')
+    refuse(c,'manager-declaration-import-diagnostic',lambda:c.call('POST','/_test/import',body=raw(snapshot)),422,'validation_failed')
 
 def pathcall(c,path,body,token,key):return c.call('POST',path,body,token=token,key=key)
 
