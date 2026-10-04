@@ -1,0 +1,40 @@
+{
+  "classification": "coordinator metadata auditor parsing issue; no service or verification defect established",
+  "observed_exit_code": 1,
+  "report": {
+    "scope": "coordinator artifact metadata audit; independent execution remains in verifier reports",
+    "stages": [
+      {
+        "stage": 1,
+        "candidate_full_revision": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+        "matrix": "evidence/independent-verifier/stage-1/candidate-4/coverage.csv",
+        "rows": 801,
+        "errors": [
+          "TK1-retry-no-duplicate: artifact file missing",
+          "TK1-max-concurrency: artifact file missing",
+          "TK1-request-timeout: artifact file missing",
+          "TK1-reset-timeout: artifact file missing",
+          "TK1-import-timeout: artifact file missing",
+          "TK1-export-timeout: artifact file missing",
+          "TK1-max-concurrency-timing: artifact file missing",
+          "TK1-reset-status: artifact file missing",
+          "TK1-json-content-type: artifact file missing",
+          "TK1-error-envelope: artifact file missing",
+          "TK1-no-5xx: artifact file missing",
+          "TK1-login-status: artifact file missing",
+          "TK1-auth-reservation-list-unknown: artifact file missing",
+          "TK1-reset-missing-restaurant-opening_hours: artifact file missing",
+          "TK1-reset-missing-restaurant-tables: artifact file missing",
+          "TK1-calendar-year-max: artifact file missing",
+          "TK1-edge-new-york-max-availability: artifact file missing",
+          "TK1-edge-new-york-max-create: artifact file missing",
+          "TK1-edge-berlin-min-midnight-availability: artifact file missing",
+          "TK1-edge-berlin-min-midnight-create: artifact file missing"
+        ],
+        "status": "fail"
+      }
+    ]
+  },
+  "cause": "Auditor treats semicolon-separated multiple artifacts as one filename",
+  "repair_pending": "Check each semicolon-separated artifact path separately"
+}

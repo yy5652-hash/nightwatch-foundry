@@ -38,6 +38,9 @@ def verify():
     for path in sorted(ACCEPTED.glob('stage-*.json')):
         saved = json.loads(path.read_text())
         stage = saved['stage']
+        verdict = RESULT / saved['independent_verdict_path']
+        if not verdict.is_file() or hashlib.sha256(verdict.read_bytes()).hexdigest() != saved['independent_verdict_sha256']:
+            raise ValueError(f'Accepted Stage {stage} original verdict changed or disappeared')
         if tree(stage, 'HEAD') != saved['tree']:
             raise ValueError(f'Accepted Stage {stage} committed tree changed')
         dirty = git('status', '--porcelain', '--', f'stage-{stage}')
