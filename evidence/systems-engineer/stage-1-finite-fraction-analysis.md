@@ -8,6 +8,8 @@ The literal `str(10**4300+1)+'.5'` has valid JSON number grammar and is a mathem
 
 Current standard json.loads converts the literal to Python float infinity, while an independently checked Decimal constructor retains a finite exact decimal with exponent -1. The Engine's global json_value check rejects nonfinite float values as 400 malformed_request before ordinary party/idempotency handling. The earlier process-local integer conversion repair covers JSON integer tokens and int(query) only; it cannot change parse_float behavior. Input grammar and actual numerical value must survive this conversion boundary before correct field/error rules can apply.
 
+Ordering detail from source inspection: authenticated writes call _caller first, then json_value before idempotency header/receipt resolution and endpoint fields. The earlier room progress message's inclusion of authentication in the preempted checks was too broad; no authentication-order defect is claimed. Reset/import also validate portable JSON values before candidate-state replacement. Coordinator follow-up `701c0401-c3c0-4fa3-a13b-2fbebad4014e` confirms analysis scope and continued source freeze.
+
 ## Owning-builder black-box reproduction
 
 Command from the result repository:
