@@ -1,0 +1,168 @@
+{
+  "candidate": "4a92f3e7fcf009edc34f7c410a44ae405909e080",
+  "image_id": "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "systems-engineer-reset-20261004t040414927378",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--network",
+        "none",
+        "-e",
+        "PORT=18145",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3"
+      ],
+      "returncode": 0,
+      "seconds": 0.15789787499670638,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-00.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-reset-20261004t040414927378"
+      ],
+      "returncode": 0,
+      "seconds": 0.01762741699712933,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-01.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "4a92f3e7fcf009edc34f7c410a44ae405909e080:stage-1/core.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.012140333001298131,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-02.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-reset-20261004t040414927378",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/core.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "seconds": 0.037880000003497116,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-03.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "4a92f3e7fcf009edc34f7c410a44ae405909e080:stage-1/server.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.008070166000834433,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-04.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-reset-20261004t040414927378",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/server.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "seconds": 0.0327891670021927,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-05.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "4a92f3e7fcf009edc34f7c410a44ae405909e080:stage-1/json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.008023416001378791,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-06.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "systems-engineer-reset-20261004t040414927378",
+        "python",
+        "-c",
+        "import hashlib;print(hashlib.sha256(open('/app/json_codec.py','rb').read()).hexdigest())"
+      ],
+      "returncode": 0,
+      "seconds": 0.03140541600077995,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-07.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "systems-engineer-reset-20261004t040414927378",
+        "python",
+        "-B",
+        "-"
+      ],
+      "returncode": 0,
+      "seconds": 0.13195408300089184,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-08.log",
+      "stdin_sha256": "2d7be210ba5f7f3c9ecda232470c72016a55c471531bef36bca2cf7455187101"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "systems-engineer-reset-20261004t040414927378"
+      ],
+      "returncode": 0,
+      "seconds": 0.015925458999845432,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-09.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-reset-20261004t040414927378"
+      ],
+      "returncode": 0,
+      "seconds": 0.03946679100045003,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-reset-extra-02/command-10.log",
+      "stdin_sha256": null
+    }
+  ],
+  "scope": "narrow own HTTP unknown-reset regression",
+  "source_sha256": {
+    "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+    "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+    "json_codec.py": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+  },
+  "probe_exit_code": 0,
+  "summary": {
+    "http_requests": 17,
+    "assertions": 50,
+    "failed": 0,
+    "seconds": 0.016889167000044836,
+    "maximum_payload_bytes": 8946
+  },
+  "cleanup_exit_code": 0,
+  "wall_seconds": 0.49359933299638215
+}
