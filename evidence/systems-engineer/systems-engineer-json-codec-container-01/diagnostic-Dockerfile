@@ -1,0 +1,6 @@
+FROM python:3.12-slim-bookworm
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+WORKDIR /probe
+COPY json_codec.py probes.py ./
+USER 65532:65532
+CMD ["python","-B","probes.py","--module","json_codec.py","--out","/tmp/systems-engineer-codec-output"]
