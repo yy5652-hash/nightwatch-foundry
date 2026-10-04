@@ -68,6 +68,22 @@
     JSON.parse(raw);
     const number=/-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?/y;
     const safe=BigInt(Number.MAX_SAFE_INTEGER);
+    // Whole numeric values can arrive with a decimal point or exponent. Resolve
+    // their coefficient and scale exactly before selecting a display value.
+    const integerValue=token=>{
+      const match=/^(-?)(\d+)(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(token);
+      let digits=(match[2]+(match[3]||'')).replace(/^0+/,'');
+      if(!digits)return '0';
+      const shift=BigInt(match[4]||'0')-BigInt((match[3]||'').length);
+      if(shift<0n) {
+        const remove=-shift;
+        if(remove>=BigInt(digits.length))return null;
+        const count=Number(remove);
+        if(!/^0+$/.test(digits.slice(-count)))return null;
+        digits=digits.slice(0,-count);
+      } else digits+='0'.repeat(Number(shift));
+      return match[1]+digits;
+    };
     let exact='',index=0;
     while(index<raw.length) {
       if(raw[index]==='"') {
@@ -81,7 +97,8 @@
         number.lastIndex=index;const match=number.exec(raw);
         if(!match){exact+=raw[index++];continue;}
         const token=match[0];
-        if(/^-?\d+$/.test(token) && (BigInt(token)>safe || BigInt(token)<-safe))exact+=JSON.stringify(token);
+        const integer=integerValue(token);
+        if(integer!==null && (BigInt(integer)>safe || BigInt(integer)<-safe))exact+=JSON.stringify(integer);
         else exact+=token;
         index=number.lastIndex;
       } else exact+=raw[index++];

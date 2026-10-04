@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "-i",
+    "--rm",
+    "--name",
+    "interface-engineer-s2-js-preflight-20261004t053951158486z",
+    "--network",
+    "none",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "df-harness-runner:latest",
+    "python",
+    "-c",
+    "import sys,pathlib,subprocess,playwright;p=pathlib.Path('/tmp/interface-engineer-app.js');p.write_bytes(sys.stdin.buffer.read());node=pathlib.Path(playwright.__file__).parent/'driver/node';raise SystemExit(subprocess.run([str(node),'--check',str(p)]).returncode)"
+  ],
+  "exit": 0,
+  "seconds": 1.3651969160000001,
+  "stdin_sha256": "2132b5d7c105a106dfe91a0dc0748e77a10c663bb0cc53ee1a49cb7e678adb73",
+  "scope": "JavaScript syntax only; no service/runtime/UI acceptance"
+}

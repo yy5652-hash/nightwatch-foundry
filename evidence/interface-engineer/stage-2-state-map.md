@@ -57,3 +57,20 @@ signup/login/logout, lookup/cancel and genuine accepted Stage 1 migration while
 the same page remains open. Screenshot and keyboard evidence will cover desktop
 and 375px. Source hashes and exact committed service revisions identify each build.
 Independent acceptance remains separate from builder integration evidence.
+
+## Renewed reconstruction boundary — 2026-10-04
+
+Current complete assignment is TK-20261004-S2-interface-engineer-RECONSTRUCT-2.
+The old intake/source paragraph above is history. Current accepted Stage 1 is
+75005d57fe0904753eac4eab5bf4e4c9a78b6d1b. Coordinator six-file proof
+ab8545fc0f3f9bf1cdf8cd2d3a9e7ed8ad29d3ca precedes Phase B extension.
+The actual editable guest fields retain exact decimal values and labelled
+spinbutton semantics rather than native floating-point input storage.
+Whole response numbers spelled with decimal points/exponents are normalized
+exactly for display after strict syntax validation. URI/Unicode/quoted IDs
+remain opaque in queries, API paths, cell attributes and JSON request bodies.
+Genuine old/new Stage 1 and old Stage 2 browser bridges forward opaque export
+bytes unchanged, preserve original create/move response shape independently
+of numeric profile, and recover a real committed lost response without reloading
+or regenerating the form, body or key. Mixed origins transfer through another
+independent process. These are pending execution scopes, not acceptance claims.

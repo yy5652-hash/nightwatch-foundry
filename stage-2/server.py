@@ -7,9 +7,18 @@ import socket
 import sys
 from collections.abc import Mapping
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import urlsplit
 
 from core import Engine
 from json_codec import dumps, loads
+
+WEB = Path(__file__).parent / "web"
+SCREENS = {"/", "/signup", "/login", "/lookup"}
+ASSETS = {
+    "/assets/app.css": ("app.css", "text/css; charset=utf-8"),
+    "/assets/app.js": ("app.js", "text/javascript; charset=utf-8"),
+}
 
 
 class RequestHeaders(Mapping):
@@ -91,10 +100,15 @@ class Handler(BaseHTTPRequestHandler):
         # successful status on an incomplete response. ASCII escapes are UTF-8
         # compatible and also safely preserve JSON-escaped surrogate strings.
         payload = b"" if status == 204 else dumps(body)
+        self.respond_bytes(status, payload, "application/json; charset=utf-8")
+
+    def respond_bytes(self, status, payload, content_type):
         self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(payload)))
         self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Content-Security-Policy", "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'")
         if self.close_connection:
             self.send_header("Connection", "close")
         self.end_headers()
@@ -111,6 +125,15 @@ class Handler(BaseHTTPRequestHandler):
             }})
             return
         try:
+            path = urlsplit(self.path).path
+            if self.command in {"GET", "HEAD"}:
+                if path in SCREENS:
+                    self.respond_bytes(200, (WEB / "index.html").read_bytes(), "text/html; charset=utf-8")
+                    return
+                if path in ASSETS:
+                    filename, content_type = ASSETS[path]
+                    self.respond_bytes(200, (WEB / filename).read_bytes(), content_type)
+                    return
             status, result = self.server.engine.request(
                 self.command, self.path, RequestHeaders(self.headers), body
             )

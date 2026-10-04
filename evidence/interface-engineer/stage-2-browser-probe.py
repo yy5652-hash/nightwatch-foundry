@@ -6,6 +6,7 @@ The race trace uses controlled events, not probabilistic sleeps.
 import asyncio
 import copy
 import json
+import hashlib
 import os
 import sys
 import time
@@ -21,7 +22,7 @@ BASE = os.environ["S2_BASE"]
 LEGACY = os.environ["S1_BASE"]
 OUT = Path(os.environ.get("PROBE_OUT", "/out"))
 DATE = "2032-06-17"
-REPORT = {"seed": 20261004, "candidate": os.environ["CANDIDATE"], "scenarios": [], "trace": [], "assertions": 0}
+REPORT = {"seed": 20261004, "candidate": os.environ["CANDIDATE"], "scenarios": [], "trace": [], "assertions": 0,"direct_http_operations":0,"browser_originated_requests":0,"forwarded_fetch_operations":0,"http_trace":[]}
 FIXTURE = {
     "users": [{"id": "u_ada", "email": "ada@example.test", "password": "correct horse", "display_name": "Ada"},
               {"id": "u_ben", "email": "ben@example.test", "password": "correct horse", "display_name": "Ben"}],
@@ -45,11 +46,25 @@ def check(condition, description):
 def tid(page, name):
     return page.get_by_test_id(name)
 
+async def direct_fetch(context,url,method='GET',**kwargs):
+    from urllib.parse import urlsplit
+    begin=time.perf_counter()
+    response=await context.request.fetch(url,method=method,**kwargs)
+    REPORT['direct_http_operations']+=1
+    REPORT['http_trace'].append({'kind':'direct-api-client','method':method,'path':urlsplit(url).path,'status':response.status,'seconds':time.perf_counter()-begin})
+    return response
+
+async def forwarded_fetch(route,**kwargs):
+    begin=time.perf_counter();response=await route.fetch(**kwargs)
+    REPORT['forwarded_fetch_operations']+=1
+    REPORT['http_trace'].append({'kind':'real-route-forwarding','method':route.request.method,'path':__import__('urllib.parse',fromlist=['urlsplit']).urlsplit(route.request.url).path,'status':response.status,'seconds':time.perf_counter()-begin})
+    return response
+
 async def request(context, base, path, method="GET", data=None, token=None, key=None, raw=None):
     headers = {"Content-Type": "application/json; charset=utf-8"}
     if token: headers["Authorization"] = "Bearer " + token
     if key: headers["Idempotency-Key"] = key
-    response = await context.request.fetch(base + path, method=method, headers=headers, data=raw if raw is not None else data, timeout=10000 if path.startswith('/_test/') else 5000)
+    response = await direct_fetch(context,base + path, method=method, headers=headers, data=raw if raw is not None else data, timeout=10000 if path.startswith('/_test/') else 5000)
     value = None if response.status == 204 else await response.json()
     return response.status, value
 
@@ -102,6 +117,8 @@ async def scenario(name, callback, browser):
     context = await browser.new_context(viewport={"width": 1440, "height": 1000},timezone_id='Pacific/Honolulu' if name.startswith('local-end-') else 'UTC')
     page = await context.new_page()
     errors=[]
+    def count_browser_request(req):REPORT['browser_originated_requests']+=1
+    page.on('request',count_browser_request)
     page.on("pageerror", lambda error: errors.append(str(error)))
     try:
         await callback(context, page)
@@ -116,18 +133,18 @@ async def scenario(name, callback, browser):
 async def transport(context, page):
     await reset(context)
     for path in ["/", "/signup", "/login", "/lookup"]:
-        response=await context.request.get(BASE+path)
+        response=await direct_fetch(context,BASE+path)
         check(response.status==200, "direct screen: "+path)
         check(response.headers["content-type"]=="text/html; charset=utf-8", "HTML content type")
         check('src="/assets/app.js"' in await response.text(), "local script")
     for path, content_type in [("/assets/app.js", "text/javascript; charset=utf-8"),("/assets/app.css", "text/css; charset=utf-8")]:
-        response=await context.request.get(BASE+path)
+        response=await direct_fetch(context,BASE+path)
         check(response.status==200 and response.headers["content-type"]==content_type, "offline asset: "+path)
-    response=await context.request.post(BASE+"/reservations",data='{"party_size":NaN}',headers={"Content-Type":"application/json"})
+    response=await direct_fetch(context,BASE+"/reservations",method="POST",data='{"party_size":NaN}',headers={"Content-Type":"application/json"})
     check(response.status==400 and (await response.json())["error"]["code"]=="malformed_request", "strict JSON precedes auth")
-    response=await context.request.post(BASE+"/auth/signup",data='[]',headers={"Content-Type":"application/json"})
+    response=await direct_fetch(context,BASE+"/auth/signup",method="POST",data='[]',headers={"Content-Type":"application/json"})
     check(response.status==400, "nonobject refusal")
-    response=await context.request.post(BASE+"/_test/reset",data=FIXTURE)
+    response=await direct_fetch(context,BASE+"/_test/reset",method="POST",data=FIXTURE)
     check(response.status==204 and await response.body()==b"", "empty reset body")
     await page.goto(BASE+"/")
     await search(page)
@@ -223,7 +240,7 @@ async def out_of_order(context,page):
     started=asyncio.Event();release=asyncio.Event();completed=asyncio.Event()
     async def delayed(route):
         if "restaurant_id=r_garden" in route.request.url:
-            response=await route.fetch();started.set();await release.wait();await route.fulfill(response=response);completed.set()
+            response=await forwarded_fetch(route,);started.set();await release.wait();await route.fulfill(response=response);completed.set()
         else: await route.continue_()
     await page.route("**/availability?*",delayed)
     await tid(page,"date-input").fill(DATE)
@@ -260,25 +277,33 @@ async def conflict(context,page,combined=False):
     if combined: check(await tid(page,"slot-t_garden+t_window-18:00").count()==0,"unavailable pair disappears")
     await screenshots(page,"combined-conflict" if combined else "single-conflict")
 
-async def lost_response(context,page,combined=False,upgrade=False):
+async def lost_response(context,page,combined=False,upgrade=False,source_base=None,source_revision=None,source_stage=1):
+    source=(source_base or LEGACY) if upgrade else BASE
     if upgrade:
-        await reset(context,LEGACY,True)
+        await reset(context,source,source_stage==1)
         async def old_api(route):
-            target=LEGACY+route.request.url[len(BASE):]
-            response=await route.fetch(url=target)
+            target=source+route.request.url[len(BASE):]
+            response=await forwarded_fetch(route,url=target)
             await route.fulfill(response=response)
         await page.route("**/*",lambda route:old_api(route) if "/assets/" not in route.request.url and route.request.url[len(BASE):].split("?")[0] not in ["/","/login","/signup","/lookup"] else route.continue_())
     else: await reset(context)
     await login(page);await search(page,party="6" if combined else "2");await open_booking(page,"t_garden+t_window" if combined else "t_window")
-    source=LEGACY if upgrade else BASE
     # A retained original reference is created by the source process before import.
     status,auth=await request(context,source,"/auth/login","POST",{"email":"ada@example.test","password":"correct horse"})
     retained={"restaurant_id":"r_harbor","table_id":"t_booth","starts_at_local":DATE+"T19:00","party_size":2}
-    _,retained_receipt=await request(context,source,"/reservations","POST",retained,auth["token"],"retained-reference")
+    if upgrade and source_stage==1: retained['table_ids']={'ignored-by-stage1':True}
+    retained_status,retained_receipt=await request(context,source,"/reservations","POST",retained,auth["token"],"retained-reference")
+    check(retained_status==201,'real source retained booking issued')
+    move_body={'moves':[{'reference':retained_receipt['reference'],'starts_at_local':DATE+'T19:30'}]}
+    if upgrade and source_stage==1: move_body['moves'][0]['table_ids']={'ignored-by-stage1':True}
+    if upgrade:
+        move_status,move_receipt=await request(context,source,'/reservation-moves','POST',move_body,auth['token'],'retained-move')
+        check(move_status==201,'real source original move receipt issued')
+    await page.evaluate('window.upgradeDocumentMarker="same-document"')
     writes=[];lost=[]
     async def drop(route):
         writes.append({"key":route.request.headers.get("idempotency-key"),"body":route.request.post_data})
-        response=await route.fetch(url=source+"/reservations")
+        response=await forwarded_fetch(route,url=source+"/reservations")
         check(response.status==201,"committed response before connection loss")
         lost.append(await response.json())
         await route.abort("failed")
@@ -287,13 +312,39 @@ async def lost_response(context,page,combined=False,upgrade=False):
     await expect(tid(page,"booking-uncertain")).to_be_visible()
     check(bool(await tid(page,"booking-uncertain").inner_text()),"nonempty uncertainty")
     check(await tid(page,"booking-error").count()==0 and await tid(page,"confirmation").count()==0,"lost response cannot claim refusal or confirmation")
-    await screenshots(page,"legacy-uncertain" if upgrade else "combined-uncertain" if combined else "single-uncertain")
+    await screenshots(page,("upgrade-"+str(source_stage)+"-"+(source_revision or os.environ.get("S1_REVISION","accepted"))[:8]+("-pair" if combined else "-single")) if upgrade else "combined-uncertain" if combined else "single-uncertain")
     # Migration completes between requests: no reload, new login or form edit.
     if upgrade:
-        _,snapshot=await request(context,LEGACY,"/_test/export")
-        status,_=await request(context,BASE,"/_test/import","POST",snapshot)
-        check(status==204,"genuine accepted Stage1 snapshot import")
-        check("table_ids" not in lost[0],"real Stage1 original receipt shape")
+        exported=await direct_fetch(context,source+'/_test/export',timeout=10000)
+        snapshot=await exported.body()
+        check(exported.status==200,'genuine source raw export')
+        status,_=await request(context,source,'/reservations/'+retained_receipt['reference']+'/cancel','POST',token=auth['token'])
+        check(status==200,'source changes after snapshot captured')
+        status,_=await request(context,BASE,"/_test/import","POST",raw=snapshot)
+        check(status==204,"genuine unchanged snapshot import")
+        if source_stage==1:check("table_ids" not in lost[0],"real Stage1 original receipt shape")
+        else:check('table_ids' in lost[0],'real old Stage2 combined receipt shape')
+        replay_status,replayed=await request(context,BASE,'/reservation-moves','POST',move_body,auth['token'],'retained-move')
+        check(replay_status==200 and replayed==move_receipt,'original source move receipt replays unchanged after replacement')
+        create_status,created=await request(context,BASE,'/reservations','POST',retained,auth['token'],'retained-reference')
+        check(create_status==200 and created==retained_receipt,'original source create receipt replays after move')
+        REPORT['trace'].append({'scenario':'raw-upgrade-transfer','source_revision':source_revision or os.environ.get('S1_REVISION'),'source_stage':source_stage,'export_bytes':len(snapshot),'import_bytes':len(snapshot),'export_sha256':hashlib.sha256(snapshot).hexdigest(),'import_sha256':hashlib.sha256(snapshot).hexdigest(),'decoded':False})
+        new_body=json.dumps({'restaurant_id':'r_garden','table_id':'t_corner','starts_at_local':DATE+'T20:00','party_size':2},separators=(',',':'))[:-1]+',"ignored":9007199254740993.0}'
+        new_status,new_receipt=await request(context,BASE,'/reservations','POST',token=auth['token'],key='current-exact-after-upgrade',raw=new_body)
+        check(new_status==201,'current exact receipt joins genuine historical state')
+        mixed_export=await direct_fetch(context,BASE+'/_test/export',timeout=10000);mixed=await mixed_export.body()
+        peer=os.environ['S2_DEST_BASE']
+        mixed_status,_=await request(context,peer,'/_test/import','POST',raw=mixed)
+        check(mixed_status==204,'mixed origins raw replacement in independent peer')
+        for path,body,key,receipt in [('/reservations',retained,'retained-reference',retained_receipt),('/reservation-moves',move_body,'retained-move',move_receipt)]:
+            replay_status,replayed=await request(context,peer,path,'POST',body,auth['token'],key)
+            check(replay_status==200 and replayed==receipt,'mixed peer retains original source receipt '+path)
+        exact_status,exact_receipt=await request(context,peer,'/reservations','POST',token=auth['token'],key='current-exact-after-upgrade',raw=new_body.replace('9007199254740993.0','9007199254740993e0'))
+        check(exact_status==200 and exact_receipt==new_receipt,'mixed peer retains exact numeric alias semantics')
+        return_export=await direct_fetch(context,peer+'/_test/export',timeout=10000);returned=await return_export.body()
+        returned_status,_=await request(context,BASE,'/_test/import','POST',raw=returned)
+        check(returned_status==204,'genuine peer raw replacement back before browser retry')
+        REPORT['trace'].append({'scenario':'raw-mixed-roundtrip','source_revision':source_revision or os.environ.get('S1_REVISION'),'source_stage':source_stage,'forward_bytes':len(mixed),'forward_sha256':hashlib.sha256(mixed).hexdigest(),'return_bytes':len(returned),'return_sha256':hashlib.sha256(returned).hexdigest(),'decoded':False})
     await page.unroute_all(behavior="wait")
     async def retry(route):
         writes.append({"key":route.request.headers.get("idempotency-key"),"body":route.request.post_data})
@@ -308,13 +359,14 @@ async def lost_response(context,page,combined=False,upgrade=False):
     check("Window" in await tid(page,"confirmation-tables").inner_text(),"original receipt human label fallback")
     if combined: check("Garden" in await tid(page,"confirmation-tables").inner_text(),"both combined labels")
     if upgrade:
+        check(await page.evaluate('window.upgradeDocumentMarker')=='same-document','upgrade recovery used same browser document')
         await page.get_by_role("link",name="Your reservation",exact=True).click()
         await tid(page,"lookup-reference-input").fill(retained_receipt["reference"])
         await tid(page,"lookup-submit").click()
         await expect(tid(page,"reservation-status")).to_have_text("confirmed")
         await expect(tid(page,"current-user")).to_have_text("Ada")
         check("Harbor booth" in await tid(page,"reservation-tables").inner_text(),"retained old reference works without reload")
-    REPORT["trace"].append({"scenario":"upgrade" if upgrade else "lost-combined" if combined else "lost-single","writes":writes,"committed_reference":reference,"retained_reference":retained_receipt["reference"]})
+    REPORT["trace"].append({"scenario":"upgrade" if upgrade else "lost-combined" if combined else "lost-single","source_revision":source_revision,'source_stage':source_stage,"writes":writes,"committed_reference":reference,"retained_reference":retained_receipt["reference"]})
 
 async def combinations(context,page):
     await reset(context);await login(page);await search(page,party="6")
@@ -389,7 +441,7 @@ async def lookup_race_and_refusal(context,page):
     await screenshots(page,"private-lookup-refusal")
     started=asyncio.Event();release=asyncio.Event();completed=asyncio.Event()
     async def delayed(route):
-        response=await route.fetch();started.set();await release.wait();await route.fulfill(response=response);completed.set()
+        response=await forwarded_fetch(route,);started.set();await release.wait();await route.fulfill(response=response);completed.set()
     await page.route("**/reservations/"+past["reference"],delayed)
     await tid(page,"lookup-reference-input").fill(past["reference"])
     await tid(page,"lookup-submit").click();await asyncio.wait_for(started.wait(),5)
@@ -411,7 +463,7 @@ async def loading_auth_stability(context,page):
     await reset(context)
     started=asyncio.Event();release=asyncio.Event();completed=asyncio.Event()
     async def delayed(route):
-        response=await route.fetch();started.set();await release.wait();await route.fulfill(response=response);completed.set()
+        response=await forwarded_fetch(route,);started.set();await release.wait();await route.fulfill(response=response);completed.set()
     await page.route("**/restaurants",delayed)
     await page.goto(BASE+"/login")
     await asyncio.wait_for(started.wait(),5)
@@ -514,7 +566,7 @@ async def corrupt_response_and_numeric_keyboard(context,page):
     check(await tid(page,'booking-party-size').input_value()=='1','minimum one guest')
     committed=[]
     async def corrupt(route):
-        response=await route.fetch();check(response.status==201,'real commit before malformed response')
+        response=await forwarded_fetch(route,);check(response.status==201,'real commit before malformed response')
         value=await response.json();committed.append(value)
         text=await response.text()
         # An invalid unquoted numeric key must not become valid during exact parsing.
@@ -548,9 +600,10 @@ async def local_end_display(context,page,zone,local,expected,legacy=False):
         reference=original['reference']
         import re
         check(bool(re.search(r'[+-]\d\d:\d\d:\d\d$',original['ends_at'])),'genuine immutable offset-seconds timestamp')
-        status,snapshot=await request(context,source,'/_test/export')
-        check(status==200,'genuine historical source export')
-        status,_=await request(context,BASE,'/_test/import','POST',snapshot)
+        export_response=await direct_fetch(context,source+'/_test/export',timeout=10000)
+        snapshot=await export_response.body()
+        check(export_response.status==200,'genuine historical source export')
+        status,_=await request(context,BASE,'/_test/import','POST',raw=snapshot)
         check(status==204,'unchanged genuine historical export import')
         status,replay=await request(context,BASE,'/reservations','POST',body,auth['token'],'historic-original-receipt')
         check(status==200 and replay==original,'immutable genuine old receipt and token retained')
@@ -560,7 +613,7 @@ async def local_end_display(context,page,zone,local,expected,legacy=False):
     await login(page)
     await page.goto(BASE+'/lookup');await tid(page,'lookup-reference-input').fill(reference);await tid(page,'lookup-submit').click()
     await expect(tid(page,'reservation-detail')).to_be_visible()
-    api=await context.request.get(BASE+'/reservations/'+reference,headers={'Authorization':'Bearer '+await page.evaluate("JSON.parse(sessionStorage.getItem('tablekeeper.session')).token")})
+    api=await direct_fetch(context,BASE+'/reservations/'+reference,headers={'Authorization':'Bearer '+await page.evaluate("JSON.parse(sessionStorage.getItem('tablekeeper.session')).token")})
     record=await api.json();check(api.status==200,'actual private local-end record')
     if legacy:check(record['ends_at']==original['ends_at'] and record['starts_at_local']==original['starts_at_local'],'import retains original timestamp and wall fields')
     oracle=datetime.fromisoformat(record['ends_at']).astimezone(ZoneInfo(zone)).strftime('%H:%M')
@@ -592,7 +645,7 @@ async def huge_decimal_transport(context,page):
     body={'restaurant_id':'r_garden','table_id':'t_window','starts_at_local':DATE+'T18:00','party_size':huge,'ignored_number':huge}
     status,original=await request(context,BASE,'/reservations','POST',raw=json.dumps(body),token=auth['token'],key='huge-raw-original')
     check(status==201 and type(original['party_size']) is int and original['party_size']==huge,'huge raw create preserves integer and ignores unknown numeric field')
-    exported=await context.request.get(BASE+'/_test/export');snapshot=await exported.text()
+    exported=await direct_fetch(context,BASE+'/_test/export');snapshot=await exported.body()
     check(exported.status==200,'huge exact export encoded without digit ceiling')
     destination=os.environ['S2_DEST_BASE']
     status,_=await request(context,destination,'/_test/import','POST',raw=snapshot)
@@ -627,6 +680,65 @@ async def huge_decimal_transport(context,page):
     check(status==200 and current==record,'cutoff refusal leaves record unchanged')
     REPORT['trace'].append({'scenario':'huge-decimal-transport','digits':4301,'independent_destination':True,'original_receipt_preserved':True,'json_type':'integer','base_counts':['capacity','slot_minutes','reservation_duration_minutes','cancellation_cutoff_minutes']})
 
+async def integral_wire_presentation(context,page,spelling,party=9007199254740993):
+    fixture=copy.deepcopy(FIXTURE)
+    fixture['restaurants'][0]['tables'][0]['capacity']=party
+    fixture['restaurants'][0]['tables'][0]['label']='Window 9007199254740993 "quoted"'
+    raw=json.dumps(fixture,separators=(',',':')).replace('"capacity":'+str(party),'"capacity":'+spelling,1)
+    status,_=await request(context,BASE,'/_test/reset','POST',raw=raw)
+    check(status==204,'valid integral decimal/exponent fixture accepted')
+    detail=await direct_fetch(context,BASE+'/restaurants/r_garden')
+    wire=await detail.text()
+    from decimal import Decimal
+    parsed=json.loads(wire,parse_int=Decimal,parse_float=Decimal)
+    check(parsed['tables'][0]['capacity']==Decimal(party),'real response capacity retains exact numeric value')
+    await login(page);await search(page,party=str(party))
+    single=await tid(page,'slot-t_window-18:00').inner_text()
+    pair=await tid(page,'slot-t_garden+t_window-18:00').inner_text()
+    check(str(party)+' seats' in single,'decimal/exponent response exact single capacity display')
+    check(str(party+4)+' seats' in pair,'decimal/exponent response exact combined capacity display')
+    await open_booking(page);check(await tid(page,'booking-party-size').input_value()==str(party),'decimal/exponent exact form prefill')
+    await tid(page,'booking-submit').click();reference=await confirmed(page)
+    await tid(page,'booking-submit').click();check(await confirmed(page)==reference,'decimal/exponent unchanged retry')
+    await page.get_by_role('link',name='View or cancel reservation').click();await tid(page,'lookup-submit').click()
+    await expect(tid(page,'reservation-status')).to_have_text('confirmed')
+    capacity_tokens=__import__('re').findall(r'"capacity":(-?[0-9.eE+]+)',wire)
+    REPORT['trace'].append({'scenario':'integral-wire-presentation','fixture_token':spelling,'real_response_capacity_tokens':capacity_tokens,'expected_integer':str(party),'single':single,'pair':pair,'original_reference':reference})
+    await screenshots(page,'integral-wire-'+spelling.replace('.','d').replace('+','p').replace('-','m'))
+
+async def opaque_identifiers(context,page):
+    from urllib.parse import parse_qs,urlsplit,quote
+    fixture=copy.deepcopy(FIXTURE)
+    r=fixture['restaurants'][0];rid='r_🌿/ ?#%+&"\\';ids=['t_窓/ ?#%+&"\\','t_園+雪','t_角%2F']
+    r['id']=rid;r['name']='The Garden · 花園'
+    labels=['Window · 窓 "view"','Garden · 園','Corner · 角']
+    for t,i,label in zip(r['tables'],ids,labels):t['id']=i;t['label']=label
+    r['combinable']=[[ids[1],ids[0]],[ids[0],ids[2]]]
+    status,_=await request(context,BASE,'/_test/reset','POST',fixture);check(status==204,'opaque Unicode URI fixture admitted')
+    await login(page);queries=[];writes=[]
+    def observe(req):
+        if '/availability?' in req.url:queries.append(parse_qs(urlsplit(req.url).query).get('restaurant_id'))
+        if req.method=='POST' and req.url==BASE+'/reservations':writes.append({'key':req.headers.get('idempotency-key'),'body':req.post_data})
+    page.on('request',observe)
+    await search(page,restaurant=rid,party='6')
+    cell=tid(page,'slot-'+ids[1]+'+'+ids[0]+'-18:00')
+    check(await cell.get_attribute('data-available')=='true','declared opaque pair advertised')
+    await cell.press('Enter');await expect(tid(page,'booking-form')).to_be_visible()
+    summary=await tid(page,'booking-summary').inner_text()
+    check(all(label in summary for label in labels[:2]),'opaque pair summary names human labels')
+    await tid(page,'booking-submit').click();reference=await confirmed(page)
+    await tid(page,'booking-submit').click();check(await confirmed(page)==reference,'opaque pair stable retry')
+    check(writes[0]==writes[1] and json.loads(writes[0]['body'])['restaurant_id']==rid,'opaque request identity exact')
+    check(json.loads(writes[0]['body'])['table_ids']==[ids[1],ids[0]],'opaque pair canonical declaration order')
+    await page.get_by_role('link',name='View or cancel reservation').click();await tid(page,'lookup-submit').click()
+    await expect(tid(page,'reservation-status')).to_have_text('confirmed')
+    lookup_labels=await tid(page,'reservation-tables').inner_text()
+    check(all(label in lookup_labels for label in labels[:2]),'opaque lookup labels')
+    await screenshots(page,'opaque-unicode-pair')
+    await tid(page,'reservation-cancel-button').click();await expect(tid(page,'reservation-status')).to_have_text('cancelled')
+    check(all(q==[rid] for q in queries),'opaque restaurant query survives percent encoding')
+    REPORT['trace'].append({'scenario':'opaque-identifiers','restaurant_id':rid,'table_ids':ids,'queries':queries,'writes':writes,'reference':reference})
+
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
     start=time.perf_counter()
@@ -657,6 +769,11 @@ async def main():
             cases.append(('local-end-'+name,lambda c,p,z=zone,l=local,e=expected:local_end_display(c,p,z,l,e)))
         for name,zone in [('berlin','Europe/Berlin'),('brussels','Europe/Brussels'),('new-york','America/New_York')]:
             cases.append(('local-end-legacy-'+name,lambda c,p,z=zone:local_end_display(c,p,z,'0001-01-01T18:00','19:30',True)))
+        for spelling in ['9007199254740993.0','9007199254740993e0','90071992547409930e-1','9.007199254740993E+15','0.9007199254740993e16']:
+            cases.append(('integral-wire-'+spelling,lambda c,p,t=spelling:integral_wire_presentation(c,p,t)))
+        cases.append(('opaque-unicode-identifiers',opaque_identifiers))
+        for label,base,revision,stage,pair in [('historic-stage1',os.environ['S1_HIST_BASE'],os.environ['S1_HIST_REVISION'],1,False),('old-stage2-single',os.environ['S2_OLD_BASE'],os.environ['S2_OLD_REVISION'],2,False),('old-stage2-pair',os.environ['S2_OLD_BASE'],os.environ['S2_OLD_REVISION'],2,True)]:
+            cases.append(('upgrade-'+label,lambda c,p,b=base,r=revision,s=stage,combined=pair:lost_response(c,p,combined,True,b,r,s)))
         for name,callback in cases: await scenario(name,callback,browser)
         REPORT["browser_version"]=browser.version
         await browser.close()
@@ -664,10 +781,11 @@ async def main():
     REPORT["passed"]=sum(s["verdict"]=="PASS" for s in REPORT["scenarios"])
     REPORT["total"]=len(REPORT["scenarios"])
     (OUT/"browser-report.json").write_text(json.dumps(REPORT,indent=2)+"\n")
-    print(json.dumps({k:REPORT[k] for k in ["candidate","passed","total","assertions","seconds"]}))
+    print(json.dumps({k:REPORT[k] for k in ["candidate","passed","total","assertions","seconds","direct_http_operations","browser_originated_requests","forwarded_fetch_operations"]}))
     for s in REPORT["scenarios"]:
         print(s["verdict"],s["name"])
         if s["verdict"]=="FAIL": print(s["error"])
     raise SystemExit(0 if REPORT["passed"]==REPORT["total"] else 1)
 
-asyncio.run(main())
+if __name__=='__main__':
+    asyncio.run(main())

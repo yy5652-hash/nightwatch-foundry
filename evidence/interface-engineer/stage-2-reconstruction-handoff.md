@@ -18,3 +18,36 @@ No application, Docker build, browser or official check was executed for this in
 The next authorized phase restores Interface static routes/image/RUN integration on this stable bytes adapter and extends its exact numeric presentation probes. All prior semantic controls, exact status, restaurant-local end, search-race and uncertain-response repairs must remain. Full genuine old/new Stage 1 and old Stage 2 upgrade flows and complete independent review remain required. Historical timestamp, immutable receipt and semantic numeric-control interpretations remain disclosed.
 
 Authoring inputs: complete current direct package, authoritative room plan, full participant guide, accepted source and own existing source/history. No peer probe/oracle or external domain source was read, copied or executed. Model: configured Codex/gpt-6.1-sol; actual override, effort, usage and spend unknown. Copy/check elapsed is scoped and measured in the manifest, not whole-factory time.
+
+## Released Phase B implementation preparation
+
+Coordinator release d698ee6c-caf1-41cd-8feb-f9e78a6f4582 follows committed six-file
+proof ab8545fc0f3f9bf1cdf8cd2d3a9e7ed8ad29d3ca and base
+41498b7ee24e8a50b48b6c14a60bccdadf39c076. Static route/asset serving and security
+headers were restored over the accepted bytes adapter; loads/dumps still bind
+the shared codec and response bytes are serialized before status/headers.
+The image and ignore file package web assets plus json_codec.py. RUN.md retains
+all prior product/retry/upgrade instructions and records exact numeric semantics.
+The browser now resolves whole decimal/exponent response tokens exactly before
+selecting an unsafe-integer display string; strict JSON syntax validation precedes
+that conversion. Existing semantic numeric fields, exact status, restaurant-local
+end-time, search-generation, conflict and uncertain-retry code remain intact.
+
+Own prepared browser scopes add five actual integral-wire fixture/presentation
+flows, opaque quoted URI/Unicode IDs, genuine historic Stage 1 and old Stage 2
+single/pair browser upgrade bridges, raw unchanged export transfer, old create/move
+receipt replay and mixed-origin replacement through an independent peer. The
+existing 34 scenarios remain in the complete run. Tests are prepared, not passing
+execution claims. The new source-bound driver builds a clean detached clone and
+genuine historical contexts, hashes actual packaged source, runs default/override
+PORT at 2 CPU/2 GiB on an internal network without mounts, and sends sealed own
+probe bytes on stdin to the dependency-runner image. Each run has a new directory.
+
+Three Python AST checks pass. Packaged Node JavaScript syntax check exits zero
+in 1.365196916 seconds under network-none/2 CPU/2 GiB; this is syntax evidence
+only. Artifact interface-engineer-s2-reconstructed-preflight-20261004t053951158486z.
+Actual complete service execution waits for the Systems named committed core/module
+handoff. No peer probe/oracle implementation was read or executed; only own code,
+the complete assignment, accepted copy proof and own historical source were used.
+The four adopted timestamp, original receipt, semantic numeric-control and exact
+numeric/legacy-profile decisions remain applicable. Stage 2 remains unaccepted.
