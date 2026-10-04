@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import os
 import socket
 import sys
@@ -10,6 +9,7 @@ from collections.abc import Mapping
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from core import Engine
+from json_codec import dumps, loads
 
 
 class RequestHeaders(Mapping):
@@ -30,10 +30,6 @@ class RequestHeaders(Mapping):
 
 class MalformedRequest(ValueError):
     pass
-
-
-def reject_constant(value):
-    raise MalformedRequest("JSON does not permit non-finite constants")
 
 
 class Server(ThreadingHTTPServer):
@@ -83,7 +79,7 @@ class Handler(BaseHTTPRequestHandler):
         if len(raw) != length:
             raise MalformedRequest("Incomplete request body")
         try:
-            body = json.loads(raw.decode("utf-8"), parse_constant=reject_constant)
+            body = loads(raw)
         except (ValueError, UnicodeError, RecursionError) as exc:
             raise MalformedRequest("Body must be valid UTF-8 JSON") from exc
         if not isinstance(body, dict):
@@ -94,9 +90,7 @@ class Handler(BaseHTTPRequestHandler):
         # Serialize before sending headers so serialization cannot leave a false
         # successful status on an incomplete response. ASCII escapes are UTF-8
         # compatible and also safely preserve JSON-escaped surrogate strings.
-        payload = b"" if status == 204 else json.dumps(
-            body, ensure_ascii=True, allow_nan=False, separators=(",", ":")
-        ).encode("utf-8")
+        payload = b"" if status == 204 else dumps(body)
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(payload)))

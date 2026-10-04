@@ -19,7 +19,7 @@ The ready response is `{"status":"ok"}`. The service listens on `0.0.0.0`
 and uses `PORT`, defaulting to `8080`. To change it, change both the container
 environment and mapping, for example `-e PORT=9090 -p 18200:9090`.
 
-Python, the application and IANA timezone rules are packaged in this single
+Python, the application, its exact JSON codec and IANA timezone rules are packaged in this single
 image. No host Python packages, mounted data, separate database or runtime
 network access are required. Startup has no runtime downloads. Requests are
 served concurrently against one shared Engine; its application transactions
@@ -43,6 +43,9 @@ JSON responses use `application/json; charset=utf-8`. Explicit JSON null, arrays
 scalar bodies, malformed UTF-8 and invalid JSON are 400 `malformed_request` before
 application authentication or idempotency. Empty bodies are passed to the Engine
 as absent bodies. Unknown fields and query parameters reach the Engine unchanged.
+The packaged codec decodes finite numeric values exactly and returns UTF-8
+response bytes; transport does not round numbers through binary floats. The
+Engine owns field validation, request-body comparison and imported receipt rules.
 Send JSON bodies with `Content-Length` framing (ordinary curl and HTTP clients do
 this automatically).
 

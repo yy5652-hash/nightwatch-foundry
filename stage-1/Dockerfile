@@ -7,7 +7,7 @@ RUN apt-get update \
 
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
 WORKDIR /app
-COPY server.py core.py ./
+COPY server.py core.py json_codec.py ./
 RUN python -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('.').glob('*.py')]"
 USER 65532:65532
 EXPOSE 8080
