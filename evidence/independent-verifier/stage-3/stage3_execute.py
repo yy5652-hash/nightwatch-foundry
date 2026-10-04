@@ -4,19 +4,22 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent;R=HERE.parents[2];W=R.parents[1]
 def main():
  p=argparse.ArgumentParser();p.add_argument('--runtime',required=True);p.add_argument('--out',required=True)
- p.add_argument('--group',choices=['stage3','supplement','browser','inherited-http','inherited-browser','inherited-upgrade','reconstruction','reconstruction-browser'],required=True)
- p.add_argument('--families');p.add_argument('--assembly');a=p.parse_args();runtime=Path(a.runtime).resolve();out=Path(a.out).resolve()
+ p.add_argument('--group',choices=['stage3','supplement','races','binding','browser','inherited-http','inherited-browser','inherited-upgrade','reconstruction','reconstruction-browser'],required=True)
+ p.add_argument('--families');p.add_argument('--assembly');p.add_argument('--release-file');a=p.parse_args();runtime=Path(a.runtime).resolve();out=Path(a.out).resolve()
  assert runtime.is_relative_to(W) and out.is_relative_to(W);out.mkdir(parents=True,exist_ok=False)
  f=json.loads((runtime/'preflight.json').read_text());assert f['status']=='running_for_independent_checks'
  u=f['urls'];commands=[];release=runtime/'release.json'
  assembly=Path(a.assembly).resolve() if a.assembly else None
  if assembly:
   proof=json.loads((assembly/'client-proof.json').read_text());f.update(runner_image=proof['image'],runner_image_id=proof['image_id'],probe_revision=proof['probe_revision'],client_manifest=proof['manifest']);release=assembly/'release.json'
+ if a.release_file:
+  release=Path(a.release_file).resolve();assert release.is_relative_to(W)
  (out/'executed-client-manifest.json').write_text(json.dumps(dict(probe_revision=f['probe_revision'],image=f['runner_image'],image_id=f['runner_image_id'],manifest=f['client_manifest']),indent=2)+'\n')
  def probe(folder,script,label,extra=(),positional=None):
   name=f['prefix']+'-check';argv=['docker','run','--rm','--name',name,'--network',f['network'],'--cpus','2','--memory','2g',
    '-v',str(out)+':/evidence','-v',str(runtime)+':'+str(runtime)+':ro','-v',str(HERE/'candidate-1')+':'+str(HERE/'candidate-1')+':ro',
    *(['-v',str(assembly)+':'+str(assembly)+':ro'] if assembly else []),
+   *(['-v',str(release.parent)+':'+str(release.parent)+':ro'] if a.release_file else []),
    '--entrypoint','python',f['runner_image'],'/verifier/'+folder+'/'+script]
   if positional is None:argv+=['--base',u['target'],'--candidate',f['candidate'],'--out','/evidence/'+label]+list(extra)
   else:argv+=positional
@@ -27,6 +30,8 @@ def main():
  if a.group=='stage3':
   families=(a.families or 'policies,explain,numeric,terms,series,rollback,moves,concurrency,retry,calendar,trace,first_error,upgrade,deep').split(',')
   for family in families:probe('stage-3','stage3_probe.py',family,positional=['--family',family,'--release',str(release),'--out','/evidence/'+family,'--execute'])
+ elif a.group in ('binding','races'):
+  probe('stage-3','stage3_browser_binding.py' if a.group=='binding' else 'stage3_read_races.py',a.group,positional=['--release',str(release),'--out','/evidence/'+a.group])
  elif a.group=='supplement':
   for family in (a.families or 'policies,explain,terms,series').split(','):
    probe('stage-3','stage3_supplement.py',family,positional=['--family',family,'--release',str(release),'--out','/evidence/'+family])

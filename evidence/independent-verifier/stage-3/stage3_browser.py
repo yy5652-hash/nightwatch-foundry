@@ -63,10 +63,13 @@ async def run(release,out):
                 c.response('terms-amend-new-terms',c.call('PATCH','/reservations/'+ref,dict(party_size=2,table_ids=['b']),token=c.tokens['u']),200)
                 context=await browser.new_context(viewport={'width':width,'height':900},timezone_id='Pacific/Honolulu')
                 page=await context.new_page()
+                page.set_default_timeout(5000)
                 page.on('request',lambda request:requests.append(dict(method=request.method,url=request.url,bytes=len((request.post_data or '').encode()),body_sha256=hashlib.sha256((request.post_data or '').encode()).hexdigest())))
                 await login(page);await lookup(page,ref)
                 terms_node=page.locator(selectors['accepted_terms']);history_node=page.locator(selectors['history'])
                 await terms_node.wait_for();await history_node.wait_for()
+                await terms_node.locator('summary').click()
+                for summary in await history_node.locator('summary').all():await summary.click()
                 real=c.lookup(ref);history=c.history(ref)
                 term_text=await terms_node.inner_text();history_text=await history_node.inner_text()
                 check('accepted-terms',bool(term_text.strip()))
@@ -96,6 +99,15 @@ async def run(release,out):
                 check('series-cancelled','cancelled' in text.lower());check('series-exception','exception' in text.lower())
                 check('series-occurrences',member in text and other in text)
                 await capture(page,'cancelled-exception',width)
+                # A fresh actual document has no remembered agreement identity,
+                # so it can submit this genuinely already-adopted anchor and
+                # display the authoritative refusal. The current document
+                # intentionally hides a redundant adoption form once known.
+                await context.close()
+                context=await browser.new_context(viewport={'width':width,'height':900},timezone_id='Pacific/Honolulu')
+                page=await context.new_page();page.set_default_timeout(5000)
+                page.on('request',lambda request:requests.append(dict(method=request.method,url=request.url,bytes=len((request.post_data or '').encode()),body_sha256=hashlib.sha256((request.post_data or '').encode()).hexdigest())))
+                await login(page);await lookup(page,ref)
                 await page.locator(selectors['series_submit']).click();await page.locator(selectors['series_error']).wait_for()
                 check('failure-atomic',bool((await page.locator(selectors['series_error']).inner_text()).strip()))
                 await capture(page,'refused-adoption',width)
