@@ -458,7 +458,7 @@ async def large_party_exactness(context,page,party):
         'exact_lookup_guests':guests==str(party),
     }
     observations['checks']=checks;REPORT['trace'].append({'scenario':'large-party-exactness','observations':observations})
-    await screenshots(page,'large-party-'+str(len(str(party)))+'-digits')
+    await screenshots(page,'large-party-'+str(len(str(party)))+'-'+str(party)[:20])
     for name,passed in checks.items():check(passed,'large-party '+name+': '+json.dumps(observations))
 
 async def main():

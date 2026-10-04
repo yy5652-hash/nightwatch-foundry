@@ -45,6 +45,32 @@
     validation_failed:context==='auth'?'Please check your email and account details. New passwords need at least 8 characters.':'Please check the date, seating choice and number of guests.',
     reservation_cancelled:'This reservation has already been cancelled.',
   }[error.code] || error.message);
+  function parseAPIJSON(raw) {
+    // Validate syntax first: quoting a large numeric token must never turn an
+    // invalid document (such as an unquoted numeric key) into a valid response.
+    JSON.parse(raw);
+    const number=/-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?/y;
+    const safe=BigInt(Number.MAX_SAFE_INTEGER);
+    let exact='',index=0;
+    while(index<raw.length) {
+      if(raw[index]==='"') {
+        const start=index++;
+        while(index<raw.length) {
+          if(raw[index]==='\\')index+=2;
+          else if(raw[index++]==='"')break;
+        }
+        exact+=raw.slice(start,index);
+      } else if(raw[index]==='-' || /[0-9]/.test(raw[index])) {
+        number.lastIndex=index;const match=number.exec(raw);
+        if(!match){exact+=raw[index++];continue;}
+        const token=match[0];
+        if(/^-?\d+$/.test(token) && (BigInt(token)>safe || BigInt(token)<-safe))exact+=JSON.stringify(token);
+        else exact+=token;
+        index=number.lastIndex;
+      } else exact+=raw[index++];
+    }
+    return JSON.parse(exact);
+  }
   async function api(path, {method='GET', body, rawBody, key, token=state.user?.token}={}) {
     const headers = {Accept:'application/json'};
     if (token) headers.Authorization = `Bearer ${token}`;
@@ -53,7 +79,7 @@
     const response = await fetch(path, {method, headers, body:rawBody ?? (body === undefined ? undefined : JSON.stringify(body)), cache:'no-store'});
     let value;
     if (response.status !== 204) {
-      try { value = await response.json(); }
+      try { value = parseAPIJSON(await response.text()); }
       catch (_) { throw new Error('The connection ended before a complete response arrived.'); }
     }
     if (!response.ok) {
@@ -163,7 +189,7 @@
       top+=`<div class="slot-row"><div class="slot-heading"><strong>${esc(slot.starts_at_local.slice(11))}</strong><span>Local time</span></div><div class="seat-options">`;
       const cell=(ids,available,combination=false)=>{
         const selected=state.booking && state.booking.starts===slot.starts_at_local && JSON.stringify(state.booking.ids)===JSON.stringify(ids);
-        return `<button type="button" class="seat ${combination?'combination ':''}${selected?'selected':''}" data-testid="slot-${esc(ids.join('+'))}-${esc(slot.starts_at_local.slice(11))}" data-available="${available}" data-slot="${slotIndex}" data-tables="${esc(JSON.stringify(ids))}" ${available?'':'disabled'} aria-pressed="${!!selected}"><strong>${esc(labelsOf(restaurant,ids))}</strong><span>${combination?'Together · ':''}${ids.reduce((n,id)=>n+restaurant.tables.find(t=>t.id===id).capacity,0)} seats · ${available?'Choose table':'Unavailable'}</span></button>`;
+        return `<button type="button" class="seat ${combination?'combination ':''}${selected?'selected':''}" data-testid="slot-${esc(ids.join('+'))}-${esc(slot.starts_at_local.slice(11))}" data-available="${available}" data-slot="${slotIndex}" data-tables="${esc(JSON.stringify(ids))}" ${available?'':'disabled'} aria-pressed="${!!selected}"><strong>${esc(labelsOf(restaurant,ids))}</strong><span>${combination?'Together · ':''}${ids.reduce((n,id)=>n+BigInt(restaurant.tables.find(t=>t.id===id).capacity),0n).toString()} seats · ${available?'Choose table':'Unavailable'}</span></button>`;
       };
       restaurant.tables.forEach(table=>{top+=cell([table.id],slot.available_table_ids.includes(table.id));});
       (slot.available_options || []).filter(option=>option.table_ids.length===2).forEach(option=>{top+=cell(option.table_ids,true,true);});
