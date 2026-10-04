@@ -44,3 +44,15 @@ The complete committed Stage 2 subtree built successfully. Existing Stage 2 HTTP
 Four own processes had 2 CPU/2 GiB, no mounts and an internal offline network; image core/server hashes matched their recorded exact revisions. Every own container/network cleanup returned zero. Commands, hashes, configuration, measured health probes and timings are in `systems-engineer-s2-decimal-integrated-01/runtime.json`. The independently seeded 160-operation member oracle trace remains alongside the HTTP logs. Browser review and official independent acceptance are separately owned.
 
 The initial decimal trace logger recursively exposed private export state within its uncommitted local trace. Before any commit/public handoff, those private state payloads were replaced with fingerprints; HTTP statuses, assertions and timing observations remain unchanged. The logger now fingerprints state at capture, so future traces never contain token-map keys or exported account/session state. This logging correction is evidence-only; no response or production result changed. A separately named follow-up run verifies corrected capture below.
+
+## Corrected capture validation
+
+```sh
+../../.venv/bin/python -B evidence/systems-engineer/stage-2-container-check.py --revision 6aff0b1a59796eb3aa218a3b26b38751977ef2c0 --integrated --out evidence/systems-engineer/systems-engineer-s2-decimal-integrated-02
+```
+
+This evidence-only successor has the same repaired Stage 2 production source. The separate complete-image run passed **11/11** current HTTP scenarios in 1.185 s and **15/15** inherited HTTP scenarios in 2.442 s, with no skips. The decimal suite again passed **70 operations/108 assertions/0 failures**, in 0.440892209 s; total build/start/probe/cleanup was 7.289113000 s. Named image hashes, constraints and zero-return cleanup remain recorded in its new `runtime.json`. Earlier outputs were not reused.
+
+A recursive inspection of the resulting `decimal-regression.json` verified that every state/tokens payload consists only of `private_state_sha256`, and each password/token/password_hash field consists only of `fingerprint`: 20 private-state fingerprints and 30 credential fingerprints were checked. Assertions, expected exact-integer equality and observed HTTP statuses remained executable and passed. Exports and live credentials are not committed. The corrected capture and its separate result are preserved independently from the initial trace redaction.
+
+Systems scope is complete for the current Stage 2 decimal repair. Stage 1 remains byte-for-byte frozen; the coordinator must supply the explicit exception and complete applicable package before any Stage 1 production edit. A new full independent Stage 2 review/official run is also required before promotion. No new browser/transport behavior, timestamp decision or historical receipt schema was changed by Systems.
