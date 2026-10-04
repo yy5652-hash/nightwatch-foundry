@@ -48,13 +48,13 @@ def check(condition, label):
     assertions.append({"label": label, "passed": bool(condition)})
 
 
-def call(method, path, body=None, token=None, key=None, destination=False):
+def call(method, path, body=None, token=None, key=None, destination=False, raw_body=None):
     headers = {"Content-Type": "application/json"}
     if token:
         headers["Authorization"] = "Bearer " + token
     if key:
         headers["Idempotency-Key"] = key
-    raw = json.dumps(body, separators=(",", ":")).encode() if body is not None else None
+    raw = raw_body if raw_body is not None else (json.dumps(body, separators=(",", ":")).encode() if body is not None else None)
     request = Request((args.destination_url if destination else args.url) + path,
                       data=raw, headers=headers, method=method)
     beginning = time.monotonic()
@@ -65,7 +65,8 @@ def call(method, path, body=None, token=None, key=None, destination=False):
     data = response.read()
     value = json.loads(data) if data else None
     events.append({"method": method, "path": path if len(path) < 1000 else path[:90] + "...[4301-digit query]",
-                   "request": safe(body), "status": response.status, "response": safe(value),
+                   "request": safe(body) if raw_body is None else {"raw_sha256": hashlib.sha256(raw_body).hexdigest()},
+                   "status": response.status, "response": safe(value),
                    "destination": destination, "wall_seconds": time.monotonic() - beginning})
     return response.status, value
 
@@ -199,6 +200,23 @@ try:
         check(expect(call("POST", "/reservations", body, token, "capacity"), 200, "giant-party replay after edit") == reservation,
               "giant-party saved receipt remains original")
 
+        moves = {"moves": [{"reference": reference, "party_size": HUGE, "ignored_integer": HUGE}],
+                 "ignored_integer": HUGE}
+        moved = expect(call("POST", "/reservation-moves", moves, token, "giant-move"), 201, "giant-party batch move")
+        check(moved["reservations"][0]["party_size"] == HUGE, "batch exact integer party")
+        expect(call("PATCH", "/reservations/" + reference, {"party_size": 1}, token), 200, "edit after giant move")
+        check(expect(call("POST", "/reservation-moves", moves, token, "giant-move"), 200, "giant move replay after edit") == moved,
+              "batch receipt remains original")
+        exported = snapshot()
+        expect(call("POST", "/_test/import", exported, destination=True), 204, "giant batch receipt replacement import")
+        check(expect(call("POST", "/reservation-moves", moves, token, "giant-move", True), 200, "imported giant move replay") == moved,
+              "batch full body/key/token/receipt preserved")
+        altered = deepcopy(moves)
+        altered["moves"][0]["ignored_integer"] += 1
+        altered["moves"][0]["party_size"] = False
+        expect(call("POST", "/reservation-moves", altered, token, "giant-move", True), 409,
+               "batch changed giant body before invalid party", "idempotency_key_reuse")
+
         reset()
         slots = available(HUGE)["slots"]
         check(len(slots) == 8 and all(x["available_table_ids"] == [] for x in slots), "giant query small capacity empty singles")
@@ -207,13 +225,18 @@ try:
         for bad in ("+4", "4.0", "1e9", "-1"):
             expect(call("GET", "/availability?" + urlencode({"restaurant_id": "r", "date": "2099-01-01", "party_size": bad})),
                    422, "invalid query " + bad, "validation_failed")
-        for bad, status, code in ((str(HUGE), 400, "malformed_request"), (True, 400, "malformed_request"),
+        token = login()
+        before = snapshot()
+        for bad, status, code in ((str(HUGE), 400, "malformed_request"), (True, 400, "malformed_request"), (1.5, 400, "malformed_request"),
                                   (-1, 422, "validation_failed")):
             bad_fixture = fixture()
             bad_fixture["restaurants"][0]["slot_minutes"] = bad
             expect(call("POST", "/_test/reset", bad_fixture), status, "invalid base field", code)
-        token = login()
-        for bad in (str(HUGE), True, 0):
+            check(snapshot() == before, "invalid reset preserves complete state")
+        for raw in (b'{"restaurants":', b'null', b'[]', b'{"slot_minutes":NaN}'):
+            expect(call("POST", "/_test/reset", raw_body=raw), 400, "malformed raw reset", "malformed_request")
+            check(snapshot() == before, "malformed reset preserves complete state")
+        for bad in (str(HUGE), True, 0, 1.5):
             expect(call("POST", "/reservations", booking(party_size=bad), token, "invalid-party"),
                    422, "invalid party", "validation_failed")
 finally:
