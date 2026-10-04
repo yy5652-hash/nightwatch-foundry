@@ -1,0 +1,220 @@
+[
+    {
+        "Id": "7bbc35647802ab7497e152a0ef9802c869247f99cbcafb47f2fff76603df98f2",
+        "Created": "2026-10-04T09:25:22.323972963Z",
+        "Path": "python",
+        "Args": [
+            "-B",
+            "-c",
+            "import sys;exec(compile(sys.stdin.buffer.read(),'sealed-interface-probe.py','exec'))"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-04T09:25:22.346498671Z",
+            "FinishedAt": "2026-10-04T09:27:45.628149168Z"
+        },
+        "Image": "sha256:2af9ea3fdddc666351dcd59b5bfefd4ab751fe89a07f300a88747524780a2c4e",
+        "ResolvConfPath": "/var/lib/docker/containers/7bbc35647802ab7497e152a0ef9802c869247f99cbcafb47f2fff76603df98f2/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/7bbc35647802ab7497e152a0ef9802c869247f99cbcafb47f2fff76603df98f2/hostname",
+        "HostsPath": "/var/lib/docker/containers/7bbc35647802ab7497e152a0ef9802c869247f99cbcafb47f2fff76603df98f2/hosts",
+        "LogPath": "/var/lib/docker/containers/7bbc35647802ab7497e152a0ef9802c869247f99cbcafb47f2fff76603df98f2/7bbc35647802ab7497e152a0ef9802c869247f99cbcafb47f2fff76603df98f2-json.log",
+        "Name": "/interface-engineer-s4r1-20261004t092409553052z-probe",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "interface-engineer-s4r1-20261004t092409553052z",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 2147483648,
+            "NanoCpus": 2000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 4294967296,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "7bbc35647802",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "S1_BASE=http://interface-engineer-s4r1-20261004t092409553052z-accepted:8080",
+                "S1_HIST_BASE=http://interface-engineer-s4r1-20261004t092409553052z-historic:8080",
+                "S2_OLD_BASE=http://interface-engineer-s4r1-20261004t092409553052z-old-stage2:8080",
+                "S2_ACCEPTED_BASE=http://interface-engineer-s4r1-20261004t092409553052z-accepted-s2:8080",
+                "S2_ACCEPTED_REVISION=4dba10246b07b2dda19de260d529f9d94ba0a1ed",
+                "S3_ACCEPTED_REVISION=91e2c471acded1b861b3fec725f202297b1c6740",
+                "CANDIDATE=2601ee9c94838a53f47a3a63bacd1e864b500122",
+                "S2_BASE=http://interface-engineer-s4r1-20261004t092409553052z-current:9090",
+                "S1_REVISION=75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+                "S1_HIST_REVISION=49287b4a5a1481f995c470ccae31776f03d4b863",
+                "S2_OLD_REVISION=16aee9f0ea10de5b8fa81a84429cc337c3c4490f",
+                "S3_ACCEPTED_BASE=http://interface-engineer-s4r1-20261004t092409553052z-accepted-s3:8080",
+                "PROBE_OUT=/tmp/interface-engineer-out",
+                "S2_DEST_BASE=http://interface-engineer-s4r1-20261004t092409553052z-destination:8080",
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.15",
+                "PYTHON_SHA256=c2c4321961fab0fb999d66e0cecf521c2ab3994c7992873ea99e306c1094fd5a",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "PYTHONUNBUFFERED=1"
+            ],
+            "Cmd": [
+                "python",
+                "-B",
+                "-c",
+                "import sys;exec(compile(sys.stdin.buffer.read(),'sealed-interface-probe.py','exec'))"
+            ],
+            "Image": "df-harness-runner:latest",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "Networks": {
+                "interface-engineer-s4r1-20261004t092409553052z": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "380718a04564fb123e7a29d2d91d3b4e1967b873cc6a87daffd070a9ea159ff4",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "interface-engineer-s4r1-20261004t092409553052z-probe",
+                        "7bbc35647802"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:995ab4a02d20f7960839745837bbecad1a313294abc0fd6359e3d435293e91ad",
+            "size": 1624,
+            "platform": {
+                "architecture": "arm64",
+                "os": "linux"
+            }
+        }
+    }
+]
