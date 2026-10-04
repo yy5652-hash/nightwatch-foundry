@@ -1,0 +1,419 @@
+{
+  "candidate": "debff0bbf2625936d30e1e11066b966a46320137",
+  "probe_revision": "814d1afff02620a9823c304f1e3debc6e87b1a40",
+  "source_run": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/interface-engineer/interface-engineer-s1-json-20261004t035748160052z",
+  "image": "interface-engineer-tablekeeper-s1:json-20261004t035748160052z",
+  "rebuild": false,
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "interface-engineer-tablekeeper-s1:json-20261004t035748160052z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.10752045800109045,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "814d1afff02620a9823c304f1e3debc6e87b1a40:evidence/interface-engineer/stage-1-json-deep-http-probe.py"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.007865499999752501,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "interface-engineer-json-deep-20261004t040218019977z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.02889349999895785,
+      "returncode": 0,
+      "output": "network.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-jd-20261004t040218019977z-0",
+        "--network",
+        "interface-engineer-json-deep-20261004t040218019977z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-p",
+        "18236:8080",
+        "interface-engineer-tablekeeper-s1:json-20261004t035748160052z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.08465583300130675,
+      "returncode": 0,
+      "output": "run-0.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-jd-20261004t040218019977z-0",
+        "python",
+        "-c",
+        "import json,time,urllib.request,sys\nt=time.monotonic()\nwhile True:\n try:\n  with urllib.request.urlopen('http://127.0.0.1:'+sys.argv[1]+'/health',timeout=2) as r:\n   if r.status==200 and json.loads(r.read())=={'status':'ok'}:break\n except Exception:\n  if time.monotonic()-t>50:raise\n  time.sleep(.05)\nprint(json.dumps({'status':200,'seconds':time.monotonic()-t}))\n",
+        "8080"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.1598295840012725,
+      "returncode": 0,
+      "output": "health-0.json"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-jd-20261004t040218019977z-0"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.03580724999847,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-jd-20261004t040218019977z-0",
+        "python",
+        "-c",
+        "import pathlib,hashlib,json;print(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').glob('*.py')}))"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.1267611250004848,
+      "returncode": 0,
+      "output": "hash-0.json"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-jd-20261004t040218019977z-0",
+        "python",
+        "-c",
+        "import pathlib;print(pathlib.Path('/proc/net/tcp').read_text())"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.1166710420002346,
+      "returncode": 0,
+      "output": "listen-0.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "interface-engineer-jd-20261004t040218019977z-1",
+        "--network",
+        "interface-engineer-json-deep-20261004t040218019977z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "-p",
+        "18237:9090",
+        "-e",
+        "PORT=9090",
+        "interface-engineer-tablekeeper-s1:json-20261004t035748160052z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.08757150000019465,
+      "returncode": 0,
+      "output": "run-1.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-jd-20261004t040218019977z-1",
+        "python",
+        "-c",
+        "import json,time,urllib.request,sys\nt=time.monotonic()\nwhile True:\n try:\n  with urllib.request.urlopen('http://127.0.0.1:'+sys.argv[1]+'/health',timeout=2) as r:\n   if r.status==200 and json.loads(r.read())=={'status':'ok'}:break\n except Exception:\n  if time.monotonic()-t>50:raise\n  time.sleep(.05)\nprint(json.dumps({'status':200,'seconds':time.monotonic()-t}))\n",
+        "9090"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.154673624998395,
+      "returncode": 0,
+      "output": "health-1.json"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "interface-engineer-jd-20261004t040218019977z-1"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.038211292001506,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-jd-20261004t040218019977z-1",
+        "python",
+        "-c",
+        "import pathlib,hashlib,json;print(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('/app').glob('*.py')}))"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.126466707999498,
+      "returncode": 0,
+      "output": "hash-1.json"
+    },
+    {
+      "argv": [
+        "docker",
+        "exec",
+        "interface-engineer-jd-20261004t040218019977z-1",
+        "python",
+        "-c",
+        "import pathlib;print(pathlib.Path('/proc/net/tcp').read_text())"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.121744084000966,
+      "returncode": 0,
+      "output": "listen-1.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "inspect",
+        "interface-engineer-json-deep-20261004t040218019977z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.027668667000398273,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "--name",
+        "interface-engineer-jd-20261004t040218019977z-client",
+        "--network",
+        "interface-engineer-json-deep-20261004t040218019977z",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "interface-engineer-tablekeeper-s1:json-20261004t035748160052z",
+        "-",
+        "http://interface-engineer-jd-20261004t040218019977z-0:8080",
+        "http://interface-engineer-jd-20261004t040218019977z-1:9090"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.49985654200281715,
+      "returncode": 0,
+      "stdin_sha256": "465d125866e5b0e2388b7beb747701e0aa6203f30fb2b8c75ae5ee8f37431d58",
+      "output": "deep-http.json"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-jd-20261004t040218019977z-1"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.0381157500014524,
+      "returncode": 0,
+      "output": "logs-1.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-jd-20261004t040218019977z-1"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.12867404099961277,
+      "returncode": 0,
+      "output": "cleanup-1.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "logs",
+        "interface-engineer-jd-20261004t040218019977z-0"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 3.039017999999487,
+      "returncode": 0,
+      "output": "logs-0.txt"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-jd-20261004t040218019977z-0"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.11990041600074619,
+      "returncode": 0,
+      "output": "cleanup-0.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "interface-engineer-json-deep-20261004t040218019977z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.08919658299782895,
+      "returncode": 0,
+      "output": "cleanup-network.log"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Retained complete image identity matches clean-build proof",
+      "passed": true
+    },
+    {
+      "name": "Prior exact clean clone retained",
+      "passed": true
+    },
+    {
+      "name": "Actual service healthy within60s 0",
+      "passed": true
+    },
+    {
+      "name": "Offline constrained no-mount service 0",
+      "passed": true
+    },
+    {
+      "name": "Actual core/server/module match named coherent source 0",
+      "passed": true
+    },
+    {
+      "name": "All-interface actual selected PORT 0",
+      "passed": true
+    },
+    {
+      "name": "Actual service healthy within60s 1",
+      "passed": true
+    },
+    {
+      "name": "Offline constrained no-mount service 1",
+      "passed": true
+    },
+    {
+      "name": "Actual core/server/module match named coherent source 1",
+      "passed": true
+    },
+    {
+      "name": "All-interface actual selected PORT 1",
+      "passed": true
+    },
+    {
+      "name": "Network has no outbound routing",
+      "passed": true
+    },
+    {
+      "name": "Own real deep HTTP suite passes",
+      "passed": true
+    }
+  ],
+  "resources": [
+    {
+      "name": "interface-engineer-jd-20261004t040218019977z-0",
+      "image": "sha256:08890fac03f55221e2a9b23d95e4b6b3dd36ccce96deaf723cbb8c458bc94524",
+      "source_revision": "debff0bbf2625936d30e1e11066b966a46320137",
+      "source_hashes": {
+        "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+        "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+        "json_codec.py": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+      },
+      "nano_cpus": 2000000000,
+      "memory": 2147483648,
+      "mounts": [],
+      "network": "interface-engineer-json-deep-20261004t040218019977z",
+      "port": 8080,
+      "host_port": 18236,
+      "health_from_launch_seconds": 3.2452555000018037
+    },
+    {
+      "name": "interface-engineer-jd-20261004t040218019977z-1",
+      "image": "sha256:08890fac03f55221e2a9b23d95e4b6b3dd36ccce96deaf723cbb8c458bc94524",
+      "source_revision": "debff0bbf2625936d30e1e11066b966a46320137",
+      "source_hashes": {
+        "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+        "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+        "json_codec.py": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+      },
+      "nano_cpus": 2000000000,
+      "memory": 2147483648,
+      "mounts": [],
+      "network": "interface-engineer-json-deep-20261004t040218019977z",
+      "port": 9090,
+      "host_port": 18237,
+      "health_from_launch_seconds": 3.2434749999993073
+    }
+  ],
+  "errors": [],
+  "cleanup": [
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-jd-20261004t040218019977z-1"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.12867404099961277,
+      "returncode": 0,
+      "output": "cleanup-1.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "interface-engineer-jd-20261004t040218019977z-0"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.11990041600074619,
+      "returncode": 0,
+      "output": "cleanup-0.log"
+    },
+    {
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "interface-engineer-json-deep-20261004t040218019977z"
+      ],
+      "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "seconds": 0.08919658299782895,
+      "returncode": 0,
+      "output": "cleanup-network.log"
+    }
+  ],
+  "seconds": 32.19141699999818,
+  "model": "configured gpt-6.1-sol",
+  "actual_override_effort_usage_spend": "unknown"
+}
