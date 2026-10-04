@@ -425,6 +425,42 @@ async def concurrent_pair_transport(context,page):
     check(availability['slots'][0]['available_table_ids']==['t_corner'],"both members atomically occupied at read")
     REPORT['trace'].append({'scenario':'concurrent-pair-transport','identical_status_counts':identical_counts,'competing_status_counts':{str(s):statuses.count(s) for s in set(statuses)},'races':50,'persisted':1})
 
+async def large_party_exactness(context,page,party):
+    from urllib.parse import urlsplit,parse_qs
+    fixture=copy.deepcopy(FIXTURE)
+    fixture['restaurants'][0]['tables'][0]['capacity']=party
+    status,_=await request(context,BASE,'/_test/reset','POST',fixture)
+    check(status==204,'large capacity reset accepted without an upper cap')
+    await login(page)
+    searches=[];writes=[]
+    def observed(req):
+        if '/availability?' in req.url:searches.append(parse_qs(urlsplit(req.url).query)['party_size'][0])
+        if req.method=='POST' and req.url==BASE+'/reservations':writes.append({'key':req.headers.get('idempotency-key'),'body':req.post_data})
+    page.on('request',observed)
+    await search(page,party=str(party))
+    single_label=await tid(page,'slot-t_window-18:00').inner_text()
+    pair_label=await tid(page,'slot-t_garden+t_window-18:00').inner_text()
+    await open_booking(page)
+    prefill=await tid(page,'booking-party-size').input_value()
+    await tid(page,'booking-submit').click();reference=await confirmed(page)
+    await tid(page,'booking-submit').click();check(await confirmed(page)==reference,'large unchanged retry reference')
+    await page.get_by_role('link',name='View or cancel reservation').click()
+    await tid(page,'lookup-submit').click();await expect(tid(page,'reservation-detail')).to_be_visible()
+    guests=await tid(page,'reservation-detail').locator('dl div').filter(has=page.locator('dt',has_text='Guests')).locator('dd').inner_text()
+    observations={'party':str(party),'query':searches,'prefill':prefill,'writes':writes,'grid_single':single_label,'grid_pair':pair_label,'lookup_guests':guests}
+    checks={
+        'plain_exact_query':searches==[str(party)],
+        'exact_prefill':prefill==str(party),
+        'exact_json_numeric_body':len(writes)==2 and all(json.loads(w['body'])['party_size']==party for w in writes),
+        'identical_key_body':len(writes)==2 and writes[0]==writes[1],
+        'exact_single_capacity':str(party)+' seats' in single_label,
+        'exact_pair_sum':str(party+4)+' seats' in pair_label,
+        'exact_lookup_guests':guests==str(party),
+    }
+    observations['checks']=checks;REPORT['trace'].append({'scenario':'large-party-exactness','observations':observations})
+    await screenshots(page,'large-party-'+str(len(str(party)))+'-digits')
+    for name,passed in checks.items():check(passed,'large-party '+name+': '+json.dumps(observations))
+
 async def main():
     OUT.mkdir(parents=True,exist_ok=True)
     start=time.perf_counter()
@@ -435,7 +471,11 @@ async def main():
             ("combined-conflict",lambda c,p:conflict(c,p,True)),("lost-single",lost_response),
             ("lost-combined",lambda c,p:lost_response(c,p,True)),("genuine-stage1-upgrade",lambda c,p:lost_response(c,p,upgrade=True)),
             ("combined-occupancy",combinations),("changed-retry-form",changed_form),("empty-unavailable-lookup",empty_and_unavailable),
-            ("lookup-race-privacy-cutoff",lookup_race_and_refusal),("auth-inputs-loading",loading_auth_stability),("concurrent-pair-transport",concurrent_pair_transport)]
+            ("lookup-race-privacy-cutoff",lookup_race_and_refusal),("auth-inputs-loading",loading_auth_stability),("concurrent-pair-transport",concurrent_pair_transport),
+            ("party-safe-boundary",lambda c,p:large_party_exactness(c,p,9007199254740991)),
+            ("party-above-safe-integer",lambda c,p:large_party_exactness(c,p,9007199254740993)),
+            ("party-31-digits",lambda c,p:large_party_exactness(c,p,10**30+1)),
+            ("party-401-digits",lambda c,p:large_party_exactness(c,p,10**400+1))]
         for name,callback in cases: await scenario(name,callback,browser)
         REPORT["browser_version"]=browser.version
         await browser.close()
