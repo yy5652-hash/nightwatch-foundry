@@ -1,0 +1,14 @@
+{
+  "scope": "Initial own artifact scanner; no service execution",
+  "tool_chunk_id": "e39381",
+  "command": "../../.venv/bin/python -B - (stdin audit script preserved in room tool event)",
+  "returncode": 1,
+  "observed_exception": "AssertionError",
+  "findings": [
+    {"path": "checks-02/preparation-summary.json", "field": "tokens", "value": "unknown"},
+    {"path": "checks-03/preparation-summary.json", "field": "tokens", "value": "unknown"}
+  ],
+  "classification": "Both are explicit unknown token-usage metadata, not authentication credentials. Original files/fields are preserved; the final scoped audit classifies only these known leaves.",
+  "original_stdin_source_sha256": "unknown; no reconstructed hash claim",
+  "passing_scan_claim": false
+}

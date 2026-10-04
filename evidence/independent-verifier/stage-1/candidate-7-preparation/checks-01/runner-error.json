@@ -1,0 +1,21 @@
+{
+  "scope": "Own preparation runner failure; no service execution",
+  "argv": [
+    "../../.venv/bin/python",
+    "-B",
+    "evidence/independent-verifier/stage-1/decoder_prepare.py",
+    "--out",
+    "evidence/independent-verifier/stage-1/candidate-7-preparation/checks-01"
+  ],
+  "returncode": 1,
+  "observed_exception": "AssertionError",
+  "observed_line": 43,
+  "observed_assertion": "assert \"setrecursionlimit\" not in raw.decode()",
+  "cause": "Substring scanner matched its own literal in decoder_prepare.py; no actual recursion-limit call",
+  "executed_source_sha256": "d1eecfd07d143f40504d0f521593cb11486bbe050663b2b2d32461b08699d467",
+  "prior_output_preserved": true,
+  "service_requests": 0,
+  "images_built": 0,
+  "containers_started": 0,
+  "oracle_result": "Partial runner did not seal aggregate self-check counts"
+}
