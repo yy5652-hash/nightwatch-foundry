@@ -125,7 +125,11 @@ def main():
         errors.append(dict(type=type(error).__name__,message=str(error),classification='recorded-expectation' if isinstance(error,AssertionError) else 'runner-exception'))
         results=PARTIAL.get('results',[]);trace=PARTIAL.get('trace',[]);detail=PARTIAL.get('detail',{});detail['incomplete']=True;counts=PARTIAL.get('counts',{})
         if a.case=='oracle':counts['requests']=sum('index' in x for x in trace)
-    for name,value in [('assertions',results),('trace',trace),('detail',detail)]: (out/(name+'.json')).write_text(json.dumps(value,indent=2,ensure_ascii=False)+'\n')
+    # Exact public oracle leaves retain their actual numeric token in evidence metadata.
+    def exact_leaf(value):
+        if isinstance(value,Number):return {'actual_json_number_token':value.raw}
+        raise TypeError(type(value).__name__)
+    for name,value in [('assertions',results),('trace',trace),('detail',detail)]: (out/(name+'.json')).write_text(json.dumps(value,indent=2,ensure_ascii=False,default=exact_leaf)+'\n')
     summary=dict(candidate=release['candidate'],case=a.case,assertions=len(results),failures=sum(not x['passed'] for x in results),errors=errors,counts=counts,seconds=time.monotonic()-start)
     (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary));raise SystemExit(bool(errors) or summary['failures']>0)
 if __name__=='__main__':main()
