@@ -1,0 +1,589 @@
+[
+  {
+    "argv": [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "--no-checkout",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "current-clone.log",
+    "returncode": 0,
+    "duration_seconds": 0.12688658299884992
+  },
+  {
+    "argv": [
+      "git",
+      "checkout",
+      "--detach",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current",
+    "log": "current-checkout.log",
+    "returncode": 0,
+    "duration_seconds": 0.5912109159980901
+  },
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current",
+    "log": "current-head.log",
+    "returncode": 0,
+    "duration_seconds": 0.006788750000850996
+  },
+  {
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current",
+    "log": "current-status.log",
+    "returncode": 0,
+    "duration_seconds": 0.38977866699860897
+  },
+  {
+    "argv": [
+      "git",
+      "ls-tree",
+      "-r",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current",
+    "log": "current-tree.log",
+    "returncode": 0,
+    "duration_seconds": 0.009675040997535689
+  },
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b:stage-1"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current",
+    "log": "current-stage-tree.log",
+    "returncode": 0,
+    "duration_seconds": 0.007069375002174638
+  },
+  {
+    "argv": [
+      "docker",
+      "build",
+      "-t",
+      "independent-verifier-dec-1004051512260097:current",
+      "."
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current/stage-1",
+    "log": "current-build.log",
+    "returncode": 0,
+    "duration_seconds": 1.1204358340000908
+  },
+  {
+    "argv": [
+      "docker",
+      "image",
+      "inspect",
+      "independent-verifier-dec-1004051512260097:current"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "current-image.log",
+    "returncode": 0,
+    "duration_seconds": 0.04945170900100493
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "394c18c1285f7ba7a7b1454b270d3cf56a223500:evidence/independent-verifier/stage-1/Decoder.Probe.Dockerfile"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "duration_seconds": 0.014793291000387399,
+    "saved_blob": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context/Decoder.Probe.Dockerfile"
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "394c18c1285f7ba7a7b1454b270d3cf56a223500:evidence/independent-verifier/stage-1/decoder_probe.py"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "duration_seconds": 0.008551499999157386,
+    "saved_blob": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context/decoder_probe.py"
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "394c18c1285f7ba7a7b1454b270d3cf56a223500:evidence/independent-verifier/stage-1/decoder_oracle.py"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "duration_seconds": 0.008825375000014901,
+    "saved_blob": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context/decoder_oracle.py"
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "394c18c1285f7ba7a7b1454b270d3cf56a223500:evidence/independent-verifier/stage-1/decoder_requirements.py"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "duration_seconds": 0.008329166998009896,
+    "saved_blob": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context/decoder_requirements.py"
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "394c18c1285f7ba7a7b1454b270d3cf56a223500:evidence/independent-verifier/stage-1/semantic_oracle.py"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "duration_seconds": 0.009075250000023516,
+    "saved_blob": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context/semantic_oracle.py"
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "394c18c1285f7ba7a7b1454b270d3cf56a223500:evidence/independent-verifier/stage-1/health.py"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "returncode": 0,
+    "duration_seconds": 0.010067375002108747,
+    "saved_blob": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context/health.py"
+  },
+  {
+    "argv": [
+      "docker",
+      "build",
+      "-f",
+      "Decoder.Probe.Dockerfile",
+      "-t",
+      "independent-verifier-dec-1004051512260097:client",
+      "."
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02/own-client-context",
+    "log": "client-build.log",
+    "returncode": 0,
+    "duration_seconds": 0.4606857079998008
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-dec-1004051512260097-client-hashes",
+      "--network",
+      "none",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "--entrypoint",
+      "python",
+      "independent-verifier-dec-1004051512260097:client",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['decoder_probe.py', 'decoder_oracle.py', 'decoder_requirements.py', 'semantic_oracle.py', 'health.py']}))"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "client-image-hashes.log",
+    "returncode": 0,
+    "duration_seconds": 0.17119604199979221
+  },
+  {
+    "argv": [
+      "docker",
+      "network",
+      "create",
+      "--internal",
+      "independent-verifier-dec-1004051512260097-net"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "network-create.log",
+    "returncode": 0,
+    "duration_seconds": 0.031256792000931455
+  },
+  {
+    "argv": [
+      "docker",
+      "network",
+      "inspect",
+      "independent-verifier-dec-1004051512260097-net"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "network-inspect.log",
+    "returncode": 0,
+    "duration_seconds": 0.01697654200324905
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "independent-verifier-dec-1004051512260097-base",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-p",
+      "127.0.0.1:18335:18335",
+      "-e",
+      "PORT=18335",
+      "independent-verifier-dec-1004051512260097:current"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "base-start.log",
+    "returncode": 0,
+    "duration_seconds": 0.07302079200235312
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-dec-1004051512260097-health",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "--entrypoint",
+      "python",
+      "independent-verifier-dec-1004051512260097:client",
+      "/verifier/health.py",
+      "--url",
+      "http://independent-verifier-dec-1004051512260097-base:18335/health",
+      "--timeout",
+      "4.5"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "base-health.log",
+    "returncode": 0,
+    "duration_seconds": 0.25687595800263807
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "independent-verifier-dec-1004051512260097-base"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "base-inspect.log",
+    "returncode": 0,
+    "duration_seconds": 3.0306590830005007
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "independent-verifier-dec-1004051512260097-base",
+      "python",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['core.py', 'server.py', 'json_codec.py']}))"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "base-image-hashes.log",
+    "returncode": 0,
+    "duration_seconds": 3.132503374999942
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "independent-verifier-dec-1004051512260097-peer",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-p",
+      "127.0.0.1:18336:8080",
+      "independent-verifier-dec-1004051512260097:current"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "peer-start.log",
+    "returncode": 0,
+    "duration_seconds": 0.09438420800142922
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-dec-1004051512260097-health",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "--entrypoint",
+      "python",
+      "independent-verifier-dec-1004051512260097:client",
+      "/verifier/health.py",
+      "--url",
+      "http://independent-verifier-dec-1004051512260097-peer:8080/health",
+      "--timeout",
+      "4.5"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "peer-health.log",
+    "returncode": 0,
+    "duration_seconds": 0.25251308400038397
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "independent-verifier-dec-1004051512260097-peer"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "peer-inspect.log",
+    "returncode": 0,
+    "duration_seconds": 3.038944125000853
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "independent-verifier-dec-1004051512260097-peer",
+      "python",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['core.py', 'server.py', 'json_codec.py']}))"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "peer-image-hashes.log",
+    "returncode": 0,
+    "duration_seconds": 3.1284620839978743
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "independent-verifier-dec-1004051512260097-third",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-p",
+      "127.0.0.1:18337:18337",
+      "-e",
+      "PORT=18337",
+      "independent-verifier-dec-1004051512260097:current"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "third-start.log",
+    "returncode": 0,
+    "duration_seconds": 0.10219241700178827
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-dec-1004051512260097-health",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "--entrypoint",
+      "python",
+      "independent-verifier-dec-1004051512260097:client",
+      "/verifier/health.py",
+      "--url",
+      "http://independent-verifier-dec-1004051512260097-third:18337/health",
+      "--timeout",
+      "4.5"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "third-health.log",
+    "returncode": 0,
+    "duration_seconds": 0.2614350839976396
+  },
+  {
+    "argv": [
+      "docker",
+      "inspect",
+      "independent-verifier-dec-1004051512260097-third"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "third-inspect.log",
+    "returncode": 0,
+    "duration_seconds": 3.0319122079999943
+  },
+  {
+    "argv": [
+      "docker",
+      "exec",
+      "independent-verifier-dec-1004051512260097-third",
+      "python",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['core.py', 'server.py', 'json_codec.py']}))"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "third-image-hashes.log",
+    "returncode": 0,
+    "duration_seconds": 3.124340916998335
+  },
+  {
+    "argv": [
+      "docker",
+      "run",
+      "--name",
+      "independent-verifier-dec-1004051512260097-probe",
+      "--network",
+      "independent-verifier-dec-1004051512260097-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/candidate-7/decoder-02:/evidence",
+      "independent-verifier-dec-1004051512260097:client",
+      "--base",
+      "http://independent-verifier-dec-1004051512260097-base:18335",
+      "--peer",
+      "http://independent-verifier-dec-1004051512260097-peer:8080",
+      "--third",
+      "http://independent-verifier-dec-1004051512260097-third:18337",
+      "--candidate",
+      "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+      "--out",
+      "/evidence/probes"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "decoder-probe.log",
+    "returncode": 0,
+    "duration_seconds": 14.01327458400192
+  },
+  {
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/independent-verifier-dec-1004051512260097-current",
+    "log": "current-post-status.log",
+    "returncode": 0,
+    "duration_seconds": 0.03657662499972503
+  },
+  {
+    "argv": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-dec-1004051512260097-probe"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "client-cleanup.log",
+    "returncode": 0,
+    "duration_seconds": 0.02432583299741964
+  },
+  {
+    "argv": [
+      "docker",
+      "logs",
+      "independent-verifier-dec-1004051512260097-base"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "independent-verifier-dec-1004051512260097-base-service.log",
+    "returncode": 0,
+    "duration_seconds": 3.0261939160009206
+  },
+  {
+    "argv": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-dec-1004051512260097-base"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "independent-verifier-dec-1004051512260097-base-cleanup.log",
+    "returncode": 0,
+    "duration_seconds": 0.1272318749979604
+  },
+  {
+    "argv": [
+      "docker",
+      "logs",
+      "independent-verifier-dec-1004051512260097-peer"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "independent-verifier-dec-1004051512260097-peer-service.log",
+    "returncode": 0,
+    "duration_seconds": 3.0380226659981417
+  },
+  {
+    "argv": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-dec-1004051512260097-peer"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "independent-verifier-dec-1004051512260097-peer-cleanup.log",
+    "returncode": 0,
+    "duration_seconds": 0.13627712500237976
+  },
+  {
+    "argv": [
+      "docker",
+      "logs",
+      "independent-verifier-dec-1004051512260097-third"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "independent-verifier-dec-1004051512260097-third-service.log",
+    "returncode": 0,
+    "duration_seconds": 3.039585915998032
+  },
+  {
+    "argv": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-dec-1004051512260097-third"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "independent-verifier-dec-1004051512260097-third-cleanup.log",
+    "returncode": 0,
+    "duration_seconds": 0.1248038749981788
+  },
+  {
+    "argv": [
+      "docker",
+      "network",
+      "rm",
+      "independent-verifier-dec-1004051512260097-net"
+    ],
+    "cwd": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result",
+    "log": "network-cleanup.log",
+    "returncode": 0,
+    "duration_seconds": 0.08769899999970221
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "docker",
+    "ps",
+    "-a",
+    "--filter",
+    "name=independent-verifier-",
+    "--format",
+    "{{.ID}} {{.Names}} {{.Status}}"
+  ],
+  "returncode": 0,
+  "output": "",
+  "scope": "verifier-prefixed containers only; images/clones retained"
+}

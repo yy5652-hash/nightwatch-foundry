@@ -1,0 +1,256 @@
+{
+  "candidate": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+  "checks": {
+    "dockerfile": true,
+    "run-document": true,
+    "single-image": true,
+    "offline": true,
+    "cpu": true,
+    "memory": true,
+    "startup": true,
+    "packaged-assets": true,
+    "listen-all": true,
+    "port-default": true,
+    "port-override": true,
+    "complete-clone": true,
+    "two-builders": true,
+    "history-preserved": true,
+    "own-stage": true,
+    "source-provenance": true
+  },
+  "readiness": [
+    {
+      "healthy": true,
+      "readiness_seconds": 0.42222208400198724,
+      "host_port": 18300,
+      "internal_port": 18309,
+      "port_override": true
+    },
+    {
+      "healthy": true,
+      "readiness_seconds": 0.42221554199932143,
+      "host_port": 18301,
+      "internal_port": 8080,
+      "port_override": false
+    }
+  ],
+  "source_image_proof": {
+    "candidate": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+    "proof": [
+      {
+        "container": "independent-verifier-s1-75005d57fe09-20261004t050649-source",
+        "expected": {
+          "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+          "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+          "json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+        },
+        "observed": {
+          "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+          "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+          "json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+        }
+      },
+      {
+        "container": "independent-verifier-s1-75005d57fe09-20261004t050649-peer",
+        "expected": {
+          "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+          "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+          "json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+        },
+        "observed": {
+          "core.py": "2653bdc010129f91b33480ece36d43f30a81d8b6c214764745c9c0f722f4a84f",
+          "server.py": "fb8d9e41eb13c3a736d49573903253a6cb98284790cf5edc9caeb352f0e0946c",
+          "json_codec.py": "6a063cf3a93b7e022b1fdace3d6357088cb7197b07a6f69c1c12d64d57a16263"
+        }
+      }
+    ]
+  },
+  "clean_clone_head": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+  "clean_clone_status": "",
+  "cleanup": [
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-75005d57fe09-20261004t050649-source"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-75005d57fe09-20261004t050649-peer"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-75005d57fe09-20261004t050649-legacy"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "independent-verifier-s1-75005d57fe09-20261004t050649-net"
+      ],
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050900510466-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050900510466-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050900510466-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050900510466-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050900510466-legacy",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050900510466-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050946601458-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050946601458-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050946601458-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004050946601458-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051010139451-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051010139451-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051010139451-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051010139451-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051034850785-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051034850785-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051034850785-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051034850785-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-num-1004051034850785-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051512260097-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051512260097-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051512260097-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051512260097-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051512260097-net",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-probe",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-base",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-third",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dec-1004051112357353-net",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-numeric-20261004t051145z-service"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "independent-verifier-s1-fraction-20261004t051148z-service"
+      ],
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dr-1004051619159918-source",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dr-1004051619159918-peer",
+      "returncode": 0
+    },
+    {
+      "resource": "independent-verifier-dr-1004051619159918-net",
+      "returncode": 0
+    }
+  ],
+  "cache": "Available; no uncached claim",
+  "scope": "Fresh full-context exact named baseline build, own constrained/offline service processes, unchanged official checker; additional retained-image race explicitly separate"
+}

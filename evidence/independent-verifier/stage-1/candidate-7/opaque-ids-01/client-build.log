@@ -1,0 +1,36 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from OpaqueId.Probe.Dockerfile
+#1 transferring dockerfile: 311B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 59.43kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#5 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 0.0s done
+#5 DONE 0.0s
+
+#6 [2/3] WORKDIR /verifier
+#6 CACHED
+
+#7 [3/3] COPY opaque_id_probe.py opaque_id_requirements.py semantic_probe.py semantic_oracle.py semantic_requirements.py health.py /verifier/
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:07f5584c9d9eb312d23b2b138560fb717dd1e6d84789548650df3a5fef7f1fa8 done
+#8 exporting config sha256:9f5d16dc939a49c54495d40c70f3f3d4ac2c4e88a298aed1c5d7786693b7516d done
+#8 exporting attestation manifest sha256:cdb882780e5795dc1eaae3ffdb9ad715c406f93210c8a22db163f22e543689ae done
+#8 exporting manifest list sha256:bf2fb0d51773b5bfe661e75cf517b834ed575e8a89d91441de1a7614c09c79e0 done
+#8 naming to docker.io/library/independent-verifier-num-1004050946601458:client done
+#8 unpacking to docker.io/library/independent-verifier-num-1004050946601458:client done
+#8 DONE 0.0s

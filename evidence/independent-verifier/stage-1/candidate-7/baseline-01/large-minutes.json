@@ -1,0 +1,1545 @@
+{
+  "candidate_full_revision": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+  "value": 1000000000000000000,
+  "http_operations": 39,
+  "assertions": 26,
+  "failed_assertions": 0,
+  "duration_seconds": 0.17019758300000376,
+  "operations": [
+    {
+      "operation": 1,
+      "method": "POST",
+      "path": "/_test/reset",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.02881195800000569
+    },
+    {
+      "operation": 2,
+      "method": "POST",
+      "path": "/_test/reset",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 1000000000000000000,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.02207720900000254
+    },
+    {
+      "operation": 3,
+      "method": "GET",
+      "path": "/restaurants/r",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 1000000000000000000,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      },
+      "duration_seconds": 0.00043566600001554434
+    },
+    {
+      "operation": 4,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "e89e64fe884575da76eff841a9d2927aeea10e1ea9301f7499dc77a69a78c33f"
+        }
+      },
+      "duration_seconds": 0.00037950000000819273
+    },
+    {
+      "operation": 5,
+      "method": "POST",
+      "path": "/_test/import",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "e89e64fe884575da76eff841a9d2927aeea10e1ea9301f7499dc77a69a78c33f"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00047916599999098253
+    },
+    {
+      "operation": 6,
+      "method": "GET",
+      "path": "/restaurants/r",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 1000000000000000000,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      },
+      "duration_seconds": 0.0003144590000090375
+    },
+    {
+      "operation": 7,
+      "method": "POST",
+      "path": "/auth/login",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "email": "large@probe.invalid",
+        "password": {
+          "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Boundary Diner",
+        "token": {
+          "private_value_sha256": "89a5980615f987b6c551462b969a1fa7106b31410e2bd1b40138f76784f7773e"
+        }
+      },
+      "duration_seconds": 0.021639458999999306
+    },
+    {
+      "operation": 8,
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2035-06-05&party_size=2",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "restaurant_id": "r",
+        "date": "2035-06-05",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "2035-06-05T18:10",
+            "starts_at": "2035-06-05T18:10:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          }
+        ]
+      },
+      "duration_seconds": 0.0003903329999843663
+    },
+    {
+      "operation": 9,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-grid",
+      "status": 201,
+      "response": {
+        "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+        "reference": "54F136D195",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:08:59.910778+00:00"
+      },
+      "duration_seconds": 0.00034308299998997427
+    },
+    {
+      "operation": 10,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:40",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-grid-late",
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "not_on_slot_grid",
+          "message": "not on slot grid"
+        }
+      },
+      "duration_seconds": 0.000324833999997054
+    },
+    {
+      "operation": 11,
+      "method": "PATCH",
+      "path": "/reservations/54F136D195",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "party_size": 1
+      },
+      "has_token": true,
+      "key": null,
+      "status": 200,
+      "response": {
+        "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+        "reference": "54F136D195",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 1,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:08:59.910778+00:00"
+      },
+      "duration_seconds": 0.00033625000000370164
+    },
+    {
+      "operation": 12,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-grid",
+      "status": 200,
+      "response": {
+        "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+        "reference": "54F136D195",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:08:59.910778+00:00"
+      },
+      "duration_seconds": 0.00029070799999431074
+    },
+    {
+      "operation": 13,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "7dc5fc3fee3ce6fd99899d0ccaa643a9285e39ed1f8173dd2172896be3c69e87"
+        }
+      },
+      "duration_seconds": 0.0003392920000067079
+    },
+    {
+      "operation": 14,
+      "method": "POST",
+      "path": "/_test/import",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "7dc5fc3fee3ce6fd99899d0ccaa643a9285e39ed1f8173dd2172896be3c69e87"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0005240410000055817
+    },
+    {
+      "operation": 15,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-grid",
+      "status": 200,
+      "response": {
+        "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+        "reference": "54F136D195",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:08:59.910778+00:00"
+      },
+      "duration_seconds": 0.000294709000002058
+    },
+    {
+      "operation": 16,
+      "method": "POST",
+      "path": "/_test/reset",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 1000000000000000000,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.021342209000010826
+    },
+    {
+      "operation": 17,
+      "method": "GET",
+      "path": "/restaurants/r",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 1000000000000000000,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      },
+      "duration_seconds": 0.0003365839999958098
+    },
+    {
+      "operation": 18,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "573f1a15ed9bab37441eec11ace3893fbe949bd3439a9b86e64777b0e91f2e15"
+        }
+      },
+      "duration_seconds": 0.0007302500000037071
+    },
+    {
+      "operation": 19,
+      "method": "POST",
+      "path": "/_test/import",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "573f1a15ed9bab37441eec11ace3893fbe949bd3439a9b86e64777b0e91f2e15"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.0003742920000036065
+    },
+    {
+      "operation": 20,
+      "method": "GET",
+      "path": "/restaurants/r",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 1000000000000000000,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      },
+      "duration_seconds": 0.000284292000003461
+    },
+    {
+      "operation": 21,
+      "method": "POST",
+      "path": "/auth/login",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "email": "large@probe.invalid",
+        "password": {
+          "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Boundary Diner",
+        "token": {
+          "private_value_sha256": "b10e40793600dfabfce25fee6eac3e40080aa59b5c217fd9faa60cc4eb903118"
+        }
+      },
+      "duration_seconds": 0.021076708999999028
+    },
+    {
+      "operation": 22,
+      "method": "GET",
+      "path": "/availability?restaurant_id=r&date=2035-06-05&party_size=2",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "restaurant_id": "r",
+        "date": "2035-06-05",
+        "timezone": "UTC",
+        "slots": []
+      },
+      "duration_seconds": 0.0003659170000105405
+    },
+    {
+      "operation": 23,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-duration",
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "outside_opening_hours",
+          "message": "outside opening hours"
+        }
+      },
+      "duration_seconds": 0.0003242079999949965
+    },
+    {
+      "operation": 24,
+      "method": "POST",
+      "path": "/_test/reset",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 1000000000000000000,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.021386207999995577
+    },
+    {
+      "operation": 25,
+      "method": "GET",
+      "path": "/restaurants/r",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 1000000000000000000,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      },
+      "duration_seconds": 0.0004446250000000873
+    },
+    {
+      "operation": 26,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "8731387292682fad3fe031d7f45bc38ec7ada4542da51f1b1c57711bbacc8fe5"
+        }
+      },
+      "duration_seconds": 0.00037420799998244547
+    },
+    {
+      "operation": 27,
+      "method": "POST",
+      "path": "/_test/import",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "8731387292682fad3fe031d7f45bc38ec7ada4542da51f1b1c57711bbacc8fe5"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00048237499999004285
+    },
+    {
+      "operation": 28,
+      "method": "GET",
+      "path": "/restaurants/r",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 1000000000000000000,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      },
+      "duration_seconds": 0.0003339579999988018
+    },
+    {
+      "operation": 29,
+      "method": "POST",
+      "path": "/auth/login",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "email": "large@probe.invalid",
+        "password": {
+          "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "user_id": "u",
+        "display_name": "Boundary Diner",
+        "token": {
+          "private_value_sha256": "549c06928f2417152b6e0aac5703f3d5f7207e2f56bfa92c39e1a36b41864d8b"
+        }
+      },
+      "duration_seconds": 0.021398625000017546
+    },
+    {
+      "operation": 30,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-cutoff",
+      "status": 201,
+      "response": {
+        "reservation_id": "res_4f715e3558d8441eb2930ddca3426e11",
+        "reference": "0A7CEE9D7C",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:09:00.002815+00:00"
+      },
+      "duration_seconds": 0.000405833000002076
+    },
+    {
+      "operation": 31,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "e705b9d72845afc881d5e733f01e04abc053c22f4b1bf55b2685cd04b8cf1aa3"
+        }
+      },
+      "duration_seconds": 0.00032999999999105967
+    },
+    {
+      "operation": 32,
+      "method": "POST",
+      "path": "/reservations/0A7CEE9D7C/cancel",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {},
+      "has_token": true,
+      "key": null,
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "cutoff_passed",
+          "message": "cutoff passed"
+        }
+      },
+      "duration_seconds": 0.00030983300001707903
+    },
+    {
+      "operation": 33,
+      "method": "PATCH",
+      "path": "/reservations/0A7CEE9D7C",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "party_size": 1
+      },
+      "has_token": true,
+      "key": null,
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "cutoff_passed",
+          "message": "cutoff passed"
+        }
+      },
+      "duration_seconds": 0.00027679199999397497
+    },
+    {
+      "operation": 34,
+      "method": "POST",
+      "path": "/reservation-moves",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "moves": [
+          {
+            "reference": "0A7CEE9D7C",
+            "party_size": 1
+          }
+        ]
+      },
+      "has_token": true,
+      "key": "large-cutoff-moves",
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "cutoff_passed",
+          "message": "cutoff passed"
+        }
+      },
+      "duration_seconds": 0.0002649580000024798
+    },
+    {
+      "operation": 35,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "e705b9d72845afc881d5e733f01e04abc053c22f4b1bf55b2685cd04b8cf1aa3"
+        }
+      },
+      "duration_seconds": 0.0003098329999886573
+    },
+    {
+      "operation": 36,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-cutoff",
+      "status": 200,
+      "response": {
+        "reservation_id": "res_4f715e3558d8441eb2930ddca3426e11",
+        "reference": "0A7CEE9D7C",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:09:00.002815+00:00"
+      },
+      "duration_seconds": 0.00032383300001015414
+    },
+    {
+      "operation": 37,
+      "method": "GET",
+      "path": "/_test/export",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-source:18309",
+      "body": null,
+      "has_token": false,
+      "key": null,
+      "status": 200,
+      "response": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "e705b9d72845afc881d5e733f01e04abc053c22f4b1bf55b2685cd04b8cf1aa3"
+        }
+      },
+      "duration_seconds": 0.0003172079999842481
+    },
+    {
+      "operation": 38,
+      "method": "POST",
+      "path": "/_test/import",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "track": "tablekeeper",
+        "format_version": 1,
+        "state": {
+          "private_value_sha256": "e705b9d72845afc881d5e733f01e04abc053c22f4b1bf55b2685cd04b8cf1aa3"
+        }
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.00048416699999620505
+    },
+    {
+      "operation": 39,
+      "method": "POST",
+      "path": "/reservations",
+      "peer": "http://independent-verifier-s1-75005d57fe09-20261004t050649-peer:8080",
+      "body": {
+        "restaurant_id": "r",
+        "table_id": "t",
+        "starts_at_local": "2035-06-05T18:10",
+        "party_size": 2
+      },
+      "has_token": true,
+      "key": "large-cutoff",
+      "status": 200,
+      "response": {
+        "reservation_id": "res_4f715e3558d8441eb2930ddca3426e11",
+        "reference": "0A7CEE9D7C",
+        "restaurant_id": "r",
+        "table_id": "t",
+        "party_size": 2,
+        "starts_at_local": "2035-06-05T18:10",
+        "starts_at": "2035-06-05T18:10:00+00:00",
+        "ends_at": "2035-06-05T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T05:09:00.002815+00:00"
+      },
+      "duration_seconds": 0.00029904199999464254
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "TK1-probe-large-minutes-control",
+      "passed": true,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 204,
+        "body": null
+      }
+    },
+    {
+      "requirement_id": "TK1-large-slot_minutes-reset",
+      "passed": true,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 204,
+        "body": null
+      }
+    },
+    {
+      "requirement_id": "TK1-large-slot_minutes-detail",
+      "passed": true,
+      "expected": 1000000000000000000,
+      "observed": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 1000000000000000000,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      }
+    },
+    {
+      "requirement_id": "TK1-large-slot_minutes-import",
+      "passed": true,
+      "expected": "export/import preserves the positive count exactly",
+      "observed": {
+        "export": 200,
+        "import_status": 204,
+        "detail": {
+          "id": "r",
+          "name": "Boundary Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 1000000000000000000,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t",
+              "label": "Window",
+              "capacity": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-grid-availability",
+      "passed": true,
+      "expected": {
+        "status": 200,
+        "code": null
+      },
+      "observed": {
+        "status": 200,
+        "body": {
+          "restaurant_id": "r",
+          "date": "2035-06-05",
+          "timezone": "UTC",
+          "slots": [
+            {
+              "starts_at_local": "2035-06-05T18:10",
+              "starts_at": "2035-06-05T18:10:00+00:00",
+              "available_table_ids": [
+                "t"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-grid-one-opening-slot",
+      "passed": true,
+      "expected": [
+        "2035-06-05T18:10"
+      ],
+      "observed": {
+        "restaurant_id": "r",
+        "date": "2035-06-05",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "2035-06-05T18:10",
+            "starts_at": "2035-06-05T18:10:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requirement_id": "TK1-large-grid-create",
+      "passed": true,
+      "expected": {
+        "status": 201,
+        "code": null
+      },
+      "observed": {
+        "status": 201,
+        "body": {
+          "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+          "reference": "54F136D195",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-05T18:10",
+          "starts_at": "2035-06-05T18:10:00+00:00",
+          "ends_at": "2035-06-05T19:40:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T05:08:59.910778+00:00"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-grid-late",
+      "passed": true,
+      "expected": {
+        "status": 422,
+        "code": "not_on_slot_grid"
+      },
+      "observed": {
+        "status": 422,
+        "body": {
+          "error": {
+            "code": "not_on_slot_grid",
+            "message": "not on slot grid"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-grid-original-receipt",
+      "passed": true,
+      "expected": "original receipt with 200 after amendment",
+      "observed": {
+        "amend_status": 200,
+        "replay_status": 200,
+        "receipt": {
+          "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+          "reference": "54F136D195",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-05T18:10",
+          "starts_at": "2035-06-05T18:10:00+00:00",
+          "ends_at": "2035-06-05T19:40:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T05:08:59.910778+00:00"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-grid-imported-receipt",
+      "passed": true,
+      "expected": "original huge-grid receipt with 200 in independent destination",
+      "observed": {
+        "import_status": 204,
+        "replay_status": 200,
+        "receipt": {
+          "reservation_id": "res_fc4b23d8a5c74cb9a6e24d5e80b4ec04",
+          "reference": "54F136D195",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-05T18:10",
+          "starts_at": "2035-06-05T18:10:00+00:00",
+          "ends_at": "2035-06-05T19:40:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T05:08:59.910778+00:00"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-reservation_duration_minutes-reset",
+      "passed": true,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 204,
+        "body": null
+      }
+    },
+    {
+      "requirement_id": "TK1-large-reservation_duration_minutes-detail",
+      "passed": true,
+      "expected": 1000000000000000000,
+      "observed": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 1000000000000000000,
+        "cancellation_cutoff_minutes": 0,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      }
+    },
+    {
+      "requirement_id": "TK1-large-reservation_duration_minutes-import",
+      "passed": true,
+      "expected": "export/import preserves the positive count exactly",
+      "observed": {
+        "export": 200,
+        "import_status": 204,
+        "detail": {
+          "id": "r",
+          "name": "Boundary Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 1000000000000000000,
+          "cancellation_cutoff_minutes": 0,
+          "opening_hours": [
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t",
+              "label": "Window",
+              "capacity": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-duration-availability",
+      "passed": true,
+      "expected": {
+        "status": 200,
+        "code": null
+      },
+      "observed": {
+        "status": 200,
+        "body": {
+          "restaurant_id": "r",
+          "date": "2035-06-05",
+          "timezone": "UTC",
+          "slots": []
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-duration-no-fitting-slot",
+      "passed": true,
+      "expected": [],
+      "observed": {
+        "restaurant_id": "r",
+        "date": "2035-06-05",
+        "timezone": "UTC",
+        "slots": []
+      }
+    },
+    {
+      "requirement_id": "TK1-large-duration-create",
+      "passed": true,
+      "expected": {
+        "status": 422,
+        "code": "outside_opening_hours"
+      },
+      "observed": {
+        "status": 422,
+        "body": {
+          "error": {
+            "code": "outside_opening_hours",
+            "message": "outside opening hours"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cancellation_cutoff_minutes-reset",
+      "passed": true,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 204,
+        "body": null
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cancellation_cutoff_minutes-detail",
+      "passed": true,
+      "expected": 1000000000000000000,
+      "observed": {
+        "id": "r",
+        "name": "Boundary Kitchen",
+        "timezone": "UTC",
+        "slot_minutes": 30,
+        "reservation_duration_minutes": 90,
+        "cancellation_cutoff_minutes": 1000000000000000000,
+        "opening_hours": [
+          {
+            "weekday": "tue",
+            "opens": "18:10",
+            "closes": "23:10"
+          }
+        ],
+        "tables": [
+          {
+            "id": "t",
+            "label": "Window",
+            "capacity": 2
+          }
+        ]
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cancellation_cutoff_minutes-import",
+      "passed": true,
+      "expected": "export/import preserves the positive count exactly",
+      "observed": {
+        "export": 200,
+        "import_status": 204,
+        "detail": {
+          "id": "r",
+          "name": "Boundary Kitchen",
+          "timezone": "UTC",
+          "slot_minutes": 30,
+          "reservation_duration_minutes": 90,
+          "cancellation_cutoff_minutes": 1000000000000000000,
+          "opening_hours": [
+            {
+              "weekday": "tue",
+              "opens": "18:10",
+              "closes": "23:10"
+            }
+          ],
+          "tables": [
+            {
+              "id": "t",
+              "label": "Window",
+              "capacity": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-create",
+      "passed": true,
+      "expected": {
+        "status": 201,
+        "code": null
+      },
+      "observed": {
+        "status": 201,
+        "body": {
+          "reservation_id": "res_4f715e3558d8441eb2930ddca3426e11",
+          "reference": "0A7CEE9D7C",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-05T18:10",
+          "starts_at": "2035-06-05T18:10:00+00:00",
+          "ends_at": "2035-06-05T19:40:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T05:09:00.002815+00:00"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-cancel",
+      "passed": true,
+      "expected": {
+        "status": 409,
+        "code": "cutoff_passed"
+      },
+      "observed": {
+        "status": 409,
+        "body": {
+          "error": {
+            "code": "cutoff_passed",
+            "message": "cutoff passed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-patch",
+      "passed": true,
+      "expected": {
+        "status": 409,
+        "code": "cutoff_passed"
+      },
+      "observed": {
+        "status": 409,
+        "body": {
+          "error": {
+            "code": "cutoff_passed",
+            "message": "cutoff passed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-moves",
+      "passed": true,
+      "expected": {
+        "status": 409,
+        "code": "cutoff_passed"
+      },
+      "observed": {
+        "status": 409,
+        "body": {
+          "error": {
+            "code": "cutoff_passed",
+            "message": "cutoff passed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-rollback",
+      "passed": true,
+      "expected": "records, occupancy and retry keys unchanged",
+      "observed": {
+        "before_sha256": "0cb6ad0a33f8bf7e6da6f3989a46e2b310d0ac605b727a52a459ad3b898baedc",
+        "after_sha256": "0cb6ad0a33f8bf7e6da6f3989a46e2b310d0ac605b727a52a459ad3b898baedc"
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-original-receipt",
+      "passed": true,
+      "expected": "original receipt survives huge-cutoff failures",
+      "observed": {
+        "status": 200,
+        "receipt": {
+          "reservation_id": "res_4f715e3558d8441eb2930ddca3426e11",
+          "reference": "0A7CEE9D7C",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-05T18:10",
+          "starts_at": "2035-06-05T18:10:00+00:00",
+          "ends_at": "2035-06-05T19:40:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T05:09:00.002815+00:00"
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cutoff-imported-receipt",
+      "passed": true,
+      "expected": "original huge-cutoff receipt with 200 in independent destination",
+      "observed": {
+        "import_status": 204,
+        "replay_status": 200,
+        "receipt": {
+          "reservation_id": "res_4f715e3558d8441eb2930ddca3426e11",
+          "reference": "0A7CEE9D7C",
+          "restaurant_id": "r",
+          "table_id": "t",
+          "party_size": 2,
+          "starts_at_local": "2035-06-05T18:10",
+          "starts_at": "2035-06-05T18:10:00+00:00",
+          "ends_at": "2035-06-05T19:40:00+00:00",
+          "status": "confirmed",
+          "created_at": "2026-10-04T05:09:00.002815+00:00"
+        }
+      }
+    }
+  ]
+}

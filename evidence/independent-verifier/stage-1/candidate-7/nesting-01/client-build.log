@@ -1,0 +1,36 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Nesting.Probe.Dockerfile
+#1 transferring dockerfile: 321B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 62.73kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#5 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 0.0s done
+#5 DONE 0.0s
+
+#6 [2/3] WORKDIR /verifier
+#6 CACHED
+
+#7 [3/3] COPY nesting_probe.py nesting_input.py nesting_requirements.py semantic_probe.py semantic_oracle.py semantic_requirements.py health.py /verifier/
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:27fd087e93bcbdc33f39a5dc2b4ddb62f5ba2d678c9a73112ae68555dbe50c6e done
+#8 exporting config sha256:3801d95a131adcb8a8ef246411a490ebd2df36762c79baf023e2f8c17e29651a done
+#8 exporting attestation manifest sha256:b49a4cbd594dcc4ad2867c2267039bf7918d173016f8386e0fa19210d282706c done
+#8 exporting manifest list sha256:cd6062fd96ce1e02c2a521676062301ca2fd91cf490aefec8695f5ccac241bd6 done
+#8 naming to docker.io/library/independent-verifier-num-1004051010139451:client done
+#8 unpacking to docker.io/library/independent-verifier-num-1004051010139451:client done
+#8 DONE 0.0s
