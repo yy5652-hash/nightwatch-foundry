@@ -17,6 +17,8 @@ def main():
             args=['--release',str(release),'--out','/evidence/'+name]
             if name!='closure-errors':args+=['--family',name,'--execute']
             jobs.append((name,'/verifier/stage-4/'+script,args))
+    elif a.group=='boundaries':
+        for name in (a.families or 'dimensions,fractions,numeric,extra').split(','):jobs.append((name,'/verifier/stage-4/candidate2_boundaries.py',['--release',str(release),'--out','/evidence/'+name,'--family',name]))
     elif a.group=='product':
         for name in (a.families or 'full,members,types,numeric,bridge').split(','):jobs.append((name,'/verifier/stage-4/candidate2_product.py',['--release',str(release),'--out','/evidence/'+name,'--family',name]))
     elif a.group=='full-bound':jobs=[('full-bound','/verifier/stage-4/candidate2_full_bound.py',['--release',str(release),'--out','/evidence/full-bound','--execute'])]
