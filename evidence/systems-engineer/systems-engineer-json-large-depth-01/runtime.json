@@ -1,0 +1,3381 @@
+{
+  "candidate": "4a92f3e7fcf009edc34f7c410a44ae405909e080",
+  "image_id": "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+  "probe_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "4a92f3e7fcf009edc34f7c410a44ae405909e080:stage-1/json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.00958708300095168,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-000.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-0",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "decoder"
+      ],
+      "returncode": 0,
+      "seconds": 1.2304389159980929,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-001.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.026524000000790693,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-002.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-0"
+      ],
+      "returncode": 1,
+      "seconds": 0.19631541700073285,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-003.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.03044183300153236,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-004.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.02445649999935995,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-005.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-1",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "validation"
+      ],
+      "returncode": 0,
+      "seconds": 0.0282328339999367,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-006.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.015142165997531265,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-007.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.1428800420035259,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-008.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.029400832998362603,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-009.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-1"
+      ],
+      "returncode": 0,
+      "seconds": 0.028691624997009058,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-010.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-2",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "equality"
+      ],
+      "returncode": 0,
+      "seconds": 0.029580874997918727,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-011.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-2"
+      ],
+      "returncode": 0,
+      "seconds": 0.014250291998905595,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-012.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-2"
+      ],
+      "returncode": 0,
+      "seconds": 0.15238554200186627,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-013.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-2"
+      ],
+      "returncode": 0,
+      "seconds": 0.029581208000308834,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-014.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-2"
+      ],
+      "returncode": 0,
+      "seconds": 0.029921082998043858,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-015.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-3",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "encoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.03156591700098943,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-016.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-3"
+      ],
+      "returncode": 0,
+      "seconds": 0.017799708002712578,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-017.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-3"
+      ],
+      "returncode": 0,
+      "seconds": 0.15046179199998733,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-018.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-3"
+      ],
+      "returncode": 0,
+      "seconds": 0.03267404199868906,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-019.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-3"
+      ],
+      "returncode": 0,
+      "seconds": 0.026668790997064207,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-020.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-4",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.029324540999368764,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-021.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-4"
+      ],
+      "returncode": 0,
+      "seconds": 0.014690833999338793,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-022.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-4"
+      ],
+      "returncode": 0,
+      "seconds": 0.1439434580024681,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-023.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-4"
+      ],
+      "returncode": 0,
+      "seconds": 0.029402209002000745,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-024.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-4"
+      ],
+      "returncode": 0,
+      "seconds": 0.023965500000485918,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-025.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-5",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "roundtrip"
+      ],
+      "returncode": 0,
+      "seconds": 0.03145608300110325,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-026.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-5"
+      ],
+      "returncode": 0,
+      "seconds": 0.015102707999176346,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-027.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-5"
+      ],
+      "returncode": 1,
+      "seconds": 0.1341199169983156,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-028.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-5"
+      ],
+      "returncode": 0,
+      "seconds": 0.030656791001092643,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-029.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-5"
+      ],
+      "returncode": 0,
+      "seconds": 0.029596625001431676,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-030.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-6",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "object",
+        "decoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.028970583000045735,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-031.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-6"
+      ],
+      "returncode": 0,
+      "seconds": 0.014386916998773813,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-032.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-6"
+      ],
+      "returncode": 1,
+      "seconds": 0.13216516700049397,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-033.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-6"
+      ],
+      "returncode": 0,
+      "seconds": 0.029375041998719098,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-034.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-6"
+      ],
+      "returncode": 0,
+      "seconds": 0.02542416700089234,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-035.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-7",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "object",
+        "validation"
+      ],
+      "returncode": 0,
+      "seconds": 0.031240583000908373,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-036.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-7"
+      ],
+      "returncode": 0,
+      "seconds": 0.014904125000612112,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-037.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-7"
+      ],
+      "returncode": 0,
+      "seconds": 0.13711445900116814,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-038.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-7"
+      ],
+      "returncode": 0,
+      "seconds": 0.03131379100159393,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-039.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-7"
+      ],
+      "returncode": 0,
+      "seconds": 0.02657645900035277,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-040.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-8",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "object",
+        "equality"
+      ],
+      "returncode": 0,
+      "seconds": 0.03637637499923585,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-041.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-8"
+      ],
+      "returncode": 0,
+      "seconds": 0.01636504199996125,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-042.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-8"
+      ],
+      "returncode": 0,
+      "seconds": 0.1523157910014561,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-043.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-8"
+      ],
+      "returncode": 0,
+      "seconds": 0.028988875001232373,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-044.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-8"
+      ],
+      "returncode": 0,
+      "seconds": 0.023971167000127025,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-045.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-9",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "object",
+        "encoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.03213966600014828,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-046.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-9"
+      ],
+      "returncode": 0,
+      "seconds": 0.017571209002198884,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-047.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-9"
+      ],
+      "returncode": 0,
+      "seconds": 0.1410831249995681,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-048.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-9"
+      ],
+      "returncode": 0,
+      "seconds": 0.029171916998166125,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-049.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-9"
+      ],
+      "returncode": 0,
+      "seconds": 0.024881249999452848,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-050.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-10",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "object",
+        "copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.02844349999941187,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-051.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-10"
+      ],
+      "returncode": 0,
+      "seconds": 0.01812608399995952,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-052.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-10"
+      ],
+      "returncode": 0,
+      "seconds": 0.1468882080007461,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-053.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-10"
+      ],
+      "returncode": 0,
+      "seconds": 0.028468165997765027,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-054.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-10"
+      ],
+      "returncode": 0,
+      "seconds": 0.025475541999185225,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-055.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-11",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "object",
+        "roundtrip"
+      ],
+      "returncode": 0,
+      "seconds": 0.029532291999203153,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-056.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-11"
+      ],
+      "returncode": 0,
+      "seconds": 0.015524249996815342,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-057.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-11"
+      ],
+      "returncode": 1,
+      "seconds": 0.13944591700055753,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-058.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-11"
+      ],
+      "returncode": 0,
+      "seconds": 0.03146833400023752,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-059.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-11"
+      ],
+      "returncode": 0,
+      "seconds": 0.025495999998383923,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-060.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-12",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "array",
+        "decoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.032497333999344846,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-061.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-12"
+      ],
+      "returncode": 0,
+      "seconds": 0.014165041997330263,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-062.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-12"
+      ],
+      "returncode": 1,
+      "seconds": 0.1337660829995002,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-063.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-12"
+      ],
+      "returncode": 0,
+      "seconds": 0.029212707999249687,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-064.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-12"
+      ],
+      "returncode": 0,
+      "seconds": 0.026645916997949826,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-065.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-13",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "array",
+        "validation"
+      ],
+      "returncode": 0,
+      "seconds": 0.028174916002171813,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-066.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-13"
+      ],
+      "returncode": 0,
+      "seconds": 0.015661124998587184,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-067.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-13"
+      ],
+      "returncode": 0,
+      "seconds": 0.1390754999993078,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-068.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-13"
+      ],
+      "returncode": 0,
+      "seconds": 0.03753408299962757,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-069.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-13"
+      ],
+      "returncode": 0,
+      "seconds": 0.028329458000371233,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-070.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-14",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "array",
+        "equality"
+      ],
+      "returncode": 0,
+      "seconds": 0.030293833999166964,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-071.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-14"
+      ],
+      "returncode": 0,
+      "seconds": 0.015133332999539562,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-072.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-14"
+      ],
+      "returncode": 0,
+      "seconds": 0.1682555000006687,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-073.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-14"
+      ],
+      "returncode": 0,
+      "seconds": 0.027668124999763677,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-074.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-14"
+      ],
+      "returncode": 0,
+      "seconds": 0.026962709001963958,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-075.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-15",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "array",
+        "encoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.02987787500023842,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-076.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-15"
+      ],
+      "returncode": 0,
+      "seconds": 0.016360624998924322,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-077.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-15"
+      ],
+      "returncode": 0,
+      "seconds": 0.14541270799963968,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-078.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-15"
+      ],
+      "returncode": 0,
+      "seconds": 0.03011408300153562,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-079.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-15"
+      ],
+      "returncode": 0,
+      "seconds": 0.025373207998200087,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-080.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-16",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "array",
+        "copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.030345874998602085,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-081.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-16"
+      ],
+      "returncode": 0,
+      "seconds": 0.01553595799850882,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-082.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-16"
+      ],
+      "returncode": 0,
+      "seconds": 0.15404495799884899,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-083.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-16"
+      ],
+      "returncode": 0,
+      "seconds": 0.032068333002825966,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-084.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-16"
+      ],
+      "returncode": 0,
+      "seconds": 0.023982415998034412,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-085.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-17",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "array",
+        "roundtrip"
+      ],
+      "returncode": 0,
+      "seconds": 0.030882166996889282,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-086.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-17"
+      ],
+      "returncode": 0,
+      "seconds": 0.01477066700317664,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-087.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-17"
+      ],
+      "returncode": 1,
+      "seconds": 0.14337337500182912,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-088.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-17"
+      ],
+      "returncode": 0,
+      "seconds": 0.026854084000660805,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-089.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-17"
+      ],
+      "returncode": 0,
+      "seconds": 0.028664207999099744,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-090.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-18",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "object",
+        "decoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.03201854100188939,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-091.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-18"
+      ],
+      "returncode": 0,
+      "seconds": 0.015093333000550047,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-092.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-18"
+      ],
+      "returncode": 1,
+      "seconds": 0.1328231669976958,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-093.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-18"
+      ],
+      "returncode": 0,
+      "seconds": 0.027582374998019077,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-094.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-18"
+      ],
+      "returncode": 0,
+      "seconds": 0.025814000000536907,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-095.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-19",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "object",
+        "validation"
+      ],
+      "returncode": 0,
+      "seconds": 0.03579458400054136,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-096.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-19"
+      ],
+      "returncode": 0,
+      "seconds": 0.014081249999435386,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-097.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-19"
+      ],
+      "returncode": 0,
+      "seconds": 0.1422390000006999,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-098.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-19"
+      ],
+      "returncode": 0,
+      "seconds": 0.027491791999636916,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-099.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-19"
+      ],
+      "returncode": 0,
+      "seconds": 0.026210750002064742,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-100.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-20",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "object",
+        "equality"
+      ],
+      "returncode": 0,
+      "seconds": 0.029554666001786245,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-101.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-20"
+      ],
+      "returncode": 0,
+      "seconds": 0.016578249997110106,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-102.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-20"
+      ],
+      "returncode": 0,
+      "seconds": 0.17634266700042645,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-103.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-20"
+      ],
+      "returncode": 0,
+      "seconds": 0.02981408299820032,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-104.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-20"
+      ],
+      "returncode": 0,
+      "seconds": 0.02434279099907144,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-105.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-21",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "object",
+        "encoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.028544499997224193,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-106.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-21"
+      ],
+      "returncode": 0,
+      "seconds": 0.014614249997976003,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-107.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-21"
+      ],
+      "returncode": 0,
+      "seconds": 0.1527501660020789,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-108.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-21"
+      ],
+      "returncode": 0,
+      "seconds": 0.02702770900214091,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-109.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-21"
+      ],
+      "returncode": 0,
+      "seconds": 0.026002917002188042,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-110.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-22",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "object",
+        "copy"
+      ],
+      "returncode": 0,
+      "seconds": 0.02883000000292668,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-111.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-22"
+      ],
+      "returncode": 0,
+      "seconds": 0.014716958998178598,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-112.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-22"
+      ],
+      "returncode": 0,
+      "seconds": 0.1623882079984469,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-113.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-22"
+      ],
+      "returncode": 0,
+      "seconds": 0.028625041999475798,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-114.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-22"
+      ],
+      "returncode": 0,
+      "seconds": 0.026818708000064362,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-115.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041457492269-23",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "20000",
+        "object",
+        "roundtrip"
+      ],
+      "returncode": 0,
+      "seconds": 0.029771875000733417,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-116.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-23"
+      ],
+      "returncode": 0,
+      "seconds": 0.014467749999312218,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-117.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041457492269-23"
+      ],
+      "returncode": 1,
+      "seconds": 0.1442567499980214,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-118.log",
+      "stdin_sha256": "4315f756c4874c2ea045d911871941947dbed7a7bfc3232679fbcb7cf94cc56f"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041457492269-23"
+      ],
+      "returncode": 0,
+      "seconds": 0.028141124999820022,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-119.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041457492269-23"
+      ],
+      "returncode": 0,
+      "seconds": 0.030743292001716327,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-01/command-120.log",
+      "stdin_sha256": null
+    }
+  ],
+  "runs": [
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "decoder",
+      "name": "systems-engineer-depth-20261004t041457492269-0",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "decoder",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "decoder",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.0005343330000000535,
+            "maximum_rss_linux_kib": 23356,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "validation",
+      "name": "systems-engineer-depth-20261004t041457492269-1",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "validation",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "validation",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed traversal validates",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.0034658330000001403,
+            "maximum_rss_linux_kib": 22680,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "equality",
+      "name": "systems-engineer-depth-20261004t041457492269-2",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "equality",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "equality",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed aliases equal",
+                "passed": true
+              },
+              {
+                "label": "deep numeric difference detected",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.015899332999999904,
+            "maximum_rss_linux_kib": 23424,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "encoder",
+      "name": "systems-engineer-depth-20261004t041457492269-3",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "encoder",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "encoder",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed encoder equals valid grammar bytes",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.0053219580000001265,
+            "maximum_rss_linux_kib": 22652,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "copy",
+      "name": "systems-engineer-depth-20261004t041457492269-4",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "copy",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "copy",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "every mutable wrapper and leaf detached",
+                "passed": true
+              },
+              {
+                "label": "copy encoder equals independent input bytes",
+                "passed": true
+              },
+              {
+                "label": "copy mutation leaves original numeric leaf unchanged",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.010258209000000296,
+            "maximum_rss_linux_kib": 22956,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "roundtrip",
+      "name": "systems-engineer-depth-20261004t041457492269-5",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "roundtrip",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "stage": "encoder finished; entering decoder",
+          "bytes": 20056
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "roundtrip",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.005267625000000109,
+            "maximum_rss_linux_kib": 23816,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 10000,
+      "shape": "object",
+      "operation": "decoder",
+      "name": "systems-engineer-depth-20261004t041457492269-6",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "object",
+            "operation": "decoder",
+            "payload_bytes": 110056,
+            "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "object",
+              "operation": "decoder",
+              "payload_bytes": 110056,
+              "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.0006102499999998123,
+            "maximum_rss_linux_kib": 22848,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 10000,
+      "shape": "object",
+      "operation": "validation",
+      "name": "systems-engineer-depth-20261004t041457492269-7",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "object",
+            "operation": "validation",
+            "payload_bytes": 110056,
+            "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "object",
+              "operation": "validation",
+              "payload_bytes": 110056,
+              "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed traversal validates",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.004848167000000014,
+            "maximum_rss_linux_kib": 23688,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "object",
+      "operation": "equality",
+      "name": "systems-engineer-depth-20261004t041457492269-8",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "object",
+            "operation": "equality",
+            "payload_bytes": 110056,
+            "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "object",
+              "operation": "equality",
+              "payload_bytes": 110056,
+              "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed aliases equal",
+                "passed": true
+              },
+              {
+                "label": "deep numeric difference detected",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.02255154199999998,
+            "maximum_rss_linux_kib": 25276,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "object",
+      "operation": "encoder",
+      "name": "systems-engineer-depth-20261004t041457492269-9",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "object",
+            "operation": "encoder",
+            "payload_bytes": 110056,
+            "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "object",
+              "operation": "encoder",
+              "payload_bytes": 110056,
+              "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed encoder equals valid grammar bytes",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.00834350000000006,
+            "maximum_rss_linux_kib": 23344,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "object",
+      "operation": "copy",
+      "name": "systems-engineer-depth-20261004t041457492269-10",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "object",
+            "operation": "copy",
+            "payload_bytes": 110056,
+            "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "object",
+              "operation": "copy",
+              "payload_bytes": 110056,
+              "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "every mutable wrapper and leaf detached",
+                "passed": true
+              },
+              {
+                "label": "copy encoder equals independent input bytes",
+                "passed": true
+              },
+              {
+                "label": "copy mutation leaves original numeric leaf unchanged",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.014765291999999874,
+            "maximum_rss_linux_kib": 24760,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 10000,
+      "shape": "object",
+      "operation": "roundtrip",
+      "name": "systems-engineer-depth-20261004t041457492269-11",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "object",
+            "operation": "roundtrip",
+            "payload_bytes": 110056,
+            "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "stage": "encoder finished; entering decoder",
+          "bytes": 110056
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "object",
+              "operation": "roundtrip",
+              "payload_bytes": 110056,
+              "payload_sha256": "3720d1c176f60dbce5620cbe2da6e42bde058b0a4a72dbb6c815364eb6eef8d1",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.009050750000000107,
+            "maximum_rss_linux_kib": 24052,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 20000,
+      "shape": "array",
+      "operation": "decoder",
+      "name": "systems-engineer-depth-20261004t041457492269-12",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "array",
+            "operation": "decoder",
+            "payload_bytes": 40056,
+            "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "array",
+              "operation": "decoder",
+              "payload_bytes": 40056,
+              "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.0004365410000000125,
+            "maximum_rss_linux_kib": 23680,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 20000,
+      "shape": "array",
+      "operation": "validation",
+      "name": "systems-engineer-depth-20261004t041457492269-13",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "array",
+            "operation": "validation",
+            "payload_bytes": 40056,
+            "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "array",
+              "operation": "validation",
+              "payload_bytes": 40056,
+              "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed traversal validates",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.007646166000000676,
+            "maximum_rss_linux_kib": 26376,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "array",
+      "operation": "equality",
+      "name": "systems-engineer-depth-20261004t041457492269-14",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "array",
+            "operation": "equality",
+            "payload_bytes": 40056,
+            "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "array",
+              "operation": "equality",
+              "payload_bytes": 40056,
+              "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed aliases equal",
+                "passed": true
+              },
+              {
+                "label": "deep numeric difference detected",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.03423191599999953,
+            "maximum_rss_linux_kib": 28432,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "array",
+      "operation": "encoder",
+      "name": "systems-engineer-depth-20261004t041457492269-15",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "array",
+            "operation": "encoder",
+            "payload_bytes": 40056,
+            "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "array",
+              "operation": "encoder",
+              "payload_bytes": 40056,
+              "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed encoder equals valid grammar bytes",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.010230250000000218,
+            "maximum_rss_linux_kib": 26372,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "array",
+      "operation": "copy",
+      "name": "systems-engineer-depth-20261004t041457492269-16",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "array",
+            "operation": "copy",
+            "payload_bytes": 40056,
+            "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "array",
+              "operation": "copy",
+              "payload_bytes": 40056,
+              "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "every mutable wrapper and leaf detached",
+                "passed": true
+              },
+              {
+                "label": "copy encoder equals independent input bytes",
+                "passed": true
+              },
+              {
+                "label": "copy mutation leaves original numeric leaf unchanged",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.021570292000000713,
+            "maximum_rss_linux_kib": 27792,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "array",
+      "operation": "roundtrip",
+      "name": "systems-engineer-depth-20261004t041457492269-17",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "array",
+            "operation": "roundtrip",
+            "payload_bytes": 40056,
+            "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "stage": "encoder finished; entering decoder",
+          "bytes": 40056
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "array",
+              "operation": "roundtrip",
+              "payload_bytes": 40056,
+              "payload_sha256": "92097e68ab5f96a8b37f803c7bb61315cd5ace2233356423d9250ad8d9d348eb",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.01061312499999989,
+            "maximum_rss_linux_kib": 26360,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 20000,
+      "shape": "object",
+      "operation": "decoder",
+      "name": "systems-engineer-depth-20261004t041457492269-18",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "object",
+            "operation": "decoder",
+            "payload_bytes": 220056,
+            "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "object",
+              "operation": "decoder",
+              "payload_bytes": 220056,
+              "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.0006194999999999951,
+            "maximum_rss_linux_kib": 22844,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "depth": 20000,
+      "shape": "object",
+      "operation": "validation",
+      "name": "systems-engineer-depth-20261004t041457492269-19",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "object",
+            "operation": "validation",
+            "payload_bytes": 220056,
+            "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "object",
+              "operation": "validation",
+              "payload_bytes": 220056,
+              "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed traversal validates",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.010302249999999624,
+            "maximum_rss_linux_kib": 28684,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "object",
+      "operation": "equality",
+      "name": "systems-engineer-depth-20261004t041457492269-20",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "object",
+            "operation": "equality",
+            "payload_bytes": 220056,
+            "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "object",
+              "operation": "equality",
+              "payload_bytes": 220056,
+              "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed aliases equal",
+                "passed": true
+              },
+              {
+                "label": "deep numeric difference detected",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.04754583300000004,
+            "maximum_rss_linux_kib": 31968,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "object",
+      "operation": "encoder",
+      "name": "systems-engineer-depth-20261004t041457492269-21",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "object",
+            "operation": "encoder",
+            "payload_bytes": 220056,
+            "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "object",
+              "operation": "encoder",
+              "payload_bytes": 220056,
+              "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "direct constructed encoder equals valid grammar bytes",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.017316458999999895,
+            "maximum_rss_linux_kib": 28224,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "object",
+      "operation": "copy",
+      "name": "systems-engineer-depth-20261004t041457492269-22",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 0,
+      "process_exit_code": 0,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "object",
+            "operation": "copy",
+            "payload_bytes": 220056,
+            "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "object",
+              "operation": "copy",
+              "payload_bytes": 220056,
+              "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "every mutable wrapper and leaf detached",
+                "passed": true
+              },
+              {
+                "label": "copy encoder equals independent input bytes",
+                "passed": true
+              },
+              {
+                "label": "copy mutation leaves original numeric leaf unchanged",
+                "passed": true
+              }
+            ],
+            "exception": null,
+            "seconds": 0.031195375000000247,
+            "maximum_rss_linux_kib": 31864,
+            "failed": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "depth": 20000,
+      "shape": "object",
+      "operation": "roundtrip",
+      "name": "systems-engineer-depth-20261004t041457492269-23",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 20000,
+            "shape": "object",
+            "operation": "roundtrip",
+            "payload_bytes": 220056,
+            "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "stage": "encoder finished; entering decoder",
+          "bytes": 220056
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 20000,
+              "shape": "object",
+              "operation": "roundtrip",
+              "payload_bytes": 220056,
+              "payload_sha256": "b63d58c869a68f5ed8b75012edfce13946e2d9f1bc6fa7adfc82edfb0aac156b",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text"
+            },
+            "seconds": 0.017666457999999885,
+            "maximum_rss_linux_kib": 28224,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-0",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-1",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-2",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-3",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-4",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-5",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-6",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-7",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-8",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-9",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-10",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-11",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-12",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-13",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-14",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-15",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-16",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-17",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-18",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-19",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-20",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-21",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-22",
+      "returncode": 0
+    },
+    {
+      "name": "systems-engineer-depth-20261004t041457492269-23",
+      "returncode": 0
+    }
+  ],
+  "scope": "isolated codec operations; no HTTP claim",
+  "wall_seconds": 7.266341208000085,
+  "summary": {
+    "processes": 24,
+    "passed": 16,
+    "failed": 8
+  }
+}

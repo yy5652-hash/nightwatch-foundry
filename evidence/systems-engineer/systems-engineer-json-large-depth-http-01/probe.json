@@ -1,0 +1,1945 @@
+{
+  "cases": [
+    {
+      "label": "array-1100",
+      "depth": 1100,
+      "shape": "array",
+      "blocked": [],
+      "grammar": "Valid scalar leaf inside balanced containers composed directly, not parsed by client",
+      "nested_bytes": 2245,
+      "nested_sha256": "7904fa4f2759da1db0e6059e77c6c78142afbcd05e4304dd9ca016a483db2143",
+      "deep_create_status": 201,
+      "deep_move_status": 201,
+      "export_bytes": 6888,
+      "export_sha256": "00436bff65ce944b96a039d4c5d1dd9bda357f7ef13dab216515c0f0fa806c17",
+      "export_contains_deep_receipts": true,
+      "forwarded_bytes": 6888,
+      "forwarded_sha256": "00436bff65ce944b96a039d4c5d1dd9bda357f7ef13dab216515c0f0fa806c17"
+    },
+    {
+      "label": "object-1100",
+      "depth": 1100,
+      "shape": "object",
+      "blocked": [],
+      "grammar": "Valid scalar leaf inside balanced containers composed directly, not parsed by client",
+      "nested_bytes": 6645,
+      "nested_sha256": "02c85df64ec951c3c112dcf3f44d365260ffba201d3d66751470f889e7d9e9cc",
+      "deep_create_status": 201,
+      "deep_move_status": 201,
+      "export_bytes": 15690,
+      "export_sha256": "e8a3cc6ead87940b1f11b5bc557802f293cb31669339189441e44940c637f9f6",
+      "export_contains_deep_receipts": true,
+      "forwarded_bytes": 15690,
+      "forwarded_sha256": "e8a3cc6ead87940b1f11b5bc557802f293cb31669339189441e44940c637f9f6"
+    },
+    {
+      "label": "array-10000",
+      "depth": 10000,
+      "shape": "array",
+      "blocked": [
+        "Deep create receipt/replay/export cannot be observed because original valid request was refused",
+        "Deep move receipt/replay/export cannot be observed because original valid request was refused"
+      ],
+      "grammar": "Valid scalar leaf inside balanced containers composed directly, not parsed by client",
+      "nested_bytes": 20045,
+      "nested_sha256": "c523c4f11a6bdbc073b3eb9448f93ce63015ee6c6a6cdce579d796ec1944d1d5",
+      "deep_create_status": 400,
+      "deep_move_status": 400,
+      "export_bytes": 2378,
+      "export_sha256": "3ed0292479b693c65061c05469eac1c8d9d909e035a79a0734deb60286d9d14a",
+      "export_contains_deep_receipts": false,
+      "forwarded_bytes": 2378,
+      "forwarded_sha256": "3ed0292479b693c65061c05469eac1c8d9d909e035a79a0734deb60286d9d14a"
+    },
+    {
+      "label": "object-10000",
+      "depth": 10000,
+      "shape": "object",
+      "blocked": [
+        "Deep create receipt/replay/export cannot be observed because original valid request was refused",
+        "Deep move receipt/replay/export cannot be observed because original valid request was refused"
+      ],
+      "grammar": "Valid scalar leaf inside balanced containers composed directly, not parsed by client",
+      "nested_bytes": 60045,
+      "nested_sha256": "a7d22d5b007f7fd1e0c27aaa9781131224367177570cd076d14494a188b08554",
+      "deep_create_status": 400,
+      "deep_move_status": 400,
+      "export_bytes": 2380,
+      "export_sha256": "2f2296167d725512dddab367f63aa376101c60dceeee620f733ab354a2977591",
+      "export_contains_deep_receipts": false,
+      "forwarded_bytes": 2380,
+      "forwarded_sha256": "2f2296167d725512dddab367f63aa376101c60dceeee620f733ab354a2977591"
+    },
+    {
+      "label": "array-20000",
+      "depth": 20000,
+      "shape": "array",
+      "blocked": [
+        "Deep create receipt/replay/export cannot be observed because original valid request was refused",
+        "Deep move receipt/replay/export cannot be observed because original valid request was refused"
+      ],
+      "grammar": "Valid scalar leaf inside balanced containers composed directly, not parsed by client",
+      "nested_bytes": 40045,
+      "nested_sha256": "93a81e96976257a1d51f55dc2663419a397b3430ec225de2b78528321118cdd6",
+      "deep_create_status": 400,
+      "deep_move_status": 400,
+      "export_bytes": 2378,
+      "export_sha256": "f127f6efa5d8ae61711cf8586b683a058670a3f64fb1587e43b5d2c5383f3b79",
+      "export_contains_deep_receipts": false,
+      "forwarded_bytes": 2378,
+      "forwarded_sha256": "f127f6efa5d8ae61711cf8586b683a058670a3f64fb1587e43b5d2c5383f3b79"
+    },
+    {
+      "label": "object-20000",
+      "depth": 20000,
+      "shape": "object",
+      "blocked": [
+        "Deep create receipt/replay/export cannot be observed because original valid request was refused",
+        "Deep move receipt/replay/export cannot be observed because original valid request was refused"
+      ],
+      "grammar": "Valid scalar leaf inside balanced containers composed directly, not parsed by client",
+      "nested_bytes": 120045,
+      "nested_sha256": "c1b866a877c670c4edc8eaa6060821297cd975751480fd25598e3a2da88e9dad",
+      "deep_create_status": 400,
+      "deep_move_status": 400,
+      "export_bytes": 2380,
+      "export_sha256": "90aeb16f2a3e4f03a57bff0d6f6c01178df959cfbc9efae441bfc90891f7d6ad",
+      "export_contains_deep_receipts": false,
+      "forwarded_bytes": 2380,
+      "forwarded_sha256": "90aeb16f2a3e4f03a57bff0d6f6c01178df959cfbc9efae441bfc90891f7d6ad"
+    }
+  ],
+  "trace": [
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.02811599999995451,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.023157625000010285,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/auth/login",
+      "request_bytes": 66,
+      "request_sha256": "2faa0c5dbe22992c0aa4999e6078f83323eee98402ec508a98de1464ab77c75f",
+      "status": 200,
+      "response_bytes": 92,
+      "response_sha256": "378befcad958f2bfdef8d1e22defc655add982afdae20770b7ca4e38f0c50e2d",
+      "seconds": 0.022353667000004407,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 2344,
+      "request_sha256": "6d059e9165ef18e0e019a461183badf7afc58f501b8e41d65d9eae31a6c139b7",
+      "status": 201,
+      "response_bytes": 316,
+      "response_sha256": "bbf11cb81530234bf721e5e2b9128917a221de0d9eabd792f33f9e9ba2b8dac5",
+      "seconds": 0.0013825409999981275,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 2309,
+      "request_sha256": "c39e77ab183e0f204ac7291e7c5470dc120bb5630024bd49bb2f666aff327853",
+      "status": 201,
+      "response_bytes": 335,
+      "response_sha256": "fc29895a755d27a4d159db93e8b98bd1cb7701e64f7a2fb5119420ada6dff032",
+      "seconds": 0.0011700409999662043,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/_test/export",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 6888,
+      "response_sha256": "00436bff65ce944b96a039d4c5d1dd9bda357f7ef13dab216515c0f0fa806c17",
+      "seconds": 0.002458957999976974,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations/5972C79DF3/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "5c0e17e189d567e2f2e0cf8c1ae671f4973d767e000e493a700b3973e41f9b5d",
+      "seconds": 0.0002817920000097729,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/import",
+      "request_bytes": 6888,
+      "request_sha256": "00436bff65ce944b96a039d4c5d1dd9bda357f7ef13dab216515c0f0fa806c17",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.002377875000036056,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/reservations/5972C79DF3",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "8e05377fae2f83ace7754f6f95896cef124b654905c59d4bc17d59ad35e8bde5",
+      "seconds": 0.00032162500002641536,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 2344,
+      "request_sha256": "6d059e9165ef18e0e019a461183badf7afc58f501b8e41d65d9eae31a6c139b7",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "bbf11cb81530234bf721e5e2b9128917a221de0d9eabd792f33f9e9ba2b8dac5",
+      "seconds": 0.001416125000048396,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 2309,
+      "request_sha256": "c39e77ab183e0f204ac7291e7c5470dc120bb5630024bd49bb2f666aff327853",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "fc29895a755d27a4d159db93e8b98bd1cb7701e64f7a2fb5119420ada6dff032",
+      "seconds": 0.0013959999999997308,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 2344,
+      "request_sha256": "6d059e9165ef18e0e019a461183badf7afc58f501b8e41d65d9eae31a6c139b7",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "bbf11cb81530234bf721e5e2b9128917a221de0d9eabd792f33f9e9ba2b8dac5",
+      "seconds": 0.0017364170000178092,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 2309,
+      "request_sha256": "c39e77ab183e0f204ac7291e7c5470dc120bb5630024bd49bb2f666aff327853",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "fc29895a755d27a4d159db93e8b98bd1cb7701e64f7a2fb5119420ada6dff032",
+      "seconds": 0.0014394170000286977,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations/5972C79DF3/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "5c0e17e189d567e2f2e0cf8c1ae671f4973d767e000e493a700b3973e41f9b5d",
+      "seconds": 0.00024858300002961187,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 2344,
+      "request_sha256": "6d059e9165ef18e0e019a461183badf7afc58f501b8e41d65d9eae31a6c139b7",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "bbf11cb81530234bf721e5e2b9128917a221de0d9eabd792f33f9e9ba2b8dac5",
+      "seconds": 0.0014019579999740017,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.0002252090000069984,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00023687499998459316,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.021759208999981183,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.022179624999978387,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/auth/login",
+      "request_bytes": 66,
+      "request_sha256": "2faa0c5dbe22992c0aa4999e6078f83323eee98402ec508a98de1464ab77c75f",
+      "status": 200,
+      "response_bytes": 92,
+      "response_sha256": "b6a17ff466f26f8c455eebd66c5f58d2007fd137a07bc769da63880ed322baeb",
+      "seconds": 0.02157391700001199,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 6744,
+      "request_sha256": "6a0cbdafe2ab15e5c960e56d38aeaf67df693c31c3a0020de6333b3ceda7be72",
+      "status": 201,
+      "response_bytes": 316,
+      "response_sha256": "08c91874d509ddffc794692d5f327d3324d069d85663bffa5fdc39624bb2b64c",
+      "seconds": 0.0014535829999999805,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 6709,
+      "request_sha256": "de2ccf9076fc2b9b4d2a1f009344b1fa536a90fe46d5976426468cf20f4f0093",
+      "status": 201,
+      "response_bytes": 335,
+      "response_sha256": "49175b2641809bdd2989800d8dda38be75006ca0f2372645f817929e10a161fc",
+      "seconds": 0.0013724170000273261,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/_test/export",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15690,
+      "response_sha256": "e8a3cc6ead87940b1f11b5bc557802f293cb31669339189441e44940c637f9f6",
+      "seconds": 0.0030197920000318845,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations/047070A09E/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "78c6a4ac34ba3b5ad76220f1425fc2222e0294ca5cc968179d98ab3ff791460d",
+      "seconds": 0.00027858300001071257,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/import",
+      "request_bytes": 15690,
+      "request_sha256": "e8a3cc6ead87940b1f11b5bc557802f293cb31669339189441e44940c637f9f6",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.0025778329999752714,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/reservations/047070A09E",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "789392bc340d738c14a20ed047be79d4e204d716b7f0de29b098b17ca8bd3c4e",
+      "seconds": 0.00027787499999476495,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 6744,
+      "request_sha256": "6a0cbdafe2ab15e5c960e56d38aeaf67df693c31c3a0020de6333b3ceda7be72",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "08c91874d509ddffc794692d5f327d3324d069d85663bffa5fdc39624bb2b64c",
+      "seconds": 0.0018521250000276268,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 6709,
+      "request_sha256": "de2ccf9076fc2b9b4d2a1f009344b1fa536a90fe46d5976426468cf20f4f0093",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "49175b2641809bdd2989800d8dda38be75006ca0f2372645f817929e10a161fc",
+      "seconds": 0.0018702920000350787,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 6744,
+      "request_sha256": "6a0cbdafe2ab15e5c960e56d38aeaf67df693c31c3a0020de6333b3ceda7be72",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "08c91874d509ddffc794692d5f327d3324d069d85663bffa5fdc39624bb2b64c",
+      "seconds": 0.0018228330000056303,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 6709,
+      "request_sha256": "de2ccf9076fc2b9b4d2a1f009344b1fa536a90fe46d5976426468cf20f4f0093",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "49175b2641809bdd2989800d8dda38be75006ca0f2372645f817929e10a161fc",
+      "seconds": 0.001811207999992348,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations/047070A09E/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "78c6a4ac34ba3b5ad76220f1425fc2222e0294ca5cc968179d98ab3ff791460d",
+      "seconds": 0.00024066699995728413,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 6744,
+      "request_sha256": "6a0cbdafe2ab15e5c960e56d38aeaf67df693c31c3a0020de6333b3ceda7be72",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "08c91874d509ddffc794692d5f327d3324d069d85663bffa5fdc39624bb2b64c",
+      "seconds": 0.0018003329999487505,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00021995899999183166,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00024470799996834103,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.021238374999995813,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.02170674999996436,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/auth/login",
+      "request_bytes": 66,
+      "request_sha256": "2faa0c5dbe22992c0aa4999e6078f83323eee98402ec508a98de1464ab77c75f",
+      "status": 200,
+      "response_bytes": 92,
+      "response_sha256": "c4b8931de6d111c40da385e0827407fa8da692edc47243152faac5ddf4c69e74",
+      "seconds": 0.02141733300004489,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 20144,
+      "request_sha256": "13170214eef1aabf43e1e0028783ffae8f49a1f5cf42e0f0ea1596246bfc1270",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.0007045829999583475,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 201,
+      "response_bytes": 316,
+      "response_sha256": "33bd51794f1fc77911cd0e1906126836f7c1ddea690d1e97ce1ddd9f63859ca1",
+      "seconds": 0.00033137499997337727,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 20109,
+      "request_sha256": "4824cda33568e09c4c3f150842d6f4261027067bfa24b1c2b8bf401f29d83ab3",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.000572792000014033,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "d271cfe14faa188dd098a820df4186035a8efa1589285600b2c8b1cf39b20a13",
+      "status": 201,
+      "response_bytes": 335,
+      "response_sha256": "42e6323419714fb96b87bd039e54fbe2625d87728f11704915a62fab3313013e",
+      "seconds": 0.00029341600003363055,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/_test/export",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 2378,
+      "response_sha256": "3ed0292479b693c65061c05469eac1c8d9d909e035a79a0734deb60286d9d14a",
+      "seconds": 0.0003399999999942338,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations/E82F3CB698/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "3184fa01e133b08be8cc95ce4cce121178e713680152c95d7355ecc236717bff",
+      "seconds": 0.000240542000028654,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/import",
+      "request_bytes": 2378,
+      "request_sha256": "3ed0292479b693c65061c05469eac1c8d9d909e035a79a0734deb60286d9d14a",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.0004504999999994652,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/reservations/E82F3CB698",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "69addbd262f1d6e5d155cae754891fe12819c04ad4963a6fecd6022a7d4452a3",
+      "seconds": 0.0002624580000087917,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "33bd51794f1fc77911cd0e1906126836f7c1ddea690d1e97ce1ddd9f63859ca1",
+      "seconds": 0.00025054200000340643,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "d271cfe14faa188dd098a820df4186035a8efa1589285600b2c8b1cf39b20a13",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "42e6323419714fb96b87bd039e54fbe2625d87728f11704915a62fab3313013e",
+      "seconds": 0.00025058399995714353,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "33bd51794f1fc77911cd0e1906126836f7c1ddea690d1e97ce1ddd9f63859ca1",
+      "seconds": 0.0002726249999795982,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "d271cfe14faa188dd098a820df4186035a8efa1589285600b2c8b1cf39b20a13",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "42e6323419714fb96b87bd039e54fbe2625d87728f11704915a62fab3313013e",
+      "seconds": 0.00026908399996727894,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations/E82F3CB698/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "3184fa01e133b08be8cc95ce4cce121178e713680152c95d7355ecc236717bff",
+      "seconds": 0.00025937499998462954,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "33bd51794f1fc77911cd0e1906126836f7c1ddea690d1e97ce1ddd9f63859ca1",
+      "seconds": 0.0002727500000219152,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.0003050000000257569,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00022174999998014755,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.021243207999987135,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.02179208400002608,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/auth/login",
+      "request_bytes": 66,
+      "request_sha256": "2faa0c5dbe22992c0aa4999e6078f83323eee98402ec508a98de1464ab77c75f",
+      "status": 200,
+      "response_bytes": 92,
+      "response_sha256": "84c49aaf3305b4bd220650632ef488548070753aa6014c4bb605fa076de4d9ce",
+      "seconds": 0.021770957999990515,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 60144,
+      "request_sha256": "4725333bf371a5b443040f3e4d67785235fbdd79c05855d61f87bb57fd22a37a",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.0009699579999846719,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 201,
+      "response_bytes": 316,
+      "response_sha256": "18be355e707ee2a273741bbfadd63db6d8e5b48cd6e6cca603335fe433251eb2",
+      "seconds": 0.0003420410000103402,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 60109,
+      "request_sha256": "1cf8b28efb84254fba7e0cff492d4603cbe10d61ed9bb1f36501cf765072fa67",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.0007102080000436217,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "44ecd4f2686f317735c54bb51a6657e5e26f47f53199936d251e4aa1fb3d7fcd",
+      "status": 201,
+      "response_bytes": 335,
+      "response_sha256": "a650a2e53024d09073194aa2f2b0edc7f6e5320a8f0803ed5c746f5ad2aeaebd",
+      "seconds": 0.00030958400003555653,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/_test/export",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 2380,
+      "response_sha256": "2f2296167d725512dddab367f63aa376101c60dceeee620f733ab354a2977591",
+      "seconds": 0.0003359159999831718,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations/2CC67218D9/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "122cae489ca8a55b1f9dac3dcc5888322175c381e09ec4cbd2899bcc539817fd",
+      "seconds": 0.0002624580000087917,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/import",
+      "request_bytes": 2380,
+      "request_sha256": "2f2296167d725512dddab367f63aa376101c60dceeee620f733ab354a2977591",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.00046366700001954086,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/reservations/2CC67218D9",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "b856a6b386cebc58ec0a8d4cc3a808e25611740af5ac0e4d3391648e4c561987",
+      "seconds": 0.00029000000000678483,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "18be355e707ee2a273741bbfadd63db6d8e5b48cd6e6cca603335fe433251eb2",
+      "seconds": 0.00026504099997737285,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "44ecd4f2686f317735c54bb51a6657e5e26f47f53199936d251e4aa1fb3d7fcd",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "a650a2e53024d09073194aa2f2b0edc7f6e5320a8f0803ed5c746f5ad2aeaebd",
+      "seconds": 0.0002647079999746893,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "18be355e707ee2a273741bbfadd63db6d8e5b48cd6e6cca603335fe433251eb2",
+      "seconds": 0.00025804199998447075,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "44ecd4f2686f317735c54bb51a6657e5e26f47f53199936d251e4aa1fb3d7fcd",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "a650a2e53024d09073194aa2f2b0edc7f6e5320a8f0803ed5c746f5ad2aeaebd",
+      "seconds": 0.0002723329999980706,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations/2CC67218D9/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "122cae489ca8a55b1f9dac3dcc5888322175c381e09ec4cbd2899bcc539817fd",
+      "seconds": 0.00023641699999643606,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "18be355e707ee2a273741bbfadd63db6d8e5b48cd6e6cca603335fe433251eb2",
+      "seconds": 0.0002599169999939477,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.0002239169999711521,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00024354200002107973,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.021449916999983998,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.021756666000044333,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/auth/login",
+      "request_bytes": 66,
+      "request_sha256": "2faa0c5dbe22992c0aa4999e6078f83323eee98402ec508a98de1464ab77c75f",
+      "status": 200,
+      "response_bytes": 92,
+      "response_sha256": "567e27f1fcbb008a1279c96810e7f194d9acc12eaeb3d13937c2a0f2979d9114",
+      "seconds": 0.02136616600000707,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 40144,
+      "request_sha256": "8e5a89e6b887e92f688fdf5bf9509b25fa0ffb90987d1857a5bb84af30421940",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.000719166999999743,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 201,
+      "response_bytes": 316,
+      "response_sha256": "72969a3f23252ea66c4f8e522d4af0d996f4e0fa6cec0141d42237857d386003",
+      "seconds": 0.00028758299998798975,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 40109,
+      "request_sha256": "652ce76e7abe593b9a6ca3f4d1874ecaae500f04f44b4a8070f6eb3146bca03b",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.0006423330000302485,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "bbe61ee80590355f6cd35d677db182dee104d26afeb2b0220620e8fead30cee8",
+      "status": 201,
+      "response_bytes": 335,
+      "response_sha256": "8c02b83f7d10ce3988c702889f67622d858325abbc07d65dc91245f64d286a68",
+      "seconds": 0.0003131249999910324,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/_test/export",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 2378,
+      "response_sha256": "f127f6efa5d8ae61711cf8586b683a058670a3f64fb1587e43b5d2c5383f3b79",
+      "seconds": 0.0003683749999936481,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations/E5B18C2D9D/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "eaa5080db6a3e0134fccff483fd596eb4f725f48a3b777e16f06077471ebbaba",
+      "seconds": 0.0002690000000029613,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/import",
+      "request_bytes": 2378,
+      "request_sha256": "f127f6efa5d8ae61711cf8586b683a058670a3f64fb1587e43b5d2c5383f3b79",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.0004217919999973674,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/reservations/E5B18C2D9D",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "d7dbe15fb5daa50b8fc47b94b2af05bc017b6d4df79a63fa0f4b7def7b1d7366",
+      "seconds": 0.000267334000000119,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "72969a3f23252ea66c4f8e522d4af0d996f4e0fa6cec0141d42237857d386003",
+      "seconds": 0.00027020799996080314,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "bbe61ee80590355f6cd35d677db182dee104d26afeb2b0220620e8fead30cee8",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "8c02b83f7d10ce3988c702889f67622d858325abbc07d65dc91245f64d286a68",
+      "seconds": 0.00028729100000646213,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "72969a3f23252ea66c4f8e522d4af0d996f4e0fa6cec0141d42237857d386003",
+      "seconds": 0.0002692080000201713,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "bbe61ee80590355f6cd35d677db182dee104d26afeb2b0220620e8fead30cee8",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "8c02b83f7d10ce3988c702889f67622d858325abbc07d65dc91245f64d286a68",
+      "seconds": 0.0002646660000209522,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations/E5B18C2D9D/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "eaa5080db6a3e0134fccff483fd596eb4f725f48a3b777e16f06077471ebbaba",
+      "seconds": 0.0002504580000390888,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "72969a3f23252ea66c4f8e522d4af0d996f4e0fa6cec0141d42237857d386003",
+      "seconds": 0.0002398749999770189,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.0002125830000068163,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00021749999996245606,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.021261624999965534,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/reset",
+      "request_bytes": 737,
+      "request_sha256": "a5d3727658be95d635631b4c1c2c14a76055dfeb8723e05b044c186d4f2ee6cb",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.02168770800000175,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/auth/login",
+      "request_bytes": 66,
+      "request_sha256": "2faa0c5dbe22992c0aa4999e6078f83323eee98402ec508a98de1464ab77c75f",
+      "status": 200,
+      "response_bytes": 92,
+      "response_sha256": "92029615723f69049367b490f5bb6ce055500a1b26c5f5074ab34641697ce5a3",
+      "seconds": 0.021242749999998978,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 120144,
+      "request_sha256": "bfcc183c1254d7a863cf7f5f8dc6c94656e7b0cf1ffa833d98bf519dda5dd04a",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.0008136249999779466,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 201,
+      "response_bytes": 316,
+      "response_sha256": "bce6532345fd2be678d0e5981ba4eeea30c30678cf74d45c4617fb453e9fc1f9",
+      "seconds": 0.0003123329999539237,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 120109,
+      "request_sha256": "0ebe77f7a3a47212456481a2512cbc1c943a0fc561aae51779c13e2acfcf2865",
+      "status": 400,
+      "response_bytes": 77,
+      "response_sha256": "75dd896ab53c28596897d4250ac917ae4a0afd21b50f8519c21d5d4014bc85ff",
+      "seconds": 0.0007117079999829912,
+      "decoded": true,
+      "error": {
+        "code": "malformed_request",
+        "message": "Body must be a JSON object"
+      }
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "bbb1898256321cdbfabd61feeefa5e0ac849d53c96fd56dc274f1fd0db3d863c",
+      "status": 201,
+      "response_bytes": 335,
+      "response_sha256": "c8f78ab9bc5564653d3fe3a7c27dbec87baf9a26e5d96f5ea967f1c95c8ebfce",
+      "seconds": 0.0002888330000132555,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/_test/export",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 2380,
+      "response_sha256": "90aeb16f2a3e4f03a57bff0d6f6c01178df959cfbc9efae441bfc90891f7d6ad",
+      "seconds": 0.00031599999999798456,
+      "decoded": false
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations/172234A7F2/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "a829aa0a1d3391e26cdb4a96776d35c2eea484b15cc1b955ac7fefbf8d0d2abf",
+      "seconds": 0.0002398749999770189,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/_test/import",
+      "request_bytes": 2380,
+      "request_sha256": "90aeb16f2a3e4f03a57bff0d6f6c01178df959cfbc9efae441bfc90891f7d6ad",
+      "status": 204,
+      "response_bytes": 0,
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.00044095799995602647,
+      "decoded": false
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/reservations/172234A7F2",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "fe10ef18e3f53d160fce3fad9e500d754496b3dc3a2ccac36ca7ba520685fcb8",
+      "seconds": 0.00025391700000909623,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "bce6532345fd2be678d0e5981ba4eeea30c30678cf74d45c4617fb453e9fc1f9",
+      "seconds": 0.0002905829999804155,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "bbb1898256321cdbfabd61feeefa5e0ac849d53c96fd56dc274f1fd0db3d863c",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "c8f78ab9bc5564653d3fe3a7c27dbec87baf9a26e5d96f5ea967f1c95c8ebfce",
+      "seconds": 0.0002525419999983569,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "bce6532345fd2be678d0e5981ba4eeea30c30678cf74d45c4617fb453e9fc1f9",
+      "seconds": 0.0002576250000174696,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservation-moves",
+      "request_bytes": 53,
+      "request_sha256": "bbb1898256321cdbfabd61feeefa5e0ac849d53c96fd56dc274f1fd0db3d863c",
+      "status": 200,
+      "response_bytes": 335,
+      "response_sha256": "c8f78ab9bc5564653d3fe3a7c27dbec87baf9a26e5d96f5ea967f1c95c8ebfce",
+      "seconds": 0.0002637499999877946,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations/172234A7F2/cancel",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "a829aa0a1d3391e26cdb4a96776d35c2eea484b15cc1b955ac7fefbf8d0d2abf",
+      "seconds": 0.0002582079999911002,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "POST",
+      "path": "/reservations",
+      "request_bytes": 88,
+      "request_sha256": "87064a39b4d1cb58ad513a8a11c8fd9895a4fcd534d7b889e119e150e70f2b62",
+      "status": 200,
+      "response_bytes": 316,
+      "response_sha256": "bce6532345fd2be678d0e5981ba4eeea30c30678cf74d45c4617fb453e9fc1f9",
+      "seconds": 0.0002579160000095726,
+      "decoded": true
+    },
+    {
+      "process": "source",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00022045800000114468,
+      "decoded": true
+    },
+    {
+      "process": "destination",
+      "method": "GET",
+      "path": "/health",
+      "request_bytes": 0,
+      "request_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "response_bytes": 15,
+      "response_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+      "seconds": 0.00024379200004887025,
+      "decoded": true
+    }
+  ],
+  "assertions": [
+    {
+      "label": "array-1100 reset",
+      "passed": true
+    },
+    {
+      "label": "array-1100 reset",
+      "passed": true
+    },
+    {
+      "label": "array-1100 login",
+      "passed": true
+    },
+    {
+      "label": "array-1100 valid deep ignored create",
+      "passed": true,
+      "expected": 201,
+      "observed": 201
+    },
+    {
+      "label": "array-1100 valid deep ignored move",
+      "passed": true,
+      "expected": 201,
+      "observed": 201
+    },
+    {
+      "label": "array-1100 captured export",
+      "passed": true
+    },
+    {
+      "label": "array-1100 source changes after snapshot",
+      "passed": true
+    },
+    {
+      "label": "array-1100 unchanged raw export import",
+      "passed": true
+    },
+    {
+      "label": "array-1100 byte-identical forwarding",
+      "passed": true
+    },
+    {
+      "label": "array-1100 token reference snapshot state",
+      "passed": true
+    },
+    {
+      "label": "array-1100 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "array-1100 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "array-1100 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "array-1100 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "array-1100 peer cancellation",
+      "passed": true
+    },
+    {
+      "label": "array-1100 immutable receipt after peer change",
+      "passed": true
+    },
+    {
+      "label": "array-1100 both services remain healthy",
+      "passed": true
+    },
+    {
+      "label": "object-1100 reset",
+      "passed": true
+    },
+    {
+      "label": "object-1100 reset",
+      "passed": true
+    },
+    {
+      "label": "object-1100 login",
+      "passed": true
+    },
+    {
+      "label": "object-1100 valid deep ignored create",
+      "passed": true,
+      "expected": 201,
+      "observed": 201
+    },
+    {
+      "label": "object-1100 valid deep ignored move",
+      "passed": true,
+      "expected": 201,
+      "observed": 201
+    },
+    {
+      "label": "object-1100 captured export",
+      "passed": true
+    },
+    {
+      "label": "object-1100 source changes after snapshot",
+      "passed": true
+    },
+    {
+      "label": "object-1100 unchanged raw export import",
+      "passed": true
+    },
+    {
+      "label": "object-1100 byte-identical forwarding",
+      "passed": true
+    },
+    {
+      "label": "object-1100 token reference snapshot state",
+      "passed": true
+    },
+    {
+      "label": "object-1100 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "object-1100 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "object-1100 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "object-1100 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "object-1100 peer cancellation",
+      "passed": true
+    },
+    {
+      "label": "object-1100 immutable receipt after peer change",
+      "passed": true
+    },
+    {
+      "label": "object-1100 both services remain healthy",
+      "passed": true
+    },
+    {
+      "label": "array-10000 reset",
+      "passed": true
+    },
+    {
+      "label": "array-10000 reset",
+      "passed": true
+    },
+    {
+      "label": "array-10000 login",
+      "passed": true
+    },
+    {
+      "label": "array-10000 valid deep ignored create",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "array-10000 refused create key reusable",
+      "passed": true
+    },
+    {
+      "label": "array-10000 valid deep ignored move",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "array-10000 refused move key reusable",
+      "passed": true
+    },
+    {
+      "label": "array-10000 captured export",
+      "passed": true
+    },
+    {
+      "label": "array-10000 source changes after snapshot",
+      "passed": true
+    },
+    {
+      "label": "array-10000 unchanged raw export import",
+      "passed": true
+    },
+    {
+      "label": "array-10000 byte-identical forwarding",
+      "passed": true
+    },
+    {
+      "label": "array-10000 token reference snapshot state",
+      "passed": true
+    },
+    {
+      "label": "array-10000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "array-10000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "array-10000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "array-10000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "array-10000 peer cancellation",
+      "passed": true
+    },
+    {
+      "label": "array-10000 immutable receipt after peer change",
+      "passed": true
+    },
+    {
+      "label": "array-10000 both services remain healthy",
+      "passed": true
+    },
+    {
+      "label": "object-10000 reset",
+      "passed": true
+    },
+    {
+      "label": "object-10000 reset",
+      "passed": true
+    },
+    {
+      "label": "object-10000 login",
+      "passed": true
+    },
+    {
+      "label": "object-10000 valid deep ignored create",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "object-10000 refused create key reusable",
+      "passed": true
+    },
+    {
+      "label": "object-10000 valid deep ignored move",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "object-10000 refused move key reusable",
+      "passed": true
+    },
+    {
+      "label": "object-10000 captured export",
+      "passed": true
+    },
+    {
+      "label": "object-10000 source changes after snapshot",
+      "passed": true
+    },
+    {
+      "label": "object-10000 unchanged raw export import",
+      "passed": true
+    },
+    {
+      "label": "object-10000 byte-identical forwarding",
+      "passed": true
+    },
+    {
+      "label": "object-10000 token reference snapshot state",
+      "passed": true
+    },
+    {
+      "label": "object-10000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "object-10000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "object-10000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "object-10000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "object-10000 peer cancellation",
+      "passed": true
+    },
+    {
+      "label": "object-10000 immutable receipt after peer change",
+      "passed": true
+    },
+    {
+      "label": "object-10000 both services remain healthy",
+      "passed": true
+    },
+    {
+      "label": "array-20000 reset",
+      "passed": true
+    },
+    {
+      "label": "array-20000 reset",
+      "passed": true
+    },
+    {
+      "label": "array-20000 login",
+      "passed": true
+    },
+    {
+      "label": "array-20000 valid deep ignored create",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "array-20000 refused create key reusable",
+      "passed": true
+    },
+    {
+      "label": "array-20000 valid deep ignored move",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "array-20000 refused move key reusable",
+      "passed": true
+    },
+    {
+      "label": "array-20000 captured export",
+      "passed": true
+    },
+    {
+      "label": "array-20000 source changes after snapshot",
+      "passed": true
+    },
+    {
+      "label": "array-20000 unchanged raw export import",
+      "passed": true
+    },
+    {
+      "label": "array-20000 byte-identical forwarding",
+      "passed": true
+    },
+    {
+      "label": "array-20000 token reference snapshot state",
+      "passed": true
+    },
+    {
+      "label": "array-20000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "array-20000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "array-20000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "array-20000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "array-20000 peer cancellation",
+      "passed": true
+    },
+    {
+      "label": "array-20000 immutable receipt after peer change",
+      "passed": true
+    },
+    {
+      "label": "array-20000 both services remain healthy",
+      "passed": true
+    },
+    {
+      "label": "object-20000 reset",
+      "passed": true
+    },
+    {
+      "label": "object-20000 reset",
+      "passed": true
+    },
+    {
+      "label": "object-20000 login",
+      "passed": true
+    },
+    {
+      "label": "object-20000 valid deep ignored create",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "object-20000 refused create key reusable",
+      "passed": true
+    },
+    {
+      "label": "object-20000 valid deep ignored move",
+      "passed": false,
+      "expected": 201,
+      "observed": 400
+    },
+    {
+      "label": "object-20000 refused move key reusable",
+      "passed": true
+    },
+    {
+      "label": "object-20000 captured export",
+      "passed": true
+    },
+    {
+      "label": "object-20000 source changes after snapshot",
+      "passed": true
+    },
+    {
+      "label": "object-20000 unchanged raw export import",
+      "passed": true
+    },
+    {
+      "label": "object-20000 byte-identical forwarding",
+      "passed": true
+    },
+    {
+      "label": "object-20000 token reference snapshot state",
+      "passed": true
+    },
+    {
+      "label": "object-20000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "object-20000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "object-20000 original shallow create response replay",
+      "passed": true
+    },
+    {
+      "label": "object-20000 original shallow move response replay",
+      "passed": true
+    },
+    {
+      "label": "object-20000 peer cancellation",
+      "passed": true
+    },
+    {
+      "label": "object-20000 immutable receipt after peer change",
+      "passed": true
+    },
+    {
+      "label": "object-20000 both services remain healthy",
+      "passed": true
+    },
+    {
+      "label": "client never decodes exported state",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "requests": 110,
+    "assertions": 111,
+    "failed": 8,
+    "seconds": 0.4546792909999908,
+    "export_decoder_calls": 0,
+    "deep_export_cases": 2,
+    "blocked_deep_export_cases": 4
+  }
+}

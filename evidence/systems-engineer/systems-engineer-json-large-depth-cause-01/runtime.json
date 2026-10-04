@@ -1,0 +1,172 @@
+{
+  "candidate": "4a92f3e7fcf009edc34f7c410a44ae405909e080",
+  "image_id": "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+  "probe_sha256": "6fb8941df1d67254ad615f834456f12a9efcc9795d05c9030969e8a326f681dd",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "4a92f3e7fcf009edc34f7c410a44ae405909e080:stage-1/json_codec.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.010860250000405358,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-cause-01/command-000.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "-i",
+        "--name",
+        "systems-engineer-depth-20261004t041729488615-0",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--entrypoint",
+        "python",
+        "sha256:e84435e7048666224b36d3d8784d0e5c8545cbe9168def24876caa18a0646ae3",
+        "-X",
+        "faulthandler",
+        "-B",
+        "-",
+        "10000",
+        "array",
+        "decoder"
+      ],
+      "returncode": 0,
+      "seconds": 0.11418954200053122,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-cause-01/command-001.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041729488615-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.02234074999796576,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-cause-01/command-002.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "-a",
+        "-i",
+        "systems-engineer-depth-20261004t041729488615-0"
+      ],
+      "returncode": 1,
+      "seconds": 0.1420881250014645,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-cause-01/command-003.log",
+      "stdin_sha256": "6fb8941df1d67254ad615f834456f12a9efcc9795d05c9030969e8a326f681dd"
+    },
+    {
+      "argv": [
+        "docker",
+        "inspect",
+        "systems-engineer-depth-20261004t041729488615-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.014617916996940039,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-cause-01/command-004.log",
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "systems-engineer-depth-20261004t041729488615-0"
+      ],
+      "returncode": 0,
+      "seconds": 0.022088624999014428,
+      "log": "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/systems-engineer/systems-engineer-json-large-depth-cause-01/command-005.log",
+      "stdin_sha256": null
+    }
+  ],
+  "runs": [
+    {
+      "depth": 10000,
+      "shape": "array",
+      "operation": "decoder",
+      "name": "systems-engineer-depth-20261004t041729488615-0",
+      "resource": {
+        "cpu": 2,
+        "memory_bytes": 2147483648,
+        "network": "none",
+        "mounts": []
+      },
+      "cli_exit_code": 1,
+      "process_exit_code": 1,
+      "oom_killed": false,
+      "emitted_results": [
+        {
+          "starting": {
+            "depth": 10000,
+            "shape": "array",
+            "operation": "decoder",
+            "payload_bytes": 20056,
+            "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+            "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+            "recursion_limit_unchanged": 1000,
+            "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+            "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+          }
+        },
+        {
+          "result": {
+            "meta": {
+              "depth": 10000,
+              "shape": "array",
+              "operation": "decoder",
+              "payload_bytes": 20056,
+              "payload_sha256": "0dcd19969ccf96118cc0656a4762232c2d33fea589ae2e1da5cc5ac5e6f61990",
+              "grammar": "Valid scalar-number leaf in exactly balanced same-kind containers, by construction",
+              "recursion_limit_unchanged": 1000,
+              "python_version": "3.12.15 (main, Oct  1 2026, 21:42:26) [GCC 12.2.0]",
+              "codec_sha256": "ef81525f0611dab743b5858c98961f3871996df7dfdd4417830702028a124aad"
+            },
+            "assertions": [
+              {
+                "label": "operation completed without exception",
+                "passed": false
+              }
+            ],
+            "exception": {
+              "type": "JsonCodecError",
+              "message": "Invalid UTF-8 JSON text",
+              "cause": {
+                "type": "RecursionError",
+                "message": "maximum recursion depth exceeded while decoding a JSON array from a unicode string"
+              }
+            },
+            "seconds": 0.0004980000000216478,
+            "maximum_rss_linux_kib": 23804,
+            "failed": 1
+          }
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "systems-engineer-depth-20261004t041729488615-0",
+      "returncode": 0
+    }
+  ],
+  "scope": "isolated codec operations; no HTTP claim",
+  "wall_seconds": 0.3267915830001584,
+  "summary": {
+    "processes": 1,
+    "passed": 0,
+    "failed": 1
+  }
+}
