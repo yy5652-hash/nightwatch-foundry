@@ -1,0 +1,4137 @@
+[
+  {
+    "requirement_id": "TK1-reset-missing-user-id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-user-email",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing email"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-email-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "email must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-email-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "email must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-email-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "email must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-email-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "email must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-email-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "email must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-user-password",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing password"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-password-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "password must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-password-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "password must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-password-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "password must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-password-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "password must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-password-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "password must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-user-display_name",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing display_name"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-display_name-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "display_name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-display_name-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "display_name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-display_name-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "display_name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-display_name-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "display_name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-user-display_name-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "display_name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-name",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing name"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-name-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-name-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-name-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-name-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-name-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "name must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-timezone",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing timezone"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-timezone-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "timezone must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-timezone-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "timezone must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-timezone-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "timezone must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-timezone-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "timezone must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-timezone-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "timezone must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-slot_minutes",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing slot_minutes"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-slot_minutes-string",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-slot_minutes-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-slot_minutes-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-slot_minutes-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-slot_minutes-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-reservation_duration_minutes",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing reservation_duration_minutes"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-reservation_duration_minutes-string",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-reservation_duration_minutes-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-reservation_duration_minutes-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-reservation_duration_minutes-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-reservation_duration_minutes-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-cancellation_cutoff_minutes",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing cancellation_cutoff_minutes"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-cancellation_cutoff_minutes-string",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-cancellation_cutoff_minutes-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-cancellation_cutoff_minutes-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-cancellation_cutoff_minutes-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-restaurant-cancellation_cutoff_minutes-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-hours-weekday",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing weekday"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-weekday-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "weekday must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-weekday-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "weekday must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-weekday-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "weekday must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-weekday-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "weekday must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-weekday-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "weekday must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-hours-opens",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing opens"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-opens-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "opens must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-opens-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "opens must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-opens-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "opens must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-opens-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "opens must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-opens-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "opens must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-hours-closes",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing closes"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-closes-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "closes must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-closes-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "closes must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-closes-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "closes must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-closes-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "closes must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-hours-closes-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "closes must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-table-id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-table-label",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing label"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-label-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "label must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-label-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "label must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-label-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "label must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-label-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "label must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-label-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "label must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-table-capacity",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing capacity"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-capacity-string",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-capacity-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-capacity-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-capacity-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-table-capacity-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-restaurant_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing restaurant_id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-restaurant_id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "restaurant_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-restaurant_id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "restaurant_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-restaurant_id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "restaurant_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-restaurant_id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "restaurant_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-restaurant_id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "restaurant_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-table_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing table_id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-table_id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "table_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-table_id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "table_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-table_id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "table_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-table_id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "table_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-table_id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "table_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-starts_at_local",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing starts_at_local"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-starts_at_local-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-starts_at_local-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-starts_at_local-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-starts_at_local-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-starts_at_local-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-reference",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing reference"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-reference-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "reference must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-reference-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "reference must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-reference-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "reference must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-reference-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "reference must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-reference-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "reference must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-user_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing user_id"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-user_id-number",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "user_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-user_id-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "user_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-user_id-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "user_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-user_id-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "user_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-user_id-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "user_id must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-reservation-party_size",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing party_size"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-party_size-string",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-party_size-bool",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-party_size-array",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-party_size-object",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-type-reservation-party_size-null",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-opening_hours",
+    "passed": false,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-tables",
+    "passed": false,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-reset",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-signup",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "user_id": "u_f6406f3b44ec43f58a293041cd98539d",
+        "display_name": "Ignored Fields",
+        "token": {
+          "private_value_sha256": "c9b3ef9c55935bcc430f9389d1b6ffbce221d687c7cc2d92c5f48de09bd1701e"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-login",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "u_f6406f3b44ec43f58a293041cd98539d",
+        "display_name": "Ignored Fields",
+        "token": {
+          "private_value_sha256": "28dc0292d502e09318a88f3f40601f0da5ff4cb1d0d298f1d7a31ac4b1d02bc5"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-create",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_b9af115b4f494e98b65300d3d4b1c3a8",
+        "reference": "8DDC09AB67",
+        "restaurant_id": "r",
+        "table_id": "t1",
+        "party_size": 2,
+        "starts_at_local": "2035-06-04T18:10",
+        "starts_at": "2035-06-04T18:10:00+00:00",
+        "ends_at": "2035-06-04T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:38:38.312521+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-patch",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_b9af115b4f494e98b65300d3d4b1c3a8",
+        "reference": "8DDC09AB67",
+        "restaurant_id": "r",
+        "table_id": "t1",
+        "party_size": 2,
+        "starts_at_local": "2035-06-04T18:10",
+        "starts_at": "2035-06-04T18:10:00+00:00",
+        "ends_at": "2035-06-04T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:38:38.312521+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-batch",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_b9af115b4f494e98b65300d3d4b1c3a8",
+            "reference": "8DDC09AB67",
+            "restaurant_id": "r",
+            "table_id": "t1",
+            "party_size": 2,
+            "starts_at_local": "2035-06-04T18:10",
+            "starts_at": "2035-06-04T18:10:00+00:00",
+            "ends_at": "2035-06-04T19:40:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T00:38:38.312521+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-cancel",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "reservation_id": "res_b9af115b4f494e98b65300d3d4b1c3a8",
+        "reference": "8DDC09AB67",
+        "restaurant_id": "r",
+        "table_id": "t1",
+        "party_size": 2,
+        "starts_at_local": "2035-06-04T18:10",
+        "starts_at": "2035-06-04T18:10:00+00:00",
+        "ends_at": "2035-06-04T19:40:00+00:00",
+        "status": "cancelled",
+        "created_at": "2026-10-04T00:38:38.312521+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-unknown-field-import",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-password-hashed",
+    "passed": true,
+    "expected": "password hashes independently verified, no plaintext",
+    "observed": {
+      "users_checked": 3,
+      "all_digest_matches": true,
+      "plaintext_absent": true
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-party_size-array",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-party_size-object",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-party_size-null",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-starts_at_local-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-starts_at_local-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-starts_at_local-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-create-starts_at_local-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-id-over-create-restaurant_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid restaurant_id length"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-id-over-create-table_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid table_id length"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-party_size-array",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-party_size-object",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-party_size-null",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-starts_at_local-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-starts_at_local-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-starts_at_local-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-patch-starts_at_local-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-id-over-patch-table_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid table_id length"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-party_size-array",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-party_size-object",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-party_size-null",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-starts_at_local-array",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-starts_at_local-object",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-starts_at_local-null",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-extra-type-batch-starts_at_local-bool",
+    "passed": true,
+    "expected": {
+      "status": 400,
+      "code": "malformed_request"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "starts_at_local must be a string"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-id-over-batch-table_id",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid table_id length"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-create-failed-occupancy-key",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "table_unavailable"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "table_unavailable",
+          "message": "table unavailable"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-create-failed-occupancy-key",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_ad85b8f448384e89a47a23090babd768",
+        "reference": "D300CD9DE8",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 2,
+        "starts_at_local": "2035-06-04T18:10",
+        "starts_at": "2035-06-04T18:10:00+00:00",
+        "ends_at": "2035-06-04T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:38:38.557618+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-batch-failed-occupancy-key",
+    "passed": true,
+    "expected": {
+      "status": 409,
+      "code": "table_unavailable"
+    },
+    "observed": {
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "table_unavailable",
+          "message": "table unavailable"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-batch-failed-occupancy-key",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservations": [
+          {
+            "reservation_id": "res_c87d909b0f0c4f41a088fe0ffd41f9d7",
+            "reference": "571CC21385",
+            "restaurant_id": "r",
+            "table_id": "t0",
+            "party_size": 2,
+            "starts_at_local": "2035-06-04T18:10",
+            "starts_at": "2035-06-04T18:10:00+00:00",
+            "ends_at": "2035-06-04T19:40:00+00:00",
+            "status": "confirmed",
+            "created_at": "2026-10-04T00:38:38.648348+00:00"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-patch-berlin-skipped-time",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "invalid_local_time"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_local_time",
+          "message": "invalid local time"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-batch-berlin-skipped-time",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "invalid_local_time"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_local_time",
+          "message": "invalid local time"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-patch-new-york-skipped-time",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "invalid_local_time"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_local_time",
+          "message": "invalid local time"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-batch-new-york-skipped-time",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "invalid_local_time"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_local_time",
+          "message": "invalid local time"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-leap",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "2024-02-29",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "2024-02-29T18:10",
+            "starts_at": "2024-02-29T18:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T18:40",
+            "starts_at": "2024-02-29T18:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T19:10",
+            "starts_at": "2024-02-29T19:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T19:40",
+            "starts_at": "2024-02-29T19:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T20:10",
+            "starts_at": "2024-02-29T20:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T20:40",
+            "starts_at": "2024-02-29T20:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T21:10",
+            "starts_at": "2024-02-29T21:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "2024-02-29T21:40",
+            "starts_at": "2024-02-29T21:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-leap",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-calendar-leap",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_1092c0a7ce4142fdb36a1cb6a2ab1a79",
+        "reference": "7D90F90C48",
+        "restaurant_id": "r",
+        "table_id": "t1",
+        "party_size": 2,
+        "starts_at_local": "2024-02-29T18:10",
+        "starts_at": "2024-02-29T18:10:00+00:00",
+        "ends_at": "2024-02-29T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:38:38.920804+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-year-one",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "0001-01-01",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "0001-01-01T18:10",
+            "starts_at": "0001-01-01T18:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T18:40",
+            "starts_at": "0001-01-01T18:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:10",
+            "starts_at": "0001-01-01T19:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:40",
+            "starts_at": "0001-01-01T19:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:10",
+            "starts_at": "0001-01-01T20:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:40",
+            "starts_at": "0001-01-01T20:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:10",
+            "starts_at": "0001-01-01T21:10:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:40",
+            "starts_at": "0001-01-01T21:40:00+00:00",
+            "available_table_ids": [
+              "t0",
+              "t1",
+              "t2"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-year-one",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-calendar-year-one",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_1b207df1ccb041f49ecbce01834b0dc4",
+        "reference": "D75640E9FF",
+        "restaurant_id": "r",
+        "table_id": "t1",
+        "party_size": 2,
+        "starts_at_local": "0001-01-01T18:10",
+        "starts_at": "0001-01-01T18:10:00+00:00",
+        "ends_at": "0001-01-01T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:38:39.005624+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-year-max",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-year-max",
+    "passed": false,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-calendar-year-max",
+    "passed": true,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 201,
+      "body": {
+        "reservation_id": "res_96f111a33f464af68549a37ac30970c9",
+        "reference": "27267B16AA",
+        "restaurant_id": "r",
+        "table_id": "t1",
+        "party_size": 2,
+        "starts_at_local": "9999-12-31T18:10",
+        "starts_at": "9999-12-31T18:10:00+00:00",
+        "ends_at": "9999-12-31T19:40:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:38:39.090295+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-patch-closed-day",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "outside_opening_hours"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "outside_opening_hours",
+          "message": "outside opening hours"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-patch-closed-day",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-batch-closed-day",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "outside_opening_hours"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "outside_opening_hours",
+          "message": "outside opening hours"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-batch-closed-day",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-json-content-type",
+    "passed": true,
+    "expected": "application/json;charset=utf-8",
+    "observed": [
+      "application/json;charset=utf-8"
+    ]
+  },
+  {
+    "requirement_id": "TK1-error-envelope",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-no-5xx",
+    "passed": true,
+    "expected": "no 5xx or transport failures",
+    "observed": [
+      200,
+      201,
+      204,
+      400,
+      409,
+      422
+    ]
+  },
+  {
+    "requirement_id": "TK1-request-timeout",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-reset-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.05312308300000268,
+        204
+      ],
+      [
+        0.0005001669999842306,
+        422
+      ],
+      [
+        0.0003773750000277687,
+        400
+      ],
+      [
+        0.00035116599997309095,
+        400
+      ],
+      [
+        0.00033195800000385134,
+        400
+      ],
+      [
+        0.00027762499996697443,
+        400
+      ],
+      [
+        0.0003158330000019305,
+        400
+      ],
+      [
+        0.000372708000043076,
+        422
+      ],
+      [
+        0.00028595800000630334,
+        400
+      ],
+      [
+        0.0003074580000088645,
+        400
+      ],
+      [
+        0.0002712500000257023,
+        400
+      ],
+      [
+        0.000303209000037441,
+        400
+      ],
+      [
+        0.0003118339999446107,
+        400
+      ],
+      [
+        0.0002709579999873313,
+        422
+      ],
+      [
+        0.0002944159999742624,
+        400
+      ],
+      [
+        0.00029229199998326294,
+        400
+      ],
+      [
+        0.0002635410000380034,
+        400
+      ],
+      [
+        0.0002907920000438935,
+        400
+      ],
+      [
+        0.00030399999997143823,
+        400
+      ],
+      [
+        0.0002685419999579608,
+        422
+      ],
+      [
+        0.00028683300001830503,
+        400
+      ],
+      [
+        0.00028033300003471595,
+        400
+      ],
+      [
+        0.0002590000000282089,
+        400
+      ],
+      [
+        0.0002743329999930211,
+        400
+      ],
+      [
+        0.00028391699999019693,
+        400
+      ],
+      [
+        0.00026479200005269377,
+        422
+      ],
+      [
+        0.00025554199999078264,
+        400
+      ],
+      [
+        0.0002671670000040649,
+        400
+      ],
+      [
+        0.00024608300003592376,
+        400
+      ],
+      [
+        0.00027091599997675075,
+        400
+      ],
+      [
+        0.0002654169999800615,
+        400
+      ],
+      [
+        0.00028708399997867673,
+        422
+      ],
+      [
+        0.00025920799998857547,
+        400
+      ],
+      [
+        0.0002610829999980524,
+        400
+      ],
+      [
+        0.0002924579999898924,
+        400
+      ],
+      [
+        0.00027112499998338535,
+        400
+      ],
+      [
+        0.0002973750000023756,
+        400
+      ],
+      [
+        0.00029320800001642056,
+        422
+      ],
+      [
+        0.00025937499998462954,
+        400
+      ],
+      [
+        0.0002822920000085105,
+        400
+      ],
+      [
+        0.00029433299999936935,
+        400
+      ],
+      [
+        0.00026120899997295055,
+        400
+      ],
+      [
+        0.00026545800000121744,
+        400
+      ],
+      [
+        0.00026725000003580135,
+        422
+      ],
+      [
+        0.00025595800002520264,
+        400
+      ],
+      [
+        0.00025037500000735236,
+        400
+      ],
+      [
+        0.00026529199999458797,
+        400
+      ],
+      [
+        0.00025937499998462954,
+        400
+      ],
+      [
+        0.00025879199995415547,
+        400
+      ],
+      [
+        0.00025416699998004333,
+        422
+      ],
+      [
+        0.0002888340000026801,
+        400
+      ],
+      [
+        0.00025016600000071776,
+        400
+      ],
+      [
+        0.00026412500000105865,
+        400
+      ],
+      [
+        0.00027133300000059535,
+        400
+      ],
+      [
+        0.00026229100001273764,
+        400
+      ],
+      [
+        0.000248416999966139,
+        422
+      ],
+      [
+        0.00027899999997771374,
+        400
+      ],
+      [
+        0.00026258299999426526,
+        400
+      ],
+      [
+        0.00024837500001240187,
+        400
+      ],
+      [
+        0.00025483400003167844,
+        400
+      ],
+      [
+        0.0002852090000260432,
+        400
+      ],
+      [
+        0.00025508300001320094,
+        422
+      ],
+      [
+        0.0002790839999988748,
+        400
+      ],
+      [
+        0.0002792920000160848,
+        400
+      ],
+      [
+        0.00025108299996645655,
+        400
+      ],
+      [
+        0.00025908400004936993,
+        400
+      ],
+      [
+        0.00026024999999663123,
+        400
+      ],
+      [
+        0.0002419169999825499,
+        422
+      ],
+      [
+        0.000267416999975012,
+        400
+      ],
+      [
+        0.0002609169999914229,
+        400
+      ],
+      [
+        0.0002516250000326181,
+        400
+      ],
+      [
+        0.0002489169999648766,
+        400
+      ],
+      [
+        0.00025825000000168075,
+        400
+      ],
+      [
+        0.00026454200002490325,
+        422
+      ],
+      [
+        0.00025941600000578546,
+        400
+      ],
+      [
+        0.0003107499999828178,
+        400
+      ],
+      [
+        0.0002612919999478436,
+        400
+      ],
+      [
+        0.00026274999999031934,
+        400
+      ],
+      [
+        0.00031354199995803356,
+        400
+      ],
+      [
+        0.0002521249999745123,
+        422
+      ],
+      [
+        0.00025941600000578546,
+        400
+      ],
+      [
+        0.0002814169999965088,
+        400
+      ],
+      [
+        0.0004046669999979713,
+        400
+      ],
+      [
+        0.0003602500000283726,
+        400
+      ],
+      [
+        0.00028462500000614455,
+        400
+      ],
+      [
+        0.00026270900002600683,
+        422
+      ],
+      [
+        0.00027612499997076156,
+        400
+      ],
+      [
+        0.0002692499999739084,
+        400
+      ],
+      [
+        0.000292666999996527,
+        400
+      ],
+      [
+        0.00028329200000598576,
+        400
+      ],
+      [
+        0.0002689589999818054,
+        400
+      ],
+      [
+        0.00026329099995336946,
+        422
+      ],
+      [
+        0.00026775000003453897,
+        400
+      ],
+      [
+        0.0003063330000259157,
+        400
+      ],
+      [
+        0.00026687499996569386,
+        400
+      ],
+      [
+        0.0002547500000105174,
+        400
+      ],
+      [
+        0.00028987499996446786,
+        400
+      ],
+      [
+        0.042286666999984845,
+        422
+      ],
+      [
+        0.04146266700001888,
+        400
+      ],
+      [
+        0.041297499999984666,
+        400
+      ],
+      [
+        0.04139320800004498,
+        400
+      ],
+      [
+        0.041255374999991545,
+        400
+      ],
+      [
+        0.04286079100000961,
+        400
+      ],
+      [
+        0.04146262499995146,
+        422
+      ],
+      [
+        0.041306041999973786,
+        400
+      ],
+      [
+        0.041148500000019794,
+        400
+      ],
+      [
+        0.04123220799999672,
+        400
+      ],
+      [
+        0.04114700000002358,
+        400
+      ],
+      [
+        0.041114749999962896,
+        400
+      ],
+      [
+        0.041033249999998134,
+        422
+      ],
+      [
+        0.04116045899996834,
+        400
+      ],
+      [
+        0.04105058300001474,
+        400
+      ],
+      [
+        0.041012999999963995,
+        400
+      ],
+      [
+        0.04118475000001354,
+        400
+      ],
+      [
+        0.041255332999980965,
+        400
+      ],
+      [
+        0.04114312499996231,
+        422
+      ],
+      [
+        0.041129458999989765,
+        400
+      ],
+      [
+        0.0410907909999878,
+        400
+      ],
+      [
+        0.04105858400004081,
+        400
+      ],
+      [
+        0.0412191249999978,
+        400
+      ],
+      [
+        0.04108312500000011,
+        400
+      ],
+      [
+        0.04111199999999826,
+        422
+      ],
+      [
+        0.041038082999989456,
+        400
+      ],
+      [
+        0.041051999999979216,
+        400
+      ],
+      [
+        0.04109908299994913,
+        400
+      ],
+      [
+        0.04115083399995001,
+        400
+      ],
+      [
+        0.0411904999999706,
+        400
+      ],
+      [
+        0.04103295900000603,
+        422
+      ],
+      [
+        0.04106579099999408,
+        400
+      ],
+      [
+        0.041227124999977605,
+        400
+      ],
+      [
+        0.041061500000012074,
+        400
+      ],
+      [
+        0.04110458299999209,
+        400
+      ],
+      [
+        0.0410345000000234,
+        400
+      ],
+      [
+        0.041162374999998974,
+        422
+      ],
+      [
+        0.04094533299996783,
+        422
+      ],
+      [
+        0.04102979200001755,
+        422
+      ],
+      [
+        0.04171333300001834,
+        422
+      ],
+      [
+        0.041196416999980556,
+        422
+      ],
+      [
+        0.044955416999982845,
+        422
+      ],
+      [
+        0.0005226249999736865,
+        400
+      ],
+      [
+        0.00036375000001953595,
+        400
+      ],
+      [
+        0.042926666999960617,
+        204
+      ],
+      [
+        0.041684416000009605,
+        204
+      ],
+      [
+        0.04235170800001242,
+        204
+      ],
+      [
+        0.041863458000023,
+        204
+      ],
+      [
+        0.044219666999993024,
+        204
+      ],
+      [
+        0.04570258399996874,
+        204
+      ],
+      [
+        0.045630625000001146,
+        204
+      ],
+      [
+        0.042636374999972304,
+        204
+      ],
+      [
+        0.04164616700001034,
+        204
+      ],
+      [
+        0.04172233399998504,
+        204
+      ],
+      [
+        0.04192666599999484,
+        204
+      ]
+    ]
+  },
+  {
+    "requirement_id": "TK1-import-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.0004554170000119484,
+        204
+      ]
+    ]
+  },
+  {
+    "requirement_id": "TK1-export-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.0003280839999888485,
+        200
+      ],
+      [
+        0.00032204199999341654,
+        200
+      ],
+      [
+        0.0003074589999982891,
+        200
+      ],
+      [
+        0.00028579199999967386,
+        200
+      ]
+    ]
+  }
+]

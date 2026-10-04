@@ -378,6 +378,45 @@ add("Stage 1 preamble / participant guide", 5, "provenance", {
     "own-stage": "Stage 1 implements its own stage; official overshoot does not establish Stage 2.",
 }, "commit history, room handoff and official isolated harness")
 
+# A second source pass makes inherited generic validation/ignore rules explicit
+# on fixture and mutation paths as well as ordinary create requests.
+FIXTURE_STRING_FIELDS = {
+    "user": ["id", "email", "password", "display_name"],
+    "restaurant": ["id", "name", "timezone"],
+    "hours": ["weekday", "opens", "closes"],
+    "table": ["id", "label"],
+    "reservation": ["restaurant_id", "table_id", "starts_at_local", "id", "reference", "user_id"],
+}
+FIXTURE_NUMBER_FIELDS = {"restaurant": ["slot_minutes", "reservation_duration_minutes", "cancellation_cutoff_minutes"], "table": ["capacity"], "reservation": ["party_size"]}
+for shape, fields in {k: v + FIXTURE_NUMBER_FIELDS.get(k, []) for k, v in FIXTURE_STRING_FIELDS.items()}.items():
+    for field in fields:
+        add("4. Fixture format / 5. Errors", 109, "extra", {f"reset-missing-{shape}-{field}": f"Required fixture {shape}.{field} missing returns 422 validation_failed."})
+        for variant in (["string", "bool", "array", "object", "null"] if field in FIXTURE_NUMBER_FIELDS.get(shape, []) else ["number", "bool", "array", "object", "null"]):
+            status = 422 if shape == "reservation" and field == "party_size" else 400
+            add("4. Fixture format / 5. Errors", 169, "extra", {f"reset-type-{shape}-{field}-{variant}": f"Fixture {shape}.{field} of wrong type {variant} returns {status} {'validation_failed' if status == 422 else 'malformed_request'}."})
+for field in ["opening_hours", "tables"]:
+    add("4. Fixture format / 5. Errors", 109, "extra", {"reset-missing-restaurant-" + field: f"Required fixture restaurant.{field} missing returns 422 validation_failed."})
+for endpoint in ["reset", "signup", "login", "create", "patch", "cancel", "batch", "import"]:
+    add("3.4 Conventions", 88, "extra", {"unknown-field-" + endpoint: f"{endpoint} ignores unknown request body fields."})
+for endpoint in ["create", "patch", "batch"]:
+    for field in ["party_size", "starts_at_local"]:
+        for variant in ["array", "object", "null"] + (["bool"] if field == "starts_at_local" else []):
+            status = 422 if field == "party_size" else 400
+            add("5. Errors / 8. POST/PATCH /reservations / 11. Atomic reservation moves", 172, "extra", {f"extra-type-{endpoint}-{field}-{variant}": f"{endpoint}: {variant} {field} returns {status} {'validation_failed' if status == 422 else 'malformed_request'}."})
+    for field in ["restaurant_id", "table_id"] if endpoint == "create" else ["table_id"]:
+        add("3.4 Conventions / 5. Errors", 89, "extra", {f"id-over-{endpoint}-{field}": f"{endpoint} {field} longer than 64 characters returns 422 validation_failed."})
+for endpoint in ["create", "batch"]:
+    add("7. Idempotency", 255, "extra", {f"{endpoint}-failed-occupancy-key": f"{endpoint}: an occupancy-failed key can be reused with its original body after the conflicting occupancy is freed."})
+for endpoint in ["patch", "batch"]:
+    for label in ["berlin", "new-york"]:
+        add("8. PATCH /reservations / 9. Time and DST / 11. Atomic reservation moves", 385, "extra", {f"{endpoint}-{label}-skipped-time": f"{endpoint} rejects a nonexistent local time with 422 invalid_local_time."})
+for date_kind, description in [("leap", "2024-02-29"), ("year-one", "0001-01-01"), ("year-max", "9999-12-31")]:
+    add("4. Fixture format / 5. Errors", 143, "extra", {"calendar-" + date_kind: f"Legal calendar date {description} is accepted without past-date rejection or year-format truncation."})
+add("8. PATCH /reservations / 11. Atomic reservation moves", 385, "extra", {
+    "patch-closed-day": "Amendment to a closed day returns 422 outside_opening_hours with no mutation.",
+    "batch-closed-day": "Batch amendment to a closed day returns 422 outside_opening_hours with no mutation.",
+})
+
 
 def write_matrix(path):
     assert len({r["requirement_id"] for r in ROWS}) == len(ROWS)

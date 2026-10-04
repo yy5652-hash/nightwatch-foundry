@@ -1,0 +1,114 @@
+[
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-opening_hours",
+    "passed": false,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-tables",
+    "passed": false,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 400,
+      "body": {
+        "error": {
+          "code": "malformed_request",
+          "message": "malformed request"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-status",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-year-max",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-json-content-type",
+    "passed": true,
+    "expected": "application/json;charset=utf-8",
+    "observed": [
+      "application/json;charset=utf-8"
+    ]
+  },
+  {
+    "requirement_id": "TK1-error-envelope",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-no-5xx",
+    "passed": true,
+    "expected": "no 5xx or transport failures",
+    "observed": [
+      204,
+      400,
+      422
+    ]
+  },
+  {
+    "requirement_id": "TK1-request-timeout",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-reset-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.010014834000003248,
+        400
+      ],
+      [
+        0.0003897920000213162,
+        400
+      ],
+      [
+        0.00034512499996708357,
+        204
+      ]
+    ]
+  }
+]

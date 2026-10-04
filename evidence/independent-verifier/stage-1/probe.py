@@ -803,6 +803,8 @@ def main():
                  validation=probe.validation, booking=probe.booking, cancel=probe.cancel, patch=probe.patch,
                  idempotency=probe.idempotency, dst=probe.dst, batch=probe.batch, invariants=probe.invariants,
                  export=probe.export, conventions=probe.conventions)
+    from supplemental import run as run_supplemental
+    cases["extra"] = lambda: run_supplemental(probe)
     selected = list(cases) if args.case == "all" else args.case.split(",")
     for case in selected:
         try:

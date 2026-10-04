@@ -1,0 +1,59 @@
+[
+    {
+        "Name": "independent-verifier-s1-439b04e62325-20261004t003624-net",
+        "Id": "8393ded0882157d7bcb1839f2d3db2b40fe2aeafd6eabcd6beab2e00dc6f4943",
+        "Created": "2026-10-04T00:36:26.56135534Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "34ac800a77f3b7b8cf36301cf2e57ec3d7e2887baa9571b29bd819fa76ce958e": {
+                "Name": "independent-verifier-s1-439b04e62325-20261004t003624-peer",
+                "EndpointID": "ea4363beec116db6b93ee6aee6586a92152a21fb509d441f92941f017036dbdc",
+                "MacAddress": "ca:4c:88:da:1b:50",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "d79b279d254af4e6f5edb37e7a1ac2e3d65086f8a5c0d46031ae6151cc485aec": {
+                "Name": "independent-verifier-s1-439b04e62325-20261004t003624-source",
+                "EndpointID": "f244e176710d0465577b19ef233f6fd68a48462c2a5103554e5c6463d00d5bfb",
+                "MacAddress": "ba:db:b1:22:f3:3c",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

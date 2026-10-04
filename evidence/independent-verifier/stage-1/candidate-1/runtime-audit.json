@@ -1,0 +1,50 @@
+{
+  "candidate": "439b04e62325e7ddd82ea36bc6c9a07b8aaf94cd",
+  "checks": {
+    "dockerfile": true,
+    "run-document": true,
+    "single-image": true,
+    "offline": true,
+    "cpu": true,
+    "memory": true,
+    "startup": true,
+    "packaged-assets": true,
+    "listen-all": true,
+    "port-override": true,
+    "port-default": true,
+    "complete-clone": true,
+    "two-builders": true,
+    "history-preserved": true,
+    "own-stage": true
+  },
+  "inspected_resources": [
+    {
+      "name": "/independent-verifier-s1-439b04e62325-20261004t003624-source",
+      "cpus": 2000000000,
+      "memory": 2147483648
+    },
+    {
+      "name": "/independent-verifier-s1-439b04e62325-20261004t003624-peer",
+      "cpus": 2000000000,
+      "memory": 2147483648
+    }
+  ],
+  "network_internal": true,
+  "readiness": [
+    {
+      "healthy": true,
+      "readiness_seconds": 0.4053628330002539,
+      "host_port": 18300,
+      "internal_port": 18309,
+      "port_override": true
+    },
+    {
+      "healthy": true,
+      "readiness_seconds": 0.4597069999999803,
+      "host_port": 18301,
+      "internal_port": 8080,
+      "port_override": false
+    }
+  ],
+  "note": "Network-separated clients exercised both listener ports. RUN.md used with verifier names/host ports; builds used cache. Product failures are preserved, not converted to passes. Source provenance is still unverified pending complete room audit."
+}

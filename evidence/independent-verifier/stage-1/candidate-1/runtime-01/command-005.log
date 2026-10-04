@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 542B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#2 DONE 0.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 74B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3 0.0s done
+#5 DONE 0.0s
+
+#6 [5/5] RUN python -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('.').glob('*.py')]"
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 37.55kB done
+#7 DONE 0.0s
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:26f834bbd0dc37fafe1f3fa9619158dace896f3ef9e2acc6200f5da38fb25f76 done
+#8 exporting config sha256:076d79196e03a186e2f3fd72c4c3d4373db9fd1c5a82205ad8e18d05e7c8a749 done
+#8 exporting attestation manifest sha256:51db44dff242ca199b37b0ca0c189f2c6f9ed082210dc4815e659c56305ec923 done
+#8 exporting manifest list sha256:934fbf00afb5b3d3f9edc88ee659212adb1f44fa16be01502883e15709e5d503 done
+#8 naming to docker.io/library/independent-verifier-s1-439b04e62325-20261004t003241:candidate done
+#8 unpacking to docker.io/library/independent-verifier-s1-439b04e62325-20261004t003241:candidate done
+#8 DONE 0.0s

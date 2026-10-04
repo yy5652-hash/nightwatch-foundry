@@ -1,0 +1,30 @@
+{
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "independent-verifier-s1-439b04e62325-20261004t003748-probes",
+    "--network",
+    "independent-verifier-s1-439b04e62325-20261004t003748-net",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "-v",
+    "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/independent-verifier-s1-439b04e-runtime-03:/evidence",
+    "independent-verifier-s1-439b04e62325-20261004t003748:probe-runner",
+    "--base",
+    "http://independent-verifier-s1-439b04e62325-20261004t003748-source:18309",
+    "--peer",
+    "http://independent-verifier-s1-439b04e62325-20261004t003748-peer:8080",
+    "--candidate",
+    "439b04e62325e7ddd82ea36bc6c9a07b8aaf94cd",
+    "--out",
+    "/evidence/probes-extra",
+    "--case",
+    "extra"
+  ],
+  "returncode": 1,
+  "duration_seconds": 3.28055375
+}
