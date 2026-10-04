@@ -51,3 +51,19 @@ handoff. No peer probe/oracle implementation was read or executed; only own code
 the complete assignment, accepted copy proof and own historical source were used.
 The four adopted timestamp, original receipt, semantic numeric-control and exact
 numeric/legacy-profile decisions remain applicable. Stage 2 remains unaccepted.
+
+## Preserved first runner failure and correction
+
+The first complete-image run at f783598428a88d53490f68498063ed69e02201b3
+with own protocol a040054f2a8d00c560bea7f02324d1443c5a3f14 returned raw
+FAIL: 0/43 scenarios, 0 assertions, 43 ENOTFOUND errors before any initial
+HTTP response. All five services had passed health, constrained resource and
+packaged-source checks. Driver container names exceeded the 63-byte DNS-label
+limit; this is an owning-runner defect, not an observed service failure. The
+original result/logs/executed source and blank failure captures remain unchanged
+in interface-engineer-s2-reconstructed-20261004t054140435353z. Total driver
+time 85.839779500 seconds; seven own cleanup commands all exit zero.
+The only correction shortens seat-prefixed driver resource names, adds explicit
+DNS-label assertions and inspects actual client constraints. Production and
+protocol sources stay unchanged. A new unique execution is required; this
+failed run establishes no browser behavior or acceptance.

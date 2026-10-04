@@ -26,7 +26,8 @@ def main():
     out=ROOT/'evidence/interface-engineer'/('interface-engineer-s2-reconstructed-'+stamp)
     out.mkdir()
     clone=ROOT.parent/('interface-engineer-s2-reconstructed-'+stamp)
-    commands=[]; started=[]; network='interface-engineer-s2-reconstructed-'+stamp
+    # Each container name is one DNS label; keep every service label <=63 bytes.
+    commands=[]; started=[]; network='interface-engineer-s2r-'+stamp
     created_network=False; contexts=[]; beginning=time.perf_counter()
     report={'candidate':args.revision,'probe_revision':args.probe_revision,'accepted_stage1':ACCEPTED,'historic_stage1':HISTORIC,'old_stage2':OLD_S2,'clone':str(clone),'out':str(out),'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'harness':'Codex','configured_model':'gpt-6.1-sol','actual_model_override_effort_usage_cost':'unknown','commands':commands,'startup':{},'resources':{}}
     def run(argv,label,check=True,input_bytes=None,binary=False):
@@ -80,6 +81,7 @@ def main():
         names_by_label={}
         for label,img,port,hostport in services:
             name=network+'-'+label;names_by_label[label]=name;launched=time.perf_counter();launch_utc=datetime.datetime.now(datetime.timezone.utc).isoformat()
+            assert len(name.encode('ascii'))<=63
             argv=['docker','run','-d','--name',name,'--network',network,'--cpus','2','--memory','2g','-p',str(hostport)+':'+str(port)]
             if port!=8080:argv+=['-e','PORT='+str(port)]
             argv+=[img];run(argv,'start-'+label);started.append(name)
@@ -95,12 +97,17 @@ def main():
             expected=source_by_label['current' if label=='destination' else label]
             for path,digest in expected.items():assert actual[path]==digest,(label,path)
         runner=network+'-probe';started.append(runner)
+        assert len(runner.encode('ascii'))<=63
         argv=['docker','run','-i','--name',runner,'--network',network,'--cpus','2','--memory','2g']
         env={'S2_BASE':'http://'+names_by_label['current']+':9090','S2_DEST_BASE':'http://'+names_by_label['destination']+':8080','S1_BASE':'http://'+names_by_label['accepted']+':8080','S1_REVISION':ACCEPTED,'S1_HIST_BASE':'http://'+names_by_label['historic']+':8080','S1_HIST_REVISION':HISTORIC,'S2_OLD_BASE':'http://'+names_by_label['old-stage2']+':8080','S2_OLD_REVISION':OLD_S2,'CANDIDATE':args.revision,'PROBE_OUT':'/tmp/interface-engineer-out'}
         for key,value in env.items():argv+=['-e',key+'='+value]
         launcher="import sys;exec(compile(sys.stdin.buffer.read(),'sealed-interface-probe.py','exec'))"
         argv+=['df-harness-runner:latest','python','-B','-c',launcher]
         run(argv,'browser',False,input_bytes=source)
+        probe_resource=json.loads(run(['docker','inspect',runner],'inspect-probe'))[0]
+        assert probe_resource['HostConfig']['NanoCpus']==2000000000 and probe_resource['HostConfig']['Memory']==2147483648 and not probe_resource['Mounts']
+        assert list(probe_resource['NetworkSettings']['Networks'])==[network]
+        report['resources']['probe']={'cpus':2,'memory_bytes':2147483648,'mounts':[],'internal_network':network}
         run(['docker','cp',runner+':/tmp/interface-engineer-out/.',str(out)],'copy-browser-evidence')
         result=json.loads((out/'browser-report.json').read_text())
         report['browser_summary']={k:result[k] for k in ['passed','total','assertions','seconds','browser_version']}
