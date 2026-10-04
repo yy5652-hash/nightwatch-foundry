@@ -16,7 +16,7 @@ class DiagnosticClock(datetime):
     def now(cls,tz=None):
         return clock.astimezone(tz) if tz else clock.replace(tzinfo=None)
 core.datetime=DiagnosticClock
-e=core.Engine();assertions=0;calls=0;observations=[]
+e=core.Engine();assertions=0;calls=0;peer_calls=0;observations=[]
 def check(condition,label):
     global assertions
     assertions+=1;observations.append({'label':label,'passed':bool(condition)})
@@ -59,12 +59,12 @@ try:
     check(all(o['reservation']['accepted_terms']==series['occurrences'][i]['reservation']['accepted_terms'] for i,o in enumerate(current['occurrences'])),'repair preserves terms')
     check(request('GET','/_test/export')['state']['restaurant_revisions']['r']==3,'repair increments restaurant once')
     check(request('POST','/reservations',body,{**auth,'Idempotency-Key':'anchor'})==original,'old create receipt survives repair')
-    captured=request('GET','/_test/export');peer=core.Engine();check(peer.request('POST','/_test/import',{},captured)[0]==204,'populated diagnostic replacement accepted')
+    captured=request('GET','/_test/export');peer=core.Engine();peer_calls+=1;check(peer.request('POST','/_test/import',{},captured)[0]==204,'populated diagnostic replacement accepted')
     result='passed'
 except Exception as error:
     result='failed';observations.append({'error_type':type(error).__name__,'message':str(error)})
 finally:
-    summary={'result':result,'calls':calls,'assertions':assertions,'seconds':time.monotonic()-began,
+    summary={'result':result,'calls':calls,'peer_import_calls':peer_calls,'total_engine_calls':calls+peer_calls,'assertions':assertions,'seconds':time.monotonic()-began,
         'scope':'packaged actual Engine with diagnostic-only substituted clock; not HTTP',
         'sha256':{p:hashlib.sha256(Path('/app',p).read_bytes()).hexdigest() for p in ('core.py','json_codec.py')}}
     (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
