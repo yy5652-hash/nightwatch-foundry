@@ -32,6 +32,13 @@ table or an approved pair, book, and look up or cancel their own reservations.
 All assets are packaged locally. Typography uses the browser's system fonts.
 The service begins with an empty catalogue; supply fixtures through reset.
 
+Guest fields are exact-decimal numeric controls with visible labels, numeric
+keyboard input and spinbutton arrow-key stepping. They retain positive integer
+digit strings beyond native browser floating-point limits. Search queries and
+booking JSON numbers use exact plain decimal digits; no party-size maximum is
+introduced. Large integer API values remain exact for display and combined seat
+counts use integer arithmetic. Restaurant capacity rules remain server-authoritative.
+
 Stage 2 retains the JSON API. Browse `/restaurants`, restaurant details and
 `/availability` without authentication. Sign up or log in through `/auth/signup`
 or `/auth/login`, then send `Authorization: Bearer <token>` for diner routes.

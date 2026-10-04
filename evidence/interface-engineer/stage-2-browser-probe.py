@@ -443,12 +443,19 @@ async def large_party_exactness(context,page,party):
     pair_label=await tid(page,'slot-t_garden+t_window-18:00').inner_text()
     await open_booking(page)
     prefill=await tid(page,'booking-party-size').input_value()
+    numeric_role=await tid(page,'booking-party-size').get_attribute('role')
+    numeric_mode=await tid(page,'booking-party-size').get_attribute('inputmode')
+    accessible_value=await tid(page,'booking-party-size').get_attribute('aria-valuenow')
+    await tid(page,'booking-party-size').press('ArrowUp')
+    incremented=await tid(page,'booking-party-size').input_value()
+    await tid(page,'booking-party-size').press('ArrowDown')
+    decremented=await tid(page,'booking-party-size').input_value()
     await tid(page,'booking-submit').click();reference=await confirmed(page)
     await tid(page,'booking-submit').click();check(await confirmed(page)==reference,'large unchanged retry reference')
     await page.get_by_role('link',name='View or cancel reservation').click()
     await tid(page,'lookup-submit').click();await expect(tid(page,'reservation-detail')).to_be_visible()
     guests=await tid(page,'reservation-detail').locator('dl div').filter(has=page.locator('dt',has_text='Guests')).locator('dd').inner_text()
-    observations={'party':str(party),'query':searches,'prefill':prefill,'writes':writes,'grid_single':single_label,'grid_pair':pair_label,'lookup_guests':guests}
+    observations={'party':str(party),'query':searches,'prefill':prefill,'writes':writes,'grid_single':single_label,'grid_pair':pair_label,'lookup_guests':guests,'numeric_role':numeric_role,'numeric_mode':numeric_mode,'accessible_value':accessible_value,'incremented':incremented,'decremented':decremented}
     checks={
         'plain_exact_query':searches==[str(party)],
         'exact_prefill':prefill==str(party),
@@ -458,7 +465,9 @@ async def large_party_exactness(context,page,party):
         'exact_pair_sum':str(party+4)+' seats' in pair_label,
         'exact_lookup_guests':guests==str(party),
         'quoted_numeric_label_unchanged':fixture['restaurants'][0]['tables'][0]['label'] in single_label,
-        'numeric_control_semantics':await tid(page,'lookup-reference-input').count()==1,
+        'numeric_control_semantics':numeric_role=='spinbutton' and numeric_mode=='numeric',
+        'exact_accessible_value':accessible_value==str(party),
+        'exact_keyboard_steps':incremented==str(party+1) and decremented==str(party),
     }
     observations['checks']=checks;REPORT['trace'].append({'scenario':'large-party-exactness','observations':observations})
     await screenshots(page,'large-party-'+str(len(str(party)))+'-'+str(party)[:20])
