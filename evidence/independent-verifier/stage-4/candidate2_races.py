@@ -35,7 +35,7 @@ def run(c,release):
             c.response('race-writer-serial',result[1],(200 if kind in ['patch','cancel'] else 201) if written else 409,None if written else 'stale_revision')
             c.check('race-serial-winners',written and (not applied or kind!='series') or applied and not written and kind=='series')
             snapshots=[*result[2:],c.call('GET','/_test/export',decode=False)]
-            original_by={r['reference']:r for r in original['reservations']};series_refs={o['reference'] for o in s['occurrences'] if not o['exception']}
+            original_by={r['reference']:r for r in original['reservations']};series_refs={o['reference'] for o in original['series'][s['series_id']]['occurrences'] if not o['exception']}
             for i,response in enumerate(snapshots):
                 c.response('race-export',response,200);state=parse(response[2])['state'];current={r['reference']:r for r in state['reservations']}
                 has_apply=state['plans'][plan['plan_id']]['applied'];has_writer=(len(current)>len(original_by) if kind=='create' else current[a['reference']]['party_size']!=original_by[a['reference']]['party_size'] if kind=='patch' else current[a['reference']]['status']=='cancelled' if kind=='cancel' else bool(state['policies']['r']) if kind=='policy' else current[a['reference']]['table_ids']==['f'] if kind=='moves' else any(current[r]['starts_at_local'][-5:]=='20:00' for r in series_refs))
