@@ -1,0 +1,21 @@
+{
+  "recorded_utc": "2026-10-04T08:15:34.940744+00:00",
+  "kind": "own Phase A checker manifest-selection error, before copy or commit",
+  "actual_command": [
+    "../../.venv/bin/python",
+    "-B",
+    "evidence/systems-engineer/stage-4-base-copy.py"
+  ],
+  "observed_exit_code": 1,
+  "observed_error": "AssertionError at frozen(), line 49: manifest[candidate_full_revision] == revision",
+  "wrong_manifest": "evidence/coordinator/accepted/stage-1.json",
+  "observed_historical_candidate": "2a4b0408a3453bc87d86bca3d0ec571f479e03ca",
+  "required_candidate": "75005d57fe0904753eac4eab5bf4e4c9a78b6d1b",
+  "correct_current_manifest": "evidence/coordinator/accepted/stage-1-75005d57fe0904753eac4eab5bf4e4c9a78b6d1b.json",
+  "executed_source_snapshot": "evidence/systems-engineer/stage-4-base-copy-attempt-01.py",
+  "executed_source_sha256": "a6e3abaee8a9292a562890524e25cf401d8cbff2e38b7865eadf6c0623644e2f",
+  "own_target_absence_observed_after_error": true,
+  "production_or_service_failure": false,
+  "duration_seconds": "unknown",
+  "correction": "Select named current Stage 1 freeze manifest; retain historical manifest unchanged; rerun Phase A copy check"
+}
