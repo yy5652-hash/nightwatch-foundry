@@ -161,3 +161,14 @@ h3{font-size:1.5rem;margin-bottom:12px}
 .series-card p{font-size:.9rem;overflow-wrap:anywhere}
 .occurrence-list p{margin-bottom:8px}
 @media(max-width:720px){.series-fields{grid-template-columns:minmax(0,1fr)}.history-heading{align-items:flex-start}}
+.manager-layout{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;align-items:start}
+.manager-layout label:not(:first-child){margin-top:20px}
+.manager-layout .button,.series-amend .button{margin-top:16px}
+.assignment-list,.amendment-results{list-style:none;padding:0;margin:18px 0}
+.assignment-list>li,.amendment-results>li{padding:14px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.assignment-list p{margin:8px 0}
+.series-amend,.current-confirmation{margin-top:22px;border-top:1px solid var(--line);padding-top:20px;overflow-wrap:anywhere}
+.series-amend h4{font:500 1.5rem Georgia,serif;margin:0 0 14px}
+.current-confirmation h3{font-size:1.25rem}
+.current-confirmation p{font-size:.88rem}
+@media(max-width:720px){.manager-layout{grid-template-columns:minmax(0,1fr)}.site-header nav{column-gap:14px;row-gap:12px;flex-wrap:wrap}}

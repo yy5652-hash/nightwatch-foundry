@@ -1,0 +1,36 @@
+{
+  "scope": "AST and packaged Node syntax only; no service/browser behavior claim",
+  "python_ast_files": [
+    "stage-4/server.py",
+    "evidence/interface-engineer/stage-4-base-copy.py",
+    "evidence/interface-engineer/stage-4-browser-probe.py",
+    "evidence/interface-engineer/stage-4-container-check.py",
+    "evidence/interface-engineer/stage-4-evidence-audit.py"
+  ],
+  "python_ast_passed": 5,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "-i",
+    "--name",
+    "interface-engineer-s4-syntax-20261004t083117213518z",
+    "--network",
+    "none",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "df-harness-runner:latest",
+    "python",
+    "-B",
+    "-c",
+    "import pathlib,playwright,subprocess,sys;node=pathlib.Path(playwright.__file__).parent/'driver'/'node';raise SystemExit(subprocess.run([str(node),'--check'],input=sys.stdin.buffer.read()).returncode)"
+  ],
+  "exit": 0,
+  "seconds": 0.2371961660028319,
+  "stdin_sha256": "a7f77536586b00aac03115da9eb1c10560b12d3c852633416690822f43085958",
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_model_effort_usage_spend": "unknown"
+}

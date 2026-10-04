@@ -509,13 +509,12 @@
   async function refreshBookingCurrent(booking) {
     const reference=booking.confirmation?.reference,epoch=state.authEpoch;
     if(!reference||state.booking!==booking||!state.user)return;
-    const seq=booking.currentSeq=(booking.currentSeq||0)+1;
     try {
       const current=await loadCurrentDetails(reference);
-      if(epoch!==state.authEpoch||state.booking!==booking||booking.confirmation?.reference!==reference||seq!==booking.currentSeq)return;
+      if(epoch!==state.authEpoch||state.booking!==booking||booking.confirmation?.reference!==reference)return;
       booking.current=current;booking.currentError='';renderConfirmation();
     } catch(_) {
-      if(epoch!==state.authEpoch||state.booking!==booking||booking.confirmation?.reference!==reference||seq!==booking.currentSeq)return;
+      if(epoch!==state.authEpoch||state.booking!==booking||booking.confirmation?.reference!==reference)return;
       booking.current=null;booking.currentError='Current details could not be loaded. Your original receipt is retained.';renderConfirmation();
     }
   }

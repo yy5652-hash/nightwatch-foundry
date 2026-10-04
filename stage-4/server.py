@@ -14,7 +14,7 @@ from core import Engine
 from json_codec import dumps, loads
 
 WEB = Path(__file__).parent / "web"
-SCREENS = {"/", "/signup", "/login", "/lookup"}
+SCREENS = {"/", "/signup", "/login", "/lookup", "/manage"}
 ASSETS = {
     "/assets/app.css": ("app.css", "text/css; charset=utf-8"),
     "/assets/app.js": ("app.js", "text/javascript; charset=utf-8"),

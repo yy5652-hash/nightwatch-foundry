@@ -1,0 +1,43 @@
+{
+  "scope": "AST and packaged Node syntax only; no service/browser behavior claim",
+  "python_ast_files": [
+    "stage-4/server.py",
+    "evidence/interface-engineer/stage-4-base-copy.py",
+    "evidence/interface-engineer/stage-4-browser-probe.py",
+    "evidence/interface-engineer/stage-4-container-check.py",
+    "evidence/interface-engineer/stage-4-evidence-audit.py"
+  ],
+  "python_ast_passed": 5,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "-i",
+    "--name",
+    "interface-engineer-s4-syntax-20261004t083244047863z",
+    "--network",
+    "none",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "df-harness-runner:latest",
+    "python",
+    "-B",
+    "-c",
+    "import pathlib,playwright,subprocess,sys;node=pathlib.Path(playwright.__file__).parent/'driver'/'node';raise SystemExit(subprocess.run([str(node),'--check'],input=sys.stdin.buffer.read()).returncode)"
+  ],
+  "exit": 0,
+  "seconds": 0.1513579579986981,
+  "stdin_sha256": "4684ba6f7053c2ad15ba9c7d3b808f11ba324454718b1e05860ccf6bfb7d93a4",
+  "source_sha256": {
+    "stage-4/server.py": "9cbbb424a2b3207e94f9d7f4a5d19b3f4ea3005ca5842bb8c6ddd715e127884e",
+    "evidence/interface-engineer/stage-4-base-copy.py": "1ace90c43b7a79b95cbd3098e3f122d4278ed2439e3a19621f4aaa2160ed7b6a",
+    "evidence/interface-engineer/stage-4-browser-probe.py": "4d019d56eea4fa355004d22d3eaba76c7487eb3c7b0e502ec13e6d3e89bce5db",
+    "evidence/interface-engineer/stage-4-container-check.py": "9385f2ee1c457d056b2720de589e7508b7ee8ccc6e2624dca25b28c082cb1784",
+    "evidence/interface-engineer/stage-4-evidence-audit.py": "58d5beaa88750b95da7843269cf103003be9cceb487a0c9e2a96265fa6de4f64"
+  },
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_model_effort_usage_spend": "unknown"
+}

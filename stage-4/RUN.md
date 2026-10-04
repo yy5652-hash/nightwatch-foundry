@@ -1,12 +1,16 @@
-# Tablekeeper Stage 3
+# Tablekeeper Stage 4
 
 From this folder, build and start the complete HTTP service:
 
+For a fresh review clone, run `git clone <repository-url> interface-engineer-review`,
+then `cd interface-engineer-review/stage-4` before the commands below. No source
+generation or manual dependency setup is needed.
+
 ```sh
-docker build -t interface-engineer-tablekeeper-stage-3 .
-docker run --rm --name interface-engineer-tablekeeper-stage-3 \
+docker build -t interface-engineer-tablekeeper-stage-4 .
+docker run --rm --name interface-engineer-tablekeeper-stage-4 \
   --cpus=2 --memory=2g -e PORT=8080 -p 18200:8080 \
-  interface-engineer-tablekeeper-stage-3
+  interface-engineer-tablekeeper-stage-4
 ```
 
 In another terminal:
@@ -39,7 +43,7 @@ booking JSON numbers use exact plain decimal digits; no party-size maximum is
 introduced. Large integer API values remain exact for display and combined seat
 counts use integer arithmetic. Restaurant capacity rules remain server-authoritative.
 
-Stage 3 retains the JSON API. Browse `/restaurants`, restaurant details and
+Stage 4 retains the JSON API. Browse `/restaurants`, restaurant details and
 `/availability` without authentication. Sign up or log in through `/auth/signup`
 or `/auth/login`, then send `Authorization: Bearer <token>` for diner routes.
 Creating a reservation and moving several reservations require a caller-chosen
@@ -59,7 +63,7 @@ confirmation without creating another booking. There is no background polling.
 complete snapshot between independent processes. These unauthenticated test
 controls are enabled as required. Exported state contains password hashes and
 session tokens; keep exports as private test data rather than demo assets.
-Stage 3 also accepts genuine exports from the team's Stage 1 and Stage 2 services.
+Stage 4 accepts genuine exports from the team's Stage 1, Stage 2 and Stage 3 services.
 Keep the browser page open during an import between requests. Its session token,
 pending form and retry identity remain available without a reload. The browser
 accepts original Stage 1 receipts with `table_id` and without `table_ids`.
@@ -111,11 +115,61 @@ current occurrence list, which is loaded with `GET /series/{series_id}`. Individ
 changes show permanent exceptions; cancellations remain in the list and do not
 cancel siblings. Load an agreement by its actual service-issued reference, or
 open a listed occurrence to retrieve its current booking/history. There is no
-background polling or later-stage bulk-amend/planner control.
+background polling. Stage 4 adds the workflows described below.
 
 Only fixture `manager_user_ids` confer policy-publication permission. The product
 does not invent signup roles, and manager status never grants another diner's
 private lookup, decision, history or series. Signing out clears the private view
 and in-memory agreement references. Prior-version original receipts need not
-contain Stage 3 fields; their exact response/body/key remain untouched. Current
+contain Stage 4 fields; their exact response/body/key remain untouched. Current
 details load separately after migration without replacing the original receipt.
+
+The direct `/manage` route provides restaurant closure tools. Sign in with an
+actual user listed in the selected restaurant fixture's `manager_user_ids`.
+Ordinary users cannot gain this permission through signup. The browser reads the
+real restaurant declaration and the service checks every write. Manager status
+never grants another diner's private lookup, decision, history or agreement.
+
+Choose a declared table, enter closure start/end instants with explicit offsets,
+and select **Preview seating**. The exact input strings, including fractional
+seconds, are sent unchanged. Proposed assignments appear in booking-reference
+order with human seating labels, changed/unchanged states and the service's
+moved-count/unused-seat objective facts. Declared option ranks are displayed from
+the fixture's singles-first/pairs-second order. Preview alone applies no closure
+or seating movement. **Apply this closure and seating** records the server's
+atomic result only after a successful response. A stale/infeasible/refused plan
+remains visibly unapplied; create a fresh preview after an intervening restaurant
+change. A lost or malformed preview/application response displays uncertainty;
+retry the unchanged request to recover its original receipt. Editing a closure
+creates a separate request and warns about an uncertain prior outcome.
+
+Original application and booking receipts stay immutable. After an application,
+public availability and this account's retained reservation/confirmation/agreement
+views load authoritative current state separately. The confirmation shows its
+original receipt alongside a refreshable current reservation. Reassigned history
+shows the actual plan reference and table-set change with unchanged accepted
+terms. A public seating conflict may mean a booking or closure; the browser does
+not invent a more specific reason.
+
+On `/lookup`, load a real service-issued recurring agreement reference. Its
+current occurrence list offers **Amend recurring time** with the current attempt's
+expected revision, a starting occurrence index (first is 0) and restaurant-local
+HH:MM. Eligible visits use their original scheduled dates and current tables;
+cancelled visits and permanent individual exceptions are excluded. Only a
+confirmed complete result shows changed/unchanged/excluded outcomes. The original
+successful amendment result and its retry identity remain separate from a fresh
+GET of current visits. An unchanged uncertain retry retains the full body/key,
+including expected revision. After `stale_revision`, load current visits and use
+their revision for a new amendment. No partial-success state is manufactured on
+cutoff, validation or occupancy refusal. No-op/empty eligible success preserves
+the service's actual revisions. Logout clears private forms, plans and remembered
+agreement references.
+
+API closure planning uses `POST /restaurants/{id}/replans`, followed by manager
+`POST /restaurants/{id}/replans/{plan_id}/apply` with `{}`. Owner recurring changes
+use `POST /series/{series_id}/amend` with `expected_revision`, `from_index` and
+`local_time`. All three paths require idempotency keys. Supported planning bounds
+are six tables, four declared pairs and six considered confirmed bookings; the
+service remains authoritative on `planning_limit`, exact intervals, accepted
+capacities, objective selection and concurrent atomic application. The product
+requires no fabricated role/capability or series-list endpoint.
