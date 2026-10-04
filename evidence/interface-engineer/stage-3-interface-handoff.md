@@ -1,3 +1,89 @@
+# Stage 3 — complete Interface implementation and integration handoff
+
+**Own complete-service integration passes. Stage 3 remains unaccepted; highest consecutive independently accepted stage is 2.** Final tested full candidate and probe revision are `cbf5a43e0881c0be4b51b37f6657efffeb03a7e5`, Stage 3 tree `a0f0a4741bb0ab0125856510a000ade385344a04`. The evidence successor is reported in the room after its exact owned commit inspection; it must retain this identical tested service tree. No Stage 4 work was assigned or implemented.
+
+## Receipt, ownership and committed source
+
+All thirteen parts and both END markers of `TK-20261004-S3-interface-engineer-INITIAL-1` preceded the complete acknowledgment and base work. Interface's seven-file byte/mode/blob-identical predecessor copy is `fda73c1631b68cf7a3c0077fd589dda4c0898b72`; Systems' two-file copy is `0f9e5b9544ab1d9a80d28fef81c14187768d9d81`. Coordinator nine-file proof `9c6f27a8c80201599c3e10eb95d2901fda8e8aec` and explicit release message `8be18d52-55fb-4955-8a34-bfdacea49029` precede extension. Shared card 20 covers this Interface work only.
+
+Accepted Stage 1 remains immutable at `75005d57fe0904753eac4eab5bf4e4c9a78b6d1b`, tree `75f6ece6952c570eedf8a548f4428a5b2c986128`; accepted Stage 2 remains immutable at `4dba10246b07b2dda19de260d529f9d94ba0a1ed`, tree `422380c814043021c2df2daad8edbbb34d5b5887`. All fifteen accepted working files compare unchanged before/after execution and sealing.
+
+Interface substantive implementation `9f0d3150c934a2090c42667cb0ee0bb672c64325` changes four owned production files: `stage-3/web/app.js`, `app.css`, `index.html` and `RUN.md`. The inherited server/Dockerfile/ignore already package all assets and the stable raw-byte codec adapter, so those three files remain unchanged. The restaurant-label correction is `e31d62c12837d4e725419be302c859c936436c49`; inherited confirmation action compatibility is `778c417ff50800320cc97873d2e54289f6451685`; actual empty imported-history support and guarded/checkpointed own protocol are at the final tested candidate. Systems owns core/codec, with substantive source `6783fd8f557575e9be16fdf146ede097127773c6` and complete own handoff seal `7a8d0db4be91b5686de87c7a710ccc01d19eac1b`. No peer production or accepted-stage path was edited. Every own commit uses explicit owned `--only` pathspecs followed by exact full-commit changed-path inspection.
+
+The diner product separates original successful confirmation from current authoritative reservation/decision/history. It shows complete accepted terms, revision, ordered actual field changes and each event's immutable terms. Public explain=true responses drive real capacity/overlap refusal messages; actual available-option capacities drive policy-selected labels. Real recurring adoption keeps the existing anchor, retains original body/key across committed-loss or malformed-response uncertainty, and separates its original receipt from GET-series current states. Current lists preserve references/indices and distinguish cancellation from permanent individual exceptions. Agreement reads have their own generation guard. The list obtains its own restaurant labels, even while another owned booking is open. Logout clears private terms/history/agreement views. No manager role, fabricated historical event, later-stage planner or bulk series-amend control is added.
+
+Genuine earlier records may have no recorded history. Lookup accepts the real empty response and describes it as empty; it does not fabricate creation/change/cancellation events. Old original receipts remain unchanged and need not contain current terms/revision fields. The current lookup loads these separately. The fixture manager boundary is exercised without granting another diner's private access. The existing Engine four-required-argument request contract and codec bytes boundary are unchanged.
+
+## Actual executed checks
+
+| Owning-builder scope | Observed result | Seconds |
+| --- | --- | ---: |
+| Complete inherited 43 plus 17 new browser/API scenarios | **60/60 scenarios, 1,199 assertions, zero failed, no skipped case** | 75.670 browser |
+| Entire clean clone/build/six-service/browser/source/cleanup driver | **PASS**, browser process exit 0, no runner exception | 175.028085542 |
+| Final own AST/packaged Node preparation | 4/4 Python AST checks; Node exit 0 | 0.161917292 Node invocation |
+| Scoped artifact/source/raw-transfer/cleanup audit | PASS; 321 file hashes, 2,370 JSON object records and 110 embedded JSON strings; zero raw private JSON payload findings | Separate evidence-only command |
+
+The complete protocol records **468 direct API client operations**, **767 browser-originated requests** and **56 actual route-forwarding operations**. Forwarding transports browser traffic; these separate counters are not summed into a fabricated unique-request total. Maximum measured direct/forward request time is **0.074395209 seconds**; browser-only timing, startup and inspections are outside that bound. Counts are owning-builder assertions/scenarios, not normative coverage rows, official harness counts, hidden results or independent acceptance. No official harness was run by this Interface handoff.
+
+All inherited real routes/auth/logout/public browsing, required test IDs, single/pair labels, keyboard/mobile behavior, exact status/reference, 50 identical and 50 competing pair requests, delayed search, rival conflict refresh, committed-loss retry, changed request identity and malformed-response uncertainty pass again. Exact numeric query/input/body/retry/display behavior extends through 4,301 digits and five actual integral decimal/exponent wire spellings. Both specified DST zones, historical year-0001 offsets, immutable old offset-second strings and year-9999 local ends remain exercised.
+
+New actual interactions cover out-of-publication-order policies and effective-date ties, unchanged accepted terms after publication, a real amendment adopting new terms, stale revision precedence, no-op/history stability, complete ordered pair transitions, real manager/anonymous privacy refusal, both independent explanation rules, recurring keyboard submission, committed-drop/malformed recovery, real occupancy refusal and failed-key reuse, changed recurring identity, stale agreement A after B, other-restaurant labels, and whole-adoption DST refusal in both zones. Individual occurrence amendment/cancellation uses actual API writes; refreshed UI distinguishes permanent exception and retained cancellation. Populated series state and original recurring receipts survive raw independent replacement with real tokens and owner-only refusal.
+
+Eight genuine browser upgrade protocols use accepted Stage 1 `75005d57...`, historical Stage 1 `49287b4a5a1481f995c470ccae31776f03d4b863`, old Stage 2 `16aee9f0ea10de5b8fa81a84429cc337c3c4490f` and accepted Stage 2 `4dba1024...`. Unmodified current packaged assets forward compatible API traffic to real earlier processes, which actually issue sessions, retained references/create/move receipts and committed bookings whose responses are dropped. Actual unchanged export bytes replace Stage 3 between browser requests; the same document, user, open form, body and key recover the original server-issued response without reload/login/edit. Original and fresh mixed receipts survive another peer replacement and back. Four added upgrade flows genuinely adopt imported singleton/pair anchors without changing their references. Eight transfer and eight mixed-roundtrip traces retain decoded=false, counts and digests; three additional genuine current-series transfers have matching export/import bytes/digests. No private export is reconstructed from a fixture or saved as demo state.
+
+## Runtime, source binding and reproduction
+
+Complete run: `interface-engineer-s3-20261004t071042348583z/` under this evidence directory. `runtime-report.json` contains all actual Git/Docker/build/health/client/source-inspection/cleanup argv, return codes, timings and source/image/probe identities. `browser-report.json` and the separately checkpointed progress report retain all completed scenarios and real traces. Actual Chromium version is `153.0.8010.12`.
+
+Current image: `sha256:e0ef07e7eb2d96981143543cc29c752676e95b177732e8c6d008239cbbe812b6`.
+
+| Actual packaged source | SHA-256 |
+| --- | --- |
+| core.py | `5ed0a09d1d2230981e0035be6f58c2938a10a15d47476c95296fd2f30f4d8197` |
+| json_codec.py | `3bf4c5dd7ccee1c99127d735822331fedb1491af3568d3490a81a092bae49501` |
+| server.py | `7ea970fec3b00387de8fb6ff8d448a42019424706407c0a7d41e2168c8376cc9` |
+| web/app.js | `9f0ea0796d9f050ece420e6895e503709fef6bd77706c813f5179f2cb6202dd7` |
+| web/app.css | `a34f80875e6993ca0b079f6b39cfdd3dd0b2d13a8c28e960da8cf5b5fda6592c` |
+| web/index.html | `0f8a6b320c21458509bbc8bf8e7b42f255a15f85e88b2df599eb214e408581e4` |
+
+All nine context hashes and genuine-source image identities are in the runtime report. The actual complete Docker context builds from a clean detached exact clone, with own protocol bytes from named committed blobs sent on stdin to the unchanged dependency runner. Driver SHA-256 is `b5484da5799fd89c248ba535f2508c2704c4d36b1b30d5f7efaa99da1607aae8`; executed probe SHA-256 is `94564cac998e6ca059d56c77a55fe622b2fc9e3d4fec28ed5aef46d878e333d6`. No host package or official/peer test source is used. Build cache was available; no uncached-build claim is made.
+
+Default 8080 and override 9090 readiness upper bounds are **3.256500500 / 3.253994708 seconds** from each actual docker-run invocation to health-command return, before later source inspection. These are measured upper bounds, not first possible healthy instants. Cross-container traffic establishes selected-port all-interface listening; host-published reachability is not claimed. Six service processes and a separate browser client have inspected **2 CPU, 2 GiB, no mounts**, on an inspected internal offline network. Own mappings are 18250–18255. Services remain running and not OOM-killed before removal. All **eight** cleanup commands in the passing run and all **eight** in the stopped first run return zero; one separately recorded failed-syntax launch container removal also returns zero. The current Interface container namespace is empty. Own images and both exact clean clones remain; historical temporary contexts were removed and no peer process was stopped.
+
+Final retained clean clone:
+`/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/interface-engineer-s3-20261004t071042348583z`.
+
+From the absolute result repository with the workspace Python:
+
+```sh
+../../.venv/bin/python -B evidence/interface-engineer/stage-3-container-check.py --revision cbf5a43e0881c0be4b51b37f6657efffeb03a7e5 --probe-revision cbf5a43e0881c0be4b51b37f6657efffeb03a7e5
+../../.venv/bin/python -B evidence/interface-engineer/stage-3-evidence-audit.py --candidate cbf5a43e0881c0be4b51b37f6657efffeb03a7e5 --run-dir evidence/interface-engineer/interface-engineer-s3-20261004t071042348583z --out <new-own-proof-file> --preserve-dir evidence/interface-engineer/interface-engineer-s3-20261004t070259232181z
+```
+
+The complete historical audit argv additionally includes all five own preflight directories and is preserved in the final ledger. Use new unique output names; the driver always creates a fresh folder. RUN.md gives independent fresh-clone single-image build/start instructions. The dependency image supplies only Playwright/packaged Node for own diagnostics; no scored or peer test implementation is imported/executed.
+
+## Actual visual review and preserved errors
+
+There are **125 retained genuine PNGs**. `stage-3-visual-review.json` binds six concretely viewed files: expanded original terms desktop, mobile current exceptions/cancellation, desktop pair transition/history, mobile genuine upgraded empty-history adoption, mobile committed-loss uncertainty, and mobile manager private refusal. Warm cream/green/clay hierarchy, human labels, consistent navigation and distinct authoritative/refused/uncertain states remain legible at 375 and desktop widths. Width and real keyboard checks are separately executable. This is scoped Interface product assessment, not independent product acceptance or full WCAG certification.
+
+The protocol records 132 descriptive screenshot calls; reused successful-state names retain their final capture in this run, so 125 counts files rather than inventing 132 unique retained images. All current recorded calls use full-page capture; the explicitly labelled 14,000-pixel viewport bound was not needed. Original run folders and failure captures remain unchanged.
+
+The first attempt at e31d62c remains **ERROR**, 312.759553500 seconds: screenshot capture stopped the browser before its aggregate report, then the driver observed missing browser-report.json. Seven earlier failure PNGs remain. Missing aggregate counts are unknown, not a fabricated partial pass; downstream paths were not established by that attempt. Inherited confirmation action compatibility and empty imported-history assumptions were corrected in own source, then the new complete run executes the entire scope. The runner checkpoints completed cases and guards diagnostic capture. Original syntax launch exit127, corrected packaged Node pass, own cleanup and the new-path-before-staging Git error remain disclosed in `stage-3-runner-issues.md` and ledger/tool history. No failed output is rewritten into a pass.
+
+`stage-3-evidence-proof.json` binds 321 files across the two runtime and five preflight folders, and checks source/probe/clean clone/resources/raw transfers/cleanup. Its scoped JSON/embedded-JSON scan finds zero raw password/password_hash/token/tokens/state/authorization fields. Live exports/tokens/hashes stay in memory. Source/log text, peer evidence and genuine final room export are outside this privacy claim; synthetic fixture passwords remain in authored probe source. `stage-3-final-source-proof.json` separately records the empty graded diff, immutable predecessors, clean retained clones and empty own runtime namespace.
+
+## Assumptions and remaining gates
+
+All four adopted decisions remain explicit: exact value-based body numbers and genuine receipt-scoped legacy comparison, immutable original successful response shape/values, visible semantic exact numeric controls, and exact IANA instant/original wall time with nearest representable minute-aligned historical offsets. Genuine old offset-second timestamp strings remain unchanged. Literal historic subminute offsets and minute-only RFC3339 grammar are not claimed simultaneously. The numeric control interpretation retains its disclosed judging ambiguity.
+
+No reload/cross-tab/background-polling recovery, fabricated manager capability or Stage 4 control is required or claimed. Current terms/history/series come from actual owner-authorized responses; the original receipt remains separate. Empty earlier history describes unavailable prior records rather than inventing events. Individual occurrence amendments are exercised through real API writes and then refreshed in the product; no additional Stage 3 amendment screen is claimed. Finite payloads, exponent shapes, depths, concurrency and screenshots do not prove arbitrary-workload performance. Visual assessment is scoped; no new contrast certification is claimed. The earlier shared-index authorship incident remains in its immutable audit and is not relabelled here; all current own commits are inspected explicit path commits.
+
+The final driver window is `2026-10-04T07:10:42.348839+00:00` to `2026-10-04T07:13:37.377695+00:00`, measured **175.028085542 seconds**. This is scoped execution, not whole-factory elapsed. Harness **Codex**, configured model **gpt-6.1-sol**; actual runtime override, effort, tokens, catalog-estimated and billed spend are **unknown**. Complete named independent startup/specification/official/inherited review and verdict remain required before acceptance. Genuine room export, public release and submission remain operator-controlled. Interface production is held for the named candidate review.
+
+---
+
+The following preparation record is preserved verbatim as historical chronology.
+
 # Stage 3 Interface implementation preparation
 
 Complete thirteen-part INITIAL-1 plus END acknowledgment preceded base copy fda73c1631b68cf7a3c0077fd589dda4c0898b72. The complete nine-file predecessor proof is 9c6f27a8c80201599c3e10eb95d2901fda8e8aec; explicit implementation release is inbound 8be18d52-55fb-4955-8a34-bfdacea49029. Shared card 20 is in progress. Highest independently accepted stage remains 2; Stage 3 is unaccepted and Stage 4 unassigned.
