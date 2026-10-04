@@ -1,0 +1,278 @@
+{
+  "candidate_full_revision": "b4a124e3671ec22a4df0780343f6389ff4b70d05",
+  "value": 1000000000000000000,
+  "http_operations": 4,
+  "assertions": 4,
+  "failed_assertions": 3,
+  "duration_seconds": 0.039323875000000896,
+  "operations": [
+    {
+      "operation": 1,
+      "method": "POST",
+      "path": "/_test/reset",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 204,
+      "response": null,
+      "duration_seconds": 0.038135500000002764
+    },
+    {
+      "operation": 2,
+      "method": "POST",
+      "path": "/_test/reset",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 1000000000000000000,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "duration_seconds": 0.00047545799999682004
+    },
+    {
+      "operation": 3,
+      "method": "POST",
+      "path": "/_test/reset",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 1000000000000000000,
+            "cancellation_cutoff_minutes": 0,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "duration_seconds": 0.0002881249999973079
+    },
+    {
+      "operation": 4,
+      "method": "POST",
+      "path": "/_test/reset",
+      "body": {
+        "users": [
+          {
+            "id": "u",
+            "email": "large@probe.invalid",
+            "password": {
+              "private_value_sha256": "491506b1f4ce17e076482a59e912821481d551edcd39fdafb94c2d16817ac54a"
+            },
+            "display_name": "Boundary Diner"
+          }
+        ],
+        "restaurants": [
+          {
+            "id": "r",
+            "name": "Boundary Kitchen",
+            "timezone": "UTC",
+            "slot_minutes": 30,
+            "reservation_duration_minutes": 90,
+            "cancellation_cutoff_minutes": 1000000000000000000,
+            "opening_hours": [
+              {
+                "weekday": "tue",
+                "opens": "18:10",
+                "closes": "23:10"
+              }
+            ],
+            "tables": [
+              {
+                "id": "t",
+                "label": "Window",
+                "capacity": 2
+              }
+            ]
+          }
+        ],
+        "reservations": []
+      },
+      "has_token": false,
+      "key": null,
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "validation_failed",
+          "message": "validation failed"
+        }
+      },
+      "duration_seconds": 0.00022599999999783904
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "TK1-probe-large-minutes-control",
+      "passed": true,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 204,
+        "body": null
+      }
+    },
+    {
+      "requirement_id": "TK1-large-slot_minutes-reset",
+      "passed": false,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 422,
+        "body": {
+          "error": {
+            "code": "validation_failed",
+            "message": "validation failed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-reservation_duration_minutes-reset",
+      "passed": false,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 422,
+        "body": {
+          "error": {
+            "code": "validation_failed",
+            "message": "validation failed"
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "TK1-large-cancellation_cutoff_minutes-reset",
+      "passed": false,
+      "expected": {
+        "status": 204,
+        "code": null
+      },
+      "observed": {
+        "status": 422,
+        "body": {
+          "error": {
+            "code": "validation_failed",
+            "message": "validation failed"
+          }
+        }
+      }
+    }
+  ]
+}

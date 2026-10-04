@@ -460,6 +460,33 @@ for row in ROWS:
         row["executable_command_or_interaction"] = "python3 evidence/independent-verifier/stage-1/legacy_receipts.py --base CURRENT_SERVICE --peer SECOND_CURRENT_SERVICE --legacy GENUINE_LEGACY_SERVICE --candidate FULL_REVISION --out NEW_DIRECTORY"
 
 
+for field in ["slot_minutes", "reservation_duration_minutes", "cancellation_cutoff_minutes"]:
+    add("3.3 Reset / 4. Model / 5. Errors / 10. Export and import", 102, "large-minutes", {
+        "large-"+field+"-reset": f"A positive {field} count of 10^18 is a valid fixture value; no Stage 1 upper maximum is published.",
+        "large-"+field+"-detail": f"Restaurant detail retains {field}=10^18 exactly.",
+        "large-"+field+"-import": f"Export/import preserves {field}=10^18 exactly without rejecting a valid value solely due to datetime representation limits.",
+    })
+add("4. Model / 8. Availability and create", 102, "large-minutes", {
+    "large-grid-availability": "Availability with a positive 10^18-minute grid returns 200 for a small valid opening window.",
+    "large-grid-one-opening-slot": "A grid step larger than the small opening window offers exactly the fitting opening slot.",
+    "large-grid-create": "A fitting opening-slot booking succeeds with a 10^18-minute grid.",
+    "large-grid-late": "A non-opening time off a huge grid gives 422 not_on_slot_grid.",
+    "large-duration-availability": "Availability with a positive 10^18-minute duration returns 200 rather than rejecting its fixture value.",
+    "large-duration-no-fitting-slot": "A duration larger than the opening window returns no fitting slots.",
+    "large-duration-create": "A booking whose huge absolute duration cannot fit gives 422 outside_opening_hours.",
+})
+add("4. Model / 8. Cancel and PATCH / 11. Atomic moves", 105, "large-minutes", {
+    "large-cutoff-create": "A future fitting booking may be created with a positive 10^18-minute cutoff.",
+    "large-cutoff-cancel": "Cancel within a 10^18-minute current-start cutoff gives 409 cutoff_passed.",
+    "large-cutoff-patch": "Amendment within a 10^18-minute current-start cutoff gives 409 cutoff_passed.",
+    "large-cutoff-moves": "Batch move within a 10^18-minute current-start cutoff gives 409 cutoff_passed.",
+    "large-cutoff-rollback": "Huge-cutoff refusals leave records, occupancy and retry keys unchanged.",
+})
+for row in ROWS:
+    if row["case"] == "large-minutes":
+        row["executable_command_or_interaction"] = "python3 evidence/independent-verifier/stage-1/large_minutes_run.py --repo RESULT_REPOSITORY --workspace WORKSPACE_ROOT --candidate FULL_REVISION --out NEW_DIRECTORY"
+
+
 def write_matrix(path):
     assert len({r["requirement_id"] for r in ROWS}) == len(ROWS)
     with Path(path).open("w", newline="") as f:
