@@ -418,6 +418,17 @@ add("8. PATCH /reservations / 11. Atomic reservation moves", 385, "extra", {
 })
 
 
+for label, zone in [("utc", "UTC"), ("berlin", "Europe/Berlin"), ("new-york", "America/New_York")]:
+    for tag, day in [("min", "0001-01-01"), ("max", "9999-12-31")]:
+        prefix = "edge-" + label + "-" + tag
+        for suffix, meaning in [("availability", "returns 200 availability"), ("slots", "offers all eight fitting slots"), ("create", "accepts the last fitting slot with 201"), ("start-instant", "preserves the exact IANA start instant"), ("end-instant", "ends after 90 absolute minutes")]:
+            add("4. Fixture format / 8. API / 9. Time and DST", 143, "calendar-edges", {prefix+"-"+suffix: f"Calendar boundary {day} in {zone} {meaning}, regardless of UTC representation range."})
+        if tag == "min" and label != "utc":
+            add("3.4 Conventions / 9. Time and DST", 86, "calendar-edges", {prefix+"-rfc3339": f"Historic {zone} reservation response timestamps are RFC3339 with explicit offsets."})
+for operation in ["availability", "create"]:
+    add("4. Fixture format / 8. API / 9. Time and DST", 143, "calendar-edges", {"edge-berlin-min-midnight-"+operation: f"A fitting midnight slot at 0001-01-01 Europe/Berlin is accepted by {operation}, even before the UTC calendar minimum."})
+
+
 def write_matrix(path):
     assert len({r["requirement_id"] for r in ROWS}) == len(ROWS)
     with Path(path).open("w", newline="") as f:

@@ -1,0 +1,79 @@
+[
+  {
+    "command": [
+      "docker",
+      "build",
+      "-f",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1/Probe.Dockerfile",
+      "-t",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400:probe-runner",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-result/evidence/independent-verifier/stage-1"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.4857412910005223,
+    "log": "runner-refresh.log"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400-race50",
+      "--network",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/independent-verifier-s1-dd64419-runtime-03:/evidence",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400:probe-runner",
+      "/verifier/race50.py",
+      "--base",
+      "http://independent-verifier-s1-dd644198b6c0-20261004t005400-source:18309",
+      "--candidate",
+      "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "--out",
+      "/evidence/race50"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.3981362079994142,
+    "log": "race50-client.log"
+  },
+  {
+    "command": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400-source"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.091520167001363,
+    "log": "independent-verifier-s1-dd644198b6c0-20261004t005400-source-cleanup.log"
+  },
+  {
+    "command": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400-peer"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.09404487500069081,
+    "log": "independent-verifier-s1-dd644198b6c0-20261004t005400-peer-cleanup.log"
+  },
+  {
+    "command": [
+      "docker",
+      "network",
+      "rm",
+      "independent-verifier-s1-dd644198b6c0-20261004t005400-net"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.06954945800134738,
+    "log": "network-cleanup.log"
+  }
+]

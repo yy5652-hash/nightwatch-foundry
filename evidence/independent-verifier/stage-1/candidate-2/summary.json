@@ -1,0 +1,156 @@
+{
+  "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+  "verdict": "reject",
+  "rows": 735,
+  "verified": 726,
+  "failed": 9,
+  "unverified": 0,
+  "failed_ids": [
+    "TK1-edge-berlin-min-rfc3339",
+    "TK1-edge-new-york-min-rfc3339",
+    "TK1-edge-new-york-max-availability",
+    "TK1-edge-new-york-max-slots",
+    "TK1-edge-new-york-max-create",
+    "TK1-edge-new-york-max-start-instant",
+    "TK1-edge-new-york-max-end-instant",
+    "TK1-edge-berlin-min-midnight-availability",
+    "TK1-edge-berlin-min-midnight-create"
+  ],
+  "unverified_ids": [],
+  "official_stage_1": {
+    "collected": 120,
+    "passed": 120,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "deselected": 0,
+    "xfailed": 0,
+    "files": {
+      "stage_1/test_health_reset_auth.py": {
+        "passed": 12,
+        "total": 12
+      },
+      "stage_1/test_reservations.py": {
+        "passed": 37,
+        "total": 37
+      },
+      "stage_1/test_restaurants_availability.py": {
+        "passed": 18,
+        "total": 18
+      },
+      "stage_1/test_retries_time_input.py": {
+        "passed": 20,
+        "total": 20
+      },
+      "stage_1/test_sample.py": {
+        "passed": 20,
+        "total": 20
+      },
+      "stage_1/test_seeded_state.py": {
+        "passed": 13,
+        "total": 13
+      }
+    }
+  },
+  "official_claimed_stage": "1",
+  "official_overshoot_observed": {
+    "collected": 25,
+    "passed": 0,
+    "failed": 1,
+    "errors": 0,
+    "skipped": 0,
+    "deselected": 0,
+    "xfailed": 0,
+    "files": {
+      "stage_2/test_sample.py": {
+        "passed": 0,
+        "total": 8
+      },
+      "stage_2/test_ui.py": {
+        "passed": 0,
+        "total": 17
+      }
+    }
+  },
+  "official_wall_seconds": 31.157578,
+  "runs": {
+    "runtime-01/probes": {
+      "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "stage": 1,
+      "source": "independent probes; unseen judging suite not available",
+      "seed": 20261004,
+      "requests": 1441,
+      "assertions": 1430,
+      "failures": 0,
+      "rows": 735,
+      "verified": 685,
+      "failed": 0,
+      "unverified": 50,
+      "duration_seconds": 7.061345001999996
+    },
+    "runtime-01/reproductions": {
+      "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "stage": 1,
+      "source": "independent probes; unseen judging suite not available",
+      "seed": 20261004,
+      "requests": 4,
+      "assertions": 9,
+      "failures": 0,
+      "rows": 735,
+      "verified": 9,
+      "failed": 0,
+      "unverified": 726,
+      "duration_seconds": 0.015985583000002634
+    },
+    "runtime-01/calendar": {
+      "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "stage": 1,
+      "source": "independent probes; unseen judging suite not available",
+      "seed": 20261004,
+      "requests": 35,
+      "assertions": 39,
+      "failures": 9,
+      "rows": 735,
+      "verified": 30,
+      "failed": 9,
+      "unverified": 696,
+      "duration_seconds": 0.6052682920000052
+    },
+    "runtime-02/calendar-minimal": {
+      "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "stage": 1,
+      "source": "independent probes; unseen judging suite not available",
+      "seed": 20261004,
+      "requests": 8,
+      "assertions": 13,
+      "failures": 4,
+      "rows": 735,
+      "verified": 7,
+      "failed": 4,
+      "unverified": 724,
+      "duration_seconds": 0.10559812500000021
+    },
+    "runtime-03/race50": {
+      "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "stage": 1,
+      "source": "independent probes; unseen judging suite not available",
+      "seed": 20261004,
+      "requests": 55,
+      "assertions": 11,
+      "failures": 0,
+      "rows": 735,
+      "verified": 9,
+      "failed": 0,
+      "unverified": 726,
+      "duration_seconds": 0.13459770899999057
+    }
+  },
+  "harness": "Codex",
+  "configured_model": "gpt-6.1-sol",
+  "actual_model": "unknown",
+  "effort": "unknown",
+  "usage": "unknown",
+  "spend": "unknown",
+  "representation_question": "Two historical RFC3339 failures retained pending explicit coordinator interpretation. Seven other failed rows cover two valid-local-date refusal families.",
+  "concurrency_note": "Unstaged client intervals peaked at 49; explicitly staged final-body-byte workload attained peak 50 with one 201 and 49 200 receipts. Both traces retained."
+}

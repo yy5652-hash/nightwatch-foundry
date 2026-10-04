@@ -1,0 +1,74 @@
+{
+  "candidate": "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+  "source_items": [
+    {
+      "label": "systems",
+      "input_path": "evidence/systems-engineer/stage-1-source-provenance.md",
+      "recorded_revision": "061850b6a4c209b7cb5b0008edecb35711cb6bcf",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-2/source-inputs/systems.md",
+      "sha256": "1eccab50208d776283bb18ace0d9148744aa9cee51d116509227bd91606bff32"
+    },
+    {
+      "label": "interface",
+      "input_path": "evidence/interface-engineer/stage-1-source-provenance.md",
+      "recorded_revision": "3829bbf42dfb5dadf7adc0ed40e47475ae3e6651",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-2/source-inputs/interface.md",
+      "sha256": "558c164d33009bab722ef125fe315710a22069363ef927a510074f5bf45fa345"
+    },
+    {
+      "label": "systems-handoff",
+      "input_path": "evidence/coordinator/handoffs/TK-20261004-S1-systems-engineer-A.txt",
+      "recorded_revision": "37a7f98aa8564cfbcf1f13e4aada90627327824d",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-2/source-inputs/systems-handoff.txt",
+      "sha256": "9891ffe6cd95bdd31787037f94acfe9e00c972bf3fed0368047cb9bed42f773b"
+    },
+    {
+      "label": "interface-handoff",
+      "input_path": "evidence/coordinator/handoffs/TK-20261004-S1-interface-engineer-A.txt",
+      "recorded_revision": "37a7f98aa8564cfbcf1f13e4aada90627327824d",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-2/source-inputs/interface-handoff.txt",
+      "sha256": "1d405266866cdf87df12fab9921f81286016987ec2f99217f50b94ed94ace466"
+    },
+    {
+      "label": "candidate-handoff",
+      "input_path": "evidence/coordinator/handoffs/TK-20261004-S1-independent-verifier-CANDIDATE-2.txt",
+      "recorded_revision": "582b0c76d45cc4395af79574b6077b6637497dba",
+      "snapshot": "evidence/independent-verifier/stage-1/candidate-2/source-inputs/candidate-handoff.txt",
+      "sha256": "a887664f8830ce9d463b9430c9bd926ee0de4542b6227ac4c8593db9b02c701b"
+    }
+  ],
+  "full_spec_handoffs": true,
+  "intake_is_root": true,
+  "intake_has_no_service": true,
+  "explicit_builder_input_declarations": true,
+  "reviewed_imports": {
+    "core.py": [
+      "__future__",
+      "collections.abc",
+      "copy",
+      "datetime",
+      "hashlib",
+      "hmac",
+      "math",
+      "re",
+      "secrets",
+      "threading",
+      "urllib.parse",
+      "uuid",
+      "zoneinfo"
+    ],
+    "server.py": [
+      "__future__",
+      "collections.abc",
+      "core",
+      "http.server",
+      "json",
+      "os",
+      "socket",
+      "sys"
+    ]
+  },
+  "implementation_commit_authors": "e9e15076a762ab437d349cb3e6768b4786e1432f Systems Engineer <systems-engineer@nightwatch-foundry.invalid> 2026-10-03T17:23:17-07:00 Implement Stage 1 transactional reservation engine and builder probes\n9d53de905fdd498ee34dfa7c4d814b13dda7a921 Interface Engineer <interface-engineer@nightwatch-foundry.invalid> 2026-10-03T17:20:34-07:00 Implement Stage 1 concurrent JSON transport and offline container runtime\n6442d6d5aa3187aa090107733e41f685946044f1 Systems Engineer <systems-engineer@nightwatch-foundry.invalid> 2026-10-03T17:40:35-07:00 Repair missing fixture fields and bounded calendar arithmetic after verifier rejection\n",
+  "method": "Inspect preserved complete requirements handoffs, fresh-empty root intake, seat input declarations, authored-path history and complete current source. No foreign product inputs found in this evidence.",
+  "limits": "Builder exclusions are factual seat declarations, not a machine-wide forensic claim. The genuine final room export remains operator-controlled. Post-candidate declarations are evidence about unchanged candidate source, not candidate runtime inputs."
+}

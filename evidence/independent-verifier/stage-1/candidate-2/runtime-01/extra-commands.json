@@ -1,0 +1,95 @@
+[
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-reproductions",
+      "--network",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/independent-verifier-s1-dd64419-runtime-01:/evidence",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004:probe-runner",
+      "/verifier/reproduce.py",
+      "--base",
+      "http://independent-verifier-s1-dd644198b6c0-20261004t005004-source:18309",
+      "--candidate",
+      "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "--out",
+      "/evidence/reproductions"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.30209437499979686,
+    "log": "reproductions-client.log"
+  },
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-calendar",
+      "--network",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/independent-verifier-s1-dd64419-runtime-01:/evidence",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004:probe-runner",
+      "/verifier/calendar_edges.py",
+      "--base",
+      "http://independent-verifier-s1-dd644198b6c0-20261004t005004-source:18309",
+      "--candidate",
+      "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "--out",
+      "/evidence/calendar"
+    ],
+    "returncode": 1,
+    "duration_seconds": 0.8733089170000312,
+    "log": "calendar-client.log"
+  },
+  {
+    "command": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-source"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.08695258300031128,
+    "log": "independent-verifier-s1-dd644198b6c0-20261004t005004-source-cleanup.log"
+  },
+  {
+    "command": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-peer"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.0949153750007099,
+    "log": "independent-verifier-s1-dd644198b6c0-20261004t005004-peer-cleanup.log"
+  },
+  {
+    "command": [
+      "docker",
+      "network",
+      "rm",
+      "independent-verifier-s1-dd644198b6c0-20261004t005004-net"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.08660241699908511,
+    "log": "network-cleanup.log"
+  }
+]

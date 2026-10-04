@@ -1,0 +1,65 @@
+[
+  {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--name",
+      "independent-verifier-s1-dd644198b6c0-20261004t005121-calendar-minimal",
+      "--network",
+      "independent-verifier-s1-dd644198b6c0-20261004t005121-net",
+      "--cpus",
+      "2",
+      "--memory",
+      "2g",
+      "-v",
+      "/Users/hudsonyu/Documents/Codex/2026-09-28/referenced-chatgpt-conversation-this-is-an-4/work/dark-factory/band-work/final-checks/independent-verifier-s1-dd64419-runtime-02:/evidence",
+      "--entrypoint",
+      "python",
+      "independent-verifier-s1-dd644198b6c0-20261004t005121:probe-runner",
+      "/verifier/reproduce_calendar.py",
+      "--base",
+      "http://independent-verifier-s1-dd644198b6c0-20261004t005121-source:18309",
+      "--candidate",
+      "dd644198b6c0c24cebaee74435ac13d4dc33bd99",
+      "--out",
+      "/evidence/calendar-minimal"
+    ],
+    "returncode": 1,
+    "duration_seconds": 0.40007958299975144,
+    "log": "calendar-minimal-client.log"
+  },
+  {
+    "command": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-s1-dd644198b6c0-20261004t005121-source"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.10179387499920267,
+    "log": "independent-verifier-s1-dd644198b6c0-20261004t005121-source-cleanup.log"
+  },
+  {
+    "command": [
+      "docker",
+      "rm",
+      "-f",
+      "independent-verifier-s1-dd644198b6c0-20261004t005121-peer"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.10405025000000023,
+    "log": "independent-verifier-s1-dd644198b6c0-20261004t005121-peer-cleanup.log"
+  },
+  {
+    "command": [
+      "docker",
+      "network",
+      "rm",
+      "independent-verifier-s1-dd644198b6c0-20261004t005121-net"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.0892206670014275,
+    "log": "network-cleanup.log"
+  }
+]

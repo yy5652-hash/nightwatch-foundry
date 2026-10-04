@@ -1,0 +1,171 @@
+[
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-opening_hours",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing opening_hours or tables"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-missing-restaurant-tables",
+    "passed": true,
+    "expected": {
+      "status": 422,
+      "code": "validation_failed"
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Missing opening_hours or tables"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-status",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-calendar-year-max",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "9999-12-31",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "9999-12-31T18:00",
+            "starts_at": "9999-12-31T18:00:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T18:30",
+            "starts_at": "9999-12-31T18:30:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T19:00",
+            "starts_at": "9999-12-31T19:00:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T19:30",
+            "starts_at": "9999-12-31T19:30:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T20:00",
+            "starts_at": "9999-12-31T20:00:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T20:30",
+            "starts_at": "9999-12-31T20:30:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T21:00",
+            "starts_at": "9999-12-31T21:00:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T21:30",
+            "starts_at": "9999-12-31T21:30:00+00:00",
+            "available_table_ids": [
+              "t"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-json-content-type",
+    "passed": true,
+    "expected": "application/json;charset=utf-8",
+    "observed": [
+      "application/json;charset=utf-8"
+    ]
+  },
+  {
+    "requirement_id": "TK1-error-envelope",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-no-5xx",
+    "passed": true,
+    "expected": "no 5xx or transport failures",
+    "observed": [
+      200,
+      204,
+      422
+    ]
+  },
+  {
+    "requirement_id": "TK1-request-timeout",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-reset-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.007608583999996199,
+        422
+      ],
+      [
+        0.000377999999997769,
+        422
+      ],
+      [
+        0.0003902500000094733,
+        204
+      ]
+    ]
+  }
+]

@@ -1,0 +1,1094 @@
+[
+  {
+    "requirement_id": "TK1-edge-utc-min-availability",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "0001-01-01",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "0001-01-01T18:00",
+            "starts_at": "0001-01-01T18:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T18:30",
+            "starts_at": "0001-01-01T18:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:00",
+            "starts_at": "0001-01-01T19:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:30",
+            "starts_at": "0001-01-01T19:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:00",
+            "starts_at": "0001-01-01T20:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:30",
+            "starts_at": "0001-01-01T20:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:00",
+            "starts_at": "0001-01-01T21:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:30",
+            "starts_at": "0001-01-01T21:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-utc-min-slots",
+    "passed": true,
+    "expected": [
+      "0001-01-01T18:00",
+      "0001-01-01T18:30",
+      "0001-01-01T19:00",
+      "0001-01-01T19:30",
+      "0001-01-01T20:00",
+      "0001-01-01T20:30",
+      "0001-01-01T21:00",
+      "0001-01-01T21:30"
+    ],
+    "observed": [
+      {
+        "starts_at_local": "0001-01-01T18:00",
+        "starts_at": "0001-01-01T18:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T18:30",
+        "starts_at": "0001-01-01T18:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T19:00",
+        "starts_at": "0001-01-01T19:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T19:30",
+        "starts_at": "0001-01-01T19:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T20:00",
+        "starts_at": "0001-01-01T20:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T20:30",
+        "starts_at": "0001-01-01T20:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T21:00",
+        "starts_at": "0001-01-01T21:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T21:30",
+        "starts_at": "0001-01-01T21:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      }
+    ]
+  },
+  {
+    "requirement_id": "TK1-edge-utc-min-create",
+    "passed": true,
+    "expected": 201,
+    "observed": {
+      "status": 201,
+      "receipt": {
+        "reservation_id": "res_e1da75ce4555484c9d00c49205d3ef45",
+        "reference": "DDCD0970A9",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 2,
+        "starts_at_local": "0001-01-01T21:30",
+        "starts_at": "0001-01-01T21:30:00+00:00",
+        "ends_at": "0001-01-01T23:00:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:50:41.430652+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-utc-min-start-instant",
+    "passed": true,
+    "expected": "0001-01-01T21:30:00+00:00",
+    "observed": "0001-01-01T21:30:00+00:00"
+  },
+  {
+    "requirement_id": "TK1-edge-utc-min-end-instant",
+    "passed": true,
+    "expected": "0001-01-01T23:00:00+00:00",
+    "observed": "0001-01-01T23:00:00+00:00"
+  },
+  {
+    "requirement_id": "TK1-edge-utc-max-availability",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "9999-12-31",
+        "timezone": "UTC",
+        "slots": [
+          {
+            "starts_at_local": "9999-12-31T18:00",
+            "starts_at": "9999-12-31T18:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T18:30",
+            "starts_at": "9999-12-31T18:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T19:00",
+            "starts_at": "9999-12-31T19:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T19:30",
+            "starts_at": "9999-12-31T19:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T20:00",
+            "starts_at": "9999-12-31T20:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T20:30",
+            "starts_at": "9999-12-31T20:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T21:00",
+            "starts_at": "9999-12-31T21:00:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T21:30",
+            "starts_at": "9999-12-31T21:30:00+00:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-utc-max-slots",
+    "passed": true,
+    "expected": [
+      "9999-12-31T18:00",
+      "9999-12-31T18:30",
+      "9999-12-31T19:00",
+      "9999-12-31T19:30",
+      "9999-12-31T20:00",
+      "9999-12-31T20:30",
+      "9999-12-31T21:00",
+      "9999-12-31T21:30"
+    ],
+    "observed": [
+      {
+        "starts_at_local": "9999-12-31T18:00",
+        "starts_at": "9999-12-31T18:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T18:30",
+        "starts_at": "9999-12-31T18:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T19:00",
+        "starts_at": "9999-12-31T19:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T19:30",
+        "starts_at": "9999-12-31T19:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T20:00",
+        "starts_at": "9999-12-31T20:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T20:30",
+        "starts_at": "9999-12-31T20:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T21:00",
+        "starts_at": "9999-12-31T21:00:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T21:30",
+        "starts_at": "9999-12-31T21:30:00+00:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      }
+    ]
+  },
+  {
+    "requirement_id": "TK1-edge-utc-max-create",
+    "passed": true,
+    "expected": 201,
+    "observed": {
+      "status": 201,
+      "receipt": {
+        "reservation_id": "res_5bf99b4f28124fcdb7bf88e706a04687",
+        "reference": "1116902011",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 2,
+        "starts_at_local": "9999-12-31T21:30",
+        "starts_at": "9999-12-31T21:30:00+00:00",
+        "ends_at": "9999-12-31T23:00:00+00:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:50:41.515113+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-utc-max-start-instant",
+    "passed": true,
+    "expected": "9999-12-31T21:30:00+00:00",
+    "observed": "9999-12-31T21:30:00+00:00"
+  },
+  {
+    "requirement_id": "TK1-edge-utc-max-end-instant",
+    "passed": true,
+    "expected": "9999-12-31T23:00:00+00:00",
+    "observed": "9999-12-31T23:00:00+00:00"
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-availability",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "0001-01-01",
+        "timezone": "Europe/Berlin",
+        "slots": [
+          {
+            "starts_at_local": "0001-01-01T18:00",
+            "starts_at": "0001-01-01T18:00:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T18:30",
+            "starts_at": "0001-01-01T18:30:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:00",
+            "starts_at": "0001-01-01T19:00:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:30",
+            "starts_at": "0001-01-01T19:30:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:00",
+            "starts_at": "0001-01-01T20:00:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:30",
+            "starts_at": "0001-01-01T20:30:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:00",
+            "starts_at": "0001-01-01T21:00:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:30",
+            "starts_at": "0001-01-01T21:30:00+00:53:28",
+            "available_table_ids": [
+              "t0"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-slots",
+    "passed": true,
+    "expected": [
+      "0001-01-01T18:00",
+      "0001-01-01T18:30",
+      "0001-01-01T19:00",
+      "0001-01-01T19:30",
+      "0001-01-01T20:00",
+      "0001-01-01T20:30",
+      "0001-01-01T21:00",
+      "0001-01-01T21:30"
+    ],
+    "observed": [
+      {
+        "starts_at_local": "0001-01-01T18:00",
+        "starts_at": "0001-01-01T18:00:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T18:30",
+        "starts_at": "0001-01-01T18:30:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T19:00",
+        "starts_at": "0001-01-01T19:00:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T19:30",
+        "starts_at": "0001-01-01T19:30:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T20:00",
+        "starts_at": "0001-01-01T20:00:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T20:30",
+        "starts_at": "0001-01-01T20:30:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T21:00",
+        "starts_at": "0001-01-01T21:00:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T21:30",
+        "starts_at": "0001-01-01T21:30:00+00:53:28",
+        "available_table_ids": [
+          "t0"
+        ]
+      }
+    ]
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-create",
+    "passed": true,
+    "expected": 201,
+    "observed": {
+      "status": 201,
+      "receipt": {
+        "reservation_id": "res_c181aeec17ce4b1a9bae087ed90187f7",
+        "reference": "4B40C89227",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 2,
+        "starts_at_local": "0001-01-01T21:30",
+        "starts_at": "0001-01-01T21:30:00+00:53:28",
+        "ends_at": "0001-01-01T23:00:00+00:53:28",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:50:41.599444+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-start-instant",
+    "passed": true,
+    "expected": "0001-01-01T21:30:00+00:53:28",
+    "observed": "0001-01-01T21:30:00+00:53:28"
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-end-instant",
+    "passed": true,
+    "expected": "0001-01-01T23:00:00+00:53:28",
+    "observed": "0001-01-01T23:00:00+00:53:28"
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-rfc3339",
+    "passed": false,
+    "expected": "RFC3339 explicit offset",
+    "observed": {
+      "reservation_id": "res_c181aeec17ce4b1a9bae087ed90187f7",
+      "reference": "4B40C89227",
+      "restaurant_id": "r",
+      "table_id": "t0",
+      "party_size": 2,
+      "starts_at_local": "0001-01-01T21:30",
+      "starts_at": "0001-01-01T21:30:00+00:53:28",
+      "ends_at": "0001-01-01T23:00:00+00:53:28",
+      "status": "confirmed",
+      "created_at": "2026-10-04T00:50:41.599444+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-max-availability",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "9999-12-31",
+        "timezone": "Europe/Berlin",
+        "slots": [
+          {
+            "starts_at_local": "9999-12-31T18:00",
+            "starts_at": "9999-12-31T18:00:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T18:30",
+            "starts_at": "9999-12-31T18:30:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T19:00",
+            "starts_at": "9999-12-31T19:00:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T19:30",
+            "starts_at": "9999-12-31T19:30:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T20:00",
+            "starts_at": "9999-12-31T20:00:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T20:30",
+            "starts_at": "9999-12-31T20:30:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T21:00",
+            "starts_at": "9999-12-31T21:00:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "9999-12-31T21:30",
+            "starts_at": "9999-12-31T21:30:00+01:00",
+            "available_table_ids": [
+              "t0"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-max-slots",
+    "passed": true,
+    "expected": [
+      "9999-12-31T18:00",
+      "9999-12-31T18:30",
+      "9999-12-31T19:00",
+      "9999-12-31T19:30",
+      "9999-12-31T20:00",
+      "9999-12-31T20:30",
+      "9999-12-31T21:00",
+      "9999-12-31T21:30"
+    ],
+    "observed": [
+      {
+        "starts_at_local": "9999-12-31T18:00",
+        "starts_at": "9999-12-31T18:00:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T18:30",
+        "starts_at": "9999-12-31T18:30:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T19:00",
+        "starts_at": "9999-12-31T19:00:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T19:30",
+        "starts_at": "9999-12-31T19:30:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T20:00",
+        "starts_at": "9999-12-31T20:00:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T20:30",
+        "starts_at": "9999-12-31T20:30:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T21:00",
+        "starts_at": "9999-12-31T21:00:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "9999-12-31T21:30",
+        "starts_at": "9999-12-31T21:30:00+01:00",
+        "available_table_ids": [
+          "t0"
+        ]
+      }
+    ]
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-max-create",
+    "passed": true,
+    "expected": 201,
+    "observed": {
+      "status": 201,
+      "receipt": {
+        "reservation_id": "res_1f0c49c2154d4017b1f3e3ef19f5fcd8",
+        "reference": "1D2A2EBF9A",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 2,
+        "starts_at_local": "9999-12-31T21:30",
+        "starts_at": "9999-12-31T21:30:00+01:00",
+        "ends_at": "9999-12-31T23:00:00+01:00",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:50:41.683455+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-max-start-instant",
+    "passed": true,
+    "expected": "9999-12-31T21:30:00+01:00",
+    "observed": "9999-12-31T21:30:00+01:00"
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-max-end-instant",
+    "passed": true,
+    "expected": "9999-12-31T23:00:00+01:00",
+    "observed": "9999-12-31T23:00:00+01:00"
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-min-availability",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "restaurant_id": "r",
+        "date": "0001-01-01",
+        "timezone": "America/New_York",
+        "slots": [
+          {
+            "starts_at_local": "0001-01-01T18:00",
+            "starts_at": "0001-01-01T18:00:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T18:30",
+            "starts_at": "0001-01-01T18:30:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:00",
+            "starts_at": "0001-01-01T19:00:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T19:30",
+            "starts_at": "0001-01-01T19:30:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:00",
+            "starts_at": "0001-01-01T20:00:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T20:30",
+            "starts_at": "0001-01-01T20:30:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:00",
+            "starts_at": "0001-01-01T21:00:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          },
+          {
+            "starts_at_local": "0001-01-01T21:30",
+            "starts_at": "0001-01-01T21:30:00-04:56:02",
+            "available_table_ids": [
+              "t0"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-min-slots",
+    "passed": true,
+    "expected": [
+      "0001-01-01T18:00",
+      "0001-01-01T18:30",
+      "0001-01-01T19:00",
+      "0001-01-01T19:30",
+      "0001-01-01T20:00",
+      "0001-01-01T20:30",
+      "0001-01-01T21:00",
+      "0001-01-01T21:30"
+    ],
+    "observed": [
+      {
+        "starts_at_local": "0001-01-01T18:00",
+        "starts_at": "0001-01-01T18:00:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T18:30",
+        "starts_at": "0001-01-01T18:30:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T19:00",
+        "starts_at": "0001-01-01T19:00:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T19:30",
+        "starts_at": "0001-01-01T19:30:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T20:00",
+        "starts_at": "0001-01-01T20:00:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T20:30",
+        "starts_at": "0001-01-01T20:30:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T21:00",
+        "starts_at": "0001-01-01T21:00:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      },
+      {
+        "starts_at_local": "0001-01-01T21:30",
+        "starts_at": "0001-01-01T21:30:00-04:56:02",
+        "available_table_ids": [
+          "t0"
+        ]
+      }
+    ]
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-min-create",
+    "passed": true,
+    "expected": 201,
+    "observed": {
+      "status": 201,
+      "receipt": {
+        "reservation_id": "res_990998a2d5de4209b69fc385f5027b22",
+        "reference": "C2B359094B",
+        "restaurant_id": "r",
+        "table_id": "t0",
+        "party_size": 2,
+        "starts_at_local": "0001-01-01T21:30",
+        "starts_at": "0001-01-01T21:30:00-04:56:02",
+        "ends_at": "0001-01-01T23:00:00-04:56:02",
+        "status": "confirmed",
+        "created_at": "2026-10-04T00:50:41.767038+00:00"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-min-start-instant",
+    "passed": true,
+    "expected": "0001-01-01T21:30:00-04:56:02",
+    "observed": "0001-01-01T21:30:00-04:56:02"
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-min-end-instant",
+    "passed": true,
+    "expected": "0001-01-01T23:00:00-04:56:02",
+    "observed": "0001-01-01T23:00:00-04:56:02"
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-min-rfc3339",
+    "passed": false,
+    "expected": "RFC3339 explicit offset",
+    "observed": {
+      "reservation_id": "res_990998a2d5de4209b69fc385f5027b22",
+      "reference": "C2B359094B",
+      "restaurant_id": "r",
+      "table_id": "t0",
+      "party_size": 2,
+      "starts_at_local": "0001-01-01T21:30",
+      "starts_at": "0001-01-01T21:30:00-04:56:02",
+      "ends_at": "0001-01-01T23:00:00-04:56:02",
+      "status": "confirmed",
+      "created_at": "2026-10-04T00:50:41.767038+00:00"
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-availability",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-slots",
+    "passed": false,
+    "expected": [
+      "9999-12-31T18:00",
+      "9999-12-31T18:30",
+      "9999-12-31T19:00",
+      "9999-12-31T19:30",
+      "9999-12-31T20:00",
+      "9999-12-31T20:30",
+      "9999-12-31T21:00",
+      "9999-12-31T21:30"
+    ],
+    "observed": []
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-create",
+    "passed": false,
+    "expected": 201,
+    "observed": {
+      "status": 422,
+      "receipt": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-start-instant",
+    "passed": false,
+    "expected": "9999-12-31T21:30:00-05:00",
+    "observed": {
+      "error": {
+        "code": "validation_failed",
+        "message": "Invalid value"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-end-instant",
+    "passed": false,
+    "expected": "9999-12-31T23:00:00-05:00",
+    "observed": {
+      "error": {
+        "code": "validation_failed",
+        "message": "Invalid value"
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-midnight-availability",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-midnight-create",
+    "passed": false,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-json-content-type",
+    "passed": true,
+    "expected": "application/json;charset=utf-8",
+    "observed": [
+      "application/json;charset=utf-8"
+    ]
+  },
+  {
+    "requirement_id": "TK1-error-envelope",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-no-5xx",
+    "passed": true,
+    "expected": "no 5xx or transport failures",
+    "observed": [
+      200,
+      201,
+      204,
+      422
+    ]
+  },
+  {
+    "requirement_id": "TK1-request-timeout",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-reset-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.050841874999989045,
+        204
+      ],
+      [
+        0.041501749999994786,
+        204
+      ],
+      [
+        0.04169450000000552,
+        204
+      ],
+      [
+        0.04131495900000459,
+        204
+      ],
+      [
+        0.04110595800000283,
+        204
+      ],
+      [
+        0.04098237499999868,
+        204
+      ],
+      [
+        0.04105237499999248,
+        204
+      ]
+    ]
+  }
+]

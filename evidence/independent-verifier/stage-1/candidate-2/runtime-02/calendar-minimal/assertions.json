@@ -1,0 +1,175 @@
+[
+  {
+    "requirement_id": "TK1-reset-status",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-login-status",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "u",
+        "display_name": "A",
+        "token": {
+          "private_value_sha256": "31ff3e14ffe6fdae1c900588a3f1681f1a6b876375055b25ef6b9564d7c00845"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-availability",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-new-york-max-create",
+    "passed": false,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-reset-status",
+    "passed": true,
+    "expected": {
+      "status": 204,
+      "code": null
+    },
+    "observed": {
+      "status": 204,
+      "body": null
+    }
+  },
+  {
+    "requirement_id": "TK1-login-status",
+    "passed": true,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 200,
+      "body": {
+        "user_id": "u",
+        "display_name": "A",
+        "token": {
+          "private_value_sha256": "da2913bc60c0f6b3298c14e88f9b99f40e90e5a266bead5e699f45324a03f1ba"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-midnight-availability",
+    "passed": false,
+    "expected": {
+      "status": 200,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-edge-berlin-min-midnight-create",
+    "passed": false,
+    "expected": {
+      "status": 201,
+      "code": null
+    },
+    "observed": {
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "validation_failed",
+          "message": "Invalid value"
+        }
+      }
+    }
+  },
+  {
+    "requirement_id": "TK1-json-content-type",
+    "passed": true,
+    "expected": "application/json;charset=utf-8",
+    "observed": [
+      "application/json;charset=utf-8"
+    ]
+  },
+  {
+    "requirement_id": "TK1-error-envelope",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-no-5xx",
+    "passed": true,
+    "expected": "no 5xx or transport failures",
+    "observed": [
+      200,
+      204,
+      422
+    ]
+  },
+  {
+    "requirement_id": "TK1-request-timeout",
+    "passed": true,
+    "expected": null,
+    "observed": null
+  },
+  {
+    "requirement_id": "TK1-reset-timeout",
+    "passed": true,
+    "expected": "all calls <10s",
+    "observed": [
+      [
+        0.029794624999993857,
+        204
+      ],
+      [
+        0.021307707999994818,
+        204
+      ]
+    ]
+  }
+]
