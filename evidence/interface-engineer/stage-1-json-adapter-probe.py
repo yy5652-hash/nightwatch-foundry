@@ -105,13 +105,13 @@ try:
     check("Duplicate framing remains 400", r.status == 400 and value["error"]["code"] == "malformed_request" and engine.calls == before)
     c.close()
     barrier = threading.Barrier(50)
-    def concurrent(i):
+    def send_parallel(i):
         raw = ('{"n":'+str(i)+'.000000000000000005}').encode()
         barrier.wait(timeout=5)
         status, value, _ = call(raw)
         return status == 200 and same(value["body"], read(raw))
     with concurrent.futures.ThreadPoolExecutor(max_workers=50) as pool:
-        responses = list(pool.map(concurrent, range(50)))
+        responses = list(pool.map(send_parallel, range(50)))
     check("50 actual HTTP fixture calls retain independent exact bodies", all(responses))
 finally:
     server.shutdown()

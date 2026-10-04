@@ -1,0 +1,153 @@
+{
+  "scope": "Independent client syntax checks of planned inputs, not HTTP results",
+  "cases": 21,
+  "fixtures": [
+    {
+      "label": "utf8",
+      "request_sha256": "28b334f6979baf1fd55fe45a1da6dd4af713c6c51ae1f3ca23ddb033fd714804",
+      "bytes": 9,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "utf16",
+      "request_sha256": "7782d54b0133649b3e826ee712e242e6ed5ef186ae8621adc7c9fa2c58d930bc",
+      "bytes": 16,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "utf32",
+      "request_sha256": "469a727b1ce4c13bc9077e792a87cefa08136f40282fdd8e51bc02a4667bc6fd",
+      "bytes": 32,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "nan",
+      "request_sha256": "df38c4379aa2b6d4a7151668f11c6cdf75dc52f52588502956377adddf9e1a26",
+      "bytes": 9,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "infinity",
+      "request_sha256": "118b2cab78badb9e6239321a230c158b3f31bd401885e17dfedbf341a04d99ef",
+      "bytes": 14,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "negative-infinity",
+      "request_sha256": "405a026b3e3a03f012eb42469abe07a1dbda346f618d28309b027e0a24462049",
+      "bytes": 15,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "leading-zero",
+      "request_sha256": "2c96e2271e216ac28cc070125973a5937945870b6bd8d09c2fcd96c7b2ce1cde",
+      "bytes": 8,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "plus",
+      "request_sha256": "33935ebfbcd63c74c19be63b10bcbd04f8cc77ec283a1a407df25f7687d0b644",
+      "bytes": 8,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "leading-dot",
+      "request_sha256": "b89ca4cdf4b99875d54e51b6b488b3b91024a45bc8071b302e19d312b86c20d8",
+      "bytes": 8,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "trailing-dot",
+      "request_sha256": "c04711e93bd3887aa82d8f2f849e1660c839fd1e12966659217361a1ef14165a",
+      "bytes": 8,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "exponent-empty",
+      "request_sha256": "41254d851e1db9e4d45eae1631d636994efb9d12fe23b18cecf2fe15feb98ac5",
+      "bytes": 8,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "exponent-sign",
+      "request_sha256": "772c38e5f8b2939d9ce08d0a1d32c895e92e5261b1de19a3f2a2840fce06e58d",
+      "bytes": 9,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "hex",
+      "request_sha256": "83ed7a75258cbc2aa417d3209b31024f6c926778f95a98f487bc44510b2bfddc",
+      "bytes": 9,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "trailing-data",
+      "request_sha256": "2991eeec82a297cfe2989d634000880203e7bf7315ece0b0834c15001e526b5f",
+      "bytes": 9,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "invalid-escape",
+      "request_sha256": "25a099ec49acfc351068b288443d31e78f6416e072dbb997a70beab82269e494",
+      "bytes": 10,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "raw-newline",
+      "request_sha256": "b7b1f4f39d87abe836b38914d8ee21e1dc75f964cdb34fdfe23d6ba3452734b2",
+      "bytes": 11,
+      "expected": "syntax/encoding refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "nonobject-null",
+      "request_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "bytes": 4,
+      "expected": "object-only refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "nonobject-array",
+      "request_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "expected": "object-only refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "nonobject-boolean",
+      "request_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+      "bytes": 4,
+      "expected": "object-only refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "nonobject-number",
+      "request_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6",
+      "bytes": 3,
+      "expected": "object-only refusal",
+      "client_fixture_valid": true
+    },
+    {
+      "label": "nonobject-string",
+      "request_sha256": "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+      "bytes": 7,
+      "expected": "object-only refusal",
+      "client_fixture_valid": true
+    }
+  ]
+}

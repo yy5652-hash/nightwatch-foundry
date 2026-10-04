@@ -1,0 +1,131 @@
+{
+  "scope": "Independent evidence-client oracle only; no service requests",
+  "cases": 31,
+  "passed": 31,
+  "checks": [
+    {
+      "case": "1 equals 1.0",
+      "passed": true
+    },
+    {
+      "case": "1 equals 1e0",
+      "passed": true
+    },
+    {
+      "case": "-0 equals 0e-999999",
+      "passed": true
+    },
+    {
+      "case": "1000 equals 1e3",
+      "passed": true
+    },
+    {
+      "case": "9007199254740993.0 equals 9007199254740993",
+      "passed": true
+    },
+    {
+      "case": "0.100000000000000005 equals 100000000000000005e-18",
+      "passed": true
+    },
+    {
+      "case": "exact distinguishes 0.100000000000000005 / 0.1",
+      "passed": true
+    },
+    {
+      "case": "legacy aliases 0.100000000000000005 / 0.1",
+      "passed": true
+    },
+    {
+      "case": "exact distinguishes 9007199254740993.0 / 9007199254740992",
+      "passed": true
+    },
+    {
+      "case": "legacy aliases 9007199254740993.0 / 9007199254740992",
+      "passed": true
+    },
+    {
+      "case": "exact distinguishes 1e-4300 / 0",
+      "passed": true
+    },
+    {
+      "case": "legacy aliases 1e-4300 / 0",
+      "passed": true
+    },
+    {
+      "case": "legacy exact integer remains distinct",
+      "passed": true
+    },
+    {
+      "case": "boolean distinct False",
+      "passed": true
+    },
+    {
+      "case": "string distinct False",
+      "passed": true
+    },
+    {
+      "case": "boolean distinct True",
+      "passed": true
+    },
+    {
+      "case": "string distinct True",
+      "passed": true
+    },
+    {
+      "case": "huge compact exponent aliases",
+      "passed": true
+    },
+    {
+      "case": "zero huge exponent",
+      "passed": true
+    },
+    {
+      "case": "giant fraction",
+      "passed": true
+    },
+    {
+      "case": "exact tree round trip",
+      "passed": true
+    },
+    {
+      "case": "objects unordered",
+      "passed": true
+    },
+    {
+      "case": "arrays ordered",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":NaN}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":Infinity}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":-Infinity}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":01}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":.5}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":1.}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"n\":1e}'",
+      "passed": true
+    },
+    {
+      "case": "invalid b'{\"x\":\"\\xff\"}'",
+      "passed": true
+    }
+  ]
+}
