@@ -89,6 +89,12 @@ dispatch (2026-10-04 00:12:31 UTC); every later message comes from a seat. Usefu
 After the final report the coordinator spent another 48 minutes settling queued inbound
 messages one by one without changing anything; that tail is in the log too.
 
+The export was taken on 2026-10-04 at 13:48 UTC and holds 20,512 events. On 2026-10-05 the
+operator's machine restarted (13:11 UTC); Band Desktop respawned the coordinator's runtime,
+which re-read the room and restated the final result at 13:13 UTC. Those 29 events, all from
+the coordinator, with no human message and no commit, are in the live room but are later
+than `room.json`.
+
 ## Operator changes
 
 - Added `README.md`, `FACTORY.md`, `room.json`, `factory/` and `docs/`.
